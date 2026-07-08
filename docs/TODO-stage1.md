@@ -4,35 +4,35 @@ Stage 1 is three commits. Within each commit, tasks are ordered; across commits,
 
 ---
 
-## Stage 1a — Gradle project scaffold
+## Stage 1a — Gradle project scaffold ✅
 
 **Done when:** `./gradlew :core-api:compileKotlin` succeeds; module structure matches plan.
 
-- [ ] **A1** Create root `settings.gradle.kts`
+- [x] **A1** Create root `settings.gradle.kts`
   - `rootProject.name = "blame-zeus"`
   - `include("core-api", "telegram-bot")`
   - Comment excluding `ingestion/` from Gradle scanning
-- [ ] **A2** Create root `build.gradle.kts`
+- [x] **A2** Create root `build.gradle.kts`
   - `plugins {}` block only (no `apply` calls, no code)
   - Versions: Spring Boot 3.3.13, io.spring.dependency-management 1.1.7; Kotlin 2.3.21 declared in settings pluginManagement
-- [ ] **A3** Create `gradle.properties`
+- [x] **A3** Create `gradle.properties`
   - `kotlin.code.style=official`
   - `org.gradle.jvmargs=-Xmx2g`
   - `javaVersion=21`
-- [ ] **A4** Create `buildSrc/` convention plugin
+- [x] **A4** Create `buildSrc/` convention plugin
   - `buildSrc/build.gradle.kts` — apply `kotlin-dsl`, add `kotlin-gradle-plugin` + `kotlin-allopen` deps
   - `buildSrc/src/main/kotlin/blame-zeus.kotlin-conventions.gradle.kts`
     - Apply `kotlin("jvm")` + `kotlin("plugin.spring")`, set `jvmTarget = "21"`
     - Add `kotlin-reflect` + `jackson-module-kotlin` to all JVM modules
-- [ ] **A5** Create `core-api/build.gradle.kts`
+- [x] **A5** Create `core-api/build.gradle.kts`
   - All compile + test dependencies (LangChain4j 1.0.0-beta5, Flyway, pgvector, springdoc 2.8.3, Testcontainers BOM-managed, springmockk 4.0.2)
-- [ ] **A6** Create `telegram-bot/build.gradle.kts`
+- [x] **A6** Create `telegram-bot/build.gradle.kts`
   - Apply `blame-zeus.kotlin-conventions` + `org.springframework.boot`; `spring-boot-starter-web` only (telegrambots commented out for Phase 2)
-- [ ] **A7** Create `core-api/src/main/kotlin/com/blamezeus/coreapi/CoreApiApplication.kt`
+- [x] **A7** Create `core-api/src/main/kotlin/com/blamezeus/coreapi/CoreApiApplication.kt`
   - `@SpringBootApplication` main class, `fun main(args: Array<String>)` entry point
-- [ ] **A8** Create `core-api/src/main/resources/application.yml`
+- [x] **A8** Create `core-api/src/main/resources/application.yml`
   - `spring.datasource` + Hikari `statement_timeout`, `spring.flyway` (superuser), `spring.jpa.hibernate.ddl-auto: validate`, `app.llm` block
-- [ ] **A9** Verify: `./gradlew :core-api:compileKotlin` succeeds 
+- [x] **A9** Verify: `./gradlew :core-api:compileKotlin` succeeds ✅
 
 ---
 
@@ -67,6 +67,8 @@ Stage 1 is three commits. Within each commit, tasks are ordered; across commits,
 ## Stage 1c — Database schema + foundation tests
 
 **Done when:** Flyway applies V1–V8; `FlywayMigrationTest` + `SchemaIntrospectorTest` pass against Testcontainers; `zeus_app` SELECT works, DROP is denied.
+
+> ⚠️ Updated based on DEV-003 (see DEVIATIONS.md): Flyway is 10.10.0 (not 9.x). `flyway-database-postgresql` is already declared as `runtimeOnly` in `core-api/build.gradle.kts`. Migration SQL syntax and `afterMigrate__*.sql` callback naming are unchanged in Flyway 10.x — the items below require no edits.
 
 _Write tests in D1–D4 before implementing `SchemaIntrospector` in E1._
 

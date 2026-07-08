@@ -7,14 +7,14 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 ## Stage 1a — Gradle project scaffold 
 **Done when:** `./gradlew :core-api:compileKotlin` succeeds; module structure matches plan.
 
-- [ ] Root `settings.gradle.kts` — `rootProject.name`, `include("core-api", "telegram-bot")`, comment excluding `ingestion/`
-- [ ] Root `build.gradle.kts` — `plugins {}` block only; shared version declarations
-- [ ] `gradle.properties` — `kotlin.code.style`, `org.gradle.jvmargs`, `javaVersion=21`
-- [ ] `buildSrc/` convention plugin — apply `kotlin("jvm")`, `jvmTarget="21"`, `kotlin-reflect`, `jackson-module-kotlin`
-- [ ] `core-api/build.gradle.kts` — all compile + test dependencies (LangChain4j, Flyway, pgvector, springdoc, Testcontainers, springmockk)
-- [ ] `telegram-bot/build.gradle.kts` — placeholder (`spring-boot-starter-web`, `telegrambots-spring-boot-starter`; no production code)
-- [ ] `CoreApiApplication.kt` — `@SpringBootApplication` main class
-- [ ] `application.yml` — datasource + Flyway + JPA + `app.llm` blocks with env-var placeholders; `statement_timeout = '3s'` Hikari init SQL
+- [x] Root `settings.gradle.kts` — `rootProject.name`, `include("core-api", "telegram-bot")`, comment excluding `ingestion/`
+- [x] Root `build.gradle.kts` — `plugins {}` block only; shared version declarations
+- [x] `gradle.properties` — `kotlin.code.style`, `org.gradle.jvmargs`, `javaVersion=21`
+- [x] `buildSrc/` convention plugin — apply `kotlin("jvm")`, `jvmTarget="21"`, `kotlin-reflect`, `jackson-module-kotlin`
+- [x] `core-api/build.gradle.kts` — all compile + test dependencies (LangChain4j, Flyway, pgvector, springdoc, Testcontainers, springmockk)
+- [x] `telegram-bot/build.gradle.kts` — placeholder (`spring-boot-starter-web` only; telegrambots commented out per DEV-007)
+- [x] `CoreApiApplication.kt` — `@SpringBootApplication` main class
+- [x] `application.yml` — datasource + Flyway + JPA + `app.llm` blocks with env-var placeholders; `statement_timeout = '3s'` Hikari init SQL
 
 ---
 
@@ -93,6 +93,8 @@ plaintext → `corpus/apollodorus_bibliotheca_frazer1921.txt`
 ## Stage 5 — SQL Pipeline
 **Done when:** DATA gold questions (Q6–Q10) answer correctly via `POST /api/v1/query`; `SqlSafetyValidatorTest` + `SqlQueryHandlerTest` pass.
 
+> ⚠️ Updated assumptions based on DEV-004 (see DEVIATIONS.md): LangChain4j is `1.0.0-beta5` (not 1.0.0 GA). Before implementing, verify current beta5 API shapes for `@AiService`, `@V` parameter injection, `@SystemMessage`/`@UserMessage`, and `QueryRouter`/`TextToSqlAgent` interface construction.
+
 - [ ] Tests first: `SqlSafetyValidatorTest` (SELECT/WITH allowed; DROP/DELETE/INSERT/UPDATE/`;` blocked)
 - [ ] Tests first: `SqlQueryHandlerTest` (mock `TextToSqlAgent`, assert validator called before JdbcTemplate)
 - [ ] `RouteDecision.kt` enum (SQL, RAG, MIXED, CONFLICT)
@@ -111,6 +113,8 @@ plaintext → `corpus/apollodorus_bibliotheca_frazer1921.txt`
 ## Stage 6 — RAG Pipeline
 **Done when:** FACT gold questions (Q1–Q5) return cited answers; `RagQueryHandlerTest` passes.
 
+> ⚠️ Updated assumptions based on DEV-004 (see DEVIATIONS.md): LangChain4j is `1.0.0-beta5`. Before implementing, verify beta5 API shapes for `RagAgent @AiService`, `EmbeddingStore`, `ContentRetriever`, and `PgVectorEmbeddingStore` (including `createTable(false)` parameter shape).
+
 - [ ] Tests first: `RagQueryHandlerTest` (mock `RagAgent`, assert `RagResponse.citations` returned without text parsing)
 - [ ] `RagAgent.kt` `@AiService` interface — JSON structured return (`RagResponse`)
 - [ ] `RagQueryHandler.kt`
@@ -123,6 +127,8 @@ plaintext → `corpus/apollodorus_bibliotheca_frazer1921.txt`
 ## Stage 7 — Conflict Pipeline
 **Done when:** Aphrodite question returns ≥2 attributed versions; `ConflictQueryHandlerTest` passes.
 
+> ⚠️ Updated assumptions based on DEV-004 (see DEVIATIONS.md): LangChain4j is `1.0.0-beta5`. Before implementing, verify beta5 API shapes for `EntityExtractor @AiService` (temperature 0.0) and `ConflictSynthesizer @AiService` (temperature 0.3) — annotation and parameter injection shapes may differ from 1.0.0 GA.
+
 - [ ] Tests first: `ConflictQueryHandlerTest` (all variant_claims rows passed to synthesizer; unknown entity returns graceful answer)
 - [ ] `EntityExtractor.kt` `@AiService` interface (temperature 0.0)
 - [ ] `ConflictSynthesizer.kt` `@AiService` interface (temperature 0.3)
@@ -134,6 +140,8 @@ plaintext → `corpus/apollodorus_bibliotheca_frazer1921.txt`
 
 ## Stage 8 — Mixed Pipeline
 **Done when:** MIXED gold questions (Q11–Q12) return both SQL rows and narrative answer; `MixedQueryHandlerTest` passes.
+
+> ⚠️ Updated assumptions based on DEV-004 (see DEVIATIONS.md): LangChain4j is `1.0.0-beta5`. `MixedQueryHandler` calls `ragAgent.answer(augmented)` — confirm the `RagAgent @AiService` interface verified in Stage 6 is unchanged before building on it.
 
 - [ ] Tests first: `MixedQueryHandlerTest` (SQL results injected into augmented question before RAG call)
 - [ ] `MixedQueryHandler.kt` — SQL filter → inject results as context → `ragAgent.answer(augmented)`
@@ -172,7 +180,9 @@ plaintext → `corpus/apollodorus_bibliotheca_frazer1921.txt`
 ## Stage 11 — Telegram Bot (Phase 2, optional)
 **Done when:** Bot answers questions in Telegram chat; `/start` command works.
 
-- [ ] `telegram-bot/build.gradle.kts` — `telegrambots-spring-boot-starter:6.9.x` + `spring-boot-starter-web`
+> ⚠️ Updated assumptions based on DEV-007 (see DEVIATIONS.md): `telegrambots-spring-boot-starter` is currently commented out in `telegram-bot/build.gradle.kts`. Verify correct artifact coordinates before adding (likely `org.telegram:telegrambots-spring-boot-starter:6.9.7`).
+
+- [ ] `telegram-bot/build.gradle.kts` — add `telegrambots-spring-boot-starter:6.9.x` (verify coordinates first) + `spring-boot-starter-web` `[DEVIATED - see DEVIATIONS.md DEV-007]`
 - [ ] `BlamezeusBot` extending `TelegramLongPollingBot`
 - [ ] `CoreApiClient` — `RestClient` calling `POST /api/v1/query`
 - [ ] `TelegramResponseFormatter` — MarkdownV2 formatting, message splitting at >4096 chars

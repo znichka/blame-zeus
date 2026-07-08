@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:blamezeus}
+    username: ${POSTGRES_APP_USER:zeus_app}
+    password: ${POSTGRES_APP_PASSWORD:app_password}
+    hikari:
+      connection-init-sql: "SET statement_timeout = '3s'"
+  flyway:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:blamezeus}
+    user: ${POSTGRES_USER:zeus}
+    password: ${POSTGRES_PASSWORD:olympus}
+    locations: classpath:db/migration
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+app:
+  llm:
+    chat-api-key: ${LLM_API_KEY}
+    embedding-api-key: ${OPENAI_API_KEY}
+    chat-model: ${LLM_CHAT_MODEL}

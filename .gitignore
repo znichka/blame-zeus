@@ -1,1 +1,40 @@
+### macOS ###
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
 
+### Gradle ###
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+### IntelliJ IDEA ###
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+### VS Code ###
+.vscode/
+
+### Environment ###
+.env
+!.env.example
+
+### Python (ingestion) ###
+ingestion/.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+### Corpus (public-domain plaintext; too large for git) ###
+ingestion/corpus/
+
+### Logs ###
+*.log
+spring.log

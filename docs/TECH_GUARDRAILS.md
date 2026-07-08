@@ -8,8 +8,8 @@ Rules for keeping this PoC consistent, safe, and easy to reason about. These are
 
 | Rule | Detail |
 |---|---|
-| **Kotlin 1.9.x + JVM 21** | `core-api` and `telegram-bot` modules. No Java source files. |
-| **Spring Boot 3.2.x** | Jakarta namespace (`jakarta.*`), not `javax.*`. |
+| **Kotlin 2.3.21 + JVM 21** | `core-api` and `telegram-bot` modules. No Java source files. |
+| **Spring Boot 3.3.13** | Jakarta namespace (`jakarta.*`), not `javax.*`. |
 | **Gradle Kotlin DSL** | All JVM build files are `build.gradle.kts`. No Groovy `.gradle` files. |
 | **Shared convention plugin** | `buildSrc/src/main/kotlin/blame-zeus.kotlin-conventions.gradle.kts` — applies `kotlin("jvm")`, sets `jvmTarget = "21"`, adds `kotlin-reflect` + `jackson-module-kotlin` to all JVM modules. |
 | **Python 3.12+ for ingestion** | The `ingestion/` directory is a standalone Python project. No JVM, no Spring, no Gradle. Managed with `uv` (or `pip` + `venv`). Not part of the Gradle build. |

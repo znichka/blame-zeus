@@ -10,11 +10,12 @@ Key docs:
 - `docs/CONCEPT.md` — full product concept and design rationale
 - `docs/IMPLEMENTATION_PLAN.md` — architecture, module layout, data model, handler logic, evaluation, implementation sequence
 - `docs/TECH_GUARDRAILS.md` — hard constraints on stack, LLM usage, SQL safety, testing, and what NOT to add
+- `docs/DEVIATIONS.md` — every deviation from the plan that occurred during implementation (append-only)
 
 ## Tech Stack
 
-- **Language:** Kotlin 1.9.x + JVM 21 (`core-api`, `telegram-bot`); Python 3.12+ (`ingestion`)
-- **Framework:** Spring Boot 3.2.x (Jakarta namespace, not `javax.*`)
+- **Language:** Kotlin 2.3.21 + JVM 21 (`core-api`, `telegram-bot`); Python 3.12+ (`ingestion`)
+- **Framework:** Spring Boot 3.3.13 (Jakarta namespace, not `javax.*`)
 - **Build:** Gradle Kotlin DSL; shared convention plugin in `buildSrc/`
 - **LLM framework:** LangChain4j (JVM services only) — all LLM calls in `core-api` go through `@AiService` interfaces; no direct OpenAI/Anthropic Java SDK in JVM code. The `ingestion` Python job uses the OpenAI Python SDK directly for embedding only — this is intentional and the only authorized exception.
 - **LLM provider:** OpenAI for **embedding** (fixed — must match `text-embedding-3-small` used during ingestion; not swappable without re-ingesting the full corpus). **Chat model is provider-agnostic** — all `@AiService` interfaces and handlers are provider-neutral; the only provider-specific code is the beans in `LangChain4jConfig.kt` (Phase 1 default: `OpenAiChatModel`). Swap those beans and add the new provider's LangChain4j starter to change the chat provider. Two separate API key env vars: `OPENAI_API_KEY` for ingestion and embedding, `LLM_API_KEY` for the chat model (both point to the same key in Phase 1). Chat model name injected via `LLM_CHAT_MODEL` env var — no default in `application.yml`, must always be set explicitly.
@@ -143,3 +144,16 @@ Structured tables: ~60–100 entities (Olympians, Titans, major heroes) hand-cur
 ## Evaluation
 
 17 gold questions across five categories (FACT, DATA, MIXED, CONFLICT, REFUSAL) in `evaluation/gold-questions.json`; scored at 3 pts each. Target ≥75% overall. See `docs/IMPLEMENTATION_PLAN.md §7` for full schema and scoring rules.
+
+## Deviation Tracking Protocol
+
+When implementing any planned stage:
+
+1. **Never overwrite** `IMPLEMENTATION_PLAN.md` — it is the authoritative plan; deviations are recorded separately.
+2. **Log all deviations** in `docs/DEVIATIONS.md` (append-only) using this format:
+   - Stage, Original Plan, What Changed, Reason, Impact, Date
+3. **Mark affected TODO items** with `[DEVIATED - see DEVIATIONS.md #DEV-NNN]` inline.
+4. **Add a note** to the relevant stage in `IMPLEMENTATION_PLAN.md` of the form:
+   `> ⚠️ Deviations occurred in this stage. See DEVIATIONS.md for details.`
+5. **Update future stage plans** in `TODO.md` / `TODO-stage1.md` if the deviation changes their input assumptions — be explicit: `"Updated based on DEV-NNN (see DEVIATIONS.md)"`.
+6. **Before starting any stage**, re-read `DEVIATIONS.md` to understand what assumptions from prior stages have changed.

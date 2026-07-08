@@ -1,5 +1,7 @@
 # blame-zeus: Implementation Plan
 
+> ⚠️ All agents must follow the deviation tracking protocol defined in `CLAUDE.md` before making any implementation changes. Deviations from this plan are recorded in `docs/DEVIATIONS.md`.
+
 ## 1. Executive Summary
 
 blame-zeus is a Greek mythology lore assistant PoC whose defining feature is source attribution and conflict detection — surfacing disagreements between ancient texts rather than giving a single confident answer. A user asks a natural-language mythology question; the system routes it through SQL, RAG, or a conflict-detection pipeline; and every claim in the answer cites the ancient work it came from.
@@ -883,7 +885,7 @@ Build in phases to validate each layer before building on it. For each phase, wr
 
 | Phase | Steps | Done when |
 |---|---|---|
-| **1 — Foundation** | Gradle scaffold for JVM modules, Docker Compose, Flyway V1–V8 | `docker-compose up`, Flyway migrates, empty tables exist |
+| **1 — Foundation** | Gradle scaffold for JVM modules, Docker Compose, Flyway V1–V8 | `docker-compose up`, Flyway migrates, empty tables exist | ⚠️ Stage 1a deviations: see DEVIATIONS.md (DEV-001 through DEV-007) |
 | **2 — Seed Data** | V9–V13, JPA entities + repos | `GET /api/v1/entities` returns ~60 entities |
 | **3 — Ingestion setup** | Python venv, `requirements.txt`, `config.py`, download corpus .txt files, file loader + cleaner for Apollodorus | `python main.py` runs without error, rows appear in `narrative_chunks` |
 | **4 — Full Corpus** | Add Homer, Hesiod, Hymns, Ovid file paths to `source_registry.py` | All sources indexed |
