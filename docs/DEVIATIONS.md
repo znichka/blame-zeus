@@ -90,3 +90,29 @@ See `CLAUDE.md §Deviation Tracking Protocol` for the rules governing when and h
 | **What Changed** | Dependency is commented out; `telegram-bot` only has `spring-boot-starter-web` |
 | **Reason** | The correct artifact coordinates and version for telegrambots 6.9.x were not verified. Adding an unresolvable dependency would break `./gradlew dependencies` for the `telegram-bot` module. The placeholder comment (`// Phase 2: implementation(...)`) preserves the intent without blocking Stage 1a verification. |
 | **Impact** | **Affects Stage 11.** When implementing Stage 11, the telegrambots dependency must be added back. Verify correct coordinates (likely `org.telegram:telegrambots-spring-boot-starter:6.9.7`) before adding. Mark Stage 11 TODO item: `[DEVIATED - see DEVIATIONS.md DEV-007]`. |
+
+---
+
+## Stage 1c — Database schema + foundation tests (2026-07-08)
+
+### DEV-008 — Testcontainers version: Spring Boot 3.3.13 BOM default (1.19.x) → 1.21.4 pinned override
+
+| Field | Detail |
+|---|---|
+| **Stage** | 1c |
+| **Original Plan** | Use Testcontainers as managed by the Spring Boot 3.3.13 BOM, no explicit version override |
+| **What Changed** | `core-api/build.gradle.kts` sets `extra["testcontainers.version"] = "1.21.4"`, overriding the BOM-managed version |
+| **Reason** | The BOM-managed Testcontainers line (1.19.x/1.20.x) ships a docker-java client that falls back to Docker Engine API version 1.32 when negotiation fails. Recent Docker Engine releases (29+, and current Docker Desktop) hard-reject any client below API 1.40, causing every `PostgreSQLContainer` start to fail with `client version 1.32 is too old`. Testcontainers `1.21.4` backports the fix within the 1.x line (same groupId/artifact coordinates, no breaking API changes), avoiding a riskier jump to the 2.x major line. |
+| **Impact** | All future Testcontainers-based integration tests (Stage 2+ repository tests, etc.) are unaffected — same `PostgreSQLContainer` API. If the BOM's default Testcontainers version is bumped past `1.21.4` in a future Spring Boot upgrade, this override can likely be removed; verify with `./gradlew :core-api:dependencies --configuration testRuntimeClasspath` before removing. |
+
+---
+
+### DEV-009 — springdoc-openapi version: 2.8.3 (DEV-006) → 2.6.0 (corrects DEV-006)
+
+| Field | Detail |
+|---|---|
+| **Stage** | 1c |
+| **Original Plan** | `springdoc-openapi-starter-webmvc-ui:2.5.x` (per original plan); DEV-006 changed this to `2.8.3` during Stage 1a |
+| **What Changed** | `springdoc-openapi-starter-webmvc-ui:2.6.0` — corrects DEV-006, which picked an incompatible version |
+| **Reason** | `springdoc-openapi 2.8.3` requires Spring Boot 3.4.x / Spring Framework 6.2.x (its own POM depends on `spring-boot-autoconfigure:3.4.1` and `spring-webmvc:6.2.1`). This project pins Spring Boot 3.3.13 (Spring Framework 6.1.21) per DEV-002, so Gradle's dependency management silently downgraded springdoc's transitive Spring dependencies to 6.1.21/3.3.13. `spring-webmvc:6.1.21` does not contain `org.springframework.web.servlet.resource.LiteWebJarsResourceResolver` (added in Spring Framework 6.2), which springdoc's autoconfiguration references — causing every `@SpringBootTest` (and the running app) to fail with `ClassNotFoundException: ...LiteWebJarsResourceResolver` and `ApplicationContext failure threshold exceeded`. This was discovered while getting `FlywayMigrationTest`/`SchemaIntrospectorTest` to pass in Stage 1c — the failure only surfaces when a full `@SpringBootTest` context loads, so it was invisible at `compileKotlin` time. `2.6.0` is the last release in the line compatible with Spring Boot 3.3.x (2.7.0+ requires 3.4.0+). |
+| **Impact** | **Corrects DEV-006.** `OpenApiConfig.kt` (Stage 9) must target springdoc 2.6.0's API surface, not 2.8.3's — no breaking changes affect basic `@Operation`/`@Tag` annotation usage between these lines. If Spring Boot is ever upgraded to 3.4.x+, springdoc can be bumped back to the 2.8.x/2.7.x line at that time. |

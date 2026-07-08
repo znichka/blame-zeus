@@ -29,16 +29,18 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 
 ---
 
-## Stage 1c — Database schema + foundation tests
+## Stage 1c — Database schema + foundation tests ✅
 **Done when:** Flyway applies V1–V8; `FlywayMigrationTest` + `SchemaIntrospectorTest` pass against Testcontainers; `zeus_app` SELECT works, DROP is denied.
 
-- [ ] Flyway V1–V8 SQL files (extensions, sources, entities, relationships, myths, myth_participants, variant_claims, narrative_chunks)
-- [ ] `afterMigrate__grant_app_user.sql` Flyway callback
-- [ ] `application-test.yml` — `ddl-auto: validate`, `flyway.enabled: true`
-- [ ] Testcontainers base config — `PostgreSQLContainer` with `pgvector/pgvector:pg16`, `@DynamicPropertySource`
-- [ ] `FlywayMigrationTest.kt` — table presence + column verification for `variant_claims`, `narrative_chunks`, `sources`
-- [ ] `SchemaIntrospector.kt` — lazy-built schema prompt from `information_schema`
-- [ ] `SchemaIntrospectorTest.kt` — prompt contains all tables + critical columns
+> ⚠️ Deviations occurred in this stage. See DEVIATIONS.md for details (DEV-008, DEV-009).
+
+- [x] Flyway V1–V8 SQL files (extensions, sources, entities, relationships, myths, myth_participants, variant_claims, narrative_chunks)
+- [x] `afterMigrate__grant_app_user.sql` Flyway callback
+- [x] `application-test.yml` — `ddl-auto: validate`, `flyway.enabled: true`
+- [x] Testcontainers base config — `PostgreSQLContainer` with `pgvector/pgvector:pg16`, `@DynamicPropertySource`
+- [x] `FlywayMigrationTest.kt` — table presence + column verification for `variant_claims`, `narrative_chunks`, `sources`
+- [x] `SchemaIntrospector.kt` — lazy-built schema prompt from `information_schema`
+- [x] `SchemaIntrospectorTest.kt` — prompt contains all tables + critical columns
 
 → [Detailed track-by-track checklist](TODO-stage1.md)
 
@@ -151,6 +153,8 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 
 ## Stage 9 — Web UI
 **Done when:** Manual smoke test of all 17 gold questions in browser passes; route badge + citations render correctly.
+
+> ⚠️ Updated based on DEV-009 (see DEVIATIONS.md): springdoc-openapi is `2.6.0` (not `2.8.3` — DEV-006 picked a version requiring Spring Boot 3.4.x, which broke `@SpringBootTest` context loading under Spring Boot 3.3.13). `OpenApiConfig.kt` should target `2.6.0`'s API surface; `@Operation`/`@Tag` usage is unaffected.
 
 - [ ] `WebController.kt` — `GET /` + `POST /web/query`
 - [ ] `templates/index.html` — form, route badge (color-coded), answer block, citations footnotes, conflicts section, collapsible SQL block, error banner for `serviceError`

@@ -64,11 +64,15 @@ Stage 1 is three commits. Within each commit, tasks are ordered; across commits,
 
 ---
 
-## Stage 1c — Database schema + foundation tests
+## Stage 1c — Database schema + foundation tests ✅
 
 **Done when:** Flyway applies V1–V8; `FlywayMigrationTest` + `SchemaIntrospectorTest` pass against Testcontainers; `zeus_app` SELECT works, DROP is denied.
 
 > ⚠️ Updated based on DEV-003 (see DEVIATIONS.md): Flyway is 10.10.0 (not 9.x). `flyway-database-postgresql` is already declared as `runtimeOnly` in `core-api/build.gradle.kts`. Migration SQL syntax and `afterMigrate__*.sql` callback naming are unchanged in Flyway 10.x — the items below require no edits.
+
+> ⚠️ Deviations occurred in this stage. See DEVIATIONS.md for details:
+> - DEV-008: Testcontainers pinned to `1.21.4` (BOM default falls back to Docker API 1.32, rejected by Docker Engine 29+ / current Docker Desktop).
+> - DEV-009: springdoc-openapi corrected to `2.6.0` (`2.8.3` from DEV-006 requires Spring Boot 3.4.x and broke all `@SpringBootTest` context loading with `ClassNotFoundException: LiteWebJarsResourceResolver`).
 
 _Write tests in D1–D4 before implementing `SchemaIntrospector` in E1._
 
@@ -76,40 +80,40 @@ _Write tests in D1–D4 before implementing `SchemaIntrospector` in E1._
 
 _Directory:_ `core-api/src/main/resources/db/migration/`
 
-- [ ] **C1** `V1__enable_pgvector.sql`
+- [x] **C1** `V1__enable_pgvector.sql`
   ```sql
   CREATE EXTENSION IF NOT EXISTS vector;
   CREATE EXTENSION IF NOT EXISTS pg_trgm;
   ```
-- [ ] **C2** `V2__create_sources.sql`
+- [x] **C2** `V2__create_sources.sql`
   - `sources(id TEXT PRIMARY KEY, author TEXT NOT NULL, work TEXT NOT NULL, passage_ref TEXT, translation TEXT, stance TEXT NOT NULL, year_published INTEGER NOT NULL, role TEXT NOT NULL)`
   - `CHECK (stance IN ('poetic-myth','mythographic-handbook','cosmological','hymnic'))`
   - `CHECK (role IN ('spine','primary','selective','stretch'))`
-- [ ] **C3** `V3__create_entities.sql`
+- [x] **C3** `V3__create_entities.sql`
   - `entities(id SERIAL PRIMARY KEY, name TEXT NOT NULL UNIQUE, type TEXT NOT NULL, generation INTEGER, domain TEXT)`
   - `CHECK (type IN ('primordial','titan','olympian','other_god','hero','mortal','monster','nymph'))`
   - `CREATE INDEX idx_entities_name_trgm ON entities USING gin(name gin_trgm_ops);`
-- [ ] **C4** `V4__create_relationships.sql`
+- [x] **C4** `V4__create_relationships.sql`
   - `relationships(id SERIAL PRIMARY KEY, from_id INTEGER NOT NULL REFERENCES entities(id), relation TEXT NOT NULL, to_id INTEGER NOT NULL REFERENCES entities(id), source_id TEXT NOT NULL REFERENCES sources(id))`
   - Index on `(from_id)`, `(to_id)`, `(source_id)`
-- [ ] **C5** `V5__create_myths.sql`
+- [x] **C5** `V5__create_myths.sql`
   - `myths(id SERIAL PRIMARY KEY, title TEXT NOT NULL, location TEXT, summary TEXT)`
   - No `source_id` FK — structural container only
-- [ ] **C6** `V6__create_myth_participants.sql`
+- [x] **C6** `V6__create_myth_participants.sql`
   - `myth_participants(myth_id INTEGER NOT NULL REFERENCES myths(id), entity_id INTEGER NOT NULL REFERENCES entities(id), role TEXT, PRIMARY KEY (myth_id, entity_id))`
-- [ ] **C7** `V7__create_variant_claims.sql`
+- [x] **C7** `V7__create_variant_claims.sql`
   - `variant_claims(id SERIAL PRIMARY KEY, subject_entity_id INTEGER NOT NULL REFERENCES entities(id), claim_type TEXT NOT NULL, claim_value TEXT NOT NULL, source_id TEXT NOT NULL REFERENCES sources(id), trust_tier SMALLINT NOT NULL DEFAULT 2)`
   - `CREATE INDEX idx_variant_claims_subject_type ON variant_claims(subject_entity_id, claim_type);`
-- [ ] **C8** `V8__create_narrative_chunks.sql`
+- [x] **C8** `V8__create_narrative_chunks.sql`
   - `narrative_chunks(id SERIAL PRIMARY KEY, content TEXT NOT NULL, content_hash TEXT GENERATED ALWAYS AS (md5(content)) STORED, embedding vector(1536) NOT NULL, source_id TEXT NOT NULL REFERENCES sources(id), passage_ref TEXT, metadata JSONB)`
   - `UNIQUE (source_id, passage_ref, content_hash)`
   - `CREATE INDEX ON narrative_chunks USING hnsw (embedding vector_cosine_ops) WITH (m=16, ef_construction=64);`
-- [ ] **C9** `afterMigrate__grant_app_user.sql` (Flyway callback, not versioned)
+- [x] **C9** `afterMigrate__grant_app_user.sql` (Flyway callback, not versioned)
   - `GRANT SELECT ON ALL TABLES IN SCHEMA public TO zeus_app;`
 
 ### Tests (write before SchemaIntrospector)
 
-- [ ] **D1** Create `core-api/src/test/resources/application-test.yml`
+- [x] **D1** Create `core-api/src/test/resources/application-test.yml`
   ```yaml
   spring:
     jpa:
@@ -118,10 +122,10 @@ _Directory:_ `core-api/src/main/resources/db/migration/`
     flyway:
       enabled: true
   ```
-- [ ] **D2** Create Testcontainers base configuration
+- [x] **D2** Create Testcontainers base configuration
   - Abstract base class or `@TestConfiguration` that starts `PostgreSQLContainer` with `pgvector/pgvector:pg16` image
   - Expose container URL/credentials as Spring properties via `@DynamicPropertySource`
-- [ ] **D3** Write `FlywayMigrationTest.kt` (should **fail** until C1–C8 migrations are applied)
+- [x] **D3** Write `FlywayMigrationTest.kt` (should **fail** until C1–C8 migrations are applied)
   - `@SpringBootTest` + `@ActiveProfiles("test")` + `@Testcontainers`
   - Helper `columns(table: String): List<String>` using `information_schema.columns`
   - `@Test fun 'all expected tables exist'` — assert each of V1–V8 tables is present
@@ -129,7 +133,7 @@ _Directory:_ `core-api/src/main/resources/db/migration/`
   - `@Test fun 'narrative_chunks has content_hash and embedding'` — assert `content`, `content_hash`, `embedding`, `source_id`, `passage_ref`
   - `@Test fun 'sources has year_published and role'` — assert `author`, `work`, `translation`, `stance`, `year_published`, `role`
   - `@Test fun 'entity_aliases table does not exist yet'` — will be created in V14 (Stage 2)
-- [ ] **D4** Write `SchemaIntrospectorTest.kt` (should **fail** until E1 is implemented)
+- [x] **D4** Write `SchemaIntrospectorTest.kt` (should **fail** until E1 is implemented)
   - `@SpringBootTest` + `@ActiveProfiles("test")` + `@Testcontainers`
   - `@Autowired lateinit var schemaIntrospector: SchemaIntrospector`
   - `@Test fun 'prompt contains all application tables'` — assert `entities`, `relationships`, `sources`, `variant_claims`, `narrative_chunks`
@@ -137,19 +141,19 @@ _Directory:_ `core-api/src/main/resources/db/migration/`
 
 ### SchemaIntrospector
 
-- [ ] **E1** Create `core-api/src/main/kotlin/com/blamezeus/coreapi/config/SchemaIntrospector.kt`
+- [x] **E1** Create `core-api/src/main/kotlin/com/blamezeus/coreapi/config/SchemaIntrospector.kt`
   - `@Component` with `JdbcTemplate` injection
   - `private val schemaPrompt: String by lazy { buildSchemaPrompt() }`
   - `fun get(): String = schemaPrompt`
   - `buildSchemaPrompt()` queries `information_schema.columns` for the 7 application tables; formats as `tableName(col1, col2, ...)` per line
   - Tables list: `entities`, `relationships`, `myths`, `myth_participants`, `sources`, `variant_claims`, `narrative_chunks`
-- [ ] **E2** Verify `SchemaIntrospectorTest` passes (D4 tests turn green)
+- [x] **E2** Verify `SchemaIntrospectorTest` passes (D4 tests turn green)
 
 ### Verification
 
-- [ ] **INT1** `./gradlew :core-api:test --tests "*.FlywayMigrationTest"` — all tests pass
-- [ ] **INT2** `./gradlew :core-api:test --tests "*.SchemaIntrospectorTest"` — all tests pass
-- [ ] **INT3** Start `core-api` locally (with DB running): Flyway log shows V1–V8 applied, no errors
-- [ ] **INT4** `psql -U zeus -d blamezeus -c "\dt"` — lists all 7 tables, no extras
-- [ ] **INT5** `psql -U zeus_app -d blamezeus -c "SELECT 1 FROM entities LIMIT 1"` — succeeds
-- [ ] **INT6** `psql -U zeus_app -d blamezeus -c "DROP TABLE entities"` — fails with permission denied
+- [x] **INT1** `./gradlew :core-api:test --tests "*.FlywayMigrationTest"` — all tests pass
+- [x] **INT2** `./gradlew :core-api:test --tests "*.SchemaIntrospectorTest"` — all tests pass
+- [x] **INT3** Start `core-api` locally (with DB running): Flyway log shows V1–V8 applied, no errors
+- [x] **INT4** `psql -U zeus -d blamezeus -c "\dt"` — lists all 7 tables, no extras
+- [x] **INT5** `psql -U zeus_app -d blamezeus -c "SELECT 1 FROM entities LIMIT 1"` — succeeds
+- [x] **INT6** `psql -U zeus_app -d blamezeus -c "DROP TABLE entities"` — fails with permission denied

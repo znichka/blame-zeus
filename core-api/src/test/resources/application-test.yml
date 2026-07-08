@@ -1,0 +1,12 @@
+app:
+  llm:
+    chat-api-key: test-key
+    embedding-api-key: test-key
+    chat-model: gpt-4o-mini
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true

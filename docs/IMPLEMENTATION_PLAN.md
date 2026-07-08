@@ -890,7 +890,7 @@ Run: `pytest ingestion/tests/`
 
 Build in phases to validate each layer before building on it. For each phase, write the tests listed in §8 **before** writing production code.
 
-> ⚠️ Deviations occurred in Stage 1. See DEVIATIONS.md for details (DEV-001 through DEV-007).
+> ⚠️ Deviations occurred in Stage 1. See DEVIATIONS.md for details (DEV-001 through DEV-009).
 
 | Phase | Steps | Done when |
 |---|---|---|
