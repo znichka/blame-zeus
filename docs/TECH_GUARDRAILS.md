@@ -20,7 +20,7 @@ Rules for keeping this PoC consistent, safe, and easy to reason about. These are
 
 | Rule | Detail |
 |---|---|
-| **LangChain4j for all LLM calls in JVM services** | Applies to `core-api` and `telegram-bot` only. No direct Anthropic SDK, no direct OpenAI Java SDK (`com.openai:openai-java`), no plain `RestTemplate`/`WebClient` to LLM endpoints. The `ingestion` Python job is the only authorized exception — it uses the OpenAI Python SDK directly for embedding. |
+| **LangChain4j for all LLM calls in JVM services** | Applies to `core-api` and `telegram-bot` only. No direct Anthropic SDK, no direct OpenAI Java SDK (`com.openai:openai-java`), no plain `RestTemplate`/`WebClient` to LLM endpoints. The `ingestion` Python job is the only authorized exception — it uses the OpenAI Python SDK directly for embedding **and, since ADR-004, for offline seed-data extraction** (`ingestion/extraction/`, via `instructor` on top of the same `openai` client instance — not a separate LLM framework). Both uses are corpus-prep tooling; extraction never runs at query time and never touches `LangChain4jConfig.kt`. |
 | **`@AiService` interface pattern** | Every LLM role (routing, SQL generation, RAG synthesis, conflict synthesis, entity extraction) is an interface annotated with `@AiService`. No inline `ChatLanguageModel.generate()` calls in business logic. |
 | **Chat model is provider-agnostic; embedding model is OpenAI-fixed** | All `@AiService` interfaces and handlers are provider-neutral — no chat provider is assumed or hardcoded outside `LangChain4jConfig.kt`. `LangChain4jConfig.kt` uses `OpenAiChatModel` as the Phase 1 default only; to change the chat provider, replace those beans with another LangChain4j `ChatLanguageModel` implementation and add the new provider's starter. Keep `langchain4j-open-ai-spring-boot-starter` regardless — the embedding bean always requires it. In ingestion, the OpenAI Python SDK is used directly for embedding only and is intentionally fixed: the embedding model (`text-embedding-3-small`, dimension 1536) must match what was used during ingestion and cannot be swapped without re-ingesting the full corpus. |
 | **No hardcoded API keys or model names** | All in `application.yml` backed by environment variables. Non-secret values (e.g. model names) may use an `${ENV_VAR:default}` form; the default is acceptable, but the property must live in `application.yml` — not as a string literal inside a `@Bean` method. |
@@ -58,7 +58,22 @@ Rules for keeping this PoC consistent, safe, and easy to reason about. These are
 | **`NOT NULL` on `source_id`** in `narrative_chunks` | No anonymous chunks. Every embedded text segment traces to a source. |
 | **Idempotent ingestion via `content_hash`** | `narrative_chunks` carries `content_hash TEXT GENERATED ALWAYS AS (md5(content)) STORED` with a `UNIQUE (source_id, passage_ref, content_hash)` constraint. All `INSERT` statements in `embedding_pipeline.py` must use `ON CONFLICT (source_id, passage_ref, content_hash) DO NOTHING` — re-running ingestion after a partial failure must not create duplicate rows or error out. |
 | **`sources` rows must include `year_published` and `role`** | `year_published` is required for full citations (e.g. "Evelyn-White, 1914"). `role` controls ingestion priority (`spine` → fully indexed; `stretch` → optional). Never insert a source row without both fields. |
-| **`variant_claims` seed rows use `trust_tier=1`** | All hand-curated Phase 1 seed data is `trust_tier=1` (verified). Do not insert provisional or auto-extracted rows without setting `trust_tier=3` and a comment explaining the source. |
+| **`variant_claims` seed rows use `trust_tier=1`** | All Phase 1 seed data promoted into `V12` is `trust_tier=1` (reviewed). Do not insert provisional or auto-extracted rows without setting `trust_tier=3` and a comment explaining the source. |
+
+---
+
+## Seed Data Extraction (ADR-004)
+
+Full decision record: `docs/adr/adr-004-seed-data-extraction-strategy.md`.
+
+| Rule | Detail |
+|---|---|
+| **Extraction is offline, corpus-prep tooling only** | Lives in `ingestion/extraction/`. Never a runtime `@AiService`, never called at query time, never wired into `LangChain4jConfig.kt`. |
+| **Tiered review by table** | `entities`/`relationships` (V10/V11): LLM-extracted, developer spot-check before merging into the migration. `variant_claims` (V12): every candidate staged at `trust_tier=3`; requires explicit developer promotion to `trust_tier=1` before it enters the migration. Never insert extraction output directly into any seed migration unreviewed. |
+| **`sources`, `myths`/`myth_participants`, `entity_aliases` stay hand-curated** | Not corpus-derived — bibliographic metadata, editorial groupings, and cross-cultural name maps aren't extraction targets. ADR-004 does not change V9/V13/V14. |
+| **Minimum `variant_claims` coverage is a hard floor** | Aphrodite parentage, Io parentage, and Achilles death variants (`IMPLEMENTATION_PLAN.md §3`) must be present in `V12` regardless of what extraction surfaces — hand-add if the pipeline misses one. |
+| **`instructor` and `rapidfuzz` are approved ingestion-only dependencies** | `instructor` wraps the same `openai` client for Pydantic-validated structured output with automatic retry-on-invalid-schema — it is not a second LLM framework. `rapidfuzz` is local, in-memory fuzzy matching for corpus-time entity dedup during extraction; it is a different concern from `ConflictQueryHandler`'s runtime `pg_trgm` fuzzy match against the already-seeded `entities` table (§ Data Model) — both exist, neither replaces the other. |
+| **Extraction segments by passage-ref boundary, not RAG chunk size** | Reuses the same `passage_ref_extractor` scan as the RAG chunker, but groups whole sections between consecutive refs so a full genealogical statement isn't split mid-claim. |
 
 ---
 
@@ -99,7 +114,8 @@ These are explicitly out of scope. Adding them without a deliberate decision was
 | Spring AI | Library decision was LangChain4j. Mixing both causes confusion and duplicate beans. |
 | Direct OpenAI SDK (`com.openai:openai-java`) | Everything goes through LangChain4j. |
 | Any modern copyrighted translation | Only Frazer 1921, Evelyn-White 1914, Murray 1919–1924. Check before adding any text source. |
-| Automated extraction of `variant_claims` | Hand-curation only. Accuracy matters more than speed here. |
+| Auto-promoting extracted `variant_claims` to `trust_tier=1` without review | See "Seed Data Extraction (ADR-004)" below — this table is the one place accuracy is worth the manual review cost. |
+| A broader extraction schema (`numerical_claim`, `place`, `creature`, `event`, generic `conflict` table) | Considered and rejected in ADR-004 — doesn't match the already-built V1–V8 schema and reintroduces breadth this PoC deliberately scoped away from. |
 
 ---
 

@@ -128,11 +128,27 @@ Narrative poetry → primarily **RAG**, key relationships pulled into SQL.
   into a vector store. Corpus files are prepared from public-domain plaintext
   editions (Gutenberg, sacred-texts.com, Theoi) and stored in `ingestion/corpus/`
   before running ingestion — this is a manual developer step, not automated.
-- **Structured tables & variant-claims → hand-curated:** curate a focused slice
-  (~60–100 entities: Olympians, Titans, major heroes, and their relationships)
-  by hand rather than automated extraction. Depth beats breadth in a demo, and
-  attributed variant-claims (like the Io example) are more reliably extracted by
-  hand than by parser.
+- **Structured tables & variant-claims → LLM-extracted from the ingested corpus,
+  tiered by risk, with a human review gate on the highest-stakes data:**
+  entities and basic relationships (parent_of, married_to, killed_by) are
+  extracted from the cleaned corpus text by an offline LLM pass and merged into
+  seed migrations after a developer spot-check — this data is largely
+  unambiguous handbook material (mainly from Apollodorus, the "spine" source),
+  so the risk of a wrong row is low and mechanical review is sufficient.
+  `variant_claims`, by contrast, is the data the product's trustworthiness
+  depends on — a misattributed or hallucinated conflict actively undermines the
+  differentiator — so every extracted claim candidate is staged at
+  `trust_tier=3` and requires explicit developer approval (promoting it to
+  `trust_tier=1`) before it enters the real seed data. The ancient mythographers
+  frequently flag their own disagreements inline (the Io example: "Castor... say
+  Io was a daughter of Inachus; Hesiod and Acusilaus say... a daughter of
+  Piren"), which makes this specific case well-suited to extraction — the
+  source is doing the conflict-detection, the LLM is just structuring it.
+  `sources`, `myths`/`myth_participants`, and `entity_aliases` remain
+  hand-curated: bibliographic metadata, editorial myth groupings, and
+  cross-cultural name mappings aren't things the corpus text yields via
+  extraction. See `IMPLEMENTATION_PLAN.md §4` for the extraction pipeline
+  design.
 
 ### Translator footnotes (Frazer, Evelyn-White, Murray) — out of pipeline scope
 
@@ -151,9 +167,7 @@ will currently produce a grounded refusal rather than a cited answer — an
 accepted, explicit limitation for this PoC rather than an oversight. Treating
 footnotes as a first-class, independently citable source (their own `sources`
 row, e.g. `frazer-notes-apollodorus`, with a new `stance` value such as
-`editorial-commentary`) is deferred to a future iteration. See
-`docs/adr/0001-footnote-handling-strategy.md` for the full rationale and the
-deferred design.
+`editorial-commentary`) is deferred to a future iteration — see §15.
 
 ## 9. Proposed Data Model (SQL side)
 
@@ -231,8 +245,7 @@ choice of translation.
   they carry the most cross-referenced variant material), give them their own
   `sources` row and an `editorial-commentary` stance, and chunk/embed them
   into RAG so answers can cite "Frazer's note on Apollod. 1.1.1" distinctly
-  from the primary text. Deferred from the PoC (see §8 and
-  `docs/adr/0001-footnote-handling-strategy.md`) because it adds a second
-  scrape target and schema change per source, and raises an attribution
-  question (crediting Frazer's paraphrase vs. the ancient author he cites)
-  that needs its own decision.
+  from the primary text. Deferred from the PoC (see §8) because it adds a
+  second scrape target and schema change per source, and raises an
+  attribution question (crediting Frazer's paraphrase vs. the ancient author
+  he cites) that needs its own decision.

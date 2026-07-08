@@ -132,7 +132,7 @@ _Directory:_ `core-api/src/main/resources/db/migration/`
   - `@Test fun 'variant_claims has required columns'` — assert `subject_entity_id`, `claim_type`, `claim_value`, `source_id`, `trust_tier`
   - `@Test fun 'narrative_chunks has content_hash and embedding'` — assert `content`, `content_hash`, `embedding`, `source_id`, `passage_ref`
   - `@Test fun 'sources has year_published and role'` — assert `author`, `work`, `translation`, `stance`, `year_published`, `role`
-  - `@Test fun 'entity_aliases table does not exist yet'` — will be created in V14 (Stage 2)
+  - `@Test fun 'entity_aliases table does not exist yet'` — will be created in V14 (Stage 4, per ADR-004 renumbering)
 - [x] **D4** Write `SchemaIntrospectorTest.kt` (should **fail** until E1 is implemented)
   - `@SpringBootTest` + `@ActiveProfiles("test")` + `@Testcontainers`
   - `@Autowired lateinit var schemaIntrospector: SchemaIntrospector`

@@ -46,25 +46,10 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 
 ---
 
-## Stage 2 — Seed Data
-**Done when:** `GET /api/v1/entities` returns ≥60 entities; `GET /api/v1/sources` returns 6 rows; `VariantClaimRepositoryTest` finds ≥2 conflict rows for Aphrodite.
-
-- [ ] Flyway V9 — seed sources (6 slugs with `year_published`, `role`)
-- [ ] Flyway V10 — seed entities (~60–100: primordials, titans, olympians, heroes, monsters)
-- [ ] Flyway V11 — seed relationships (parent_of, married_to, killed_by with source attribution)
-- [ ] Flyway V12 — seed variant_claims (Aphrodite parentage, Io parentage, Achilles death)
-- [ ] Flyway V13 — seed myths + myth_participants
-- [ ] Flyway V14 — create + seed entity_aliases (~20 cross-cultural aliases)
-- [ ] JPA `@Entity` classes: `Source`, `Entity_`, `Relationship`, `Myth`, `MythParticipant`, `VariantClaim`, `NarrativeChunk`, `EntityAlias`
-- [ ] Spring Data JPA repositories for all entities
-- [ ] DTOs: `QueryRequest`, `QueryResponse`, `Citation`, `ConflictEntry`, `RagResponse`
-- [ ] `GET /api/v1/entities` and `GET /api/v1/sources` read endpoints in `QueryController`
-- [ ] Tests: `SourceRepositoryTest`, `EntityRepositoryTest`, `VariantClaimRepositoryTest` (Testcontainers)
-
----
-
-## Stage 3 — Ingestion Setup (Apollodorus only)
+## Stage 2 — Ingestion Setup (Apollodorus only)
 **Done when:** `python main.py` ingests Apollodorus .txt without error; rows appear in `narrative_chunks` with correct `source_id`, `passage_ref`, and non-null `embedding`.
+
+> ⚠️ Stage order changed by ADR-004 (`docs/adr/adr-004-seed-data-extraction-strategy.md`): ingestion now runs before seed data, since the extraction pipeline needs real ingested corpus text to run against. This stage was formerly numbered Stage 3.
 
 - [ ] Python venv + `requirements.txt` (`openai>=1.0`, `psycopg2-binary`, `pgvector`, `tenacity>=8.2`, `python-dotenv`)
 - [ ] `pyproject.toml` (or keep `requirements.txt` only)
@@ -80,14 +65,41 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 
 ---
 
-## Stage 4 — Full Corpus
+## Stage 3 — Full Corpus
 **Done when:** All 6 sources indexed in `narrative_chunks`; row count per source is non-zero.
+
+> ⚠️ Formerly Stage 4 — renumbered per ADR-004 (see Stage 2 note above).
 
 - [ ] Developer manually downloads remaining 5 corpus files (Hesiod Theogony, Homeric Hymns, Homer Iliad, Homer Odyssey, Ovid Metamorphoses) from Project Gutenberg / sacred-texts.com into `ingestion/corpus/`
 - [ ] Add `SourceConfig` entries for Hesiod Theogony, Homeric Hymns, Homer Iliad, Homer Odyssey, Ovid Metamorphoses to `source_registry.py`
 - [ ] Implement passage ref extractors for each new source (homer_refs, ovid_refs, hesiod_refs, hymn_refs)
 - [ ] Add extractor tests for all new sources in `test_passage_ref_extractors.py`
 - [ ] Run full ingestion; verify per-source row counts in DB
+
+---
+
+## Stage 4 — Seed Data (Extraction-Assisted)
+**Done when:** `GET /api/v1/entities` returns ≥60 entities; `GET /api/v1/sources` returns 6 rows; `VariantClaimRepositoryTest` finds ≥2 conflict rows for Aphrodite.
+
+> ⚠️ Formerly Stage 2 — renumbered and redesigned per ADR-004 (`docs/adr/adr-004-seed-data-extraction-strategy.md`). `entities`/`relationships` are now LLM-extracted from the ingested corpus (Stage 2–3) with a developer spot-check; `variant_claims` candidates require explicit per-row review before promotion to `trust_tier=1`. `sources`, `myths`/`myth_participants`, and `entity_aliases` remain hand-curated, unaffected by this change.
+
+- [ ] Build extraction pipeline (`ingestion/extraction/`): `schema.py`, `known_aliases.json`, `entity_resolver.py`, `claim_extractor.py`, `conflict_detector.py`, `run_extraction.py`
+- [ ] Add `instructor`, `rapidfuzz` to `ingestion/requirements.txt`
+- [ ] Tune extraction prompt against Apollodorus in `ingestion/notebooks/01_test_extraction.ipynb` before running the full corpus
+- [ ] Run extraction against all 6 ingested sources → `entities_candidates.json`, `relationships_candidates.json`, `variant_claims_candidates.json`
+- [ ] Flyway V9 — seed sources (6 slugs with `year_published`, `role`) — hand-curated, unaffected
+- [ ] Flyway V10 — seed entities (~60–100) — merge spot-checked candidates from `entities_candidates.json`
+- [ ] Flyway V11 — seed relationships (parent_of, married_to, killed_by with source attribution) — merge spot-checked candidates from `relationships_candidates.json`
+- [ ] Flyway V12 — seed variant_claims — review candidates in `ingestion/notebooks/02_verify_conflicts.ipynb`, promote approved rows to `trust_tier=1`; confirm minimum coverage (Aphrodite parentage, Io parentage, Achilles death) is present, hand-add any the pipeline missed
+- [ ] Flyway V13 — seed myths + myth_participants — hand-curated, unaffected
+- [ ] Flyway V14 — create + seed entity_aliases (~20 cross-cultural aliases) — hand-curated, unaffected; may reuse `known_aliases.json` as a source list
+- [ ] JPA `@Entity` classes: `Source`, `EntityRecord`, `Relationship`, `Myth`, `MythParticipant`, `VariantClaim`, `NarrativeChunk`, `EntityAlias`
+- [ ] Spring Data JPA repositories for all entities
+- [ ] DTOs: `QueryRequest`, `QueryResponse`, `Citation`, `ConflictEntry`, `RagResponse`
+- [ ] `GET /api/v1/entities` and `GET /api/v1/sources` read endpoints in `QueryController`
+- [ ] Tests: `SourceRepositoryTest`, `EntityRepositoryTest`, `VariantClaimRepositoryTest` (Testcontainers)
+
+→ [Detailed track-by-track checklist](TODO-stage4.md)
 
 ---
 

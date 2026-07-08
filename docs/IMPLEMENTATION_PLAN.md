@@ -18,11 +18,14 @@ blame-zeus is a Greek mythology lore assistant PoC whose defining feature is sou
 - Authentication or user accounts
 - Telegram bot (planned Phase 2; module placeholder only)
 - Caching layer, message queues, Spring Cloud
-- Automated extraction of variant_claims — hand-curated only
-- Ingesting translator/editorial footnotes as a distinct, RAG-citable source
-  (Option B in `docs/adr/0001-footnote-handling-strategy.md`) — footnote
-  markers are stripped as noise during ingestion; footnote content is
-  consulted manually only when hand-curating `variant_claims` (§3, V12)
+- Fully-automatic seed data with no human review — `variant_claims` always
+  requires developer sign-off before `trust_tier=1` (see `docs/adr/adr-004-seed-data-extraction-strategy.md`);
+  `entities`/`relationships` are LLM-extracted with a lighter spot-check, not
+  hand-typed from scratch
+- Ingesting translator/editorial footnotes as a distinct, RAG-citable source —
+  footnote markers are stripped as noise during ingestion; footnote content is
+  consulted manually only when hand-curating `variant_claims` (§3, V12; see
+  `CONCEPT.md §8, §15` for the full rationale and the deferred design)
 
 ---
 
@@ -109,12 +112,12 @@ All migrations in `core-api/src/main/resources/db/migration/`. The ingestion job
 | `V6__create_myth_participants.sql` | `myth_participants(myth_id, entity_id, role)` PK composite |
 | `V7__create_variant_claims.sql` | `variant_claims(id, subject_entity_id→entities, claim_type, claim_value, source_id TEXT REFERENCES sources(id), trust_tier SMALLINT NOT NULL DEFAULT 2)` — `trust_tier`: 1=verified hand-curated, 2=reviewed, 3=provisional. All Phase 1 seed rows use `trust_tier=1`. Composite index: `CREATE INDEX idx_variant_claims_subject_type ON variant_claims(subject_entity_id, claim_type)` — covers the primary query pattern `WHERE subject_entity_id = X AND claim_type = Y` and also serves subject-only lookups via the leftmost prefix. The single-column `(claim_type)` index is omitted; if claim-type-only queries appear later, add it then. |
 | `V8__create_narrative_chunks.sql` | `narrative_chunks(id, content TEXT NOT NULL, content_hash TEXT GENERATED ALWAYS AS (md5(content)) STORED, embedding vector(1536) NOT NULL, source_id TEXT NOT NULL REFERENCES sources(id), passage_ref TEXT, metadata JSONB)` + `UNIQUE (source_id, passage_ref, content_hash)` (mid-run crash recovery: same chunking params + same content → safe re-run. Re-ingesting after changing chunk size or overlap requires `clear_source_chunks()` first — see §4 — otherwise old chunks accumulate alongside new ones) + HNSW index `(embedding vector_cosine_ops) WITH (m=16, ef_construction=64)` |
-| `V9__seed_sources.sql` | 6 public-domain sources with explicit text `id` slugs, `year_published`, and `role`: `('apollodorus-bibliotheca', 'Apollodorus', 'Bibliotheca', 'Frazer', 1921, 'spine')`, `('hesiod-theogony', 'Hesiod', 'Theogony', 'Evelyn-White', 1914, 'spine')`, `('hesiod-homeric-hymns', 'Hesiod', 'Homeric Hymns', 'Evelyn-White', 1914, 'primary')`, `('homer-iliad', 'Homer', 'Iliad', 'Murray', 1919, 'spine')`, `('homer-odyssey', 'Homer', 'Odyssey', 'Murray', 1924, 'primary')`, `('ovid-metamorphoses', 'Ovid', 'Metamorphoses', 'PD', null, 'selective')`. All with `ON CONFLICT DO NOTHING`. The slug IDs must exactly match `SourceConfig.source_id` values in `source_registry.py`. |
-| `V10__seed_entities.sql` | ~60–100 hand-curated entities: 7 primordials, 12 titans, 13 olympians, 9 heroes, ~10 monsters/key mortals |
-| `V11__seed_relationships.sql` | Key parent_of, married_to, killed_by rows with source attribution |
-| `V12__seed_variant_claims.sql` | **Most critical.** Multiple `INSERT` rows per contested claim. Minimum coverage: Aphrodite parentage (Hesiod vs Homer), Io parentage (Inachus vs Piren per Apollodorus), Achilles death variants |
-| `V13__seed_myths.sql` | Key myths with `myth_participants` |
-| `V14__create_entity_aliases.sql` | `entity_aliases(id, entity_id INTEGER NOT NULL REFERENCES entities(id), alias TEXT NOT NULL, UNIQUE(alias))` — cross-cultural and variant name aliases, e.g. Venus → Aphrodite, Hercules → Heracles, Odysseus → Ulysses. Seed ~20 well-known aliases. Used by `ConflictQueryHandler` to resolve query names before falling back to partial match. |
+| `V9__seed_sources.sql` | **Hand-curated (unaffected by ADR-004).** 6 public-domain sources with explicit text `id` slugs, `year_published`, and `role`: `('apollodorus-bibliotheca', 'Apollodorus', 'Bibliotheca', 'Frazer', 1921, 'spine')`, `('hesiod-theogony', 'Hesiod', 'Theogony', 'Evelyn-White', 1914, 'spine')`, `('hesiod-homeric-hymns', 'Hesiod', 'Homeric Hymns', 'Evelyn-White', 1914, 'primary')`, `('homer-iliad', 'Homer', 'Iliad', 'Murray', 1919, 'spine')`, `('homer-odyssey', 'Homer', 'Odyssey', 'Murray', 1924, 'primary')`, `('ovid-metamorphoses', 'Ovid', 'Metamorphoses', 'PD', null, 'selective')`. All with `ON CONFLICT DO NOTHING`. The slug IDs must exactly match `SourceConfig.source_id` values in `source_registry.py`. |
+| `V10__seed_entities.sql` | **LLM-extracted, spot-checked (see §4 Extraction Pipeline / `docs/adr/adr-004-seed-data-extraction-strategy.md`).** ~60–100 entities: 7 primordials, 12 titans, 13 olympians, 9 heroes, ~10 monsters/key mortals. Extraction candidates come from `ingestion/extraction/output/entities_candidates.json`; developer spot-checks names/types before merging into this migration. |
+| `V11__seed_relationships.sql` | **LLM-extracted, spot-checked.** Key parent_of, married_to, killed_by rows with source attribution. Candidates from `ingestion/extraction/output/relationships_candidates.json`. |
+| `V12__seed_variant_claims.sql` | **Most critical. LLM-extracted candidates, but every row requires explicit developer review before it enters this file** — see ADR-004. Candidates are staged at `trust_tier=3` in `ingestion/extraction/output/variant_claims_candidates.json` (both LLM-flagged in-text disagreements and the supplementary cross-source conflict scan in `conflict_detector.py`); only rows a developer has reviewed and promoted to `trust_tier=1` are inserted here. Minimum coverage is a hard floor regardless of what extraction surfaces — hand-add if missed: Aphrodite parentage (Hesiod vs Homer), Io parentage (Inachus vs Piren per Apollodorus), Achilles death variants |
+| `V13__seed_myths.sql` | **Hand-curated (unaffected by ADR-004)** — editorial myth groupings aren't a mechanical extraction target. Key myths with `myth_participants` |
+| `V14__create_entity_aliases.sql` | **Hand-curated (unaffected by ADR-004).** `entity_aliases(id, entity_id INTEGER NOT NULL REFERENCES entities(id), alias TEXT NOT NULL, UNIQUE(alias))` — cross-cultural and variant name aliases, e.g. Venus → Aphrodite, Hercules → Heracles, Odysseus → Ulysses. Seed ~20 well-known aliases (reuse `ingestion/extraction/known_aliases.json` as a source list — it's also used at extraction time for entity resolution). Used by `ConflictQueryHandler` to resolve query names before falling back to partial match. |
 | `afterMigrate__grant_app_user.sql` | `GRANT SELECT ON ALL TABLES IN SCHEMA public TO zeus_app;` — Flyway callback (not a versioned migration). Runs after every migration set, including no-op runs. Ensures `zeus_app` always has SELECT on any tables added by future migrations, compensating for the fact that `ALTER DEFAULT PRIVILEGES` in `01_readonly_user.sql` only covers tables created in that user's future sessions. |
 
 **`V12` sample:**
@@ -191,7 +194,7 @@ class SourceConfig:
 
 **`text_cleaner.py`** — `re.sub(r'\[\d+\]', '', text)` to strip footnote markers, collapse multi-whitespace, normalize smart quotes. Also strips page headers and running titles common in Gutenberg plaintext files (e.g., lines matching `^[A-Z\s]+$` at the top of pages). This regex only matches brackets containing pure digits, so it does not touch the `[book.chapter.section]` passage markers (which contain dots) — no ordering dependency between footnote-stripping and passage-ref extraction.
 
-**Footnote content is intentionally discarded here, not archived.** This strip-and-drop behavior is a deliberate scope decision, not an oversight: footnote text (Frazer's especially) is never fetched, chunked, or embedded, and there is no `sources` row for translator commentary. It is left for a human to read directly off the source site when hand-curating `V12__seed_variant_claims.sql`. See `docs/adr/0001-footnote-handling-strategy.md`.
+**Footnote content is intentionally discarded here, not archived.** This strip-and-drop behavior is a deliberate scope decision, not an oversight: footnote text (Frazer's especially) is never fetched, chunked, or embedded, and there is no `sources` row for translator commentary. It is left for a human to read directly off the source site when hand-curating `V12__seed_variant_claims.sql`. See `CONCEPT.md §8, §15` for the full rationale and the deferred design.
 
 **Passage reference extraction — per-source strategy:**
 
@@ -376,6 +379,126 @@ OPENAI_API_KEY=... POSTGRES_HOST=localhost python main.py
 ```
 
 Place .txt files in `ingestion/corpus/` before running. Start with Apollodorus (smallest, most structured) and verify rows in `narrative_chunks` before ingesting all sources.
+
+### Extraction Pipeline (Seed Data Generation)
+
+See `docs/adr/adr-004-seed-data-extraction-strategy.md` for the full decision
+record. Runs **after** corpus ingestion (needs real cleaned text to extract
+from), **offline**, and writes reviewable candidate files — it never inserts
+into the database directly. Entities and relationships get a developer
+spot-check before merging; `variant_claims` candidates require explicit
+per-row approval (`trust_tier=3` → `trust_tier=1`) before they enter `V12`.
+
+```
+ingestion/
+├── extraction/
+│   ├── schema.py             # Pydantic models mirroring V10–V12:
+│   │                         #   ExtractedEntity, ExtractedRelationship (+ is_contested), ExtractedVariantClaim
+│   ├── known_aliases.json    # Roman/cross-cultural equivalents; also a reference list for hand-curated V14
+│   ├── entity_resolver.py    # in-memory dedup: exact name → known_aliases → rapidfuzz fuzzy match
+│   ├── claim_extractor.py    # instructor + OpenAI chat completions, per-source extraction hints, tenacity retry
+│   ├── conflict_detector.py  # supplementary pass: same subject+claim_type, different source_id → extra variant_claims candidates
+│   └── run_extraction.py     # entry point → writes extraction/output/*.json
+└── extraction/output/
+    ├── entities_candidates.json
+    ├── relationships_candidates.json
+    └── variant_claims_candidates.json   # every row trust_tier=3 until reviewed
+```
+
+**`schema.py`** — Pydantic models scoped exactly to this project's schema (not the broader entity/claim/conflict/place/event schema considered and rejected in ADR-004):
+
+```python
+class ExtractedEntity(BaseModel):
+    name: str
+    type: str            # must match entities.type CHECK values
+    generation: int | None = None
+    domain: str | None = None
+
+class ExtractedRelationship(BaseModel):
+    from_name: str
+    relation: str         # parent_of, married_to, killed_by
+    to_name: str
+    is_contested: bool = False   # set true when the source text itself signals disagreement
+
+class ExtractedVariantClaim(BaseModel):
+    subject_name: str
+    claim_type: str
+    claim_value: str
+```
+
+**`claim_extractor.py`** — uses `instructor` (Pydantic-validated structured output with automatic retry on schema-invalid responses, layered on the same `openai` client instance — not a separate LLM framework) instead of hand-parsing JSON:
+
+```python
+import instructor
+from openai import OpenAI
+from tenacity import retry, stop_after_attempt, wait_exponential
+
+client = instructor.from_openai(OpenAI(api_key=os.environ["OPENAI_API_KEY"]))
+
+SOURCE_HINTS = {
+    "apollodorus-bibliotheca": "Flag phrases like 'others say' or 'some say' as is_contested=true — "
+                               "this is a systematic handbook that names variant accounts inline.",
+    "hesiod-theogony": "Focus on divine-generation sequences; primordials (Chaos, Gaia, Tartarus) are entities too.",
+}
+
+@retry(wait=wait_exponential(multiplier=1, min=2, max=60), stop=stop_after_attempt(3), reraise=True)
+def extract(segment: PassageSegment) -> ExtractedFacts:
+    return client.chat.completions.create(
+        model=EXTRACTION_MODEL,   # e.g. "gpt-4o" — distinct from EMBEDDING_MODEL
+        response_model=ExtractedFacts,
+        messages=[
+            {"role": "system", "content": "Extract only what is explicitly stated. Do not infer or invent."},
+            {"role": "user", "content": f"Source: {segment.author}, {segment.passage_ref}\n"
+                                        f"{SOURCE_HINTS.get(segment.source_id, '')}\n\n{segment.text}"},
+        ],
+    )
+```
+
+Extraction runs on **passage-ref-aligned segments**, not the 1500-char RAG
+chunks — reuse the same `passage_ref_extractor` scan from the section above,
+but group whole sections between consecutive ref boundaries so a full
+genealogical statement isn't split mid-claim across windows.
+
+**`entity_resolver.py`** — dedupes candidate names across chunks/sources *before* they're written to the candidate files, so the same entity mentioned in Apollodorus and Hesiod doesn't produce two rows:
+
+```python
+from rapidfuzz import fuzz
+import json
+
+known_aliases = json.loads(Path("extraction/known_aliases.json").read_text())
+
+def resolve(name: str, seen_names: list[str]) -> str:
+    if name in seen_names:
+        return name
+    for canonical, aliases in known_aliases.items():
+        if name in aliases:
+            return canonical
+    best = max(seen_names, key=lambda n: fuzz.ratio(name, n), default=None)
+    if best and fuzz.ratio(name, best) >= 88:
+        return best   # log this — a fuzzy merge is worth a second look during spot-check
+    return name
+```
+
+This is corpus-time, in-memory resolution to keep candidate files clean — a
+different concern from `ConflictQueryHandler`'s runtime `pg_trgm` fuzzy match
+(§5), which resolves a *user's* typed entity name against the *already-seeded*
+`entities` table at query time. Both use fuzzy matching; neither replaces the
+other.
+
+**`conflict_detector.py`** — supplements the LLM's explicit `is_contested`
+flag with a mechanical pass over extracted relationship candidates: same
+`subject_name` + `relation` (e.g. `parent_of`), different `source_id` → an
+additional `variant_claims` candidate, since two sources disagreeing on a
+parent is itself a conflict even if neither source's text uses "some say"
+phrasing.
+
+**New `requirements.txt` additions:** `instructor>=1.3.0`, `rapidfuzz>=3.0.0` — both ingestion-only.
+
+**Review workflow (`ingestion/notebooks/`):**
+1. `01_test_extraction.ipynb` — tune the extraction prompt against Apollodorus (the spine source) on 5–10 segments before running the full corpus. If quality is good there, the rest follows — Apollodorus is the most systematic and structurally predictable of the six sources.
+2. `02_verify_conflicts.ipynb` — load `variant_claims_candidates.json`, review each row against its `passage_ref` in the source text, promote approved rows (edit `trust_tier` to `1`) into `V12__seed_variant_claims.sql` by hand. Cross-check that the three minimum-coverage conflicts (Aphrodite, Io, Achilles) are present; hand-add any that extraction missed.
+
+`entities_candidates.json` and `relationships_candidates.json` get a lighter pass — skim for obviously wrong types or duplicate names, then merge into `V10`/`V11` directly.
 
 ---
 
@@ -891,13 +1014,18 @@ Run: `pytest ingestion/tests/`
 Build in phases to validate each layer before building on it. For each phase, write the tests listed in §8 **before** writing production code.
 
 > ⚠️ Deviations occurred in Stage 1. See DEVIATIONS.md for details (DEV-001 through DEV-009).
+>
+> ⚠️ **Stage order changed by ADR-004** (`docs/adr/adr-004-seed-data-extraction-strategy.md`): seed data
+> generation now depends on ingested corpus text (the extraction pipeline reads it), so ingestion runs
+> *before* seed data. Stage numbers below reflect execution order — Phase 2 is now Ingestion Setup, Phase 3
+> is Full Corpus, Phase 4 is Seed Data (extraction-assisted). Phase 5 onward is unchanged.
 
 | Phase | Steps | Done when |
 |---|---|---|
 | **1 — Foundation** | Gradle scaffold for JVM modules, Docker Compose, Flyway V1–V8 | `docker-compose up`, Flyway migrates, empty tables exist |
-| **2 — Seed Data** | V9–V13, JPA entities + repos | `GET /api/v1/entities` returns ~60 entities |
-| **3 — Ingestion setup** | Python venv, `requirements.txt`, `config.py`, download corpus .txt files, file loader + cleaner for Apollodorus | `python main.py` runs without error, rows appear in `narrative_chunks` |
-| **4 — Full Corpus** | Add Homer, Hesiod, Hymns, Ovid file paths to `source_registry.py` | All sources indexed |
+| **2 — Ingestion setup** | Python venv, `requirements.txt`, `config.py`, download corpus .txt files, file loader + cleaner for Apollodorus | `python main.py` runs without error, rows appear in `narrative_chunks` |
+| **3 — Full Corpus** | Add Homer, Hesiod, Hymns, Ovid file paths to `source_registry.py` | All sources indexed |
+| **4 — Seed Data** | Extraction pipeline (`ingestion/extraction/`) run against ingested corpus; entities/relationships spot-checked into V10/V11; `variant_claims` candidates reviewed and promoted into V12; V9/V13/V14 hand-curated as before; JPA entities + repos | `GET /api/v1/entities` returns ~60 entities |
 | **5 — SQL Pipeline** | `QueryRouter` + `TextToSqlAgent` + `SqlSafetyValidator` + `SqlQueryHandler` | DATA gold questions answer correctly |
 | **6 — RAG Pipeline** | `RagAgent` + `RagQueryHandler` | FACT gold questions cite sources |
 | **7 — Conflict Pipeline** | `ConflictQueryHandler` + `ConflictSynthesizer` | Aphrodite question returns ≥2 attributed versions |
