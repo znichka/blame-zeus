@@ -124,13 +124,36 @@ Narrative poetry → primarily **RAG**, key relationships pulled into SQL.
 
 ### Data preparation
 
-- **Narrative text → RAG:** scrape HTML, clean, chunk, embed into a vector
-  store. Efficient for broad coverage.
+- **Narrative text → RAG:** load local .txt corpus files, clean, chunk, embed
+  into a vector store. Corpus files are prepared from public-domain plaintext
+  editions (Gutenberg, sacred-texts.com, Theoi) and stored in `ingestion/corpus/`
+  before running ingestion — this is a manual developer step, not automated.
 - **Structured tables & variant-claims → hand-curated:** curate a focused slice
   (~60–100 entities: Olympians, Titans, major heroes, and their relationships)
   by hand rather than automated extraction. Depth beats breadth in a demo, and
   attributed variant-claims (like the Io example) are more reliably extracted by
   hand than by parser.
+
+### Translator footnotes (Frazer, Evelyn-White, Murray) — out of pipeline scope
+
+Loeb translators, especially Frazer, annotate the primary text with extensive
+scholarly footnotes that often name additional ancient authors and their
+divergent accounts. These footnotes are a genuinely rich source of variant
+material — richer, in Frazer's case, than the main narrative itself — but for
+this PoC they are **not** scraped, chunked, or embedded as RAG-retrievable
+content, and they are **not** modeled as a distinct `sources` row. Footnotes
+are consulted manually, off to the side, only as reference material when
+hand-curating `variant_claims` rows (§9); the automated ingestion pipeline
+sees and stores only the main translated narrative.
+
+This means a question whose best-grounded answer lives solely in a footnote
+will currently produce a grounded refusal rather than a cited answer — an
+accepted, explicit limitation for this PoC rather than an oversight. Treating
+footnotes as a first-class, independently citable source (their own `sources`
+row, e.g. `frazer-notes-apollodorus`, with a new `stance` value such as
+`editorial-commentary`) is deferred to a future iteration. See
+`docs/adr/0001-footnote-handling-strategy.md` for the full rationale and the
+deferred design.
 
 ## 9. Proposed Data Model (SQL side)
 
@@ -166,9 +189,9 @@ only to write it:
 ## 11. Tooling & Integrations
 
 - LLM API for routing, text-to-SQL, and synthesis (real-time).
-- SQL database (SQLite/Postgres) for entity/relationship/claims tables.
+- SQL database (Postgres 16 + pgvector) for entity/relationship/claims tables.
 - Vector store for narrative RAG.
-- Scraper/ingestion script for public-domain text from Theoi / ToposText.
+- Ingestion script (Python) that loads local .txt corpus files, cleans, chunks, and embeds them into the vector store.
 - Application layer (chat UI) showing routing decisions and citations.
 
 ## 12. Evaluation
@@ -203,3 +226,13 @@ choice of translation.
   myth-vs-history disagreement via the `stance` field.
 - **Persona layer** ("ask a character") on top of the grounded backend, still
   citing canon and refusing beyond it.
+- **Ingest translator footnotes as a first-class source.** Scrape each
+  translator's editorial notes (starting with Frazer's on Apollodorus, since
+  they carry the most cross-referenced variant material), give them their own
+  `sources` row and an `editorial-commentary` stance, and chunk/embed them
+  into RAG so answers can cite "Frazer's note on Apollod. 1.1.1" distinctly
+  from the primary text. Deferred from the PoC (see §8 and
+  `docs/adr/0001-footnote-handling-strategy.md`) because it adds a second
+  scrape target and schema change per source, and raises an attribution
+  question (crediting Frazer's paraphrase vs. the ancient author he cites)
+  that needs its own decision.

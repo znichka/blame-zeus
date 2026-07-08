@@ -73,8 +73,7 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 - [ ] `ingestion/pipeline/embedding_pipeline.py` — `embed_batch` (batch=20, tenacity retry), `store_chunks`, `validate_source_ids`, `clear_source_chunks`
 - [ ] `ingestion/main.py` — `load_dotenv()` first, then pipeline loop
 - [ ] Python tests: `test_text_cleaner.py`, `test_text_chunker.py`, `test_passage_ref_extractors.py`
-- [ ] Download 
-plaintext → `corpus/apollodorus_bibliotheca_frazer1921.txt`
+- [ ] Developer manually downloads Apollodorus (Frazer, 1921) from Theoi (`theoi.com/Text/Apollodorus{1,2,3}.html` + `ApollodorusE.html`), concatenates 4 pages preserving `[book.chapter.section]` markers → saves as `corpus/apollodorus_bibliotheca_frazer1921.txt`
 - [ ] Verify: `pytest ingestion/tests/` passes; `python main.py` populates `narrative_chunks`
 
 ---
@@ -82,7 +81,7 @@ plaintext → `corpus/apollodorus_bibliotheca_frazer1921.txt`
 ## Stage 4 — Full Corpus
 **Done when:** All 6 sources indexed in `narrative_chunks`; row count per source is non-zero.
 
-- [ ] Download remaining 5 corpus files into `ingestion/corpus/`
+- [ ] Developer manually downloads remaining 5 corpus files (Hesiod Theogony, Homeric Hymns, Homer Iliad, Homer Odyssey, Ovid Metamorphoses) from Project Gutenberg / sacred-texts.com into `ingestion/corpus/`
 - [ ] Add `SourceConfig` entries for Hesiod Theogony, Homeric Hymns, Homer Iliad, Homer Odyssey, Ovid Metamorphoses to `source_registry.py`
 - [ ] Implement passage ref extractors for each new source (homer_refs, ovid_refs, hesiod_refs, hymn_refs)
 - [ ] Add extractor tests for all new sources in `test_passage_ref_extractors.py`

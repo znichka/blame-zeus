@@ -1,7 +1,5 @@
 # blame-zeus: Implementation Plan
 
-> ⚠️ All agents must follow the deviation tracking protocol defined in `CLAUDE.md` before making any implementation changes. Deviations from this plan are recorded in `docs/DEVIATIONS.md`.
-
 ## 1. Executive Summary
 
 blame-zeus is a Greek mythology lore assistant PoC whose defining feature is source attribution and conflict detection — surfacing disagreements between ancient texts rather than giving a single confident answer. A user asks a natural-language mythology question; the system routes it through SQL, RAG, or a conflict-detection pipeline; and every claim in the answer cites the ancient work it came from.
@@ -21,6 +19,10 @@ blame-zeus is a Greek mythology lore assistant PoC whose defining feature is sou
 - Telegram bot (planned Phase 2; module placeholder only)
 - Caching layer, message queues, Spring Cloud
 - Automated extraction of variant_claims — hand-curated only
+- Ingesting translator/editorial footnotes as a distinct, RAG-citable source
+  (Option B in `docs/adr/0001-footnote-handling-strategy.md`) — footnote
+  markers are stripped as noise during ingestion; footnote content is
+  consulted manually only when hand-curating `variant_claims` (§3, V12)
 
 ---
 
@@ -182,9 +184,14 @@ class SourceConfig:
     # The chunker uses these to assign the most-recently-seen ref to each chunk.
 ```
 
-`source_id` must match the seeded `sources` table FK. Source .txt files are downloaded once from Project Gutenberg / sacred-texts.com plaintext exports and stored locally before running ingestion.
+`source_id` must match the seeded `sources` table FK. Source .txt files are prepared once per source and stored locally in `corpus/` before running ingestion — origin differs by source, since not every translation has a ready-made plaintext edition:
 
-**`text_cleaner.py`** — `re.sub(r'\[\d+\]', '', text)` to strip footnote markers, collapse multi-whitespace, normalize smart quotes. Also strips page headers and running titles common in Gutenberg plaintext files (e.g., lines matching `^[A-Z\s]+$` at the top of pages).
+- **Apollodorus (Frazer, 1921)** is not on Project Gutenberg or sacred-texts.com — it's still in copyright renewal limbo there despite being public domain. Source: the Theoi Classical Texts Library (`theoi.com/Text/Apollodorus{1,2,3}.html` + `ApollodorusE.html` for the Epitome). Developer manually copies the text from these four pages (in order) into `apollodorus_bibliotheca_frazer1921.txt`; the Theoi layout presents Frazer's translation as one paragraph per canonical section, each prefixed with its bracketed `[book.chapter.section]` reference — see the extractor row below. Preserve these bracketed markers when preparing the file.
+- **Hesiod, Homer, Homeric Hymns** (Evelyn-White / Murray) — sourced from Project Gutenberg / sacred-texts.com plaintext exports as originally planned.
+
+**`text_cleaner.py`** — `re.sub(r'\[\d+\]', '', text)` to strip footnote markers, collapse multi-whitespace, normalize smart quotes. Also strips page headers and running titles common in Gutenberg plaintext files (e.g., lines matching `^[A-Z\s]+$` at the top of pages). This regex only matches brackets containing pure digits, so it does not touch the `[book.chapter.section]` passage markers (which contain dots) — no ordering dependency between footnote-stripping and passage-ref extraction.
+
+**Footnote content is intentionally discarded here, not archived.** This strip-and-drop behavior is a deliberate scope decision, not an oversight: footnote text (Frazer's especially) is never fetched, chunked, or embedded, and there is no `sources` row for translator commentary. It is left for a human to read directly off the source site when hand-curating `V12__seed_variant_claims.sql`. See `docs/adr/0001-footnote-handling-strategy.md`.
 
 **Passage reference extraction — per-source strategy:**
 
@@ -192,7 +199,7 @@ Each `SourceConfig` carries a `passage_ref_extractor` that pre-scans the cleaned
 
 | Source | Marker pattern in .txt | Extractor regex | Example ref |
 |---|---|---|---|
-| Apollodorus *Bibliotheca* | Section numbers at line start: `1.1.1`, `1.2.3` | `r'(?m)^\s*(\d+\.\s*\d+\.\s*\d+)\b'` | `1.1.1` |
+| Apollodorus *Bibliotheca* | Bracketed section numbers at paragraph start (Theoi format): `[1.1.1]`, `[1.2.3]` | `r'(?m)^\s*\[?(\d+\.\s*\d+\.\s*\d+)\]?'` | `1.1.1` |
 | Hesiod *Theogony* / *Works and Days* | Line citations in brackets: `[ll. 116-138]` | `r'\[ll?\.\s*(\d+(?:[–\-]\d+)?)\]'` | `ll. 116-138` |
 | Homeric Hymns | Hymn header + lines: `HYMN I. TO DIONYSUS` … `[ll. 1-21]` | Book: `r'HYMN\s+([IVXLCDM]+)\.\s+TO\s+(\w+)'`; lines same as Hesiod | `Hymn I (To Dionysus) ll. 1-21` |
 | Homer *Iliad* / *Odyssey* | Book header `BOOK I` then line refs `[l. 1]` or `[ll. 1-7]` | Book: `r'^BOOK\s+([IVXLCDM]+)'` (multiline); lines: `r'\[ll?\.\s*(\d+(?:[–\-]\d+)?)\]'` | `Book I ll. 1-7` |
@@ -203,7 +210,7 @@ Extractor helper pattern (same shape for all sources):
 ```python
 def apollodorus_refs(text: str) -> list[tuple[int, str]]:
     return [(m.start(), m.group(1))
-            for m in re.finditer(r'(?m)^\s*(\d+\.\s*\d+\.\s*\d+)\b', text)]
+            for m in re.finditer(r'(?m)^\s*\[?(\d+\.\s*\d+\.\s*\d+)\]?', text)]
 
 def homer_refs(text: str) -> list[tuple[int, str]]:
     results = []
@@ -870,7 +877,7 @@ If a migration adds or renames a column and `SchemaIntrospector` fails to pick i
 `test_text_chunker.py` — assert no chunk exceeds `CHUNK_SIZE * 1.2` characters (bounding variable sentence-length growth); assert the last `OVERLAP_SENTENCES` sentences of chunk N appear verbatim at the start of chunk N+1; assert `passage_ref` on each chunk matches the nearest preceding marker in the input; assert running `chunk()` twice on the same text produces identical `(chunk_text, passage_ref)` tuples (determinism guarantees `ON CONFLICT DO NOTHING` catches re-runs with no duplicate DB keys).
 
 `test_passage_ref_extractors.py` — one test per source extractor using inline fixtures with known markers. Each extractor must be tested against both clean and OCR-noise variants:
-- `apollodorus_refs`: clean fixture `"1.1.1"` and `"1.2.3"` → assert offsets and strings match; OCR-noise fixture `"1. 1. 1"` (extra spaces) → assert same ref is still extracted
+- `apollodorus_refs`: clean fixture `"[1.1.1]"` and `"[1.2.3]"` (Theoi bracketed format) → assert offsets and captured group match (bracket-free, e.g. `"1.1.1"`); unbracketed variant `"1.1.1"` → assert same ref still extracted (regex tolerates optional brackets); noise fixture `"[1. 1. 1]"` (extra spaces) → assert same ref is still extracted; must not match a bare footnote marker like `"[3]"` (single integer, no dots) — assert no entry emitted for that input
 - `homer_refs`: clean fixture `"BOOK I"` then `[ll. 1-7]` → assert `"Book I ll. 1-7"`; noise variants `[l.1]` (no space) and `[ll.1 - 7]` (space before dash) → assert both parse; no-preceding-book fixture → assert no entry emitted (chunker uses fallback, not extractor)
 - `ovid_refs`: `"BOOK I"` then ALL-CAPS story title → assert `"Book I: The Creation"`; consecutive markers with no text between → assert no empty-string chunks are produced by the chunker
 - All extractors: fixture with text before the first marker → assert extractor returns `None` for that offset (chunker applies `f"{author}, {work}"` fallback — test the fallback in `test_text_chunker.py`, not here)
@@ -883,9 +890,11 @@ Run: `pytest ingestion/tests/`
 
 Build in phases to validate each layer before building on it. For each phase, write the tests listed in §8 **before** writing production code.
 
+> ⚠️ Deviations occurred in Stage 1. See DEVIATIONS.md for details (DEV-001 through DEV-007).
+
 | Phase | Steps | Done when |
 |---|---|---|
-| **1 — Foundation** | Gradle scaffold for JVM modules, Docker Compose, Flyway V1–V8 | `docker-compose up`, Flyway migrates, empty tables exist | ⚠️ Stage 1a deviations: see DEVIATIONS.md (DEV-001 through DEV-007) |
+| **1 — Foundation** | Gradle scaffold for JVM modules, Docker Compose, Flyway V1–V8 | `docker-compose up`, Flyway migrates, empty tables exist |
 | **2 — Seed Data** | V9–V13, JPA entities + repos | `GET /api/v1/entities` returns ~60 entities |
 | **3 — Ingestion setup** | Python venv, `requirements.txt`, `config.py`, download corpus .txt files, file loader + cleaner for Apollodorus | `python main.py` runs without error, rows appear in `narrative_chunks` |
 | **4 — Full Corpus** | Add Homer, Hesiod, Hymns, Ovid file paths to `source_registry.py` | All sources indexed |
