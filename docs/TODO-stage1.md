@@ -40,27 +40,27 @@ Stage 1 is three commits. Within each commit, tasks are ordered; across commits,
 
 **Done when:** `docker-compose up -d` starts Postgres; `docker-compose exec postgres pg_isready` returns success.
 
-- [ ] **B1** Create `docker-compose.yml` (DB-only)
+- [x] **B1** Create `docker-compose.yml` (DB-only)
   - Service `postgres` using `pgvector/pgvector:pg16`
   - Volumes: `postgres_data:/var/lib/postgresql/data`
   - Mount `./docker/init:/docker-entrypoint-initdb.d`
   - Env: `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB` from `.env`
   - Healthcheck: `pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}`
   - Port mapping: `5432:5432`
-- [ ] **B2** Create `docker/init/01_readonly_user.sql`
+- [x] **B2** Create `docker/init/01_readonly_user.sql`
   - `CREATE USER zeus_app WITH PASSWORD 'app_password';`
   - `GRANT CONNECT ON DATABASE blamezeus TO zeus_app;`
   - `GRANT USAGE ON SCHEMA public TO zeus_app;`
   - `GRANT SELECT ON ALL TABLES IN SCHEMA public TO zeus_app;`
   - `ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO zeus_app;`
-- [ ] **B3** Create `docker-compose.full.yml` (full stack placeholder)
+- [x] **B3** Create `docker-compose.full.yml` (full stack placeholder)
   - Include `postgres` service (same as DB-only compose)
   - Add `core-api` service placeholder (image/build TBD, `depends_on: postgres`)
   - Add `telegram-bot` service placeholder (depends on core-api with `condition: service_healthy`)
-- [ ] **B4** Create `.env.example`
+- [x] **B4** Create `.env.example`
   - Placeholder values (no real keys): `OPENAI_API_KEY=sk-...`, `LLM_API_KEY=sk-...`, `LLM_CHAT_MODEL=gpt-4o-mini`, `POSTGRES_USER=zeus`, `POSTGRES_PASSWORD=olympus`, `POSTGRES_APP_USER=zeus_app`, `POSTGRES_APP_PASSWORD=app_password`, `POSTGRES_DB=blamezeus`, `TELEGRAM_BOT_TOKEN=...`, `TELEGRAM_BOT_USERNAME=BlameZeusBot`, `CORE_API_BASE_URL=http://core-api:8080`
-- [ ] **B5** Confirm `.env` is in `.gitignore` (add if missing)
-- [ ] **B6** Verify: `docker-compose up -d` starts Postgres; `docker-compose exec postgres pg_isready` returns success
+- [x] **B5** Confirm `.env` is in `.gitignore` (add if missing) — already present
+- [x] **B6** Verify: `docker-compose up -d` starts Postgres; `docker-compose exec postgres pg_isready` returns success
 
 ---
 

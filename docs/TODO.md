@@ -21,11 +21,11 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 ## Stage 1b — Local dev infrastructure
 **Done when:** `docker-compose up -d` starts Postgres; `docker-compose exec postgres pg_isready` returns success.
 
-- [ ] `docker-compose.yml` — `pgvector/pgvector:pg16`, volume, init mount, healthcheck, port 5432
-- [ ] `docker/init/01_readonly_user.sql` — create `zeus_app`, grant CONNECT + USAGE + SELECT
-- [ ] `docker-compose.full.yml` — placeholder with `postgres` + `core-api` + `telegram-bot` services
-- [ ] `.env.example` — all vars with placeholder values (no real keys)
-- [ ] Confirm `.env` is in `.gitignore`
+- [x] `docker-compose.yml` — `pgvector/pgvector:pg16`, volume, init mount, healthcheck, port 5432
+- [x] `docker/init/01_readonly_user.sql` — create `zeus_app`, grant CONNECT + USAGE + SELECT
+- [x] `docker-compose.full.yml` — placeholder with `postgres` + `core-api` + `telegram-bot` services
+- [x] `.env.example` — all vars with placeholder values (no real keys)
+- [x] Confirm `.env` is in `.gitignore`
 
 ---
 
