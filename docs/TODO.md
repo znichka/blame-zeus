@@ -63,6 +63,8 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 - [ ] Developer manually downloads Apollodorus (Frazer, 1921) from Theoi (`theoi.com/Text/Apollodorus{1,2,3}.html` + `ApollodorusE.html`), concatenates 4 pages preserving `[book.chapter.section]` markers → saves as `corpus/apollodorus_bibliotheca_frazer1921.txt`
 - [ ] Verify: `pytest ingestion/tests/` passes; `python main.py` populates `narrative_chunks`
 
+→ [Detailed track-by-track checklist](TODO-stage2.md)
+
 ---
 
 ## Stage 3 — Full Corpus
