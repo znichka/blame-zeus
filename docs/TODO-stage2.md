@@ -91,6 +91,10 @@ _No code dependency — can start immediately, in parallel with everything else.
       (needed by `apollodorus_refs` in Track D)
 - [x] **B3** Manual QA pass: confirm no leftover HTML tags/entities, markers are intact and in
       ascending order, no duplicated page content at the page-boundary seams
+  - Verified: zero HTML tags/entities (`<...>` matches are Frazer's own editorial notation,
+    e.g. `<after himself>`, not markup); 386 `[book.chapter.section]`/`[E.x.x]` markers,
+    strictly ascending, zero duplicates; all 3 book-transition seams inspected manually — each
+    ends in Apollodorus's own narrative transition sentence, no repeated content
 
 ---
 
