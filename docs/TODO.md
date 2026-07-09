@@ -57,10 +57,10 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 - [x] `ingestion/loader/source_registry.py` — `SourceConfig` dataclass; Apollodorus entry only
       (`apollodorus_refs` extractor `[DEVIATED - see DEVIATIONS.md #DEV-011]`)
 - [x] `ingestion/loader/text_cleaner.py` — footnote stripping, whitespace normalization, page-header removal
-- [ ] `ingestion/chunker/text_chunker.py` — sentence-split + accumulate to 1500 chars with 2-sentence overlap; `_nearest_ref` lookup
+- [x] `ingestion/chunker/text_chunker.py` — sentence-split + accumulate to 1500 chars with 2-sentence overlap; `_nearest_ref` lookup `[DEVIATED - see DEVIATIONS.md #DEV-012]` — fixed an infinite loop and an unbounded chunk-size overshoot in the plan's literal loop
 - [ ] `ingestion/pipeline/embedding_pipeline.py` — `embed_batch` (batch=20, tenacity retry), `store_chunks`, `validate_source_ids`, `clear_source_chunks`
 - [ ] `ingestion/main.py` — `load_dotenv()` first, then pipeline loop
-- [ ] Python tests: `test_text_cleaner.py`, `test_text_chunker.py`, `test_passage_ref_extractors.py`
+- [x] Python tests: `test_text_cleaner.py`, `test_text_chunker.py`, `test_passage_ref_extractors.py`
 - [x] Developer manually downloads Apollodorus (Frazer, 1921) from Theoi (`theoi.com/Text/Apollodorus{1,2,3}.html` + `ApollodorusE.html`), concatenates 4 pages preserving `[book.chapter.section]` markers → saves as `corpus/apollodorus_bibliotheca_frazer1921.txt`; QA'd — no HTML artifacts, 386 markers ascending, no seam duplication
 - [ ] Verify: `pytest ingestion/tests/` passes; `python main.py` populates `narrative_chunks`
 

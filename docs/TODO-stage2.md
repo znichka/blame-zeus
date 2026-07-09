@@ -147,16 +147,20 @@ _Directory:_ `ingestion/chunker/`. Tests use an inline fixture extractor, so thi
 on Track D's real implementation — only on the shared `Callable` signature already fixed by the
 plan.
 
-- [ ] **E1** `Chunk` dataclass — `text`, `source_id`, `passage_ref`, `author`, `work`,
+- [x] **E1** `Chunk` dataclass — `text`, `source_id`, `passage_ref`, `author`, `work`,
       `start_offset: int`
-- [ ] **E2** `split_sentences(text: str) -> list[tuple[int, str]]` — regex `(?<=[.!?])\s+`
+- [x] **E2** `split_sentences(text: str) -> list[tuple[int, str]]` — regex `(?<=[.!?])\s+`
       sentence boundary split, returns `(char_offset, sentence_text)` pairs
-- [ ] **E3** `chunk(text, source_id, author, work, extractor) -> list[Chunk]` — accumulate
+- [x] **E3** `chunk(text, source_id, author, work, extractor) -> list[Chunk]` — accumulate
       sentences to `CHUNK_SIZE=1500` chars, roll back `OVERLAP_SENTENCES=2` for the next chunk's
-      start
-- [ ] **E4** `_nearest_ref(refs, pos) -> str | None` — last ref with `offset <= pos`; falls back
+      start `[DEVIATED - see DEVIATIONS.md #DEV-012]` — the plan's literal loop hangs forever
+      once the tail of a document has ≤`OVERLAP_SENTENCES` sentences left, and separately lets a
+      chunk overshoot `CHUNK_SIZE` unboundedly; both fixed (loop now breaks once sentences are
+      exhausted, rollback is clamped to `min(OVERLAP_SENTENCES, len(buf)-1)`, and the inner loop
+      stops *before* a sentence would push the chunk past `CHUNK_SIZE` rather than after)
+- [x] **E4** `_nearest_ref(refs, pos) -> str | None` — last ref with `offset <= pos`; falls back
       to `f"{author}, {work}"` in `chunk()` when `None`
-- [ ] **E5** `ingestion/tests/test_text_chunker.py`:
+- [x] **E5** `ingestion/tests/test_text_chunker.py`:
   - No chunk exceeds `CHUNK_SIZE * 1.2` characters
   - Last `OVERLAP_SENTENCES` sentences of chunk N appear verbatim at the start of chunk N+1
   - `passage_ref` on each chunk matches the nearest preceding marker in the input (use an inline
@@ -165,6 +169,10 @@ plan.
     tuples per chunk (determinism — required for `ON CONFLICT DO NOTHING` re-run safety)
   - Fallback case: text before the first marker → chunk gets `f"{author}, {work}"` as
     `passage_ref`
+  - Two regression tests added per DEV-012 (tail-exactly-overlap-sentences-left,
+    single-sentence-exceeds-CHUNK_SIZE) — 8 tests total, all passing; verified end-to-end
+    against the real corpus (260 chunks, max size 1508 chars, deterministic, zero fallback refs
+    needed since `[1.1.1]` starts at offset 0)
 
 ---
 
