@@ -55,7 +55,7 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 - [x] `pyproject.toml` (or keep `requirements.txt` only) — kept `requirements.txt`-only
 - [x] `ingestion/config.py` — reads all env vars via `python-dotenv`
 - [ ] `ingestion/loader/source_registry.py` — `SourceConfig` dataclass; Apollodorus entry only
-- [ ] `ingestion/loader/text_cleaner.py` — footnote stripping, whitespace normalization, page-header removal
+- [x] `ingestion/loader/text_cleaner.py` — footnote stripping, whitespace normalization, page-header removal
 - [ ] `ingestion/chunker/text_chunker.py` — sentence-split + accumulate to 1500 chars with 2-sentence overlap; `_nearest_ref` lookup
 - [ ] `ingestion/pipeline/embedding_pipeline.py` — `embed_batch` (batch=20, tenacity retry), `store_chunks`, `validate_source_ids`, `clear_source_chunks`
 - [ ] `ingestion/main.py` — `load_dotenv()` first, then pipeline loop

@@ -102,13 +102,15 @@ _No code dependency — can start immediately, in parallel with everything else.
 
 _Directory:_ `ingestion/loader/`. Independent — pure string transform, testable on inline fixtures.
 
-- [ ] **C1** `clean(text: str) -> str` — strip footnote markers with
+- [x] **C1** `clean(text: str) -> str` — strip footnote markers with
       `re.sub(r'\[\d+\]', '', text)` (digits-only, so it never touches
       `[book.chapter.section]` markers, which contain dots)
-- [ ] **C2** Collapse multi-whitespace, normalize smart quotes (`'`/`'` → `'`, `"`/`"` → `"`)
-- [ ] **C3** Strip page headers/running titles (lines matching `^[A-Z\s]+$` alone on a line)
-- [ ] **C4** `ingestion/tests/test_text_cleaner.py` — assert `[1]`/`[42]` stripped; smart quotes
+- [x] **C2** Collapse multi-whitespace, normalize smart quotes (`'`/`'` → `'`, `"`/`"` → `"`)
+- [x] **C3** Strip page headers/running titles (lines matching `^[A-Z\s]+$` alone on a line)
+- [x] **C4** `ingestion/tests/test_text_cleaner.py` — assert `[1]`/`[42]` stripped; smart quotes
       normalized; multi-whitespace collapsed; assert a `[1.1.1]`-style marker survives unchanged
+      (also covers `[E.1.1]` Epitome-style markers) — 8 tests, all passing; spot-checked against
+      the full real corpus file too
 
 ---
 
