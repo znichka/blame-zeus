@@ -130,3 +130,15 @@ See `CLAUDE.md §Deviation Tracking Protocol` for the rules governing when and h
 | **What Changed** | Used Homebrew's `python@3.14` (`/opt/homebrew/opt/python@3.14/bin/python3.14`) to create `ingestion/.venv/` |
 | **Reason** | No `python3.12` binary is installed on the dev machine (only system `/usr/bin/python3` at 3.9.6, and Homebrew's `python@3.14`). `CLAUDE.md` specifies "Python 3.12+", so 3.14 satisfies the constraint; installing a second Python minor version via `pyenv`/Homebrew solely to match the plan's literal example was judged unnecessary. |
 | **Impact** | All `ingestion/` code must avoid any syntax/stdlib feature introduced after 3.12 if strict 3.12 compatibility is later required (none currently used — the package only relies on `openai`, `psycopg2-binary`, `pgvector`, `tenacity`, `python-dotenv`, `pytest`, all of which support 3.12–3.14). If a teammate's machine has `python3.12` available, recreating `ingestion/.venv/` with it instead is fine and requires no code changes. |
+
+---
+
+### DEV-011 — `apollodorus_refs` regex extended to match Epitome (`E.x.y`) markers
+
+| Field | Detail |
+|---|---|
+| **Stage** | 2 (Track D) |
+| **Original Plan** | `r'(?m)^\s*\[?(\d+\.\s*\d+\.\s*\d+)\]?'` (`docs/IMPLEMENTATION_PLAN.md` §4, "Extractor helper pattern") — matches only purely numeric `book.chapter.section` markers |
+| **What Changed** | `r'(?m)^\s*\[?((?:E|\d+)\.\s*\d+\.\s*\d+)\]?'` — also matches the Epitome's `E.chapter.section` markers (e.g. `[E.1.1]`) |
+| **Reason** | The real ingested corpus (`ingestion/corpus/apollodorus_bibliotheca_frazer1921.txt`, from Track B) includes Frazer's Epitome (summary of lost books), whose passage markers use an `E.` prefix instead of a leading book number — a format that didn't exist in the plan's abstract example and wasn't covered by its literal regex. Without this fix, all 177 Epitome markers (verified by direct extraction against the real corpus text: 209 numeric-only matches vs. 386 total once `E.` is included) would fail to match, and every Epitome-derived chunk would silently inherit `passage_ref = "3.16.2"` (the last real Book 3 marker) via `text_chunker.py`'s `_nearest_ref` fallback — a source-attribution accuracy bug that directly undermines this project's core citation feature. Confirmed by decision with the user rather than deviating unilaterally. |
+| **Impact** | `ingestion/loader/source_registry.py`'s `apollodorus_refs` now returns 386 refs (209 numeric + 177 Epitome) against the real corpus, strictly ascending, matching the true structure of the source text. `ingestion/tests/test_passage_ref_extractors.py` covers both the numeric and `E.x.y` cases (including OCR-noise variants). No impact on other sources' extractors (Homer/Hesiod/Ovid, Stage 3) — those use unrelated marker formats (`[ll. ...]`, `BOOK ...`). |

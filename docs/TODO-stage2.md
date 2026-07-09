@@ -119,9 +119,13 @@ _Directory:_ `ingestion/loader/`. Independent — pure string transform, testabl
 _Directory:_ `ingestion/loader/source_registry.py` (or a co-located module). Independent — pure
 regex over inline fixtures.
 
-- [ ] **D1** `apollodorus_refs(text: str) -> list[tuple[int, str]]` —
+- [x] **D1** `apollodorus_refs(text: str) -> list[tuple[int, str]]` —
       `r'(?m)^\s*\[?(\d+\.\s*\d+\.\s*\d+)\]?'`, returns `(offset, ref)` pairs sorted ascending
-- [ ] **D2** `ingestion/tests/test_passage_ref_extractors.py` (Apollodorus cases only — this
+      `[DEVIATED - see DEVIATIONS.md #DEV-011]` — regex widened to
+      `r'(?m)^\s*\[?((?:E|\d+)\.\s*\d+\.\s*\d+)\]?'` so Frazer's Epitome (`[E.1.1]`-style)
+      markers are also matched; verified against the real corpus: 386 refs total (209 numeric +
+      177 `E.x.y`), strictly ascending, zero duplicates
+- [x] **D2** `ingestion/tests/test_passage_ref_extractors.py` (Apollodorus cases only — this
       stage seeds only the one source; Stage 3 adds `homer_refs`/`ovid_refs`/etc.):
   - Clean fixture `"[1.1.1]"`, `"[1.2.3]"` → offsets + bracket-free captured group (`"1.1.1"`)
   - Unbracketed variant `"1.1.1"` → same ref still extracted (brackets optional in regex)
@@ -130,6 +134,10 @@ regex over inline fixtures.
     confused with a passage ref
   - Fixture with text before the first marker → extractor returns `None` for that offset
     (the `f"{author}, {work}"` fallback is tested in `test_text_chunker.py`, not here)
+  - Additional cases added per DEV-011: `"[E.1.1]"` and OCR-noise `"[E. 1. 1]"` Epitome markers
+    also extracted correctly
+  - 7 + 2 = 9 tests, all passing; spot-checked end-to-end (`clean()` → `apollodorus_refs()`)
+    against the full real corpus file
 
 ---
 
