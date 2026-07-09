@@ -173,13 +173,15 @@ plan.
 _Directory:_ `ingestion/loader/source_registry.py`. _Depends on:_ Track D (needs the real
 `apollodorus_refs` function object, not a stub).
 
-- [ ] **F1** `SourceConfig` dataclass — `source_id: str`, `author: str`, `work: str`,
+- [x] **F1** `SourceConfig` dataclass — `source_id: str`, `author: str`, `work: str`,
       `file_path: str`, `passage_ref_extractor: Callable[[str], list[tuple[int, str]]]`
-- [ ] **F2** `SOURCE_REGISTRY: list[SourceConfig]` — single Apollodorus entry:
+- [x] **F2** `SOURCE_REGISTRY: list[SourceConfig]` — single Apollodorus entry:
       `source_id='apollodorus-bibliotheca'`, `file_path='corpus/apollodorus_bibliotheca_frazer1921.txt'`,
       `passage_ref_extractor=apollodorus_refs`
-  - Confirm `source_id` slug matches exactly what will later be seeded in `V9__seed_sources.sql`
-    (Stage 4) and the hand-insert in the ordering-gotcha note above
+  - Confirmed `source_id`/`author`/`work` match the hand-insert in the ordering-gotcha note
+    above exactly (`'apollodorus-bibliotheca'`, `'Apollodorus'`, `'Bibliotheca'`); will need the
+    same check against `V9__seed_sources.sql` once Stage 4 writes it
+  - Verified `file_path` resolves relative to `ingestion/` and the file exists on disk
 
 ---
 
