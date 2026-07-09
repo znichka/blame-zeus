@@ -51,9 +51,9 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 
 > ⚠️ Stage order changed by ADR-004 (`docs/adr/adr-004-seed-data-extraction-strategy.md`): ingestion now runs before seed data, since the extraction pipeline needs real ingested corpus text to run against. This stage was formerly numbered Stage 3.
 
-- [ ] Python venv + `requirements.txt` (`openai>=1.0`, `psycopg2-binary`, `pgvector`, `tenacity>=8.2`, `python-dotenv`)
-- [ ] `pyproject.toml` (or keep `requirements.txt` only)
-- [ ] `ingestion/config.py` — reads all env vars via `python-dotenv`
+- [x] Python venv + `requirements.txt` (`openai>=1.0`, `psycopg2-binary`, `pgvector`, `tenacity>=8.2`, `python-dotenv`) `[DEVIATED - see DEVIATIONS.md #DEV-010]`
+- [x] `pyproject.toml` (or keep `requirements.txt` only) — kept `requirements.txt`-only
+- [x] `ingestion/config.py` — reads all env vars via `python-dotenv`
 - [ ] `ingestion/loader/source_registry.py` — `SourceConfig` dataclass; Apollodorus entry only
 - [ ] `ingestion/loader/text_cleaner.py` — footnote stripping, whitespace normalization, page-header removal
 - [ ] `ingestion/chunker/text_chunker.py` — sentence-split + accumulate to 1500 chars with 2-sentence overlap; `_nearest_ref` lookup

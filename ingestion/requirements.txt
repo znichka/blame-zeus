@@ -1,0 +1,9 @@
+# Decision (per docs/TODO-stage2.md A2): requirements.txt-only, no pyproject.toml.
+# This is a one-time offline script package (not published, no build backend needed).
+
+openai>=1.0
+psycopg2-binary
+pgvector
+tenacity>=8.2
+python-dotenv
+pytest>=8.0

@@ -116,3 +116,17 @@ See `CLAUDE.md §Deviation Tracking Protocol` for the rules governing when and h
 | **What Changed** | `springdoc-openapi-starter-webmvc-ui:2.6.0` — corrects DEV-006, which picked an incompatible version |
 | **Reason** | `springdoc-openapi 2.8.3` requires Spring Boot 3.4.x / Spring Framework 6.2.x (its own POM depends on `spring-boot-autoconfigure:3.4.1` and `spring-webmvc:6.2.1`). This project pins Spring Boot 3.3.13 (Spring Framework 6.1.21) per DEV-002, so Gradle's dependency management silently downgraded springdoc's transitive Spring dependencies to 6.1.21/3.3.13. `spring-webmvc:6.1.21` does not contain `org.springframework.web.servlet.resource.LiteWebJarsResourceResolver` (added in Spring Framework 6.2), which springdoc's autoconfiguration references — causing every `@SpringBootTest` (and the running app) to fail with `ClassNotFoundException: ...LiteWebJarsResourceResolver` and `ApplicationContext failure threshold exceeded`. This was discovered while getting `FlywayMigrationTest`/`SchemaIntrospectorTest` to pass in Stage 1c — the failure only surfaces when a full `@SpringBootTest` context loads, so it was invisible at `compileKotlin` time. `2.6.0` is the last release in the line compatible with Spring Boot 3.3.x (2.7.0+ requires 3.4.0+). |
 | **Impact** | **Corrects DEV-006.** `OpenApiConfig.kt` (Stage 9) must target springdoc 2.6.0's API surface, not 2.8.3's — no breaking changes affect basic `@Operation`/`@Tag` annotation usage between these lines. If Spring Boot is ever upgraded to 3.4.x+, springdoc can be bumped back to the 2.8.x/2.7.x line at that time. |
+
+---
+
+## Stage 2 — Ingestion Setup (2026-07-09)
+
+### DEV-010 — Ingestion venv interpreter: python3.12 → python@3.14 (Homebrew)
+
+| Field | Detail |
+|---|---|
+| **Stage** | 2 (Track A) |
+| **Original Plan** | `python3.12 -m venv .venv` (per `docs/TODO-stage2.md` A3 and `CLAUDE.md`'s "Python 3.12+" tech stack line) |
+| **What Changed** | Used Homebrew's `python@3.14` (`/opt/homebrew/opt/python@3.14/bin/python3.14`) to create `ingestion/.venv/` |
+| **Reason** | No `python3.12` binary is installed on the dev machine (only system `/usr/bin/python3` at 3.9.6, and Homebrew's `python@3.14`). `CLAUDE.md` specifies "Python 3.12+", so 3.14 satisfies the constraint; installing a second Python minor version via `pyenv`/Homebrew solely to match the plan's literal example was judged unnecessary. |
+| **Impact** | All `ingestion/` code must avoid any syntax/stdlib feature introduced after 3.12 if strict 3.12 compatibility is later required (none currently used — the package only relies on `openai`, `psycopg2-binary`, `pgvector`, `tenacity`, `python-dotenv`, `pytest`, all of which support 3.12–3.14). If a teammate's machine has `python3.12` available, recreating `ingestion/.venv/` with it instead is fine and requires no code changes. |
