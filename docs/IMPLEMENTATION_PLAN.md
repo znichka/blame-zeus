@@ -1015,7 +1015,7 @@ Build in phases to validate each layer before building on it. For each phase, wr
 
 > ⚠️ Deviations occurred in Stage 1. See DEVIATIONS.md for details (DEV-001 through DEV-009).
 >
-> ⚠️ Deviations occurred in Stage 2. See DEVIATIONS.md for details (DEV-010 through DEV-012).
+> ⚠️ Deviations occurred in Stage 2. See DEVIATIONS.md for details (DEV-010 through DEV-013).
 >
 > ⚠️ **Stage order changed by ADR-004** (`docs/adr/adr-004-seed-data-extraction-strategy.md`): seed data
 > generation now depends on ingested corpus text (the extraction pipeline reads it), so ingestion runs

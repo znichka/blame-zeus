@@ -198,17 +198,27 @@ _Directory:_ `ingestion/loader/source_registry.py`. _Depends on:_ Track D (needs
 _Directory:_ `ingestion/pipeline/`. Independent of C/D/E/F — only needs Track A's dependencies
 installed.
 
-- [ ] **G1** `embed_batch(texts: list[str]) -> list[list[float]]` — `OpenAI().embeddings.create(model="text-embedding-3-small", input=texts)`; `@retry` (tenacity: `wait_exponential(multiplier=1, min=2, max=60)`, `stop_after_attempt(5)`, `reraise=True`)
-- [ ] **G2** `store_chunks(conn, chunks)` — `register_vector(conn)`; batch size 20 chunks per
+- [x] **G1** `embed_batch(texts: list[str]) -> list[list[float]]` — `OpenAI().embeddings.create(model="text-embedding-3-small", input=texts)`; `@retry` (tenacity: `wait_exponential(multiplier=1, min=2, max=60)`, `stop_after_attempt(5)`, `reraise=True`)
+      — retry behavior verified with a mocked client (2 simulated transient failures, succeeded
+      on 3rd attempt)
+- [x] **G2** `store_chunks(conn, chunks)` — `register_vector(conn)`; batch size 20 chunks per
       `embed_batch` call; `INSERT ... ON CONFLICT (source_id, passage_ref, content_hash) DO
       NOTHING`; `metadata` JSONB includes `source_id`, `author`, `work`, `passage_ref`,
-      `chunk_size`, `overlap_sentences`
-- [ ] **G3** `validate_source_ids(conn, registry)` — `SELECT id FROM sources`; raise
+      `chunk_size`, `overlap_sentences` `[DEVIATED - see DEVIATIONS.md #DEV-013]` — the plan's
+      literal snippet had no batching loop at all (called `embed_batch` once on the whole
+      `chunks` list) despite its own prose requiring batches of 20; added the loop. Also dropped
+      `numpy`/`np.array()` (never in `requirements.txt`; `pgvector`'s `Vector` already accepts a
+      plain `list[float]` directly). Verified with a mocked DB connection + mocked `embed_batch`:
+      45 synthetic chunks → 3 calls of `[20, 20, 5]`; correct SQL/metadata per row
+- [x] **G3** `validate_source_ids(conn, registry)` — `SELECT id FROM sources`; raise
       `RuntimeError` listing any `SOURCE_REGISTRY` entry whose `source_id` isn't present (this is
-      the check the ordering-gotcha note above exists to satisfy)
-- [ ] **G4** `clear_source_chunks(conn, source_id)` — manual utility, `DELETE FROM
+      the check the ordering-gotcha note above exists to satisfy) — verified with a mocked
+      connection for both the present and missing cases
+- [x] **G4** `clear_source_chunks(conn, source_id)` — manual utility, `DELETE FROM
       narrative_chunks WHERE source_id = %s`; not called from `main.py`'s normal path
-- [ ] **G5** Import block includes `from tenacity import retry, stop_after_attempt,
+      (`source_id` type hint corrected from the plan's stray `int` to `str`, matching
+      `SourceConfig.source_id: str` and the TEXT-slug schema) — verified with a mocked connection
+- [x] **G5** Import block includes `from tenacity import retry, stop_after_attempt,
       wait_exponential` at the top of the module
 
 ---
