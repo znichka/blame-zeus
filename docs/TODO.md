@@ -113,8 +113,9 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 
 - [ ] Tests first: `SqlSafetyValidatorTest` (SELECT/WITH allowed; DROP/DELETE/INSERT/UPDATE/`;` blocked)
 - [ ] Tests first: `SqlQueryHandlerTest` (mock `TextToSqlAgent`, assert validator called before JdbcTemplate)
-- [ ] `RouteDecision.kt` enum (SQL, RAG, MIXED, CONFLICT)
-- [ ] `QueryRouter.kt` `@AiService` interface (temperature 0.0, returns `RouteDecision`)
+- [ ] Tests first: `QueryRouterTest` — assert the router only ever emits `SQL`/`RAG`/`MIXED`, never `CONFLICT` `[DEVIATED - see DEVIATIONS.md DEV-014]`
+- [ ] `RouteDecision.kt` enum (`SQL`, `RAG`, `MIXED` — **no `CONFLICT`**) `[DEVIATED - see DEVIATIONS.md DEV-014]`
+- [ ] `QueryRouter.kt` `@AiService` interface (temperature 0.0, returns `RouteDecision`); prompt keeps schema-boundary → RAG, **omits** any "route to CONFLICT" instruction `[DEVIATED - see DEVIATIONS.md DEV-014]`
 - [ ] `TextToSqlAgent.kt` `@AiService` interface with `@V("schema")` + `@V("question")` params
 - [ ] `SqlSafetyValidator.kt` — deny-list enforcement
 - [ ] `SqlQueryHandler.kt` — generates SQL → validates → executes → formats rows + extracts citations
@@ -132,7 +133,7 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 > ⚠️ Updated assumptions based on DEV-004 (see DEVIATIONS.md): LangChain4j is `1.0.0-beta5`. Before implementing, verify beta5 API shapes for `RagAgent @AiService`, `EmbeddingStore`, `ContentRetriever`, and `PgVectorEmbeddingStore` (including `createTable(false)` parameter shape).
 
 - [ ] Tests first: `RagQueryHandlerTest` (mock `RagAgent`, assert `RagResponse.citations` returned without text parsing)
-- [ ] `RagAgent.kt` `@AiService` interface — JSON structured return (`RagResponse`)
+- [ ] `RagAgent.kt` `@AiService` interface — JSON structured return (`RagResponse`); system message includes the conflict-aware backstop instruction: if retrieved passages give different accounts of the same point from different sources, present each with its attribution rather than merging or picking one (ADR-007 §3) `[DEVIATED - see DEVIATIONS.md DEV-014]`
 - [ ] `RagQueryHandler.kt`
 - [ ] `LangChain4jConfig.kt` — `embeddingModel`, `embeddingStore` (`createTable(false)`), `contentRetriever` (maxResults=5, minScore=0.65) beans
 - [ ] Add RAG route to `QueryService`
@@ -140,17 +141,21 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 
 ---
 
-## Stage 7 — Conflict Pipeline
-**Done when:** Aphrodite question returns ≥2 attributed versions; `ConflictQueryHandlerTest` passes.
+## Stage 7 — Conflict Enrichment (router-independent)
+**Done when:** the Aphrodite question returns ≥2 attributed versions in `conflicts[]` **even though it routes to SQL/RAG, not a CONFLICT route**; `ConflictLookupTest` + enrichment test pass.
 
-> ⚠️ Updated assumptions based on DEV-004 (see DEVIATIONS.md): LangChain4j is `1.0.0-beta5`. Before implementing, verify beta5 API shapes for `EntityExtractor @AiService` (temperature 0.0) and `ConflictSynthesizer @AiService` (temperature 0.3) — annotation and parameter injection shapes may differ from 1.0.0 GA.
+> ⚠️ Recast by ADR-007 (`[DEVIATED - see DEVIATIONS.md DEV-014]`): there is **no `CONFLICT` route and no `ConflictQueryHandler`**. Conflict surfacing is a router-independent enrichment step in `QueryService`, invoked after *any* answer, that writes only `conflicts[]` (never `answer`) and is wrapped so it can never break the primary answer.
+>
+> ⚠️ Updated assumptions based on DEV-004 (see DEVIATIONS.md): LangChain4j is `1.0.0-beta5`. Before implementing, verify beta5 API shapes for `EntityExtractor`/`ConflictProbe @AiService` (temperature 0.0) and `ConflictSynthesizer @AiService` (temperature 0.3) — annotation and parameter injection shapes may differ from 1.0.0 GA.
 
-- [ ] Tests first: `ConflictQueryHandlerTest` (all variant_claims rows passed to synthesizer; unknown entity returns graceful answer)
+- [ ] Tests first: `ConflictLookupTest` (all matching `variant_claims` rows returned for a subject + normalized `claim_type`; unknown entity / empty result handled gracefully) `[DEVIATED - see DEVIATIONS.md DEV-014]`
+- [ ] Tests first: `QueryService` enrichment test — a conflict-shaped question routed to SQL/RAG still yields a populated `conflicts[]`; a claim-type mismatch (e.g. appearance question on a subject with a stored death conflict) yields empty `conflicts[]`; enrichment failure leaves the primary answer intact `[DEVIATED - see DEVIATIONS.md DEV-014]`
 - [ ] `EntityExtractor.kt` `@AiService` interface (temperature 0.0)
-- [ ] `ConflictSynthesizer.kt` `@AiService` interface (temperature 0.3)
-- [ ] `ConflictQueryHandler.kt` — three-step name resolution (exact → alias → trigram); empty result graceful response
-- [ ] `GET /api/v1/conflicts/{entityName}` endpoint
-- [ ] Add CONFLICT route to `QueryService`
+- [ ] `ConflictProbe.kt` `@AiService` interface (temperature 0.0) → `{subject, claimType}` (may be folded into `EntityExtractor`); returns empty/`none` `claimType` when the question maps to no modeled attribute `[DEVIATED - see DEVIATIONS.md DEV-014]`
+- [ ] `ConflictSynthesizer.kt` `@AiService` interface (temperature 0.3) — reused unchanged to format fetched versions
+- [ ] `ConflictLookup.kt` (shared component, **not** an `@AiService`) — three-step entity resolution (exact → alias → trigram), then two fetches over that resolution: (a) a **claim-type-filtered** fetch for enrichment (`subject_entity_id = ? AND claim_type = normalize(probeClaimType)`, using `idx_variant_claims_subject_type`), and (b) a **subject-only** fetch (all `claim_type`s for the entity) backing the `/conflicts/{entityName}` endpoint; shares the `claim_type_aliases.json` `normalize()` logic with the offline detector `[DEVIATED - see DEVIATIONS.md DEV-014]`
+- [ ] `QueryService` enrichment step — after `dispatch(route)`, skip on `serviceError`, else `conflictProbe.extract` → `conflictLookup.find` → `conflictSynthesizer.synthesize`; write only `conflicts[]`, wrapped in try/catch so it never breaks the primary answer `[DEVIATED - see DEVIATIONS.md DEV-014]`
+- [ ] `GET /api/v1/conflicts/{entityName}` endpoint — backed by `ConflictLookup`'s **subject-only** fetch (no claim-type context at the URL), not a handler; returns all stored `variant_claims` for the entity across claim_types `[DEVIATED - see DEVIATIONS.md DEV-014]`
 
 ---
 
@@ -175,7 +180,7 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 - [ ] `templates/index.html` — form, route badge (color-coded), answer block, citations footnotes, conflicts section, collapsible SQL block, error banner for `serviceError`
 - [ ] Tailwind CSS via CDN (no build step)
 - [ ] `OpenApiConfig.kt` — Springdoc customization
-- [ ] `QueryControllerIntegrationTest` — HTTP 200; `routeDecision` present; CONFLICT populates `conflicts`
+- [ ] `QueryControllerIntegrationTest` — HTTP 200; `routeDecision` present (`SQL`/`RAG`/`MIXED`); a conflict-shaped question populates `conflicts[]` via enrichment regardless of route `[DEVIATED - see DEVIATIONS.md DEV-014]`
 - [ ] Smoke test: Swagger UI loads at `/swagger-ui.html`
 
 ---
@@ -183,9 +188,9 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 ## Stage 10 — Evaluation
 **Done when:** `EvaluationRunner` reports ≥75% on all 17 gold questions (≥13/17 at full score).
 
-- [ ] Complete `evaluation/gold-questions.json` — all 17 questions with `required_keywords`, `required_authors`, `forbidden_patterns`, REFUSAL `refusal_criteria`
+- [ ] Complete `evaluation/gold-questions.json` — all 17 questions with `required_keywords`, `required_authors`, `forbidden_patterns`, REFUSAL `refusal_criteria`. Re-point conflict questions Q13–15 `expected_route` (parentage → SQL, death → RAG); **no question uses `CONFLICT` as an `expected_route`** (it survives only as a `category`) `[DEVIATED - see DEVIATIONS.md DEV-014]`
 - [ ] `EvaluationRunner` (standalone `fun main()` or JUnit integration test)
-- [ ] Score logic: route match (1pt), author/conflict check (1pt), content check (1pt)
+- [ ] Score logic: route match (1pt), author/conflict check (1pt), content check (1pt). For CONFLICT-category questions the conflict check keys on `conflicts[]` (≥2 distinct `claimValue`), **independent of the route** — not a `CONFLICT` route match `[DEVIATED - see DEVIATIONS.md DEV-014]`
 - [ ] REFUSAL scoring: `refusal_criteria` pass + no `forbidden_patterns`
 - [ ] Q9 guard: assert `sqlGenerated != null` before checking `WITH RECURSIVE`
 - [ ] Q10 guard: execute generated SQL against test DB, assert `rowCount >= 12`

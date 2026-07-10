@@ -100,6 +100,18 @@ blame-zeus/
 
 ## 3. Data Model & Flyway Migrations
 
+> ⚠️ Amended by ADR-007 — see `docs/adr/adr-007-conflict-detection-and-surfacing.md` and `DEVIATIONS.md` DEV-014.
+> `variant_claims.claim_type` is open free-text (no CHECK) by design; V7 already reflects this. Rows in `V12`
+> are written with the **normalized canonical** `claim_type` (surface variants collapsed at promotion), so the
+> runtime `WHERE subject_entity_id = X AND claim_type = Y` lookup matches by exact equality and both rows of a
+> conflict share one value — the `normalize()` map is applied at promotion, not re-applied at query time.
+> Contested relationships keep **one canonical edge** in `V11` (default: `sources.role='spine'`) with the
+> contradiction recorded in `V12` — competing edges are not stored in the runtime graph.
+>
+> ⚠️ Also see `DEVIATIONS.md` DEV-018: the V9 row's Homeric Hymns `author` is corrected from `Hesiod` to
+> `Anonymous` (slug `hesiod-homeric-hymns` retained). The original `author='Hesiod'` text below is kept
+> unamended per the deviation protocol.
+
 All migrations in `core-api/src/main/resources/db/migration/`. The ingestion job connects to the same DB but does NOT run Flyway — core-api startup runs it.
 
 | Migration | Content |
@@ -135,6 +147,12 @@ ON CONFLICT DO NOTHING;
 ---
 
 ## 4. Ingestion Job
+
+> ⚠️ Amended by ADR-007 — see `docs/adr/adr-007-conflict-detection-and-surfacing.md` and `DEVIATIONS.md` DEV-014.
+> Conflict detection is generalized: the extractor stores **all** attributed claims (not only `is_contested`),
+> and `conflict_detector.py` becomes a single GROUP-BY pass over *all* candidate claims keyed on
+> `(subject, normalize(claim_type))` `HAVING count(DISTINCT source_id) >= 2` — not a relationships-only scan.
+> A new `ingestion/extraction/claim_type_aliases.json` + `normalize()` helper collapses surface variants.
 
 **Language:** Python 3.12+. Standalone script — not part of the Gradle build.  
 **Entry point:** `ingestion/main.py`
@@ -382,6 +400,12 @@ Place .txt files in `ingestion/corpus/` before running. Start with Apollodorus (
 
 ### Extraction Pipeline (Seed Data Generation)
 
+> ⚠️ Amended by ADR-007 — `conflict_detector.py` runs one GROUP-BY over *all* candidate claims (relationship
+> candidates mapped in: `parent_of → parentage`, `married_to → marriage`, `killed_by → death`); the extractor
+> hints (not restricts) `claim_type` and stores every attributed claim. The relation→claim_type targets are
+> the same canonicals as `claim_type_aliases.json`, so a death disagreement split between a `killed_by` edge and
+> free-text prose groups under one `death` key (not `slaying` vs `death_manner`). See `DEVIATIONS.md` DEV-014, DEV-020.
+
 See `docs/adr/adr-004-seed-data-extraction-strategy.md` for the full decision
 record. Runs **after** corpus ingestion (needs real cleaned text to extract
 from), **offline**, and writes reviewable candidate files — it never inserts
@@ -503,6 +527,16 @@ phrasing.
 ---
 
 ## 5. Core-API
+
+> ⚠️ Amended by ADR-007 — see `docs/adr/adr-007-conflict-detection-and-surfacing.md` and `DEVIATIONS.md` DEV-014.
+> `RouteDecision` is `SQL | RAG | MIXED` (no `CONFLICT`); `QueryRouter` never emits a conflict route.
+> `ConflictQueryHandler` is **deleted** — its entity resolution + `variant_claims` fetch move into a shared
+> `ConflictLookup`. A new `ConflictProbe` (`@AiService`, temp 0.0 → `{subject, claimType}`; may fold into
+> `EntityExtractor`) drives a router-independent enrichment step in `QueryService`: after any answer,
+> `ConflictProbe` → `ConflictLookup` (claim-type-filtered fetch) → `ConflictSynthesizer`, writing only
+> `conflicts[]` (never `answer`), wrapped so it never breaks the primary answer. `RagAgent`'s system message
+> gains a conflict-aware disagreement backstop instruction. The `QueryRouter`, `ConflictQueryHandler`, and
+> `QueryService` snippets below predate this and are retained for context only.
 
 ### Package Structure
 
@@ -779,6 +813,12 @@ Key files:
 
 ## 7. Evaluation
 
+> ⚠️ Amended by ADR-007 — see `docs/adr/adr-007-conflict-detection-and-surfacing.md` and `DEVIATIONS.md` DEV-014.
+> Conflict questions (Q13–15) no longer expect a `CONFLICT` route: their `expected_route` re-points
+> (parentage → SQL, death → RAG), and they are scored on `conflicts[]` having ≥2 distinct versions surfaced by
+> enrichment, **not** on a route match. The `CONFLICT` value survives only as a gold-question *category* label,
+> not as a `RouteDecision`. (Broader eval expansion is ADR-010, still Proposed — not applied here.)
+
 ### Gold Question JSON Schema
 
 Each entry in `evaluation/gold-questions.json` has these fields:
@@ -863,6 +903,11 @@ Target: ≥75% overall (≥13/17 questions at full score).
 ---
 
 ## 8. Testing Strategy
+
+> ⚠️ Amended by ADR-007 — see `DEVIATIONS.md` DEV-014. `ConflictQueryHandlerTest` is replaced by
+> `ConflictLookupTest` + a `QueryService` enrichment test (conflict-shaped question on a SQL/RAG route still
+> populates `conflicts[]`; claim-type mismatch yields empty `conflicts[]`; enrichment failure leaves the
+> primary answer intact). Add a `QueryRouterTest` asserting the router never emits `CONFLICT`.
 
 ### Approach
 
@@ -1014,6 +1059,11 @@ Run: `pytest ingestion/tests/`
 Build in phases to validate each layer before building on it. For each phase, write the tests listed in §8 **before** writing production code.
 
 > ⚠️ Deviations occurred in Stage 1. See DEVIATIONS.md for details (DEV-001 through DEV-009).
+>
+> ⚠️ Amended by ADR-007 (DEV-014): "Phase 7 — Conflict Pipeline" becomes "Conflict Enrichment" — no
+> `CONFLICT` route and no `ConflictQueryHandler`; build `ConflictProbe` + shared `ConflictLookup` + the
+> `QueryService` enrichment step instead. The phase 7 verification row below still holds (Aphrodite question
+> returns ≥2 attributed versions), but via enrichment on a SQL/RAG route, not a `CONFLICT` route.
 >
 > ⚠️ Deviations occurred in Stage 2. See DEVIATIONS.md for details (DEV-010 through DEV-013).
 >

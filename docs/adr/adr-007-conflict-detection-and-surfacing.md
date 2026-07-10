@@ -70,8 +70,8 @@ without rewriting it.
 repo's `entities.type` / `sources.stance` / `sources.role` CHECK convention). The extractor may
 emit *any* attribute label it observes in the text, including categories nobody enumerated
 upfront. A curated **normalization/alias map** (`ingestion/extraction/claim_type_aliases.json`)
-collapses surface variants to a canonical value (`death`, `manner_of_death`, `how he died` →
-`death_manner`) before grouping.
+collapses surface variants to a canonical value (`death_manner`, `manner_of_death`, `how he died`,
+`slaying`, `slain by`, `killed by` → `death`) before grouping.
 
 The extractor stores **every** attributed claim of the observed types into the candidate stage,
 not only inline-contested ones. A conflict then becomes a **query**, not an extraction-time
@@ -95,8 +95,34 @@ Consequences of this shape:
 
 `conflict_detector.py` is generalized from a relationships-only scan to a single GROUP-BY pass
 over **all** candidate claims. Relationship candidates are mapped into the same space
-(`parent_of → parentage`, `married_to → marriage`, `killed_by → slaying`), so structured
+(`parent_of → parentage`, `married_to → marriage`, `killed_by → death`), so structured
 relationships and free-form claims flow through one detector.
+
+**The relation→claim_type map and the `claim_type_aliases.json` canonical vocabulary are one
+shared namespace** (DEV-020). Every relationship mapping must target a canonical that *also* owns
+the corresponding free-text surface variants, so a disagreement captured half as a typed
+relationship and half as free-text prose still groups under one key. Concretely, `parentage`,
+`marriage`, and `death` are each canonicals in the alias map, and `death` collapses both manner
+surface forms (`death_manner`, `manner_of_death`, `how he died`) and killer surface forms
+(`slaying`, `slain by`, `killed by`). Mapping `killed_by` to a canonical the free-text death claims do **not** share (an
+earlier draft used `slaying`) would split one death disagreement across two GROUP-BY keys —
+`slaying` vs `death_manner` — silently defeating both offline detection and the exact-match
+`ConflictLookup` at query time. Unifying the whole death dimension (killer *and* manner) under
+`death` is deliberate and is the **conflict-grouping** key; it is orthogonal to ADR-005's
+**routing** distinction between "who killed whom" (SQL via `killed_by`) and "manner of death"
+(RAG). Because surfacing is router-independent (§5), a "who killed Achilles?" question and a "how
+did Achilles die?" question both probe to `death` and surface the same unified conflict, whatever
+route retrieved their primary answer.
+
+One consequence of unifying killer *and* manner under one key: two sources can group as a `death`
+"conflict" while being **complementary rather than contradictory** — e.g. one source names the
+killer (`killed by Paris`) and another the manner (`a wound to the heel`). This is acceptable by
+design: the product surfaces *attributed versions* of a claim dimension and lets the reader judge,
+rather than asserting that the versions logically contradict. `ConflictSynthesizer` (§5) formats
+all attributed versions *without picking a winner* and does not claim the versions contradict, so
+complementary claims read as complementary. The alternative — splitting killer and manner into
+separate keys to avoid this — reintroduces the fragmentation DEV-020 exists to prevent, which is
+the worse failure.
 
 ### 2. Store-all is the candidate stage only; the runtime table stays reviewed-conflicts-only
 
@@ -155,17 +181,29 @@ return answer
   subject); folding claim-type extraction into it keeps enrichment to one LLM call. It returns an
   empty/`none` `claimType` when the question maps to no modeled attribute. Then no structured
   lookup runs, and the RAG backstop (§3) covers any unstructured disagreement.
-- **`ConflictLookup`** (shared) resolves the entity and fetches `variant_claims` filtered to
-  `subject_entity_id = ? AND claim_type = normalize(probeClaimType)`. The composite index
-  `idx_variant_claims_subject_type (subject_entity_id, claim_type)` already planned in
-  `IMPLEMENTATION_PLAN.md §3` covers this lookup exactly.
+- **`ConflictLookup`** (shared) resolves the entity (exact → alias → trigram) and exposes two fetches over
+  that one resolution. The **enrichment** fetch filters `variant_claims` to
+  `subject_entity_id = ? AND claim_type = normalize(probeClaimType)`. `normalize()` is applied only to the
+  **probe input**, not to the stored column — this exact-match requires that `V12` rows were promoted with the
+  **normalized canonical** `claim_type` (surface variants collapsed at promotion time, per §1/§2), so that both
+  rows of a conflict share one `claim_type` value. If promotion left surface variants in place, the two rows of
+  a single conflict would carry different `claim_type` strings and the lookup would return only one — silently
+  dropping the conflict. The composite index `idx_variant_claims_subject_type (subject_entity_id, claim_type)`
+  already planned in `IMPLEMENTATION_PLAN.md §3` covers this lookup exactly.
 - **`ConflictSynthesizer`** is reused unchanged to format the fetched versions.
 
-**Claim-type filtering** (rather than subject-only surfacing) is deliberate: it keeps surfacing
-precise. An *appearance* question about Achilles yields an **empty** `conflicts[]` even though
-Achilles has a stored *death* conflict, while a *death* question surfaces it. This preserves the
-integrity of grounded refusals (`CONCEPT.md §13`, gold Q16–17): a refusal about appearance is
-not polluted with an unrelated death conflict.
+**Claim-type filtering** (rather than subject-only surfacing) is deliberate **for the enrichment
+path**: it keeps surfacing precise. An *appearance* question about Achilles yields an **empty**
+`conflicts[]` even though Achilles has a stored *death* conflict, while a *death* question surfaces
+it. This preserves the integrity of grounded refusals (`CONCEPT.md §13`, gold Q16–17): a refusal
+about appearance is not polluted with an unrelated death conflict.
+
+The **`GET /api/v1/conflicts/{entityName}` browse endpoint** is the one deliberate exception. It is
+an explicit developer/demo lookup keyed on an entity with no claim-type context, so `ConflictLookup`
+also exposes a **subject-only** fetch that returns every stored `variant_claims` row for the resolved
+entity, across all `claim_type`s. This path never feeds enrichment and cannot pollute a grounded
+refusal, because it is an explicit by-entity request rather than an automatic per-answer step. The
+claim-type-filtered fetch remains the default and the only one the enrichment step uses.
 
 **Enrichment writes `conflicts[]`, never `answer`.** FACT/DATA gold scoring (which inspects
 `answer`) is therefore unaffected; `routeDecision` is unaffected. Only the conflict checks
@@ -333,12 +371,14 @@ schema change.
 - [ ] `V7__create_variant_claims.sql`: `claim_type TEXT` with **no** CHECK constraint.
 - [ ] Relationship review (V11/V12): keep one canonical edge per contested fact (spine-preferred);
       record the contradiction in V12. Preserve the Aphrodite/Io/Achilles floor.
+- [ ] `V12` promotion: write each row's `claim_type` as the **normalized canonical** value (apply
+      `normalize()` at promotion), so runtime `ConflictLookup`'s exact-match returns both rows of a conflict.
 
 **Runtime (Stages 5–8):**
 - [ ] `RouteDecision`: `SQL | RAG | MIXED`; remove `CONFLICT`.
 - [ ] `QueryRouter` prompt: remove the CONFLICT instruction; keep schema-boundary → RAG.
-- [ ] Delete `ConflictQueryHandler`; extract `ConflictLookup` (entity resolution + claim-type-
-      filtered `variant_claims` fetch).
+- [ ] Delete `ConflictQueryHandler`; extract `ConflictLookup` (entity resolution + a claim-type-
+      filtered fetch for enrichment **and** a subject-only fetch for the `/conflicts/{entityName}` endpoint).
 - [ ] `ConflictProbe` (`@AiService`, temp 0.0) → `{subject, claimType}`, or extend `EntityExtractor`.
 - [ ] `RagAgent`: add the conflict-aware disagreement instruction to the system message.
 - [ ] `QueryService`: add the enrichment step (skip on `serviceError`; wrap so it never breaks the
@@ -349,7 +389,7 @@ schema change.
       RAG); update `IMPLEMENTATION_PLAN.md §7` scoring so conflict questions score on `conflicts[]`,
       not a CONFLICT route match. Optionally add one non-scored RAG-backstop probe.
 - [ ] Log **DEV-014** in `docs/DEVIATIONS.md` pointing to this ADR.
-- [ ] Add `> ⚠️ Amended by ADR-007` pointer notes to `IMPLEMENTATION_PLAN.md` §3, §4, §5, §7 and to
-      `ADR-005 §Decision.1`.
+- [ ] Add `> ⚠️ Amended by ADR-007` pointer notes to `IMPLEMENTATION_PLAN.md` §3, §4 (incl. the
+      Extraction-Pipeline subsection), §5, §7, §8, and the Stage 9 sequence block, and to `ADR-005 §Decision.1`.
 - [ ] Add a `QueryRouterTest` case asserting the router never emits CONFLICT and that a conflict-
       shaped question routed to SQL/RAG still yields a populated `conflicts[]` via enrichment.

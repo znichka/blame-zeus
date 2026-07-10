@@ -45,9 +45,10 @@ blame-zeus/
 │       │   ├── controller/     (QueryController, WebController)
 │       │   ├── domain/         (JPA entities, DTOs)
 │       │   ├── repository/
-│       │   ├── routing/        (QueryRouter, RouteDecision)
-│       │   ├── ai/             (TextToSqlAgent, RagAgent, ConflictSynthesizer, EntityExtractor)
-│       │   ├── handler/        (SqlQueryHandler, RagQueryHandler, ConflictQueryHandler, MixedQueryHandler)
+│       │   ├── routing/        (QueryRouter, RouteDecision — SQL|RAG|MIXED)
+│       │   ├── ai/             (TextToSqlAgent, RagAgent, ConflictSynthesizer, EntityExtractor, ConflictProbe)
+│       │   ├── handler/        (SqlQueryHandler, RagQueryHandler, MixedQueryHandler)
+│       │   ├── conflict/       (ConflictLookup — shared entity-resolution + variant_claims fetch; not an @AiService)
 │       │   ├── safety/         (SqlSafetyValidator)
 │       │   └── service/        (QueryService — central orchestrator)
 │       └── resources/
@@ -64,18 +65,20 @@ blame-zeus/
     └── gold-questions.json
 ```
 
-## Query Routing
+## Query Routing & Conflict Enrichment
 
-Four question types, each handled by a dedicated handler:
+> Data-driven conflict surfacing per **ADR-007** (`docs/adr/adr-007-conflict-detection-and-surfacing.md`).
+> Routing selects a retrieval strategy only — it never decides conflict. There is **no `CONFLICT` route**.
+
+`QueryRouter` classifies each question at runtime (temperature 0.0) into one of **three** retrieval strategies, each handled by a dedicated handler:
 
 | Question type | Handler | Example |
 |---|---|---|
 | Fact-based | `RagQueryHandler` — RAG over `narrative_chunks` | "Why did Athena turn Arachne into a spider?" |
 | Data | `SqlQueryHandler` — LLM text-to-SQL over entity/relationship tables | "Which Olympians are children of Cronus?" |
 | Mixed | `MixedQueryHandler` — SQL filter → inject results → RAG narration | "Which heroes had a divine parent and died at Troy?" |
-| Conflict | `ConflictQueryHandler` — query `variant_claims` → `ConflictSynthesizer` | "Who were Aphrodite's parents?" |
 
-`QueryRouter` classifies each question at runtime (temperature 0.0). `QueryService` is the only class that knows about all four handlers.
+**Conflict surfacing is a router-independent enrichment step, not a route.** After any handler answers, `QueryService` runs `ConflictProbe` (→ `{subject, claimType}`) → `ConflictLookup` (claim-type-filtered `variant_claims` fetch) → `ConflictSynthesizer`, writing only `conflicts[]` (never `answer`), wrapped so it can never break the primary answer. A conflict-shaped question like "Who were Aphrodite's parents?" therefore surfaces every stored version regardless of which route it took. `RagAgent` additionally carries a conflict-aware backstop for disagreements that were never structured into `variant_claims`. `QueryService` is the only class that knows about all three handlers plus the enrichment step.
 
 ## Data Model
 
@@ -96,6 +99,16 @@ sources(id TEXT PRIMARY KEY, author, work, passage_ref, translation, stance, yea
 
 variant_claims(id, subject_entity_id→entities, claim_type, claim_value, source_id TEXT→sources, trust_tier SMALLINT)
   -- multiple rows per question when sources conflict; Phase 1 seed uses trust_tier=1
+  -- claim_type is OPEN free-text (no CHECK constraint) by design (ADR-007) — a claim_type_aliases.json
+  --   normalization map collapses surface variants; conflict = GROUP BY (subject, normalize(claim_type)) HAVING count(DISTINCT source_id) >= 2
+  -- NOTE: the >=2-distinct-sources rule is the OFFLINE DETECTION heuristic only (which conflicts the extractor
+  --   emits). Runtime surfacing applies NO source-count gate: ConflictLookup fetches every row for the
+  --   subject+claim_type and ConflictSynthesizer formats them. So a hand-added single-source floor case
+  --   (Io: Inachus vs Piren, both Apollodorus) is not "detected" as a conflict yet still surfaces at query time.
+  -- STORED rows are written with the NORMALIZED canonical claim_type (V12 applies normalize() at promotion),
+  --   so runtime ConflictLookup can match by exact equality (claim_type = normalize(probeClaimType)) and both
+  --   rows of a conflict share one claim_type value. Surface variants live only in the extraction candidates.
+  -- contested relationships keep ONE canonical edge in `relationships` (spine-preferred); the contradiction lives here
 
 narrative_chunks(id, content, content_hash GENERATED AS md5(content), embedding vector(1536), source_id TEXT→sources, passage_ref, metadata JSONB)
   -- UNIQUE(source_id, passage_ref, content_hash); HNSW index on embedding
@@ -112,11 +125,14 @@ Every LLM role is an interface — no inline `ChatLanguageModel.generate()` call
 
 | Interface | Temperature | Role |
 |---|---|---|
-| `QueryRouter` | 0.0 | Classifies question → `RouteDecision` enum |
+| `QueryRouter` | 0.0 | Classifies question → `RouteDecision` enum (`SQL`/`RAG`/`MIXED`) |
 | `TextToSqlAgent` | 0.0 | Generates SQL from schema prompt + question |
-| `RagAgent` | 0.3 | Retrieves narrative chunks, returns `RagResponse{answer, citations}` |
+| `RagAgent` | 0.3 | Retrieves narrative chunks, returns `RagResponse{answer, citations}`; conflict-aware backstop for unstructured disagreements |
 | `ConflictSynthesizer` | 0.3 | Formats all attributed versions without picking a winner |
 | `EntityExtractor` | 0.0 | Extracts entity name from question for DB lookup |
+| `ConflictProbe` | 0.0 | Extracts `{subject, claimType}` for enrichment (may be folded into `EntityExtractor`) |
+
+`ConflictLookup` (in `conflict/`) is a shared component, **not** an `@AiService` — it resolves the entity (exact → alias → trigram) and exposes two fetches over that resolution: a **claim-type-filtered** fetch (`subject_entity_id = ? AND claim_type = normalize(probeClaimType)`) used by the enrichment step, and a **subject-only** fetch (all `claim_type`s for the entity) used only by the `GET /api/v1/conflicts/{entityName}` browse endpoint, which carries no claim-type context. `QueryService`'s enrichment step wires `ConflictProbe` → `ConflictLookup` (claim-type-filtered) → `ConflictSynthesizer` after any route.
 
 `SchemaIntrospector` queries `information_schema` at startup and caches the schema string used in `TextToSqlAgent`'s system prompt. All LLM-generated SQL must pass `SqlSafetyValidator` (SELECT/WITH only; deny-list: DROP, DELETE, INSERT, UPDATE, `;`) before `JdbcTemplate` execution.
 
@@ -132,11 +148,12 @@ Full rules in `docs/TECH_GUARDRAILS.md`. Critical ones:
 - **Testcontainers** for all DB integration tests (PostgreSQL 16 + pgvector); no H2
 - **Public-domain translations only** — Frazer 1921, Evelyn-White 1914, Murray 1919–1924; no modern translations
 - **No HTML scraping** — corpus loaded from local .txt files in `ingestion/corpus/`
-- **Hand-curated `variant_claims`** — no automated extraction
+- **Review-gated `variant_claims`** — LLM-extracted candidates (ADR-004), but no row enters the runtime table without explicit per-row developer review and promotion to `trust_tier=1`; no unreviewed automated insertion
 
 ## Corpus & Data Sources
 
-Handbook sources (Apollodorus, Hesiod *Theogony*, Hyginus) → primarily SQL + RAG.
+Handbook sources (Apollodorus, Hesiod *Theogony*) → primarily SQL + RAG.
+(The Phase 1 seed is exactly 6 sources — see `docs/TODO-stage4.md` C1. Hyginus is a *stretch* source per `CONCEPT.md §122`, **not** in the Phase 1 seed.)
 Narrative sources (Homer *Iliad*/*Odyssey*, Homeric Hymns, Ovid) → primarily RAG, key relationships also in SQL.
 
 Structured tables: ~60–100 entities (Olympians, Titans, major heroes) hand-curated. Depth of `variant_claims` matters more than breadth.

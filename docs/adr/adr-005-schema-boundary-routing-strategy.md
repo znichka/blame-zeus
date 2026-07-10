@@ -38,6 +38,12 @@ Treat coverage gaps as an explicitly documented condition, addressed via schema-
 
 ### 1. Router Derives Schema Boundaries From the Live Schema, Not a Hand-Maintained List
 
+> ⚠️ Amended by ADR-007 — see `docs/adr/adr-007-conflict-detection-and-surfacing.md` and `DEVIATIONS.md` DEV-014.
+> `RouteDecision` is `SQL | RAG | MIXED`; the router no longer emits `CONFLICT`. The
+> `"route to CONFLICT if sources disagree"` instruction in the prompt below is **removed** (conflict surfacing
+> is a router-independent `QueryService` enrichment step, not a route). The schema-boundary → RAG behavior in
+> this section is retained. The prompt shown here is the pre-amendment version, kept for context.
+
 `QueryRouter` will be wired with the same `SchemaIntrospector.get()` output already injected into `TextToSqlAgent`, and instructed to route to RAG when a question requests information with no corresponding column or relation type in the supplied schema:
 
 ```kotlin
