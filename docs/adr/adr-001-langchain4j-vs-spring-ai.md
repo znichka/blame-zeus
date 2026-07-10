@@ -7,6 +7,35 @@
 
 ---
 
+## Amendment (2026-07-10): Rationale re-grounded after the Phase-1 scope-down
+
+**The decision (LangChain4j) stands, but most of the §Rationale below no longer applies.** It was
+written against a more elaborate architecture — three-stage **hybrid dense+sparse retrieval with
+RRF fusion** (`EnsembleRetriever`), a generic `conflict` table, and `claim_ids` metadata — that
+the Phase-1 scope-down did **not** carry forward (ADR-004 explicitly notes ADR-001/002 predate
+that scope-down and describe a design not carried forward). The actual Phase-1 RAG is a **single
+`EmbeddingStoreContentRetriever`** (`maxResults=5`, `minScore=0.65`), and conflict lookup is a
+separate `QueryService` **enrichment step** (ADR-007), not a retriever-chain stage. Rationale
+points **§1, §3, and §4** (multi-stage/hybrid retrieval, RRF, mid-pipeline conflict JOIN)
+therefore describe capabilities this project does not use — do not cite them to justify the choice.
+
+**The decision is retained on a narrower, still-valid basis:**
+1. **`@AiService` ergonomics for a multi-role design.** The concept's real complexity is
+   orchestration, not retrieval: five distinct AI roles (ADR-007 — router, text-to-SQL, RAG
+   synthesis, conflict synthesis, `ConflictProbe`), each with a different typed output and its own
+   temperature. `@AiService` models each as a typed, individually mockable interface with less glue
+   than hand-wrapping Spring AI's fluent `ChatClient` per role — a direct fit for the five-role
+   shape and the mock-everything TDD strategy (§8 of the plan).
+2. **One LLM framework in the Spring context** (avoiding duplicate/conflicting beans).
+
+**This is a modest developer-ergonomics edge, not a capability gap.** Spring AI can do multi-role
+structure, mockability, and provider-swapping too; **provider-swappability is not a differentiator**
+between them, and Spring AI's autoconfiguration is a genuine advantage for a single-retriever RAG
+like this one actually is. A reasonable team could pick Spring AI here. LangChain4j is retained for
+the role-per-interface ergonomics + single-framework simplicity — framed honestly, *not* on the
+hybrid-retrieval grounds the original rationale claimed.
+
+-------
 ## Context
 
 We are building a Greek mythology Q&A assistant whose defining feature is
