@@ -53,7 +53,7 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 
 - [x] Python venv + `requirements.txt` (`openai>=1.0`, `psycopg2-binary`, `pgvector`, `tenacity>=8.2`, `python-dotenv`) `[DEVIATED - see DEVIATIONS.md #DEV-010]`
 - [x] `pyproject.toml` (or keep `requirements.txt` only) — kept `requirements.txt`-only
-- [x] `ingestion/config.py` — reads all env vars via `python-dotenv`
+- [x] `ingestion/config.py` — reads all env vars via `python-dotenv` (since ADR-006/DEV-015 also hard-requires `EMBEDDING_MODEL`; `embedding_pipeline.py` embeds with `config.EMBEDDING_MODEL`, no hardcoded literal)
 - [x] `ingestion/loader/source_registry.py` — `SourceConfig` dataclass; Apollodorus entry only
       (`apollodorus_refs` extractor `[DEVIATED - see DEVIATIONS.md #DEV-011]`)
 - [x] `ingestion/loader/text_cleaner.py` — footnote stripping, whitespace normalization, page-header removal
@@ -77,6 +77,7 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 - [ ] Add `SourceConfig` entries for Hesiod Theogony, Homeric Hymns, Homer Iliad, Homer Odyssey, Ovid Metamorphoses to `source_registry.py`
 - [ ] Implement passage ref extractors for each new source (homer_refs, ovid_refs, hesiod_refs, hymn_refs)
 - [ ] Add extractor tests for all new sources in `test_passage_ref_extractors.py`
+- [ ] Flyway `V15__add_embedding_model_tracking.sql` + add `embedding_model` to `store_chunks()`'s INSERT (ADR-006, deferred per DEV-015) — ideally rows are stamped at ingestion time, but `V15` numerically follows Stage 4's unwritten `V9`–`V14` (applying it first breaks Flyway's default in-order validation). Resolve at implementation time (renumber, out-of-order, or land with Stage 4 + backfill the ingested rows) and log a DEV entry
 - [ ] Run full ingestion; verify per-source row counts in DB
 
 ---
@@ -85,15 +86,18 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 **Done when:** `GET /api/v1/entities` returns ≥60 entities; `GET /api/v1/sources` returns 6 rows; `VariantClaimRepositoryTest` finds ≥2 conflict rows for Aphrodite.
 
 > ⚠️ Formerly Stage 2 — renumbered and redesigned per ADR-004 (`docs/adr/adr-004-seed-data-extraction-strategy.md`). `entities`/`relationships` are now LLM-extracted from the ingested corpus (Stage 2–3) with a developer spot-check; `variant_claims` candidates require explicit per-row review before promotion to `trust_tier=1`. `sources`, `myths`/`myth_participants`, and `entity_aliases` remain hand-curated, unaffected by this change.
+>
+> ⚠️ Amended further by ADR-007 (DEV-014, DEV-018, DEV-019, DEV-020: open `claim_type` + shared `claim_type_aliases.json` normalization, store-all extraction, one canonical edge for contested relationships, normalize-on-promotion, extraction-preferred floor conflicts, unified `death` canonical) and ADR-008 (DEV-015: extraction runs on Claude Opus 4.8 via `instructor.from_anthropic`). Full detail in `TODO-stage4.md`.
 
-- [ ] Build extraction pipeline (`ingestion/extraction/`): `schema.py`, `known_aliases.json`, `entity_resolver.py`, `claim_extractor.py`, `conflict_detector.py`, `run_extraction.py`
-- [ ] Add `instructor`, `rapidfuzz` to `ingestion/requirements.txt`
+- [ ] Build extraction pipeline (`ingestion/extraction/`): `schema.py`, `known_aliases.json`, `claim_type_aliases.json` (+ shared `normalize()` helper), `entity_resolver.py`, `claim_extractor.py`, `conflict_detector.py`, `run_extraction.py` `[DEVIATED - see DEVIATIONS.md DEV-014, DEV-020]`
+- [ ] Add `instructor`, `rapidfuzz`, `anthropic` to `ingestion/requirements.txt` `[DEVIATED - see DEVIATIONS.md DEV-015]`
 - [ ] Tune extraction prompt against Apollodorus in `ingestion/notebooks/01_test_extraction.ipynb` before running the full corpus
 - [ ] Run extraction against all 6 ingested sources → `entities_candidates.json`, `relationships_candidates.json`, `variant_claims_candidates.json`
-- [ ] Flyway V9 — seed sources (6 slugs with `year_published`, `role`) — hand-curated, unaffected
+- [ ] Extraction-quality metric (diagnostic, non-blocking): before any hand-add, log how many cross-source floor conflicts the raw candidates contain unaided (`N/2` — Aphrodite, Achilles; Io is single-source, structurally excluded) `[DEVIATED - see DEVIATIONS.md DEV-019]`
+- [ ] Flyway V9 — seed sources (6 slugs with `year_published`, `role`) — hand-curated; Homeric Hymns `author` is `Anonymous ("Homeric")`, not Hesiod `[DEVIATED - see DEVIATIONS.md DEV-018]`
 - [ ] Flyway V10 — seed entities (~60–100) — merge spot-checked candidates from `entities_candidates.json`
-- [ ] Flyway V11 — seed relationships (parent_of, married_to, killed_by with source attribution) — merge spot-checked candidates from `relationships_candidates.json`
-- [ ] Flyway V12 — seed variant_claims — review candidates in `ingestion/notebooks/02_verify_conflicts.ipynb`, promote approved rows to `trust_tier=1`; confirm minimum coverage (Aphrodite parentage, Io parentage, Achilles death) is present, hand-add any the pipeline missed
+- [ ] Flyway V11 — seed relationships (parent_of, married_to, killed_by with source attribution) — merge spot-checked candidates from `relationships_candidates.json`; a contested relationship keeps exactly **one** canonical spine-preferred edge — the contradiction is recorded in V12 instead `[DEVIATED - see DEVIATIONS.md DEV-014]`
+- [ ] Flyway V12 — seed variant_claims — review candidates in `ingestion/notebooks/02_verify_conflicts.ipynb`, promote approved rows to `trust_tier=1` **writing the normalized canonical `claim_type`** at insert; floor conflicts (Aphrodite parentage, Io parentage, Achilles death) are extraction-preferred — hand-add only the ones extraction missed, recording which path each took; Achilles death seeds under canonical `death`, never `slaying` `[DEVIATED - see DEVIATIONS.md DEV-018, DEV-019, DEV-020]`
 - [ ] Flyway V13 — seed myths + myth_participants — hand-curated, unaffected
 - [ ] Flyway V14 — create + seed entity_aliases (~20 cross-cultural aliases) — hand-curated, unaffected; may reuse `known_aliases.json` as a source list
 - [ ] JPA `@Entity` classes: `Source`, `EntityRecord`, `Relationship`, `Myth`, `MythParticipant`, `VariantClaim`, `NarrativeChunk`, `EntityAlias`
@@ -110,6 +114,8 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 **Done when:** DATA gold questions (Q6–Q10) answer correctly via `POST /api/v1/query`; `SqlSafetyValidatorTest` + `SqlQueryHandlerTest` pass.
 
 > ⚠️ Updated assumptions based on DEV-004 (see DEVIATIONS.md): LangChain4j is `1.0.0-beta5` (not 1.0.0 GA). Before implementing, verify current beta5 API shapes for `@AiService`, `@V` parameter injection, `@SystemMessage`/`@UserMessage`, and `QueryRouter`/`TextToSqlAgent` interface construction.
+>
+> ⚠️ Amended by ADR-008 (DEV-015): the chat beans are `AnthropicChatModel` (Claude Haiku 4.5, `LLM_CHAT_MODEL=claude-haiku-4-5-20251001`), not `OpenAiChatModel`; `LLM_API_KEY` holds an Anthropic key. Run the gold set before committing to the swap (swap-after-eval discipline, ADR-008 §5).
 
 - [ ] Tests first: `SqlSafetyValidatorTest` (SELECT/WITH allowed; DROP/DELETE/INSERT/UPDATE/`;` blocked)
 - [ ] Tests first: `SqlQueryHandlerTest` (mock `TextToSqlAgent`, assert validator called before JdbcTemplate)
@@ -119,7 +125,8 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 - [ ] `TextToSqlAgent.kt` `@AiService` interface with `@V("schema")` + `@V("question")` params
 - [ ] `SqlSafetyValidator.kt` — deny-list enforcement
 - [ ] `SqlQueryHandler.kt` — generates SQL → validates → executes → formats rows + extracts citations
-- [ ] `LangChain4jConfig.kt` routing + synthesis model beans
+- [ ] Add `langchain4j-anthropic-spring-boot-starter` to `core-api/build.gradle.kts` (keep `langchain4j-open-ai-spring-boot-starter` — the embedding bean needs it) `[DEVIATED - see DEVIATIONS.md DEV-015]`
+- [ ] `LangChain4jConfig.kt` routing + synthesis model beans — `AnthropicChatModel`, temps 0.0/0.3, model name from `LLM_CHAT_MODEL` `[DEVIATED - see DEVIATIONS.md DEV-015]`
 - [ ] `SchemaIntrospector.kt` — lazy-built schema prompt from `information_schema`
 - [ ] `QueryService.kt` skeleton — routes SQL decision to `SqlQueryHandler`
 - [ ] Log generated SQL at DEBUG level
@@ -135,7 +142,10 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 - [ ] Tests first: `RagQueryHandlerTest` (mock `RagAgent`, assert `RagResponse.citations` returned without text parsing)
 - [ ] `RagAgent.kt` `@AiService` interface — JSON structured return (`RagResponse`); system message includes the conflict-aware backstop instruction: if retrieved passages give different accounts of the same point from different sources, present each with its attribution rather than merging or picking one (ADR-007 §3) `[DEVIATED - see DEVIATIONS.md DEV-014]`
 - [ ] `RagQueryHandler.kt`
-- [ ] `LangChain4jConfig.kt` — `embeddingModel`, `embeddingStore` (`createTable(false)`), `contentRetriever` (maxResults=5, minScore=0.65) beans
+- [ ] `LangChain4jConfig.kt` — `embeddingModel`, `embeddingStore` (`createTable(false)`), `contentRetriever` (maxResults=5, minScore=0.65) beans — embedding model name injected from `app.llm.embedding-model` (`EMBEDDING_MODEL` env var, already staged in `application.yml`), not hardcoded (ADR-006, deferred per DEV-015)
+- [ ] `EmbeddingConsistencyChecker.kt` — `ApplicationReadyEvent` check that the configured embedding model matches what the corpus rows were embedded with; logs errors, never blocks startup (ADR-006, deferred per DEV-015)
+- [ ] `canary-aphrodite.json` golden-vector fixture (generated once via the Python pipeline) + `EmbeddingConsistencyTest.kt` (ADR-006, deferred per DEV-015)
+- [ ] `EXPLAIN ANALYZE` index-usage check on the HNSW retrieval query, once ingested data exists (ADR-006 §10 addition, deferred per DEV-015)
 - [ ] Add RAG route to `QueryService`
 - [ ] Router fallback: catches router exceptions, defaults to RAG
 

@@ -8,9 +8,13 @@
 > pipeline needs real ingested corpus text to run against. This stage was formerly numbered
 > Stage 3.
 
-Before starting, re-read `DEVIATIONS.md`. No DEV-00x entry currently affects this stage —
-DEV-004 (LangChain4j beta5) and DEV-008/DEV-009 (Testcontainers/springdoc) are JVM-only and
-out of scope for the pure-Python `ingestion/` package.
+Before starting, re-read `DEVIATIONS.md`. DEV-004 (LangChain4j beta5) and DEV-008/DEV-009
+(Testcontainers/springdoc) are JVM-only and out of scope for the pure-Python `ingestion/`
+package. **DEV-015 (ADR-008 + ADR-006 companion) touched this stage's code post-hoc:**
+`config.py` now hard-requires the `EMBEDDING_MODEL` env var and `embedding_pipeline.py`
+embeds with `config.EMBEDDING_MODEL` instead of a hardcoded literal (ADR-006 §1) — the
+still-open Tracks H/I must run with `EMBEDDING_MODEL=text-embedding-3-small` set (present
+in `.env.example`).
 
 ## ⚠️ Known ordering gotcha: `validate_source_ids` vs. Stage 4's `V9__seed_sources.sql`
 
@@ -68,7 +72,9 @@ _Directory:_ `ingestion/`. No dependency on anything else in this stage.
       machine; used Homebrew's `python@3.14` instead (satisfies "Python 3.12+")
 - [x] **A4** `ingestion/config.py` — reads env vars via `python-dotenv`: `OPENAI_API_KEY`,
       `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB` (all already in `.env.example` from
-      Stage 1b). **Gap:** `.env.example` has no `POSTGRES_HOST`/`POSTGRES_PORT` — add both with
+      Stage 1b). *(Amended post-hoc per ADR-006/DEV-015: `config.py` now also reads
+      `EMBEDDING_MODEL` — required, no default, single source of truth shared with core-api.)*
+      **Gap:** `.env.example` has no `POSTGRES_HOST`/`POSTGRES_PORT` — add both with
       `localhost`/`5432` defaults in `config.py` (ingestion runs from the host, connecting to the
       Dockerized Postgres via its published port, not from inside the compose network)
   - Use `POSTGRES_USER`/`POSTGRES_PASSWORD` (superuser), **not** `POSTGRES_APP_USER` —
@@ -200,7 +206,8 @@ installed.
 
 - [x] **G1** `embed_batch(texts: list[str]) -> list[list[float]]` — `OpenAI().embeddings.create(model="text-embedding-3-small", input=texts)`; `@retry` (tenacity: `wait_exponential(multiplier=1, min=2, max=60)`, `stop_after_attempt(5)`, `reraise=True`)
       — retry behavior verified with a mocked client (2 simulated transient failures, succeeded
-      on 3rd attempt)
+      on 3rd attempt) *(amended post-hoc per ADR-006/DEV-015: the model name now comes from
+      `config.EMBEDDING_MODEL`, not the hardcoded literal)*
 - [x] **G2** `store_chunks(conn, chunks)` — `register_vector(conn)`; batch size 20 chunks per
       `embed_batch` call; `INSERT ... ON CONFLICT (source_id, passage_ref, content_hash) DO
       NOTHING`; `metadata` JSONB includes `source_id`, `author`, `work`, `passage_ref`,
@@ -247,8 +254,10 @@ resolved.
       `test_passage_ref_extractors.py` pass
 - [ ] **I2** Apply the hand-insert `INSERT INTO sources (...) VALUES ('apollodorus-bibliotheca',
       ...)` from the ordering-gotcha note (or otherwise confirm the row exists)
-- [ ] **I3** `cd ingestion && OPENAI_API_KEY=... POSTGRES_HOST=localhost python main.py` —
-      completes without error
+- [ ] **I3** `cd ingestion && OPENAI_API_KEY=... EMBEDDING_MODEL=text-embedding-3-small
+      POSTGRES_HOST=localhost python main.py` — completes without error (`EMBEDDING_MODEL` is
+      required by `config.py` since ADR-006/DEV-015; `load_dotenv()` can also supply it from
+      `.env`)
 - [ ] **I4** `psql -U zeus -d blamezeus -c "SELECT count(*) FROM narrative_chunks WHERE
       source_id='apollodorus-bibliotheca'"` — non-zero
 - [ ] **I5** `psql -U zeus -d blamezeus -c "SELECT passage_ref, embedding IS NOT NULL AS has_embedding FROM narrative_chunks WHERE source_id='apollodorus-bibliotheca' LIMIT 5"` — `passage_ref`
