@@ -111,6 +111,14 @@ blame-zeus/
 > ⚠️ Also see `DEVIATIONS.md` DEV-018: the V9 row's Homeric Hymns `author` is corrected from `Hesiod` to
 > `Anonymous` (slug `hesiod-homeric-hymns` retained). The original `author='Hesiod'` text below is kept
 > unamended per the deviation protocol.
+>
+> ⚠️ Amended by DEV-021/DEV-022 (2026-07-12): `V8_1__add_claim_provenance.sql` adds nullable `passage_ref`
+> to `relationships` and `variant_claims` (passage-level provenance, populated mechanically from the
+> extraction segment — V11/V12 rows carry it); `V8_2__create_claim_type_aliases.sql` creates and seeds the
+> `claim_type_aliases(alias, canonical)` table, replacing the planned `claim_type_aliases.json` as the
+> single shared `normalize()` source of truth (readable by both Python extraction and Kotlin
+> `ConflictLookup`); `V8_3__add_schema_comments.sql` adds `COMMENT ON` text consumed by `SchemaIntrospector`
+> (DEV-023). The V4/V7 rows below are kept unamended per the deviation protocol.
 
 All migrations in `core-api/src/main/resources/db/migration/`. The ingestion job connects to the same DB but does NOT run Flyway — core-api startup runs it.
 
@@ -298,6 +306,12 @@ def _nearest_ref(refs: list[tuple[int, str]], pos: int) -> str | None:
 ```
 
 `Chunk` dataclass gains `start_offset: int` — the character position of the first sentence in the chunk within the cleaned text. `_nearest_ref` uses `start_offset` rather than a sliding `i` cursor, so passage refs align precisely with the actual chunk content regardless of sentence lengths.
+
+> ⚠️ Amended by DEV-024 (see `DEVIATIONS.md`; follows DEV-013): `store_chunks` now pre-computes
+> `md5(content)` in Python and skips chunks whose `(source_id, passage_ref, content_hash)` already
+> exists **before** calling the embeddings API (re-runs cost zero OpenAI calls), and commits per
+> 20-chunk batch instead of once at the end (a crash loses at most one batch). `ON CONFLICT DO
+> NOTHING` remains as the backstop. The snippet below is kept unamended per the deviation protocol.
 
 **`embedding_pipeline.py`**:
 ```python
@@ -588,6 +602,15 @@ interface TextToSqlAgent {
 }
 ```
 `SchemaIntrospector` queries `information_schema.columns` for the application tables on first call and caches the result — the schema string is built once at startup, not per-request:
+
+> ⚠️ Amended by DEV-023 (see `DEVIATIONS.md`): the implemented class does **not** use the hardcoded
+> `listOf(...)` below — tables are auto-enumerated from `information_schema` (minus
+> `flyway_schema_history`), so new migrations self-register in the prompt; and each table additionally
+> emits column types, foreign keys, CHECK clauses, `COMMENT ON` text (`V8_3`), and live `SELECT DISTINCT`
+> value vocabularies for `relationships.relation` / `variant_claims.claim_type`. ADR-009's "register the
+> table in SchemaIntrospector" action item is thereby a no-op. The snippet below is kept unamended per
+> the deviation protocol.
+
 ```kotlin
 @Component
 class SchemaIntrospector(private val jdbcTemplate: JdbcTemplate) {
@@ -642,6 +665,14 @@ LangChain4j `@AiService` resolves `RagResponse` via JSON mode: the `@SystemMessa
 > now holds an Anthropic key. Per-role temps (0.0 / 0.3) and the fixed OpenAI embedding bean are
 > unchanged. See `DEVIATIONS.md` DEV-015. (Embedding model name is also now injected via
 > `app.llm.embedding-model` per ADR-006 rather than hardcoded — that bean edit is deferred.)
+>
+> ⚠️ Amended by DEV-025 (see `DEVIATIONS.md`): the `embeddingStore`/`contentRetriever` beans below are
+> **dropped**. Verified against the pinned `langchain4j-pgvector:1.0.0-beta5` jar: `PgVectorEmbeddingStore`
+> hardcodes its own `embedding_id UUID PRIMARY KEY, embedding, text, metadata` schema in its CREATE/INSERT/
+> SELECT statements with no column mapping, so `createTable(false)` over `narrative_chunks(id, content, …)`
+> fails at retrieval (`column "text" does not exist`). Stage 6 implements a small custom `ContentRetriever`
+> over `JdbcTemplate` instead (embed query → `ORDER BY embedding <=> ? LIMIT 5`, minScore filter, returning
+> `source_id`/`passage_ref` for citations). The snippet below is kept unamended per the deviation protocol.
 
 ```kotlin
 // Chat model — provider-configurable. OpenAiChatModel is the Phase 1 default; all @AiService interfaces

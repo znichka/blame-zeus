@@ -53,7 +53,7 @@ blame-zeus/
 │       │   └── service/        (QueryService — central orchestrator)
 │       └── resources/
 │           ├── application.yml
-│           └── db/migration/   (Flyway V1–V14 + afterMigrate callback)
+│           └── db/migration/   (Flyway V1–V14 incl. V8_1–V8_3 + afterMigrate callback)
 ├── telegram-bot/               (Phase 2)
 ├── ingestion/                  (Python — excluded from Gradle build)
 │   ├── corpus/                 (.txt files — not committed to git)
@@ -82,12 +82,13 @@ blame-zeus/
 
 ## Data Model
 
-**SQL tables (Flyway V1–V14):**
+**SQL tables (Flyway V1–V14, plus V8_1–V8_3 provenance/normalization additions per DEV-021/022/023):**
 ```
 entities(id, name, type, generation, domain)
   -- type ∈ {primordial, titan, olympian, other_god, hero, mortal, monster, nymph}
 
-relationships(id, from_id→entities, relation, to_id→entities, source_id TEXT→sources)
+relationships(id, from_id→entities, relation, to_id→entities, source_id TEXT→sources, passage_ref)
+  -- passage_ref (V8_1): passage-level provenance, populated mechanically from the extraction segment
 
 myths(id, title, location, summary)
 myth_participants(myth_id, entity_id, role)
@@ -97,10 +98,12 @@ sources(id TEXT PRIMARY KEY, author, work, passage_ref, translation, stance, yea
   -- stance ∈ {poetic-myth, mythographic-handbook, cosmological, hymnic}
   -- role ∈ {spine, primary, selective, stretch}
 
-variant_claims(id, subject_entity_id→entities, claim_type, claim_value, source_id TEXT→sources, trust_tier SMALLINT)
+variant_claims(id, subject_entity_id→entities, claim_type, claim_value, source_id TEXT→sources, trust_tier SMALLINT, passage_ref)
   -- multiple rows per question when sources conflict; Phase 1 seed uses trust_tier=1
-  -- claim_type is OPEN free-text (no CHECK constraint) by design (ADR-007) — a claim_type_aliases.json
-  --   normalization map collapses surface variants; conflict = GROUP BY (subject, normalize(claim_type)) HAVING count(DISTINCT source_id) >= 2
+  -- passage_ref (V8_1): passage-level provenance so surfaced conflicts cite like RAG answers do (DEV-021)
+  -- claim_type is OPEN free-text (no CHECK constraint) by design (ADR-007) — the claim_type_aliases DB table
+  --   (V8_2, replaces the planned claim_type_aliases.json per DEV-022) collapses surface variants;
+  --   conflict = GROUP BY (subject, normalize(claim_type)) HAVING count(DISTINCT source_id) >= 2
   -- NOTE: the >=2-distinct-sources rule is the OFFLINE DETECTION heuristic only (which conflicts the extractor
   --   emits). Runtime surfacing applies NO source-count gate: ConflictLookup fetches every row for the
   --   subject+claim_type and ConflictSynthesizer formats them. So a hand-added single-source floor case
@@ -112,6 +115,10 @@ variant_claims(id, subject_entity_id→entities, claim_type, claim_value, source
 
 narrative_chunks(id, content, content_hash GENERATED AS md5(content), embedding vector(1536), source_id TEXT→sources, passage_ref, metadata JSONB)
   -- UNIQUE(source_id, passage_ref, content_hash); HNSW index on embedding
+
+claim_type_aliases(alias TEXT PRIMARY KEY, canonical)
+  -- V8_2 (DEV-022): shared normalize() map — Python extraction and Kotlin ConflictLookup both read this
+  -- table; normalize(x) = canonical where alias = lower(trim(x)), identity otherwise. Never duplicate in code/JSON.
 
 entity_aliases(id, entity_id→entities, alias TEXT UNIQUE)
   -- cross-cultural aliases: Venus→Aphrodite, Hercules→Heracles, Odysseus→Ulysses

@@ -33,8 +33,22 @@ class FlywayMigrationTest : AbstractContainerTest() {
     @Test
     fun `variant_claims has required columns`() {
         assertThat(columns("variant_claims")).containsAll(
-            listOf("subject_entity_id", "claim_type", "claim_value", "source_id", "trust_tier")
+            listOf("subject_entity_id", "claim_type", "claim_value", "source_id", "trust_tier", "passage_ref")
         )
+    }
+
+    @Test
+    fun `relationships has passage_ref provenance column`() {
+        assertThat(columns("relationships")).contains("passage_ref")
+    }
+
+    @Test
+    fun `claim_type_aliases is seeded with the shared normalization map`() {
+        val canonical = jdbcTemplate.queryForObject(
+            "SELECT canonical FROM claim_type_aliases WHERE alias = 'killed_by'",
+            String::class.java
+        )
+        assertThat(canonical).isEqualTo("death")
     }
 
     @Test

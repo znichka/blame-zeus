@@ -1,3 +1,4 @@
+import hashlib
 import json
 import os
 
@@ -20,11 +21,33 @@ def embed_batch(texts: list[str]) -> list[list[float]]:
     return [item.embedding for item in response.data]
 
 
+def content_hash(text: str) -> str:
+    """Matches narrative_chunks.content_hash (Postgres md5() over the UTF-8 bytes)."""
+    return hashlib.md5(text.encode("utf-8")).hexdigest()
+
+
+def existing_chunk_keys(conn, source_ids: set[str]) -> set[tuple]:
+    with conn.cursor() as cur:
+        cur.execute(
+            "SELECT source_id, passage_ref, content_hash FROM narrative_chunks WHERE source_id = ANY(%s)",
+            (sorted(source_ids),),
+        )
+        return set(cur.fetchall())
+
+
 def store_chunks(conn, chunks: list[Chunk]) -> None:
     register_vector(conn)
+    # Skip already-stored chunks BEFORE embedding: ON CONFLICT DO NOTHING dedupes the
+    # INSERT, but by then the OpenAI call is already paid for — a re-run must not
+    # re-embed the whole corpus.
+    existing = existing_chunk_keys(conn, {c.source_id for c in chunks})
+    pending = [c for c in chunks if (c.source_id, c.passage_ref, content_hash(c.text)) not in existing]
+    skipped = len(chunks) - len(pending)
+    if skipped:
+        print(f"Skipping {skipped} of {len(chunks)} chunks already embedded")
     with conn.cursor() as cur:
-        for batch_start in range(0, len(chunks), BATCH_SIZE):
-            batch = chunks[batch_start : batch_start + BATCH_SIZE]
+        for batch_start in range(0, len(pending), BATCH_SIZE):
+            batch = pending[batch_start : batch_start + BATCH_SIZE]
             embeddings = embed_batch([c.text for c in batch])
             for c, embedding in zip(batch, embeddings):
                 cur.execute(
@@ -49,7 +72,8 @@ def store_chunks(conn, chunks: list[Chunk]) -> None:
                         ),
                     ),
                 )
-    conn.commit()
+            # Commit per batch: a crash mid-run then loses at most one batch of embeddings
+            conn.commit()
 
 
 def validate_source_ids(conn, registry: list[SourceConfig]) -> None:

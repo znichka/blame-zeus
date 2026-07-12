@@ -106,6 +106,13 @@ if (rows.isEmpty()) {
 
 Scope is deliberately narrow: catches zero-row results only. Does not evaluate whether a non-empty result is actually relevant to the question; that requires either LLM-based result validation or expected-cardinality estimation, both deferred (see §Deferred to Later Stages).
 
+> ⚠️ Amended by DEV-026 (see `DEVIATIONS.md`, 2026-07-12): "zero rows only" is insufficient for
+> aggregations — `COUNT(*)` over an empty match returns **one row containing `0`**, never zero rows,
+> so once ADR-009's numeric data lands, "how many ships from ⟨place not in the table⟩" would return a
+> confident "0" instead of falling back. The fallback also treats an **aggregate-zero** result as empty:
+> a single row whose values are all `0`/`NULL`. A genuine zero count is indistinguishable at this layer
+> and also falls back to RAG — acceptable for the PoC (cited text or refusal beats a fabricated number).
+
 ### 4. Non-Goal: No Schema Extension in This Phase
 
 Identified gaps are not closed by adding columns. They remain RAG-routed for the duration of this PoC. Reasons:

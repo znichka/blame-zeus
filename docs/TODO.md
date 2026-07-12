@@ -39,8 +39,8 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 - [x] `application-test.yml` — `ddl-auto: validate`, `flyway.enabled: true`
 - [x] Testcontainers base config — `PostgreSQLContainer` with `pgvector/pgvector:pg16`, `@DynamicPropertySource`
 - [x] `FlywayMigrationTest.kt` — table presence + column verification for `variant_claims`, `narrative_chunks`, `sources`
-- [x] `SchemaIntrospector.kt` — lazy-built schema prompt from `information_schema`
-- [x] `SchemaIntrospectorTest.kt` — prompt contains all tables + critical columns
+- [x] `SchemaIntrospector.kt` — lazy-built schema prompt from `information_schema` `[DEVIATED - see DEVIATIONS.md DEV-023]` — tables auto-enumerated (no hardcoded list); emits types, FKs, CHECKs, `COMMENT ON` text (V8_3), and live `relation`/`claim_type` value vocabularies
+- [x] `SchemaIntrospectorTest.kt` — prompt contains all tables + critical columns; parity test asserts every non-excluded public table appears `[DEVIATED - see DEVIATIONS.md DEV-023]`
 
 → [Detailed track-by-track checklist](TODO-stage1.md)
 
@@ -58,7 +58,7 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
       (`apollodorus_refs` extractor `[DEVIATED - see DEVIATIONS.md #DEV-011]`)
 - [x] `ingestion/loader/text_cleaner.py` — footnote stripping, whitespace normalization, page-header removal
 - [x] `ingestion/chunker/text_chunker.py` — sentence-split + accumulate to 1500 chars with 2-sentence overlap; `_nearest_ref` lookup `[DEVIATED - see DEVIATIONS.md #DEV-012]` — fixed an infinite loop and an unbounded chunk-size overshoot in the plan's literal loop
-- [x] `ingestion/pipeline/embedding_pipeline.py` — `embed_batch` (batch=20, tenacity retry), `store_chunks`, `validate_source_ids`, `clear_source_chunks` `[DEVIATED - see DEVIATIONS.md #DEV-013]` — dropped unnecessary `numpy` dep, added missing batching loop
+- [x] `ingestion/pipeline/embedding_pipeline.py` — `embed_batch` (batch=20, tenacity retry), `store_chunks`, `validate_source_ids`, `clear_source_chunks` `[DEVIATED - see DEVIATIONS.md #DEV-013, #DEV-024]` — dropped unnecessary `numpy` dep, added missing batching loop; re-runs skip already-embedded chunks *before* the OpenAI call and commit per batch (DEV-024)
 - [ ] `ingestion/main.py` — `load_dotenv()` first, then pipeline loop
 - [x] Python tests: `test_text_cleaner.py`, `test_text_chunker.py`, `test_passage_ref_extractors.py`
 - [x] Developer manually downloads Apollodorus (Frazer, 1921) from Theoi (`theoi.com/Text/Apollodorus{1,2,3}.html` + `ApollodorusE.html`), concatenates 4 pages preserving `[book.chapter.section]` markers → saves as `corpus/apollodorus_bibliotheca_frazer1921.txt`; QA'd — no HTML artifacts, 386 markers ascending, no seam duplication
@@ -89,15 +89,15 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 >
 > ⚠️ Amended further by ADR-007 (DEV-014, DEV-018, DEV-019, DEV-020: open `claim_type` + shared `claim_type_aliases.json` normalization, store-all extraction, one canonical edge for contested relationships, normalize-on-promotion, extraction-preferred floor conflicts, unified `death` canonical) and ADR-008 (DEV-015: extraction runs on Claude Opus 4.8 via `instructor.from_anthropic`). Full detail in `TODO-stage4.md`.
 
-- [ ] Build extraction pipeline (`ingestion/extraction/`): `schema.py`, `known_aliases.json`, `claim_type_aliases.json` (+ shared `normalize()` helper), `entity_resolver.py`, `claim_extractor.py`, `conflict_detector.py`, `run_extraction.py` `[DEVIATED - see DEVIATIONS.md DEV-014, DEV-020]`
+- [ ] Build extraction pipeline (`ingestion/extraction/`): `schema.py` (models carry `passage_ref`, populated mechanically from the segment — DEV-021), `known_aliases.json`, `entity_resolver.py`, `claim_extractor.py`, `conflict_detector.py`, `run_extraction.py`; the claim-type normalization map is the `claim_type_aliases` **DB table** (V8_2), not a JSON file `[DEVIATED - see DEVIATIONS.md DEV-014, DEV-020, DEV-021, DEV-022]`
 - [ ] Add `instructor`, `rapidfuzz`, `anthropic` to `ingestion/requirements.txt` `[DEVIATED - see DEVIATIONS.md DEV-015]`
 - [ ] Tune extraction prompt against Apollodorus in `ingestion/notebooks/01_test_extraction.ipynb` before running the full corpus
 - [ ] Run extraction against all 6 ingested sources → `entities_candidates.json`, `relationships_candidates.json`, `variant_claims_candidates.json`
 - [ ] Extraction-quality metric (diagnostic, non-blocking): before any hand-add, log how many cross-source floor conflicts the raw candidates contain unaided (`N/2` — Aphrodite, Achilles; Io is single-source, structurally excluded) `[DEVIATED - see DEVIATIONS.md DEV-019]`
 - [ ] Flyway V9 — seed sources (6 slugs with `year_published`, `role`) — hand-curated; Homeric Hymns `author` is `Anonymous ("Homeric")`, not Hesiod `[DEVIATED - see DEVIATIONS.md DEV-018]`
 - [ ] Flyway V10 — seed entities (~60–100) — merge spot-checked candidates from `entities_candidates.json`
-- [ ] Flyway V11 — seed relationships (parent_of, married_to, killed_by with source attribution) — merge spot-checked candidates from `relationships_candidates.json`; a contested relationship keeps exactly **one** canonical spine-preferred edge — the contradiction is recorded in V12 instead `[DEVIATED - see DEVIATIONS.md DEV-014]`
-- [ ] Flyway V12 — seed variant_claims — review candidates in `ingestion/notebooks/02_verify_conflicts.ipynb`, promote approved rows to `trust_tier=1` **writing the normalized canonical `claim_type`** at insert; floor conflicts (Aphrodite parentage, Io parentage, Achilles death) are extraction-preferred — hand-add only the ones extraction missed, recording which path each took; Achilles death seeds under canonical `death`, never `slaying` `[DEVIATED - see DEVIATIONS.md DEV-018, DEV-019, DEV-020]`
+- [ ] Flyway V11 — seed relationships (parent_of, married_to, killed_by with source attribution + `passage_ref` per DEV-021) — merge spot-checked candidates from `relationships_candidates.json`; a contested relationship keeps exactly **one** canonical spine-preferred edge — the contradiction is recorded in V12 instead `[DEVIATED - see DEVIATIONS.md DEV-014, DEV-021]`
+- [ ] Flyway V12 — seed variant_claims — review candidates in `ingestion/notebooks/02_verify_conflicts.ipynb`, promote approved rows to `trust_tier=1` **writing the normalized canonical `claim_type`** (per the `claim_type_aliases` table, DEV-022) and carrying each row's `passage_ref` (DEV-021) at insert; floor conflicts (Aphrodite parentage, Io parentage, Achilles death) are extraction-preferred — hand-add only the ones extraction missed, recording which path each took; Achilles death seeds under canonical `death`, never `slaying` `[DEVIATED - see DEVIATIONS.md DEV-018, DEV-019, DEV-020, DEV-021, DEV-022]`
 - [ ] Flyway V13 — seed myths + myth_participants — hand-curated, unaffected
 - [ ] Flyway V14 — create + seed entity_aliases (~20 cross-cultural aliases) — hand-curated, unaffected; may reuse `known_aliases.json` as a source list
 - [ ] JPA `@Entity` classes: `Source`, `EntityRecord`, `Relationship`, `Myth`, `MythParticipant`, `VariantClaim`, `NarrativeChunk`, `EntityAlias`
@@ -125,9 +125,10 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 - [ ] `TextToSqlAgent.kt` `@AiService` interface with `@V("schema")` + `@V("question")` params
 - [ ] `SqlSafetyValidator.kt` — deny-list enforcement
 - [ ] `SqlQueryHandler.kt` — generates SQL → validates → executes → formats rows + extracts citations
+- [ ] Empty-result fallback in `SqlQueryHandler` (ADR-005 §Decision.3): zero rows → fall back to RAG; also treat **aggregate-zero** as empty — a single row whose values are all `0`/`NULL` (`COUNT`=0, `SUM`=NULL), since aggregations never return zero rows `[DEVIATED - see DEVIATIONS.md DEV-026]`
 - [ ] Add `langchain4j-anthropic-spring-boot-starter` to `core-api/build.gradle.kts` (keep `langchain4j-open-ai-spring-boot-starter` — the embedding bean needs it) `[DEVIATED - see DEVIATIONS.md DEV-015]`
 - [ ] `LangChain4jConfig.kt` routing + synthesis model beans — `AnthropicChatModel`, temps 0.0/0.3, model name from `LLM_CHAT_MODEL` `[DEVIATED - see DEVIATIONS.md DEV-015]`
-- [ ] `SchemaIntrospector.kt` — lazy-built schema prompt from `information_schema`
+- [ ] `SchemaIntrospector.kt` — already built and made self-describing in Stage 1c (auto-enumerated tables, types/FKs/CHECKs/comments/value vocabularies) — Stage 5 only consumes it; lean on the V8_3 schema comments instead of hand-writing per-table prompt rules `[DEVIATED - see DEVIATIONS.md DEV-023]`
 - [ ] `QueryService.kt` skeleton — routes SQL decision to `SqlQueryHandler`
 - [ ] Log generated SQL at DEBUG level
 - [ ] Wire `POST /api/v1/query` in `QueryController`
@@ -142,7 +143,7 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 - [ ] Tests first: `RagQueryHandlerTest` (mock `RagAgent`, assert `RagResponse.citations` returned without text parsing)
 - [ ] `RagAgent.kt` `@AiService` interface — JSON structured return (`RagResponse`); system message includes the conflict-aware backstop instruction: if retrieved passages give different accounts of the same point from different sources, present each with its attribution rather than merging or picking one (ADR-007 §3) `[DEVIATED - see DEVIATIONS.md DEV-014]`
 - [ ] `RagQueryHandler.kt`
-- [ ] `LangChain4jConfig.kt` — `embeddingModel`, `embeddingStore` (`createTable(false)`), `contentRetriever` (maxResults=5, minScore=0.65) beans — embedding model name injected from `app.llm.embedding-model` (`EMBEDDING_MODEL` env var, already staged in `application.yml`), not hardcoded (ADR-006, deferred per DEV-015)
+- [ ] `LangChain4jConfig.kt` — `embeddingModel` bean only; **no `PgVectorEmbeddingStore`/`EmbeddingStoreContentRetriever` beans** — beta5's store hardcodes its own `embedding_id UUID`/`text` schema and cannot read `narrative_chunks(id, content, …)` (verified against the pinned jar). Instead: small custom `ContentRetriever` over `JdbcTemplate` (embed query → `ORDER BY embedding <=> ? LIMIT 5`, minScore=0.65 filter, returning `source_id`/`passage_ref` for citations); drop `langchain4j-pgvector` from `build.gradle.kts`. Embedding model name injected from `app.llm.embedding-model` (`EMBEDDING_MODEL` env var), not hardcoded (ADR-006, deferred per DEV-015) `[DEVIATED - see DEVIATIONS.md DEV-025]`
 - [ ] `EmbeddingConsistencyChecker.kt` — `ApplicationReadyEvent` check that the configured embedding model matches what the corpus rows were embedded with; logs errors, never blocks startup (ADR-006, deferred per DEV-015)
 - [ ] `canary-aphrodite.json` golden-vector fixture (generated once via the Python pipeline) + `EmbeddingConsistencyTest.kt` (ADR-006, deferred per DEV-015)
 - [ ] `EXPLAIN ANALYZE` index-usage check on the HNSW retrieval query, once ingested data exists (ADR-006 §10 addition, deferred per DEV-015)
@@ -163,7 +164,7 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 - [ ] `EntityExtractor.kt` `@AiService` interface (temperature 0.0)
 - [ ] `ConflictProbe.kt` `@AiService` interface (temperature 0.0) → `{subject, claimType}` (may be folded into `EntityExtractor`); returns empty/`none` `claimType` when the question maps to no modeled attribute `[DEVIATED - see DEVIATIONS.md DEV-014]`
 - [ ] `ConflictSynthesizer.kt` `@AiService` interface (temperature 0.3) — reused unchanged to format fetched versions
-- [ ] `ConflictLookup.kt` (shared component, **not** an `@AiService`) — three-step entity resolution (exact → alias → trigram), then two fetches over that resolution: (a) a **claim-type-filtered** fetch for enrichment (`subject_entity_id = ? AND claim_type = normalize(probeClaimType)`, using `idx_variant_claims_subject_type`), and (b) a **subject-only** fetch (all `claim_type`s for the entity) backing the `/conflicts/{entityName}` endpoint; shares the `claim_type_aliases.json` `normalize()` logic with the offline detector `[DEVIATED - see DEVIATIONS.md DEV-014]`
+- [ ] `ConflictLookup.kt` (shared component, **not** an `@AiService`) — three-step entity resolution (exact → alias → trigram), then two fetches over that resolution: (a) a **claim-type-filtered** fetch for enrichment (`subject_entity_id = ? AND claim_type = normalize(probeClaimType)`, using `idx_variant_claims_subject_type`), and (b) a **subject-only** fetch (all `claim_type`s for the entity) backing the `/conflicts/{entityName}` endpoint; reads the shared `claim_type_aliases` DB table (V8_2) for `normalize()` — same rows the offline detector reads; never a code-side copy of the map `[DEVIATED - see DEVIATIONS.md DEV-014, DEV-022]`
 - [ ] `QueryService` enrichment step — after `dispatch(route)`, skip on `serviceError`, else `conflictProbe.extract` → `conflictLookup.find` → `conflictSynthesizer.synthesize`; write only `conflicts[]`, wrapped in try/catch so it never breaks the primary answer `[DEVIATED - see DEVIATIONS.md DEV-014]`
 - [ ] `GET /api/v1/conflicts/{entityName}` endpoint — backed by `ConflictLookup`'s **subject-only** fetch (no claim-type context at the URL), not a handler; returns all stored `variant_claims` for the entity across claim_types `[DEVIATED - see DEVIATIONS.md DEV-014]`
 

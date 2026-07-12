@@ -250,6 +250,9 @@ the rule is: **model it as a sourced relation type, never as a bare entity colum
   on `source_id`.
 - A relation type (e.g. `originates_from`, with places promoted to `entities.type='place'`)
   inherits source attribution *and* flows through the conflict pipeline for free.
+  (Note: `V3__create_entities.sql`'s CHECK constraint on `entities.type` does not include
+  `'place'` — any such promotion requires an `ALTER TABLE ... DROP/ADD CONSTRAINT` migration
+  extending the CHECK first. Not a blocker, just a known cost of each new entity category.)
 
 This decision is **gated by ADR-005's existing promotion criteria** (recurring question pattern,
 structurally enumerable, consistent corpus coverage). A conflict being representable in

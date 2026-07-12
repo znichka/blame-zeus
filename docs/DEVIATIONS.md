@@ -226,3 +226,75 @@ See `CLAUDE.md §Deviation Tracking Protocol` for the rules governing when and h
 | **Reason** | The `gpt-4o` family is dated by mid-2026 and the swap is cheap. Concentrate quality where trust lives: cheap/fast Haiku 4.5 on the high-volume runtime path (strongest small-tier instruction-following / structured-output reliability, which this workload stresses), frontier Opus 4.8 on the one-time offline extraction (the attribution differentiator — a misattributed conflict undermines trust). See ADR-008 §Rationale. |
 | **Impact** | **Applied now (existing files only, per the edit-existing-files-only scope):** `.env.example` (LLM_CHAT_MODEL + key split), `application-test.yml` chat-model, amendment banners on `ADR-003` and `IMPLEMENTATION_PLAN.md §4/§5`, `CLAUDE.md` + `TECH_GUARDRAILS.md` wording, `TODO-stage4.md` A5/A8, `TODO-stage1.md`. **Deferred to build stages (new files / unbuilt components):** add `langchain4j-anthropic-spring-boot-starter` to `core-api/build.gradle.kts` and wire `AnthropicChatModel` beans when `LangChain4jConfig.kt` is written (Stage 5); add `anthropic` to `ingestion/requirements.txt` and use `instructor.from_anthropic` + `ANTHROPIC_API_KEY` + `EXTRACTION_MODEL=claude-opus-4-8` when `claim_extractor.py` is written (Stage 4 A5/A8). **Keep `langchain4j-open-ai-spring-boot-starter` regardless** — the embedding bean still requires it. Embedding **escalation lever** unchanged: move to `-large` only if a pre-ingestion retrieval check on the hardest (list/numeric) questions shows `-small` is the bottleneck (ADR-008 §3). **Swap-after-eval:** run the gold set before committing to either Anthropic model (ADR-008 §5). **Companion — ADR-006 partial application:** the embedding single-source-of-truth `EMBEDDING_MODEL` wiring (`.env.example`, `ingestion/config.py`, `ingestion/pipeline/embedding_pipeline.py`, `application.yml`, `docker-compose.full.yml`) is applied now (ADR-006 §1); ADR-006's remaining, new-file items stay deferred to their build stages — `V15__add_embedding_model_tracking.sql` + the `embedding_model` column in `store_chunks()`'s INSERT, `EmbeddingConsistencyChecker.kt`, `canary-aphrodite.json` + `EmbeddingConsistencyTest.kt`, `LangChain4jConfig.kt` embedding-model injection, and the §10 `EXPLAIN ANALYZE` index-usage check. |
 | **Date** | 2026-07-10 |
+
+---
+
+## Cross-stage design review fixes (2026-07-12)
+
+> DEV-016 and DEV-017 are reserved by ADR-009 and ADR-010's action items and intentionally skipped here.
+
+### DEV-021 — `variant_claims` and `relationships` gain a `passage_ref` provenance column (V8_1)
+
+| Field | Detail |
+|---|---|
+| **Stage** | 1c (schema, post-hoc migration) / 4 (extraction models, V11/V12 — pre-implementation) |
+| **Original Plan** | `IMPLEMENTATION_PLAN.md §3` V4/V7: `relationships` and `variant_claims` carry only `source_id` — attribution stops at the work level. `TODO-stage4.md` A1's Pydantic models (`ExtractedRelationship`, `ExtractedVariantClaim`) have no passage field. |
+| **What Changed** | New `V8_1__add_claim_provenance.sql` adds nullable `passage_ref TEXT` to both tables (a new migration, not an edit to committed V4/V7 — the dev DB already carries their checksums). Stage 4's extraction models gain a `passage_ref` field **populated mechanically from the A4 segment boundaries, never by the LLM**; V11/V12 seed rows carry it through. |
+| **Reason** | Provenance gap in the flagship feature: extraction runs on passage-ref-aligned segments, so the ref is known at extraction time but was dropped at the exact point that matters most. A RAG answer could cite "Apollodorus, Bibliotheca 2.1.3" while a surfaced conflict — the product's differentiator — could only cite the whole work. The B5 review workflow also needs the ref to verify each candidate against its passage. Adding the column after V12 is seeded would mean re-reviewing every promoted row; adding it now is nearly free. |
+| **Impact** | `TODO-stage4.md` A1/A7/C3/C4 updated (extraction output and V11/V12 inserts carry `passage_ref`); `FlywayMigrationTest` asserts the new columns; `Citation`/`ConflictEntry` DTOs (Track E) may surface it in Stage 7+ but are not required to yet. Nullable, so hand-added rows without a precise ref remain valid. |
+| **Date** | 2026-07-12 |
+
+### DEV-022 — `claim_type_aliases.json` → `claim_type_aliases` DB table (V8_2)
+
+| Field | Detail |
+|---|---|
+| **Stage** | 4 (extraction/detector) / 7 (runtime `ConflictLookup`) — pre-implementation |
+| **Original Plan** | ADR-007 §1 / `TODO-stage4.md` A2b (per DEV-014): the canonical→surface-variant map lives in `ingestion/extraction/claim_type_aliases.json` with a shared `normalize()` helper, used by the offline Python detector **and** query-time Kotlin `ConflictLookup` — "keep it a single shared source of truth". |
+| **What Changed** | The map is a Postgres table, `claim_type_aliases(alias PRIMARY KEY, canonical)`, created and seeded by `V8_2__create_claim_type_aliases.sql` with the documented namespace (DEV-020: `parent_of`/`parents` → `parentage`, `married_to` → `marriage`, `killed_by`/`killed by`/`slain by`/`slaying`/`death_manner`/`manner_of_death`/`how he died` → `death`). `normalize(x)` = canonical where `alias = lower(trim(x))`, identity otherwise. Python (extraction) and Kotlin (`ConflictLookup`) each implement the trivial lookup but read the **same rows**. Surface variants discovered during Stage 4 extraction are appended via follow-up migrations. |
+| **Reason** | A JSON file under `ingestion/extraction/` is not naturally readable from `core-api` — the "single shared source of truth" instruction would in practice have produced two copies and two drifting `normalize()` implementations across languages. Both sides already talk to the same Postgres; the DB is the project's declared single source of truth. Each future claim type lands in one place. |
+| **Impact** | `TODO-stage4.md` A2b/A6/B6/C4 and `TODO.md` Stage 4/7 re-pointed from the JSON file to the table; `CLAUDE.md` data model updated. `known_aliases.json` (A2, entity aliases) is unaffected — it feeds hand-curated V14. ADR-007's normalize-at-promotion rule (DEV-018) is unchanged; only the map's storage moves. `afterMigrate__grant_app_user.sql` already grants `zeus_app` SELECT on all tables, covering the new one. |
+| **Date** | 2026-07-12 |
+
+### DEV-023 — `SchemaIntrospector`: auto-enumerated tables + self-describing schema prompt
+
+| Field | Detail |
+|---|---|
+| **Stage** | 1c (implemented class) / 5 (text-to-SQL prompt consumer) |
+| **Original Plan** | `IMPLEMENTATION_PLAN.md §5`: `SchemaIntrospector` iterates a **hardcoded** `listOf("entities", …)` and emits only column names per table. ADR-009's action items include "register the table in SchemaIntrospector" — a hand-maintained list. |
+| **What Changed** | Tables are now enumerated from `information_schema` (public base tables minus an `EXCLUDED_TABLES` set holding only `flyway_schema_history`), so new migrations appear in the prompt automatically. Each table now also emits: column **types**, foreign keys (`col references table(col)`), CHECK constraint clauses (surfacing the `entities.type` / `sources.stance`/`role` vocabularies), `COMMENT ON` text (new `V8_3__add_schema_comments.sql` adds query-semantics comments, e.g. "entities attributes carry NO source attribution — never join sources"), and live `SELECT DISTINCT` value vocabularies for `relationships.relation` and `variant_claims.claim_type`. `SchemaIntrospectorTest` gains a parity test (every non-excluded public table must appear) plus FK/CHECK/comment/vocabulary assertions. |
+| **Reason** | The hardcoded list was the expansion mechanism's weakest link — a forgotten registration silently hides a new table from the router/text-to-SQL, exactly the drift failure ADR-005 rejected for the router. And a names-only prompt forces the model to guess magic strings (`married_to` vs `spouse_of`) and hand-listed join rules; emitting CHECKs, comments, and live vocabularies makes those derivable from the schema itself. |
+| **Impact** | ADR-009's "register the table in SchemaIntrospector" action item becomes a no-op (the table self-registers; only its `COMMENT ON` guidance is worth adding). The `TextToSqlAgent` prompt (Stage 5) can lean on schema comments instead of accumulating hand-written per-table rules. The vocabulary and check clause emission runs once at startup (lazy cache), after Flyway seeds. |
+| **Date** | 2026-07-12 |
+
+### DEV-024 — `embedding_pipeline.py`: skip-before-embed + per-batch commits
+
+| Field | Detail |
+|---|---|
+| **Stage** | 2 (amends the implemented Track G code; follows DEV-013) |
+| **Original Plan** | `IMPLEMENTATION_PLAN.md §4`: re-run safety relies on `ON CONFLICT (source_id, passage_ref, content_hash) DO NOTHING`, with a single `conn.commit()` at the end of `store_chunks`. |
+| **What Changed** | `store_chunks` now (1) pre-computes `md5(content)` in Python (`content_hash()`, matching the Postgres generated column byte-for-byte), fetches existing `(source_id, passage_ref, content_hash)` keys, and **filters already-stored chunks out before calling the OpenAI embeddings API**; (2) commits **per 20-chunk batch** instead of once at the end. `ON CONFLICT DO NOTHING` stays as the race/edge backstop. New `tests/test_embedding_pipeline.py` covers hash parity, skip behavior, and per-batch commit counts. |
+| **Reason** | `ON CONFLICT` dedupes at insert time, but embeddings are computed *before* the insert — every re-run paid the full OpenAI bill for the whole corpus, and the single end-of-run commit meant a crash lost everything (the plan's own "mid-run crash recovery" rationale for the UNIQUE constraint never actually worked: nothing was committed until the end). Matters more as the corpus grows past Apollodorus in Stage 3. |
+| **Impact** | Re-running ingestion on an unchanged corpus now makes zero OpenAI calls. A mid-run crash loses at most one batch. Behavior after changing chunk params still requires `clear_source_chunks()` first, unchanged. No interface changes — `main.py` (still unbuilt) calls `store_chunks` exactly as planned. |
+| **Date** | 2026-07-12 |
+
+### DEV-025 — Stage 6 drops `PgVectorEmbeddingStore` for a custom `ContentRetriever` over `JdbcTemplate`
+
+| Field | Detail |
+|---|---|
+| **Stage** | 6 (RAG pipeline) — pre-implementation |
+| **Original Plan** | `IMPLEMENTATION_PLAN.md §5` LangChain4j beans: `PgVectorEmbeddingStore.builder().table("narrative_chunks").dimension(1536).createTable(false).build()` + `EmbeddingStoreContentRetriever`. |
+| **What Changed** | Stage 6 will implement a small custom `ContentRetriever` (embed the query via the `EmbeddingModel` bean, then `JdbcTemplate` cosine query `ORDER BY embedding <=> ? LIMIT 5` with a `minScore` filter over `narrative_chunks`) instead of the `PgVectorEmbeddingStore`/`EmbeddingStoreContentRetriever` beans. `langchain4j-pgvector` can be dropped from `build.gradle.kts` at that point. |
+| **Reason** | **Verified against the pinned `langchain4j-pgvector:1.0.0-beta5` jar** (string constants in `PgVectorEmbeddingStore.class`): the store hardcodes its own schema — `embedding_id UUID PRIMARY KEY, embedding, text, metadata` — in `CREATE TABLE`, `INSERT`, and retrieval `SELECT` statements, with no column-name mapping. Our table has `id SERIAL` and `content`; every retrieval would fail with `column "text" does not exist`. A custom retriever also gives source filtering and citation columns (`source_id`, `passage_ref`) directly in the retrieval query, which the generic store cannot. |
+| **Impact** | `TODO.md` Stage 6 bean item replaced. The `EmbeddingModel` bean and `RagAgent` wiring are unchanged; `maxResults=5` / `minScore=0.65` move into the custom retriever. The ADR-006 `EXPLAIN ANALYZE` HNSW check applies to the custom query. Alternative (a mapping view or renaming our columns) rejected: the store's `embedding_id UUID` PK is incompatible with `id SERIAL` regardless of names. |
+| **Date** | 2026-07-12 |
+
+### DEV-026 — ADR-005 empty-result fallback extended to aggregate-zero results
+
+| Field | Detail |
+|---|---|
+| **Stage** | 5 (`SqlQueryHandler`) — pre-implementation |
+| **Original Plan** | ADR-005 §Decision.3: `SqlQueryHandler` falls back to RAG when the generated SQL returns **zero rows**. |
+| **What Changed** | The fallback also treats an **aggregate-zero** result as empty: a single row whose values are all `0` / `NULL` (e.g. `COUNT(*)` = 0, `SUM(...)` = NULL). Added as an explicit Stage 5 TODO bullet (the fallback itself was missing from `TODO.md` Stage 5 entirely — also fixed). |
+| **Reason** | Aggregations never return zero rows: `COUNT` over an empty match returns one row containing `0`. Once ADR-009's numeric data lands, "how many ships from ⟨place not in the table⟩" would return a confident "0" instead of falling back — the exact silent-wrong-answer failure ADR-005 §Decision.3 exists to catch. |
+| **Impact** | ADR-005 §Decision.3 carries an amendment note. Genuine zeros (a real count of 0 among matched rows) are indistinguishable from no-data zeros at this layer; falling back to RAG for both is acceptable for the PoC — RAG answers with cited text or refuses, which beats a fabricated-confidence number. |
+| **Date** | 2026-07-12 |
