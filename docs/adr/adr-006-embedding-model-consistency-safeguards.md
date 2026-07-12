@@ -3,7 +3,7 @@
 | Field        | Value       |
 |--------------|-------------|
 | **Date**     | 2026-07-08  |
-| **Status**   | Proposed    |
+| **Status**   | Accepted (partially applied 2026-07-10 — see Implementation Checklist) |
 
 
 **Traceability:** IMPLEMENTATION_PLAN.md §4 (Ingestion Job / `embedding_pipeline.py`), §5 (`LangChain4jConfig.kt`, `SchemaIntrospector`), §7 (Evaluation), §8 (Testing Strategy) · Supersedes nothing · Related to ADR-004 (seed data extraction strategy, applying the same "trust but verify" philosophy here to embeddings instead of claims)
@@ -202,13 +202,20 @@ Rejected: out of scope. The stack choice (Postgres + pgvector) is already fixed 
 
 ## Implementation Checklist
 
-- [ ] `V15__add_embedding_model_tracking.sql`
-- [ ] `.env.example`: add `EMBEDDING_MODEL`
-- [ ] `ingestion/config.py`: read `EMBEDDING_MODEL`
-- [ ] `embedding_pipeline.py`: use `config.EMBEDDING_MODEL` instead of literal string; add `embedding_model` to insert statement
-- [ ] `application.yml`: add `app.llm.embedding-model`
-- [ ] `LangChain4jConfig.kt`: inject `embedding-model` property instead of hardcoded literal
-- [ ] `EmbeddingConsistencyChecker.kt` + startup log verification
-- [ ] `canary-aphrodite.json` golden fixture + `EmbeddingConsistencyTest.kt`
-- [ ] §10 Verification Steps: add `EXPLAIN ANALYZE` index-usage check
-- [ ] IMPLEMENTATION_PLAN.md §3/§4/§5: cross-reference this ADR where the hardcoded model literals currently appear
+> **Partially applied 2026-07-10** (with ADR-008, under the *edit-existing-files-only* scope — see
+> `DEVIATIONS.md` DEV-015). The §1 single-source-of-truth `EMBEDDING_MODEL` wiring is done across the
+> existing files; all items that require a **new file** (the `V15` migration, `EmbeddingConsistencyChecker`,
+> the golden-vector fixture/test) or an **unbuilt component** (`LangChain4jConfig.kt`) remain deferred
+> to their build stages. Status of each item marked below.
+
+- [ ] **(Deferred — new file)** `V15__add_embedding_model_tracking.sql`
+- [x] `.env.example`: add `EMBEDDING_MODEL`
+- [x] `ingestion/config.py`: read `EMBEDDING_MODEL`
+- [x] `embedding_pipeline.py`: use `config.EMBEDDING_MODEL` instead of literal string — **done**;
+      *add `embedding_model` to insert statement* — **(deferred, needs `V15`'s column)**
+- [x] `application.yml`: add `app.llm.embedding-model` *(staged; consumer bean deferred with `LangChain4jConfig`)*
+- [ ] **(Deferred — `LangChain4jConfig.kt` not yet built)** inject `embedding-model` property instead of hardcoded literal
+- [ ] **(Deferred — new file)** `EmbeddingConsistencyChecker.kt` + startup log verification
+- [ ] **(Deferred — new file)** `canary-aphrodite.json` golden fixture + `EmbeddingConsistencyTest.kt`
+- [ ] **(Deferred — needs ingested data)** §10 Verification Steps: add `EXPLAIN ANALYZE` index-usage check
+- [ ] **(Deferred)** IMPLEMENTATION_PLAN.md §3/§4/§5: cross-reference this ADR where the hardcoded model literals currently appear

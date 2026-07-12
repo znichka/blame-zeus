@@ -2,7 +2,8 @@ app:
   llm:
     chat-api-key: test-key
     embedding-api-key: test-key
-    chat-model: gpt-4o-mini
+    chat-model: claude-haiku-4-5-20251001
+    embedding-model: text-embedding-3-small
 
 spring:
   jpa:

@@ -3,8 +3,13 @@
 | Field        | Value       |
 |--------------|-------------|
 | **Date**     | 2026-07-10  |
-| **Status**   | Proposed    |
+| **Status**   | Accepted    |
 | **Amends**   | ADR-003 (LLM and embedding model selection) |
+
+> Applied 2026-07-10 under the *edit-existing-files-only* scope (see `DEVIATIONS.md` DEV-015): docs,
+> banners, and existing config values updated now; the two dependency additions and the `@AiService`/
+> `instructor` code swaps are deferred to the stages that build `LangChain4jConfig.kt` and
+> `claim_extractor.py`. Action-item status reflected in the checklist below.
 
 ---
 
@@ -111,13 +116,19 @@ low-friction.
 
 ## Action Items
 
-- [ ] Add `langchain4j-anthropic-spring-boot-starter` to `core-api`; update `LangChain4jConfig`
-      chat beans to `AnthropicChatModel` with `LLM_CHAT_MODEL=claude-haiku-4-5-...`.
-- [ ] Point `LLM_API_KEY` at Anthropic; keep `OPENAI_API_KEY` for embeddings; update `.env.example`.
-- [ ] Extraction: `instructor.from_anthropic(...)`, `EXTRACTION_MODEL=claude-opus-4-8`; add the
-      `anthropic` Python dependency to `ingestion/requirements.txt`.
-- [ ] Keep `text-embedding-3-small`; add a pre-ingestion note: escalate to `-large` only if a
-      retrieval check on list/numeric questions shows `-small` is the bottleneck.
-- [ ] Log **DEV-015** in `docs/DEVIATIONS.md`; add `> ⚠️ Amended by ADR-008` to ADR-003 and to
-      `IMPLEMENTATION_PLAN.md §4, §5`.
-- [ ] Verify the swap against gold questions before committing (swap-after-eval discipline).
+- [ ] **(Deferred — Stage 5)** Add `langchain4j-anthropic-spring-boot-starter` to `core-api`; update
+      `LangChain4jConfig` chat beans to `AnthropicChatModel` with `LLM_CHAT_MODEL=claude-haiku-4-5-20251001`.
+      *(Bean/dependency not created now — `LangChain4jConfig.kt` does not exist yet.)*
+- [x] Point `LLM_API_KEY` at Anthropic; keep `OPENAI_API_KEY` for embeddings; update `.env.example`.
+      *(Done: `.env.example`, `application-test.yml` chat-model.)*
+- [ ] **(Deferred — Stage 4 A5/A8)** Extraction: `instructor.from_anthropic(...)`,
+      `EXTRACTION_MODEL=claude-opus-4-8`; add the `anthropic` Python dependency to
+      `ingestion/requirements.txt`. *(Code/dependency not created now — `claim_extractor.py` does not
+      exist yet; `TODO-stage4.md` A5/A8 updated to specify Anthropic.)*
+- [x] Keep `text-embedding-3-small`; pre-ingestion escalation note recorded (escalate to `-large` only
+      if a retrieval check on list/numeric questions shows `-small` is the bottleneck) — in DEV-015 and
+      this ADR §Decision 3.
+- [x] Log **DEV-015** in `docs/DEVIATIONS.md`; add `> ⚠️ Amended by ADR-008` to ADR-003 and to
+      `IMPLEMENTATION_PLAN.md §4, §5`. *(Also reconciled `CLAUDE.md` + `TECH_GUARDRAILS.md`.)*
+- [ ] **(Deferred — pre-commit)** Verify the swap against gold questions before committing
+      (swap-after-eval discipline). *(Requires the built chat path — runs when Stage 5 wiring lands.)*

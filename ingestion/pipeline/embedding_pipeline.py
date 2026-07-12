@@ -5,6 +5,7 @@ from openai import OpenAI
 from pgvector.psycopg2 import register_vector
 from tenacity import retry, stop_after_attempt, wait_exponential
 
+import config
 from chunker.text_chunker import OVERLAP_SENTENCES, Chunk
 from loader.source_registry import SourceConfig
 
@@ -15,7 +16,7 @@ client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
 @retry(wait=wait_exponential(multiplier=1, min=2, max=60), stop=stop_after_attempt(5), reraise=True)
 def embed_batch(texts: list[str]) -> list[list[float]]:
-    response = client.embeddings.create(model="text-embedding-3-small", input=texts)
+    response = client.embeddings.create(model=config.EMBEDDING_MODEL, input=texts)
     return [item.embedding for item in response.data]
 
 

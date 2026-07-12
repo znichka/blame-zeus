@@ -8,6 +8,11 @@
 
 **Supersedes:** none. **Extended by:** ADR-004 (seed-data-extraction-strategy), which builds a full offline extraction pipeline on top of the extraction-model choice made here.
 
+> ⚠️ Amended by ADR-008 — the chat model (`gpt-4o-mini` → Claude Haiku 4.5) and extraction model
+> (`gpt-4o` → Claude Opus 4.8) choices below are updated; the embedding choice (`text-embedding-3-small`)
+> is reaffirmed and the structure (per-role temps, provider-agnostic chat, locked embeddings) is unchanged.
+> See `docs/adr/adr-008-model-selection-update.md` and `DEVIATIONS.md` DEV-015.
+
 ---
 
 ## Context

@@ -450,6 +450,12 @@ class ExtractedVariantClaim(BaseModel):
     claim_value: str
 ```
 
+> ⚠️ Amended by ADR-008 — the extraction model is now **Claude Opus 4.8** (`claude-opus-4-8`) via
+> `instructor.from_anthropic(Anthropic(...))`, not `gpt-4o` via `instructor.from_openai(OpenAI(...))`.
+> The env var is `EXTRACTION_MODEL=claude-opus-4-8` and the client reads `ANTHROPIC_API_KEY`; add the
+> `anthropic` package to `requirements.txt`. The `instructor` pattern is otherwise unchanged (it now
+> layers on an Anthropic client, not the `openai` one). See `DEVIATIONS.md` DEV-015.
+
 **`claim_extractor.py`** — uses `instructor` (Pydantic-validated structured output with automatic retry on schema-invalid responses, layered on the same `openai` client instance — not a separate LLM framework) instead of hand-parsing JSON:
 
 ```python
@@ -629,6 +635,13 @@ LangChain4j `@AiService` resolves `RagResponse` via JSON mode: the `@SystemMessa
 **`EntityExtractor`** — returns entity name for DB lookup. Used by `ConflictQueryHandler` and `MixedQueryHandler`. Temperature 0.0.
 
 ### `LangChain4jConfig` Key Beans
+
+> ⚠️ Amended by ADR-008 — the chat beans use **`AnthropicChatModel`** (Claude Haiku 4.5,
+> `claude-haiku-4-5-20251001`), not `OpenAiChatModel`; add `langchain4j-anthropic-spring-boot-starter`
+> and keep `langchain4j-open-ai-spring-boot-starter` (the embedding bean still needs it). `LLM_API_KEY`
+> now holds an Anthropic key. Per-role temps (0.0 / 0.3) and the fixed OpenAI embedding bean are
+> unchanged. See `DEVIATIONS.md` DEV-015. (Embedding model name is also now injected via
+> `app.llm.embedding-model` per ADR-006 rather than hardcoded — that bean edit is deferred.)
 
 ```kotlin
 // Chat model — provider-configurable. OpenAiChatModel is the Phase 1 default; all @AiService interfaces

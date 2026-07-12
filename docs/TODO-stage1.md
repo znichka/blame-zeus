@@ -58,7 +58,7 @@ Stage 1 is three commits. Within each commit, tasks are ordered; across commits,
   - Add `core-api` service placeholder (image/build TBD, `depends_on: postgres`)
   - Add `telegram-bot` service placeholder (depends on core-api with `condition: service_healthy`)
 - [x] **B4** Create `.env.example`
-  - Placeholder values (no real keys): `OPENAI_API_KEY=sk-...`, `LLM_API_KEY=sk-...`, `LLM_CHAT_MODEL=gpt-4o-mini`, `POSTGRES_USER=zeus`, `POSTGRES_PASSWORD=olympus`, `POSTGRES_APP_USER=zeus_app`, `POSTGRES_APP_PASSWORD=app_password`, `POSTGRES_DB=blamezeus`, `TELEGRAM_BOT_TOKEN=...`, `TELEGRAM_BOT_USERNAME=BlameZeusBot`, `CORE_API_BASE_URL=http://core-api:8080`
+  - Placeholder values (no real keys): `OPENAI_API_KEY=sk-...`, `LLM_API_KEY=sk-ant-...`, `LLM_CHAT_MODEL=claude-haiku-4-5-20251001` (Anthropic since ADR-008 — see DEVIATIONS.md DEV-015), `EMBEDDING_MODEL=text-embedding-3-small` (ADR-006), `POSTGRES_USER=zeus`, `POSTGRES_PASSWORD=olympus`, `POSTGRES_APP_USER=zeus_app`, `POSTGRES_APP_PASSWORD=app_password`, `POSTGRES_DB=blamezeus`, `TELEGRAM_BOT_TOKEN=...`, `TELEGRAM_BOT_USERNAME=BlameZeusBot`, `CORE_API_BASE_URL=http://core-api:8080`
 - [x] **B5** Confirm `.env` is in `.gitignore` (add if missing) — already present
 - [x] **B6** Verify: `docker-compose up -d` starts Postgres; `docker-compose exec postgres pg_isready` returns success
 

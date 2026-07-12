@@ -5,6 +5,11 @@ import os
 
 OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 
+# Single source of truth for the embedding model name, shared with core-api via the
+# EMBEDDING_MODEL env var (ADR-006). Value is locked to what the corpus was embedded with —
+# changing it requires re-ingesting the full corpus.
+EMBEDDING_MODEL = os.environ["EMBEDDING_MODEL"]
+
 POSTGRES_USER = os.environ["POSTGRES_USER"]
 POSTGRES_PASSWORD = os.environ["POSTGRES_PASSWORD"]
 POSTGRES_DB = os.environ["POSTGRES_DB"]

@@ -33,6 +33,7 @@ services:
       LLM_API_KEY: ${LLM_API_KEY}
       OPENAI_API_KEY: ${OPENAI_API_KEY}
       LLM_CHAT_MODEL: ${LLM_CHAT_MODEL}
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-text-embedding-3-small}
     ports:
       - "8080:8080"
     healthcheck:
