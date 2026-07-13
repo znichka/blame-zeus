@@ -80,6 +80,10 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 - [x] Flyway `V15__add_embedding_model_tracking.sql` + add `embedding_model` to `store_chunks()`'s INSERT (ADR-006, deferred per DEV-015) — ideally rows are stamped at ingestion time, but `V15` numerically follows Stage 4's unwritten `V9`–`V14` (applying it first breaks Flyway's default in-order validation). Resolve at implementation time (renumber, out-of-order, or land with Stage 4 + backfill the ingested rows) and log a DEV entry `[DEVIATED - see DEVIATIONS.md #DEV-028]` — landed early, renumbered into `V8_4__switch_embedding_to_3large_3072.sql` alongside the ADR-013 embedding upgrade; `store_chunks()` stamps `embedding_model`; no backfill needed (table truncated + re-embedded)
 - [ ] Run full ingestion; verify per-source row counts in DB
 
+→ [Detailed track-by-track checklist](TODO-stage3.md) — includes two pre-identified gotchas:
+the `sources` hand-insert repeat (DEV-027 pattern, plus the Ovid `year_published NOT NULL` plan bug)
+and the `text_cleaner` all-caps stripping that would silently delete Homer/Ovid `BOOK`/story markers.
+
 ---
 
 ## Stage 4 — Seed Data (Extraction-Assisted)
