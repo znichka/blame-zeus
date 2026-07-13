@@ -40,6 +40,45 @@ def test_strips_page_header_lines():
     assert clean(text) == "Zeus ruled the sky."
 
 
+def test_leaves_bare_digit_line_start_markers_unchanged():
+    # DEV-029: Hesiod/Hymns/Homer/Ovid mark the start of a new verse line with a bare
+    # `[N]` (no dots), identical in shape to a footnote ref. It must survive cleaning.
+    assert clean("[90] Before the ocean and the earth appeared.") == \
+        "[90] Before the ocean and the earth appeared."
+
+
+def test_strips_footnote_ref_attached_to_preceding_word():
+    assert clean("a holy company of daughters[15] who with the lord Apollo") == \
+        "a holy company of daughters who with the lord Apollo"
+    assert clean("about oak or stone?[2]") == "about oak or stone?"
+
+
+def test_preserves_all_caps_section_titles_after_first_structural_marker():
+    # DEV-029: page-header stripping is restricted to the metadata preamble before the
+    # first structural marker (BOOK header or bracketed passage marker). Section titles
+    # appearing after that point (Ovid's "CREATION OF THE COSMOS", Theogony's
+    # "THE TITANOMACHY", etc.) are real content, not running page headers.
+    text = (
+        "OVID, METAMORPHOSES\n"
+        "Translated by Brookes More (1922)\n"
+        "\n"
+        "BOOK 1\n"
+        "\n"
+        "CREATION OF THE COSMOS\n"
+        "\n"
+        "[1] My soul is wrought to sing of forms transformed to bodies new and strange!"
+    )
+    cleaned = clean(text)
+    # The ALL-CAPS title line is genuine preamble noise and is stripped.
+    assert "OVID, METAMORPHOSES" not in cleaned
+    # Mixed-case lines (like the translator credit) were never touched by the ALL-CAPS
+    # filter in the first place — that's unrelated to this fix and stays as-is.
+    assert "Translated by Brookes More" in cleaned
+    # The real target of this fix: content after the first structural marker survives.
+    assert "CREATION OF THE COSMOS" in cleaned
+    assert "BOOK 1" in cleaned
+
+
 def test_single_newline_between_lines_is_preserved():
     text = "Zeus ruled the sky.\nHera was his wife."
     assert clean(text) == text

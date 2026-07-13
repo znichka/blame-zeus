@@ -233,6 +233,8 @@ class SourceConfig:
 
 **Passage reference extraction — per-source strategy:**
 
+> ⚠️ Deviations occurred in this stage. See DEVIATIONS.md #DEV-029 — the marker table below does not match the real corpus files (bare `[N]` line markers instead of `[ll. N-M]` ranges, Arabic not Roman `BOOK` headers, no literal "HYMN" word in hymn headers), and the shipped extractors emit standard citation form (`"1.194"`, `"2.90"`, `"116"`) rather than the raw scraped shape shown here. The citation-notation choice itself is now a formal decision — see **ADR-014**.
+
 Each `SourceConfig` carries a `passage_ref_extractor` that pre-scans the cleaned text and returns `list[tuple[int, str]]` — (character offset, human-readable ref). The chunker does a single pre-scan pass, then for each chunk looks up the last ref with offset ≤ chunk start.
 
 | Source | Marker pattern in .txt | Extractor regex | Example ref |

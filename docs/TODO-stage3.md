@@ -47,7 +47,7 @@ Track A5 by picking a concrete public-domain translation with a real year, then 
 `TODO-stage4.md` C1 to match and log a DEV entry. Log the whole hand-insert as a DEV entry too
 (one entry can cover both, per the DEV-027 pattern).
 
-## ⚠️ Gotcha #2 (critical, blocks Homer + Ovid refs): `text_cleaner` deletes the markers
+## ⚠️ Gotcha #2 (critical, blocks Homer + Ovid refs): `text_cleaner` deletes the markers `[DEVIATED - see DEVIATIONS.md #DEV-029]`
 
 `main.py` runs `clean()` **before** the extractor sees the text, and `text_cleaner.py`'s
 `_PAGE_HEADER_LINE = r"^[A-Z\s]+$"` drops **every all-caps line**. But the plan's own marker table
@@ -100,17 +100,17 @@ scratch note for the matching C sub-track (bracketed `[ll. 1-25]` vs parenthesiz
 `BOOK I` vs `BOOK THE FIRST`, en-dash vs hyphen in ranges — the plan's regexes assume brackets and
 Roman numerals; Gutenberg's Evelyn-White export is known to use **parentheses**, so expect deviations).
 
-- [ ] **A1** *Hesiod, Theogony* (Evelyn-White 1914) → `corpus/hesiod_theogony_evelynwhite1914.txt`
+- [x] **A1** *Hesiod, Theogony* (Evelyn-White 1914) → `corpus/hesiod_theogony_evelynwhite1914.txt`
   - Source: Project Gutenberg #348 (*Hesiod, the Homeric Hymns, and Homerica*) or sacred-texts.
     **The Gutenberg volume is one file containing Theogony + Works and Days + Hymns + fragments —
     cut out the Theogony section only** (this sub-track and A2 likely share one download).
   - QA: line-group citations present (`(ll. 116-138)`-style); record bracket/paren style for C1.
-- [ ] **A2** *Homeric Hymns* (Evelyn-White 1914) → `corpus/hesiod_homeric_hymns_evelynwhite1914.txt`
+- [x] **A2** *Homeric Hymns* (Evelyn-White 1914) → `corpus/hesiod_homeric_hymns_evelynwhite1914.txt`
   - Cut the Hymns section from the same volume as A1. Keep every hymn header line (`I. TO DIONYSUS` /
     `HYMN I. TO DIONYSUS` — record which form) **and** the line-group citations.
   - QA: count hymn headers (should be 33ish); check multi-word dedicatees exist (`TO PYTHIAN APOLLO`,
     `TO EARTH THE MOTHER OF ALL`) — the plan's `TO\s+(\w+)` captures one word only; C2 must handle this.
-- [ ] **A3** *Homer, Iliad* (Murray 1919) → `corpus/homer_iliad_murray1919.txt`
+- [x] **A3** *Homer, Iliad* (Murray 1919) → `corpus/homer_iliad_murray1919.txt`
   - Murray's (Loeb) prose translation is **not** on Project Gutenberg — like Apollodorus/Frazer it
     lives on theoi.com (`theoi.com/Text/HomerIliad1.html` …, 24 books across pages). Manual copy
     per the Stage 2 B-track method. If that proves impractical, escalate: switching translator
@@ -118,9 +118,9 @@ Roman numerals; Gutenberg's Evelyn-White export is known to use **parentheses**,
     insert + `TODO-stage4.md` C1 + DEV entry.
   - QA: `BOOK` headers or per-page book context present; line refs present; record exact formats for C3.
     Largest file of the stage (~1 MB) — spot-check 3 random mid-file locations, not just the ends.
-- [ ] **A4** *Homer, Odyssey* (Murray 1924) → `corpus/homer_odyssey_murray1924.txt` — same method,
+- [x] **A4** *Homer, Odyssey* (Murray 1924) → `corpus/homer_odyssey_murray1924.txt` — same method,
       same QA as A3.
-- [ ] **A5** *Ovid, Metamorphoses* (public-domain translation) → `corpus/ovid_metamorphoses_pd.txt`
+- [x] **A5** *Ovid, Metamorphoses* (public-domain translation) → `corpus/ovid_metamorphoses_pd.txt`
   - **Decision required first** (feeds Track E and `TODO-stage4.md` C1): pick a concrete PD
     translation — candidates: Brookes More 1922 (theoi.com, verse), Garth/Dryden et al. 1717
     (Gutenberg #26073, has book + story-title structure closest to the plan's assumed format),
@@ -133,7 +133,7 @@ Roman numerals; Gutenberg's Evelyn-White export is known to use **parentheses**,
 
 ---
 
-## Track B — `text_cleaner.py`: stop deleting structural markers (Gotcha #2 fix)
+## Track B — `text_cleaner.py`: stop deleting structural markers (Gotcha #2 fix) `[DEVIATED - see DEVIATIONS.md #DEV-029]`
 
 _Directory:_ `ingestion/loader/`. Independent; TDD (tests first, per `TECH_GUARDRAILS.md`).
 
@@ -153,7 +153,7 @@ _Directory:_ `ingestion/loader/`. Independent; TDD (tests first, per `TECH_GUARD
 
 ---
 
-## Track C — Passage-ref extractors (4 independent sub-tracks; TDD)
+## Track C — Passage-ref extractors (4 independent sub-tracks; TDD) `[DEVIATED - see DEVIATIONS.md #DEV-029]`
 
 _Directory:_ `ingestion/loader/source_registry.py` (co-located with `apollodorus_refs`).
 All return `list[tuple[int, str]]` sorted ascending, same `Callable` shape as Stage 2. Write
@@ -199,7 +199,7 @@ chunker tests, not here); OCR-noise spacing variants; en-dash `–` and hyphen `
 
 ---
 
-## Track D — `source_registry.py` wiring
+## Track D — `source_registry.py` wiring `[DEVIATED - see DEVIATIONS.md #DEV-029]`
 
 _Depends on:_ C (real function objects), A (file names exist on disk), B3 (`preserve_line` field).
 
