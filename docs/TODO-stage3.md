@@ -73,22 +73,35 @@ entry (it deviates from the plan's one-size-fits-all cleaner).
 
 ## Parallelization Guide
 
+> ⚠️ **Stale as originally written.** This graph described the *planned* dependency shape
+> (B/C/D as separately-gated, per-source-track work). DEV-029 (2026-07-13) replaced B, C, and
+> D's entire planned approach with one consolidated implementation — see the status table below
+> for what's actually true now, not the diagram's original arrows.
+
 ```
-Track A1–A5 (corpus acquisition, 1 sub-track per source; all 5 independent) ─┐
-Track B  (text_cleaner preserve-markers fix)                                 ├─→ Track D (registry wiring) ─→ Track F (full ingestion) ─→ Track G (verify + DEV log)
-Track C1–C4 (extractors + tests; all 4 independent of each other)           ─┘
-Track E  (hand-insert sources rows) ────────────────────────────────────────────────────────────────────────┘
+Track A1–A5 (corpus acquisition)        ✅ done
+Track B  (text_cleaner marker fix)      ✅ done — DEV-029, different mechanism than planned
+Track C1–C4 (extractors)                ✅ done — DEV-029 + ADR-014, different functions/notation than planned
+Track D  (registry wiring)              ✅ done — DEV-029
+Track E  (hand-insert sources rows)     ✅ done — DEV-030
+Track F  (full ingestion run)           ⬜ ready — every dependency (A–E) is now satisfied
+Track G  (verify + DEV log)             ⬜ depends on F
 ```
 
-- **A1–A5, B, C1–C4, E are all mutually independent** — up to 10 parallel workstreams.
-  - C's tests use inline fixtures built from the plan's marker table, so they don't block on A's
-    downloads. BUT each C sub-track has a final "verify against the real file" item that *does*
-    depend on the matching A sub-track — expect regex widening there (DEV-011 precedent).
-  - B is TDD against inline fixtures; independent of everything.
-  - E only needs the running Postgres container (and the A5 translator/year decision for the Ovid row).
-- **D depends on** all of C (real function objects) and A (final file names on disk).
-- **F depends on** A (files), B, C, D, E.
+- **A1–A5, B, C1–C4, E** were mutually independent as planned (still true of A/E in isolation).
+- **D depends on** all of C (real function objects) and A (final file names on disk) — satisfied:
+  DEV-029 built C's function objects (under different names/shapes than planned, see below) and
+  wired all 6 `SOURCE_REGISTRY` entries against A's real files.
+- **F depends on** A, B, C, D, E — **all five are now satisfied** (A–D via DEV-029, E via DEV-030
+  this session). Track F is unblocked and has not been run yet.
 - **G depends on** F.
+
+**Why B/C/D show done despite most of their sub-items below being unchecked:** DEV-029 solved
+the same problems (markers surviving `clean()`, per-source ref extraction, registry wiring) with
+a smaller, different implementation than these tracks specify — no `preserve_line` mechanism, and
+3 extractor functions instead of 4 differently-named/shaped ones. The checkboxes below are left
+as literal history of the original plan; each item is individually annotated with what actually
+happened instead of being silently checked off for work that was never built as written.
 
 ---
 
@@ -141,19 +154,23 @@ Roman numerals; Gutenberg's Evelyn-White export is known to use **parentheses**,
 
 _Directory:_ `ingestion/loader/`. Independent; TDD (tests first, per `TECH_GUARDRAILS.md`).
 
-- [ ] **B1** Tests first in `test_text_cleaner.py` (watch them fail): `clean()` with a preserve
-      pattern keeps `BOOK I` / `BOOK XXIV` lines; keeps an ALL-CAPS story-title line when the
-      pattern says so; still strips other all-caps page-header lines; default behavior (no pattern)
-      unchanged — existing 8 tests must keep passing untouched.
-- [ ] **B2** Extend `clean(text: str) -> str` to `clean(text, preserve_line: re.Pattern | None = None)`:
-      a line matching `_PAGE_HEADER_LINE` is kept if `preserve_line` matches it. Default `None`
-      keeps Stage 2 behavior byte-identical for Apollodorus (its 260 stored chunks must not change
-      `content_hash`, or a re-run would duplicate them — G4 verifies this).
-- [ ] **B3** Add `preserve_line: re.Pattern | None = None` to `SourceConfig` (Track D wires per-source
-      patterns; `main.py` passes `source.preserve_line` through to `clean()` — one-line change in
-      `main.py`, note it in D3).
-- [ ] **B4** Log the DEV entry: plan's `clean()` had no per-source configurability; why (Gotcha #2),
-      impact (`SourceConfig` + `main.py` signature growth; Apollodorus unaffected).
+- [ ] **B1** `[N/A - see DEVIATIONS.md #DEV-029]` A `preserve_line`-parameterized test suite was
+      never written — DEV-029 fixed marker survival with two regex changes instead (see B2). The
+      goal this item was chasing (structural markers survive `clean()`, existing behavior stays
+      correct) is covered by `test_text_cleaner.py`'s `test_leaves_bare_digit_line_start_markers_unchanged`,
+      `test_strips_footnote_ref_attached_to_preceding_word`, and
+      `test_preserves_all_caps_section_titles_after_first_structural_marker`.
+- [ ] **B2** `[N/A - see DEVIATIONS.md #DEV-029]` No `preserve_line` parameter was added — `clean()`'s
+      signature is unchanged from Stage 2. DEV-029 fixed the actual root causes instead:
+      `_FOOTNOTE_MARKER` gained a `(?<=\S)` lookbehind (only strips brackets glued to a preceding
+      word, sparing line-initial `[N]` markers), and `_PAGE_HEADER_LINE` stripping was scoped to
+      the metadata preamble before the first structural marker (so in-body ALL-CAPS section titles
+      survive). Apollodorus's 260 stored chunks are confirmed unaffected (its dotted markers never
+      matched either regex before or after).
+- [ ] **B3** `[N/A - see DEVIATIONS.md #DEV-029]` No `preserve_line` field exists on `SourceConfig` —
+      B2 made it unnecessary. D2/D3 (which depend on this item) are N/A for the same reason.
+- [x] **B4** Logged — `docs/DEVIATIONS.md` #DEV-029 (content differs from what B4 anticipated: it
+      documents the regex-fix approach above, not a `SourceConfig`/`main.py` signature change).
 
 ---
 
@@ -166,6 +183,19 @@ item of each sub-track re-verifies against the real file from Track A and widens
 needed (**each widening = DEV entry**, per DEV-011). Shared test cases for every extractor:
 bare footnote `[3]` emits nothing; text before first marker → chunker fallback (tested in
 chunker tests, not here); OCR-noise spacing variants; en-dash `–` and hyphen `-` in ranges.
+
+> `[N/A - see DEVIATIONS.md #DEV-029, ADR-014]` **None of C1–C4 below were built as written.**
+> The real corpus uses bare `[N]` line markers everywhere (no `[ll. N-M]` ranges, no en-dashes,
+> no Ovid story titles to key off), which made this track's four range/title-parsing functions
+> moot. DEV-029 built three functions instead — `hesiod_theogony_refs` (replaces C1, no book
+> division), `hesiod_homeric_hymns_refs` (replaces C2, `"{hymn}.{line}"`), `book_line_refs`
+> (replaces C3 **and** C4 — shared by Iliad/Odyssey/Ovid, `"{book}.{line}"`, no story-title
+> granularity for Ovid) — emitting the standard classical citation notation ADR-014 formalizes,
+> not the `"ll. 116-138"` / `"Hymn I (To Dionysus) ll. 1-21"` / `"Book I: The Creation"` shapes
+> below. Tests live in `test_passage_ref_extractors.py`'s DEV-029 section; verification against
+> all 6 real corpus files is recorded in DEV-029's dry-run ref counts (Apollodorus 386, Theogony
+> 85, Hymns 166, Iliad 1138, Odyssey 882, Ovid 669 — all within each work's known real extent).
+> Sub-items below are left unchecked as a record of the original plan, not pending work.
 
 - [ ] **C1** `hesiod_refs` — line citations `[ll. 116-138]` (plan regex
       `r'\[ll?\.\s*(\d+(?:[–\-]\d+)?)\]'`) → ref `"ll. 116-138"`.
@@ -205,20 +235,22 @@ chunker tests, not here); OCR-noise spacing variants; en-dash `–` and hyphen `
 
 ## Track D — `source_registry.py` wiring `[DEVIATED - see DEVIATIONS.md #DEV-029]`
 
-_Depends on:_ C (real function objects), A (file names exist on disk), B3 (`preserve_line` field).
+_Depends on:_ C (real function objects), A (file names exist on disk), ~~B3 (`preserve_line` field)~~
+`[N/A - see DEVIATIONS.md #DEV-029]` — no `preserve_line` field exists (B3 was never built; D
+doesn't need it).
 
-- [ ] **D1** Add 5 `SourceConfig` entries: slugs/authors/works **exactly** as in Gotcha #1's insert
-      (= `TODO-stage4.md` C1 incl. DEV-018's `Anonymous ("Homeric")`); `file_path`s exactly as in
-      Track A; extractors from Track C (`homer_refs` shared by both Homer entries).
-- [ ] **D2** Set `preserve_line` per source: Homer entries `re.compile(r'^BOOK\s+[IVXLCDM]+$')`;
-      Ovid: book-header + story-title pattern per A5's format; Hesiod/Hymns/Apollodorus: `None`
-      unless A1/A2 QA found all-caps structural lines (hymn headers with `.` survive the cleaner
-      already).
-- [ ] **D3** `main.py`: pass `source.preserve_line` into `clean()` (see B3). No other `main.py`
-      changes — the loop already handles N sources.
-- [ ] **D4** Sanity script/REPL pass (not committed): for each of the 6 registry entries, run
-      `clean()` → `extractor()` on the real file and print `(ref_count, first_ref, last_ref)` —
-      catches wiring mistakes (wrong extractor on wrong source) before spending API tokens in F.
+- [x] **D1** Done, via DEV-029's extractors instead of Track C's planned ones: all 6
+      `SOURCE_REGISTRY` entries present in `ingestion/loader/source_registry.py`, slugs/authors/works
+      matching `TODO-stage4.md` C1 (incl. DEV-018's `Anonymous ("Homeric")`), `file_path`s matching
+      the real files on disk, extractors = `apollodorus_refs` / `hesiod_theogony_refs` /
+      `hesiod_homeric_hymns_refs` / `book_line_refs` (shared by both Homer entries and Ovid).
+- [ ] **D2** `[N/A - see DEVIATIONS.md #DEV-029]` No `preserve_line` mechanism exists — moot.
+- [ ] **D3** `[N/A - see DEVIATIONS.md #DEV-029]` `main.py` has no `preserve_line` pass-through to add.
+- [x] **D4** Ran the sanity pass (2026-07-13): `clean()` → `extractor()` on all 6 real files —
+      `apollodorus-bibliotheca: (386, '1.1.1', 'E.7.40')`, `hesiod-theogony: (85, '1', '1021')`,
+      `hesiod-homeric-hymns: (166, '1.1', '33.1')`, `homer-iliad: (1138, '1.1', '24.788')`,
+      `homer-odyssey: (882, '1.1', '24.545')`, `ovid-metamorphoses: (669, '1.1', '15.871')`. Every
+      source has the extractor its file format needs, no cross-wiring, all ranges sane.
 
 ---
 
@@ -254,13 +286,28 @@ _Depends on:_ A, B, C, D, E. Sequential from here.
       `SELECT source_id, count(*) FROM narrative_chunks GROUP BY source_id ORDER BY 1;` — 6 rows.
       Sanity-check magnitudes: Iliad/Odyssey/Ovid each ≫ Theogony (a tiny count for a big source ⇒
       truncated corpus file).
-- [ ] **G2** Fallback-ref audit per source:
-      `SELECT source_id, count(*) FILTER (WHERE passage_ref NOT LIKE '%.%' AND passage_ref NOT ILIKE '%ll.%' AND passage_ref NOT ILIKE 'book%' AND passage_ref NOT ILIKE 'hymn%') AS suspicious, count(*) FROM narrative_chunks GROUP BY source_id;`
-      — near-zero fallbacks expected (only text before each file's first marker). A high count ⇒
-      Gotcha #2 regression or a C-track regex miss.
+- [ ] **G2** Fallback-ref audit per source. `[DEVIATED - see DEVIATIONS.md #DEV-029, ADR-014]` —
+      the query below replaces the original, which checked for `'.'`/`'ll.'`/`'book'`/`'hymn'`
+      substrings; that check is now **wrong**, because Theogony's real refs (bare line numbers like
+      `"116"`) contain none of those and would all be false-flagged as fallbacks. The real fallback
+      shape is `f"{author}, {work}"` (a comma, no digits), which is distinguishable from every
+      source's real notation (ADR-014) via a per-source numeric-shape check instead:
+      ```sql
+      SELECT source_id,
+             count(*) FILTER (WHERE
+               (source_id = 'apollodorus-bibliotheca' AND passage_ref !~ '^[0-9E]+(\.[0-9]+){2}$') OR
+               (source_id = 'hesiod-theogony'         AND passage_ref !~ '^[0-9]+$') OR
+               (source_id IN ('hesiod-homeric-hymns', 'homer-iliad', 'homer-odyssey', 'ovid-metamorphoses')
+                                                       AND passage_ref !~ '^[0-9]+\.[0-9]+$')
+             ) AS suspicious,
+             count(*)
+      FROM narrative_chunks GROUP BY source_id;
+      ```
+      — near-zero `suspicious` expected (only text before each file's first marker falls back).
+      A high count ⇒ Gotcha #2 regression or an extractor miss.
 - [ ] **G3** Spot-check 3 refs per new source against the actual text (does chunk content really
-      belong to `Book I ll. 1-7`?) — passage-level provenance is the product's core claim; verify
-      it, don't assume it.
+      belong to the ref shown, e.g. `"1.194"` for Iliad book 1 line 194 — see ADR-014's notation
+      table) — passage-level provenance is the product's core claim; verify it, don't assume it.
 - [ ] **G4** Idempotency + Apollodorus immutability: re-run `python main.py` → `Skipping N of N…`
       for **all 6** sources, total row count unchanged, and Apollodorus still exactly 260 rows
       (proves B2 kept its cleaning byte-identical — if this fails, `clear_source_chunks(conn, 'apollodorus-bibliotheca')`
