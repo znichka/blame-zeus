@@ -68,17 +68,18 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 
 ---
 
-## Stage 3 — Full Corpus
-**Done when:** All 6 sources indexed in `narrative_chunks`; row count per source is non-zero.
+## Stage 3 — Full Corpus ✅ done (2026-07-13)
+**Done when:** All 6 sources indexed in `narrative_chunks`; row count per source is non-zero. — **Met.**
 
 > ⚠️ Formerly Stage 4 — renumbered per ADR-004 (see Stage 2 note above).
+> ⚠️ Deviations occurred in this stage. See `DEVIATIONS.md` #DEV-029, #DEV-030, #DEV-031.
 
-- [ ] Developer manually downloads remaining 5 corpus files (Hesiod Theogony, Homeric Hymns, Homer Iliad, Homer Odyssey, Ovid Metamorphoses) from Project Gutenberg / sacred-texts.com into `ingestion/corpus/`
-- [ ] Add `SourceConfig` entries for Hesiod Theogony, Homeric Hymns, Homer Iliad, Homer Odyssey, Ovid Metamorphoses to `source_registry.py`
-- [ ] Implement passage ref extractors for each new source (homer_refs, ovid_refs, hesiod_refs, hymn_refs)
-- [ ] Add extractor tests for all new sources in `test_passage_ref_extractors.py`
+- [x] Developer manually downloads remaining 5 corpus files (Hesiod Theogony, Homeric Hymns, Homer Iliad, Homer Odyssey, Ovid Metamorphoses) from theoi.com into `ingestion/corpus/` `[DEVIATED - see DEVIATIONS.md #DEV-029]` — not Project Gutenberg/sacred-texts.com as planned; theoi.com transcriptions for all 5 (see DEV-011's Apollodorus precedent for why)
+- [x] Add `SourceConfig` entries for Hesiod Theogony, Homeric Hymns, Homer Iliad, Homer Odyssey, Ovid Metamorphoses to `source_registry.py`
+- [x] Implement passage ref extractors for each new source `[DEVIATED - see DEVIATIONS.md #DEV-029, ADR-014]` — 3 functions (`hesiod_theogony_refs`, `hesiod_homeric_hymns_refs`, `book_line_refs` shared by Iliad/Odyssey/Ovid), not the 4 originally named (`homer_refs`/`ovid_refs`/`hesiod_refs`/`hymn_refs`), emitting standard classical citation notation instead of raw scraped shapes
+- [x] Add extractor tests for all new sources in `test_passage_ref_extractors.py` — 20 tests
 - [x] Flyway `V15__add_embedding_model_tracking.sql` + add `embedding_model` to `store_chunks()`'s INSERT (ADR-006, deferred per DEV-015) — ideally rows are stamped at ingestion time, but `V15` numerically follows Stage 4's unwritten `V9`–`V14` (applying it first breaks Flyway's default in-order validation). Resolve at implementation time (renumber, out-of-order, or land with Stage 4 + backfill the ingested rows) and log a DEV entry `[DEVIATED - see DEVIATIONS.md #DEV-028]` — landed early, renumbered into `V8_4__switch_embedding_to_3large_3072.sql` alongside the ADR-013 embedding upgrade; `store_chunks()` stamps `embedding_model`; no backfill needed (table truncated + re-embedded)
-- [ ] Run full ingestion; verify per-source row counts in DB
+- [x] Run full ingestion; verify per-source row counts in DB `[DEVIATED - see DEVIATIONS.md #DEV-031]` — first run surfaced a real regression (Apollodorus 260→284 rows from an unverified interaction between DEV-029's cleaner fix and Apollodorus's own title line); root-caused, remediated (clear + re-embed), and re-verified idempotent. Final: 3037 chunks total — Apollodorus 260, Theogony 57, Homeric Hymns 126, Iliad 1112, Odyssey 724, Ovid 758
 
 → [Detailed track-by-track checklist](TODO-stage3.md) — includes two pre-identified gotchas:
 the `sources` hand-insert repeat (DEV-027 pattern, plus the Ovid `year_published NOT NULL` plan bug)

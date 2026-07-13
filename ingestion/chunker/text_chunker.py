@@ -5,6 +5,16 @@ from typing import Callable
 CHUNK_SIZE = 1500  # target chars
 OVERLAP_SENTENCES = 2  # sentences carried into next chunk's start
 
+# `passage_ref_extractor`s need these markers left in `text` to compute offsets (see
+# text_cleaner.py's DEV-029 fix), but once a chunk's `passage_ref` is resolved the raw
+# marker is redundant noise in the stored/embedded content — strip it here, after ref
+# resolution, not in text_cleaner. Matches every marker shape seen across the corpus:
+# bare `[90]`, dotted `[1.1.1]`/`[E.1.1]`, trailing-letter `[E.6.15a]`/`[929a]`, and the
+# `[[219]`-style doubled-bracket OCR glitch (`\[+`). Deliberately narrow (starts with an
+# optional `E.` then digits) so it never touches genuine editorial brackets in the
+# translations, e.g. `[Jason]`, `[Zeus speaking:]`, `[Being the first to obtain ...]`.
+_EMBEDDED_MARKER = re.compile(r"\[+(?:E\.)?\d+(?:\.\d+)*[a-z]?\]\s*")
+
 
 @dataclass
 class Chunk:
@@ -56,7 +66,7 @@ def chunk(
             buf.append(sentences[i])
             buf_len += next_len
             i += 1
-        chunk_text = " ".join(s for _, s in buf)
+        chunk_text = _EMBEDDED_MARKER.sub("", " ".join(s for _, s in buf)).strip()
         passage_ref = _nearest_ref(refs, start_offset) or f"{author}, {work}"
         chunks.append(
             Chunk(chunk_text, source_id, passage_ref, author, work, start_offset=start_offset)

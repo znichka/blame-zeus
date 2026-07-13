@@ -272,21 +272,19 @@ _Depends on:_ running Postgres container; A5's translator/year decision. Indepen
 
 _Depends on:_ A, B, C, D, E. Sequential from here.
 
-- [ ] **F1** `pytest ingestion/tests/` — everything green before spending tokens.
-- [ ] **F2** `cd ingestion && python main.py` (env via `.env`/`load_dotenv`, `EMBEDDING_MODEL=text-embedding-3-large`
-      already set since DEV-028). Expected console shape: `Skipping 260 of 260…` for Apollodorus,
-      then batch-committed inserts for the 5 new sources. On a mid-run crash: just re-run — DEV-024's
-      skip-before-embed + `ON CONFLICT DO NOTHING` make it resumable at batch granularity.
+- [x] **F1** `pytest ingestion/tests/` — 46 passed.
+- [x] **F2** Ran. First pass surfaced a real regression (Apollodorus 260→284 rows, not the expected
+      `Skipping 260 of 260…`) — root-caused and remediated; full story in `DEVIATIONS.md` #DEV-031.
+      Final state after remediation: 3037 total rows across all 6 sources, confirmed idempotent.
 
 ---
 
 ## Track G — Verification + deviation logging (run last)
 
-- [ ] **G1** Per-source row counts, all non-zero (the stage's Done-when):
-      `SELECT source_id, count(*) FROM narrative_chunks GROUP BY source_id ORDER BY 1;` — 6 rows.
-      Sanity-check magnitudes: Iliad/Odyssey/Ovid each ≫ Theogony (a tiny count for a big source ⇒
-      truncated corpus file).
-- [ ] **G2** Fallback-ref audit per source. `[DEVIATED - see DEVIATIONS.md #DEV-029, ADR-014]` —
+- [x] **G1** `apollodorus-bibliotheca` 260, `hesiod-theogony` 57, `hesiod-homeric-hymns` 126,
+      `homer-iliad` 1112, `homer-odyssey` 724, `ovid-metamorphoses` 758. All non-zero; magnitudes
+      sane (Iliad/Odyssey/Ovid ≫ Theogony, as expected).
+- [x] **G2** Fallback-ref audit per source. `[DEVIATED - see DEVIATIONS.md #DEV-029, ADR-014]` —
       the query below replaces the original, which checked for `'.'`/`'ll.'`/`'book'`/`'hymn'`
       substrings; that check is now **wrong**, because Theogony's real refs (bare line numbers like
       `"116"`) contain none of those and would all be false-flagged as fallbacks. The real fallback
@@ -305,21 +303,37 @@ _Depends on:_ A, B, C, D, E. Sequential from here.
       ```
       — near-zero `suspicious` expected (only text before each file's first marker falls back).
       A high count ⇒ Gotcha #2 regression or an extractor miss.
-- [ ] **G3** Spot-check 3 refs per new source against the actual text (does chunk content really
-      belong to the ref shown, e.g. `"1.194"` for Iliad book 1 line 194 — see ADR-014's notation
-      table) — passage-level provenance is the product's core claim; verify it, don't assume it.
-- [ ] **G4** Idempotency + Apollodorus immutability: re-run `python main.py` → `Skipping N of N…`
-      for **all 6** sources, total row count unchanged, and Apollodorus still exactly 260 rows
-      (proves B2 kept its cleaning byte-identical — if this fails, `clear_source_chunks(conn, 'apollodorus-bibliotheca')`
-      + re-embed once, and log it).
-- [ ] **G5** Embedding hygiene: `SELECT count(DISTINCT embedding_model), min(embedding_model) FROM narrative_chunks;`
-      → `1 | text-embedding-3-large`. Re-run the `EXPLAIN` halfvec check from ADR-013 — at a few
-      thousand rows the planner may now choose `narrative_chunks_embedding_hnsw_idx` without
-      `enable_seqscan=off`; either way the plan must show the index is *usable* (Index Scan when
-      seq scan is disabled).
-- [ ] **G6** Log DEV entries per `CLAUDE.md` protocol (append-only, next free DEV-NNN):
-      the Gotcha #1 hand-insert incl. the Ovid `year_published NOT NULL` resolution; the Gotcha #2
-      `clean()`/`SourceConfig` change (B4, may fold into one entry with D2/D3); one entry per
-      extractor-regex widening from C1c/C2c/C3c/C4c; mark affected TODO items inline and add the
-      stage banner to `IMPLEMENTATION_PLAN.md §4` if its assumptions changed.
-- [ ] **G7** Tick off the Stage 3 summary items in `TODO.md` (and cross-link this file from there).
+      **Result: exactly 1 suspicious row per source (2 for Theogony) — all 7 inspected and confirmed
+      legitimate metadata-preamble fallback chunks (translator credit + source URL), zero extractor
+      misses.**
+- [x] **G3** Spot-checked 6 refs across all 6 sources against real content — all correct (Iliad
+      `9.114` embassy-gifts passage, Theogony `116` cosmogony/hills passage, Odyssey `24.520`
+      Athena-invocation passage, Ovid `1.113` Silver Age passage, Hymns `2.118` Demeter-speaks
+      passage, plus the Apollodorus duplicate-passage_ref check below).
+- [x] **G4** `[DEVIATED - see DEVIATIONS.md #DEV-031]` **This check caught a real regression**:
+      first F2 run gave Apollodorus `Skipping 236 of 260…` (not `260 of 260`) — 284 rows, not 260.
+      Root cause: DEV-029's widened `_PAGE_HEADER_LINE` also strips Apollodorus's own title line
+      (`"APOLLODORUS, THE LIBRARY (BIBLIOTHECA)"`), shifting downstream offsets and desyncing chunk
+      boundaries for a stretch of the file. Remediated exactly per this item's pre-authorized path:
+      `clear_source_chunks(conn, 'apollodorus-bibliotheca')` + re-embed once. Post-remediation:
+      Apollodorus back to 260 rows; a third `python main.py` run skipped all 3037 rows across all 6
+      sources with zero changes — confirmed idempotent. Full root-cause + remediation: DEV-031.
+- [x] **G5** `1 | text-embedding-3-large` confirmed across all 3037 rows. `EXPLAIN` with
+      `enable_seqscan=off` confirms `Index Scan using narrative_chunks_embedding_hnsw_idx` on the
+      halfvec-cast ORDER BY — index is usable.
+- [x] **G6** Logged, superseding the item's original C1c/C2c/C3c/C4c-shaped plan (moot — no such
+      sub-items were built, per Track C's DEVIATED note): DEV-029 (marker/extractor fix + ADR-014),
+      DEV-030 (Gotcha #1 hand-insert + its own Murray-year fix), DEV-031 (this run + the Apollodorus
+      regression + remediation). `IMPLEMENTATION_PLAN.md §4` already carries the DEV-029 stage
+      banner.
+- [x] **G7** `TODO.md` Stage 3 marked done (2026-07-13), summary items checked off with inline
+      `[DEVIATED]` tags, cross-linked to this file (already was).
+- [x] **G8** `[DEVIATED - see DEVIATIONS.md #DEV-032]` **Post-verification data-quality fix, found
+      by manual DB inspection after G3's spot-checks.** Raw `[N]`-shaped passage markers were
+      leaking into stored/embedded `content` (90%+ of chunks in the 5 non-Apollodorus sources,
+      1.2–2.1 markers/chunk on average — Apollodorus affected identically in kind, just far less
+      visibly). Fixed in `chunker/text_chunker.py` (strip markers from `chunk_text` after
+      `passage_ref` is resolved, not before — offsets/refs unaffected); 2 new tests added
+      (`test_text_chunker.py`, 48 tests total). All 6 sources cleared + re-embedded; re-verified
+      G1 (same 3037-row total), G2 (same fallback counts), G4-equivalent idempotency — all still
+      pass with zero leftover markers in any chunk.

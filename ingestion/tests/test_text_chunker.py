@@ -63,6 +63,33 @@ def test_passage_ref_matches_nearest_preceding_marker():
             assert c.passage_ref == "Author, Work"
 
 
+def test_embedded_markers_stripped_from_stored_chunk_text():
+    # DEV-032: the raw `[book.line]`-shaped marker used to compute passage_ref must not
+    # leak into the stored/embedded chunk text once it's served its purpose.
+    sentences = _make_sentences(80)
+    sentences[5] = f"[1.5] {sentences[5]}"
+    sentences[30] = f"[2.5] {sentences[30]}"
+    text = " ".join(sentences)
+
+    chunks = chunk(text, "src", "Author", "Work", _fixture_extractor)
+    for c in chunks:
+        assert "[1.5]" not in c.text
+        assert "[2.5]" not in c.text
+    # The prose itself must survive untouched, just the bracket marker removed.
+    assert any("Sentence number 0005 fills space" in c.text for c in chunks)
+    assert any("Sentence number 0030 fills space" in c.text for c in chunks)
+
+
+def test_editorial_brackets_are_not_stripped():
+    # Only marker-shaped brackets (digits/E-prefix/trailing-letter) are stripped —
+    # translator editorial insertions like "[Jason]" must survive.
+    sentences = _make_sentences(10)
+    sentences[3] = f"[Jason] {sentences[3]}"
+    text = " ".join(sentences)
+    chunks = chunk(text, "src", "Author", "Work", _fixture_extractor)
+    assert any("[Jason]" in c.text for c in chunks)
+
+
 def test_fallback_ref_used_when_no_marker_present():
     text = " ".join(_make_sentences(40))
     chunks = chunk(text, "src", "Author", "Work", _fixture_extractor)
