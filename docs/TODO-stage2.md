@@ -234,14 +234,14 @@ installed.
 
 _Depends on:_ A, C, E, F, G. This is the wiring step — no new logic, just sequencing.
 
-- [ ] **H1** `load_dotenv()` called **before** any `from config import ...` — Python evaluates
+- [x] **H1** `load_dotenv()` called **before** any `from config import ...` — Python evaluates
       top-level imports at parse time, so importing `config` first would read unset env vars
-- [ ] **H2** `psycopg2.connect(...)` using `config.py`'s values (Track A4)
-- [ ] **H3** `validate_source_ids(conn, SOURCE_REGISTRY)` — fail fast before any file I/O or API
+- [x] **H2** `psycopg2.connect(...)` using `config.py`'s values (Track A4)
+- [x] **H3** `validate_source_ids(conn, SOURCE_REGISTRY)` — fail fast before any file I/O or API
       calls
-- [ ] **H4** Loop over `SOURCE_REGISTRY`: read `file_path` → `clean()` (Track C) → `chunk()`
+- [x] **H4** Loop over `SOURCE_REGISTRY`: read `file_path` → `clean()` (Track C) → `chunk()`
       (Track E) → `store_chunks()` (Track G)
-- [ ] **H5** `conn.close()` on completion
+- [x] **H5** `conn.close()` on completion
 
 ---
 
