@@ -298,3 +298,29 @@ See `CLAUDE.md §Deviation Tracking Protocol` for the rules governing when and h
 | **Reason** | Aggregations never return zero rows: `COUNT` over an empty match returns one row containing `0`. Once ADR-009's numeric data lands, "how many ships from ⟨place not in the table⟩" would return a confident "0" instead of falling back — the exact silent-wrong-answer failure ADR-005 §Decision.3 exists to catch. |
 | **Impact** | ADR-005 §Decision.3 carries an amendment note. Genuine zeros (a real count of 0 among matched rows) are indistinguishable from no-data zeros at this layer; falling back to RAG for both is acceptable for the PoC — RAG answers with cited text or refuses, which beats a fabricated-confidence number. |
 | **Date** | 2026-07-12 |
+
+## Stage 2 — Ingestion verification (2026-07-13)
+
+### DEV-027 — Track I verified standalone via hand-inserted `sources` row (ordering gotcha resolved)
+
+| Field | Detail |
+|---|---|
+| **Stage** | 2 (Ingestion Setup) — Track I verification |
+| **Original Plan** | `main.py`'s `validate_source_ids()` requires `apollodorus-bibliotheca` to already exist in `sources`, but the migration that seeds `sources` (`V9__seed_sources.sql`) belongs to Stage 4, which runs after Stage 2. `docs/TODO-stage2.md`'s "ordering gotcha" note pre-approved hand-inserting the row to verify Stage 2 standalone, rather than pulling `V9` forward. |
+| **What Changed** | Ran `docker exec blame-zeus-postgres-1 psql -U zeus -d blamezeus` with `INSERT INTO sources (id, author, work, translation, stance, year_published, role) VALUES ('apollodorus-bibliotheca', 'Apollodorus', 'Bibliotheca', 'Frazer', 'mythographic-handbook', 1921, 'spine') ON CONFLICT (id) DO NOTHING;` against the local dev DB (Flyway V1–V8_3 applied by booting `core-api` once with placeholder LLM env vars, since no standalone `flywayMigrate` Gradle task is configured — only `flyway-core` as a library dependency). `python main.py` then ran successfully: 260 chunks written to `narrative_chunks` for `apollodorus-bibliotheca`, all embeddings populated, 0 fallback `passage_ref`s. A second run confirmed idempotency (`Skipping 260 of 260 chunks already embedded`, row count unchanged). |
+| **Reason** | Exactly the workaround `TODO-stage2.md` flagged in advance — this entry just confirms it was executed and verified, per `CLAUDE.md`'s Deviation Tracking Protocol requirement to log it "when Stage 2 is actually implemented." |
+| **Impact** | None on schema or code. The local dev DB now has one manually-inserted `sources` row; Stage 4's `V9` will later insert the identical row with the same `ON CONFLICT DO NOTHING`, so no cleanup is needed. Track I (`docs/TODO-stage2.md`) is now fully verified: I1–I7 complete. |
+| **Date** | 2026-07-13 |
+
+## Stage 2 follow-up — embedding model switch (2026-07-13)
+
+### DEV-028 — Embedding model switched to `text-embedding-3-large` (3072-dim); ADR-006's `V15` renumbered into `V8_4`
+
+| Field | Detail |
+|---|---|
+| **Stage** | 2 (post-verification, cross-cutting: schema + ingestion + config) |
+| **Original Plan** | `text-embedding-3-small`, 1536 dims, "fixed — not swappable without re-ingesting the full corpus" (ADR-003, reaffirmed by ADR-008 §3); `V8`'s plain-vector HNSW index; ADR-006 §2's `embedding_model` tracking column deferred as a future `V15__add_embedding_model_tracking.sql`. |
+| **What Changed** | Switched to `text-embedding-3-large` at native 3072 dims per **ADR-013** (supersedes the embedding portion of ADR-003/ADR-008; chat model untouched). New migration `V8_4__switch_embedding_to_3large_3072.sql`: `TRUNCATE narrative_chunks` → `vector(3072)` → HNSW rebuilt as a **halfvec expression index** (`(embedding::halfvec(3072)) halfvec_cosine_ops`, named `narrative_chunks_embedding_hnsw_idx`) → adds `embedding_model TEXT NOT NULL` (no default). ADR-006's `V15` thereby lands early, **renumbered into the `V8_x` amendment series** — resolving `TODO.md` Stage 3's flagged ordering hazard (a `V15` applied before the unwritten `V9`–`V14` breaks Flyway's in-order validation) via the renumber option that item pre-authorized. `store_chunks()`'s INSERT now stamps `embedding_model = config.EMBEDDING_MODEL` (TDD: `test_insert_stamps_embedding_model`). `EMBEDDING_MODEL` flipped to `text-embedding-3-large` in `.env`/`.env.example` and the defaults in `application.yml`, `application-test.yml`, `docker-compose.full.yml`. Corpus re-embedded (260 Apollodorus chunks, ~$0.01). |
+| **Reason** | pgvector's plain-`vector` HNSW caps at 2000 dims, so `-large`'s 3072 dims can't reuse `V8`'s index shape (local pgvector is 0.8.4, which supports halfvec indexing). Escalating now is the cheapest it will ever be: 260 chunks, one source, and no Kotlin embedding consumer built yet (`LangChain4jConfig.kt` is Stage 6). The `TRUNCATE` is required because DEV-024's skip-before-embed dedup keys on model-agnostic `content_hash` — without it a re-run would skip all chunks and re-embed nothing. Truncating to 1536 via the `dimensions` param was rejected as institutionalizing ADR-006's "dimension match ≠ model match" trap (full alternatives in ADR-013). |
+| **Impact** | **Stage 6's custom `ContentRetriever` (DEV-025) must cast in the ORDER BY** — `ORDER BY embedding::halfvec(3072) <=> ($1::vector(3072))::halfvec(3072)` — or the expression index is silently bypassed (seq scan); DEV-025's query sketch and `TODO.md` Stage 6 updated accordingly, and ADR-006 §5's `EXPLAIN` check now applies to the cast form. The `canary-aphrodite.json` golden fixture (Stage 6) must be generated with `-large`. `TODO.md` Stage 3's `V15` item closes as done-in-`V8_4`. `NarrativeChunk.kt` (Stage 4, D6) must leave `embedding_model` unmapped like `embedding`, or map it read-only. Storage: 12 KB/vector vs 6 KB (~3 MB total today). Embedding cost $0.02→$0.13/M tokens — irrelevant at PoC scale. |
+| **Date** | 2026-07-13 |

@@ -100,6 +100,11 @@ blame-zeus/
 
 ## 3. Data Model & Flyway Migrations
 
+> ⚠️ Deviations occurred in this section. See DEVIATIONS.md for details — notably DEV-028/ADR-013:
+> `narrative_chunks.embedding` is `vector(3072)` (`text-embedding-3-large`) since `V8_4`, the HNSW index
+> is a halfvec expression index (retrieval must cast `embedding::halfvec(3072)`), and the table carries an
+> `embedding_model` provenance column (ADR-006's planned `V15`, renumbered).
+
 > ⚠️ Amended by ADR-007 — see `docs/adr/adr-007-conflict-detection-and-surfacing.md` and `DEVIATIONS.md` DEV-014.
 > `variant_claims.claim_type` is open free-text (no CHECK) by design; V7 already reflects this. Rows in `V12`
 > are written with the **normalized canonical** `claim_type` (surface variants collapsed at promotion), so the
@@ -155,6 +160,10 @@ ON CONFLICT DO NOTHING;
 ---
 
 ## 4. Ingestion Job
+
+> ⚠️ Deviations occurred in this section. See DEVIATIONS.md for details — notably DEV-028/ADR-013:
+> embedding model is `text-embedding-3-large` (corpus re-embedded), and `store_chunks()` stamps
+> `embedding_model` on every row.
 
 > ⚠️ Amended by ADR-007 — see `docs/adr/adr-007-conflict-detection-and-surfacing.md` and `DEVIATIONS.md` DEV-014.
 > Conflict detection is generalized: the extractor stores **all** attributed claims (not only `is_contested`),
@@ -547,6 +556,11 @@ phrasing.
 ---
 
 ## 5. Core-API
+
+> ⚠️ Deviations occurred in this section. See DEVIATIONS.md for details — notably DEV-028/ADR-013 (with
+> DEV-025): the Stage 6 retriever's cosine query must cast to the halfvec expression index —
+> `ORDER BY embedding::halfvec(3072) <=> (?::vector(3072))::halfvec(3072)` — and the embedding model is
+> `text-embedding-3-large`; the `PgVectorEmbeddingStore` snippet below (`.dimension(1536)`) predates both.
 
 > ⚠️ Amended by ADR-007 — see `docs/adr/adr-007-conflict-detection-and-surfacing.md` and `DEVIATIONS.md` DEV-014.
 > `RouteDecision` is `SQL | RAG | MIXED` (no `CONFLICT`); `QueryRouter` never emits a conflict route.

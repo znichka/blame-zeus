@@ -37,7 +37,7 @@ General-purpose LLMs answer mythology questions fluently but hallucinate details
 
 **core-api** is the Q&A brain. It routes each question, runs SQL or RAG (or both), and returns a structured response with `citations[]` and `conflicts[]`. Every LLM role is a LangChain4j `@AiService` interface.
 
-**ingestion** is a standalone Python 3.12+ script — not part of the Gradle build. It loads public-domain plaintext files, chunks them, embeds with `text-embedding-3-small`, and inserts into `narrative_chunks`.
+**ingestion** is a standalone Python 3.12+ script — not part of the Gradle build. It loads public-domain plaintext files, chunks them, embeds with `text-embedding-3-large`, and inserts into `narrative_chunks`.
 
 ## Data Model
 
@@ -46,7 +46,7 @@ entities            — ~60–100 hand-curated: Olympians, Titans, heroes, monst
 relationships       — parent_of, married_to, killed_by (with source attribution)
 sources             — author, work, translation, stance, year_published
 variant_claims      — multiple rows per contested claim, each citing a source
-narrative_chunks    — embedded text segments (vector(1536)) for RAG
+narrative_chunks    — embedded text segments (vector(3072)) for RAG
 entity_aliases      — Venus→Aphrodite, Hercules→Heracles, etc.
 myths / myth_participants
 ```

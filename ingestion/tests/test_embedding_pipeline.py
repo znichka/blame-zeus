@@ -3,7 +3,7 @@ from unittest.mock import MagicMock, patch
 
 # Module-level OpenAI client + config require env vars at import time.
 os.environ.setdefault("OPENAI_API_KEY", "test-key")
-os.environ.setdefault("EMBEDDING_MODEL", "text-embedding-3-small")
+os.environ.setdefault("EMBEDDING_MODEL", "text-embedding-3-large")
 os.environ.setdefault("POSTGRES_USER", "test")
 os.environ.setdefault("POSTGRES_PASSWORD", "test")
 os.environ.setdefault("POSTGRES_DB", "test")
@@ -66,6 +66,22 @@ def test_no_embedding_call_when_everything_already_stored():
     embed.assert_not_called()
     assert insert_calls(cur) == []
     conn.commit.assert_not_called()
+
+
+def test_insert_stamps_embedding_model():
+    # ADR-006 §2 / ADR-013: every stored vector records the model that produced it,
+    # so the startup drift check can compare against app.llm.embedding-model.
+    chunk = make_chunk("some text")
+    conn, cur = make_conn([])
+
+    with patch.object(ep, "register_vector"), patch.object(
+        ep, "embed_batch", return_value=[[0.0] * 3]
+    ):
+        ep.store_chunks(conn, [chunk])
+
+    (call,) = insert_calls(cur)
+    assert "embedding_model" in call.args[0]
+    assert call.args[1][-1] == ep.config.EMBEDDING_MODEL
 
 
 def test_commits_once_per_batch():

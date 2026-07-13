@@ -17,6 +17,6 @@ spring:
 app:
   llm:
     chat-api-key: ${LLM_API_KEY}                # Anthropic key since ADR-008 (chat = Claude Haiku 4.5)
-    embedding-api-key: ${OPENAI_API_KEY}         # always OpenAI — embeddings reaffirmed on text-embedding-3-small
+    embedding-api-key: ${OPENAI_API_KEY}         # always OpenAI — embeddings on text-embedding-3-large since ADR-013
     chat-model: ${LLM_CHAT_MODEL}
-    embedding-model: ${EMBEDDING_MODEL:text-embedding-3-small}   # single source of truth (ADR-006); consumer wired in LangChain4jConfig (deferred)
+    embedding-model: ${EMBEDDING_MODEL:text-embedding-3-large}   # single source of truth (ADR-006); consumer wired in LangChain4jConfig (deferred)

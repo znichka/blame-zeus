@@ -59,10 +59,10 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 - [x] `ingestion/loader/text_cleaner.py` — footnote stripping, whitespace normalization, page-header removal
 - [x] `ingestion/chunker/text_chunker.py` — sentence-split + accumulate to 1500 chars with 2-sentence overlap; `_nearest_ref` lookup `[DEVIATED - see DEVIATIONS.md #DEV-012]` — fixed an infinite loop and an unbounded chunk-size overshoot in the plan's literal loop
 - [x] `ingestion/pipeline/embedding_pipeline.py` — `embed_batch` (batch=20, tenacity retry), `store_chunks`, `validate_source_ids`, `clear_source_chunks` `[DEVIATED - see DEVIATIONS.md #DEV-013, #DEV-024]` — dropped unnecessary `numpy` dep, added missing batching loop; re-runs skip already-embedded chunks *before* the OpenAI call and commit per batch (DEV-024)
-- [ ] `ingestion/main.py` — `load_dotenv()` first, then pipeline loop
+- [x] `ingestion/main.py` — `load_dotenv()` first, then pipeline loop
 - [x] Python tests: `test_text_cleaner.py`, `test_text_chunker.py`, `test_passage_ref_extractors.py`
 - [x] Developer manually downloads Apollodorus (Frazer, 1921) from Theoi (`theoi.com/Text/Apollodorus{1,2,3}.html` + `ApollodorusE.html`), concatenates 4 pages preserving `[book.chapter.section]` markers → saves as `corpus/apollodorus_bibliotheca_frazer1921.txt`; QA'd — no HTML artifacts, 386 markers ascending, no seam duplication
-- [ ] Verify: `pytest ingestion/tests/` passes; `python main.py` populates `narrative_chunks`
+- [x] Verify: `pytest ingestion/tests/` passes; `python main.py` populates `narrative_chunks` — 260 chunks for `apollodorus-bibliotheca`, all embedded, idempotent re-run confirmed `[DEVIATED - see DEVIATIONS.md #DEV-027]` — required a hand-inserted `sources` row (Stage 4's `V9` not written yet)
 
 → [Detailed track-by-track checklist](TODO-stage2.md)
 
@@ -77,7 +77,7 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 - [ ] Add `SourceConfig` entries for Hesiod Theogony, Homeric Hymns, Homer Iliad, Homer Odyssey, Ovid Metamorphoses to `source_registry.py`
 - [ ] Implement passage ref extractors for each new source (homer_refs, ovid_refs, hesiod_refs, hymn_refs)
 - [ ] Add extractor tests for all new sources in `test_passage_ref_extractors.py`
-- [ ] Flyway `V15__add_embedding_model_tracking.sql` + add `embedding_model` to `store_chunks()`'s INSERT (ADR-006, deferred per DEV-015) — ideally rows are stamped at ingestion time, but `V15` numerically follows Stage 4's unwritten `V9`–`V14` (applying it first breaks Flyway's default in-order validation). Resolve at implementation time (renumber, out-of-order, or land with Stage 4 + backfill the ingested rows) and log a DEV entry
+- [x] Flyway `V15__add_embedding_model_tracking.sql` + add `embedding_model` to `store_chunks()`'s INSERT (ADR-006, deferred per DEV-015) — ideally rows are stamped at ingestion time, but `V15` numerically follows Stage 4's unwritten `V9`–`V14` (applying it first breaks Flyway's default in-order validation). Resolve at implementation time (renumber, out-of-order, or land with Stage 4 + backfill the ingested rows) and log a DEV entry `[DEVIATED - see DEVIATIONS.md #DEV-028]` — landed early, renumbered into `V8_4__switch_embedding_to_3large_3072.sql` alongside the ADR-013 embedding upgrade; `store_chunks()` stamps `embedding_model`; no backfill needed (table truncated + re-embedded)
 - [ ] Run full ingestion; verify per-source row counts in DB
 
 ---
@@ -143,10 +143,10 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 - [ ] Tests first: `RagQueryHandlerTest` (mock `RagAgent`, assert `RagResponse.citations` returned without text parsing)
 - [ ] `RagAgent.kt` `@AiService` interface — JSON structured return (`RagResponse`); system message includes the conflict-aware backstop instruction: if retrieved passages give different accounts of the same point from different sources, present each with its attribution rather than merging or picking one (ADR-007 §3) `[DEVIATED - see DEVIATIONS.md DEV-014]`
 - [ ] `RagQueryHandler.kt`
-- [ ] `LangChain4jConfig.kt` — `embeddingModel` bean only; **no `PgVectorEmbeddingStore`/`EmbeddingStoreContentRetriever` beans** — beta5's store hardcodes its own `embedding_id UUID`/`text` schema and cannot read `narrative_chunks(id, content, …)` (verified against the pinned jar). Instead: small custom `ContentRetriever` over `JdbcTemplate` (embed query → `ORDER BY embedding <=> ? LIMIT 5`, minScore=0.65 filter, returning `source_id`/`passage_ref` for citations); drop `langchain4j-pgvector` from `build.gradle.kts`. Embedding model name injected from `app.llm.embedding-model` (`EMBEDDING_MODEL` env var), not hardcoded (ADR-006, deferred per DEV-015) `[DEVIATED - see DEVIATIONS.md DEV-025]`
-- [ ] `EmbeddingConsistencyChecker.kt` — `ApplicationReadyEvent` check that the configured embedding model matches what the corpus rows were embedded with; logs errors, never blocks startup (ADR-006, deferred per DEV-015)
-- [ ] `canary-aphrodite.json` golden-vector fixture (generated once via the Python pipeline) + `EmbeddingConsistencyTest.kt` (ADR-006, deferred per DEV-015)
-- [ ] `EXPLAIN ANALYZE` index-usage check on the HNSW retrieval query, once ingested data exists (ADR-006 §10 addition, deferred per DEV-015)
+- [ ] `LangChain4jConfig.kt` — `embeddingModel` bean only; **no `PgVectorEmbeddingStore`/`EmbeddingStoreContentRetriever` beans** — beta5's store hardcodes its own `embedding_id UUID`/`text` schema and cannot read `narrative_chunks(id, content, …)` (verified against the pinned jar). Instead: small custom `ContentRetriever` over `JdbcTemplate` (embed query → `ORDER BY embedding::halfvec(3072) <=> (?::vector(3072))::halfvec(3072) LIMIT 5` — the halfvec cast is REQUIRED to hit V8_4's expression index, a plain `embedding <=> ?` silently seq-scans (updated based on DEV-028, see DEVIATIONS.md); minScore=0.65 filter, returning `source_id`/`passage_ref` for citations); drop `langchain4j-pgvector` from `build.gradle.kts`. Embedding model name injected from `app.llm.embedding-model` (`EMBEDDING_MODEL` env var, now `text-embedding-3-large` per ADR-013), not hardcoded (ADR-006, deferred per DEV-015) `[DEVIATED - see DEVIATIONS.md DEV-025]`
+- [ ] `EmbeddingConsistencyChecker.kt` — `ApplicationReadyEvent` check that the configured embedding model matches what the corpus rows were embedded with (the `narrative_chunks.embedding_model` column exists since V8_4/DEV-028 — compares against `text-embedding-3-large`); logs errors, never blocks startup (ADR-006, deferred per DEV-015)
+- [ ] `canary-aphrodite.json` golden-vector fixture (generated once via the Python pipeline, with `EMBEDDING_MODEL=text-embedding-3-large` per DEV-028) + `EmbeddingConsistencyTest.kt` (ADR-006, deferred per DEV-015)
+- [ ] `EXPLAIN ANALYZE` index-usage check on the HNSW retrieval query, once ingested data exists — must show `narrative_chunks_embedding_hnsw_idx` (the V8_4 halfvec expression index), which only matches the cast form of the query (ADR-006 §10 addition, deferred per DEV-015; updated based on DEV-028)
 - [ ] Add RAG route to `QueryService`
 - [ ] Router fallback: catches router exceptions, defaults to RAG
 

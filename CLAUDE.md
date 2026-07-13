@@ -18,7 +18,7 @@ Key docs:
 - **Framework:** Spring Boot 3.3.13 (Jakarta namespace, not `javax.*`)
 - **Build:** Gradle Kotlin DSL; shared convention plugin in `buildSrc/`
 - **LLM framework:** LangChain4j (JVM services only) — all LLM calls in `core-api` go through `@AiService` interfaces; no direct OpenAI/Anthropic Java SDK in JVM code. The `ingestion` Python job is the only authorized exception, using provider Python SDKs directly for corpus-prep tooling: the OpenAI SDK for **embedding** and (since ADR-008) the Anthropic SDK via `instructor` for **offline seed-data extraction**. Both are offline, never run at query time, and never touch `LangChain4jConfig.kt`.
-- **LLM provider:** OpenAI for **embedding** (fixed — must match `text-embedding-3-small` used during ingestion; not swappable without re-ingesting the full corpus). **Chat model is provider-agnostic** — all `@AiService` interfaces and handlers are provider-neutral; the only provider-specific code is the beans in `LangChain4jConfig.kt` (default since ADR-008: `AnthropicChatModel`, Claude Haiku 4.5). Swap those beans and add the new provider's LangChain4j starter to change the chat provider (keep `langchain4j-open-ai-spring-boot-starter` regardless — the embedding bean needs it). Two separate API key env vars across **two providers** since ADR-008: `OPENAI_API_KEY` for ingestion + embedding, `LLM_API_KEY` for the (Anthropic) chat model — these are now different keys, not the same one. Chat model name injected via `LLM_CHAT_MODEL` env var — no default in `application.yml`, must always be set explicitly. Offline extraction uses Claude Opus 4.8 via `EXTRACTION_MODEL` (Python, `instructor.from_anthropic`), whose client reads a third key env var, `ANTHROPIC_API_KEY` — it may hold the same Anthropic key as `LLM_API_KEY`, but stays a separate var because the Anthropic Python SDK reads `ANTHROPIC_API_KEY` by convention. Embedding model name shared via `EMBEDDING_MODEL` (ADR-006).
+- **LLM provider:** OpenAI for **embedding** (fixed — must match `text-embedding-3-large` used during ingestion (native 3072-dim since ADR-013); not swappable without re-ingesting the full corpus). **Chat model is provider-agnostic** — all `@AiService` interfaces and handlers are provider-neutral; the only provider-specific code is the beans in `LangChain4jConfig.kt` (default since ADR-008: `AnthropicChatModel`, Claude Haiku 4.5). Swap those beans and add the new provider's LangChain4j starter to change the chat provider (keep `langchain4j-open-ai-spring-boot-starter` regardless — the embedding bean needs it). Two separate API key env vars across **two providers** since ADR-008: `OPENAI_API_KEY` for ingestion + embedding, `LLM_API_KEY` for the (Anthropic) chat model — these are now different keys, not the same one. Chat model name injected via `LLM_CHAT_MODEL` env var — no default in `application.yml`, must always be set explicitly. Offline extraction uses Claude Opus 4.8 via `EXTRACTION_MODEL` (Python, `instructor.from_anthropic`), whose client reads a third key env var, `ANTHROPIC_API_KEY` — it may hold the same Anthropic key as `LLM_API_KEY`, but stays a separate var because the Anthropic Python SDK reads `ANTHROPIC_API_KEY` by convention. Embedding model name shared via `EMBEDDING_MODEL` (ADR-006).
 - **Storage:** Postgres 16 + pgvector — relational tables and `narrative_chunks` vector store in one DB
 - **Deployment:** Docker Compose for Phase 1 (DB-only: `docker-compose.yml`; full stack: `docker-compose.full.yml`)
 
@@ -53,7 +53,7 @@ blame-zeus/
 │       │   └── service/        (QueryService — central orchestrator)
 │       └── resources/
 │           ├── application.yml
-│           └── db/migration/   (Flyway V1–V14 incl. V8_1–V8_3 + afterMigrate callback)
+│           └── db/migration/   (Flyway V1–V14 incl. V8_1–V8_4 + afterMigrate callback)
 ├── telegram-bot/               (Phase 2)
 ├── ingestion/                  (Python — excluded from Gradle build)
 │   ├── corpus/                 (.txt files — not committed to git)
@@ -82,7 +82,7 @@ blame-zeus/
 
 ## Data Model
 
-**SQL tables (Flyway V1–V14, plus V8_1–V8_3 provenance/normalization additions per DEV-021/022/023):**
+**SQL tables (Flyway V1–V14, plus V8_1–V8_3 provenance/normalization additions per DEV-021/022/023 and V8_4 embedding upgrade per DEV-028/ADR-013):**
 ```
 entities(id, name, type, generation, domain)
   -- type ∈ {primordial, titan, olympian, other_god, hero, mortal, monster, nymph}
@@ -113,8 +113,14 @@ variant_claims(id, subject_entity_id→entities, claim_type, claim_value, source
   --   rows of a conflict share one claim_type value. Surface variants live only in the extraction candidates.
   -- contested relationships keep ONE canonical edge in `relationships` (spine-preferred); the contradiction lives here
 
-narrative_chunks(id, content, content_hash GENERATED AS md5(content), embedding vector(1536), source_id TEXT→sources, passage_ref, metadata JSONB)
-  -- UNIQUE(source_id, passage_ref, content_hash); HNSW index on embedding
+narrative_chunks(id, content, content_hash GENERATED AS md5(content), embedding vector(3072), source_id TEXT→sources, passage_ref, metadata JSONB, embedding_model TEXT)
+  -- UNIQUE(source_id, passage_ref, content_hash)
+  -- embedding is vector(3072) since V8_4 (ADR-013, text-embedding-3-large); the HNSW index is a halfvec
+  --   EXPRESSION index ((embedding::halfvec(3072)) halfvec_cosine_ops) because plain-vector HNSW caps at
+  --   2000 dims — retrieval MUST cast: ORDER BY embedding::halfvec(3072) <=> (?::vector(3072))::halfvec(3072),
+  --   or the index is silently bypassed (seq scan)
+  -- embedding_model (V8_4, ex-ADR-006 V15): model provenance per row, checked at startup against
+  --   app.llm.embedding-model to detect drift
 
 claim_type_aliases(alias TEXT PRIMARY KEY, canonical)
   -- V8_2 (DEV-022): shared normalize() map — Python extraction and Kotlin ConflictLookup both read this

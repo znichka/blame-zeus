@@ -208,11 +208,11 @@ Rejected: out of scope. The stack choice (Postgres + pgvector) is already fixed 
 > the golden-vector fixture/test) or an **unbuilt component** (`LangChain4jConfig.kt`) remain deferred
 > to their build stages. Status of each item marked below.
 
-- [ ] **(Deferred — new file)** `V15__add_embedding_model_tracking.sql`
+- [x] ~~**(Deferred — new file)** `V15__add_embedding_model_tracking.sql`~~ — **landed 2026-07-13 as part of `V8_4__switch_embedding_to_3large_3072.sql`** (renumbered into the V8_x series per DEV-028 to avoid the V9–V14 in-order hazard; bundled with the ADR-013 embedding upgrade). Column is `NOT NULL` with no default — the same migration truncates the table, so no legacy rows needed the `'text-embedding-3-small'` default this ADR specified.
 - [x] `.env.example`: add `EMBEDDING_MODEL`
 - [x] `ingestion/config.py`: read `EMBEDDING_MODEL`
 - [x] `embedding_pipeline.py`: use `config.EMBEDDING_MODEL` instead of literal string — **done**;
-      *add `embedding_model` to insert statement* — **(deferred, needs `V15`'s column)**
+      *add `embedding_model` to insert statement* — **done 2026-07-13 with V8_4 (DEV-028/ADR-013)**
 - [x] `application.yml`: add `app.llm.embedding-model` *(staged; consumer bean deferred with `LangChain4jConfig`)*
 - [ ] **(Deferred — `LangChain4jConfig.kt` not yet built)** inject `embedding-model` property instead of hardcoded literal
 - [ ] **(Deferred — new file)** `EmbeddingConsistencyChecker.kt` + startup log verification

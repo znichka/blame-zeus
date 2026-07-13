@@ -250,20 +250,28 @@ _Depends on:_ A, C, E, F, G. This is the wiring step — no new logic, just sequ
 _Depends on:_ Track H (working pipeline), Track B (corpus file on disk), and the ordering gotcha
 resolved.
 
-- [ ] **I1** `pytest ingestion/tests/` — all of `test_text_cleaner.py`, `test_text_chunker.py`,
-      `test_passage_ref_extractors.py` pass
-- [ ] **I2** Apply the hand-insert `INSERT INTO sources (...) VALUES ('apollodorus-bibliotheca',
-      ...)` from the ordering-gotcha note (or otherwise confirm the row exists)
-- [ ] **I3** `cd ingestion && OPENAI_API_KEY=... EMBEDDING_MODEL=text-embedding-3-small
+- [x] **I1** `pytest ingestion/tests/` — all of `test_text_cleaner.py`, `test_text_chunker.py`,
+      `test_passage_ref_extractors.py` pass — 31 tests, all passing
+- [x] **I2** Apply the hand-insert `INSERT INTO sources (...) VALUES ('apollodorus-bibliotheca',
+      ...)` from the ordering-gotcha note (or otherwise confirm the row exists) — applied via
+      `docker exec blame-zeus-postgres-1 psql`; row confirmed present
+- [x] **I3** `cd ingestion && OPENAI_API_KEY=... EMBEDDING_MODEL=text-embedding-3-small
       POSTGRES_HOST=localhost python main.py` — completes without error (`EMBEDDING_MODEL` is
       required by `config.py` since ADR-006/DEV-015; `load_dotenv()` can also supply it from
-      `.env`)
-- [ ] **I4** `psql -U zeus -d blamezeus -c "SELECT count(*) FROM narrative_chunks WHERE
-      source_id='apollodorus-bibliotheca'"` — non-zero
-- [ ] **I5** `psql -U zeus -d blamezeus -c "SELECT passage_ref, embedding IS NOT NULL AS has_embedding FROM narrative_chunks WHERE source_id='apollodorus-bibliotheca' LIMIT 5"` — `passage_ref`
+      `.env`) — ran via `.env`-sourced `load_dotenv()`, no manual env prefix needed; first attempt
+      hit `openai.RateLimitError: insufficient_quota` (account billing, zero rows written), retry
+      after quota was resolved completed cleanly
+      *(Historical note: this run used `text-embedding-3-small` as planned; the corpus was
+      subsequently re-embedded with `text-embedding-3-large` per ADR-013/DEV-028 — see
+      DEVIATIONS.md. The verification itself remains valid.)*
+- [x] **I4** `psql -U zeus -d blamezeus -c "SELECT count(*) FROM narrative_chunks WHERE
+      source_id='apollodorus-bibliotheca'"` — non-zero — 260 rows
+- [x] **I5** `psql -U zeus -d blamezeus -c "SELECT passage_ref, embedding IS NOT NULL AS has_embedding FROM narrative_chunks WHERE source_id='apollodorus-bibliotheca' LIMIT 5"` — `passage_ref`
       values look like real `[book.chapter.section]` refs (not all falling back to
-      `"Apollodorus, Bibliotheca"`); `has_embedding` is `true` for all rows
-- [ ] **I6** Re-run `python main.py` a second time — no duplicate rows (`ON CONFLICT DO NOTHING`
-      + chunker determinism from E5 holds)
-- [ ] **I7** Log the ordering-gotcha resolution as a deviation entry in `DEVIATIONS.md` per
-      `CLAUDE.md`'s Deviation Tracking Protocol
+      `"Apollodorus, Bibliotheca"`); `has_embedding` is `true` for all rows — confirmed: 0 rows
+      with `embedding IS NULL`, 0 rows fell back to `"Apollodorus, Bibliotheca"`
+- [x] **I6** Re-run `python main.py` a second time — no duplicate rows (`ON CONFLICT DO NOTHING`
+      + chunker determinism from E5 holds) — `Skipping 260 of 260 chunks already embedded`, count
+      unchanged at 260
+- [x] **I7** Log the ordering-gotcha resolution as a deviation entry in `DEVIATIONS.md` per
+      `CLAUDE.md`'s Deviation Tracking Protocol — logged as DEV-027

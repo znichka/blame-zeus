@@ -52,8 +52,8 @@ def store_chunks(conn, chunks: list[Chunk]) -> None:
             for c, embedding in zip(batch, embeddings):
                 cur.execute(
                     """INSERT INTO narrative_chunks
-                       (content, embedding, source_id, passage_ref, metadata)
-                       VALUES (%s, %s, %s, %s, %s)
+                       (content, embedding, source_id, passage_ref, metadata, embedding_model)
+                       VALUES (%s, %s, %s, %s, %s, %s)
                        ON CONFLICT (source_id, passage_ref, content_hash) DO NOTHING""",
                     (
                         c.text,
@@ -70,6 +70,7 @@ def store_chunks(conn, chunks: list[Chunk]) -> None:
                                 "overlap_sentences": OVERLAP_SENTENCES,
                             }
                         ),
+                        config.EMBEDDING_MODEL,
                     ),
                 )
             # Commit per batch: a crash mid-run then loses at most one batch of embeddings

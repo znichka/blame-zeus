@@ -12,6 +12,11 @@
 > (`gpt-4o` → Claude Opus 4.8) choices below are updated; the embedding choice (`text-embedding-3-small`)
 > is reaffirmed and the structure (per-role temps, provider-agnostic chat, locked embeddings) is unchanged.
 > See `docs/adr/adr-008-model-selection-update.md` and `DEVIATIONS.md` DEV-015.
+>
+> ⚠️ The embedding choice is in turn **superseded by ADR-013** (2026-07-13): `text-embedding-3-small`
+> → `text-embedding-3-large` (native 3072 dims, corpus re-embedded, `vector(3072)` + halfvec HNSW
+> via `V8_4`). The "locked embeddings" principle stands — only the locked value changed.
+> See `docs/adr/adr-013-embedding-model-upgrade-3-large.md` and `DEVIATIONS.md` DEV-028.
 
 ---
 

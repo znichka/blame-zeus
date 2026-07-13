@@ -11,6 +11,12 @@
 > `instructor` code swaps are deferred to the stages that build `LangChain4jConfig.kt` and
 > `claim_extractor.py`. Action-item status reflected in the checklist below.
 
+> ⚠️ §3's embedding reaffirmation is **superseded by ADR-013** (2026-07-13): the escalation path this
+> ADR named ("`text-embedding-3-large` is the low-friction quality upgrade") was taken before Stage 3
+> corpus growth — `EMBEDDING_MODEL=text-embedding-3-large`, `vector(3072)` + halfvec HNSW via `V8_4`,
+> corpus re-embedded. Chat and extraction model decisions here are unaffected.
+> See `docs/adr/adr-013-embedding-model-upgrade-3-large.md` and `DEVIATIONS.md` DEV-028.
+
 ---
 
 ## Context
