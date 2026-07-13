@@ -33,11 +33,15 @@ so V9's later `ON CONFLICT DO NOTHING` is a no-op):
 INSERT INTO sources (id, author, work, translation, stance, year_published, role) VALUES
   ('hesiod-theogony',     'Hesiod',                 'Theogony',      'Evelyn-White', 'cosmological', 1914, 'spine'),
   ('hesiod-homeric-hymns','Anonymous ("Homeric")',  'Homeric Hymns', 'Evelyn-White', 'hymnic',       1914, 'primary'),
-  ('homer-iliad',         'Homer',                  'Iliad',         'Murray',       'poetic-myth',  1919, 'spine'),
-  ('homer-odyssey',       'Homer',                  'Odyssey',       'Murray',       'poetic-myth',  1924, 'primary'),
-  ('ovid-metamorphoses',  'Ovid',                   'Metamorphoses', '<TRANSLATOR>', 'poetic-myth',  <YEAR>, 'selective')
+  ('homer-iliad',         'Homer',                  'Iliad',         'Murray',       'poetic-myth',  1924, 'spine'),
+  ('homer-odyssey',       'Homer',                  'Odyssey',       'Murray',       'poetic-myth',  1919, 'primary'),
+  ('ovid-metamorphoses',  'Ovid',                   'Metamorphoses', 'Brookes More', 'poetic-myth',  1922, 'selective')
 ON CONFLICT (id) DO NOTHING;
 ```
+
+`[DEVIATED - see DEVIATIONS.md #DEV-030]` — this template originally had Murray's Iliad/Odyssey
+years swapped (same bug as DEV-029's `V9` placeholder) and an unfilled Ovid `<TRANSLATOR>`/`<YEAR>`;
+corrected here to match `TODO-stage4.md` C1 before executing the insert.
 
 **Sub-gotcha (latent plan bug this stage surfaces):** the plan's V9 row for Ovid
 (`IMPLEMENTATION_PLAN.md §3` L140, `TODO-stage4.md` C1) says `translation='PD', year_published=null` —
@@ -218,14 +222,14 @@ _Depends on:_ C (real function objects), A (file names exist on disk), B3 (`pres
 
 ---
 
-## Track E — `sources` rows hand-insert
+## Track E — `sources` rows hand-insert `[DEVIATED - see DEVIATIONS.md #DEV-030]`
 
 _Depends on:_ running Postgres container; A5's translator/year decision. Independent of B/C/D.
 
-- [ ] **E1** Apply Gotcha #1's `INSERT` via `docker exec blame-zeus-postgres-1 psql -U zeus -d blamezeus`
+- [x] **E1** Apply Gotcha #1's `INSERT` via `docker exec blame-zeus-postgres-1 psql -U zeus -d blamezeus`
       (fill in the Ovid `<TRANSLATOR>`/`<YEAR>` from A5). Verify: `SELECT id FROM sources ORDER BY id;`
       returns all 6 slugs.
-- [ ] **E2** Update `TODO-stage4.md` C1: the Ovid row's concrete translation/year (replacing
+- [x] **E2** Update `TODO-stage4.md` C1: the Ovid row's concrete translation/year (replacing
       `PD`/`null`), and note that V9 must reproduce **exactly** these 6 rows (its
       `ON CONFLICT DO NOTHING` then no-ops against the hand-inserted ones). Add the stance values
       used here so V9 doesn't have to re-derive them.
