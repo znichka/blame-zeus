@@ -166,9 +166,9 @@ _Directory:_ `core-api/src/main/kotlin/com/blamezeus/coreapi/domain/dto/`. Fully
 
 _Depends on:_ D1, D2. _Directory:_ `core-api/src/main/kotlin/com/blamezeus/coreapi/controller/`
 
-- [ ] **F1** `QueryController.kt` skeleton (`@RestController`, `@RequestMapping("/api/v1")`) — `POST /api/v1/query` and `GET /api/v1/conflicts/{entityName}` are added in later stages; stub only
-- [ ] **F2** `GET /api/v1/entities` — `entityRecordRepository.findAll()`
-- [ ] **F3** `GET /api/v1/sources` — `sourceRepository.findAll()`
+- [x] **F1** `QueryController.kt` skeleton (`@RestController`, `@RequestMapping("/api/v1")`) — `POST /api/v1/query` and `GET /api/v1/conflicts/{entityName}` are added in later stages; stub only
+- [x] **F2** `GET /api/v1/entities` — `entityRecordRepository.findAll()`
+- [x] **F3** `GET /api/v1/sources` — `sourceRepository.findAll()`
 
 ---
 
