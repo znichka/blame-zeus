@@ -83,14 +83,14 @@ def build_candidates(
                 # the other 5 get walked for cache lookups every run regardless, and
                 # printing for those would be noise, not progress.
                 if is_active:
-                    print(f"[{source.source_id}] {i}/{len(segs)} ({seg.passage_ref}) -- cached")
+                    print(f"[{source.source_id}] {i}/{len(segs)} ({seg.passage_ref}) -- cached", flush=True)
                 facts = cached.facts
             elif not is_active:
                 # Not requested this run and nothing cached yet -- leave it untouched
                 # for a future invocation rather than spending an API call on it now.
                 continue
             else:
-                print(f"[{source.source_id}] {i}/{len(segs)} ({seg.passage_ref}) -- extracting...")
+                print(f"[{source.source_id}] {i}/{len(segs)} ({seg.passage_ref}) -- extracting...", flush=True)
                 # Only reached for never-attempted segments, or ones that failed on a
                 # prior run (a fresh retry, not the same tenacity-retried attempt) --
                 # one bad segment must not abort the other ~1,200.
@@ -99,7 +99,10 @@ def build_candidates(
                         extract_facts(seg.text, source.source_id), source.source_id, seg.passage_ref
                     )
                 except Exception as e:  # noqa: BLE001 -- deliberately broad: isolate any failure per segment
-                    print(f"[FAILED] {source.source_id} @ offset {seg.start_offset} ({seg.passage_ref}): {e}")
+                    print(
+                        f"[FAILED] {source.source_id} @ offset {seg.start_offset} ({seg.passage_ref}): {e}",
+                        flush=True,
+                    )
                     append_checkpoint(
                         checkpoint_path,
                         CheckpointEntry(source.source_id, seg.start_offset, "failed", error=str(e)),
@@ -146,21 +149,22 @@ def write_output(result: ExtractionResult, output_dir: Path = OUTPUT_DIR) -> Non
     )
     _write_json(output_dir / "variant_claims_candidates.json", [asdict(c) for c in result.conflicts])
     if result.fuzzy_merges:
-        print(f"{len(result.fuzzy_merges)} fuzzy entity merges — review during B3 spot-check:")
+        print(f"{len(result.fuzzy_merges)} fuzzy entity merges — review during B3 spot-check:", flush=True)
         for m in result.fuzzy_merges:
-            print(f"  {m.name!r} -> {m.matched_to!r} (score={m.score:.0f})")
+            print(f"  {m.name!r} -> {m.matched_to!r} (score={m.score:.0f})", flush=True)
     if result.failed_segments:
         print(
             f"{len(result.failed_segments)} segments FAILED and were skipped "
-            "(re-run this script to retry just these):"
+            "(re-run this script to retry just these):",
+            flush=True,
         )
         for source_id, start_offset, error in result.failed_segments:
-            print(f"  - {source_id} @ offset {start_offset}: {error}")
+            print(f"  - {source_id} @ offset {start_offset}: {error}", flush=True)
 
 
 def _write_json(path: Path, rows: list) -> None:
     path.write_text(json.dumps(rows, indent=2, ensure_ascii=False), encoding="utf-8")
-    print(f"Wrote {len(rows)} rows to {path}")
+    print(f"Wrote {len(rows)} rows to {path}", flush=True)
 
 
 def main() -> None:
