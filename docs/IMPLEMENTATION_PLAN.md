@@ -432,6 +432,13 @@ Place .txt files in `ingestion/corpus/` before running. Start with Apollodorus (
 > hints (not restricts) `claim_type` and stores every attributed claim. The relation→claim_type targets are
 > the same canonicals as `claim_type_aliases.json`, so a death disagreement split between a `killed_by` edge and
 > free-text prose groups under one `death` key (not `slaying` vs `death_manner`). See `DEVIATIONS.md` DEV-014, DEV-020.
+>
+> ⚠️ Deviations occurred building this pipeline (Track A, complete). See `DEVIATIONS.md` #DEV-036: the
+> passage-segmentation helper groups consecutive marker intervals up to a size cap (`SEGMENT_SIZE`), not
+> blank-line paragraphs — `text_cleaner.clean()` collapses blank-line runs before segmentation ever sees the
+> text, so no blank-line signal survives to group on. Also, `ExtractedRelationship`/`ExtractedVariantClaim`
+> carry a `source_id` field alongside `passage_ref` (both `SkipJsonSchema`-hidden from the LLM, stamped
+> mechanically post-parse), extending DEV-021's `passage_ref`-only precedent to cover source attribution too.
 
 See `docs/adr/adr-004-seed-data-extraction-strategy.md` for the full decision
 record. Runs **after** corpus ingestion (needs real cleaned text to extract

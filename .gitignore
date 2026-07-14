@@ -35,6 +35,9 @@ __pycache__/
 ### Corpus (public-domain plaintext; too large for git) ###
 ingestion/corpus/
 
+### Extraction candidates (generated; unreviewed until promoted via B5/B6 into V10-V12) ###
+ingestion/extraction/output/
+
 ### Logs ###
 *.log
 spring.log
