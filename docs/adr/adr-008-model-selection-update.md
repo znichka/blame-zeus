@@ -53,6 +53,11 @@ low-friction.
    and extraction is one-time, offline, and cost-insensitive, so it takes the **strongest tier**.
    Invoked via `instructor.from_anthropic(...)`, mirroring the existing `instructor.from_openai`
    pattern; never at query time, never in `LangChain4jConfig`.
+   > ⚠️ **Superseded in practice for the Stage 4 seed run** — the actual extraction used
+   > `EXTRACTION_MODEL=claude-sonnet-5`, not Opus 4.8, chosen via §5's swap-after-eval discipline
+   > (relationships good on the smaller model, `variant_claims` unstable on both — accept more B5
+   > hand-curation for now). `claude-opus-4-8` remains this ADR's default of record and the code stays
+   > model-agnostic. See `DEVIATIONS.md` #DEV-039.
 
 3. **Embedding model → reaffirm `text-embedding-3-small`** (OpenAI, 1536-dim, locked). It is
    *mid-tier* by 2026 MTEB standards; `text-embedding-3-large` is the low-friction quality upgrade
@@ -127,10 +132,10 @@ low-friction.
       *(Bean/dependency not created now — `LangChain4jConfig.kt` does not exist yet.)*
 - [x] Point `LLM_API_KEY` at Anthropic; keep `OPENAI_API_KEY` for embeddings; update `.env.example`.
       *(Done: `.env.example`, `application-test.yml` chat-model.)*
-- [ ] **(Deferred — Stage 4 A5/A8)** Extraction: `instructor.from_anthropic(...)`,
-      `EXTRACTION_MODEL=claude-opus-4-8`; add the `anthropic` Python dependency to
-      `ingestion/requirements.txt`. *(Code/dependency not created now — `claim_extractor.py` does not
-      exist yet; `TODO-stage4.md` A5/A8 updated to specify Anthropic.)*
+- [x] **(Done — Stage 4 A5/A8)** Extraction: `instructor.from_anthropic(...)` in `claim_extractor.py`;
+      `anthropic` added to `ingestion/requirements.txt`. *(Built in Track A per DEV-036. Model deviated
+      to `claude-sonnet-5` at run time per §5 swap-after-eval — see DEV-039; code reads `EXTRACTION_MODEL`
+      and is model-agnostic.)*
 - [x] Keep `text-embedding-3-small`; pre-ingestion escalation note recorded (escalate to `-large` only
       if a retrieval check on list/numeric questions shows `-small` is the bottleneck) — in DEV-015 and
       this ADR §Decision 3.

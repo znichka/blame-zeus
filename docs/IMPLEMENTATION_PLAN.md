@@ -449,6 +449,12 @@ Place .txt files in `ingestion/corpus/` before running. Start with Apollodorus (
 > text, so no blank-line signal survives to group on. Also, `ExtractedRelationship`/`ExtractedVariantClaim`
 > carry a `source_id` field alongside `passage_ref` (both `SkipJsonSchema`-hidden from the LLM, stamped
 > mechanically post-parse), extending DEV-021's `passage_ref`-only precedent to cover source attribution too.
+>
+> ⚠️ Deviations also occurred running the pipeline (Track B, B1–B2 complete). See `DEVIATIONS.md` #DEV-038
+> (`run_extraction.py` hardened with per-segment JSONL checkpointing, failure isolation, and incremental
+> `--source` runs; `max_tokens` 4096→16000; dotenv-ordering fix — full corpus ran 1,204/1,204 clean) and
+> #DEV-039 (`EXTRACTION_MODEL` switched to `claude-sonnet-5` from ADR-008's Opus 4.8 via ADR-008 §5
+> swap-after-eval; recorded because `.env` is gitignored). B3–B7 human review still pending.
 
 See `docs/adr/adr-004-seed-data-extraction-strategy.md` for the full decision
 record. Runs **after** corpus ingestion (needs real cleaned text to extract
