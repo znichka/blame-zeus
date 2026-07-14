@@ -65,7 +65,13 @@ def extract_facts(segment_text: str, source_id: str) -> ExtractedFacts:
     return client.chat.completions.create(
         model=EXTRACTION_MODEL,
         response_model=ExtractedFacts,
-        max_tokens=4096,
+        # 4096 was too low for genealogically-dense segments (e.g. the
+        # Titanomachy passage packs many entities/relationships/claims into one
+        # segment) and raised IncompleteOutputException — retrying doesn't help
+        # since the failure is deterministic, not transient. 16000 is Anthropic's
+        # documented safe non-streaming default (well under the SDK's HTTP
+        # timeout guard for large max_tokens).
+        max_tokens=16000,
         system=system,
         messages=[{"role": "user", "content": segment_text}],
     )

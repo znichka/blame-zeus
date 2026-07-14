@@ -12,3 +12,8 @@ pytest>=8.0
 instructor>=1.3.0
 rapidfuzz>=3.0.0
 anthropic
+
+# Stage 4 Track B: 01_test_extraction.ipynb / 02_verify_conflicts.ipynb (ADR-004's own
+# pipeline design calls for notebooks here, but nothing had declared the dependency yet)
+jupyter
+ipykernel
