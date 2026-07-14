@@ -86,6 +86,16 @@ blame-zeus/
     └── src/main/kotlin/com/blamezeus/telegrambot/
 ```
 
+> ⚠️ Deviations occurred building Track D (Stage 4 JPA entities/repositories, D1-D6 complete). See
+> `DEVIATIONS.md` #DEV-037: `blame-zeus.kotlin-conventions.gradle.kts` now applies `kotlin("plugin.allopen")`/
+> `kotlin("plugin.noarg")` targeting `jakarta.persistence.Entity`/`Embeddable` (completing wiring
+> `kotlin-allopen` was added for back in Stage 1 but never applied). New packages:
+> `domain/entity/` (`Source`, `EntityRecord`, `Relationship`, `Myth`, `MythParticipant`, `VariantClaim`,
+> `NarrativeChunk`) and `repository/` (matching `JpaRepository` interfaces), both under
+> `com.blamezeus.coreapi`. D7 (`EntityAlias`) is deliberately not yet present — it's blocked on
+> Track C6/`V14` existing, since `ddl-auto: validate` fails the whole module's Spring context if an
+> `@Entity` maps to a table that doesn't exist yet.
+
 ### Key Dependencies
 
 | Module | Key additions |

@@ -26,7 +26,7 @@ Track F (REST endpoints) ── needs D ┘                                     
                                      Track C's V9/V13/V14 items have no dependency on B ───┘
 ```
 
-- **A, D, E have no dependency on each other or on anything else in this stage** — start all three in parallel immediately.
+- **A, D, E have no dependency on each other or on anything else in this stage** — start all three in parallel immediately. `[DEVIATED - see DEVIATIONS.md #DEV-037]` Exception: Track D's D7 (`EntityAlias`) specifically depends on Track C6/`V14` — an `@Entity` mapped to a nonexistent table breaks `ddl-auto: validate` for the whole module, not just tests touching that table. D1–D6 remain fully independent.
 - **B depends on A** (the pipeline must exist) **and on Stages 2–3 being done** (real corpus text to run against). B cannot start until both are true.
 - **Within Track C**: V9 (sources), V13 (myths), V14 (aliases) are hand-curated and have no dependency on B — draft them in parallel with A/B. V10/V11/V12 need B's reviewed output before they can be finalized (though V10/V11 need only the lighter spot-check, not the full review gate V12 requires).
 - **F depends on D** (needs `SourceRepository` + `EntityRecordRepository`).
@@ -140,13 +140,13 @@ _Directory:_ `core-api/src/main/kotlin/com/blamezeus/coreapi/domain/entity/` and
 
 > **Naming note:** name the JPA class `EntityRecord` (table `"entities"`), not `Entity` — avoids colliding with `jakarta.persistence.Entity`. Use this name consistently through Stage 7 (`ConflictLookup`, `EntityExtractor`/`ConflictProbe`).
 
-- [ ] **D1** `Source.kt` `@Entity` (table `sources`) + `SourceRepository : JpaRepository<Source, String>` (String PK)
-- [ ] **D2** `EntityRecord.kt` `@Entity` (table `entities`) + `EntityRecordRepository : JpaRepository<EntityRecord, Int>` with `findByNameIgnoreCase(name: String): EntityRecord?`
-- [ ] **D3** `Relationship.kt` `@Entity` (table `relationships`) + `RelationshipRepository : JpaRepository<Relationship, Int>` — prefer plain FK columns over `@ManyToOne` to avoid N+1 surprises in simple read paths
-- [ ] **D4** `Myth.kt` + `MythParticipant.kt` `@Entity` classes (`MythParticipant` needs `@EmbeddedId`/`@IdClass` for its composite PK) + `MythRepository`, `MythParticipantRepository`
-- [ ] **D5** `VariantClaim.kt` `@Entity` (table `variant_claims`) + `VariantClaimRepository` with `findBySubjectEntityIdAndClaimType(...)` and a `findByEntityNameIgnoreCase` join-query. These now serve Stage 7's shared **`ConflictLookup`** (which the enrichment step calls), not a `ConflictQueryHandler` — that handler is deleted by ADR-007 `[DEVIATED - see DEVIATIONS.md DEV-014]`
-- [ ] **D6** `NarrativeChunk.kt` `@Entity` (table `narrative_chunks`) + `NarrativeChunkRepository` — `embedding` unmapped/`@Transient`-adjacent; LangChain4j's `PgVectorEmbeddingStore` owns writes here from Stage 6 onward (superseded by DEV-025: a custom `ContentRetriever` reads, the Python pipeline writes). The `embedding_model` column added by V8_4 (DEV-028) may be mapped read-only or left unmapped — the Python pipeline is its only writer; with `ddl-auto: validate`, don't omit columns Hibernate would flag
-- [ ] **D7** `EntityAlias.kt` `@Entity` (table `entity_aliases`) + `EntityAliasRepository` with `findByAliasIgnoreCase(alias: String): EntityAlias?`
+- [x] **D1** `Source.kt` `@Entity` (table `sources`) + `SourceRepository : JpaRepository<Source, String>` (String PK)
+- [x] **D2** `EntityRecord.kt` `@Entity` (table `entities`) + `EntityRecordRepository : JpaRepository<EntityRecord, Int>` with `findByNameIgnoreCase(name: String): EntityRecord?`
+- [x] **D3** `Relationship.kt` `@Entity` (table `relationships`) + `RelationshipRepository : JpaRepository<Relationship, Int>` — prefer plain FK columns over `@ManyToOne` to avoid N+1 surprises in simple read paths
+- [x] **D4** `Myth.kt` + `MythParticipant.kt` `@Entity` classes (`MythParticipant` needs `@EmbeddedId`/`@IdClass` for its composite PK) + `MythRepository`, `MythParticipantRepository`
+- [x] **D5** `VariantClaim.kt` `@Entity` (table `variant_claims`) + `VariantClaimRepository` with `findBySubjectEntityIdAndClaimType(...)` and a `findByEntityNameIgnoreCase` join-query. These now serve Stage 7's shared **`ConflictLookup`** (which the enrichment step calls), not a `ConflictQueryHandler` — that handler is deleted by ADR-007 `[DEVIATED - see DEVIATIONS.md DEV-014]`
+- [x] **D6** `NarrativeChunk.kt` `@Entity` (table `narrative_chunks`) + `NarrativeChunkRepository` — `embedding` unmapped/`@Transient`-adjacent; LangChain4j's `PgVectorEmbeddingStore` owns writes here from Stage 6 onward (superseded by DEV-025: a custom `ContentRetriever` reads, the Python pipeline writes). The `embedding_model` column added by V8_4 (DEV-028) may be mapped read-only or left unmapped — the Python pipeline is its only writer; with `ddl-auto: validate`, don't omit columns Hibernate would flag
+- [ ] **D7** `EntityAlias.kt` `@Entity` (table `entity_aliases`) + `EntityAliasRepository` with `findByAliasIgnoreCase(alias: String): EntityAlias?` `[DEVIATED - see DEVIATIONS.md #DEV-037]` **Blocked on Track C6/`V14`, not independent as the parallelization guide states below** — `entity_aliases` doesn't exist until `V14` lands, and `ddl-auto: validate` fails the *entire* Spring context (every test in the module, not just ones touching this table) the moment an `@Entity` is mapped to a missing table. Confirmed empirically. Do not add this file until `V14` exists.
 
 ---
 
