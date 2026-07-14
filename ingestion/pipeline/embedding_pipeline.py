@@ -66,6 +66,7 @@ def store_chunks(conn, chunks: list[Chunk]) -> None:
                                 "author": c.author,
                                 "work": c.work,
                                 "passage_ref": c.passage_ref,
+                                "sentence_refs": c.sentence_refs,
                                 "chunk_size": len(c.text),
                                 "overlap_sentences": OVERLAP_SENTENCES,
                             }

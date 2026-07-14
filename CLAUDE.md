@@ -115,6 +115,16 @@ variant_claims(id, subject_entity_id→entities, claim_type, claim_value, source
 
 narrative_chunks(id, content, content_hash GENERATED AS md5(content), embedding vector(3072), source_id TEXT→sources, passage_ref, metadata JSONB, embedding_model TEXT)
   -- UNIQUE(source_id, passage_ref, content_hash)
+  -- chunks are PARAGRAPH-ALIGNED (DEV-034/ADR-014 Amendment 2): one chunk per marker interval, so
+  --   passage_ref is the paragraph's corpus-native range ("3.38-3.57", end = next-marker-minus-1, full
+  --   prefix on both ends — classical elision is display-only), a bare point for Apollodorus sections /
+  --   single-interval paragraphs / book-final+EOF paragraphs (end underivable there), or "Author, Work"
+  --   for pre-marker preamble chunks. Oversized paragraphs (>1.2x CHUNK_SIZE) split into sub-chunks that
+  --   SHARE the paragraph ref (the only duplicate refs; corpus precision floor); overlap exists only
+  --   between such sub-chunks, never across paragraphs.
+  --   Shared range helper: ingestion/loader/ref_ranges.py — Stage 4 extraction must reuse it, not re-derive.
+  -- metadata.sentence_refs (DEV-033): per-sentence [{ref, start, end}] with char offsets into content;
+  --   under paragraph alignment every entry carries the paragraph's start marker (kept for audits/forward-compat)
   -- embedding is vector(3072) since V8_4 (ADR-013, text-embedding-3-large); the HNSW index is a halfvec
   --   EXPRESSION index ((embedding::halfvec(3072)) halfvec_cosine_ops) because plain-vector HNSW caps at
   --   2000 dims — retrieval MUST cast: ORDER BY embedding::halfvec(3072) <=> (?::vector(3072))::halfvec(3072),

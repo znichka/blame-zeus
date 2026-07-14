@@ -337,3 +337,19 @@ _Depends on:_ A, B, C, D, E. Sequential from here.
       (`test_text_chunker.py`, 48 tests total). All 6 sources cleared + re-embedded; re-verified
       G1 (same 3037-row total), G2 (same fallback counts), G4-equivalent idempotency — all still
       pass with zero leftover markers in any chunk.
+- [x] **G9** `[DEVIATED - see DEVIATIONS.md #DEV-033, #DEV-034]` **Two more post-verification
+      passes, same day, superseding G1/G8's row counts and G2's ref-shape assumptions.** DEV-033:
+      manual verification found the point-shaped `passage_ref` was only a lower bound (two
+      sequential Iliad chunks both cited `9.114` though content deep in the second belonged to
+      line ~141+) — fixed by making `passage_ref` a containment range (`ingestion/loader/ref_ranges.py`,
+      new); added `metadata.sentence_refs`. DEV-034: user review of the range output found
+      duplicate/overly-broad ranges from chunk boundaries not aligning to the corpus's own
+      marker boundaries — chunker rewritten so **one chunk = one corpus paragraph** (oversized
+      paragraphs split with intra-paragraph-only overlap). Both cleared + fully re-ingested all 6
+      sources. G1's row counts are superseded: **3,524 chunks** — Apollodorus 427, Theogony 91,
+      Hymns 173, Iliad 1,195, Odyssey 905, Ovid 733. G2's fallback-shape regex is superseded too
+      (refs are now ranges like `"3.38-3.57"`, not bare points, for every poetic source) —
+      re-verified via `ingestion/scripts/overlap_report.py` (new, measure-only) instead: per-source
+      fallback-chunk counts unchanged from G2's audited baseline (1 per source, 2 for Theogony),
+      cross-chunk redundancy fell from mean 23–37% to 1–3%, zero malformed ranges. Ingestion suite
+      46→70 tests, idempotent re-run confirmed. Full detail: DEV-033, DEV-034, ADR-014 Amendments 1–2.

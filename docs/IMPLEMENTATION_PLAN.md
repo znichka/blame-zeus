@@ -234,6 +234,8 @@ class SourceConfig:
 **Passage reference extraction — per-source strategy:**
 
 > ⚠️ Deviations occurred in this stage. See DEVIATIONS.md #DEV-029 — the marker table below does not match the real corpus files (bare `[N]` line markers instead of `[ll. N-M]` ranges, Arabic not Roman `BOOK` headers, no literal "HYMN" word in hymn headers), and the shipped extractors emit standard citation form (`"1.194"`, `"2.90"`, `"116"`) rather than the raw scraped shape shown here. The citation-notation choice itself is now a formal decision — see **ADR-014**.
+>
+> ⚠️ Also amended by DEV-033 + DEV-034 (see DEVIATIONS.md and ADR-014 Amendments 1–2): the chunker no longer cuts 1500-char windows through the text — **chunk boundaries snap to marker boundaries** (one chunk per corpus paragraph; oversized paragraphs split into sub-chunks sharing the paragraph's ref), and a chunk's `passage_ref` is the paragraph's corpus-native range (`"3.38-3.57"`, end = next-marker-minus-1 via `loader/ref_ranges.py`) with per-sentence refs stored in `metadata.sentence_refs`.
 
 Each `SourceConfig` carries a `passage_ref_extractor` that pre-scans the cleaned text and returns `list[tuple[int, str]]` — (character offset, human-readable ref). The chunker does a single pre-scan pass, then for each chunk looks up the last ref with offset ≤ chunk start.
 

@@ -114,6 +114,114 @@ def test_terminates_when_tail_has_exactly_overlap_sentences_left():
     assert chunks[-1].text.endswith("Sentence number 0199 fills space for chunk testing purposes.")
 
 
+def _marker_every(sentences: list[str], step: int) -> str:
+    # Marker [1.k] on every step-th sentence — each marker interval is a "paragraph"
+    # whose expected refs are derivable from the sentence numbers in the prose.
+    return " ".join(
+        f"[1.{i}] {s}" if i % step == 0 else s for i, s in enumerate(sentences)
+    )
+
+
+def _sentence_numbers(c) -> list[int]:
+    return [int(m) for m in re.findall(r"Sentence number (\d+)", c.text)]
+
+
+def test_one_chunk_per_paragraph_with_native_range():
+    # DEV-034: chunk boundaries snap to marker boundaries — 8 paragraphs of 5
+    # sentences yield exactly 8 chunks, each citing its paragraph's native range
+    # "1.k-1.(k+4)" (next marker minus 1). No chunk crosses a paragraph.
+    text = _marker_every(_make_sentences(40), 5)
+    chunks = chunk(text, "src", "Author", "Work", _fixture_extractor)
+    assert len(chunks) == 8
+    assert [c.passage_ref for c in chunks[:-1]] == [f"1.{k}-1.{k + 4}" for k in range(0, 35, 5)]
+    assert chunks[-1].passage_ref == "1.35"  # EOF: no next marker to derive an end from
+    for k, c in zip(range(0, 40, 5), chunks):
+        assert _sentence_numbers(c) == list(range(k, k + 5))
+
+
+def test_single_interval_chunk_stays_a_bare_point():
+    # Paragraph between [3.7] and [3.8]: the decremented end equals the start, so
+    # the ref collapses to a point — never "3.7-3.7".
+    sentences = _make_sentences(80)
+    sentences[0] = f"[3.7] {sentences[0]}"
+    sentences[40] = f"[3.8] {sentences[40]}"
+    chunks = chunk(" ".join(sentences), "src", "Author", "Work", _fixture_extractor)
+    assert chunks[0].passage_ref == "3.7"
+
+
+def test_oversized_paragraph_splits_with_overlap_sharing_ref():
+    # A paragraph past CHUNK_SIZE * 1.2 splits into sentence windows that ALL cite
+    # the same paragraph range (the corpus's precision floor), with
+    # OVERLAP_SENTENCES carried between consecutive sub-chunks (intra-paragraph only).
+    sentences = _make_sentences(61)
+    sentences[0] = f"[1.0] {sentences[0]}"
+    sentences[60] = f"[1.60] {sentences[60]}"
+    chunks = chunk(" ".join(sentences), "src", "Author", "Work", _fixture_extractor)
+    sub = [c for c in chunks if c.passage_ref == "1.0-1.59"]
+    assert len(sub) >= 2
+    for prev, nxt in zip(sub, sub[1:]):
+        assert _sentence_numbers(nxt)[:OVERLAP_SENTENCES] == _sentence_numbers(prev)[-OVERLAP_SENTENCES:]
+    assert chunks[-1].passage_ref == "1.60"
+    assert _sentence_numbers(chunks[-1]) == [60]  # overlap never crosses the boundary
+
+
+def test_no_overlap_across_paragraph_boundaries():
+    text = _marker_every(_make_sentences(40), 5)
+    chunks = chunk(text, "src", "Author", "Work", _fixture_extractor)
+    for prev, nxt in zip(chunks, chunks[1:]):
+        assert _sentence_numbers(nxt)[0] == _sentence_numbers(prev)[-1] + 1
+
+
+def test_sentence_refs_align_to_stored_text():
+    sentences = _make_sentences(80)
+    sentences[5] = f"[1.5] {sentences[5]}"
+    sentences[30] = f"[2.5] {sentences[30]}"
+    chunks = chunk(" ".join(sentences), "src", "Author", "Work", _fixture_extractor)
+    for c in chunks:
+        assert len(c.sentence_refs) == len(_sentence_numbers(c))
+        for entry in c.sentence_refs:
+            slice_ = c.text[entry["start"] : entry["end"]]
+            assert re.fullmatch(r"Sentence number \d+ fills space for chunk testing purposes\.", slice_)
+    # Every sentence of a marked chunk carries its own paragraph's start marker.
+    marked = [c for c in chunks if c.passage_ref != "Author, Work"]
+    assert marked
+    for c in marked:
+        expected = "1.5" if _sentence_numbers(c)[0] < 30 else "2.5"
+        assert all(e["ref"] == expected for e in c.sentence_refs)
+
+
+def test_marker_only_segment_emits_no_chunk():
+    # A trailing standalone marker is a paragraph with no content: no empty chunk,
+    # no stray marker text, no ref-entry misalignment anywhere.
+    text = " ".join(_make_sentences(10)) + " [5.5]"
+    chunks = chunk(text, "src", "Author", "Work", _fixture_extractor)
+    assert all(c.text and "[5.5]" not in c.text for c in chunks)
+    assert [n for c in chunks for n in _sentence_numbers(c)] == list(range(10))
+
+
+def test_fallback_chunks_have_null_sentence_refs():
+    chunks = chunk(" ".join(_make_sentences(40)), "src", "Author", "Work", _fixture_extractor)
+    for c in chunks:
+        assert c.passage_ref == "Author, Work"
+        assert c.sentence_refs
+        assert all(e["ref"] is None for e in c.sentence_refs)
+
+
+def test_preamble_forms_its_own_fallback_chunks():
+    # Text before the first marker (DEV-031: 1-2 preamble chunks per source) becomes
+    # separate "Author, Work" chunks — no chunk ever straddles the first marker.
+    sentences = _make_sentences(80)
+    sentences[10] = f"[2.5] {sentences[10]}"
+    chunks = chunk(" ".join(sentences), "src", "Author", "Work", _fixture_extractor)
+    pre = [c for c in chunks if c.passage_ref == "Author, Work"]
+    marked = [c for c in chunks if c.passage_ref == "2.5"]
+    assert pre and marked
+    assert [n for c in pre for n in _sentence_numbers(c)] == list(range(10))
+    assert _sentence_numbers(marked[0])[0] == 10
+    for c in pre:
+        assert all(e["ref"] is None for e in c.sentence_refs)
+
+
 def test_terminates_when_a_single_sentence_exceeds_chunk_size():
     # Regression: a sentence longer than CHUNK_SIZE alone leaves buf with only 1
     # sentence; rolling back the full OVERLAP_SENTENCES would move `i` backwards

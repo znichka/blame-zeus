@@ -1,3 +1,4 @@
+import json
 import os
 from unittest.mock import MagicMock, patch
 
@@ -12,7 +13,7 @@ import pipeline.embedding_pipeline as ep
 from chunker.text_chunker import Chunk
 
 
-def make_chunk(text: str, ref: str = "1.1.1") -> Chunk:
+def make_chunk(text: str, ref: str = "1.1.1", sentence_refs: list | None = None) -> Chunk:
     return Chunk(
         text=text,
         source_id="apollodorus-bibliotheca",
@@ -20,6 +21,7 @@ def make_chunk(text: str, ref: str = "1.1.1") -> Chunk:
         author="Apollodorus",
         work="Bibliotheca",
         start_offset=0,
+        sentence_refs=sentence_refs or [],
     )
 
 
@@ -82,6 +84,23 @@ def test_insert_stamps_embedding_model():
     (call,) = insert_calls(cur)
     assert "embedding_model" in call.args[0]
     assert call.args[1][-1] == ep.config.EMBEDDING_MODEL
+
+
+def test_metadata_json_carries_sentence_refs():
+    # DEV-033: Stage 6's excerpt-level citation instrument rides in metadata.
+    refs = [{"ref": "1.1.1", "start": 0, "end": 9}]
+    chunk = make_chunk("some text", sentence_refs=refs)
+    conn, cur = make_conn([])
+
+    with patch.object(ep, "register_vector"), patch.object(
+        ep, "embed_batch", return_value=[[0.0] * 3]
+    ):
+        ep.store_chunks(conn, [chunk])
+
+    (call,) = insert_calls(cur)
+    metadata = json.loads(call.args[1][4])
+    assert metadata["sentence_refs"] == refs
+    assert metadata["passage_ref"] == "1.1.1"
 
 
 def test_commits_once_per_batch():

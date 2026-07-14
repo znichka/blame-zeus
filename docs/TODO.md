@@ -72,7 +72,15 @@ Stages track `IMPLEMENTATION_PLAN.md §9`. Each stage's "done when" is the gate 
 **Done when:** All 6 sources indexed in `narrative_chunks`; row count per source is non-zero. — **Met.**
 
 > ⚠️ Formerly Stage 4 — renumbered per ADR-004 (see Stage 2 note above).
-> ⚠️ Deviations occurred in this stage. See `DEVIATIONS.md` #DEV-029, #DEV-030, #DEV-031.
+> ⚠️ Deviations occurred in this stage. See `DEVIATIONS.md` #DEV-029, #DEV-030, #DEV-031, #DEV-032, #DEV-033, #DEV-034.
+> ⚠️ **Row counts below are the DEV-031 baseline, since superseded twice** — DEV-032 (marker-leak
+> fix, same 3037-row total) then DEV-033/034 (containment-range refs, then paragraph-aligned
+> chunking) changed both chunk boundaries and `passage_ref` notation. Current live state: **3,524
+> chunks** — Apollodorus 427, Theogony 91, Homeric Hymns 173, Iliad 1,195, Odyssey 905, Ovid 733;
+> `passage_ref` is now the paragraph's corpus-native range (`"3.38-3.57"`, bare points for
+> Apollodorus sections), not the point-only shape this stage originally shipped. See DEV-033/034
+> and the ADR-014 amendments for the full story — this stage's own done-when bar (non-zero rows,
+> real structural refs) still holds, just at different numbers.
 
 - [x] Developer manually downloads remaining 5 corpus files (Hesiod Theogony, Homeric Hymns, Homer Iliad, Homer Odyssey, Ovid Metamorphoses) from theoi.com into `ingestion/corpus/` `[DEVIATED - see DEVIATIONS.md #DEV-029]` — not Project Gutenberg/sacred-texts.com as planned; theoi.com transcriptions for all 5 (see DEV-011's Apollodorus precedent for why)
 - [x] Add `SourceConfig` entries for Hesiod Theogony, Homeric Hymns, Homer Iliad, Homer Odyssey, Ovid Metamorphoses to `source_registry.py`
@@ -144,6 +152,8 @@ and the `text_cleaner` all-caps stripping that would silently delete Homer/Ovid 
 **Done when:** FACT gold questions (Q1–Q5) return cited answers; `RagQueryHandlerTest` passes.
 
 > ⚠️ Updated assumptions based on DEV-004 (see DEVIATIONS.md): LangChain4j is `1.0.0-beta5`. Before implementing, verify beta5 API shapes for `RagAgent @AiService`, `EmbeddingStore`, `ContentRetriever`, and `PgVectorEmbeddingStore` (including `createTable(false)` parameter shape).
+>
+> ⚠️ Updated based on DEV-033/DEV-034 (see DEVIATIONS.md): chunks are **paragraph-aligned** and `narrative_chunks.passage_ref` is the paragraph's **corpus-native range** (`"3.38-3.57"`; points for Apollodorus sections; ADR-014 Amendments 1–2) — the chunk's ref IS the citation, exact at both ends; display may elide it classically (`Il. 3.38–57`) but the stored form keeps the full prefix. `metadata.sentence_refs` entries all carry the paragraph's start marker (audit/forward-compat; no finer resolution exists in the corpus). Retrieval-time near-duplicate handling is **no longer a concern**: cross-chunk overlap was dropped (mean redundancy now 1–3%); the only near-duplicates are sub-chunks of the ~160 oversized paragraphs, which share a `passage_ref` — dedupe retrieved chunks by `passage_ref` when building the prompt if two sub-chunks of one paragraph both rank in top-k.
 
 - [ ] Tests first: `RagQueryHandlerTest` (mock `RagAgent`, assert `RagResponse.citations` returned without text parsing)
 - [ ] `RagAgent.kt` `@AiService` interface — JSON structured return (`RagResponse`); system message includes the conflict-aware backstop instruction: if retrieved passages give different accounts of the same point from different sources, present each with its attribution rather than merging or picking one (ADR-007 §3) `[DEVIATED - see DEVIATIONS.md DEV-014]`
