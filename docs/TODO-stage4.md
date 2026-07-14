@@ -154,11 +154,11 @@ _Directory:_ `core-api/src/main/kotlin/com/blamezeus/coreapi/domain/entity/` and
 
 _Directory:_ `core-api/src/main/kotlin/com/blamezeus/coreapi/domain/dto/`. Fully independent — shapes fixed by `IMPLEMENTATION_PLAN.md §5`/`§7`.
 
-- [ ] **E1** `QueryRequest.kt` — `data class QueryRequest(val question: String)`
-- [ ] **E2** `Citation.kt` — `data class Citation(val author: String, val work: String, val passageRef: String, val stance: String? = null)`
-- [ ] **E3** `ConflictEntry.kt` — `data class ConflictEntry(val claimValue: String, val sourceAuthor: String, val sourceWork: String)`
-- [ ] **E4** `RagResponse.kt` — `data class RagResponse(val answer: String, val citations: List<Citation>)`
-- [ ] **E5** `QueryResponse.kt` — `data class QueryResponse(val answer: String, val routeDecision: RouteDecision?, val citations: List<Citation>, val conflicts: List<ConflictEntry>, val sqlGenerated: String?, val serviceError: Boolean = false)` — either stub a minimal `RouteDecision` enum now so this compiles (`SQL`/`RAG`/`MIXED`, **no `CONFLICT`** per ADR-007), or type `routeDecision` as `String?` and tighten in Stage 5 (log the choice in `DEVIATIONS.md` if the latter). Stage 7 enrichment writes only the `conflicts` field, never `answer` `[DEVIATED - see DEVIATIONS.md DEV-014]`
+- [x] **E1** `QueryRequest.kt` — `data class QueryRequest(val question: String)`
+- [x] **E2** `Citation.kt` — `data class Citation(val author: String, val work: String, val passageRef: String, val stance: String? = null)`
+- [x] **E3** `ConflictEntry.kt` — `data class ConflictEntry(val claimValue: String, val sourceAuthor: String, val sourceWork: String)`
+- [x] **E4** `RagResponse.kt` — `data class RagResponse(val answer: String, val citations: List<Citation>)`
+- [x] **E5** `QueryResponse.kt` — `data class QueryResponse(val answer: String, val routeDecision: RouteDecision?, val citations: List<Citation>, val conflicts: List<ConflictEntry>, val sqlGenerated: String?, val serviceError: Boolean = false)` — either stub a minimal `RouteDecision` enum now so this compiles (`SQL`/`RAG`/`MIXED`, **no `CONFLICT`** per ADR-007), or type `routeDecision` as `String?` and tighten in Stage 5 (log the choice in `DEVIATIONS.md` if the latter). Stage 7 enrichment writes only the `conflicts` field, never `answer` `[DEVIATED - see DEVIATIONS.md DEV-014]`. Took the first option: stubbed `routing/RouteDecision.kt` (`SQL`/`RAG`/`MIXED`, no `CONFLICT`) now — the enum values are already settled by ADR-007, so there was nothing provisional to defer to Stage 5.
 
 ---
 
