@@ -314,14 +314,24 @@ Full `:core-api:test` suite green (115/115 total; no regressions in any other cl
 _Directory:_ `.../controller/`. _Depends on:_ D4 (`findAllForEntity`). The one place the **subject-only**
 fetch is used.
 
-- [ ] **F1** `QueryControllerTest` (or a new slice) — `GET /api/v1/conflicts/Aphrodite` returns all
-  stored versions across claim_types; an alias (`Venus`) resolves; an unknown entity returns an empty
-  list (or 404 — **decide and state which**, matching how `/entities` handles misses). This path carries
-  **no** claim-type context, so it must **not** filter by claim_type.
-- [ ] **F2** Add the endpoint to `QueryController` (the class already has the `// added in Stage 7`
-  marker). Back it with `ConflictLookup.findAllForEntity` → map to `List<ConflictEntry>` (reuse the
-  Track C mapping). It is an explicit by-entity demo/dev lookup — **not** wired into enrichment, and it
-  cannot pollute a grounded refusal because it's never an automatic per-answer step (ADR-007 §5).
+- [x] **F1** `QueryControllerTest` extended (existing `MockMvc` + `AbstractContainerTest` slice, real
+  seeded data, no mocks — `ConflictLookup`'s resolution/multi-claim-type behavior is already proven at
+  the unit level in `ConflictLookupTest`, so this only proves the endpoint's wiring). 3 new cases:
+  `GET /api/v1/conflicts/Aphrodite` → ≥2 real parentage claims incl. Hesiod/Theogony;
+  `GET /api/v1/conflicts/Venus` → byte-identical JSON body to the Aphrodite response (alias
+  resolution); `GET /api/v1/conflicts/DefinitelyNotARealEntityXyz123` → **200 with an empty list**.
+  **Decided 200 + empty list, not 404**: `ConflictLookup` cannot distinguish "no such entity" from "a
+  real entity with zero recorded conflicts" (both resolve to an empty list) — a 404 would misreport
+  the latter as nonexistent, so an empty array is the honest response for both cases. No
+  `/entities`-style precedent existed to match (that endpoint has no by-name miss case at all), so
+  this was a fresh decision.
+- [x] **F2** `QueryController` gained `conflictLookup`/`conflictSynthesizer` constructor deps and
+  `GET /conflicts/{entityName}` → `conflictSynthesizer.synthesize(conflictLookup.findAllForEntity(entityName))`
+  (reuses Track C's mapping exactly, no duplicate row→DTO logic). Removed the stale
+  `// added in Stage 7` marker comment now that the endpoint exists. Never wired into `QueryService`'s
+  enrichment step — an explicit by-entity dev/demo lookup only, per ADR-007 §5.
+
+5/5 `QueryControllerTest` cases green; full `:core-api:test` suite 118/118 green.
 
 ---
 
