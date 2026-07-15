@@ -85,25 +85,50 @@ _Purpose:_ resolve DEV-004 for the RAG surface before writing code. Inspect the 
 beta5 usage; write findings into a scratch note or inline TODO comments, not the codebase. Log anything
 that contradicts the plan as a DEV entry.
 
-- [ ] **0.1** Confirm `EmbeddingModel` bean shape: `dev.langchain4j.model.openai.OpenAiEmbeddingModel`
+- [x] **0.1** Confirm `EmbeddingModel` bean shape: `dev.langchain4j.model.openai.OpenAiEmbeddingModel`
   builder (`.apiKey`/`.modelName`/`.dimensions`?) is on the classpath via
   `langchain4j-open-ai-spring-boot-starter` (kept per DEV-015). Confirm `text-embedding-3-large`
   returns **3072-dim** vectors natively (ADR-013) and whether `.dimensions(3072)` must be set
   explicitly or is the model default. Note the `embed(String): Response<Embedding>` /
   `Embedding.vector(): float[]` accessor shapes B will call.
-- [ ] **0.2** Resolve **how a bean-defined `ContentRetriever` binds to `RagAgent @AiService`** under
+  — Confirmed: `OpenAiEmbeddingModelName.TEXT_EMBEDDING_3_LARGE.dimension() == 3072` is the
+  `knownDimension()` fallback when `.dimensions()` is left null, so it need not be set explicitly.
+  Accessor chain confirmed: `embed(String): Response<Embedding>` → `.content(): Embedding` →
+  `.vector(): FloatArray`. See scratch note §0.1.
+- [x] **0.2** Resolve **how a bean-defined `ContentRetriever` binds to `RagAgent @AiService`** under
   EXPLICIT wiring (DEV-046 established chat-model binding is a bean-name string, not `@Qualifier`).
   Check `AiServicesAutoConfig` source for a `contentRetriever` attribute on
   `dev.langchain4j.service.spring.AiService` and whether a single `ContentRetriever` bean auto-attaches
   or must be named. Record the exact annotation form C3 will use.
-- [ ] **0.3** Confirm structured-return (`RagResponse`) deserialization in beta5: with a `@SystemMessage`
+  — Confirmed: `contentRetriever` is a bean-name string attribute, same mechanism as `chatModel`.
+  Under EXPLICIT wiring there is NO auto-attach even with a single candidate bean — the attribute
+  must be set or the retriever silently doesn't wire. Form for C1:
+  `@AiService(wiringMode = EXPLICIT, chatModel = "synthesisModel", contentRetriever = "<beanName>")`.
+  See scratch note §0.2.
+- [x] **0.3** Confirm structured-return (`RagResponse`) deserialization in beta5: with a `@SystemMessage`
   describing the JSON schema, does `AiServices` auto-deserialize the POJO (as in the plan §5 snippet),
   and does it need `@UserMessage` on the param when there is a single argument? Note whether nested
   `List<Citation>` deserializes without extra annotations. (Cross-check the Stage 5 finding that
   enum/POJO output parsing is handled by GA core, DEV-046.)
-- [ ] **0.4** Confirm the `Content` / `TextSegment` / `Metadata` API B must emit: how to attach
+  — Confirmed: a single unannotated parameter is auto-treated as the user message
+  (`findUserMessageTemplateFromTheOnlyArgument`), exactly like `QueryRouter.classify` already does —
+  no `@UserMessage` needed. POJO parsing (incl. nested `List<Citation>`) goes through the generic
+  reflection-based `OutputParser`, same family as `RouteDecision` enum parsing. Since
+  `AnthropicChatModel` doesn't advertise `RESPONSE_FORMAT_JSON_SCHEMA`, the framework additionally
+  auto-appends textual format instructions to the user message (harmless overlap with our
+  `@SystemMessage` JSON description). See scratch note §0.3.
+- [x] **0.4** Confirm the `Content` / `TextSegment` / `Metadata` API B must emit: how to attach
   `source_id` / `passage_ref` / score to a retrieved `Content` so C's `@AiService` context and the
   handler's citations can read them. Note the `Content.from(TextSegment)` + `Metadata.from(map)` shapes.
+  — Confirmed and refined: two distinct metadata bags. `Content.metadata(): Map<ContentMetadata, Object>`
+  (closed enum: `SCORE`/`RERANKED_SCORE`/`EMBEDDING_ID`) carries the retrieval score; `TextSegment`'s
+  own `Metadata` (arbitrary `String`-keyed map via `Metadata.from(map)`) carries `source_id`/`passage_ref`.
+  Full shape: `Content.from(TextSegment.from(content, Metadata.from(mapOf("source_id" to id, "passage_ref" to ref))), mapOf(ContentMetadata.SCORE to score))`.
+  See scratch note §0.4.
+
+**No plan contradictions found; no new DEV-NNN required.** Full findings:
+`/private/tmp/claude-501/-Users-ekaterina-alay-Documents-blame-zeus/0ada99d9-90c7-4aa9-9914-2448d9d5d312/scratchpad/track0-findings.md`
+(scratch note, not part of the repo).
 
 ---
 
@@ -111,18 +136,22 @@ that contradicts the plan as a DEV entry.
 
 _Directory:_ `core-api/`. Runtime wiring; independent to author but B/C/F need it to boot.
 
-- [ ] **A1** Remove `dev.langchain4j:langchain4j-pgvector:1.0.0-beta5` from `core-api/build.gradle.kts`
+- [x] **A1** Remove `dev.langchain4j:langchain4j-pgvector:1.0.0-beta5` from `core-api/build.gradle.kts`
   (DEV-025 — the custom retriever replaces it). Keep `langchain4j-open-ai-spring-boot-starter` (the
   `EmbeddingModel` bean needs it) and `langchain4j-anthropic-spring-boot-starter`. Confirm the build
   still resolves and `bootRun` classpath no longer contains `langchain4j-pgvector`.
-- [ ] **A2** Add `@Bean fun embeddingModel(): EmbeddingModel` to `config/LangChain4jConfig.kt` —
+  — Done. `:core-api:compileKotlin` and `:core-api:test` both green with the dependency removed.
+- [x] **A2** Add `@Bean fun embeddingModel(): EmbeddingModel` to `config/LangChain4jConfig.kt` —
   `OpenAiEmbeddingModel`, `apiKey` from `app.llm.embedding-api-key`, `modelName` from
   `app.llm.embedding-model` (**injected, never the literal** per ADR-006/DEV-015), dimensions per Track
   0.1. Only ONE `EmbeddingModel` bean exists, so no EXPLICIT-wiring dance is needed for it (unlike the
   two `ChatModel` beans). Update the class doc comment (currently says "no embeddingModel bean here").
-- [ ] **A3** Confirm `application.yml` already carries `app.llm.embedding-api-key: ${OPENAI_API_KEY}`
+  — Done; `dimensions()` deliberately left unset per Track 0.1 finding (native 3072 default). Class doc
+  comment updated.
+- [x] **A3** Confirm `application.yml` already carries `app.llm.embedding-api-key: ${OPENAI_API_KEY}`
   and `app.llm.embedding-model: ${EMBEDDING_MODEL:text-embedding-3-large}` — **present since Stage 4**;
   verify, no edit expected. Confirm `.env` supplies `OPENAI_API_KEY`.
+  — Confirmed present in both files, no edit made.
 
 ---
 
@@ -219,20 +248,27 @@ _Directory:_ `.../service/`. _Depends on:_ D2 (`RagQueryHandler`).
 _Directory:_ `.../config/` + test dir + `evaluation/` or test resources. _Independent_ — start early.
 ADR-006, deferred to this stage per DEV-015.
 
-- [ ] **F1** `config/EmbeddingConsistencyChecker.kt` — `@EventListener(ApplicationReadyEvent)` that
+- [x] **F1** `config/EmbeddingConsistencyChecker.kt` — `@EventListener(ApplicationReadyEvent)` that
   compares `app.llm.embedding-model` against the distinct `embedding_model` value(s) in
   `narrative_chunks` (column exists since V8_4/DEV-028). On mismatch: **log an error, never block
   startup** (drift is a data problem, not a boot failure). Handle the empty-table case gracefully
   (log info, no error). Do NOT hardcode `text-embedding-3-large` — read the injected config value.
-- [ ] **F2** Generate `canary-aphrodite.json` **once, offline** via the Python pipeline with
+  — Done, plain `JdbcTemplate`-backed `@Component`, config value injected via `@Value`.
+- [x] **F2** Generate `canary-aphrodite.json` **once, offline** via the Python pipeline with
   `EMBEDDING_MODEL=text-embedding-3-large` (DEV-028): a fixed query string ("Who were Aphrodite's
   parents?" or similar) + its known 3072-dim embedding vector. Store under test resources. This pins the
   embedding model's output so a silent model/dimension swap is caught. (Needs a live `OPENAI_API_KEY`;
   kick off early.)
-- [ ] **F3** `EmbeddingConsistencyTest.kt` — embed the canary query via the live `EmbeddingModel` bean
+  — Done via new one-off `ingestion/scripts/generate_canary.py` (reuses `pipeline.embedding_pipeline
+  .embed_batch`), run once against the live key. Output confirmed 3072 dims, model
+  `text-embedding-3-large`, written to `core-api/src/test/resources/canary-aphrodite.json`.
+- [x] **F3** `EmbeddingConsistencyTest.kt` — embed the canary query via the live `EmbeddingModel` bean
   (or mock, per test policy — **no live LLM in unit tests**; use a Testcontainers/integration tag if a
   real embed is required) and assert dimension == 3072 and cosine similarity to the stored canary vector
   ≈ 1.0 within tolerance. Assert the checker logs (not throws) on a deliberately mismatched config.
+  — Done: `EmbeddingModel` mocked per the no-live-LLM-in-tests policy (returns the pinned vector itself —
+  this exercises the dimension/cosine plumbing, not real-model drift detection, which Track H4 checks
+  live). Checker tested with a Logback `ListAppender` across mismatch/match/empty-table cases. 4/4 green.
 
 ---
 
@@ -241,16 +277,23 @@ ADR-006, deferred to this stage per DEV-015.
 _Directory:_ `evaluation/gold-questions.json`. _Independent_ — pure authoring against the corpus. Track
 H consumes these.
 
-- [ ] **G1** Add FACT questions Q1–Q5 to `gold-questions.json` following `IMPLEMENTATION_PLAN.md §7`
+- [x] **G1** Add FACT questions Q1–Q5 to `gold-questions.json` following `IMPLEMENTATION_PLAN.md §7`
   schema (matching the existing DATA Q6–Q10 shape): `id`, `category: "FACT"`, `expected_route: "RAG"`,
   `question`, `required_keywords`, `required_authors`, `forbidden_patterns`. Each question must be
   answerable from ingested corpus text (Apollodorus / Hesiod / Homer / Hymns / Ovid) with a citable
   passage — e.g. the plan's "Why did Athena turn Arachne into a spider?" (Ovid). Pick `required_authors`
   from the 6 seeded `sources` slugs only.
-- [ ] **G2** Sanity-check each Q against the live corpus before committing (a quick retriever/`curl`
+  — Done, ids 1–5 added ahead of the existing DATA Q6–Q10.
+- [x] **G2** Sanity-check each Q against the live corpus before committing (a quick retriever/`curl`
   probe once Track E is up, or a manual `narrative_chunks` `ILIKE` grep) so H isn't chasing questions
   the corpus can't answer — mirror the Stage 5 lesson that keyword shortfalls trace to data gaps, not
   pipeline bugs.
+  — Done via direct `psql` word-boundary greps against the live 3,524-row `narrative_chunks` table.
+  Found 3 of 5 questions' `required_keywords` used vocabulary absent from the actual seeded
+  translations (Q3 "nobody"→"Noman", Q4 "Eris"/"discord" not present at all, Q5 "abduction" not
+  present) — logged as **DEV-048**, keywords adjusted in the committed JSON. Q1/Q2 matched the plan
+  verbatim. Not yet checked against a real synthesized answer (no RagAgent this session) — Track H
+  must re-verify live.
 
 ---
 

@@ -960,6 +960,13 @@ Pass criteria for REFUSAL:
 
 ### Gold Question Set
 
+> ⚠️ Deviations occurred authoring Q1–5 into `evaluation/gold-questions.json` (Stage 6 Track G). See
+> DEVIATIONS.md #DEV-048: `required_keywords` for Q3, Q4, and Q5 below don't match this table — they
+> were adjusted to the seeded corpus's actual translation vocabulary after a direct `narrative_chunks`
+> grep found the literal words here are absent from the ingested text (e.g. Q3's "nobody" is "Noman"
+> in Murray's 1919 translation; Q4's "Eris"/"discord" never appear — Frazer's Apollodorus translates
+> Eris as "Strife" and doesn't narrate the wedding itself, only the Judgment of Paris that follows it).
+
 | # | Category | Question | Expected Route | `required_keywords` | `required_authors` |
 |---|---|---|---|---|---|
 | 1 | FACT | "Why did Athena turn Arachne into a spider?" | RAG | spider, weaving, Arachne | Ovid |

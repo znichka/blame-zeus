@@ -1,5 +1,50 @@
 [
   {
+    "id": 1,
+    "category": "FACT",
+    "question": "Why did Athena turn Arachne into a spider?",
+    "expected_route": "RAG",
+    "required_keywords": ["spider", "weaving", "Arachne"],
+    "required_authors": ["Ovid"],
+    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
+  },
+  {
+    "id": 2,
+    "category": "FACT",
+    "question": "What was Prometheus punished for?",
+    "expected_route": "RAG",
+    "required_keywords": ["fire", "eagle", "liver"],
+    "required_authors": ["Hesiod"],
+    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
+  },
+  {
+    "id": 3,
+    "category": "FACT",
+    "question": "How did Odysseus escape Polyphemus?",
+    "expected_route": "RAG",
+    "required_keywords": ["Noman", "stake", "eye"],
+    "required_authors": ["Homer"],
+    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
+  },
+  {
+    "id": 4,
+    "category": "FACT",
+    "question": "What happened at the wedding of Peleus and Thetis?",
+    "expected_route": "RAG",
+    "required_keywords": ["apple", "Strife", "Aphrodite"],
+    "required_authors": [],
+    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
+  },
+  {
+    "id": 5,
+    "category": "FACT",
+    "question": "Why did Demeter stop the crops from growing?",
+    "expected_route": "RAG",
+    "required_keywords": ["Persephone", "Hades", "fruit"],
+    "required_authors": [],
+    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
+  },
+  {
     "id": 6,
     "category": "DATA",
     "question": "Which Olympians are children of Cronus?",
