@@ -19,6 +19,8 @@ dependencies {
     runtimeOnly("org.postgresql:postgresql")
     implementation("dev.langchain4j:langchain4j-spring-boot-starter:1.0.0-beta5")
     implementation("dev.langchain4j:langchain4j-open-ai-spring-boot-starter:1.0.0-beta5")
+    // Chat model is Anthropic since ADR-008 (DEV-015); OpenAI starter is kept for the Stage 6 embedding bean.
+    implementation("dev.langchain4j:langchain4j-anthropic-spring-boot-starter:1.0.0-beta5")
     implementation("dev.langchain4j:langchain4j-pgvector:1.0.0-beta5")
     // 2.6.0, not 2.8.3 (DEV-006) — 2.7.0+ requires Spring Boot 3.4.x. DEV-009 — see DEVIATIONS.md.
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")

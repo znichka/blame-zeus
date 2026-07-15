@@ -605,6 +605,13 @@ phrasing.
 > gains a conflict-aware disagreement backstop instruction. The `QueryRouter`, `ConflictQueryHandler`, and
 > `QueryService` snippets below predate this and are retained for context only.
 
+> ⚠️ Amended by DEV-046 (Stage 5 Track 0 spike) — the `LangChain4jConfig` snippet's `ChatLanguageModel`
+> return type and bare `@Qualifier("routingModel")` are stale: the GA-renamed type is `ChatModel`, and
+> disambiguating the two chat beans (`routingModel`/`synthesisModel`) for `@AiService` interfaces requires
+> `@AiService(wiringMode = AiServiceWiringMode.EXPLICIT, chatModel = "routingModel")` on each interface
+> (a LangChain4j bean-name-string lookup, independent of Spring `@Qualifier`), or startup fails with
+> `IllegalConfigurationException`. See DEVIATIONS.md DEV-046 for the full jar-level verification.
+
 ### Package Structure
 
 ```
