@@ -162,27 +162,32 @@ carries `claimValue`, `sourceAuthor`, `sourceWork` only.
 
 _Directory:_ `.../ai/`. _Depends on:_ Track 0. Compiles independently.
 
-- [ ] **B1** **Decide: fold into `EntityExtractor`, or a separate `ConflictProbe`?** ADR-007 §5 and
-  plan §5 both allow either; folding keeps enrichment to **one LLM call**. Plan §5 lists a standalone
-  `EntityExtractor` (temp 0.0, "extracts entity name from question") that **Stage 8's `MixedQueryHandler`
-  also needs**. **Recommendation:** build **one** interface that returns `{subject, claimType}` and have
-  Stage 8 read `.subject` from it — but name/shape it so Stage 8 isn't forced to also compute a
-  claimType it doesn't use. Record the choice; it's a small forward-compat call, not a deviation.
-- [ ] **B2** `ai/ConflictProbe.kt` (or `EntityExtractor.kt` per B1) `@AiService(wiringMode = EXPLICIT,
-  chatModel = "routingModel")`, temp 0.0. `fun extract(question: String): ProbeResult` with a single
-  unannotated param (Track 0.1). Add the `ProbeResult(subject, claimType)` DTO
-  (`.ai` or `.domain.dto`).
-- [ ] **B3** `@SystemMessage` design: extract the **subject entity** (a canonical mythological name —
-  the thing the question is *about*) and the **claim type** the question probes, mapped toward the
-  modeled dimensions (`parentage`, `marriage`, `death`, …). It must return the empty/`none` sentinel
-  (Track 0.2) for `claimType` when the question maps to **no** modeled attribute — e.g. a pure "why did
-  X happen" motivation question — so E skips the structured lookup and lets the RAG backstop cover it.
-  Do **not** try to enumerate every claim type in the prompt (the vocabulary is open, ADR-007 §1); give
-  the model the canonical dimensions plus "or `none`". Temperature 0.0 for determinism.
-- [ ] **B4** Note: the probe's raw `claimType` is a **surface form** (the user's phrasing). `normalize()`
-  is applied by `ConflictLookup`/`QueryService` against the DB alias table (DEV-022) — **not** in this
-  prompt and **not** hand-mapped in Kotlin. The probe should emit natural phrasing; normalization is
-  the DB's job.
+- [x] **B1** Decided: **one** interface, named `ConflictProbe` (matches the name every other doc —
+  ADR-007 §5's pseudocode, CLAUDE.md's architecture section, this file's Track E — already uses for
+  `QueryService`'s `conflictProbe.extract(question)` call). Stage 8's `MixedQueryHandler` can inject
+  the same bean and read only `.subject`, ignoring `.claimType`. Not a deviation — the plan/ADR-007
+  both left the naming open ("may be folded into `EntityExtractor`"); no separate `EntityExtractor`
+  interface is built.
+- [x] **B2** `ai/ConflictProbe.kt` — `@AiService(wiringMode = EXPLICIT, chatModel = "routingModel")`,
+  temp 0.0 (inherited from the `routingModel` bean). `fun extract(question: String): ProbeResult` with
+  a single unannotated param, no `@UserMessage` (Track 0.1). `ProbeResult(subject, claimType)` added to
+  `domain/dto/` (matching `RagResponse`/`Citation`/`ConflictEntry`'s existing home).
+- [x] **B3** `@SystemMessage` extracts `subject` (canonical mythological name) and `claimType` mapped
+  toward the three canonical dimensions confirmed live in `claim_type_aliases`/`V12`
+  (`parentage`/`marriage`/`death` — verified via `V8_2__create_claim_type_aliases.sql`'s comment: "Canonical
+  namespace per ADR-007 §1 / DEV-020"), returning the literal sentinel `"none"` (Track 0.2) otherwise. Does
+  **not** enumerate every possible surface variant — only the three canonicals plus "none", per ADR-007
+  §1's open-vocabulary design. Temperature 0.0 via the `routingModel` bean.
+- [x] **B4** Confirmed by construction: the prompt asks for natural phrasing (`"claimType"` is
+  whichever of the three dimension names fits, or `"none"`) — no alias table content is hand-copied
+  into the `@SystemMessage`. `normalize()` stays exclusively `ConflictLookup`'s job (Track D), per
+  DEV-022.
+
+Tests: `DtoSerializationTest` gained two `ProbeResult` cases (LLM-shaped JSON blob deserialization;
+`"none"`-sentinel round-trip) — no dedicated `ConflictProbeTest` file, matching the existing
+`QueryRouter`/`TextToSqlAgent`/`RagAgent` precedent (interface logic isn't independently unit-tested;
+it's exercised via the mocked interface in the consuming component's tests — here, Track E's
+`QueryServiceTest`). 7/7 `DtoSerializationTest` cases green; full `:core-api:test` suite green.
 
 ---
 

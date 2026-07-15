@@ -64,6 +64,29 @@ class DtoSerializationTest {
     }
 
     @Test
+    fun `ProbeResult deserializes from an LLM-shaped JSON blob`() {
+        // Mirrors the exact shape ConflictProbe's @SystemMessage instructs the model to
+        // return (Stage 7 Track B).
+        val parsed: ProbeResult = mapper.readValue(
+            """{"subject": "Aphrodite", "claimType": "parentage"}"""
+        )
+
+        assertThat(parsed.subject).isEqualTo("Aphrodite")
+        assertThat(parsed.claimType).isEqualTo("parentage")
+    }
+
+    @Test
+    fun `ProbeResult round-trips the none sentinel for an unmodeled claim type`() {
+        // Stage 7 Track 0.2: "none" is a plain non-null string, not an absent/null field, so it
+        // round-trips through Jackson with no null-handling special case.
+        val probe = ProbeResult(subject = "Athena", claimType = "none")
+
+        val roundTripped: ProbeResult = mapper.readValue(mapper.writeValueAsString(probe))
+
+        assertThat(roundTripped).isEqualTo(probe)
+    }
+
+    @Test
     fun `QueryRequest deserializes from a bare question field`() {
         val parsed: QueryRequest = mapper.readValue("""{"question": "Who is Zeus?"}""")
         assertThat(parsed.question).isEqualTo("Who is Zeus?")

@@ -46,7 +46,7 @@ blame-zeus/
 │       │   ├── domain/         (JPA entities, DTOs)
 │       │   ├── repository/
 │       │   ├── routing/        (QueryRouter, RouteDecision — SQL|RAG|MIXED)
-│       │   ├── ai/             (TextToSqlAgent, RagAgent, ConflictSynthesizer, EntityExtractor, ConflictProbe)
+│       │   ├── ai/             (TextToSqlAgent, RagAgent, ConflictSynthesizer, ConflictProbe)
 │       │   ├── handler/        (SqlQueryHandler, RagQueryHandler, MixedQueryHandler)
 │       │   ├── conflict/       (ConflictLookup — shared entity-resolution + variant_claims fetch; not an @AiService)
 │       │   ├── safety/         (SqlSafetyValidator)
@@ -155,9 +155,13 @@ Every LLM role is an interface — no inline `ChatLanguageModel.generate()` call
 | `QueryRouter` | 0.0 | Classifies question → `RouteDecision` enum (`SQL`/`RAG`/`MIXED`) |
 | `TextToSqlAgent` | 0.0 | Generates SQL from schema prompt + question |
 | `RagAgent` | 0.3 | Retrieves narrative chunks, returns `RagResponse{answer, citations}`; conflict-aware backstop for unstructured disagreements |
-| `ConflictSynthesizer` | 0.3 | Formats all attributed versions without picking a winner |
-| `EntityExtractor` | 0.0 | Extracts entity name from question for DB lookup |
-| `ConflictProbe` | 0.0 | Extracts `{subject, claimType}` for enrichment (may be folded into `EntityExtractor`) |
+| `ConflictProbe` | 0.0 | Extracts `{subject, claimType}` for enrichment; no separate `EntityExtractor` interface — Stage 8's `MixedQueryHandler` reuses this bean and reads only `.subject` (Stage 7 Track B1) |
+
+`ConflictSynthesizer` (`ai/ConflictSynthesizer.kt`) is **not** an `@AiService` — `[DEVIATED - see
+DEVIATIONS.md #DEV-051]` it is a deterministic, non-LLM mapper (`variant_claims` rows → `List<ConflictEntry>`),
+since `conflicts[]` presentation is data-driven (ADR-007 §5) and the DTO already carries every field a
+prose pass would add. Formats all attributed versions without picking a winner, same as originally
+planned, just without a chat-model round trip.
 
 `ConflictLookup` (in `conflict/`) is a shared component, **not** an `@AiService` — it resolves the entity (exact → alias → trigram) and exposes two fetches over that resolution: a **claim-type-filtered** fetch (`subject_entity_id = ? AND claim_type = normalize(probeClaimType)`) used by the enrichment step, and a **subject-only** fetch (all `claim_type`s for the entity) used only by the `GET /api/v1/conflicts/{entityName}` browse endpoint, which carries no claim-type context. `QueryService`'s enrichment step wires `ConflictProbe` → `ConflictLookup` (claim-type-filtered) → `ConflictSynthesizer` after any route.
 
