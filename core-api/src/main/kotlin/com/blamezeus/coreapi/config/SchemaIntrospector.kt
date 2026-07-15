@@ -100,9 +100,16 @@ class SchemaIntrospector(private val jdbcTemplate: JdbcTemplate) {
 
     private fun vocabularies(table: String): List<Pair<String, List<String>>> =
         VOCABULARY_COLUMNS.filter { it.table == table }.mapNotNull { vocab ->
-            // table/column come from the compile-time constant below, never from input
+            // table/column come from the compile-time constant below, never from input.
+            // Ordered by frequency (most common first), not alphabetically: extraction
+            // produces a long tail of rare free-text values (e.g. relationships.relation
+            // has 131 distinct strings post-DEV-040, most one-offs), so an alphabetical
+            // LIMIT can silently drop the load-bearing canonical values (parent_of,
+            // married_to, killed_by) in favor of alphabetically-earlier noise. Frequency
+            // ordering keeps the values the model actually needs within any limit.
             val values = jdbcTemplate.queryForList(
-                "SELECT DISTINCT ${vocab.column} FROM ${vocab.table} ORDER BY 1 LIMIT $VOCABULARY_LIMIT",
+                """SELECT ${vocab.column} FROM ${vocab.table}
+                   GROUP BY ${vocab.column} ORDER BY count(*) DESC LIMIT $VOCABULARY_LIMIT""",
                 String::class.java
             )
             if (values.isEmpty()) null else vocab.column to values
