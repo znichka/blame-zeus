@@ -161,13 +161,16 @@ _Directory:_ `core-api/src/main/kotlin/com/blamezeus/coreapi/ai/` (or `.../rag/`
 _Depends on:_ A2 (`EmbeddingModel` bean, injected) + Track 0.1/0.4. This is the DEV-025 replacement for
 `PgVectorEmbeddingStore`.
 
-- [ ] **B1** `ContentRetrieverTest.kt` written first (Testcontainers, `AbstractContainerTest`) — seed a
+- [x] **B1** `ContentRetrieverTest.kt` written first (Testcontainers, `AbstractContainerTest`) — seed a
   handful of `narrative_chunks` rows with known embeddings (or embed via a mocked `EmbeddingModel`
   returning fixed vectors), then assert: (a) top-k ordering by cosine distance, (b) `maxResults = 5`
   cap, (c) `minScore = 0.65` filter drops below-threshold rows, (d) **`passage_ref` dedupe** — two
   sub-chunks sharing a ref don't both appear (DEV-034), (e) each returned `Content` carries
   `source_id` + `passage_ref` in metadata, (f) empty result when nothing clears threshold.
-- [ ] **B2** Implement the custom `ContentRetriever` (`implements dev.langchain4j.rag.content.retrieval
+  — Done as `NarrativeChunkContentRetrieverTest.kt`: 8 seeded rows at precise cosine-similarity
+  angles cover ordering + cap + minScore-drop + dedupe in one assertion, plus 2 more tests for the
+  metadata shape and the fully-empty case. 3/3 green.
+- [x] **B2** Implement the custom `ContentRetriever` (`implements dev.langchain4j.rag.content.retrieval
   .ContentRetriever`): `embeddingModel.embed(query)` → JdbcTemplate query with the **REQUIRED halfvec
   cast** —
   `ORDER BY embedding::halfvec(3072) <=> ($1::vector(3072))::halfvec(3072) LIMIT ?` — selecting
@@ -176,10 +179,21 @@ _Depends on:_ A2 (`EmbeddingModel` bean, injected) + Track 0.1/0.4. This is the 
   `maxResults`/`minScore` (defaults 5 / 0.65) from config or constants — comment that `minScore` is the
   Track H tuning knob (§7). **Do not** hand-embed the vector literal in Kotlin — bind the `float[]` as a
   pgvector parameter (confirm the parameter form: `?::vector(3072)` with a string/array bind).
-- [ ] **B3** Register the retriever as a Spring `@Bean` (or `@Component`) so Track C's `@AiService` can
+  — Done as `NarrativeChunkContentRetriever.kt`. Vector bound via `com.pgvector:pgvector`'s `PGvector`
+  (added as a direct dependency — it was only ever transitive through the now-removed
+  `langchain4j-pgvector`), no manual literal formatting. SQL wraps the halfvec-cast distance in a
+  subquery so `ORDER BY`/`LIMIT`/score all reuse one computed `distance` alias. `maxResults`/`minScore`
+  are `@Value`-injected from `app.rag.max-results`/`app.rag.min-score` (new `application.yml` keys,
+  defaults 5/0.65). SQL over-fetches `maxResults * 3` rows before Kotlin-side minScore filter + dedupe
+  + final cap, so the rare shared-`passage_ref` case doesn't shrink below `maxResults` distinct passages.
+- [x] **B3** Register the retriever as a Spring `@Bean` (or `@Component`) so Track C's `@AiService` can
   bind it (name per Track 0.2).
-- [ ] **B4** Log at DEBUG: query text, returned chunk count, top score, and the `passage_ref`s retrieved
+  — `@Component`, default bean name `narrativeChunkContentRetriever` (matches Track C1's
+  `contentRetriever` attribute). Confirmed live: the full `@SpringBootTest` suite boots cleanly with
+  `RagAgent` wired against this bean name — a mismatch would fail every context-backed test.
+- [x] **B4** Log at DEBUG: query text, returned chunk count, top score, and the `passage_ref`s retrieved
   (mirrors `SqlQueryHandler`'s "Generated SQL" DEBUG line for Track H observability).
+  — Done.
 
 ---
 
@@ -187,20 +201,27 @@ _Depends on:_ A2 (`EmbeddingModel` bean, injected) + Track 0.1/0.4. This is the 
 
 _Directory:_ `.../ai/`. _Depends on:_ Track 0.2/0.3 + B3 (retriever bean, runtime). Compiles independently.
 
-- [ ] **C1** `ai/RagAgent.kt` `@AiService` interface bound to `synthesisModel` (temp 0.3) and the
+- [x] **C1** `ai/RagAgent.kt` `@AiService` interface bound to `synthesisModel` (temp 0.3) and the
   Track-B retriever, per the EXPLICIT-wiring form resolved in Track 0.2 (e.g.
   `@AiService(wiringMode = EXPLICIT, chatModel = "synthesisModel", contentRetriever = "…")`).
   `fun answer(@UserMessage question: String): RagResponse` (confirm `@UserMessage` need per Track 0.3).
-- [ ] **C2** `@SystemMessage`: "Greek mythology scholar, answer using ONLY provided context, return
+  — Done: `contentRetriever = "narrativeChunkContentRetriever"`. No `@UserMessage` — single
+  unannotated `question` param is auto-treated as the user message (Track 0.3), same as
+  `QueryRouter.classify`.
+- [x] **C2** `@SystemMessage`: "Greek mythology scholar, answer using ONLY provided context, return
   JSON `{answer, citations:[{author, work, passageRef}]}`, cite every factual claim, empty citations +
   explanatory sentence when context doesn't support an answer" (plan §5 snippet). **Plus the ADR-007 §3
   conflict-aware backstop** `[DEV-014]`: if retrieved passages give **different accounts of the same
   point from different sources**, present each with its attribution rather than merging or picking one.
   This is the RagAgent *prose* backstop only — structured `variant_claims` enrichment is Stage 7.
-- [ ] **C3** Confirm `RagResponse` DTO (`ai`/`domain.dto`) matches the JSON the system message promises
+  — Done, matches the plan's wording plus the conflict-aware backstop paragraph.
+- [x] **C3** Confirm `RagResponse` DTO (`ai`/`domain.dto`) matches the JSON the system message promises
   (`answer: String`, `citations: List<Citation>`) — it already exists (`domain/dto/RagResponse.kt`);
   verify `Citation` field names (`author`/`work`/`passageRef`/`stance`) deserialize from the model's
   JSON. No new DTO expected.
+  — Confirmed unchanged; no new DTO needed. Full `@SpringBootTest` suite boots cleanly with `RagAgent`
+  registered (proxy creation + retriever/chatModel bean resolution all succeed at context startup) —
+  live JSON deserialization itself is exercised end-to-end starting at Track D/H once a handler calls it.
 
 ---
 

@@ -20,3 +20,6 @@ app:
     embedding-api-key: ${OPENAI_API_KEY}         # always OpenAI — embeddings on text-embedding-3-large since ADR-013
     chat-model: ${LLM_CHAT_MODEL}
     embedding-model: ${EMBEDDING_MODEL:text-embedding-3-large}   # single source of truth (ADR-006); consumer wired in LangChain4jConfig (deferred)
+  rag:
+    max-results: ${RAG_MAX_RESULTS:5}
+    min-score: ${RAG_MIN_SCORE:0.65}   # Track H tuning knob (IMPLEMENTATION_PLAN.md §7)
