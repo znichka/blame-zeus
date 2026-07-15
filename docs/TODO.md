@@ -194,6 +194,8 @@ hit no `forbidden_patterns`; `RagQueryHandlerTest` and the full suite pass.
 - [ ] `QueryService` enrichment step — after `dispatch(route)`, skip on `serviceError`, else `conflictProbe.extract` → `conflictLookup.find` → `conflictSynthesizer.synthesize`; write only `conflicts[]`, wrapped in try/catch so it never breaks the primary answer `[DEVIATED - see DEVIATIONS.md DEV-014]`
 - [ ] `GET /api/v1/conflicts/{entityName}` endpoint — backed by `ConflictLookup`'s **subject-only** fetch (no claim-type context at the URL), not a handler; returns all stored `variant_claims` for the entity across claim_types `[DEVIATED - see DEVIATIONS.md DEV-014]`
 
+→ [Detailed track-by-track checklist](TODO-stage7.md)
+
 ---
 
 ## Stage 8 — Mixed Pipeline
