@@ -168,7 +168,10 @@ and the `text_cleaner` all-caps stripping that would silently delete Homer/Ovid 
 - [ ] `canary-aphrodite.json` golden-vector fixture (generated once via the Python pipeline, with `EMBEDDING_MODEL=text-embedding-3-large` per DEV-028) + `EmbeddingConsistencyTest.kt` (ADR-006, deferred per DEV-015)
 - [ ] `EXPLAIN ANALYZE` index-usage check on the HNSW retrieval query, once ingested data exists — must show `narrative_chunks_embedding_hnsw_idx` (the V8_4 halfvec expression index), which only matches the cast form of the query (ADR-006 §10 addition, deferred per DEV-015; updated based on DEV-028)
 - [ ] Add RAG route to `QueryService`
-- [ ] Router fallback: catches router exceptions, defaults to RAG
+- [ ] Router fallback: catches router exceptions, defaults to RAG (already implemented in Stage 5 — now yields a real RAG answer instead of the placeholder; verify)
+- [ ] Author FACT gold questions Q1–Q5 in `evaluation/gold-questions.json` (currently holds only DATA Q6–Q10; added as this pipeline lands)
+
+→ [Detailed track-by-track checklist](TODO-stage6.md)
 
 ---
 
