@@ -66,7 +66,8 @@ class FlywayMigrationTest : AbstractContainerTest() {
     }
 
     @Test
-    fun `entity_aliases table does not exist yet`() {
-        assertThat(tables()).doesNotContain("entity_aliases")
+    fun `entity_aliases table exists with required columns`() {
+        assertThat(tables()).contains("entity_aliases")
+        assertThat(columns("entity_aliases")).containsAll(listOf("entity_id", "alias"))
     }
 }

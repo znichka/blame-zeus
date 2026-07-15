@@ -751,6 +751,7 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Erigone', 'mortal', NULL, NULL, NULL),
     ('Eriopis', 'mortal', NULL, NULL, NULL),
     ('Eriphyle', 'mortal', NULL, NULL, NULL),
+    ('Eris', 'other_god', NULL, 'strife/discord', NULL),
     ('Erithus', 'hero', NULL, NULL, NULL),
     ('Eros', 'primordial', NULL, NULL, NULL),
     ('Erylaus', 'mortal', NULL, NULL, 'warrior'),
@@ -1002,11 +1003,11 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Ialmenus', 'hero', NULL, NULL, NULL),
     ('Iambe', 'mortal', NULL, NULL, NULL),
     ('Ianassa', 'nymph', NULL, NULL, NULL),
-    ('Ianira', 'other_god', NULL, NULL, 'nereid'),
-    ('Ianthe', 'other_god', NULL, NULL, NULL)
+    ('Ianira', 'other_god', NULL, NULL, 'nereid')
 ON CONFLICT (name) DO NOTHING;
 
 INSERT INTO entities (name, type, generation, domain, subtype) VALUES
+    ('Ianthe', 'other_god', NULL, NULL, NULL),
     ('Iapetides', 'mortal', NULL, NULL, NULL),
     ('Iapetus', 'titan', NULL, NULL, NULL),
     ('Iardanes', 'mortal', NULL, NULL, NULL),
@@ -1209,6 +1210,7 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Medesicaste', 'mortal', NULL, NULL, NULL),
     ('Medon', 'mortal', NULL, NULL, NULL),
     ('Medus', 'mortal', NULL, NULL, NULL),
+    ('Medusa', 'monster', NULL, NULL, 'Gorgon'),
     ('Megamede', 'mortal', NULL, NULL, NULL),
     ('Meganira', 'mortal', NULL, NULL, NULL),
     ('Megapenthes', 'mortal', NULL, NULL, NULL),
@@ -1504,12 +1506,12 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Periboea', 'mortal', NULL, NULL, NULL),
     ('Periclymenus', 'mortal', NULL, NULL, NULL),
     ('Perieres', 'mortal', NULL, NULL, NULL),
-    ('Perileos', 'mortal', NULL, NULL, NULL),
-    ('Perimede', 'mortal', NULL, NULL, NULL),
-    ('Perimela', 'mortal', NULL, NULL, NULL)
+    ('Perileos', 'mortal', NULL, NULL, NULL)
 ON CONFLICT (name) DO NOTHING;
 
 INSERT INTO entities (name, type, generation, domain, subtype) VALUES
+    ('Perimede', 'mortal', NULL, NULL, NULL),
+    ('Perimela', 'mortal', NULL, NULL, NULL),
     ('Perimele', 'nymph', NULL, NULL, NULL),
     ('Perimus', 'mortal', NULL, NULL, 'warrior'),
     ('Periopis', 'mortal', NULL, NULL, NULL),
@@ -1522,6 +1524,7 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Persaeus', 'other_god', NULL, NULL, NULL),
     ('Persephone', 'other_god', NULL, NULL, NULL),
     ('Perses', 'titan', NULL, NULL, NULL),
+    ('Perseus', 'hero', NULL, NULL, NULL),
     ('Perseus son of Nestor', 'mortal', NULL, NULL, NULL),
     ('Peteos', 'mortal', NULL, NULL, NULL),
     ('Petraea', 'other_god', NULL, NULL, NULL),

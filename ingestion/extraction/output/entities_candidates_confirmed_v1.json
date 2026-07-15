@@ -13760,5 +13760,26 @@
     "generation": null,
     "domain": null,
     "subtype": null
+  },
+  {
+    "name": "Perseus",
+    "type": "hero",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Medusa",
+    "type": "monster",
+    "generation": null,
+    "domain": null,
+    "subtype": "Gorgon"
+  },
+  {
+    "name": "Eris",
+    "type": "other_god",
+    "generation": null,
+    "domain": "strife/discord",
+    "subtype": null
   }
 ]
