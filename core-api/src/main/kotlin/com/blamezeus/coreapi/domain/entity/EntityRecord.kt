@@ -18,4 +18,5 @@ class EntityRecord(
     val type: String,
     val generation: Int? = null,
     val domain: String? = null,
+    val subtype: String? = null,
 )
