@@ -229,15 +229,18 @@ _Directory:_ `.../ai/`. _Depends on:_ Track 0.2/0.3 + B3 (retriever bean, runtim
 
 _Directory:_ `.../handler/`. _Depends on:_ C1 (`RagAgent` interface — mocked in test).
 
-- [ ] **D1** `RagQueryHandlerTest.kt` written first — mock `RagAgent`; assert the handler returns
+- [x] **D1** `RagQueryHandlerTest.kt` written first — mock `RagAgent`; assert the handler returns
   `RagResponse.citations` **without any text/prose parsing**, maps `answer`/`citations` straight into
   `QueryResponse(routeDecision = RAG, sqlGenerated = null, conflicts = emptyList())`, and that a
   no-context `RagResponse` (empty citations + "not supported" answer) passes through intact rather than
   erroring. Assert `RagAgent.answer` is called exactly once with the raw question.
-- [ ] **D2** `handler/RagQueryHandler.kt` — `ragAgent.answer(question)` → map `RagResponse` →
+  — Done, written and confirmed red (`Unresolved reference 'RagQueryHandler'`) before D2. 3/3 green
+  after implementation.
+- [x] **D2** `handler/RagQueryHandler.kt` — `ragAgent.answer(question)` → map `RagResponse` →
   `QueryResponse`. Retriever auto-populates context (no manual retrieval call here); citations are
   already structured. `conflicts = emptyList()` (Stage 7 enrichment fills it later); `serviceError`
   left default false.
+  — Done, direct 1:1 mapping, no parsing logic — matches D1's test exactly. Full suite green.
 
 ---
 
