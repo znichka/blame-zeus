@@ -176,7 +176,7 @@ _Depends on:_ D1, D2. _Directory:_ `core-api/src/main/kotlin/com/blamezeus/corea
 
 _Depends on:_ Track C (seed data) + matching Track D repository. Reuse `AbstractContainerTest`.
 
-- [ ] **G1** `SourceRepositoryTest.kt` — `findAll()` returns exactly 6 rows; spot-check one row's `year_published`/`role`
+- [x] **G1** `SourceRepositoryTest.kt` — `findAll()` returns exactly 6 rows; spot-check one row's `year_published`/`role`. **Done:** asserts exactly 6 sources + spot-checks `apollodorus-bibliotheca` (`yearPublished=1921`, `role='spine'`); green in the 38/38 run.
 - [x] **G2** `EntityRecordRepositoryTest.kt` — `findAll()` returns ≥60 rows; `findByNameIgnoreCase("aphrodite")` returns a non-null row named `"Aphrodite"`
 - [x] **G3** `VariantClaimRepositoryTest.kt` — `findByEntityNameIgnoreCase("Aphrodite")` returns ≥2 rows with distinct `claimValue`; assert both known `sourceId`s (`hesiod-theogony`, `homer-iliad`) appear. Extended to also cover Io and Achilles floor conflicts (`[DEVIATED - see DEVIATIONS.md #DEV-042]`).
 - [x] **G4** (optional) `EntityAliasRepositoryTest.kt` — `findByAliasIgnoreCase("Venus")` resolves to the `EntityRecord` named `"Aphrodite"`. **Done:** required completing **D7** first (`EntityAlias` `@Entity` + `EntityAliasRepository`), which V14 (C6) had been blocking; test resolves `"venus"` → entityId → `EntityRecord` named `"Aphrodite"`, plus a null-for-unknown case.
@@ -186,10 +186,10 @@ _Depends on:_ Track C (seed data) + matching Track D repository. Reuse `Abstract
 
 ## Track H — Verification (sequential, run last)
 
-- [ ] **H1** `./gradlew :core-api:test --tests "*.FlywayMigrationTest"` — updated `entity_aliases` assertion passes
-- [ ] **H2** `./gradlew :core-api:test --tests "*RepositoryTest"` — all Track G tests pass
-- [ ] **H3** Start `core-api` locally (DB running): Flyway log shows V9–V14 applied with no `ON CONFLICT` errors
-- [ ] **H4** `psql -U zeus -d blamezeus -c "SELECT count(*) FROM entities"` — ≥60
-- [ ] **H5** `curl localhost:8080/api/v1/entities | jq length` — ≥60
-- [ ] **H6** `curl localhost:8080/api/v1/sources | jq length` — exactly 6
-- [ ] **H7** Spot-check `variant_claims` in the DB: `SELECT * FROM variant_claims vc JOIN entities e ON vc.subject_entity_id = e.id WHERE e.name = 'Aphrodite'` returns ≥2 rows with distinct `claim_value` and `trust_tier=1`
+- [x] **H1** `./gradlew :core-api:test --tests "*.FlywayMigrationTest"` — updated `entity_aliases` assertion passes. **Done:** green.
+- [x] **H2** `./gradlew :core-api:test --tests "*RepositoryTest"` — all Track G tests pass. **Done:** green (G1–G5 + the D-track repo tests).
+- [x] **H3** Start `core-api` locally (DB running): Flyway log shows V9–V14 applied with no `ON CONFLICT` errors. **Done:** dev DB was at V8_4 (V9+ never applied here), so `bootRun` applied all 8 (V9, V9_1, V9_2, V10–V14) forward — "Successfully applied 8 migrations … now at version v14", all `success=t`, no conflict/error lines. `narrative_chunks` (3,524 paid embeddings) preserved — no volume reset needed.
+- [x] **H4** `psql -U zeus -d blamezeus -c "SELECT count(*) FROM entities"` — ≥60. **Done:** 1969.
+- [x] **H5** `curl localhost:8080/api/v1/entities | jq length` — ≥60. **Done:** 1969 (served via read-only `zeus_app`, confirming `afterMigrate` grants reached the new tables).
+- [x] **H6** `curl localhost:8080/api/v1/sources | jq length` — exactly 6. **Done:** 6; `apollodorus-bibliotheca` row verified (`yearPublished=1921`, `role=spine`).
+- [x] **H7** Spot-check `variant_claims` in the DB: `SELECT * FROM variant_claims vc JOIN entities e ON vc.subject_entity_id = e.id WHERE e.name = 'Aphrodite'` returns ≥2 rows with distinct `claim_value` and `trust_tier=1`. **Done:** 13 rows, all `trust_tier=1`, distinct values incl. the Hesiod-*Theogony* sea-foam birth (grouped under `parentage` via the V9_2 alias) and Homer/Apollodorus Zeus/Dione — both `hesiod-theogony` and `homer-iliad` present.

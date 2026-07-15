@@ -102,22 +102,22 @@ and the `text_cleaner` all-caps stripping that would silently delete Homer/Ovid 
 >
 > ⚠️ Amended further by ADR-007 (DEV-014, DEV-018, DEV-019, DEV-020: open `claim_type` + shared `claim_type_aliases.json` normalization, store-all extraction, one canonical edge for contested relationships, normalize-on-promotion, extraction-preferred floor conflicts, unified `death` canonical) and ADR-008 (DEV-015: extraction runs on Claude Opus 4.8 via `instructor.from_anthropic`). Full detail in `TODO-stage4.md`.
 
-- [ ] Build extraction pipeline (`ingestion/extraction/`): `schema.py` (models carry `passage_ref`, populated mechanically from the segment — DEV-021), `known_aliases.json`, `entity_resolver.py`, `claim_extractor.py`, `conflict_detector.py`, `run_extraction.py`; the claim-type normalization map is the `claim_type_aliases` **DB table** (V8_2), not a JSON file `[DEVIATED - see DEVIATIONS.md DEV-014, DEV-020, DEV-021, DEV-022]`
-- [ ] Add `instructor`, `rapidfuzz`, `anthropic` to `ingestion/requirements.txt` `[DEVIATED - see DEVIATIONS.md DEV-015]`
-- [ ] Tune extraction prompt against Apollodorus in `ingestion/notebooks/01_test_extraction.ipynb` before running the full corpus
-- [ ] Run extraction against all 6 ingested sources → `entities_candidates.json`, `relationships_candidates.json`, `variant_claims_candidates.json`
-- [ ] Extraction-quality metric (diagnostic, non-blocking): before any hand-add, log how many cross-source floor conflicts the raw candidates contain unaided (`N/2` — Aphrodite, Achilles; Io is single-source, structurally excluded) `[DEVIATED - see DEVIATIONS.md DEV-019]`
-- [ ] Flyway V9 — seed sources (6 slugs with `year_published`, `role`) — hand-curated; Homeric Hymns `author` is `Anonymous ("Homeric")`, not Hesiod `[DEVIATED - see DEVIATIONS.md DEV-018]`
-- [ ] Flyway V10 — seed entities (~60–100) — merge spot-checked candidates from `entities_candidates.json`
-- [ ] Flyway V11 — seed relationships (parent_of, married_to, killed_by with source attribution + `passage_ref` per DEV-021) — merge spot-checked candidates from `relationships_candidates.json`; a contested relationship keeps exactly **one** canonical spine-preferred edge — the contradiction is recorded in V12 instead `[DEVIATED - see DEVIATIONS.md DEV-014, DEV-021]`
-- [ ] Flyway V12 — seed variant_claims — review candidates in `ingestion/notebooks/02_verify_conflicts.ipynb`, promote approved rows to `trust_tier=1` **writing the normalized canonical `claim_type`** (per the `claim_type_aliases` table, DEV-022) and carrying each row's `passage_ref` (DEV-021) at insert; floor conflicts (Aphrodite parentage, Io parentage, Achilles death) are extraction-preferred — hand-add only the ones extraction missed, recording which path each took; Achilles death seeds under canonical `death`, never `slaying` `[DEVIATED - see DEVIATIONS.md DEV-018, DEV-019, DEV-020, DEV-021, DEV-022]`
-- [ ] Flyway V13 — seed myths + myth_participants — hand-curated, unaffected
-- [ ] Flyway V14 — create + seed entity_aliases (~20 cross-cultural aliases) — hand-curated, unaffected; may reuse `known_aliases.json` as a source list
-- [ ] JPA `@Entity` classes: `Source`, `EntityRecord`, `Relationship`, `Myth`, `MythParticipant`, `VariantClaim`, `NarrativeChunk`, `EntityAlias`
-- [ ] Spring Data JPA repositories for all entities
-- [ ] DTOs: `QueryRequest`, `QueryResponse`, `Citation`, `ConflictEntry`, `RagResponse`
-- [ ] `GET /api/v1/entities` and `GET /api/v1/sources` read endpoints in `QueryController`
-- [ ] Tests: `SourceRepositoryTest`, `EntityRepositoryTest`, `VariantClaimRepositoryTest` (Testcontainers)
+- [x] Build extraction pipeline (`ingestion/extraction/`): `schema.py` (models carry `passage_ref`, populated mechanically from the segment — DEV-021), `known_aliases.json`, `entity_resolver.py`, `claim_extractor.py`, `conflict_detector.py`, `run_extraction.py`; the claim-type normalization map is the `claim_type_aliases` **DB table** (V8_2), not a JSON file `[DEVIATED - see DEVIATIONS.md DEV-014, DEV-020, DEV-021, DEV-022]`
+- [x] Add `instructor`, `rapidfuzz`, `anthropic` to `ingestion/requirements.txt` `[DEVIATED - see DEVIATIONS.md DEV-015]`
+- [x] Tune extraction prompt against Apollodorus in `ingestion/notebooks/01_test_extraction.ipynb` before running the full corpus
+- [x] Run extraction against all 6 ingested sources → `entities_candidates.json`, `relationships_candidates.json`, `variant_claims_candidates.json`
+- [x] Extraction-quality metric (diagnostic, non-blocking): before any hand-add, log how many cross-source floor conflicts the raw candidates contain unaided (`N/2` — Aphrodite, Achilles; Io is single-source, structurally excluded) `[DEVIATED - see DEVIATIONS.md DEV-019]`
+- [x] Flyway V9 — seed sources (6 slugs with `year_published`, `role`) — hand-curated; Homeric Hymns `author` is `Anonymous ("Homeric")`, not Hesiod `[DEVIATED - see DEVIATIONS.md DEV-018]`
+- [x] Flyway V10 — seed entities (~60–100) — merge spot-checked candidates from `entities_candidates.json`
+- [ ] Flyway V11 — seed relationships (parent_of, married_to, killed_by with source attribution + `passage_ref` per DEV-021) — merge spot-checked candidates from `relationships_candidates.json`; a contested relationship keeps exactly **one** canonical spine-preferred edge — the contradiction is recorded in V12 instead `[DEVIATED - see DEVIATIONS.md DEV-014, DEV-021]` — _generated & applied (2,496 rows, verified in Track H); unchecked pending B4's spot-check of the 203 held-out ambiguous-direction rows (see TODO-stage4.md C3/B4)._
+- [ ] Flyway V12 — seed variant_claims — review candidates in `ingestion/notebooks/02_verify_conflicts.ipynb`, promote approved rows to `trust_tier=1` **writing the normalized canonical `claim_type`** (per the `claim_type_aliases` table, DEV-022) and carrying each row's `passage_ref` (DEV-021) at insert; floor conflicts (Aphrodite parentage, Io parentage, Achilles death) are extraction-preferred — hand-add only the ones extraction missed, recording which path each took; Achilles death seeds under canonical `death`, never `slaying` `[DEVIATED - see DEVIATIONS.md DEV-018, DEV-019, DEV-020, DEV-021, DEV-022]` — _generated & applied (44 rows: all 3 floor conflicts, verified in Track H); unchecked pending B5's full review of the remaining ~838 groups (see TODO-stage4.md C4/B5)._
+- [x] Flyway V13 — seed myths + myth_participants — hand-curated, unaffected
+- [x] Flyway V14 — create + seed entity_aliases (~20 cross-cultural aliases) — hand-curated, unaffected; may reuse `known_aliases.json` as a source list
+- [x] JPA `@Entity` classes: `Source`, `EntityRecord`, `Relationship`, `Myth`, `MythParticipant`, `VariantClaim`, `NarrativeChunk`, `EntityAlias`
+- [x] Spring Data JPA repositories for all entities
+- [x] DTOs: `QueryRequest`, `QueryResponse`, `Citation`, `ConflictEntry`, `RagResponse`
+- [x] `GET /api/v1/entities` and `GET /api/v1/sources` read endpoints in `QueryController`
+- [x] Tests: `SourceRepositoryTest`, `EntityRepositoryTest`, `VariantClaimRepositoryTest` (Testcontainers)
 
 → [Detailed track-by-track checklist](TODO-stage4.md)
 
