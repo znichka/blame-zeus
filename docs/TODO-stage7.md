@@ -217,45 +217,50 @@ decision.
 _Directory:_ `.../conflict/` (new package) + matching test dir. _Depends on:_ nothing (start early).
 This is the heaviest track. Reuse `AbstractContainerTest` (DEV-008).
 
-- [ ] **D1** `ConflictLookupTest.kt` written first (Testcontainers, seeds `entities` + `entity_aliases`
-  + `variant_claims` + `sources` + `claim_type_aliases`). Assert:
-  - **(a) exact-name resolution** → returns all `variant_claims` rows for that subject + claim_type.
-  - **(b) alias resolution** — a query for `Venus` resolves to `Aphrodite` via `entity_aliases` (V14).
-  - **(c) trigram fuzzy resolution** — a near-miss spelling resolves via `idx_entities_name_trgm`
-    (`pg_trgm` `similarity()`); pick a realistic threshold and assert a too-far string resolves to
-    **nothing** (no false match).
-  - **(d) resolution precedence** — exact **beats** alias **beats** trigram (a name that is both an
-    exact entity and someone's alias resolves to the exact entity).
-  - **(e) `normalize()` via the DB table** — a probe `claimType` of a surface form (`parents`,
-    `killed by`) fetches rows stored under the canonical (`parentage`, `death`); a canonical passed in
-    directly (`parentage`, which has **no** self-row) still matches (identity fallback).
-  - **(f) claim-type-filtered fetch is precise** — a `death` probe on **Achilles** returns the death
-    rows and **not** any other claim_type; an **appearance** probe on a subject with only a stored
-    death conflict returns **empty** (this is the grounded-refusal guard, ADR-007 §5).
-  - **(g) no source-count gate** — the **Io** floor case (`child of Inachus` vs `child of Piren`,
-    **both `apollodorus-bibliotheca`**) is **returned** even though it's a single-source pair.
-  - **(h) subject-only fetch** returns **all** claim_types for the entity (backs Track F).
-  - **(i) unknown entity / empty result** handled gracefully (empty list, no throw).
-- [ ] **D2** `conflict/ConflictLookup.kt` — a `@Component`. **Entity resolution** three-step chain over
-  one resolution: exact (`LOWER(name) = LOWER(?)`) → `entity_aliases` (`LOWER(alias) = LOWER(?)`) →
-  trigram (`ORDER BY similarity(name, ?) DESC` with a floor threshold). Consider a single SQL/CTE or a
-  short-circuit chain; `VariantClaimRepository.findByEntityNameIgnoreCase` only covers the **exact**
-  step, so the alias + trigram steps need new JPA methods or a `JdbcTemplate` query (the repo layer
-  already mixes both — match local convention). Do **not** hardcode the trust_tier or gate on source
-  count.
-- [ ] **D3** **`normalize()` reads the `claim_type_aliases` DB table** (DEV-022) — `SELECT canonical
-  FROM claim_type_aliases WHERE alias = lower(trim(?))`, identity when no row. **Never** a code-side
-  copy of the map. Apply it to the **probe input only**; match the stored column by exact equality
-  (`claim_type = ?`), leaning on `idx_variant_claims_subject_type`.
-- [ ] **D4** Expose **two fetches over the one resolution**, per ADR-007 §5:
-  - **`find(subject, claimType)`** — claim-type-filtered (`subject_entity_id = ? AND claim_type =
-    normalize(claimType)`). Used by the enrichment step.
-  - **`findAllForEntity(entityName)`** — subject-only, all claim_types for the resolved entity. Used
-    **only** by the `/conflicts/{entityName}` browse endpoint (Track F).
-  Both **join `sources`** so results carry `author`/`work` (+ `passage_ref`, `stance` per A1) — the
-  raw row only has `source_id`.
-- [ ] **D5** Return a shape C can map to `conflicts[]` (raw rows, or already `List<ConflictEntry>` if C1
-  folds the mapping into the lookup — coordinate the C/D boundary so the join+map isn't done twice).
+- [x] **D1** `ConflictLookupTest.kt` written first — 12 cases, all green against real Testcontainers
+  Postgres. Cases (a)/(b)/(c)/(e)/(g) exercise the **real seeded corpus** directly (no fixture
+  seeding needed, matching `VariantClaimRepositoryTest`/`EntityAliasRepositoryTest`'s existing
+  pattern); cases (d)/(f)/(h) hand-insert uniquely-named fixture rows via the repositories (matching
+  `RepositoryQueryTest`'s pattern), since the real seed has no natural exact/alias name collision and
+  no single subject with >1 seeded `claim_type`.
+  - **(a)** `find("Achilles", "death")` → ≥2 distinct real claim values, `sourceAuthor` includes "Homer".
+  - **(b)** `find("Venus", "parentage")` == `find("Aphrodite", "parentage")` (same claim-value set).
+  - **(c)** `find("Aphrodyte", "parentage")` (one-letter typo) resolves via trigram to the same set as
+    `find("Aphrodite", ...)`; `TRIGRAM_THRESHOLD = 0.3` (pg_trgm's own GUC default, matched explicitly
+    rather than relying on the session default) confirmed live to clear the typo and reject
+    `"Zzzxxqqyy999NotAName"` (empty result, no false match).
+  - **(d)** hand-inserted `TestPrecedenceExact` entity + a *different* entity aliased to the same
+    string → `find("TestPrecedenceExact", ...)` returns only the exact entity's row.
+  - **(e)** `find("Aphrodite", "parents")` == `find("Aphrodite", "parentage")`; a direct canonical
+    (`"death"`, which has no self-row in `claim_type_aliases`) still matches via identity fallback.
+  - **(f)** hand-inserted subject with 2 `death` rows + 1 `marriage` row → `find(subject, "death")`
+    returns exactly the 2 death rows; separately, `find("Achilles", "appearance")` (real data, Achilles
+    has zero `appearance` rows) → empty, proving the grounded-refusal guard.
+  - **(g)** `find("Io", "parentage")` includes both the Inachus and Piren claim values (real V12 seed,
+    both cite `apollodorus-bibliotheca`).
+  - **(h)** hand-inserted subject with a `death` row + a `marriage` row → `findAllForEntity(subject)`
+    returns both.
+  - **(i)** `find`/`findAllForEntity` on a nonsense name both return empty lists, no exception.
+- [x] **D2** `conflict/ConflictLookup.kt` — `@Component(JdbcTemplate)`, matching
+  `NarrativeChunkContentRetriever`'s existing raw-SQL-constant + `RowMapper` lambda style (not JPA —
+  the alias/trigram steps have no repository equivalent, and keeping all three resolution steps in one
+  class as plain SQL was simpler than splitting exact/count-as-JPA + alias/trigram-as-JDBC). Three-step
+  **short-circuit chain** (`?:` `firstOrNull()?.let { return it }` per step) — exact never falls
+  through to a same-named alias of a different entity (proven by D1d), alias never reaches the trigram
+  query at all once matched. No `trust_tier` or source-count filtering anywhere in the SQL.
+- [x] **D3** `normalize()` — private method, `SELECT canonical FROM claim_type_aliases WHERE alias =
+  lower(trim(?))`, `?: claimType` for the identity fallback. Applied only inside `find()` to the probe
+  `claimType` argument; the stored `variant_claims.claim_type` column is matched by plain `=`.
+- [x] **D4** `find(subjectName, claimType)` (claim-type-filtered) and `findAllForEntity(entityName)`
+  (subject-only) both implemented, both joining `sources` for `author`/`work`. `passageRef` also
+  selected (Track A1); `stance` deliberately **not** added to the join, matching A1's `ConflictEntry`
+  decision not to carry it.
+- [x] **D5** Returns `List<ConflictClaim>` (`conflict/ConflictClaim.kt`) — a plain 4-field row type
+  (`claimValue`/`sourceAuthor`/`sourceWork`/`passageRef`), deliberately **not** `ConflictEntry` itself,
+  so `conflict/` has no dependency on the `domain/dto` response-DTO layer. Track C maps this 1:1 into
+  `ConflictEntry`.
+
+101/101 `:core-api:test` cases green (12 new in `ConflictLookupTest`, no regressions elsewhere).
 
 ---
 
