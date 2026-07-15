@@ -196,19 +196,20 @@ it's exercised via the mocked interface in the consuming component's tests — h
 _Directory:_ `.../ai/`. _Depends on:_ A2 (its return type) + Track 0. Shape depends entirely on the A2
 decision.
 
-- [ ] **C1** **If A2 chose structured mapping (recommended):** implement `ConflictSynthesizer` as a
-  deterministic component that maps the `ConflictLookup` result rows → `List<ConflictEntry>`
-  (`claimValue` from `variant_claims.claim_value`, `sourceAuthor`/`sourceWork` from the joined
-  `sources`, `passageRef` from `variant_claims.passage_ref` if A1 added it). No LLM, no winner-picking
-  — it just structures. Unit-testable with plain fixtures, no Testcontainers.
-- [ ] **C2** **If A2 kept the LLM prose form:** `ai/ConflictSynthesizer.kt` `@AiService(wiringMode =
-  EXPLICIT, chatModel = "synthesisModel")`, temp 0.3, `@SystemMessage` = "format each attributed
-  version as `According to [Author], [Work]: [claim].`, present **all** versions, **never pick a
-  winner**, never assert the versions contradict (they may be complementary — ADR-007 §1 death
-  killer-vs-manner note)." Feed it a pre-built summary string of the fetched rows (plan §5).
-- [ ] **C3** Whichever form: add a test asserting **every** fetched version appears in the output and
-  **no** version is dropped or ranked — the core product promise. Include the complementary-claims case
-  (one source names the killer, another the manner) to prove it doesn't assert a contradiction.
+- [x] **C1** `ai/ConflictSynthesizer.kt` — `@Component`, no LLM, no Testcontainers dependency.
+  `synthesize(claims: List<ConflictClaim>): List<ConflictEntry>` maps each `ConflictLookup` row
+  straight through (`claimValue`/`sourceAuthor`/`sourceWork`/`passageRef`) in the order received — no
+  filtering, no reordering, no winner-picking. Since `ConflictClaim` (Track D5) and `ConflictEntry`
+  (Track A1) ended up field-for-field identical, the "mapping" is a literal 1:1 copy.
+- [ ] **C2** N/A — A2 chose structured mapping (option a), not the LLM prose form.
+- [x] **C3** `ConflictSynthesizerTest.kt` (plain fixtures, no Testcontainers) — 4 cases: every fetched
+  version appears in the output in input order (asserted via `containsExactly`, proving nothing is
+  dropped or reordered); the complementary-claims case (one `ConflictClaim` naming a killer, another a
+  manner of death) — both survive, neither is ranked over the other, and no synthesized text implying
+  contradiction is possible since the mapper only copies fields; empty input → empty output; a null
+  `passageRef` maps through unchanged. 4/4 green.
+
+Full `:core-api:test` suite: 105/105 green (4 new `ConflictSynthesizerTest` cases, no regressions).
 
 ---
 
