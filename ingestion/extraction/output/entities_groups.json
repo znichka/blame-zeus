@@ -1,0 +1,458 @@
+[
+  {
+    "name": "Cyclopes",
+    "type": "monster group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Hundred-handers",
+    "type": "monster group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Titans",
+    "type": "Titan group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Winds",
+    "type": "deity group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Stars",
+    "type": "deity group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Harpies",
+    "type": "monster group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Phorcides",
+    "type": "monster group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Gorgons",
+    "type": "monster group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Nereids",
+    "type": "nymph group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Giants",
+    "type": "monster group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Fates",
+    "type": "goddess group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Argonauts",
+    "type": "group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Colchians",
+    "type": "group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Teleboans",
+    "type": "group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Taphians",
+    "type": "group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Hesperides",
+    "type": "nymph group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Heraclids",
+    "type": "group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lemnian women",
+    "type": "group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Thebans",
+    "type": "group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cadmeans",
+    "type": "group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Trojans",
+    "type": "group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Graiae",
+    "type": "goddess group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Hecatoncheires",
+    "type": "group of monstrous giants",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Horae",
+    "type": "goddess group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Moerae",
+    "type": "goddess group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Charites",
+    "type": "goddess group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Seasons",
+    "type": "goddess group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cretans",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Epei",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Hours",
+    "type": "goddess group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Sintians",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Danaans",
+    "type": "group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Pylians",
+    "type": "group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Aetolians",
+    "type": "group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Selli",
+    "type": "group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Pierides",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lycian Peasants",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Fauns",
+    "type": "deity group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Satyrs",
+    "type": "creature group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Daughters of Pelias",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Propoetides",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cerastae",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Ciconian Maenads",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Astraean brothers",
+    "type": "divine group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Senate",
+    "type": "group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Calydonians",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Doliones",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Pelasgians",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Bebryces",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Danai",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Solymi",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Amazons",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lycians",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lapiths",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Bistones",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Thracians",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Thesprotians",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Dryopes",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Argives",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Mysians",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Molossians",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cicones",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lotus-eaters",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Achaeans",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Abantes",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Dardanians",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Dolopians",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Paeonians",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Caucones",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Phaeacians",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Ceteians",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lapithae",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cephallenians",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Phrygians",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Rutulians",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Sabines",
+    "type": "mortal group",
+    "generation": null,
+    "domain": null
+  }
+]

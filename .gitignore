@@ -35,8 +35,11 @@ __pycache__/
 ### Corpus (public-domain plaintext; too large for git) ###
 ingestion/corpus/
 
-### Extraction candidates (generated; unreviewed until promoted via B5/B6 into V10-V12) ###
-ingestion/extraction/output/
+### Extraction candidates (ingestion/extraction/output/) ###
+# JSON candidate/review files are tracked (DEV-044) so B3-B6 review edits have git
+# history; the checkpoint cache and OS metadata stay ignored.
+ingestion/extraction/output/.checkpoint.jsonl
+ingestion/extraction/output/.DS_Store
 
 ### Logs ###
 *.log

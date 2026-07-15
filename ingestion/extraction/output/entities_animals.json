@@ -1,0 +1,284 @@
+[
+  {
+    "name": "Arion",
+    "type": "horse",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Balius",
+    "type": "immortal horse",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Xanthus",
+    "type": "immortal horse",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Maera",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Podargus",
+    "type": "horse",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Aethon",
+    "type": "horse",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Chalcis/Cymindis",
+    "type": "bird",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Eous",
+    "type": "horse",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Phlegon",
+    "type": "horse",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Raven",
+    "type": "bird/creature",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Crow",
+    "type": "bird/creature",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Blackfoot",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Tracer",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Glutton",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Quicksight",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Surefoot",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Killbuck",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Tempest",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Hunter",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Wingfoot",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Chaser",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Woodranger",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Wildwood",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Shepherdess",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Harpy",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Racer",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Barker",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Spot",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Tiger",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Stout",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Blanche",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Smut",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lacon",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Storm",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Quickfoot",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Wolfet",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Snap",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Blackcoat",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Bristle",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Towser",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Wildtooth",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Babbler",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Blackmane",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Savage",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Rover",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Ciris",
+    "type": "bird/transformed being",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "stag of Cea",
+    "type": "animal",
+    "generation": null,
+    "domain": null
+  }
+]

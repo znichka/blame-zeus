@@ -1,0 +1,1586 @@
+[
+  {
+    "name": "Troy",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Olympus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lemnos",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Sicily",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cos",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Nisyrum",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Phlegrae",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Pallene",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Erythia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Ossa",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Pelion",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Naxos",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Elis",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Thessaly",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Aetolia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lycormas",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Olenus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Pherae",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Iolcus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Anaurus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Golden Fleece",
+    "type": "object",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Colchis",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Argo",
+    "type": "object",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Dodona",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Mysia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Aphetae",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Clashing Rocks",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Anaphe",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Phoenicia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lindian Athena",
+    "type": "cult image",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lerna",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Seriphus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Thespiae",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cithaeron",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Thebes",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Nemea",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Tiryns",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Delphi",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cleonae",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Mycenae",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Elaeus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Oenoe",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Artemisius",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Ladon",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Arcadia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Psophis",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Erymanthus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Pholoe",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Malea",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Mount Pelion",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Thasos",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Torone",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Ephyra",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Sardinia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Trachis",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Hyria",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Sicyon",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Eleurethae",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Peloponnese",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Corinth",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Phocis",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Mount Phicium",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Colonus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Hestiaea",
+    "type": "city",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Tegea",
+    "type": "city",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Tilphussa",
+    "type": "spring",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Aphidnae",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Phrygia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Ilium",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Palladium",
+    "type": "object",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Ethiopia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Greece",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Salamis",
+    "type": "island/place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Camicus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Areopagus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Icarian Sea",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Tenedos",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Tenos",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Myconos",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Mount Caphareus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Xylophagus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Navaethus",
+    "type": "river",
+    "generation": null,
+    "domain": "Italy"
+  },
+  {
+    "name": "Locris",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cyprus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Carian Chersonnese",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Nine Roads",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Helicon",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Permessus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Hippocrene",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Olmeius",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Nysa",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Delos",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Ortygia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cynthus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Chios",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lycia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Maeonia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lectus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Enienae",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Perrhaebi",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cenaeum",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lelantine plain",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Euripus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Mycalessus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Teumessus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Ocalea",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Haliartus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Crisa",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Parnassus",
+    "type": "mountain",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Peloponnesus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cnossos",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Pylos",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Laconia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Taenarum",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Arena",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Argyphea",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Thryon",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Aepy",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cruni",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Chalcis",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Dyme",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Ithaca",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Dulichium",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Same",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Zacynthus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Ilios",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Gargarus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Hellas",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Caresus",
+    "type": "river",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Aegae",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Imbros",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lectum",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Hellespont",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Pergamus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Samos",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Scheria",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Hypereia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Taygetus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Marathon",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Athens",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Thrace",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Paphos",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Trojan Horse",
+    "type": "object",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Neriton",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cythera",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Moly",
+    "type": "magical herb",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Periphlegethon",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cocytus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Achaea",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Planctae",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Thrinacia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Egypt",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Amnisus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cnosus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Nericus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Nabath",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Persia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Scythia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Tempe",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Pindus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lyrcea",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Boötes",
+    "type": "constellation",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Scorpion",
+    "type": "constellation",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Triones",
+    "type": "constellation",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "serpent",
+    "type": "constellation",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Athos",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Oeta",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Hoemos",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Aetna",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Othrys",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Dindyma",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Mycale",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Caucasus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Alps",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Apennines",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Boeotia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Tanais",
+    "type": "river",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Euphrates",
+    "type": "river",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Orontes",
+    "type": "river",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Ganges",
+    "type": "river",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Thermodon",
+    "type": "river",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Tagus",
+    "type": "river",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cayster",
+    "type": "river",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Hebrus",
+    "type": "river",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Rhine",
+    "type": "river",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Rhone",
+    "type": "river",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Po",
+    "type": "river",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Tiber",
+    "type": "river",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cyclades",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Liguria",
+    "type": "place",
+    "generation": null,
+    "domain": "kingdom"
+  },
+  {
+    "name": "Ursa Major",
+    "type": "constellation",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Sidonia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Tyre",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Frankincense",
+    "type": "plant",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Heliotrope",
+    "type": "plant",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Coral",
+    "type": "plant",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Gyarus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Pachynus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lilybaeus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Sicilia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Pisa",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Ilion",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Marsyas River",
+    "type": "river",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Boebe",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Pittane",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Carthaea",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Teumesia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Calauria",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Myconus",
+    "type": "domain",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cimolus",
+    "type": "domain",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Syros",
+    "type": "domain",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Seriphos",
+    "type": "domain",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Paros",
+    "type": "domain",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Siphnos",
+    "type": "domain",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Oliarus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Didymae",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Gyaros",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Andros",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Oenopia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Hymettus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Ariadne's Crown",
+    "type": "constellation",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lebinthus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Calymne",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Icaria",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Echinades",
+    "type": "islands",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Gnossus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Amathus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Bootes",
+    "type": "constellation/figure",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Anemone",
+    "type": "flower",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Pactolus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lydia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Sardis",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Magnesia",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Trachin",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lyrnessus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Caycus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Pergama",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Messene",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lesbos",
+    "type": "city",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Antandrus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Zancle",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Rhegium",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cumae",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Avernus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Caphareus",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Ardea",
+    "type": "city",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Trojan War",
+    "type": "event",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Erasinus",
+    "type": "river",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Mysus",
+    "type": "river",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Amenanus",
+    "type": "river",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Anigros",
+    "type": "river",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Hypanis",
+    "type": "river",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Antissa",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Leucas",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Helice",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Buris",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Troezen",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "India",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Rome",
+    "type": "city",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Phlegethon",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Island (Tiber Island)",
+    "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Thryoessa",
+    "type": "location",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Minyeïus",
+    "type": "location",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Symplegades",
+    "type": "location",
+    "generation": null,
+    "domain": null
+  }
+]

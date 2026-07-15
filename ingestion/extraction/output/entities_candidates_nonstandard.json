@@ -1,0 +1,1584 @@
+[
+  {
+    "name": "Briareus",
+    "type": "Hundred-hander",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Gyes",
+    "type": "Hundred-hander",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Cottus",
+    "type": "Hundred-hander",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Arges",
+    "type": "Cyclops",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Steropes",
+    "type": "Cyclops",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Brontes",
+    "type": "Cyclops",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Alecto",
+    "type": "Fury",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Tisiphone",
+    "type": "Fury",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Megaera",
+    "type": "Fury",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Curetes",
+    "type": "divine beings",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Amalthea",
+    "type": "nymph/goat",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Asia",
+    "type": "Oceanid",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Styx",
+    "type": "Oceanid",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Electra",
+    "type": "Oceanid",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Doris",
+    "type": "Oceanid",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Eurynome",
+    "type": "Oceanid",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Amphitrite",
+    "type": "Oceanid/Nereid",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Chiron",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Victory",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Dominion",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Emulation",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Violence",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Phorcus",
+    "type": "sea god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Thaumas",
+    "type": "sea god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Nereus",
+    "type": "sea god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Ceto",
+    "type": "sea goddess",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Aello",
+    "type": "Harpy",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Ocypete",
+    "type": "Harpy",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Tityus",
+    "type": "giant",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Marsyas",
+    "type": "satyr",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Ascalaphus",
+    "type": "mortal/daimon",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Porphyrion",
+    "type": "giant",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Alcyoneus",
+    "type": "giant",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Ephialtes",
+    "type": "giant",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Eurytus",
+    "type": "giant",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Clytius",
+    "type": "giant",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Mimas",
+    "type": "giant",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Enceladus",
+    "type": "giant",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Polybotes",
+    "type": "giant",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Hippolytus",
+    "type": "giant",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Gration",
+    "type": "giant",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Agrius",
+    "type": "giant",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Thoas",
+    "type": "giant",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Enipeus",
+    "type": "river god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Phineus",
+    "type": "seer",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Idmon",
+    "type": "seer",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Idyia",
+    "type": "Oceanid",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Alcinous",
+    "type": "mortal/king",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Arete",
+    "type": "mortal/queen",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Talos",
+    "type": "creature",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Evadne",
+    "type": "nymph/mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Argus Panoptes",
+    "type": "monster/giant",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Io",
+    "type": "mortal/nymph",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Piren",
+    "type": "mortal/god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Epaphus",
+    "type": "demigod",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Pegasus",
+    "type": "creature",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Oenomaus",
+    "type": "human",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Chrysaor",
+    "type": "human",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Pindar",
+    "type": "human",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Tiresias",
+    "type": "seer",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Rhadamanthys",
+    "type": "demigod",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Cerynitian Hind",
+    "type": "creature",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Crab",
+    "type": "creature",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Pholus",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Anchius",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Nessus",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Alpheus",
+    "type": "river god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Hippolyte",
+    "type": "queen/Amazon",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Menoetes",
+    "type": "herdsman",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Eryx",
+    "type": "mortal/king",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Antaeus",
+    "type": "giant",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Labdacus",
+    "type": "mortal king",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Laius",
+    "type": "mortal king",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Rhoecus",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Sparta",
+    "type": "heroine",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Arene",
+    "type": "heroine",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Hilaira",
+    "type": "heroine",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Dioscuri",
+    "type": "heroes",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Aesculapius",
+    "type": "god/hero",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Coronis",
+    "type": "heroine",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Sperchius",
+    "type": "god/river",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Calchas",
+    "type": "seer",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Zeuxippe",
+    "type": "goddess/mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Cephisus",
+    "type": "river god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Benthesicyme",
+    "type": "demigod",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Metionids",
+    "type": "family/clan",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Pythia",
+    "type": "oracle",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Geraestus",
+    "type": "Cyclops",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Talthybius",
+    "type": "herald",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Axius",
+    "type": "river god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Penthesilia",
+    "type": "hero/Amazon",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Otrere",
+    "type": "Amazon",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Furies",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Laestrygones",
+    "type": "monster/race",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Erinyes",
+    "type": "monster/spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Desire",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Doom",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Dreams",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Blame",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Woe",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Deceit",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Friendship",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Age",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Toil",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Forgetfulness",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Famine",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Sorrows",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Fightings",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Battles",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Murders",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Manslaughters",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Quarrels",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Lying Words",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Disputes",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Lawlessness",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Ruin",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Oath",
+    "type": "spirit",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Ploto",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Eudora",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Galene",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Speo",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Thoe",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Pasithea",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Agaue",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Nisaea",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Protomedea",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Doris (Nereid)",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Cymodoce",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Cymatolege",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Alimede",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Pontoporea",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Leagore",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Euagore",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Laomedea",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Euarne",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Menippe",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Neso",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Eupompe",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Nemertes",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "eagle",
+    "type": "creature",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Obriareus",
+    "type": "Hundred-Hander",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Zephyr",
+    "type": "wind god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Helios",
+    "type": "deity",
+    "generation": null,
+    "domain": "sun",
+    "subtype": null
+  },
+  {
+    "name": "Telphusa",
+    "type": "nymph/spring deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Phlegyae",
+    "type": "tribe",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Thriae",
+    "type": "divine beings",
+    "generation": null,
+    "domain": "bee-maidens, divination",
+    "subtype": null
+  },
+  {
+    "name": "Sileni",
+    "type": "divine beings",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Myrine",
+    "type": "other",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Idaeus",
+    "type": "herald",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Terror",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Rout",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Discord",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Simoïs",
+    "type": "river god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Archeptolemus",
+    "type": "charioteer",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Prayers",
+    "type": "divine personification",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Sin",
+    "type": "divine personification",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Podarge",
+    "type": "harpy",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Tumult",
+    "type": "deity/personification",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Halitherses",
+    "type": "human",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "East Wind",
+    "type": "wind deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "South Wind",
+    "type": "wind deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Antiphates' daughter",
+    "type": "person",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Antiphates' wife",
+    "type": "person",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Tityos",
+    "type": "giant",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Theoclymenus",
+    "type": "seer",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Melantho",
+    "type": "mortal/servant",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Eperitus",
+    "type": "alias",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Rumor",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "God/Nature",
+    "type": "divine force",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "God (Demiurge/Artificer)",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Eurus",
+    "type": "wind deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Auster",
+    "type": "wind deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Amphrysos",
+    "type": "river god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Apidanus",
+    "type": "river god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Aeas",
+    "type": "river god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Month",
+    "type": "personification",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Year",
+    "type": "personification",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Spring",
+    "type": "personification",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Summer",
+    "type": "personification",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Autumn",
+    "type": "personification",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Winter",
+    "type": "personification",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Fortune",
+    "type": "personification",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Narcissus",
+    "type": "mortal/hero",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Ninus",
+    "type": "human",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Madness",
+    "type": "personification",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Anapis",
+    "type": "river god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Stellio",
+    "type": "mortal/creature",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Aloadae",
+    "type": "giants",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Aura",
+    "type": "concept/nymph",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "The Fates",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Fame",
+    "type": "deity/personification",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Credulity",
+    "type": "personification",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Mistake",
+    "type": "personification",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Joy",
+    "type": "personification",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Sedition",
+    "type": "personification",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Whisper",
+    "type": "personification",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Gryneus",
+    "type": "Lapith",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Charaxus",
+    "type": "Lapith",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Evagrus",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Orneus",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Asbolus",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Areos",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Crenaeus",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Petraeus",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Helops",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Nedymnus",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Rhipheus",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Myles",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Cyllarus",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Hylonome",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Phaeocomes",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Pyretus",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Erigdupus",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Cymelus",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Styphelus",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Elymus",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Pyracmos",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Latreus",
+    "type": "centaur",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Numicius",
+    "type": "river god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Pomona",
+    "type": "goddess/hamadryad",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Hersilia",
+    "type": "mortal/goddess",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Hyena",
+    "type": "creature",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Lynx",
+    "type": "creature",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Cynthia",
+    "type": "deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Tages",
+    "type": "prodigy/deity",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Julius Caesar",
+    "type": "mortal/god",
+    "generation": null,
+    "domain": "war and politics",
+    "subtype": null
+  }
+]
