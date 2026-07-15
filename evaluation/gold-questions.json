@@ -1,0 +1,49 @@
+[
+  {
+    "id": 6,
+    "category": "DATA",
+    "question": "Which Olympians are children of Cronus?",
+    "expected_route": "SQL",
+    "required_keywords": ["Zeus", "Hera", "Poseidon", "Demeter", "Hestia", "Hades"],
+    "required_authors": [],
+    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
+  },
+  {
+    "id": 7,
+    "category": "DATA",
+    "question": "Which heroes are children of Zeus?",
+    "expected_route": "SQL",
+    "required_keywords": ["Heracles", "Perseus"],
+    "required_authors": [],
+    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
+  },
+  {
+    "id": 8,
+    "category": "DATA",
+    "question": "List all monsters Perseus encountered.",
+    "expected_route": "SQL",
+    "required_keywords": ["Medusa", "Gorgon", "Cetus"],
+    "required_authors": [],
+    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
+  },
+  {
+    "id": 9,
+    "category": "DATA",
+    "question": "Trace Zeus's lineage back to Chaos.",
+    "expected_route": "SQL",
+    "required_keywords": ["Cronus", "Ouranos", "Chaos"],
+    "required_authors": [],
+    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"],
+    "sql_must_contain": ["WITH RECURSIVE"]
+  },
+  {
+    "id": 10,
+    "category": "DATA",
+    "question": "Which entities have 'olympian' type?",
+    "expected_route": "SQL",
+    "required_keywords": [],
+    "required_authors": [],
+    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"],
+    "min_row_count": 12
+  }
+]

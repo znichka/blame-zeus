@@ -146,6 +146,8 @@ and the `text_cleaner` all-caps stripping that would silently delete Homer/Ovid 
 - [ ] Log generated SQL at DEBUG level
 - [ ] Wire `POST /api/v1/query` in `QueryController`
 
+→ [Detailed track-by-track checklist](TODO-stage5.md)
+
 ---
 
 ## Stage 6 — RAG Pipeline
