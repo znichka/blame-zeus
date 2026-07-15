@@ -707,6 +707,11 @@ interface RagAgent {
 ```
 LangChain4j `@AiService` resolves `RagResponse` via JSON mode: the `@SystemMessage` instructs the model to return JSON matching the schema, and LangChain4j deserializes it automatically. Without `@SystemMessage` specifying the JSON structure, deserialization of `RagResponse` fails at runtime. `minScore=0.65` is the starting value; tune against gold questions after corpus ingestion (see §7).
 
+> ⚠️ Deviations occurred in this section. See DEVIATIONS.md #DEV-051: `ConflictSynthesizer` is a
+> deterministic, non-`@AiService` mapper (row → `List<ConflictEntry>`), not the LLM prose formatter
+> described below — `conflicts[]` presentation is data-driven per ADR-007 §5, and the DTO
+> (`ConflictEntry`, now with `passageRef`) already carries every field a prose pass would need.
+
 **`ConflictSynthesizer`** — receives pre-built conflict summary string; formats each version as `"According to [Author], [Work]: [claim]."` with no winner chosen. Temperature 0.3.
 
 **`EntityExtractor`** — returns entity name for DB lookup. Used by `ConflictQueryHandler` and `MixedQueryHandler`. Temperature 0.0.

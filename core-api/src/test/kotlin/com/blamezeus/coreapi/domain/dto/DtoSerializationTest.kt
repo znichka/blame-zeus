@@ -20,7 +20,7 @@ class DtoSerializationTest {
             answer = "Hesiod and Homer disagree on Aphrodite's parentage.",
             routeDecision = RouteDecision.RAG,
             citations = listOf(Citation("Hesiod", "Theogony", "188-200", "cosmological")),
-            conflicts = listOf(ConflictEntry("Born from sea foam...", "Hesiod", "Theogony")),
+            conflicts = listOf(ConflictEntry("Born from sea foam...", "Hesiod", "Theogony", "188-200")),
             sqlGenerated = null,
             serviceError = false,
         )
@@ -31,8 +31,20 @@ class DtoSerializationTest {
         assertThat(json["routeDecision"].asText()).isEqualTo("RAG")
         assertThat(json["citations"][0]["passageRef"].asText()).isEqualTo("188-200")
         assertThat(json["conflicts"][0]["sourceAuthor"].asText()).isEqualTo("Hesiod")
+        assertThat(json["conflicts"][0]["passageRef"].asText()).isEqualTo("188-200")
         assertThat(json.has("sqlGenerated")).isTrue()
         assertThat(json["serviceError"].asBoolean()).isFalse()
+    }
+
+    @Test
+    fun `ConflictEntry deserializes without a passageRef when the row predates provenance tracking`() {
+        // Stage 7 Track A1/DEV-051: passageRef is nullable — some hand-authored variant_claims
+        // rows may not carry it, and the enrichment fetch must not choke on its absence.
+        val parsed: ConflictEntry = mapper.readValue(
+            """{"claimValue": "Born from sea foam...", "sourceAuthor": "Hesiod", "sourceWork": "Theogony"}"""
+        )
+
+        assertThat(parsed.passageRef).isNull()
     }
 
     @Test

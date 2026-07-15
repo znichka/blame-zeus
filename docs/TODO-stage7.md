@@ -111,15 +111,28 @@ return** (`{subject, claimType}`) from a temp-0.0 `@AiService`. Everything else 
 single-arg auto-`@UserMessage`, enum/POJO parsing) is already proven. Write findings to a scratch
 note, not the repo; log any contradiction as a DEV entry.
 
-- [ ] **0.1** Confirm a 2-field POJO (`ProbeResult(subject: String, claimType: String)`) deserializes
-  from model JSON the same way `RagResponse` did in Stage 6 (generic reflection `OutputParser`, textual
-  format instructions auto-appended for Anthropic). Confirm a single unannotated `question: String`
-  param is auto-treated as the user message (as `QueryRouter.classify` / `RagAgent.answer` already do)
-  — no `@UserMessage` needed.
-- [ ] **0.2** Decide the empty/absent-`claimType` representation the prompt will emit and the code will
-  test for: an explicit sentinel (`"none"`) vs. empty string. Confirm the chosen sentinel round-trips
-  through beta5 deserialization (no null-vs-missing surprise). This drives B's prompt and E's
-  "skip structured lookup when claimType is none" branch.
+- [x] **0.1** Confirmed via `langchain4j-1.0.0-sources.jar`
+  (`dev.langchain4j.service.output.PojoOutputParser`) and `langchain4j-core-1.0.0-sources.jar`
+  (`dev.langchain4j.internal.Json`): a flat 2-field POJO (`ProbeResult(subject: String, claimType:
+  String)`) goes through the exact same reflection-based `OutputParser` → `Json.fromJson` (Jackson
+  codec by default) path already proven live for `RagResponse` in Stage 6 Track 0.3 — and is a strict
+  *subset* of that case (no nested `List<>`/`ParameterizedType` branch even applies), so mechanically
+  simpler, not riskier. No spike/prototype needed. Single unannotated `question: String` param is
+  auto-treated as the user message (`findUserMessageTemplateFromTheOnlyArgument`), same as
+  `QueryRouter.classify`/`RagAgent.answer` — no `@UserMessage` needed on `ConflictProbe.extract`. See
+  scratch note §0.1.
+- [x] **0.2** Decided: explicit string sentinel **`"none"`**, never empty string or JSON `null`. A
+  non-nullable Kotlin `claimType: String` field has no null branch to safely hit — requiring the model
+  to always emit a concrete literal (`"none"`) for "no modeled claim type" sidesteps any
+  null-vs-missing Jackson-Kotlin deserialization risk entirely, and keeps `ProbeResult` consistent with
+  the existing enum-output precedent (`RouteDecision` also has no null case). Drives B3's prompt
+  (instruct the model to emit literal `"none"`) and E's skip-check (`probe.claimType == "none"`, plain
+  string comparison). See scratch note §0.2.
+
+**No plan contradictions found; no new DEV-NNN required for 0.1. 0.2 is a new decision (not a
+deviation) — recorded for B3/E to consume directly.** Full findings:
+`/private/tmp/claude-501/-Users-ekaterina-alay-Documents-blame-zeus/946ca94d-edf5-47e5-8360-cd7cb1f0310d/scratchpad/track0-stage7-findings.md`
+(scratch note, not part of the repo).
 
 ---
 
@@ -128,27 +141,20 @@ note, not the repo; log any contradiction as a DEV entry.
 _Directory:_ `.../domain/dto/`. Small but blocks C and E — do it first. `ConflictEntry` currently
 carries `claimValue`, `sourceAuthor`, `sourceWork` only.
 
-- [ ] **A1** **Decide the `conflicts[]` element shape.** ADR-007 §5 says surfaced conflicts should
-  cite like RAG answers (`author`/`work`/**`passageRef`**); `variant_claims.passage_ref` (V8_1/DEV-021)
-  exists precisely for this, but the current `ConflictEntry` omits it. Confirm intent: add
-  `passageRef: String?` (and optionally `stance`, mirroring `Citation`) to `ConflictEntry`, or keep it
-  minimal. **Recommendation:** add `passageRef` — it is the whole point of DEV-021 and Track H's
-  attribution check reads cleaner with it. Whatever is decided, `sourceAuthor`/`sourceWork` require a
-  **join `variant_claims → sources`** (the row only stores `source_id` slug); note that for Track D.
-- [ ] **A2** **Resolve what `ConflictSynthesizer` returns** (this is the subtle one — see Track C).
-  Two readings coexist in the docs: plan §5 calls `ConflictSynthesizer` an LLM `@AiService` that
-  *formats* each version as prose; ADR-007 assigns its output to the **structured** `conflicts:
-  List<ConflictEntry>`. Decide: (a) `ConflictSynthesizer` produces **structured** `List<ConflictEntry>`
-  (a plain row→DTO mapping — arguably no LLM needed), or (b) it produces a **prose** summary string
-  that needs a home (a new field on `QueryResponse`/`ConflictEntry`). **Recommendation:** keep
-  `conflicts[]` structured (option a — the DTO already has the exact fields, presentation is
-  data-driven per ADR-007 §5, and a deterministic mapping can't hallucinate an attribution), and if a
-  prose rendering is wanted later, let the web UI format the structured rows. If (a) is chosen,
-  `ConflictSynthesizer` may be a **non-`@AiService` mapper** — record that deviation from plan §5 as a
-  DEV entry, since it changes the interface's nature. If instead the LLM prose form is kept, log where
-  it lands. **Do not skip this decision — E's `.copy(conflicts = …)` type depends on it.**
-- [ ] **A3** Once A1/A2 settle, update `ConflictEntry` (and `QueryResponse` if a prose field is added).
-  Update `DtoSerializationTest` for any new field.
+- [x] **A1** Decided: add `passageRef: String? = null` to `ConflictEntry`, mirroring `Citation`.
+  **`stance` was deliberately left out** — nothing calls for it as strongly as `passageRef`
+  (DEV-021's whole purpose), and `ConflictEntry` should carry only what was added for, not everything
+  `Citation` happens to have. `sourceAuthor`/`sourceWork`/`passageRef` all require Track D's
+  **join `variant_claims → sources`** (the row only stores `source_id` slug).
+- [x] **A2** Decided **(a) structured**: `ConflictSynthesizer` produces `List<ConflictEntry>` via a
+  deterministic, **non-`@AiService`** mapper (row → DTO, no LLM call) — `conflicts[]` presentation is
+  data-driven per ADR-007 §5 and the DTO already has every field needed; a deterministic mapping can't
+  hallucinate an attribution. Logged as `[DEVIATED - see DEVIATIONS.md #DEV-051]` since it changes
+  `ConflictSynthesizer`'s nature from the plan's LLM `@AiService` description. Track C implements it as
+  a `@Component` in `ai/` (same directory, different Spring stereotype).
+- [x] **A3** `ConflictEntry` updated (`passageRef: String? = null`); `QueryResponse` unchanged (no
+  prose field needed). `DtoSerializationTest` updated: existing test asserts `conflicts[0].passageRef`;
+  new test confirms `ConflictEntry` deserializes with `passageRef` absent from the JSON. 5/5 green.
 
 ---
 
