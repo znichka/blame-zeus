@@ -25,11 +25,12 @@ class SqlQueryHandler(
 
         val rows = jdbcTemplate.queryForList(sql)
         if (rows.isEmpty() || isAggregateZero(rows)) {
-            // TODO(Stage 6): wire real RAG fallback via RagQueryHandler (ADR-005 §Decision.3, DEV-026).
-            // RagQueryHandler doesn't exist until Stage 6, so Stage 5 returns this placeholder instead.
-            log.warn("Empty/aggregate-zero SQL result for '{}' — no RAG fallback until Stage 6", question)
+            // QueryService recognizes EMPTY_RESULT_ANSWER and falls back to RagQueryHandler
+            // (ADR-005 §Decision.3, DEV-026) — this handler stays decoupled from RagQueryHandler;
+            // QueryService is the only class that dispatches across handlers.
+            log.info("Empty/aggregate-zero SQL result for '{}' — QueryService will fall back to RAG", question)
             return QueryResponse(
-                answer = "The structured data has no answer for this question.",
+                answer = EMPTY_RESULT_ANSWER,
                 routeDecision = RouteDecision.SQL,
                 citations = emptyList(),
                 conflicts = emptyList(),
@@ -96,5 +97,9 @@ class SqlQueryHandler(
 
     companion object {
         private val log = LoggerFactory.getLogger(SqlQueryHandler::class.java)
+
+        // Exposed so QueryService can recognize this specific placeholder and re-dispatch to RAG
+        // (ADR-005 §Decision.3, DEV-026) without either handler depending on the other.
+        const val EMPTY_RESULT_ANSWER = "The structured data has no answer for this question."
     }
 }

@@ -248,20 +248,35 @@ _Directory:_ `.../handler/`. _Depends on:_ C1 (`RagAgent` interface — mocked i
 
 _Directory:_ `.../service/`. _Depends on:_ D2 (`RagQueryHandler`).
 
-- [ ] **E1** `QueryServiceTest.kt` extended — RAG route now dispatches to `RagQueryHandler` (was the
+- [x] **E1** `QueryServiceTest.kt` extended — RAG route now dispatches to `RagQueryHandler` (was the
   Stage-5 placeholder); `RagQueryHandler` exception → `serviceError == true` + non-blank answer (reuse
   the existing inner try/catch); the **router-failure-defaults-to-RAG** path (already implemented Stage
   5) now yields a real RAG answer, not the placeholder — update that assertion. MIXED stays a
   placeholder (Stage 8).
-- [ ] **E2** `service/QueryService.kt` — inject `RagQueryHandler`; `when(route)` `RAG -> ragQueryHandler
+  — Done: added "a RAG decision dispatches to RagQueryHandler and nowhere else", updated the
+  router-failure test to assert the real `RagQueryHandler` response (not just routeDecision/
+  serviceError), added a RAG-handler-throws case, and updated the router+handler-both-fail case to
+  assert `serviceError == true` (previously commented as "not testable until Stage 6"). MIXED-only
+  placeholder test kept, scoped off RAG. 9/9 green.
+- [x] **E2** `service/QueryService.kt` — inject `RagQueryHandler`; `when(route)` `RAG -> ragQueryHandler
   .handle(question)`; drop the `RAG` arm of `placeholderResponse` (MIXED-only placeholder remains).
   Remove the `// TODO(Stage 6/8)` for RAG.
-- [ ] **E3** **SQL empty-result → RAG fallback** (ADR-005 §Decision.3, DEV-026): `SqlQueryHandler`
+  — Done.
+- [x] **E3** **SQL empty-result → RAG fallback** (ADR-005 §Decision.3, DEV-026): `SqlQueryHandler`
   carries a `// TODO(Stage 6): wire real RAG fallback` marker for its empty / aggregate-zero branch.
   Decide scope: either wire `RagQueryHandler` as the fallback there now, or (if keeping SQL/RAG handlers
   decoupled) have `QueryService` detect the SQL empty-placeholder and re-dispatch to RAG. **Not in the
   master Stage 6 bullet list** — surfaced here from the code marker; confirm intent before implementing,
   and if deferred, re-point the marker to a later stage + log the decision.
+  — User confirmed: implement now, in `QueryService` (keeps `SqlQueryHandler`/`RagQueryHandler`
+  decoupled, per CLAUDE.md's "`QueryService` is the only class that knows about all three handlers"
+  principle). `SqlQueryHandler.EMPTY_RESULT_ANSWER` is now a public companion constant;
+  `QueryService.handleSql` checks the SQL response against it and re-dispatches to `ragQueryHandler
+  .handle(question)` on a match, returning the RAG response in place of the SQL placeholder. Two new
+  `QueryServiceTest` cases (fallback triggers; a genuine SQL answer does not) written first and
+  confirmed red before the implementation. `SqlQueryHandler`'s stale "no RAG fallback until Stage 6"
+  log/comment updated to reflect the real behavior. This fulfills ADR-005 §Decision.3 as originally
+  planned rather than deviating from it, so no new DEV-NNN entry.
 - [ ] **E4** Verify via `curl` in Track H: a FACT question returns `routeDecision: RAG`, non-empty
   `citations`, `sqlGenerated: null`.
 
