@@ -16,12 +16,20 @@ import org.springframework.stereotype.Component
 /**
  * Custom [ContentRetriever] over `narrative_chunks` (DEV-025 — beta5's `PgVectorEmbeddingStore`
  * hardcodes an incompatible `embedding_id UUID/text` schema). Bean name `narrativeChunkContentRetriever`
- * (default `@Component` name) is what `RagAgent`'s EXPLICIT-wiring `contentRetriever` attribute names
- * (Track 0.2).
+ * is what `config.RagConfig`'s `retrievalAugmentor` bean wraps.
  *
  * The retrieval query casts to `halfvec(3072)` on both sides (ADR-013/DEV-028): a plain
  * `embedding <=> ?` silently bypasses `narrative_chunks_embedding_hnsw_idx` (seq scan instead of the
- * HNSW index) since plain-vector HNSW caps at 2000 dims. Verified by Track H5's `EXPLAIN ANALYZE`.
+ * HNSW index) since plain-vector HNSW caps at 2000 dims. Verified by Track H5's `EXPLAIN ANALYZE` —
+ * at the current ~3,500-row corpus size Postgres' planner still prefers a seq scan either way (the
+ * table is too small for the index to pay off), but the cast is confirmed load-bearing: forcing
+ * `enable_seqscan=off` shows only the cast form can use the index at all.
+ *
+ * Joins `sources` for `author`/`work`/`stance`: `narrative_chunks` itself only carries `source_id`.
+ * Every one of `author`/`work`/`passage_ref`/`stance` is attached to the returned `Content`'s
+ * `TextSegment` metadata — `RagConfig`'s `ContentInjector` (`metadataKeysToInclude`) is what actually
+ * forwards these into the LLM's prompt; without it, `RagAgent` only ever sees raw chunk text and
+ * fabricates citations from background knowledge instead (found live in Track H6).
  *
  * `minScore` is the Track H tuning knob (IMPLEMENTATION_PLAN.md §7); `maxResults` is the final
  * post-dedupe cap. The SQL `LIMIT` over-fetches by [OVERFETCH_MULTIPLIER] so that dropping rows to
@@ -46,6 +54,9 @@ class NarrativeChunkContentRetriever(
                     content = rs.getString("content"),
                     sourceId = rs.getString("source_id"),
                     passageRef = rs.getString("passage_ref"),
+                    author = rs.getString("author"),
+                    work = rs.getString("work"),
+                    stance = rs.getString("stance"),
                     score = rs.getDouble("score"),
                 )
             },
@@ -73,10 +84,21 @@ class NarrativeChunkContentRetriever(
         return rows.filter { row -> row.passageRef?.let(seenRefs::add) ?: true }
     }
 
-    private data class Row(val content: String, val sourceId: String, val passageRef: String?, val score: Double) {
+    private data class Row(
+        val content: String,
+        val sourceId: String,
+        val passageRef: String?,
+        val author: String,
+        val work: String,
+        val stance: String,
+        val score: Double,
+    ) {
         fun toContent(): Content {
             val segmentMetadata = buildMap {
                 put("source_id", sourceId)
+                put("author", author)
+                put("work", work)
+                put("stance", stance)
                 passageRef?.let { put("passage_ref", it) }
             }
             return Content.from(
@@ -95,11 +117,12 @@ class NarrativeChunkContentRetriever(
         // (ascending = most similar first) computes the halfvec cast once and reuses it for both
         // ordering and the returned score, rather than repeating the cast expression twice.
         private val RETRIEVAL_SQL = """
-            SELECT content, source_id, passage_ref, 1 - distance AS score
+            SELECT content, source_id, passage_ref, author, work, stance, 1 - distance AS score
             FROM (
-                SELECT content, source_id, passage_ref,
-                       embedding::halfvec(3072) <=> (?::vector(3072))::halfvec(3072) AS distance
-                FROM narrative_chunks
+                SELECT nc.content, nc.source_id, nc.passage_ref, s.author, s.work, s.stance,
+                       nc.embedding::halfvec(3072) <=> (?::vector(3072))::halfvec(3072) AS distance
+                FROM narrative_chunks nc
+                JOIN sources s ON s.id = nc.source_id
                 ORDER BY distance
                 LIMIT ?
             ) ranked

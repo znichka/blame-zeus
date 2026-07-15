@@ -153,23 +153,26 @@ and the `text_cleaner` all-caps stripping that would silently delete Homer/Ovid 
 
 ---
 
-## Stage 6 — RAG Pipeline
-**Done when:** FACT gold questions (Q1–Q5) return cited answers; `RagQueryHandlerTest` passes.
+## Stage 6 — RAG Pipeline ✅ done (2026-07-15)
+**Done when:** FACT gold questions (Q1–Q5) return cited answers; `RagQueryHandlerTest` passes. — **Met**,
+after two rounds of live-verification fixes (see DEV-049/DEV-050 below): all 5 FACT questions route
+`RAG`, return real (non-fabricated) citations, clear their `required_keywords`/`required_authors`, and
+hit no `forbidden_patterns`; `RagQueryHandlerTest` and the full suite pass.
 
 > ⚠️ Updated assumptions based on DEV-004 (see DEVIATIONS.md): LangChain4j is `1.0.0-beta5`. Before implementing, verify beta5 API shapes for `RagAgent @AiService`, `EmbeddingStore`, `ContentRetriever`, and `PgVectorEmbeddingStore` (including `createTable(false)` parameter shape).
 >
 > ⚠️ Updated based on DEV-033/DEV-034 (see DEVIATIONS.md): chunks are **paragraph-aligned** and `narrative_chunks.passage_ref` is the paragraph's **corpus-native range** (`"3.38-3.57"`; points for Apollodorus sections; ADR-014 Amendments 1–2) — the chunk's ref IS the citation, exact at both ends; display may elide it classically (`Il. 3.38–57`) but the stored form keeps the full prefix. `metadata.sentence_refs` entries all carry the paragraph's start marker (audit/forward-compat; no finer resolution exists in the corpus). Retrieval-time near-duplicate handling is **no longer a concern**: cross-chunk overlap was dropped (mean redundancy now 1–3%); the only near-duplicates are sub-chunks of the ~160 oversized paragraphs, which share a `passage_ref` — dedupe retrieved chunks by `passage_ref` when building the prompt if two sub-chunks of one paragraph both rank in top-k.
 
-- [ ] Tests first: `RagQueryHandlerTest` (mock `RagAgent`, assert `RagResponse.citations` returned without text parsing)
-- [ ] `RagAgent.kt` `@AiService` interface — JSON structured return (`RagResponse`); system message includes the conflict-aware backstop instruction: if retrieved passages give different accounts of the same point from different sources, present each with its attribution rather than merging or picking one (ADR-007 §3) `[DEVIATED - see DEVIATIONS.md DEV-014]`
-- [ ] `RagQueryHandler.kt`
-- [ ] `LangChain4jConfig.kt` — `embeddingModel` bean only; **no `PgVectorEmbeddingStore`/`EmbeddingStoreContentRetriever` beans** — beta5's store hardcodes its own `embedding_id UUID`/`text` schema and cannot read `narrative_chunks(id, content, …)` (verified against the pinned jar). Instead: small custom `ContentRetriever` over `JdbcTemplate` (embed query → `ORDER BY embedding::halfvec(3072) <=> (?::vector(3072))::halfvec(3072) LIMIT 5` — the halfvec cast is REQUIRED to hit V8_4's expression index, a plain `embedding <=> ?` silently seq-scans (updated based on DEV-028, see DEVIATIONS.md); minScore=0.65 filter, returning `source_id`/`passage_ref` for citations); drop `langchain4j-pgvector` from `build.gradle.kts`. Embedding model name injected from `app.llm.embedding-model` (`EMBEDDING_MODEL` env var, now `text-embedding-3-large` per ADR-013), not hardcoded (ADR-006, deferred per DEV-015) `[DEVIATED - see DEVIATIONS.md DEV-025]`
-- [ ] `EmbeddingConsistencyChecker.kt` — `ApplicationReadyEvent` check that the configured embedding model matches what the corpus rows were embedded with (the `narrative_chunks.embedding_model` column exists since V8_4/DEV-028 — compares against `text-embedding-3-large`); logs errors, never blocks startup (ADR-006, deferred per DEV-015)
-- [ ] `canary-aphrodite.json` golden-vector fixture (generated once via the Python pipeline, with `EMBEDDING_MODEL=text-embedding-3-large` per DEV-028) + `EmbeddingConsistencyTest.kt` (ADR-006, deferred per DEV-015)
-- [ ] `EXPLAIN ANALYZE` index-usage check on the HNSW retrieval query, once ingested data exists — must show `narrative_chunks_embedding_hnsw_idx` (the V8_4 halfvec expression index), which only matches the cast form of the query (ADR-006 §10 addition, deferred per DEV-015; updated based on DEV-028)
-- [ ] Add RAG route to `QueryService`
-- [ ] Router fallback: catches router exceptions, defaults to RAG (already implemented in Stage 5 — now yields a real RAG answer instead of the placeholder; verify)
-- [ ] Author FACT gold questions Q1–Q5 in `evaluation/gold-questions.json` (currently holds only DATA Q6–Q10; added as this pipeline lands)
+- [x] Tests first: `RagQueryHandlerTest` (mock `RagAgent`, assert `RagResponse.citations` returned without text parsing)
+- [x] `RagAgent.kt` `@AiService` interface — JSON structured return (`RagResponse`); system message includes the conflict-aware backstop instruction: if retrieved passages give different accounts of the same point from different sources, present each with its attribution rather than merging or picking one (ADR-007 §3) `[DEVIATED - see DEVIATIONS.md DEV-014, DEV-046, DEV-049]`
+- [x] `RagQueryHandler.kt`
+- [x] `LangChain4jConfig.kt` — `embeddingModel` bean only; **no `PgVectorEmbeddingStore`/`EmbeddingStoreContentRetriever` beans** — beta5's store hardcodes its own `embedding_id UUID`/`text` schema and cannot read `narrative_chunks(id, content, …)` (verified against the pinned jar). Instead: small custom `ContentRetriever` over `JdbcTemplate` (embed query → `ORDER BY embedding::halfvec(3072) <=> (?::vector(3072))::halfvec(3072) LIMIT 5` — the halfvec cast is REQUIRED to hit V8_4's expression index, a plain `embedding <=> ?` silently seq-scans (updated based on DEV-028, see DEVIATIONS.md); minScore=0.5 filter (retuned from the 0.65 starting value, DEV-050), returning `source_id`/`passage_ref`/`author`/`work`/`stance` for citations, joined from `sources` (DEV-049)); drop `langchain4j-pgvector` from `build.gradle.kts`. Embedding model name injected from `app.llm.embedding-model` (`EMBEDDING_MODEL` env var, now `text-embedding-3-large` per ADR-013), not hardcoded (ADR-006, deferred per DEV-015) `[DEVIATED - see DEVIATIONS.md DEV-025, DEV-049, DEV-050]`
+- [x] `EmbeddingConsistencyChecker.kt` — `ApplicationReadyEvent` check that the configured embedding model matches what the corpus rows were embedded with (the `narrative_chunks.embedding_model` column exists since V8_4/DEV-028 — compares against `text-embedding-3-large`); logs errors, never blocks startup (ADR-006, deferred per DEV-015)
+- [x] `canary-aphrodite.json` golden-vector fixture (generated once via the Python pipeline, with `EMBEDDING_MODEL=text-embedding-3-large` per DEV-028) + `EmbeddingConsistencyTest.kt` (ADR-006, deferred per DEV-015)
+- [x] `EXPLAIN ANALYZE` index-usage check on the HNSW retrieval query, once ingested data exists — must show `narrative_chunks_embedding_hnsw_idx` (the V8_4 halfvec expression index), which only matches the cast form of the query (ADR-006 §10 addition, deferred per DEV-015; updated based on DEV-028) `[DEVIATED - see DEVIATIONS.md DEV-050 — at the current ~3,524-row corpus size Postgres' planner prefers a seq scan by default regardless of the cast; forcing enable_seqscan=off confirms the cast is still load-bearing/required]`
+- [x] Add RAG route to `QueryService`
+- [x] Router fallback: catches router exceptions, defaults to RAG (already implemented in Stage 5 — now yields a real RAG answer instead of the placeholder; verify)
+- [x] Author FACT gold questions Q1–Q5 in `evaluation/gold-questions.json` (currently holds only DATA Q6–Q10; added as this pipeline lands) `[DEVIATED - see DEVIATIONS.md DEV-048, DEV-050]`
 
 → [Detailed track-by-track checklist](TODO-stage6.md)
 

@@ -960,12 +960,15 @@ Pass criteria for REFUSAL:
 
 ### Gold Question Set
 
-> ⚠️ Deviations occurred authoring Q1–5 into `evaluation/gold-questions.json` (Stage 6 Track G). See
-> DEVIATIONS.md #DEV-048: `required_keywords` for Q3, Q4, and Q5 below don't match this table — they
-> were adjusted to the seeded corpus's actual translation vocabulary after a direct `narrative_chunks`
-> grep found the literal words here are absent from the ingested text (e.g. Q3's "nobody" is "Noman"
-> in Murray's 1919 translation; Q4's "Eris"/"discord" never appear — Frazer's Apollodorus translates
-> Eris as "Strife" and doesn't narrate the wedding itself, only the Judgment of Paris that follows it).
+> ⚠️ Deviations occurred authoring and live-verifying Q1–5 into `evaluation/gold-questions.json`
+> (Stage 6 Tracks G and H). See DEVIATIONS.md #DEV-048, #DEV-049, and #DEV-050:
+> `required_keywords` for Q3, Q4, and Q5 below don't match this table — DEV-048's static corpus grep
+> adjusted them once (e.g. Q3's "nobody" → "Noman", the word Murray's 1919 translation actually
+> uses), then DEV-050's live `bootRun` run against the real RAG pipeline (after DEV-049 fixed a
+> citation-fabrication bug) found the model's actual retrieval+synthesis behavior disagreed with
+> several of those corpus-literal predictions and revised them a second time — see DEV-050 for the
+> final values and why a static grep can't substitute for a live run. `min-score` (§5/Track B) is
+> also retuned from this table's `0.65` starting value to `0.5` per DEV-050.
 
 | # | Category | Question | Expected Route | `required_keywords` | `required_authors` |
 |---|---|---|---|---|---|

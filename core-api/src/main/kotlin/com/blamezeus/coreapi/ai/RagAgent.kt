@@ -5,15 +5,18 @@ import dev.langchain4j.service.SystemMessage
 import dev.langchain4j.service.spring.AiService
 import dev.langchain4j.service.spring.AiServiceWiringMode.EXPLICIT
 
-// Bound to "synthesisModel" (temp 0.3) and the Track B retriever bean by Spring bean name —
-// LangChain4j EXPLICIT wiring, not @Qualifier (DEV-046). contentRetriever must be named explicitly:
-// under EXPLICIT wiring a ContentRetriever does NOT auto-attach even with only one candidate bean
-// in the context (Track 0.2). No @UserMessage needed on the single unannotated `question` param —
-// AiServices treats it as the user message automatically, same as QueryRouter.classify (Track 0.3).
+// Bound to "synthesisModel" (temp 0.3) and config.RagConfig's "retrievalAugmentor" bean by Spring
+// bean name — LangChain4j EXPLICIT wiring, not @Qualifier (DEV-046). Wired via retrievalAugmentor,
+// NOT contentRetriever: AiServices throws if both are set, and only the RagConfig-wrapped augmentor
+// actually forwards author/work/passage_ref/stance metadata into the prompt (found live at Track
+// H6 — the plain contentRetriever wiring left RagAgent fabricating citations from background
+// knowledge, since LangChain4j's default no-arg ContentInjector only ever injects raw chunk text).
+// No @UserMessage needed on the single unannotated `question` param — AiServices treats it as the
+// user message automatically, same as QueryRouter.classify (Track 0.3).
 @AiService(
     wiringMode = EXPLICIT,
     chatModel = "synthesisModel",
-    contentRetriever = "narrativeChunkContentRetriever",
+    retrievalAugmentor = "retrievalAugmentor",
 )
 interface RagAgent {
 
@@ -21,6 +24,11 @@ interface RagAgent {
         """
         You are a Greek mythology scholar. Answer the question using ONLY the provided context
         passages — never rely on outside knowledge, even if you know the answer.
+
+        Each retrieved passage is followed by its own "author:", "work:", "passage_ref:", and
+        "stance:" fields. Use those EXACT values verbatim in your citations — never guess,
+        paraphrase, or invent an author, work, or passage reference, and never quote the passage's
+        prose text itself as if it were a passage reference.
 
         Cite every factual claim: return JSON matching exactly this shape:
         {"answer": "...", "citations": [{"author": "...", "work": "...", "passageRef": "..."}]}

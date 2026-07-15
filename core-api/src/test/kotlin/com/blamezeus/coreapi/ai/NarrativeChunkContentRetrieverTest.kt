@@ -58,7 +58,7 @@ class NarrativeChunkContentRetrieverTest : AbstractContainerTest() {
     }
 
     @Test
-    fun `each returned Content carries source_id and passage_ref in metadata`() {
+    fun `each returned Content carries source_id, author, work, stance, and passage_ref in metadata`() {
         insertChunk("row content", "ovid-metamorphoses", "6.129-6.145", vectorAtScore(1.00))
 
         val retriever = NarrativeChunkContentRetriever(jdbcTemplate, fixedEmbeddingModel(queryVector), maxResults = 5, minScore = 0.65)
@@ -67,6 +67,9 @@ class NarrativeChunkContentRetrieverTest : AbstractContainerTest() {
 
         assertThat(result.textSegment().metadata().getString("source_id")).isEqualTo("ovid-metamorphoses")
         assertThat(result.textSegment().metadata().getString("passage_ref")).isEqualTo("6.129-6.145")
+        assertThat(result.textSegment().metadata().getString("author")).isEqualTo("Ovid")
+        assertThat(result.textSegment().metadata().getString("work")).isEqualTo("Metamorphoses")
+        assertThat(result.textSegment().metadata().getString("stance")).isEqualTo("poetic-myth")
         assertThat(result.metadata()[ContentMetadata.SCORE] as Double).isCloseTo(1.00, org.assertj.core.data.Offset.offset(1e-3))
     }
 

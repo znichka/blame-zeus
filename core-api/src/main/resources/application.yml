@@ -22,4 +22,8 @@ app:
     embedding-model: ${EMBEDDING_MODEL:text-embedding-3-large}   # single source of truth (ADR-006); consumer wired in LangChain4jConfig (deferred)
   rag:
     max-results: ${RAG_MAX_RESULTS:5}
-    min-score: ${RAG_MIN_SCORE:0.65}   # Track H tuning knob (IMPLEMENTATION_PLAN.md §7)
+    # Tuned down from the §7 starting value of 0.65 to 0.5 at Track H8 (DEV-049): live FACT Q3/Q5
+    # top-1 cosine scores against the real corpus/embedding model landed at 0.605/0.627 — genuinely
+    # relevant top hits, but below 0.65 — while a clearly off-topic negative-control question still
+    # scored low enough to return zero chunks at 0.5, confirming headroom against noise.
+    min-score: ${RAG_MIN_SCORE:0.5}
