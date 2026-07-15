@@ -270,31 +270,42 @@ This is the heaviest track. Reuse `AbstractContainerTest` (DEV-008).
 _Directory:_ `.../service/`. _Depends on:_ B (`ConflictProbe`), C (`ConflictSynthesizer`), D
 (`ConflictLookup`). This is where the ADR-007 §5 pseudocode lands.
 
-- [ ] **E1** `QueryServiceTest` extended (mock `ConflictProbe`/`ConflictLookup`/`ConflictSynthesizer`).
-  Assert:
-  - a conflict-shaped question routed to **SQL** yields a populated `conflicts[]` (enrichment runs
-    after the SQL answer, not as a route).
-  - the same for a **RAG**-routed question — proving router-independence.
-  - a **claim-type mismatch** (probe returns `appearance`, subject has only a stored `death` conflict)
-    → **empty** `conflicts[]`, `answer` unchanged.
-  - a probe returning `none` claimType → structured lookup **skipped**, `answer` unchanged.
-  - **enrichment throwing** (probe or lookup or synthesizer) → primary `answer` returned **intact**,
-    error logged, `serviceError` **not** flipped by enrichment (it's not a primary-answer failure).
-  - enrichment **skipped entirely** when the primary answer already has `serviceError == true`.
-  - enrichment writes **only** `conflicts[]` — `answer`, `routeDecision`, `citations`, `sqlGenerated`
-    are byte-identical to the pre-enrichment response (guards the "FACT/DATA scoring untouched" claim).
-- [ ] **E2** `QueryService.kt` — inject `ConflictProbe`, `ConflictLookup`, `ConflictSynthesizer`. After
-  `dispatch(route)` returns, run the ADR-007 §5 block: skip on `serviceError`; `probe = conflictProbe
-  .extract(question)`; if `claimType` is not `none`, `conflicts = conflictLookup.find(subject,
-  claimType)`; if non-empty, `answer = answer.copy(conflicts = conflictSynthesizer.synthesize(...))`.
-  **Wrap the whole enrichment in try/catch** that logs and returns the answer unchanged. Keep this as a
-  private `enrich(answer, question)` helper called from the one place `handle()` returns a real answer
-  (SQL, RAG, and — when it lands in Stage 8 — MIXED all flow through it).
-- [ ] **E3** Confirm the enrichment runs for the **SQL empty-result → RAG fallback** path too (Stage 6
-  E3): the fallback returns a RAG answer, which must still be enriched. Make sure `enrich()` wraps the
-  final returned answer, not each branch individually, so the fallback isn't accidentally un-enriched.
-- [ ] **E4** Update the `QueryService` class doc comment — it currently says nothing about enrichment;
-  per CLAUDE.md it is "the only class that knows about all three handlers **plus** the enrichment step."
+- [x] **E1** `QueryServiceTest` extended: `conflictProbe`/`conflictLookup`/`conflictSynthesizer` mocks
+  added to the constructor call; an `init` block defaults `conflictProbe.extract(any())` to
+  `ProbeResult("Unknown", "none")` so all 11 pre-Stage-7 tests keep passing byte-for-byte unchanged
+  (enrichment no-ops on the "none" sentinel) without touching their bodies. 8 new cases added:
+  - SQL-routed conflict-shaped question → populated `conflicts[]` after the SQL answer.
+  - RAG-routed conflict-shaped question → same, proving router-independence.
+  - claim-type mismatch (`appearance` probe, `conflictLookup.find` stubbed empty) → empty
+    `conflicts[]`, `answer` unchanged (grounded-refusal guard).
+  - `none` claimType → `conflictLookup.find`/`conflictSynthesizer.synthesize` verified **never**
+    called.
+  - three separate throwing cases (`conflictProbe`, `conflictLookup`, `conflictSynthesizer` each in
+    turn) → answer returned intact, `serviceError` stays `false`.
+  - `serviceError == true` primary answer → all three conflict collaborators verified never called.
+  - a populated-conflicts case asserting `answer`/`routeDecision`/`citations`/`sqlGenerated` are
+    exactly the pre-enrichment values, only `conflicts` differs.
+  19/19 green (11 original + 8 new).
+- [x] **E2** `QueryService.kt` — constructor gained `conflictProbe`/`conflictLookup`/
+  `conflictSynthesizer`. `handle()` now captures the dispatch result as `answer` and returns
+  `enrich(answer, question)` instead of returning the dispatch result directly. Private `enrich()`:
+  returns `answer` unchanged immediately if `answer.serviceError`; otherwise
+  `conflictProbe.extract(question)` → skip (return `answer`) if `claimType == "none"` (companion
+  constant `NO_CLAIM_TYPE`) → `conflictLookup.find(probe.subject, probe.claimType)` (normalization
+  happens **inside** `ConflictLookup`, per Track D3 — `QueryService` passes the raw surface form) →
+  skip if empty → `answer.copy(conflicts = conflictSynthesizer.synthesize(claims))`. Whole body
+  wrapped in try/catch that logs via `log.warn` and returns `answer` unchanged on any exception.
+- [x] **E3** Confirmed structurally and with a dedicated test
+  (`Track E3 -- the SQL-empty-result to RAG fallback answer still gets enriched, not skipped`):
+  `enrich()` is called exactly once, on `handle()`'s single `answer` variable — `handleSql`'s
+  internal empty-result → `ragQueryHandler.handle()` fallback happens *before* `enrich()` ever runs,
+  so the fallback's RAG answer is what gets enriched, never bypassed.
+- [x] **E4** `QueryService`'s class doc comment rewritten: now states it is "the only class that
+  knows about all three handlers ... *plus* the router-independent conflict enrichment step,"
+  naming the ConflictProbe → ConflictLookup → ConflictSynthesizer chain and the
+  conflicts-only/never-breaks-the-answer guarantees.
+
+Full `:core-api:test` suite green (115/115 total; no regressions in any other class).
 
 ---
 
