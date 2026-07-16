@@ -92,6 +92,24 @@
     "min_row_count": 12
   },
   {
+    "id": 11,
+    "category": "MIXED",
+    "question": "Which heroes had a divine parent and died at Troy?",
+    "expected_route": "MIXED",
+    "required_keywords": ["Troy", "divine"],
+    "required_authors": ["Homer"],
+    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
+  },
+  {
+    "id": 12,
+    "category": "MIXED",
+    "question": "What is the divine lineage connecting Achilles to Zeus?",
+    "expected_route": "MIXED",
+    "required_keywords": ["Peleus", "Thetis", "Zeus"],
+    "required_authors": ["Apollodorus"],
+    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
+  },
+  {
     "id": 13,
     "category": "CONFLICT",
     "question": "Who were Aphrodite's parents?",

@@ -213,26 +213,34 @@ _File:_ `evaluation/gold-questions.json` (currently 14 questions; MIXED Q11/Q12 
 authoring against the live seed — **fully parallel with Tracks 0/A/B/C**. No `EvaluationRunner` is
 built here (that's Stage 10) — Track E validates by hand / `curl`.
 
-- [ ] **D1** Add **Q11** — `"Which heroes had a divine parent and died at Troy?"`, `category: "MIXED"`,
-      `expected_route: "MIXED"`, `required_keywords` (e.g. `["Troy", "divine"]` per IMPLEMENTATION_PLAN
-      §998), `required_authors` (a source that actually narrates Trojan deaths, e.g. Homer — verify it's
-      in the seeded corpus first). Content check scores on `answer` keywords + `citations[]` author
-      (MIXED scoring path, IMPLEMENTATION_PLAN §1018-1019) — **not** on `conflicts[]`.
-- [ ] **D2** Add **Q12** — `"What is the divine lineage connecting Achilles to Zeus?"`,
-      `category: "MIXED"`, `expected_route: "MIXED"`, `required_keywords: ["Peleus", "Thetis", "Zeus"]`
-      (IMPLEMENTATION_PLAN §999), `required_authors` from the seeded genealogy source (Apollodorus /
-      Hesiod — verify). This one leans on the SQL lineage filter feeding the RAG narration.
-- [ ] **D3** Verify against the live DB that the SQL filter for each is *answerable* — the entities /
-      relationships needed (heroes with divine parents + Trojan-death participation for Q11; the
-      Peleus→Achilles / Zeus→…→Peleus edges for Q12) actually exist in the seeded `entities`/
-      `relationships`/`myth_participants` tables. If a question isn't answerable from the seed, adjust
-      the phrasing/keywords rather than shipping an unscoreable gold question (note any change here).
-- [ ] **D4** Confirm neither Q11 nor Q12 depends on conflict enrichment to score — they are MIXED, and
-      a stray `conflicts[]` population (if the probe happens to fire) must not be *required* for the
-      point. Sanity-check the `subject`/`claimType` the probe would extract isn't a stored conflict
-      that pollutes the answer (DEV-053 phrasing-sensitivity awareness).
-- [ ] **D5** Re-validate the JSON parses and the count is now 16 (14 + Q11 + Q12); ids stay consistent
-      with the existing scheme (Q11/Q12 slot between DATA Q10 and CONFLICT Q13).
+- [x] **D1** Added **Q11** — `"Which heroes had a divine parent and died at Troy?"`, `category: "MIXED"`,
+      `expected_route: "MIXED"`, `required_keywords: ["Troy", "divine"]`, `required_authors: ["Homer"]`
+      (verified against the live DB: Sarpedon, `child_of` Zeus, is killed by Patroclus across several
+      richly-narrated `homer-iliad` chunks, e.g. passage_ref `16.419-16.501` — a real answerable
+      divine-parent-died-at-Troy case in the seeded corpus).
+- [x] **D2** Added **Q12** — `"What is the divine lineage connecting Achilles to Zeus?"`,
+      `category: "MIXED"`, `expected_route: "MIXED"`, `required_keywords: ["Peleus", "Thetis", "Zeus"]`,
+      `required_authors: ["Apollodorus"]` (verified: `apollodorus-bibliotheca` passages 3.13.5/3.13.6
+      narrate Peleus + Thetis directly).
+- [x] **D3** Verified against the live DB (`docker exec blame-zeus-postgres-1 psql`):
+      `relationships` has both `Achilles son_of/child_of Peleus` and `Peleus father_of Achilles`, plus
+      **two independent Zeus paths** — `Zeus father_of Aeacus father_of Peleus father_of Achilles` and
+      `Zeus parent_of Thetis mother_of Achilles` — so Q12's lineage filter is answerable multiple ways.
+      For Q11, `Sarpedon child_of Zeus` is in `relationships` and his death at Patroclus's hands is
+      narrated across `homer-iliad` passage_refs `16.419-16.501`; no `myths`/`myth_participants` row
+      names Troy explicitly (only "The Judgment of Paris" mentions "near Troy"), but MIXED's design
+      doesn't require that — the SQL filter finds divine-parent heroes, RAG supplies "died at Troy"
+      from Iliad narrative. Both questions answerable from the Phase 1 seed as authored; no phrasing
+      change needed.
+- [x] **D4** Confirmed via `variant_claims` query: `Zeus`/`Peleus`/`Thetis` have **zero** stored
+      conflict rows, so Q12 can't trigger stray `conflicts[]`. `Achilles` does have 22 stored `death`
+      claims (feeds Q15's CONFLICT question) and Q11's phrasing ("died at Troy") could plausibly make
+      `ConflictProbe` extract `subject=Achilles, claimType=death` (DEV-053) — but structurally harmless:
+      `QueryService.enrich()` only ever writes `conflicts[]`, never touches `answer`/`citations`, so
+      MIXED scoring (which reads only those two) can't be polluted either way.
+- [x] **D5** Re-validated: `python3 -c "import json; json.load(open('evaluation/gold-questions.json'))"`
+      parses cleanly, count is now 16 (was 14 + Q11 + Q12), ids
+      `[1..10, 11, 12, 13, 14, 15, 18]` — Q11/Q12 slot between DATA Q10 and CONFLICT Q13 as planned.
 
 ---
 
