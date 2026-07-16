@@ -205,13 +205,17 @@ first load shows only the form. Each sub-block is independently checkable.
 
 _Depends on: A4._ New file `config/OpenApiConfig.kt`. Minimal per A4.
 
-- [ ] **D1** `@Configuration class OpenApiConfig` with `@Bean fun customOpenAPI(): OpenAPI` returning
+- [x] **D1** `@Configuration class OpenApiConfig` with `@Bean fun customOpenAPI(): OpenAPI` returning
       `OpenAPI().info(Info().title("blame-zeus Core API").version("1.0").description("Greek Mythology
       Lore Assistant — source-attributed Q&A with conflict awareness"))`. Uses springdoc `2.6.0`'s
       `io.swagger.v3.oas.models.*` API surface (DEV-009) — verify imports resolve against `2.6.0`.
 - [ ] **D2** (optional polish, not required for done) `@Tag`/`@Operation` on `QueryController`
       endpoints for nicer Swagger grouping. Skip if time-boxed.
-- [ ] **D3** Confirm the app still starts and `/v3/api-docs` reflects the custom title (Track F.2).
+- [x] **D3** Confirm the app still starts and `/v3/api-docs` reflects the custom title (Track F.2).
+      Covered by `OpenApiConfigTest` (`@AutoConfigureMockMvc` over `AbstractContainerTest`): asserts
+      `/v3/api-docs`'s `info.title`/`info.version` and that `/swagger-ui/index.html` returns 200 — no
+      live LLM calls involved (springdoc reflects static bean config), so no `@MockkBean` needed here,
+      unlike Track B's DEV-055.
 
 ---
 
