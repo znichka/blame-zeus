@@ -208,6 +208,8 @@ hit no `forbidden_patterns`; `RagQueryHandlerTest` and the full suite pass.
 - [ ] Add MIXED route to `QueryService`
 - [ ] `QueryService` inner try-catch: handler failures return `serviceError=true` response
 
+→ [Detailed track-by-track checklist](TODO-stage8.md)
+
 ---
 
 ## Stage 9 — Web UI
