@@ -90,5 +90,45 @@
     "required_authors": [],
     "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"],
     "min_row_count": 12
+  },
+  {
+    "id": 13,
+    "category": "CONFLICT",
+    "question": "Who were Aphrodite's parents?",
+    "expected_route": "SQL",
+    "required_keywords": ["foam", "Zeus", "Dione"],
+    "required_authors": ["Hesiod", "Homer"],
+    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"],
+    "conflicts_min_count": 2
+  },
+  {
+    "id": 14,
+    "category": "CONFLICT",
+    "question": "Who was Io's father?",
+    "expected_route": "RAG",
+    "required_keywords": ["Inachus", "Piren"],
+    "required_authors": ["Apollodorus"],
+    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"],
+    "conflicts_min_count": 2
+  },
+  {
+    "id": 15,
+    "category": "CONFLICT",
+    "question": "How did Achilles die?",
+    "expected_route": "RAG",
+    "required_keywords": ["Paris", "arrow", "heel"],
+    "required_authors": [],
+    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"],
+    "conflicts_min_count": 2
+  },
+  {
+    "id": 18,
+    "category": "CONFLICT",
+    "question": "Why did Achilles withdraw from the fighting after his quarrel with Agamemnon?",
+    "expected_route": "RAG",
+    "required_keywords": ["Agamemnon"],
+    "required_authors": ["Homer"],
+    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"],
+    "conflicts_min_count": 0
   }
 ]

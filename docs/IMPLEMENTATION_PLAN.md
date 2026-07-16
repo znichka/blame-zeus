@@ -975,6 +975,14 @@ Pass criteria for REFUSAL:
 > final values and why a static grep can't substitute for a live run. `min-score` (§5/Track B) is
 > also retuned from this table's `0.65` starting value to `0.5` per DEV-050.
 
+> ⚠️ Deviations occurred authoring the CONFLICT subset (Stage 7 Track G). See DEVIATIONS.md #DEV-052:
+> Q13's `required_keywords` below (`Ouranos, Zeus, Dione`) is stale — the real seed's Hesiod row says
+> "Heaven", never "Ouranos"/"Uranus" (same entity-naming quirk as DEV-047), so the committed JSON uses
+> `foam` in its place. The committed JSON also adds a `conflicts_min_count` key (2 for Q13–15, mirroring
+> Stage 5's `min_row_count` pattern) not shown in this table, and a **new id 18** (outside this table's
+> Q1–17 range) as the Track G2 negative claim-type-mismatch case — ids 11–12 (MIXED) and 16–17
+> (REFUSAL) remain deliberately unfilled for Stages 8/10, not reused for Q18.
+
 | # | Category | Question | Expected Route | `required_keywords` | `required_authors` |
 |---|---|---|---|---|---|
 | 1 | FACT | "Why did Athena turn Arachne into a spider?" | RAG | spider, weaving, Arachne | Ovid |
@@ -1177,6 +1185,15 @@ Build in phases to validate each layer before building on it. For each phase, wr
 > `CONFLICT` route and no `ConflictQueryHandler`; build `ConflictProbe` + shared `ConflictLookup` + the
 > `QueryService` enrichment step instead. The phase 7 verification row below still holds (Aphrodite question
 > returns ≥2 attributed versions), but via enrichment on a SQL/RAG route, not a `CONFLICT` route.
+>
+> ⚠️ Deviations occurred in Stage 7 (Tracks A–H, all complete). See DEVIATIONS.md #DEV-051 through
+> #DEV-053. Notably (Track H live run, DEV-053): the Aphrodite conflict was confirmed live on **both**
+> a direct SQL route and a direct RAG route (13 attributed versions either way); the Io floor case
+> (single-source Inachus-vs-Piren pair) surfaced live via the SQL-empty→RAG fallback path, confirming
+> Track E3 end-to-end; and the Achilles claim-type-mismatch guard (Track G2's Q18) held live with the
+> probe correctly resolving `subject: "Achilles"` despite the question also naming `"Agamemnon"`. A
+> pre-existing `SqlQueryHandler` answer-formatting defect was found for relationship-style SQL queries
+> (raw joined-column dump instead of prose) — flagged, not fixed, as out of this stage's scope.
 >
 > ⚠️ Deviations occurred in Stage 2. See DEVIATIONS.md for details (DEV-010 through DEV-013).
 >

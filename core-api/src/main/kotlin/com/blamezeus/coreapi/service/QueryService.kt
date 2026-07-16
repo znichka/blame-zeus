@@ -72,9 +72,11 @@ class QueryService(
 
         return try {
             val probe = conflictProbe.extract(question)
+            log.debug("Conflict probe for '{}': subject='{}', claimType='{}'", question, probe.subject, probe.claimType)
             if (probe.claimType == NO_CLAIM_TYPE) return answer
 
             val claims = conflictLookup.find(probe.subject, probe.claimType)
+            log.debug("Conflict lookup for subject='{}', claimType='{}': {} rows", probe.subject, probe.claimType, claims.size)
             if (claims.isEmpty()) return answer
 
             answer.copy(conflicts = conflictSynthesizer.synthesize(claims))

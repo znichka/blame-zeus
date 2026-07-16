@@ -340,19 +340,34 @@ fetch is used.
 _Directory:_ `evaluation/gold-questions.json`. _Independent_ — pure authoring against the seeded
 `variant_claims`. Track H consumes these.
 
-- [ ] **G1** Add CONFLICT questions following `IMPLEMENTATION_PLAN.md §7` schema (matching the existing
-  FACT/DATA shape). Each must hit a **real seeded conflict** — from V12 the reliable ones are
-  **Aphrodite parentage** (Zeus/Dione across Hesiod/Homer/Apollodorus/Hymns/Ovid — 6+ sources),
-  **Achilles death** (Paris vs Apollo across Homer/Ovid/Apollodorus), and **Io parentage** (the
-  single-author Inachus-vs-Piren floor case). Encode the expectation as **≥2 attributed versions in
-  `conflicts[]`** — note the §7 runner may need a `conflicts_min_count`-style forward-compat key
-  (mirror how Stage 5 added `min_row_count`/`sql_must_contain`); state it if you add one.
-- [ ] **G2** Author at least one **negative claim-type-mismatch** case for Track H to prove the filter:
-  a question about a claim type the subject has **no** stored conflict for (e.g. an appearance/motivation
-  question about Achilles) → expects **empty** `conflicts[]` while still returning a normal answer.
-- [ ] **G3** Sanity-check each question against live `variant_claims` (a quick `psql` select on
-  `subject_entity_id` + `claim_type`) **before** committing, so H isn't chasing conflicts the seed
-  data can't surface — mirror the Stage 6 lesson that shortfalls trace to data, not pipeline.
+- [x] **G1** Added Q13 (Aphrodite parentage, `expected_route: SQL` per the plan's own ADR-007
+  amendment note), Q14 (Io parentage, `SQL`), Q15 (Achilles death, `RAG`) to
+  `evaluation/gold-questions.json`. Each hits a real V12 conflict — 13/9/22 rows respectively,
+  confirmed live against the seed file (Track G3). Added a `conflicts_min_count: 2` key to all three
+  — the forward-compat key the track anticipated, mirroring Stage 5's `min_row_count`/
+  `sql_must_contain` pattern — since "≥2 distinct `conflicts[]` entries" wasn't otherwise
+  machine-checkable. `[DEVIATED - see DEVIATIONS.md #DEV-052]`: Q13's `required_keywords` swapped
+  `"Ouranos"` → `"foam"` (the real Hesiod row says "Heaven", never "Ouranos"/"Uranus" — same
+  entity-naming quirk as DEV-047); Q14/Q15 keywords matched the real seed as-written, no change.
+- [x] **G2** Added **Q18** (`"Why did Achilles withdraw from the fighting after his quarrel with
+  Agamemnon?"`, category `CONFLICT`, `expected_route: RAG`, `conflicts_min_count: 0`) as the negative
+  claim-type-mismatch case — a genuine narrative/motivation question (real content: "Agamemnon"
+  appears 174× in the raw Iliad corpus file, concentrated in the Book 1 quarrel), expecting a normal
+  answer with **empty** `conflicts[]` despite Achilles having 22 real stored death-conflict rows.
+  `[DEVIATED - see DEVIATIONS.md #DEV-052]`: deliberately a **new id (18)**, not a reuse of the
+  plan's REFUSAL Q16 wording — REFUSAL's `refusal_criteria` schema is Stage 10's scope per this
+  stage's own intro, and Q18 needs a normal (non-refusal) answer, so reusing Q16 would have been the
+  wrong shape. ids 11–12 (MIXED, Stage 8) and 16–17 (REFUSAL, Stage 10) are left as intentional gaps.
+- [x] **G3** Sanity-checked all four new questions against the real `V12__seed_variant_claims.sql`
+  rows (a direct grep/parse of the migration file, same method as DEV-048 — no live DB/LLM needed
+  for a static text check): row counts, every `required_keywords` entry, and every `required_authors`
+  entry (via the `sources` table's real `author` column, not the `source_id` slug) all confirmed
+  present before committing. Flagged for Track H: `expected_route` for Q13–15 is the plan's ADR-007
+  *prediction* (parentage→SQL, death→RAG), not yet live-confirmed; and Q18's `ConflictProbe` must be
+  checked to actually extract `subject: "Achilles"` rather than `"Agamemnon"` (the question names
+  both) before trusting `conflicts_min_count: 0` as a clean pass rather than an accidental one.
+
+`evaluation/gold-questions.json` now has 14 entries (ids 1–10, 13–15, 18); valid JSON confirmed.
 
 ---
 
@@ -361,35 +376,58 @@ _Directory:_ `evaluation/gold-questions.json`. _Independent_ — pure authoring 
 _Depends on:_ all tracks. Needs a live `.env` (`LLM_API_KEY` + `LLM_CHAT_MODEL` for chat,
 `OPENAI_API_KEY` for embedding) and the DB at Flyway head with the full seed + ingested corpus.
 
-- [ ] **H1** Unit/integration suites green: `ConflictLookupTest` (all D1 cases incl. alias, trigram,
-  precedence, normalize-via-DB, claim-type filter, **Io no-gate**, empty), Track C synthesizer test,
-  `QueryServiceTest` enrichment cases, and the Track F endpoint test.
-- [ ] **H2** Boot with real `.env`. **`POST /api/v1/query {"question":"Who were Aphrodite's parents?"}`**
-  → inspect `routeDecision` (it will be `SQL` or `RAG` — **not** `CONFLICT`, which doesn't exist) and
-  confirm `conflicts[]` has **≥2 entries from different authors** (Zeus per most sources vs. Dione per
-  Homer/Apollodorus). This is the stage's headline "done when."
-- [ ] **H3** **Router-independence proof:** confirm the Aphrodite conflict surfaces **whatever** route
-  it took. If it routes SQL, also try a phrasing that routes RAG (or temporarily observe both) and
-  confirm `conflicts[]` is populated either way. Record the actual `routeDecision` seen.
-- [ ] **H4** **Claim-type filter proof (grounded-refusal guard):** ask the Track G2 negative case (an
-  appearance/motivation question about a subject with only a stored *death* conflict) → `conflicts[]`
-  is **empty**, primary `answer` still returned. This protects gold REFUSAL scoring (Stage 10).
-- [ ] **H5** **Single-source floor proof:** `POST` an Io parentage question → `conflicts[]` surfaces the
-  Inachus-vs-Piren pair **even though both cite `apollodorus-bibliotheca`** (no runtime source-count
-  gate). Confirms CLAUDE.md's "hand-added single-source floor case still surfaces."
-- [ ] **H6** **Enrichment-never-breaks-the-answer proof:** verify a normal FACT/DATA question that has
-  **no** stored conflict returns exactly as it did in Stages 5/6 — same `answer`, `citations`,
-  `sqlGenerated`, `routeDecision`, empty `conflicts[]`. (Regression guard: enrichment writes only
-  `conflicts[]`.) Optionally force a probe/lookup failure and confirm the answer still returns.
-- [ ] **H7** **Attribution quality:** confirm each `conflicts[]` entry carries a real
-  `sourceAuthor`/`sourceWork` (and `passageRef` if A1 added it) from the `sources` join — no
-  `"Unknown"`/placeholder authors (the Stage 6 DEV-049 failure mode; the join must be real).
-- [ ] **H8** **`GET /api/v1/conflicts/Aphrodite`** returns all stored versions across claim_types;
-  `GET /api/v1/conflicts/Venus` resolves via alias; an unknown name behaves per F1's decision.
-- [ ] **H9** `EXPLAIN`/log spot-check (optional): confirm the claim-type-filtered fetch uses
-  `idx_variant_claims_subject_type` (or note the same small-table seq-scan caveat as Stage 6 H5 if the
-  planner declines it at seed scale — not a bug).
-- [ ] **H10** Log any deviations in `DEVIATIONS.md` (new DEV-NNN — the A2 `ConflictSynthesizer`
-  structured-vs-prose decision and the B1 probe/EntityExtractor fold are the likely ones), mark
-  affected items above with `[DEVIATED - see DEVIATIONS.md #DEV-NNN]`, add the stage-note pointer to
-  `IMPLEMENTATION_PLAN.md §9`, and flip the Stage 7 boxes in `TODO.md`.
+- [x] **H1** Full `:core-api:test` re-run immediately before the live run: 118/118 green (includes
+  all `ConflictLookupTest` D1 cases, the Track C synthesizer test, all `QueryServiceTest` enrichment
+  cases, and the Track F endpoint test).
+- [x] **H2** Booted with real `.env` against the live Postgres (Flyway at V15, full 6-source/3,524-chunk
+  corpus, 1,969 entities, 44 `variant_claims` confirmed via `psql` before starting).
+  **`POST /api/v1/query {"question":"Who were Aphrodite's parents?"}`** → `routeDecision: "SQL"` (not
+  `CONFLICT`), `conflicts[]` has **13 entries** spanning 5 distinct real authors (Hesiod, Apollodorus,
+  Homer, Anonymous ("Homeric"), Ovid) — Zeus (per most) vs. Dione (per Homer/Apollodorus) both present.
+  Headline "done when" confirmed.
+- [x] **H3** **Router-independence confirmed both ways.** The same underlying fact, phrased to hit RAG
+  instead (`"What do the ancient sources say about who Aphrodite's parents were?"`), also routed
+  `RAG` and also surfaced the identical 13-entry conflict set (debug log: `Conflict probe ...
+  subject='Aphrodite', claimType='parentage'` → `Conflict lookup ... 13 rows`). A more narrative
+  phrasing (`"Tell me the story of how Aphrodite was born."`) routed `RAG` but the probe extracted
+  `claimType='none'` for that specific phrasing, so `conflicts[]` stayed empty — see `[DEVIATED -
+  see DEVIATIONS.md #DEV-053]` for the phrasing-sensitivity finding and why it's accepted, not fixed.
+- [x] **H4** Track G2's Q18 (`"Why did Achilles withdraw from the fighting after his quarrel with
+  Agamemnon?"`) → probe correctly extracted `subject='Achilles'` (not `'Agamemnon'`, resolving
+  DEV-052's flagged concern), `claimType='none'` → `conflicts[]` empty, primary `answer` a normal,
+  richly-cited response (Homer + Apollodorus). Grounded-refusal guard confirmed live.
+- [x] **H5** `POST {"question":"Who was Io's father?"}` → SQL tried first, returned zero rows (log:
+  `"Empty/aggregate-zero SQL result ... falling back to RAG"`), RAG fallback answer enriched with
+  **9** conflict entries including both `"child of Inachus"` and `"child of Piren"` (**both**
+  `Apollodorus`/`Bibliotheca`) — the single-source floor case, no runtime source-count gate. This
+  also live-confirms Track E3 end-to-end (the fallback path genuinely gets enriched, not just via
+  the `QueryServiceTest` mock).
+- [x] **H6** `POST {"question":"Why did Athena turn Arachne into a spider?"}` (Q1, no stored conflict)
+  → probe extracted `claimType='none'`, enrichment no-op'd cleanly, answer/citations identical in
+  substance to the Stage 6 live result (Ovid/Metamorphoses, 3 citations, empty `conflicts[]`).
+  Probe/lookup/synthesizer failure-injection already covered thoroughly by `QueryServiceTest`'s 3
+  dedicated throwing cases (Track E1) — not re-run live, since mocked failure injection is the
+  correct tool for that and a live run can't safely force an internal exception anyway.
+- [x] **H7** Every `conflicts[]` entry across all live queries above carries a real `sourceAuthor`
+  (Hesiod, Apollodorus, Homer, Anonymous ("Homeric"), Ovid — never "Unknown") and `sourceWork`, plus
+  real `passageRef` values (e.g. `"176-232"`, `"2.1.2-2.1.3"`) — the `sources` join is genuinely live,
+  not a placeholder.
+- [x] **H8** `GET /api/v1/conflicts/Aphrodite` → 13 entries. `GET /api/v1/conflicts/Venus` → **byte-
+  identical** response body (`diff` confirmed) via alias resolution. `GET
+  /api/v1/conflicts/DefinitelyNotARealEntityXyz123` → HTTP 200, `[]` — matches Track F1's decision.
+- [x] **H9** `EXPLAIN ANALYZE` on the live claim-type-filtered query: `Index Scan using
+  idx_variant_claims_subject_type` (`Index Cond: (subject_entity_id = $0) AND (claim_type =
+  'parentage')`), 0.072ms total — **unlike** Stage 6 H5's vector-index seq-scan caveat, the planner
+  does choose this index at the current table size/selectivity. No caveat needed.
+- [x] **H10** Logged `[DEVIATED - see DEVIATIONS.md #DEV-053]`: Q14's actual live route is `RAG` (via
+  the SQL-empty→RAG fallback), not the plan's predicted `SQL` — `evaluation/gold-questions.json`
+  corrected. `ConflictProbe`'s claim-type extraction is narrative-phrasing-sensitive (documented,
+  not fixed — the RAG backstop is the designed complementary layer). A pre-existing `SqlQueryHandler`
+  answer-formatting defect (raw joined-column dump for a relationship-style query) was found and
+  flagged, not fixed — out of Stage 7 scope, and confirmed **not** to affect Q13's actual CONFLICT
+  gold score (which reads `conflicts[].claimValue`, not `answer`). Added permanent `log.debug` lines
+  to `QueryService.enrich()` (mirrors the existing `NarrativeChunkContentRetriever` convention).
+  `IMPLEMENTATION_PLAN.md §9` stage-note pointer added; `TODO.md` Stage 7 boxes flipped.
+
+**Stage 7 is complete.** All tracks A–H done; 118/118 automated tests green; live-verified end-to-end
+against the real Anthropic API, the real 6-source corpus, and the live Postgres instance.
