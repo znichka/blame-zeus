@@ -84,5 +84,10 @@ class SchemaIntrospectorTest : AbstractContainerTest() {
         // fresh instance: the shared bean's prompt is cached from before this data existed
         val prompt = SchemaIntrospector(jdbcTemplate).get()
         assertThat(prompt).contains("relation values: 'parent_of'")
+        // Enum columns surfaced as live values (DEV-054) so the model uses exact stored casing.
+        // Order-independent (values are frequency-ordered): assert the vocabulary line is emitted.
+        assertThat(prompt).contains("type values:")
+        assertThat(prompt).contains("stance values:")
+        assertThat(prompt).contains("role values:")
     }
 }

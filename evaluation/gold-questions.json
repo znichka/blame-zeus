@@ -103,7 +103,7 @@
   {
     "id": 12,
     "category": "MIXED",
-    "question": "What is the divine lineage connecting Achilles to Zeus?",
+    "question": "Explain the divine lineage that connects Achilles to Zeus, as the sources tell it.",
     "expected_route": "MIXED",
     "required_keywords": ["Peleus", "Thetis", "Zeus"],
     "required_authors": ["Apollodorus"],

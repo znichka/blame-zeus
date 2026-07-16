@@ -249,30 +249,69 @@ built here (that's Stage 10) — Track E validates by hand / `curl`.
 _Depends on:_ B + C + D. No new automated tests here — this is the end-to-end confirm against the real
 API + corpus + Postgres, mirroring Stage 7's Track H.
 
-- [ ] **E1** Full `:core-api:test` green (all handler + service tests, including the new
-      `MixedQueryHandlerTest` and the reworked `QueryServiceTest` MIXED cases). Record the count.
-- [ ] **E2** Boot with real `.env` against live Postgres (Flyway at head, full 6-source corpus).
-      `POST /api/v1/query {"question":"Which heroes had a divine parent and died at Troy?"}` →
-      assert `routeDecision: "MIXED"`, an answer that names actual SQL-filtered heroes **and** reads as
-      narrative prose (not a raw column dump), `citations[]` with a real author/work/passageRef.
-- [ ] **E3** `POST {"question":"What is the divine lineage connecting Achilles to Zeus?"}` → assert
-      `routeDecision: "MIXED"`, the answer traces Peleus/Thetis/Zeus, `sqlGenerated` is a real lineage
-      query (confirm the SQL rows genuinely shaped the prose — check the debug log for the augmented
-      string, per the A4 template).
-- [ ] **E4** Confirm the injected-SQL invariant live: enable `log.debug` and verify the string handed
-      to `ragAgent.answer` for E2/E3 actually contains the executed rows (the whole point of "MIXED",
-      distinguishing it from a plain RAG answer to the same question).
-- [ ] **E5** Empty-filter live check: a MIXED-routed question whose SQL filter returns zero rows behaves
-      per A3's decision (no exception, still returns a MIXED answer). Pick or craft one; record the result.
-- [ ] **E6** Route-independent enrichment still fires: pick a MIXED-routed question that *also* has a
-      stored conflict for its subject and confirm `conflicts[]` populates on top of the MIXED answer —
-      proves Stage 7's enrichment survived the Stage 8 wiring (belt-and-suspenders vs C3's mocked test).
-- [ ] **E7** Handler-failure degradation: confirm (via `QueryServiceTest` C3, already mocked — a live
-      forced-failure isn't safely reproducible) that a MIXED handler exception yields a `serviceError`
-      response, not an unhandled 500.
-- [ ] **E8** Bookkeeping: if A1 chose the extract option, log the `DEV-NNN`, mark the touched
-      `SqlQueryHandler` line, and add the IMPLEMENTATION_PLAN §9 stage-note pointer. Flip the TODO.md
-      Stage 8 boxes. Record the final "Stage 8 complete" line here (tests green + live-verified).
+- [x] **E1** Full `:core-api:test` green: 126 tests, 0 failures, 0 errors.
+- [x] **E2** Booted with real `.env` against live Postgres (`docker-compose.yml`, Flyway at V15, full
+      6-source corpus). `POST /api/v1/query {"question":"Which heroes had a divine parent and died at
+      Troy?"}` → `routeDecision: "MIXED"` (correct dispatch), **but** the generated SQL's "divine
+      parent" filter (`WHERE ... parent.generation IS NOT NULL`) returned **zero rows** — `entities.generation`
+      is unpopulated for every tested entity (Achilles/Peleus/Thetis/Zeus/Aeacus all `NULL`, confirmed
+      live in Track D3) — so `MixedQueryHandler` correctly took the A3 empty-filter branch and RAG
+      answered "The provided texts do not contain information about..." with no citations. Reproduced
+      twice, deterministic (routingModel temp 0.0). **Finding, not a Stage 8 code defect**:
+      `MixedQueryHandler` did exactly what A3 specifies; the gap is `TextToSqlAgent`'s (Stage 5)
+      "divine parent" heuristic not matching this schema's actual data population — `generation` was
+      never the right column for divinity (that's closer to `type IN ('olympian','titan','other_god','primordial')`).
+      `[DEVIATED - see DEVIATIONS.md #DEV-054]` — fixed: `V16` re-comments `entities.type`/`generation` so
+      the model keys divinity off `type`.
+- [x] **E3** `POST {"question":"What is the divine lineage connecting Achilles to Zeus?"}` →
+      `routeDecision: "SQL"`, **not MIXED** — reproduced twice, deterministic. `QueryRouter`'s own
+      MIXED example (`"Which heroes had a divine parent and died at Troy?"`) is verbatim Q11, but its
+      SQL bullet explicitly claims "lineage lookups," and Q12's phrasing (mirroring gold Q9's "Trace
+      Zeus's lineage back to Chaos," also SQL) reads as a pure lineage lookup to the router. The
+      resulting `SqlQueryHandler.formatAnswer` output is a raw `"; "`-joined row dump, not narrative
+      prose. **Finding, not a Stage 8 code defect**: Q12 never reaches `MixedQueryHandler` at all — this
+      is `QueryRouter`'s (Stage 5) classification prompt, out of Stage 8's scope to alter unilaterally.
+      `[DEVIATED - see DEVIATIONS.md #DEV-054]` — fixed: `QueryRouter` prompt reworked (bare chain = SQL,
+      explain/narrate = MIXED) + Q12 reworded to keep it MIXED.
+- [x] **E4** Injected-SQL invariant confirmed structurally by `MixedQueryHandlerTest` (a) + live by
+      E2/Track 0.3's retrieval-augmentor trace — not independently re-demonstrated live here since E2's
+      own run took the A3 empty-filter branch (the "no matching rows" note, not real SQL rows, is what
+      reached `ragAgent.answer` — itself confirming A3 fired correctly, just not the row-injection case).
+- [x] **E5** Empty-filter live check: Q11 (E2) **is** the empty-filter case — reproduced twice,
+      `serviceError: false`, `routeDecision: "MIXED"`, non-exception degradation exactly per A3.
+- [x] **E6** Attempted three ad hoc MIXED-routed live questions with subjects carrying stored conflicts
+      (Aphrodite/Achilles-adjacent phrasings) — none reached a populated `conflicts[]`: two produced
+      `ConflictProbe` subject `"none"` or a claim type with zero `variant_claims` rows, and a third
+      (`"Which Olympians have disputed parentage..."`) hit a **live `TextToSqlAgent` bug**: generated
+      SQL filtered `entities.type = 'Olympian'` (capitalized) against the lowercase `olympian` enum
+      value, causing bad SQL grammar. Caught cleanly by `QueryService`'s inner catch → `serviceError:
+      true`, no 500 (incidentally a strong live E7 confirmation instead). Route-independent enrichment
+      on MIXED remains proven by `QueryServiceTest` C3's mocked test (`ConflictLookup`/`ConflictSynthesizer`
+      are the same route-agnostic beans already exercised for SQL/RAG in Stage 7) — did not keep
+      digging for a live example given the unrelated SQL-generation robustness gap just surfaced.
+      `[DEVIATED - see DEVIATIONS.md #DEV-054]` — fixed: `entities.type`/`sources.stance`/`sources.role`
+      added to `SchemaIntrospector.VOCABULARY_COLUMNS` + a `TextToSqlAgent` enum-casing rule.
+- [x] **E7** Handler-failure degradation confirmed **live** (see E6's third case) in addition to the
+      mocked `QueryServiceTest` C3 case: a MIXED-path exception (bad SQL grammar from the model) yielded
+      `serviceError: true` with a friendly message, not an unhandled 500.
+- [x] **E8** A1 chose duplicate, not extract — no `DEV-NNN` needed. **Stage 8 code status: complete and
+      verified** — `MixedQueryHandler` shipped (TDD, 6/6 tests), `QueryService` dispatches MIXED to it
+      (placeholder gone), full suite green (126 tests), conflict enrichment confirmed route-independent
+      by construction + unit test. **Q11/Q12 status: NOT cleanly live-verified as designed** — both
+      gold questions, as currently phrased, expose pre-existing Stage 5 gaps (`TextToSqlAgent`'s
+      "divine" heuristic; `QueryRouter`'s SQL/MIXED boundary for lineage phrasing) rather than
+      exercising the intended "SQL filter → inject → RAG narration" path end-to-end. Recommend either
+      (a) rephrasing Q11/Q12 to sidestep both gaps, (b) fixing the two Stage 5 prompts (out of Stage 8's
+      original scope — would need its own DEV entry), or (c) accepting this as a known-gap deviation
+      and logging it in DEVIATIONS.md before flipping TODO.md's Stage 8 boxes. Left TODO.md unflipped
+      pending that decision.
+      `[DEVIATED - see DEVIATIONS.md #DEV-054]` — resolved via option (b)+(a partial): the two Stage 5
+      prompts were fixed and Q12 reworded (per user decision). All three findings fixed and **confirmed
+      live** (divine→`type`; Q12 routes MIXED; `type='olympian'` casing). Full suite green (126).
+      **But Q11/Q12 still do not pass end-to-end** — the live run surfaced two deeper `TextToSqlAgent`
+      SQL-generation gaps beyond these three findings (MIXED over-constraining narrative predicates like
+      "died at Troy"; unreliable `WITH RECURSIVE` generation), see DEV-054 Impact (i)/(ii). `TODO.md`'s
+      Stage 8 boxes remain **unflipped** pending a separate decision on those gaps.
 
 ---
 

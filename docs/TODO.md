@@ -202,6 +202,11 @@ hit no `forbidden_patterns`; `RagQueryHandlerTest` and the full suite pass.
 **Done when:** MIXED gold questions (Q11–Q12) return both SQL rows and narrative answer; `MixedQueryHandlerTest` passes.
 
 > ⚠️ Updated assumptions based on DEV-004 (see DEVIATIONS.md): LangChain4j is `1.0.0-beta5`. `MixedQueryHandler` calls `ragAgent.answer(augmented)` — confirm the `RagAgent @AiService` interface verified in Stage 6 is unchanged before building on it.
+>
+> ⚠️ Handler shipped and unit-verified (126 tests green: `MixedQueryHandler` + `QueryService` dispatch),
+> and Stage 5's three prompt/schema findings are fixed and confirmed live (DEV-054). **But Q11/Q12 still
+> do not pass end-to-end** — live runs surfaced two deeper `TextToSqlAgent` SQL-generation gaps that also
+> break DATA **Q9**. Boxes below stay unchecked pending **[Stage 8.5 — Debug SQL-Generation Errors](#stage-85--debug-sql-generation-errors-deferred)**.
 
 - [ ] Tests first: `MixedQueryHandlerTest` (SQL results injected into augmented question before RAG call)
 - [ ] `MixedQueryHandler.kt` — SQL filter → inject results as context → `ragAgent.answer(augmented)`
@@ -212,8 +217,60 @@ hit no `forbidden_patterns`; `RagQueryHandlerTest` and the full suite pass.
 
 ---
 
+## Stage 8.5 — Debug SQL-Generation Errors (deferred)
+**Done when:** DATA **Q9**, MIXED **Q11**, and MIXED **Q12** answer end-to-end via `POST /api/v1/query` with `serviceError: false` and their `required_keywords` present; no regression on the rest of the gold set (full-set route match stays ≥ current 15/16, no new `serviceError`s).
+
+> ⚠️ **Not part of `IMPLEMENTATION_PLAN.md §9`** — a developer-added remediation stage tracking live bugs
+> found while landing Stage 8 (all detailed in **DEVIATIONS.md #DEV-054**, gaps (i)/(ii)).
+>
+> ⚠️ **Sequencing (developer decision):** Stage 9 (Web UI) is bootstrapped **first**, then this stage.
+> This stage does **NOT** gate Stage 9 — all three failures degrade gracefully (`serviceError: true`
+> friendly message, or A3 empty-filter → RAG fallback), so the Web UI renders correctly over the working
+> questions (FACT Q1–5, DATA Q6–8/Q10, CONFLICT Q13–15/18) and shows the error banner for the three
+> broken ones. Return here after Stage 9.
+>
+> ⚠️ All three are **pre-existing `TextToSqlAgent` (Stage 5) SQL-generation gaps**, not regressions from
+> DEV-054's fixes and not `MixedQueryHandler`/`QueryService` defects (those are unit- and live-verified).
+
+**Live evidence (2026-07-16 full gold-set run, real Postgres + Anthropic, temp 0):** route match 15/16;
+two `serviceError`s — Q9 and Q12 — plus Q11's empty-filter fallback. Details below.
+
+- [ ] **Gap (ii) — `WITH RECURSIVE` unreliability (breaks Q9 + Q12).** `TextToSqlAgent` generates invalid
+      or runaway recursive CTEs despite the existing anchor-column rule: Q9 ("Trace Zeus's lineage back to
+      Chaos") hits the 3s `statement_timeout` (cyclic/unbounded recursion over `relationships`); Q12's
+      MIXED filter produced "bad SQL grammar" (anchor `SELECT` referenced `r.relation` without joining
+      `relationships` in the anchor branch) on one run and a rejected `;`-containing statement on another.
+      Likely fix: add a correct few-shot `WITH RECURSIVE` example to the prompt + a cycle guard
+      (visited-path array or depth bound in the generated SQL) so upward parent-walks terminate. Also
+      confirm whether the `relationships` graph has cycles that need breaking at query time.
+- [ ] **Gap (i) — MIXED over-constraint (breaks Q11).** For "Which heroes had a divine parent and died at
+      Troy?" the model encodes the *narrative* predicate "died at Troy" as structured SQL
+      (`myths.title ILIKE '%Troy%'` AND `mp.role ILIKE '%died%'`); the seed has no Troy-titled myth and no
+      "died" role, so the filter returns 0 rows. The divine-parent filter *alone* returns 21 heroes (incl.
+      Achilles, Aeneas, Memnon). Likely fix: give the MIXED path (shared `TextToSqlAgent`, called by
+      `MixedQueryHandler`) guidance to emit only the *structured/relational* filter and leave narrative
+      predicates (locations, causes, deaths, motivations) to the RAG half — without regressing pure-SQL
+      questions that legitimately filter on those tables.
+- [ ] **Watch — Q14 route fragility (not a failure).** Q14 ("Who was Io's father?") routed `SQL` this run
+      (answer correct, no error) vs. its gold `expected_route: RAG` (set in DEV-053 when SQL fell back
+      empty). Route label depends on whether SQL returns rows; possibly nudged by DEV-054's better schema
+      grounding. Decide during this stage whether the gold label or the fallback behavior is authoritative
+      (ties into DEV-053's `SqlQueryHandler` raw-row-dump formatting follow-up).
+- [ ] Re-run the full gold set live after fixes; confirm Q9/Q11/Q12 pass and nothing else regresses, then
+      flip the **Stage 8** boxes (Q11/Q12 are its `Done when`).
+
+→ Detail & root-cause in **DEVIATIONS.md #DEV-054** (Impact gaps (i)/(ii)) and **#DEV-053** (Q14, SQL formatting).
+
+---
+
 ## Stage 9 — Web UI
 **Done when:** Manual smoke test of all 17 gold questions in browser passes; route badge + citations render correctly.
+
+> ⚠️ **Sequenced before [Stage 8.5](#stage-85--debug-sql-generation-errors-deferred) (developer decision).**
+> Until Stage 8.5 lands, **Q9/Q11/Q12 will not answer correctly** — they hit `serviceError` or an
+> empty-filter RAG fallback (DEV-054). For this stage, the smoke test verifies that the UI *renders* every
+> response shape correctly, **including the `serviceError` error banner** for those three; correct answers
+> to all 17 are re-confirmed after Stage 8.5, not here.
 
 > ⚠️ Updated based on DEV-009 (see DEVIATIONS.md): springdoc-openapi is `2.6.0` (not `2.8.3` — DEV-006 picked a version requiring Spring Boot 3.4.x, which broke `@SpringBootTest` context loading under Spring Boot 3.3.13). `OpenApiConfig.kt` should target `2.6.0`'s API surface; `@Operation`/`@Tag` usage is unaffected.
 

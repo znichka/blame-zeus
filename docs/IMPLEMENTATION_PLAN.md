@@ -647,6 +647,12 @@ core-api/src/main/kotlin/com/blamezeus/coreapi/
 
 ### AI Services
 
+> ⚠️ Deviations occurred in this section (Stage 5, surfaced during Stage 8 Track E). See DEVIATIONS.md
+> #DEV-054: the `QueryRouter` SQL/MIXED boundary was reworked (lineage misclassification), and
+> `TextToSqlAgent` was grounded against the real schema — divinity keys off `entities.type` (not the
+> near-empty `generation` column, `V16`) and enum columns are surfaced as live values so casing no
+> longer drifts.
+
 **`QueryRouter`** — system message classifies question into SQL/RAG/MIXED/CONFLICT. Returns `RouteDecision` enum directly. Temperature 0.0.
 
 **`TextToSqlAgent`** — system message uses a `{{schema}}` placeholder populated at call time from `SchemaIntrospector.buildSchemaPrompt()`. Returns raw SQL string. Rules enforced in prompt: SELECT only, use ILIKE for names, use WITH RECURSIVE for lineage, JOIN sources for attribution when querying relationship data (`relationships.source_id → sources`) or claims (`variant_claims.source_id → sources`); for direct entity attribute queries (`entities.type`, `entities.generation`, `entities.domain`) no source attribution is available — these are curated classifications without source FKs, do not fabricate a join. Temperature 0.0. Interface:

@@ -123,6 +123,11 @@ class SchemaIntrospector(private val jdbcTemplate: JdbcTemplate) {
         private val VOCABULARY_COLUMNS = listOf(
             VocabularyColumn("relationships", "relation"),
             VocabularyColumn("variant_claims", "claim_type"),
+            // Small bounded enums surfaced as live values so the model uses exact stored casing
+            // (e.g. 'olympian', not 'Olympian') instead of guessing — DEV-054.
+            VocabularyColumn("entities", "type"),
+            VocabularyColumn("sources", "stance"),
+            VocabularyColumn("sources", "role"),
         )
 
         private const val VOCABULARY_LIMIT = 50

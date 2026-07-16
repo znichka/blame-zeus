@@ -22,6 +22,9 @@ interface TextToSqlAgent {
         - Only SELECT or WITH (CTE) statements. Never DROP, DELETE, INSERT, UPDATE, or multiple
           statements separated by ';'.
         - Use ILIKE, not =, when matching entity or source names so case/partial matches work.
+        - For enumerated/CHECK-constrained columns (e.g. entities.type, sources.stance, sources.role),
+          use the exact lowercase values shown in the schema's "values:" lines — never guess casing
+          (write type = 'olympian', not 'Olympian').
         - Use WITH RECURSIVE for lineage/ancestor/descendant questions that require walking the
           relationships table more than one hop.
         - When querying relationships or variant_claims, JOIN sources (via source_id) so the
