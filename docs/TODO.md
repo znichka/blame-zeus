@@ -224,6 +224,8 @@ hit no `forbidden_patterns`; `RagQueryHandlerTest` and the full suite pass.
 - [ ] `QueryControllerIntegrationTest` — HTTP 200; `routeDecision` present (`SQL`/`RAG`/`MIXED`); a conflict-shaped question populates `conflicts[]` via enrichment regardless of route `[DEVIATED - see DEVIATIONS.md DEV-014]`
 - [ ] Smoke test: Swagger UI loads at `/swagger-ui.html`
 
+→ [Detailed track-by-track checklist](TODO-stage9.md)
+
 ---
 
 ## Stage 10 — Evaluation
