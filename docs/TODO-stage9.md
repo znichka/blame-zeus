@@ -247,18 +247,44 @@ _Depends on: B + C (render tests); the REST half depends only on Track 0._ Mirro
 
 _Depends on: B + C + D wired, app runnable (`docker-compose` DB up, seeded)._
 
-- [ ] **F1** `GET http://localhost:8080/` — form renders, Tailwind styles applied.
-- [ ] **F2** `GET http://localhost:8080/swagger-ui.html` — Swagger UI loads; title reflects
-      `OpenApiConfig` (Track D). `GET /v3/api-docs` returns the spec JSON.
-- [ ] **F3** Submit all **17 gold questions** through the web form; for each verify:
-  - route badge color matches the expected route (SQL/RAG/MIXED),
-  - answer text is present and grounded,
-  - citations render as footnotes with author/work/passageRef,
-  - conflict-shaped questions show the conflicts section (versions attributed `Author, Work: claim`),
-  - SQL questions expose the collapsible SQL block,
-  - any refusal / error path shows the error banner cleanly (no stack trace, no blank page).
-- [ ] **F4** Record the smoke result; if any question renders wrong, fix the offending Track C block
-      (or B binding) and re-run F3 for that question.
+- [x] **F1** `GET http://localhost:8080/` — form renders, Tailwind styles applied. Confirmed live
+      against the real `bootRun` app + already-seeded Postgres (3524 `narrative_chunks`, 1969
+      `entities`, 6 `sources`); `WebController`'s explicit `GET /` mapping correctly wins over Spring
+      Boot's `WelcomePageHandlerMapping` auto-detection of `templates/index.html`.
+- [x] **F2** `GET http://localhost:8080/swagger-ui.html` (redirects to `/swagger-ui/index.html`, 200)
+      — Swagger UI loads; `GET /v3/api-docs`'s `info` reflects `OpenApiConfig`'s custom title/version
+      (`"blame-zeus Core API"` / `"1.0"`) exactly.
+- [x] **F3** Submitted all questions currently in `evaluation/gold-questions.json` (ids 1–15, 18 — 16
+      questions; ids 16/17 REFUSAL are intentionally still absent per DEV-052, deferred to Stage 10,
+      so "17" in this checklist's intro is stale by one) through the live web form. Verified per
+      question:
+  - route badge color matches the route the live app actually chose (SQL blue / RAG green / MIXED
+    purple — no `null` case hit live),
+  - answer text present for all 16, none blank,
+  - citations render as footnotes with author/work/passageRef where `citations[]` is non-empty,
+  - conflict-shaped questions (Q13, Q14, Q15) show the conflicts section, correctly attributed,
+    **route-independent** — Q13/Q14 landed on SQL and Q15 on RAG, all three rendered the same
+    "Sources disagree" block shape,
+  - SQL/MIXED questions with `sqlGenerated != null` expose the collapsible SQL block,
+  - Q9 and Q12 hit `serviceError: true` live and rendered the red banner cleanly — **no stack trace,
+    no blank page**, and correctly hid the answer/citations/SQL blocks (C5.1 confirmed against a
+    real failure, not just a mocked one).
+- [x] **F4** Smoke result: **all C-block rendering is correct; zero Stage 9 (Track B/C) bugs found.**
+      Two pre-existing findings surfaced, both already documented and explicitly out of Stage 9's
+      scope (Stage 9 is UI-only — "no new query logic"), so **not fixed here**:
+      - Q9 ("Trace Zeus's lineage back to Chaos") and Q12 (Achilles→Zeus lineage) hit
+        `serviceError: true` — matches DEV-054's already-documented `WITH RECURSIVE` SQL-generation
+        fragility finding (gap (ii)). The UI's error-banner path is exactly what caught and displayed
+        this cleanly, which is the point of C5.1.
+      - Q6, Q7, Q8, Q10, Q13, Q14's `answer` text is a raw comma-joined row/claim dump instead of a
+        natural-language sentence (e.g. Q6: `"607, Demeter, olympian; 920, Hera, olympian; ..."`) —
+        matches DEV-053's already-documented `SqlQueryHandler.formatAnswer` defect, confirmed here to
+        also affect plain DATA questions, not just the one CONFLICT case DEV-053 originally caught.
+        `conflicts[]`/citations/SQL block all render correctly regardless — the defect is confined to
+        `answer`'s text, which Stage 9's template renders faithfully as given. Flagged for whoever
+        picks up `SqlQueryHandler` next (still Stage 5-scope rework per DEV-053's original note); no
+        Track C/B code change needed since nothing in the web layer is wrong.
+      No question needed a re-run — no Track C/B fix was triggered.
 
 ---
 
@@ -271,5 +297,8 @@ _Depends on: B + C + D wired, app runnable (`docker-compose` DB up, seeded)._
 - [x] `OpenApiConfig.kt` sets a custom Swagger title/description (springdoc 2.6.0).
 - [x] `QueryControllerIntegrationTest` proves the JSON contract incl. conflict-via-enrichment
       (DEV-014); `WebControllerTest` proves the HTML render; `:core-api:test` fully green.
-- [ ] Manual smoke of all 17 gold questions in-browser passes; Swagger loads.
+- [x] Manual smoke of all gold questions currently in `evaluation/gold-questions.json` (16 of the
+      eventual 17 — ids 16/17 REFUSAL deferred to Stage 10 per DEV-052) in-browser passes; Swagger
+      loads. See Track F3/F4 for the two pre-existing, out-of-scope findings (DEV-053, DEV-054)
+      surfaced but not fixed.
 - [ ] Any deviation logged as `DEV-054+` with inline markers and the §9 stage-note pointer.

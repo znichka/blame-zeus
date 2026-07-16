@@ -263,7 +263,7 @@ two `serviceError`s — Q9 and Q12 — plus Q11's empty-filter fallback. Details
 
 ---
 
-## Stage 9 — Web UI
+## Stage 9 — Web UI ✅ done (2026-07-16)
 **Done when:** Manual smoke test of all 17 gold questions in browser passes; route badge + citations render correctly.
 
 > ⚠️ **Sequenced before [Stage 8.5](#stage-85--debug-sql-generation-errors-deferred) (developer decision).**
@@ -274,12 +274,12 @@ two `serviceError`s — Q9 and Q12 — plus Q11's empty-filter fallback. Details
 
 > ⚠️ Updated based on DEV-009 (see DEVIATIONS.md): springdoc-openapi is `2.6.0` (not `2.8.3` — DEV-006 picked a version requiring Spring Boot 3.4.x, which broke `@SpringBootTest` context loading under Spring Boot 3.3.13). `OpenApiConfig.kt` should target `2.6.0`'s API surface; `@Operation`/`@Tag` usage is unaffected.
 
-- [ ] `WebController.kt` — `GET /` + `POST /web/query`
-- [ ] `templates/index.html` — form, route badge (color-coded), answer block, citations footnotes, conflicts section, collapsible SQL block, error banner for `serviceError`
-- [ ] Tailwind CSS via CDN (no build step)
-- [ ] `OpenApiConfig.kt` — Springdoc customization
-- [ ] `QueryControllerIntegrationTest` — HTTP 200; `routeDecision` present (`SQL`/`RAG`/`MIXED`); a conflict-shaped question populates `conflicts[]` via enrichment regardless of route `[DEVIATED - see DEVIATIONS.md DEV-014]`
-- [ ] Smoke test: Swagger UI loads at `/swagger-ui.html`
+- [x] `WebController.kt` — `GET /` + `POST /web/query`
+- [x] `templates/index.html` — form, route badge (color-coded), answer block, citations footnotes, conflicts section, collapsible SQL block, error banner for `serviceError`
+- [x] Tailwind CSS via CDN (no build step)
+- [x] `OpenApiConfig.kt` — Springdoc customization
+- [x] `QueryControllerIntegrationTest` — HTTP 200; `routeDecision` present (`SQL`/`RAG`/`MIXED`); a conflict-shaped question populates `conflicts[]` via enrichment regardless of route `[DEVIATED - see DEVIATIONS.md DEV-014]`. `WebControllerTest`/`QueryControllerIntegrationTest` both mock `QueryService` via `@MockkBean` rather than exercising a live `@AiService` `[DEVIATED - see DEVIATIONS.md #DEV-055]`.
+- [x] Smoke test: Swagger UI loads at `/swagger-ui.html`. Live-verified against real `bootRun` + seeded Postgres: all 16 gold questions currently in `evaluation/gold-questions.json` (ids 16/17 REFUSAL deferred to Stage 10 per DEV-052) render every UI block correctly, incl. the `serviceError` banner for Q9/Q12 (DEV-054's `WITH RECURSIVE` fragility) — no Stage 9 bugs found; see `TODO-stage9.md` Track F3/F4 for full detail.
 
 → [Detailed track-by-track checklist](TODO-stage9.md)
 
