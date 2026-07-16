@@ -53,10 +53,11 @@ Before starting, re-read `DEVIATIONS.md`. Relevant carry-overs:
 already in `core-api/build.gradle.kts`. Track 0 verifies this; **no `build.gradle.kts` edit is
 expected**. If one turns out to be missing, adding it is a deviation → log the next `DEV-NNN`.
 
-**Deviation protocol:** latest entry is **DEV-053**; new ones start at **DEV-054**. If any track
-deviates (e.g. a build-dep edit, introducing a view-model DTO instead of binding `QueryResponse`
-directly, or `OpenApiConfig` proving unnecessary and being dropped), log it, mark the touched line
-`[DEVIATED - see DEVIATIONS.md DEV-NNN]`, and add the §9 stage-note pointer in IMPLEMENTATION_PLAN.
+**Deviation protocol:** latest entry is **DEV-055** (Track B — see `#DEV-055` above); new ones start
+at **DEV-056**. If any track deviates (e.g. a build-dep edit, introducing a view-model DTO instead of
+binding `QueryResponse` directly, or `OpenApiConfig` proving unnecessary and being dropped), log it,
+mark the touched line `[DEVIATED - see DEVIATIONS.md DEV-NNN]`, and add the §9 stage-note pointer in
+IMPLEMENTATION_PLAN.
 
 ---
 
@@ -88,10 +89,10 @@ Track A (4 design decisions) ┘                                  ├─→ Trac
 _Purpose:_ corroborate the field map the template binds to and the single service entry point the
 controller calls. Write findings to a scratch note, not the repo; log any contradiction as a DEV.
 
-- [ ] **0.1** Confirm the single entry point: `QueryService.handle(question: String): QueryResponse`
+- [x] **0.1** Confirm the single entry point: `QueryService.handle(question: String): QueryResponse`
       (`QueryService.kt:33`) is what `QueryController.query` calls (`QueryController.kt:37`).
       `WebController.POST /web/query` calls the **same** method — no new service method.
-- [ ] **0.2** Confirm the `QueryResponse` field map the template binds to (`QueryResponse.kt`):
+- [x] **0.2** Confirm the `QueryResponse` field map the template binds to (`QueryResponse.kt`):
       | field | type | template use |
       |---|---|---|
       | `answer` | `String` | answer block (hidden when `serviceError`) |
@@ -100,16 +101,16 @@ controller calls. Write findings to a scratch note, not the repo; log any contra
       | `conflicts` | `List<ConflictEntry>` (`claimValue, sourceAuthor, sourceWork, passageRef?`) | conflicts section |
       | `sqlGenerated` | `String?` | collapsible SQL block (only when non-null) |
       | `serviceError` | `Boolean` (default false) | error banner when true |
-- [ ] **0.3** Confirm the three build deps are already declared and **no build edit is needed**:
+- [x] **0.3** Confirm the three build deps are already declared and **no build edit is needed**:
       `spring-boot-starter-web`, `spring-boot-starter-thymeleaf`, `springdoc-openapi-starter-webmvc-ui:2.6.0`
       (`core-api/build.gradle.kts:14,16,30`). Note: Thymeleaf autoconfigures `src/main/resources/templates/`
       as the view root — the template goes there.
-- [ ] **0.4** Confirm springdoc `2.6.0` autoconfigures `/swagger-ui.html` and `/v3/api-docs` with
+- [x] **0.4** Confirm springdoc `2.6.0` autoconfigures `/swagger-ui.html` and `/v3/api-docs` with
       **zero** config — i.e. Swagger loads even if Track D's `OpenApiConfig` is never written. This
       scopes Track D to *customization only* (title/description/version), not enablement.
-- [ ] **0.5** Confirm no `WebController`, no `src/main/resources/templates/` dir, and no
+- [x] **0.5** Confirm no `WebController`, no `src/main/resources/templates/` dir, and no
       `OpenApiConfig.kt` exist yet (all greenfield) — so there is no prior version to preserve.
-- [ ] **0.6** Note the existing test pattern to mirror: `QueryControllerTest` is
+- [x] **0.6** Note the existing test pattern to mirror: `QueryControllerTest` is
       `@AutoConfigureMockMvc` over `AbstractContainerTest` with real seeded data, no mocks
       (`QueryControllerTest.kt:16-17`). Track E reuses this exactly.
 
@@ -120,20 +121,20 @@ controller calls. Write findings to a scratch note, not the repo; log any contra
 _Purpose:_ pin four choices so B/C/D can proceed without blocking on each other. Record each in the
 scratch note; none of these is a deviation (they're new-code design), unless they contradict the plan.
 
-- [ ] **A1 — View return style.** `WebController` methods return a `String` view name (`"index"`)
+- [x] **A1 — View return style.** `WebController` methods return a `String` view name (`"index"`)
       and take a Spring `Model`, **or** return `ModelAndView`. Decision: **`String` + `@GetMapping`/
       `@PostMapping` with `Model`** (simplest; matches Thymeleaf idiom). Both GET and POST render the
       **same** `index` template — GET with no `response` attribute, POST with it.
-- [ ] **A2 — Request binding for `POST /web/query`.** The form submits a single `question` field.
+- [x] **A2 — Request binding for `POST /web/query`.** The form submits a single `question` field.
       Decision: bind `@RequestParam("question") question: String` (HTML form → `application/
       x-www-form-urlencoded`), **not** `@RequestBody` (that's the JSON REST path). Confirm the form
       `method="post" action="/web/query"` with `<input name="question">` matches the param name.
-- [ ] **A3 — Route badge + null handling.** Map `routeDecision`: `SQL`→blue, `RAG`→green,
+- [x] **A3 — Route badge + null handling.** Map `routeDecision`: `SQL`→blue, `RAG`→green,
       `MIXED`→purple; **`null`**→neutral/grey "—" (a grounded refusal or an error can leave it null).
       Decide the Thymeleaf expression: a `th:switch` on `routeDecision?.name` or a `th:classappend`
       keyed on the enum. **No CONFLICT case** (DEV-014). Also decide: badge always shown once a
       response exists, hidden on the empty first-load form.
-- [ ] **A4 — `OpenApiConfig` scope.** Given 0.4 (Swagger works with zero config), decide whether
+- [x] **A4 — `OpenApiConfig` scope.** Given 0.4 (Swagger works with zero config), decide whether
       `OpenApiConfig` adds value. Decision: **yes, minimal** — an `@Bean OpenAPI` with `Info`
       (title "blame-zeus Core API", version, one-line description) so Swagger isn't titled from the
       bare artifact name. Keep it to that; `@Tag`/`@Operation` annotations on `QueryController` are
@@ -145,23 +146,25 @@ scratch note; none of these is a deviation (they're new-code design), unless the
 
 _Depends on: A1, A2._ New file `controller/WebController.kt`. Inject only `QueryService`.
 
-- [ ] **B1 — Test first.** `WebControllerTest` (`@AutoConfigureMockMvc` over `AbstractContainerTest`,
+- [x] **B1 — Test first.** `WebControllerTest` (`@AutoConfigureMockMvc` over `AbstractContainerTest`,
       per 0.6):
-  - [ ] **B1.1** `GET /` returns 200, `Content-Type: text/html`, and the view renders the form
+  - [x] **B1.1** `GET /` returns 200, `Content-Type: text/html`, and the view renders the form
         (assert body contains the `<form`/`name="question"` input); **no** `response` model attribute
         present (empty-form state).
-  - [ ] **B1.2** `POST /web/query` with form param `question=...` returns 200 HTML and the rendered
+  - [x] **B1.2** `POST /web/query` with form param `question=...` returns 200 HTML and the rendered
         body reflects a real `QueryResponse` (assert the answer text and the route badge label appear).
         Use a seeded question that routes deterministically (e.g. a DATA/SQL question) so the badge
-        assertion is stable.
-- [ ] **B2 — `GET /`** → `@GetMapping("/")`, returns `"index"`, adds nothing else to the model.
-- [ ] **B3 — `POST /web/query`** → `@PostMapping("/web/query")`, `@RequestParam question`, calls
+        assertion is stable. `[DEVIATED - see DEVIATIONS.md #DEV-055]` — mocks `QueryService` via
+        `@MockkBean` instead of a live seeded `POST`, since the real call path reaches an `@AiService`
+        and TECH_GUARDRAILS forbids live LLM calls in tests.
+- [x] **B2 — `GET /`** → `@GetMapping("/")`, returns `"index"`, adds nothing else to the model.
+- [x] **B3 — `POST /web/query`** → `@PostMapping("/web/query")`, `@RequestParam question`, calls
       `queryService.handle(question)`, `model.addAttribute("response", it)` and
       `model.addAttribute("question", question)` (so the form re-shows the asked question), returns
       `"index"`.
-- [ ] **B4** Confirm `WebController` is `@Controller` (**not** `@RestController` — it returns view
+- [x] **B4** Confirm `WebController` is `@Controller` (**not** `@RestController` — it returns view
       names, not response bodies), and lives in the `controller` package alongside `QueryController`.
-- [ ] **B5** Run `:core-api:test` — `WebControllerTest` green.
+- [x] **B5** Run `:core-api:test` — `WebControllerTest` green.
 
 ---
 
@@ -171,29 +174,29 @@ _Depends on: A2, A3._ New file `src/main/resources/templates/index.html`. Binds 
 model attribute (`QueryResponse`); the whole result section is `th:if="${response != null}"` so
 first load shows only the form. Each sub-block is independently checkable.
 
-- [ ] **C1 — Page skeleton + Tailwind.** `<!DOCTYPE html>`, `xmlns:th`, `<head>` pulls Tailwind via
+- [x] **C1 — Page skeleton + Tailwind.** `<!DOCTYPE html>`, `xmlns:th`, `<head>` pulls Tailwind via
       CDN `<script src="https://cdn.tailwindcss.com"></script>` (no build step, per plan §864).
       Centered max-width container, page title "blame-zeus — Greek Mythology Lore Assistant".
-- [ ] **C2 — Query form.** `<form method="post" action="/web/query">` with a text `<input
+- [x] **C2 — Query form.** `<form method="post" action="/web/query">` with a text `<input
       name="question">` (pre-filled via `th:value="${question}"`) + submit button. Matches A2's param
       name exactly.
-- [ ] **C3 — Result wrapper.** Everything below is inside `th:if="${response != null}"`.
-- [ ] **C4 — Route badge.** Color-coded per A3: `SQL` blue / `RAG` green / `MIXED` purple / `null`
+- [x] **C3 — Result wrapper.** Everything below is inside `th:if="${response != null}"`.
+- [x] **C4 — Route badge.** Color-coded per A3: `SQL` blue / `RAG` green / `MIXED` purple / `null`
       grey. Show the enum name (or "—" for null). Small pill styling.
-- [ ] **C5 — Error banner vs answer block (mutually exclusive).**
-  - [ ] **C5.1** When `${response.serviceError}` → red banner ("Something went wrong answering that.
+- [x] **C5 — Error banner vs answer block (mutually exclusive).**
+  - [x] **C5.1** When `${response.serviceError}` → red banner ("Something went wrong answering that.
         Try rephrasing."), **and hide** the answer/citations/SQL blocks.
-  - [ ] **C5.2** Else → answer block: `th:text="${response.answer}"` in a readable prose container.
-- [ ] **C6 — Citations as numbered footnotes.** `th:if="${!response.citations.isEmpty()}"`; ordered
+  - [x] **C5.2** Else → answer block: `th:text="${response.answer}"` in a readable prose container.
+- [x] **C6 — Citations as numbered footnotes.** `th:if="${!response.citations.isEmpty()}"`; ordered
       list, one entry per `Citation` as `Author, Work` + `passageRef` (+ `stance` if present). Number
       them so the answer reads with footnote-style references.
-- [ ] **C7 — Conflicts section.** `th:if="${!response.conflicts.isEmpty()}"`; a labeled section
+- [x] **C7 — Conflicts section.** `th:if="${!response.conflicts.isEmpty()}"`; a labeled section
       ("Sources disagree") with one block per `ConflictEntry` formatted `sourceAuthor, sourceWork:
       claimValue` (+ `passageRef` when non-null). Renders regardless of route (DEV-014) — do **not**
       gate on `routeDecision`.
-- [ ] **C8 — Collapsible SQL block.** `th:if="${response.sqlGenerated != null}"`; a `<details>`/
+- [x] **C8 — Collapsible SQL block.** `th:if="${response.sqlGenerated != null}"`; a `<details>`/
       `<summary>` ("Show generated SQL") wrapping a `<pre><code th:text="${response.sqlGenerated}">`.
-- [ ] **C9** Verify the template renders end-to-end via Track B's `WebControllerTest` (POST path
+- [x] **C9** Verify the template renders end-to-end via Track B's `WebControllerTest` (POST path
       exercises C2–C8 for a real response) — no separate template unit test needed.
 
 ---

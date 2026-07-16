@@ -859,6 +859,8 @@ Swagger UI auto-generated at `/swagger-ui.html` via `springdoc-openapi`.
 
 ### Thymeleaf Web UI
 
+> ⚠️ Deviations occurred in this stage. See DEVIATIONS.md for details.
+
 `WebController` serves `GET /` (empty form) and `POST /web/query` (calls `QueryService`, passes response to template).
 
 `templates/index.html`:
