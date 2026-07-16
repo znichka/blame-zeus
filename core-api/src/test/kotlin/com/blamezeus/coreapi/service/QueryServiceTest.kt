@@ -8,6 +8,7 @@ import com.blamezeus.coreapi.domain.dto.Citation
 import com.blamezeus.coreapi.domain.dto.ConflictEntry
 import com.blamezeus.coreapi.domain.dto.ProbeResult
 import com.blamezeus.coreapi.domain.dto.QueryResponse
+import com.blamezeus.coreapi.handler.MixedQueryHandler
 import com.blamezeus.coreapi.handler.RagQueryHandler
 import com.blamezeus.coreapi.handler.SqlQueryHandler
 import com.blamezeus.coreapi.routing.QueryRouter
@@ -23,6 +24,7 @@ class QueryServiceTest {
     private val queryRouter = mockk<QueryRouter>()
     private val sqlQueryHandler = mockk<SqlQueryHandler>()
     private val ragQueryHandler = mockk<RagQueryHandler>()
+    private val mixedQueryHandler = mockk<MixedQueryHandler>()
     private val conflictProbe = mockk<ConflictProbe>()
     private val conflictLookup = mockk<ConflictLookup>()
     private val conflictSynthesizer = mockk<ConflictSynthesizer>()
@@ -31,6 +33,7 @@ class QueryServiceTest {
         queryRouter,
         sqlQueryHandler,
         ragQueryHandler,
+        mixedQueryHandler,
         conflictProbe,
         conflictLookup,
         conflictSynthesizer,
@@ -178,16 +181,58 @@ class QueryServiceTest {
     }
 
     @Test
-    fun `a MIXED decision gets a Stage 5 placeholder response, not an exception`() {
+    fun `a MIXED decision dispatches to MixedQueryHandler and nowhere else`() {
         every { queryRouter.classify(any()) } returns RouteDecision.MIXED
+        val mixedResponse = QueryResponse(
+            answer = "Achilles, son of the sea-nymph Thetis, died at Troy.",
+            routeDecision = RouteDecision.MIXED,
+            citations = emptyList(),
+            conflicts = emptyList(),
+            sqlGenerated = "SELECT name FROM entities WHERE type = 'hero'",
+        )
+        every { mixedQueryHandler.handle("Which heroes had a divine parent and died at Troy?") } returns mixedResponse
 
         val response = service.handle("Which heroes had a divine parent and died at Troy?")
 
-        assertThat(response.routeDecision).isEqualTo(RouteDecision.MIXED)
-        assertThat(response.serviceError).isFalse()
-        assertThat(response.answer).isNotBlank()
+        assertThat(response).isEqualTo(mixedResponse)
+        verify(exactly = 1) { mixedQueryHandler.handle("Which heroes had a divine parent and died at Troy?") }
         verify(exactly = 0) { sqlQueryHandler.handle(any()) }
         verify(exactly = 0) { ragQueryHandler.handle(any()) }
+    }
+
+    @Test
+    fun `when the MIXED handler throws, the response has serviceError true and a non-empty answer`() {
+        every { queryRouter.classify(any()) } returns RouteDecision.MIXED
+        every { mixedQueryHandler.handle(any()) } throws RuntimeException("chat model unavailable")
+
+        val response = service.handle("Which heroes had a divine parent and died at Troy?")
+
+        assertThat(response.serviceError).isTrue()
+        assertThat(response.answer).isNotBlank()
+        assertThat(response.routeDecision).isEqualTo(RouteDecision.MIXED)
+    }
+
+    @Test
+    fun `a MIXED-routed answer also gets enriched with conflicts, proving enrichment is genuinely route-independent`() {
+        every { queryRouter.classify(any()) } returns RouteDecision.MIXED
+        val mixedResponse = QueryResponse(
+            answer = "Achilles' divine lineage traces through Thetis to the sea gods.",
+            routeDecision = RouteDecision.MIXED,
+            citations = emptyList(),
+            conflicts = emptyList(),
+            sqlGenerated = "SELECT name FROM entities WHERE name ILIKE 'Achilles'",
+        )
+        every { mixedQueryHandler.handle(any()) } returns mixedResponse
+        every { conflictProbe.extract(any()) } returns ProbeResult(subject = "Zeus", claimType = "parentage")
+        val claims = listOf(ConflictClaim("child of Cronus", "Hesiod", "Theogony", "450-500"))
+        every { conflictLookup.find("Zeus", "parentage") } returns claims
+        val entries = listOf(ConflictEntry("child of Cronus", "Hesiod", "Theogony", "450-500"))
+        every { conflictSynthesizer.synthesize(claims) } returns entries
+
+        val response = service.handle("What is the divine lineage connecting Achilles to Zeus?")
+
+        assertThat(response.routeDecision).isEqualTo(RouteDecision.MIXED)
+        assertThat(response.conflicts).isEqualTo(entries)
     }
 
     @Test

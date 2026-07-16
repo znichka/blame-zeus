@@ -4,6 +4,7 @@ import com.blamezeus.coreapi.ai.ConflictProbe
 import com.blamezeus.coreapi.ai.ConflictSynthesizer
 import com.blamezeus.coreapi.conflict.ConflictLookup
 import com.blamezeus.coreapi.domain.dto.QueryResponse
+import com.blamezeus.coreapi.handler.MixedQueryHandler
 import com.blamezeus.coreapi.handler.RagQueryHandler
 import com.blamezeus.coreapi.handler.SqlQueryHandler
 import com.blamezeus.coreapi.routing.QueryRouter
@@ -12,19 +13,18 @@ import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 
 // Central orchestrator — the only class that knows about all three handlers (SqlQueryHandler,
-// RagQueryHandler, and Stage 8's MixedQueryHandler) *plus* the router-independent conflict
-// enrichment step (ADR-007 §5, Stage 7 Track E): after any handler answers, `enrich()` runs
-// ConflictProbe -> ConflictLookup -> ConflictSynthesizer on top of the answer, writing only
-// `conflicts[]` — never `answer`, `routeDecision`, `citations`, or `sqlGenerated` — and never
-// letting an enrichment failure break the primary answer. The MIXED handler lands in Stage 8 —
-// until then that route gets a clearly-marked placeholder response. Any router failure degrades
-// to RAG (Stage 6 gave RAG a real handler, so that path now yields a genuine answer, not a
-// placeholder).
+// RagQueryHandler, MixedQueryHandler) *plus* the router-independent conflict enrichment step
+// (ADR-007 §5, Stage 7 Track E): after any handler answers, `enrich()` runs ConflictProbe ->
+// ConflictLookup -> ConflictSynthesizer on top of the answer, writing only `conflicts[]` — never
+// `answer`, `routeDecision`, `citations`, or `sqlGenerated` — and never letting an enrichment
+// failure break the primary answer. Any router failure degrades to RAG (Stage 6 gave RAG a real
+// handler, so that path now yields a genuine answer, not a placeholder).
 @Service
 class QueryService(
     private val queryRouter: QueryRouter,
     private val sqlQueryHandler: SqlQueryHandler,
     private val ragQueryHandler: RagQueryHandler,
+    private val mixedQueryHandler: MixedQueryHandler,
     private val conflictProbe: ConflictProbe,
     private val conflictLookup: ConflictLookup,
     private val conflictSynthesizer: ConflictSynthesizer,
@@ -42,8 +42,7 @@ class QueryService(
             when (route) {
                 RouteDecision.SQL -> handleSql(question)
                 RouteDecision.RAG -> ragQueryHandler.handle(question)
-                // TODO(Stage 8): wire MixedQueryHandler once it exists.
-                RouteDecision.MIXED -> placeholderResponse(route)
+                RouteDecision.MIXED -> mixedQueryHandler.handle(question)
             }
         } catch (e: Exception) {
             log.error("Handler failed for route {} on '{}': {}", route, question, e.message)
@@ -98,14 +97,6 @@ class QueryService(
         log.info("SQL returned no rows for '{}', falling back to RAG", question)
         return ragQueryHandler.handle(question)
     }
-
-    private fun placeholderResponse(route: RouteDecision): QueryResponse = QueryResponse(
-        answer = "The $route route is not yet implemented.",
-        routeDecision = route,
-        citations = emptyList(),
-        conflicts = emptyList(),
-        sqlGenerated = null,
-    )
 
     companion object {
         private val log = LoggerFactory.getLogger(QueryService::class.java)
