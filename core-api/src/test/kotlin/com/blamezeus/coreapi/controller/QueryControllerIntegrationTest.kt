@@ -54,6 +54,44 @@ class QueryControllerIntegrationTest : AbstractContainerTest() {
             .andExpect(status().isOk)
             .andExpect(jsonPath("$.routeDecision").value("SQL"))
             .andExpect(jsonPath("$.answer").value(response.answer))
+            .andExpect(jsonPath("$.conflictsInProse").value(false))
+    }
+
+    // ADR-015 Track E3: the unified composition shape -- answer carries inline [n] markers,
+    // citations is the composer's deduped/ordered reference list, and conflictsInProse is present
+    // and true so API consumers know the disagreement was woven into `answer` rather than living
+    // only in the (still-populated) `conflicts[]` field.
+    @Test
+    fun `POST query for a woven conflict-shaped question returns prose with inline markers and conflictsInProse true`() {
+        val response = QueryResponse(
+            answer = "Homer says Zeus fathered Aphrodite [1], while Hesiod says she was born from sea foam [2].",
+            routeDecision = RouteDecision.RAG,
+            citations = listOf(
+                Citation("Homer", "Iliad", "5.334-5.380"),
+                Citation("Hesiod", "Theogony", "176-232"),
+            ),
+            conflicts = listOf(
+                ConflictEntry("child of Zeus and Dione", "Homer", "Iliad", "5.334-5.380"),
+                ConflictEntry("born from sea foam", "Hesiod", "Theogony", "176-232"),
+            ),
+            sqlGenerated = null,
+            conflictsInProse = true,
+        )
+        every { queryService.handle("Who were Aphrodite's parents?") } returns response
+
+        mockMvc.perform(
+            post("/api/v1/query")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(QueryRequest("Who were Aphrodite's parents?")))
+        )
+            .andExpect(status().isOk)
+            .andExpect(jsonPath("$.answer").value(org.hamcrest.Matchers.containsString("[1]")))
+            .andExpect(jsonPath("$.answer").value(org.hamcrest.Matchers.containsString("[2]")))
+            .andExpect(jsonPath("$.citations.length()").value(2))
+            .andExpect(jsonPath("$.citations[0].author").value("Homer"))
+            .andExpect(jsonPath("$.citations[1].author").value("Hesiod"))
+            .andExpect(jsonPath("$.conflictsInProse").value(true))
+            .andExpect(jsonPath("$.conflicts.length()").value(2))
     }
 
     // DEV-014: a conflict-shaped question surfaces conflicts[] via route-independent enrichment,

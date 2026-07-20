@@ -85,7 +85,7 @@ class WebControllerTest : AbstractContainerTest() {
     }
 
     @Test
-    fun `POST web query renders the conflicts section regardless of route`() {
+    fun `ADR-015 Track E -- POST web query shows the fallback Sources-disagree box when conflictsInProse is false`() {
         val response = QueryResponse(
             answer = "Sources differ on Aphrodite's parentage.",
             routeDecision = RouteDecision.RAG,
@@ -95,6 +95,7 @@ class WebControllerTest : AbstractContainerTest() {
                 ConflictEntry("born from sea foam", "Hesiod", "Theogony", "176-232"),
             ),
             sqlGenerated = null,
+            conflictsInProse = false,
         )
         every { queryService.handle("Who were Aphrodite's parents?") } returns response
 
@@ -103,5 +104,29 @@ class WebControllerTest : AbstractContainerTest() {
             .andExpect(content().string(org.hamcrest.Matchers.containsString("Sources disagree")))
             .andExpect(content().string(org.hamcrest.Matchers.containsString("Homer, Iliad: child of Zeus and Dione")))
             .andExpect(content().string(org.hamcrest.Matchers.containsString("Hesiod, Theogony: born from sea foam")))
+    }
+
+    @Test
+    fun `ADR-015 Track E -- POST web query hides the Sources-disagree box when conflictsInProse is true`() {
+        val response = QueryResponse(
+            answer = "Homer says Zeus fathered Aphrodite [1], while Hesiod says she was born from sea foam [2].",
+            routeDecision = RouteDecision.RAG,
+            citations = listOf(
+                Citation("Homer", "Iliad", "5.334-5.380"),
+                Citation("Hesiod", "Theogony", "176-232"),
+            ),
+            conflicts = listOf(
+                ConflictEntry("child of Zeus and Dione", "Homer", "Iliad", "5.334-5.380"),
+                ConflictEntry("born from sea foam", "Hesiod", "Theogony", "176-232"),
+            ),
+            sqlGenerated = null,
+            conflictsInProse = true,
+        )
+        every { queryService.handle("Who were Aphrodite's parents?") } returns response
+
+        mockMvc.perform(post("/web/query").param("question", "Who were Aphrodite's parents?"))
+            .andExpect(status().isOk)
+            .andExpect(content().string(org.hamcrest.Matchers.containsString("Homer says Zeus fathered Aphrodite [1]")))
+            .andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Sources disagree"))))
     }
 }

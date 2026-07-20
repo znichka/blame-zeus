@@ -247,9 +247,9 @@ _Depends on: B + C._ Edit `service/QueryService.kt` (inject `AnswerComposer`) an
 _Depends on: D._ Edit `domain/dto/QueryResponse.kt`, `resources/templates/index.html`, and the
 controller/web tests.
 
-- [ ] **E1** Add `conflictsInProse: Boolean = false` to `QueryResponse` (A2) — default keeps every
+- [x] **E1** Add `conflictsInProse: Boolean = false` to `QueryResponse` (A2) — default keeps every
       other construction site compiling.
-- [ ] **E2 — Template (`index.html`).** Keep the numbered citations `<ol>` as the single unified
+- [x] **E2 — Template (`index.html`).** Keep the numbered citations `<ol>` as the single unified
       **References** list (now carrying the composer's unified citations; the answer prose already
       contains the inline `[n]`). Gate the "Sources disagree" box (`:46-54`) on
       `th:if="${!response.conflictsInProse && !response.conflicts.isEmpty()}"` — it renders **only**
@@ -257,11 +257,11 @@ controller/web tests.
       sits inside the template's `th:unless="${response.serviceError}"` block (`:35-60`), so on a
       `serviceError` draft `conflicts[]` is preserved for API/JSON consumers only — the web box is
       intentionally suppressed there, not shown.
-- [ ] **E3 — Controller/web tests.** Update `QueryControllerIntegrationTest` / `WebControllerTest`
+- [x] **E3 — Controller/web tests.** Update `QueryControllerIntegrationTest` / `WebControllerTest`
       (`@MockkBean QueryService`, DEV-055) for the unified shape: `answer` carries `[n]`,
       `citations` is the unified list, `conflictsInProse` is present in the JSON, and the web box
       shows only when `conflictsInProse == false`.
-- [ ] **E4** Run `:core-api:test` — all green.
+- [x] **E4** Run `:core-api:test` — all green.
 
 ---
 
