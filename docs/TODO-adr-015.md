@@ -95,27 +95,27 @@ Track A (5 design decisions) ┘                                   ├─→ Tra
 _Purpose:_ corroborate the beans, wiring pattern, field map, and template touch-points the change
 builds on. Write findings to a scratch note; log any contradiction as a DEV.
 
-- [ ] **0.1** Confirm `synthesisModel` bean exists at temp 0.3 (`config/LangChain4jConfig.kt:39`)
+- [x] **0.1** Confirm `synthesisModel` bean exists at temp 0.3 (`config/LangChain4jConfig.kt:39`)
       and that `RagAgent` binds to it via `@AiService(wiringMode = EXPLICIT, chatModel =
       "synthesisModel")` (`ai/RagAgent.kt:16`). `AnswerComposer` copies this exact pattern — **no
       new bean.**
-- [ ] **0.2** Confirm the `QueryResponse` field map (`domain/dto/QueryResponse.kt`): `answer:
+- [x] **0.2** Confirm the `QueryResponse` field map (`domain/dto/QueryResponse.kt`): `answer:
       String`, `routeDecision: RouteDecision?`, `citations: List<Citation>`, `conflicts:
       List<ConflictEntry>`, `sqlGenerated: String?`, `serviceError: Boolean = false`. Track E adds
       `conflictsInProse: Boolean = false`.
-- [ ] **0.3** Confirm `QueryService.handle()` is `route → dispatch → enrich()` (`service/
+- [x] **0.3** Confirm `QueryService.handle()` is `route → dispatch → enrich()` (`service/
       QueryService.kt:33`), that `enrich()` (`:69`) runs `conflictProbe.extract` →
       `conflictLookup.find` → `conflictSynthesizer.synthesize` and copies only `conflicts[]`, and
       that `handleSql` does the SQL-empty → RAG fallback (`:92`). Track D restructures the
       `enrich()`→compose flow; `handleSql`'s SQL-empty → RAG fallback is unchanged and still fires
       before composition.
-- [ ] **0.4** Confirm `ConflictLookup.find(subject, claimType): List<ConflictClaim>`
+- [x] **0.4** Confirm `ConflictLookup.find(subject, claimType): List<ConflictClaim>`
       (`conflict/ConflictLookup.kt:23`) and that `ConflictSynthesizer.synthesize(claims):
       List<ConflictEntry>` is deterministic (`ai/ConflictSynthesizer.kt`, DEV-051). Both stay.
-- [ ] **0.5** Confirm the template's current conflict box (`resources/templates/index.html:46-54`,
+- [x] **0.5** Confirm the template's current conflict box (`resources/templates/index.html:46-54`,
       "Sources disagree") and that the citations `<ol>` (`:38`) is already a numbered list. Track E
       makes the conflict box fallback-only and keeps the citations list as the unified References.
-- [ ] **0.6** Confirm the test patterns to mirror: `QueryServiceTest` (all `@AiService`/handlers
+- [x] **0.6** Confirm the test patterns to mirror: `QueryServiceTest` (all `@AiService`/handlers
       mockk'd), `SqlQueryHandlerTest`, and `QueryControllerIntegrationTest`/`WebControllerTest`
       (`@MockkBean QueryService`, DEV-055).
 
@@ -126,21 +126,21 @@ builds on. Write findings to a scratch note; log any contradiction as a DEV.
 _Purpose:_ pin five choices so B/C/D can proceed without blocking. Record each in the scratch note;
 none is a deviation (new-code design) unless it contradicts ADR-015.
 
-- [ ] **A1 — `ComposedAnswer` DTO shape.** New `domain/dto/ComposedAnswer.kt` = `data class
+- [x] **A1 — `ComposedAnswer` DTO shape.** New `domain/dto/ComposedAnswer.kt` = `data class
       ComposedAnswer(val answer: String, val citations: List<Citation>)`. Reuses the existing
       `Citation` type (`author, work, passageRef, stance?`) so the composer's references match the
       citation shape the template already renders.
-- [ ] **A2 — `conflictsInProse` default.** Add `conflictsInProse: Boolean = false` to
+- [x] **A2 — `conflictsInProse` default.** Add `conflictsInProse: Boolean = false` to
       `QueryResponse` (default `false` so every existing construction site — handlers, the
       `serviceError` branch — compiles unchanged and defaults to the safe "not woven" state).
-- [ ] **A3 — `material` serialization + where it's built.** Decision: `QueryService` builds
+- [x] **A3 — `material` serialization + where it's built.** Decision: `QueryService` builds
       `material` **uniformly from the draft `QueryResponse`** = the draft `answer` text plus its
       `citations` rendered as labelled source lines (so RAG/MIXED prose keeps its provenance and the
       composer can re-map to `[n]`). The only handler change needed is **SQL**: `formatAnswer` must
       emit **column-named** rows (`name=Zeus, type=olympian, generation=1`), not the value-only join,
       so the composer has field context (Track C). Do **not** build a separate per-route material
       path.
-- [ ] **A4 — `conflicts` input rendering.** The `List<ConflictClaim>` fetched by the probe/lookup
+- [x] **A4 — `conflicts` input rendering.** The `List<ConflictClaim>` fetched by the probe/lookup
       helper is rendered for the composer as attributed claim lines (author, work, passageRef,
       claimValue), or the **literal string `none`** when empty. Decide the exact line format and that
       `none` is passed (not an empty string) so the prompt reads unambiguously. Caveat: RAG's
@@ -148,7 +148,7 @@ none is a deviation (new-code design) unless it contradicts ADR-015.
       into the draft prose (now part of `material`); if the same disagreement is also a structured
       `conflicts` row, B3's system prompt must avoid narrating it twice (dedup is on citations, not
       content).
-- [ ] **A5 — Unified citation rule.** The composer returns `citations` = the **deduped union of
+- [x] **A5 — Unified citation rule.** The composer returns `citations` = the **deduped union of
       answer sources and conflict sources, ordered by first appearance**, such that inline marker
       `[n]` indexes `citations[n-1]`. Hold the composer to `RagAgent`'s citation discipline: use only
       provided material, copy `author`/`work`/`passageRef`/`stance` verbatim, never invent a source,
@@ -160,24 +160,24 @@ none is a deviation (new-code design) unless it contradicts ADR-015.
 
 _Depends on: A1, A5._ New files `ai/AnswerComposer.kt` + `domain/dto/ComposedAnswer.kt`.
 
-- [ ] **B1 — Test first.** `AnswerComposerTest` with the model **mocked** (no live LLM per
+- [x] **B1 — Test first.** `AnswerComposerTest` with the model **mocked** (no live LLM per
       TECH_GUARDRAILS): assert the interface returns a `ComposedAnswer` and that the mapping into it
       is faithful. (Prompt-fidelity behaviour is exercised end-to-end in Track G's manual smoke, not
       by a live unit test.)
-- [ ] **B2 — `ComposedAnswer` DTO** per A1.
-- [ ] **B3 — `AnswerComposer` `@AiService` interface** —
+- [x] **B2 — `ComposedAnswer` DTO** per A1.
+- [x] **B3 — `AnswerComposer` `@AiService` interface** —
       `@AiService(wiringMode = EXPLICIT, chatModel = "synthesisModel")` (DEV-046), method
       `compose(question, material, conflicts): ComposedAnswer` with `@V` params + a `@SystemMessage`.
       The system prompt: rewrite `material` into one fluent answer; weave each conflict version into
       the prose **attributed, without picking a winner**; emit inline `[n]` markers; return JSON
       `{"answer": "...", "citations": [{"author","work","passageRef","stance"}]}`; enforce A5's
       citation discipline (verbatim metadata, no invented sources, `[n]` ⇄ reference bijection).
-- [ ] **B4** Confirm the interface is provider-neutral (no Anthropic/OpenAI import) — only the
+- [x] **B4** Confirm the interface is provider-neutral (no Anthropic/OpenAI import) — only the
       `synthesisModel` bean name ties it to a provider, same as `RagAgent`. Copy only `RagAgent`'s
       `chatModel` + EXPLICIT wiring — **omit** `retrievalAugmentor` (there is no augmentor bean for
       the composer; its multi-param `@V` signature also differs from `RagAgent`'s single unannotated
       param).
-- [ ] **B5** Run `:core-api:test` — `AnswerComposerTest` green.
+- [x] **B5** Run `:core-api:test` — `AnswerComposerTest` green.
 
 ---
 

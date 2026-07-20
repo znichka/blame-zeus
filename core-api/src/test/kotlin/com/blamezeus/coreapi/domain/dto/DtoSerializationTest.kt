@@ -87,6 +87,22 @@ class DtoSerializationTest {
     }
 
     @Test
+    fun `ComposedAnswer deserializes from an LLM-shaped JSON blob missing optional fields`() {
+        // ADR-015 Track B: mirrors the exact shape AnswerComposer's @SystemMessage instructs the
+        // model to return -- no "stance" key at all.
+        val json = """
+            {"answer": "Zeus is king of the gods [1].",
+             "citations": [{"author": "Hesiod", "work": "Theogony", "passageRef": "450-500"}]}
+        """.trimIndent()
+
+        val parsed: ComposedAnswer = mapper.readValue(json)
+
+        assertThat(parsed.answer).isEqualTo("Zeus is king of the gods [1].")
+        assertThat(parsed.citations).hasSize(1)
+        assertThat(parsed.citations[0].stance).isNull()
+    }
+
+    @Test
     fun `QueryRequest deserializes from a bare question field`() {
         val parsed: QueryRequest = mapper.readValue("""{"question": "Who is Zeus?"}""")
         assertThat(parsed.question).isEqualTo("Who is Zeus?")
