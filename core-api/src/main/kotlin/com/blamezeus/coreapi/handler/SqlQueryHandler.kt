@@ -62,8 +62,13 @@ class SqlQueryHandler(
             .trim()
     }
 
+    // ADR-015 Track C: column-named so AnswerComposer's `material` carries field context
+    // ("name=Zeus, type=olympian, generation=1") instead of a bare value-only join — the composer
+    // is what turns this into user-facing prose now, not this handler.
     private fun formatAnswer(rows: List<Map<String, Any?>>): String =
-        rows.joinToString("; ") { row -> row.values.joinToString(", ") { it?.toString() ?: "unknown" } }
+        rows.joinToString("; ") { row ->
+            row.entries.joinToString(", ") { (key, value) -> "$key=${value?.toString() ?: "unknown"}" }
+        }
 
     private fun extractCitations(rows: List<Map<String, Any?>>): List<Citation> =
         rows.mapNotNull { row ->

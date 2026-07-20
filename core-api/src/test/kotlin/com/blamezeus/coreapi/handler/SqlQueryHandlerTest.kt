@@ -92,6 +92,24 @@ class SqlQueryHandlerTest {
     }
 
     @Test
+    fun `formatAnswer emits column-named pairs, not a bare value join (ADR-015 Track C)`() {
+        every { schemaIntrospector.get() } returns "schema"
+        every { textToSqlAgent.generateSql(any(), any()) } returns "SELECT name, type, generation FROM entities"
+        every { validator.validate(any()) } returns Unit
+        every { jdbcTemplate.queryForList("SELECT name, type, generation FROM entities") } returns
+            listOf(
+                mapOf("name" to "Zeus", "type" to "olympian", "generation" to 1),
+                mapOf("name" to "Hera", "type" to "olympian", "generation" to 1),
+            )
+
+        val response = handler.handle("Which Olympians are children of Cronus?")
+
+        assertThat(response.answer).isEqualTo(
+            "name=Zeus, type=olympian, generation=1; name=Hera, type=olympian, generation=1"
+        )
+    }
+
+    @Test
     fun `extracts citations from rows carrying author, work and passage_ref columns`() {
         every { schemaIntrospector.get() } returns "schema"
         every { textToSqlAgent.generateSql(any(), any()) } returns

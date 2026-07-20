@@ -185,16 +185,16 @@ _Depends on: A1, A5._ New files `ai/AnswerComposer.kt` + `domain/dto/ComposedAns
 
 _Depends on: A3._ Edit `handler/SqlQueryHandler.kt`.
 
-- [ ] **C1 — Test first.** Update `SqlQueryHandlerTest` to assert `formatAnswer` emits column-named
+- [x] **C1 — Test first.** Update `SqlQueryHandlerTest` to assert `formatAnswer` emits column-named
       pairs (e.g. `name=Zeus, type=olympian, generation=1`), not the value-only join. Keep the
       existing empty-result / aggregate-zero cases passing (`EMPTY_RESULT_ANSWER` unchanged — the
       SQL-empty → RAG fallback still fires before composition).
-- [ ] **C2 — Change `formatAnswer`** (`SqlQueryHandler.kt:65`) to serialize each row as
+- [x] **C2 — Change `formatAnswer`** (`SqlQueryHandler.kt:65`) to serialize each row as
       `key=value` pairs joined per row, rows joined by `; `. This value becomes the SQL route's
       `material`; the composer produces the user-facing prose.
-- [ ] **C3** Confirm `MixedQueryHandler` needs no change — its `answer` is already RAG prose;
+- [x] **C3** Confirm `MixedQueryHandler` needs no change — its `answer` is already RAG prose;
       `QueryService` renders its material from `answer` + `citations` (A3).
-- [ ] **C4** Run `:core-api:test` — `SqlQueryHandlerTest` green.
+- [x] **C4** Run `:core-api:test` — `SqlQueryHandlerTest` green.
 
 ---
 
