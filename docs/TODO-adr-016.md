@@ -246,20 +246,34 @@ _Depends on: C–E wired, docs OK, app runnable (`docker-compose` DB up + seeded
 `OPENAI_API_KEY`/`LLM_API_KEY`/`LLM_CHAT_MODEL`/`EMBEDDING_MODEL`)._ Use the `run` or
 claude-in-chrome skill.
 
-- [ ] **H1** `GET /` renders the mosaic layout: cream bg, meander top + wave bottom strips,
+- [x] **H1** `GET /` renders the mosaic layout: cream bg, meander top + wave bottom strips,
       steel-blue serif "Blame Zeus" + tagline, pale-blue input + terracotta arrow, example chips.
       **DevTools Network shows no request to `cdn.tailwindcss.com` or any font/CDN host** —
       `/css/blame-zeus.css` and `/js/examples.js` load 200 (self-contained requirement).
-- [ ] **H2** Click the *"Who were Aphrodite's parents?"* chip → the input fills and the form submits →
+      Verified live via claude-in-chrome: network log showed only `/`, `/css/blame-zeus.css`,
+      `/js/examples.js`, and two inline `data:image/svg+xml` requests — no CDN/font host.
+- [x] **H2** Click the *"Who were Aphrodite's parents?"* chip → the input fills and the form submits →
       a **Verdict** answer renders; conflicts are woven into the prose (`conflictsInProse=true`) so the
       "Sources disagree" panel is **absent**; if a fallback occurs it appears (gate honored, no dupes).
-- [ ] **H3** Ask a **DATA** question (*"Which Olympians are children of Cronus?"*) → prose answer, the
+      Found and fixed a real bug during this check: `examples.js` used `chip.closest('form')`, but
+      the chips block is a sibling of `<form>` in `index.html`, not nested inside it, so `closest`
+      returned `null` and clicking a chip threw silently. Fixed by having the script look up the
+      question input directly (`document.querySelector('input[name="question"]')`) and take `.closest('form')`
+      from *that* element instead. Verified after the fix: chip filled the input, submitted, and the
+      Aphrodite question rendered with conflicts woven into prose and no "Sources disagree" box.
+- [x] **H3** Ask a **DATA** question (*"Which Olympians are children of Cronus?"*) → prose answer, the
       **Sources** panel lists real citations (DEV-057 regression guard), and the "Show generated SQL"
-      disclosure works.
-- [ ] **H4** Ask a **FACT** question → answer + Sources panel; ask a **MIXED** question → same uniform
-      shape. Confirm a `serviceError` path shows the terracotta error box.
-- [ ] **H5** Responsive check at ~360px: no horizontal page scroll; border strips and panels reflow;
-      wide content (SQL `<pre>`) scrolls within its own container.
+      disclosure works. Verified live: SQL route badge, 6 real citations, SQL `<pre>` expands on click.
+- [x] **H4** Ask a **FACT** question → answer + Sources panel; ask a **MIXED** question → same uniform
+      shape. Confirm a `serviceError` path shows the terracotta error box. Verified live: FACT (RAG
+      badge) and MIXED (MIXED badge) both render the same Verdict/Sources/SQL-details shape; the
+      `serviceError` box was triggered by stopping Postgres mid-session and confirmed to render the
+      terracotta-toned "Something went wrong answering that. Try rephrasing." message.
+- [x] **H5** Responsive check at ~360px: no horizontal page scroll; border strips and panels reflow;
+      wide content (SQL `<pre>`) scrolls within its own container. Verified via a true 358px-viewport
+      iframe (the OS window has a ~553px floor that made direct window resize unreliable): both the
+      empty form and a rendered SQL-answer page had `scrollWidth === innerWidth` (no page-level
+      horizontal scroll); the generated-SQL `<pre>` clips/scrolls internally instead.
 
 ---
 
@@ -276,5 +290,5 @@ claude-in-chrome skill.
 - [x] Example-question chips fill+submit the input (single-turn).
 - [x] Docs cleaned of stale telegram references (README, CLAUDE.md, guardrails/stage1, ADR-003/012).
 - [x] `:core-api:test` green (markup-asserting tests updated).
-- [ ] Manual browser smoke passes (Track H), including the no-CDN network check and the DATA-question
+- [x] Manual browser smoke passes (Track H), including the no-CDN network check and the DATA-question
       Sources regression guard.
