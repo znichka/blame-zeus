@@ -344,3 +344,28 @@ response; `:core-api:test` green.
 - [x] Traceability: log `DEV-056`; annotate ADR-007 §5 "Amended by ADR-015"; add stage-note pointer `[DEVIATED - see DEVIATIONS.md DEV-056]`
 
 → [Detailed track-by-track checklist](TODO-adr-015.md)
+
+### ADR-016 — Web-Only Direction + Mosaic Frontend Redesign
+**Done when:** the `telegram-bot` module + all wiring (build/compose/env) are removed and
+`./gradlew projects` lists only `core-api` (`./gradlew build` green, no telegram reference in
+code/build/compose/env); the single web page renders the self-contained Greek/Roman **mosaic** theme
+(cream base, steel-blue serif "Blame Zeus" header + tagline, pure-CSS meander/wave border strips,
+pale-blue input + terracotta submit arrow, "Verdict" answer label) with **no Tailwind-CDN/web-font
+request**; curated example-question **chips** fill+submit the input; citations render in a
+first-class **"Sources" panel** paired with the "Sources disagree" conflict panel; every
+`QueryResponse` binding and the `!conflictsInProse && !conflicts.isEmpty()` gate preserved; `:core-api:test` green; stale
+telegram doc references cleaned up.
+
+> ⚠️ Implements `docs/adr/adr-016-web-only-direction-mosaic-frontend.md`. **Supersedes DEV-007** and
+> withdraws `IMPLEMENTATION_PLAN.md §6` + roadmap Stage 11. Documentation landed as **DEV-058**;
+> this is the deferred **implementation**. Presentation + subtraction only — no backend/DTO changes;
+> example questions are **hardcoded** (no runtime read of `evaluation/gold-questions.json`).
+
+- [ ] Remove `telegram-bot` module: delete `telegram-bot/`, edit `settings.gradle.kts`, `docker-compose.full.yml`, `.env`/`.env.example`
+- [ ] New `static/css/blame-zeus.css` (palette vars, meander/wave strips, serif) + `static/js/examples.js` (chip fill+submit) — self-contained, no CDN
+- [ ] Rewrite `index.html` into the mosaic theme (Verdict + first-class Sources panel + gated "Sources disagree"); preserve all bindings and the `!conflictsInProse` gate
+- [ ] Docs cleanup: README, CLAUDE.md, TECH_GUARDRAILS, TODO-stage1, ADR-003/012 telegram references
+- [ ] Tests: keep `WebControllerTest` green (`@MockkBean`, DEV-055; update markup assertions); `:core-api:test` green
+- [ ] Manual browser smoke: mosaic renders, no-CDN network check, chips work, DATA question shows Sources (DEV-057 guard), conflict question weaves prose (no dup box)
+
+→ [Detailed track-by-track checklist](TODO-adr-016.md)
