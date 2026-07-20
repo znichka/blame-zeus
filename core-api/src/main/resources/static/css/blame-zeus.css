@@ -155,7 +155,7 @@ body {
 
 /* --- Results (C4) --- */
 
-.results {
+.results, .results__body {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
