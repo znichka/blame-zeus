@@ -135,6 +135,78 @@ class SqlQueryHandlerTest {
         val response = handler.handle("question")
 
         assertThat(response.citations).isEmpty()
+        // An entities-only query has no source_id to recover — must NOT trigger a corrective retry.
+        verify(exactly = 0) { textToSqlAgent.generateSqlWithAttribution(any(), any(), any()) }
+    }
+
+    @Test
+    fun `DEV-057 -- extractCitations recognizes source_author and source_work aliases`() {
+        every { schemaIntrospector.get() } returns "schema"
+        val sql =
+            "SELECT r.relation, s.author AS source_author, s.work AS source_work, s.passage_ref " +
+                "FROM relationships r JOIN sources s ON s.id = r.source_id"
+        every { textToSqlAgent.generateSql(any(), any()) } returns sql
+        every { validator.validate(any()) } returns Unit
+        every { jdbcTemplate.queryForList(sql) } returns
+            listOf(mapOf("relation" to "parent_of", "source_author" to "Hesiod", "source_work" to "Theogony", "passage_ref" to "453"))
+
+        val response = handler.handle("question")
+
+        assertThat(response.citations).containsExactly(
+            Citation(author = "Hesiod", work = "Theogony", passageRef = "453")
+        )
+        // Attribution was found on the first pass — no retry.
+        verify(exactly = 0) { textToSqlAgent.generateSqlWithAttribution(any(), any(), any()) }
+    }
+
+    @Test
+    fun `DEV-057 -- a relationships query returning no attribution triggers exactly one corrective regeneration`() {
+        every { schemaIntrospector.get() } returns "schema"
+        val firstSql = "SELECT child.name FROM relationships r JOIN entities child ON child.id = r.to_id WHERE r.relation = 'parent_of'"
+        every { textToSqlAgent.generateSql("schema", "Which Olympians are children of Cronus?") } returns firstSql
+        val retrySql =
+            "SELECT child.name AS name, s.author AS author, s.work AS work, s.passage_ref AS passage_ref, s.stance AS stance " +
+                "FROM relationships r JOIN entities child ON child.id = r.to_id JOIN sources s ON s.id = r.source_id"
+        every {
+            textToSqlAgent.generateSqlWithAttribution("schema", "Which Olympians are children of Cronus?", firstSql)
+        } returns retrySql
+        every { validator.validate(any()) } returns Unit
+        every { jdbcTemplate.queryForList(firstSql) } returns
+            listOf(mapOf("name" to "Zeus"), mapOf("name" to "Hera"))
+        every { jdbcTemplate.queryForList(retrySql) } returns listOf(
+            mapOf("name" to "Zeus", "author" to "Hesiod", "work" to "Theogony", "passage_ref" to "453", "stance" to "cosmological"),
+            mapOf("name" to "Hera", "author" to "Hesiod", "work" to "Theogony", "passage_ref" to "453", "stance" to "cosmological"),
+        )
+
+        val response = handler.handle("Which Olympians are children of Cronus?")
+
+        verify(exactly = 1) {
+            textToSqlAgent.generateSqlWithAttribution("schema", "Which Olympians are children of Cronus?", firstSql)
+        }
+        assertThat(response.citations).containsExactly(
+            Citation(author = "Hesiod", work = "Theogony", passageRef = "453", stance = "cosmological")
+        )
+        assertThat(response.sqlGenerated).isEqualTo(retrySql)
+        assertThat(response.answer).contains("author=Hesiod")
+    }
+
+    @Test
+    fun `DEV-057 -- a corrective regeneration that still yields no attribution falls back to the original result`() {
+        every { schemaIntrospector.get() } returns "schema"
+        val firstSql = "SELECT child.name FROM relationships r JOIN entities child ON child.id = r.to_id"
+        every { textToSqlAgent.generateSql(any(), any()) } returns firstSql
+        val retrySql = "SELECT child.name AS name FROM relationships r JOIN entities child ON child.id = r.to_id"
+        every { textToSqlAgent.generateSqlWithAttribution(any(), any(), any()) } returns retrySql
+        every { validator.validate(any()) } returns Unit
+        every { jdbcTemplate.queryForList(firstSql) } returns listOf(mapOf("name" to "Zeus"))
+        every { jdbcTemplate.queryForList(retrySql) } returns listOf(mapOf("name" to "Zeus"))
+
+        val response = handler.handle("question")
+
+        verify(exactly = 1) { textToSqlAgent.generateSqlWithAttribution(any(), any(), any()) }
+        assertThat(response.citations).isEmpty()
+        assertThat(response.sqlGenerated).isEqualTo(firstSql)
+        assertThat(response.answer).isEqualTo("name=Zeus")
     }
 
     @Test

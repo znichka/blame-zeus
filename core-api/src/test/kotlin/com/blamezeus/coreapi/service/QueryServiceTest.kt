@@ -17,6 +17,7 @@ import com.blamezeus.coreapi.routing.QueryRouter
 import com.blamezeus.coreapi.routing.RouteDecision
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.slot
 import io.mockk.verify
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -574,6 +575,30 @@ class QueryServiceTest {
         assertThat(response.conflictsInProse).isFalse()
         verify(exactly = 1) { conflictProbe.extract(any()) }
         verify(exactly = 0) { answerComposer.compose(any(), any(), any()) }
+    }
+
+    @Test
+    fun `DEV-057 -- a SQL draft carrying citations passes a Sources block in material to the composer`() {
+        every { queryRouter.classify(any()) } returns RouteDecision.SQL
+        val citations = listOf(Citation("Hesiod", "Theogony", "453", "cosmological"))
+        val sqlResponse = QueryResponse(
+            answer = "name=Zeus, author=Hesiod, work=Theogony; name=Hera, author=Hesiod, work=Theogony",
+            routeDecision = RouteDecision.SQL,
+            citations = citations,
+            conflicts = emptyList(),
+            sqlGenerated = "SELECT ...",
+        )
+        every { sqlQueryHandler.handle(any()) } returns sqlResponse
+        val materialSlot = slot<String>()
+        every { answerComposer.compose(any(), capture(materialSlot), any()) } returns
+            ComposedAnswer(answer = "Zeus and Hera are children of Cronus [1].", citations = citations)
+
+        val response = service.handle("Which Olympians are children of Cronus?")
+
+        // renderMaterial's citations-present branch — the exact branch skipped when SQL answers
+        // arrived uncited — must emit a Sources block the composer can map to [n] markers.
+        assertThat(materialSlot.captured).contains("Sources:").contains("Hesiod, Theogony, 453")
+        assertThat(response.citations).isEqualTo(citations)
     }
 
     @Test
