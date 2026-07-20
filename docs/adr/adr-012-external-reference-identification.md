@@ -8,6 +8,14 @@
 
 ---
 
+> **Web-only note (ADR-016, DEV-058):** this proposal's "Telegram bot as photo entry point" framing
+> (below, and Action Item 1's "alongside the Telegram bot" phasing) predates the web-only pivot —
+> `telegram-bot` was removed. If this ADR is ever accepted, the photo-input affordance would need
+> to land on the web UI (or a future consumer) instead; the rest of the design (detect → verify →
+> reformulate → reuse pipeline) is unaffected. Left as originally written below for history.
+
+---
+
 ## Context
 
 A reader encounters a passage in a **modern book** that alludes to Greek myth — sometimes by name

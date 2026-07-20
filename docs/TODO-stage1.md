@@ -2,6 +2,9 @@
 
 Stage 1 is three commits. Within each commit, tasks are ordered; across commits, order is 1a → 1b → 1c.
 
+> **`telegram-bot` mentions below are historical.** The module was removed per ADR-016 (web-only
+> pivot, DEV-058); this checklist is left as-written to record what Stage 1a/1b actually built.
+
 ---
 
 ## Stage 1a — Gradle project scaffold ✅

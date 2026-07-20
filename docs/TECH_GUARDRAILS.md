@@ -8,7 +8,7 @@ Rules for keeping this PoC consistent, safe, and easy to reason about. These are
 
 | Rule | Detail |
 |---|---|
-| **Kotlin 2.3.21 + JVM 21** | `core-api` and `telegram-bot` modules. No Java source files. |
+| **Kotlin 2.3.21 + JVM 21** | `core-api` module (web-only since ADR-016 — `telegram-bot` removed). No Java source files. |
 | **Spring Boot 3.3.13** | Jakarta namespace (`jakarta.*`), not `javax.*`. |
 | **Gradle Kotlin DSL** | All JVM build files are `build.gradle.kts`. No Groovy `.gradle` files. |
 | **Shared convention plugin** | `buildSrc/src/main/kotlin/blame-zeus.kotlin-conventions.gradle.kts` — applies `kotlin("jvm")`, sets `jvmTarget = "21"`, adds `kotlin-reflect` + `jackson-module-kotlin` to all JVM modules. |
@@ -20,7 +20,7 @@ Rules for keeping this PoC consistent, safe, and easy to reason about. These are
 
 | Rule | Detail |
 |---|---|
-| **LangChain4j for all LLM calls in JVM services** | Applies to `core-api` and `telegram-bot` only. No direct Anthropic SDK, no direct OpenAI Java SDK (`com.openai:openai-java`), no plain `RestTemplate`/`WebClient` to LLM endpoints. The `ingestion` Python job is the only authorized exception — it uses provider Python SDKs directly for corpus-prep: the OpenAI SDK for **embedding**, and the Anthropic SDK (since ADR-004; model updated by ADR-008) for offline **seed-data extraction** (`ingestion/extraction/`, via `instructor` on a separate `anthropic` client — Claude Opus 4.8 — not the `openai` embedding client, and not a separate LLM framework). Both uses are corpus-prep tooling; extraction never runs at query time and never touches `LangChain4jConfig.kt`. |
+| **LangChain4j for all LLM calls in JVM services** | Applies to `core-api` only (web-only since ADR-016 — `telegram-bot` removed). No direct Anthropic SDK, no direct OpenAI Java SDK (`com.openai:openai-java`), no plain `RestTemplate`/`WebClient` to LLM endpoints. The `ingestion` Python job is the only authorized exception — it uses provider Python SDKs directly for corpus-prep: the OpenAI SDK for **embedding**, and the Anthropic SDK (since ADR-004; model updated by ADR-008) for offline **seed-data extraction** (`ingestion/extraction/`, via `instructor` on a separate `anthropic` client — Claude Opus 4.8 — not the `openai` embedding client, and not a separate LLM framework). Both uses are corpus-prep tooling; extraction never runs at query time and never touches `LangChain4jConfig.kt`. |
 | **`@AiService` interface pattern** | Every LLM role (routing, SQL generation, RAG synthesis, conflict synthesis, entity extraction) is an interface annotated with `@AiService`. No inline `ChatLanguageModel.generate()` calls in business logic. |
 | **Chat model is provider-agnostic; embedding model is OpenAI-fixed** | All `@AiService` interfaces and handlers are provider-neutral — no chat provider is assumed or hardcoded outside `LangChain4jConfig.kt`. `LangChain4jConfig.kt` uses `AnthropicChatModel` (Claude Haiku 4.5) as the Phase 1 default since ADR-008; to change the chat provider, replace those beans with another LangChain4j `ChatLanguageModel` implementation and add the new provider's starter. Keep `langchain4j-open-ai-spring-boot-starter` regardless — the embedding bean always requires it. In ingestion, the OpenAI Python SDK is used directly for embedding only and is intentionally fixed: the embedding model (`text-embedding-3-large`, dimension 3072, since ADR-013) must match what was used during ingestion and cannot be swapped without re-ingesting the full corpus. |
 | **No hardcoded API keys or model names** | All in `application.yml` backed by environment variables. Non-secret values (e.g. model names) may use an `${ENV_VAR:default}` form; the default is acceptable, but the property must live in `application.yml` — not as a string literal inside a `@Bean` method. |
@@ -135,8 +135,8 @@ These are explicitly out of scope. Adding them without a deliberate decision was
 | Rule | Detail |
 |---|---|
 | **`.env` is gitignored** | Commit `.env.example` with placeholder values; `.env` is never committed. |
-| **No secrets in `application.yml`** | All secrets (`OPENAI_API_KEY`, `LLM_API_KEY`, `POSTGRES_PASSWORD`, `TELEGRAM_BOT_TOKEN`) come from environment variables referenced as `${VAR_NAME}`. `OPENAI_API_KEY` is used by ingestion and by the embedding bean (`app.llm.embedding-api-key`). `LLM_API_KEY` is used by the chat model bean (`app.llm.chat-api-key`) — set it to the same value as `OPENAI_API_KEY` for Phase 1. |
-| **Docker Compose for local dev** | `docker-compose.yml` (DB only) and `docker-compose.full.yml` (full stack). No manual postgres setup instructions. |
+| **No secrets in `application.yml`** | All secrets (`OPENAI_API_KEY`, `LLM_API_KEY`, `POSTGRES_PASSWORD`) come from environment variables referenced as `${VAR_NAME}`. `OPENAI_API_KEY` is used by ingestion and by the embedding bean (`app.llm.embedding-api-key`). `LLM_API_KEY` is used by the chat model bean (`app.llm.chat-api-key`) — set it to the same value as `OPENAI_API_KEY` for Phase 1. |
+| **Docker Compose for local dev** | `docker-compose.yml` (DB only) and `docker-compose.full.yml` (DB + `core-api`, web-only since ADR-016). No manual postgres setup instructions. |
 
 ---
 
@@ -156,7 +156,4 @@ POSTGRES_USER=zeus
 POSTGRES_PASSWORD=olympus
 POSTGRES_APP_USER=zeus_app
 POSTGRES_APP_PASSWORD=app_password
-TELEGRAM_BOT_TOKEN=...
-TELEGRAM_BOT_USERNAME=BlameZeusBot
-CORE_API_BASE_URL=http://core-api:8080
 ```

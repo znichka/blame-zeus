@@ -17,6 +17,11 @@
 > → `text-embedding-3-large` (native 3072 dims, corpus re-embedded, `vector(3072)` + halfvec HNSW
 > via `V8_4`). The "locked embeddings" principle stands — only the locked value changed.
 > See `docs/adr/adr-013-embedding-model-upgrade-3-large.md` and `DEVIATIONS.md` DEV-028.
+>
+> ⚠️ **Web-only note (ADR-016, DEV-058):** `telegram-bot` (referenced below as one of the "two
+> runtimes") was removed. `core-api` is the only JVM runtime; the "two runtimes, two languages"
+> framing now means `core-api` (Kotlin) + `ingestion` (Python). The model decisions themselves are
+> unaffected.
 
 ---
 

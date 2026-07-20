@@ -71,26 +71,26 @@ Track B (remove telegram-bot) ┘  (B is fully independent of A/C/D/E)         �
 _Purpose:_ corroborate the removal surface and the bindings the redesign preserves. Write findings to
 a scratch note; log any contradiction as a DEV.
 
-- [ ] **0.1** Confirm no `core-api` (or `ingestion`/`scripts`) code references telegram:
+- [x] **0.1** Confirm no `core-api` (or `ingestion`/`scripts`) code references telegram:
       `grep -ri "telegram" core-api ingestion scripts` returns nothing. Removal is compile-clean.
-- [ ] **0.2** Confirm the removal surface exactly: `telegram-bot/` dir (only real file
+- [x] **0.2** Confirm the removal surface exactly: `telegram-bot/` dir (only real file
       `build.gradle.kts`); `settings.gradle.kts` include line (`include("core-api", "telegram-bot")`);
       `docker-compose.full.yml` `telegram-bot:` service block; `.env` + `.env.example` telegram block
       (`TELEGRAM_BOT_TOKEN`, `TELEGRAM_BOT_USERNAME`, `CORE_API_BASE_URL`). `docker-compose.yml`
       (DB-only) has **no** telegram reference — leave it.
-- [ ] **0.3** Confirm the `QueryResponse` field map the template binds
+- [x] **0.3** Confirm the `QueryResponse` field map the template binds
       (`domain/dto/QueryResponse.kt`): `answer`, `routeDecision: RouteDecision?`,
       `citations: List<Citation>`, `conflicts: List<ConflictEntry>`, `sqlGenerated: String?`,
       `serviceError`, `conflictsInProse`. `Citation(author, work, passageRef, stance?)`;
       `ConflictEntry(claimValue, sourceAuthor, sourceWork, passageRef?)`. The redesign changes **no**
       field.
-- [ ] **0.4** Confirm `WebController` (`controller/WebController.kt`) serves `GET /` → `index` and
+- [x] **0.4** Confirm `WebController` (`controller/WebController.kt`) serves `GET /` → `index` and
       `POST /web/query` (`@RequestParam question`) → `index` with model `question` + `response`.
       **No controller change** — chips submit the same form; the input keeps `name="question"`.
-- [ ] **0.5** Confirm Spring Boot serves `/static/**` off the classpath (default). The new
+- [x] **0.5** Confirm Spring Boot serves `/static/**` off the classpath (default). The new
       `core-api/src/main/resources/static/css/blame-zeus.css` is referenced as `/css/blame-zeus.css`
       and `static/js/examples.js` as `/js/examples.js`. The `static/` dir does not yet exist.
-- [ ] **0.6** Confirm the current template touch-points to preserve
+- [x] **0.6** Confirm the current template touch-points to preserve
       (`resources/templates/index.html`): route badge `th:switch`, `serviceError` box, citations
       `<ol>` (→ becomes the Sources panel), the "Sources disagree" box with its `!conflictsInProse`
       gate, and the generated-SQL `<details>`. Note which existing tests assert markup (Track G).
@@ -102,17 +102,17 @@ a scratch note; log any contradiction as a DEV.
 _Purpose:_ pin the concrete implementation choices ADR-016's brief leaves open. Record each in the
 scratch note; none is a deviation unless it contradicts ADR-016.
 
-- [ ] **A1 — Palette as CSS custom properties.** Define `:root` vars: `--cream:#fdfbf5`,
+- [x] **A1 — Palette as CSS custom properties.** Define `:root` vars: `--cream:#fdfbf5`,
       `--steel:#3d6a8c`, `--steel-light:#5a86a8`, `--terracotta:#c76b4a`, `--input-bg:#eef4f8`,
       plus derived warm-gray body + muted blue-gray placeholder. Single source of truth for the theme.
-- [ ] **A2 — Meander (top) + wave-scroll (bottom) border strips.** Decide the pure-CSS technique:
+- [x] **A2 — Meander (top) + wave-scroll (bottom) border strips.** Decide the pure-CSS technique:
       inline-SVG `data:` URI `background-image` on thin fixed strips (light-blue band + terracotta
       linework), `aria-hidden`, non-interactive, do not cause horizontal scroll on narrow viewports.
       Keep the SVG small and inlined (no external asset, no CDN).
-- [ ] **A3 — Typography.** Serif stack `Georgia, 'Iowan Old Style', 'Palatino Linotype',
+- [x] **A3 — Typography.** Serif stack `Georgia, 'Iowan Old Style', 'Palatino Linotype',
       'Times New Roman', serif` for title/answer; system sans (`system-ui, -apple-system, 'Segoe UI',
       sans-serif`) for tagline/labels/chips. **No web-font download.**
-- [ ] **A4 — Example-question set + chip interaction.** Fix the curated set (hardcoded, from
+- [x] **A4 — Example-question set + chip interaction.** Fix the curated set (hardcoded, from
       `evaluation/gold-questions.json`, conflict-weighted): CONFLICT — *"Who were Aphrodite's
       parents?"*, *"How did Achilles die?"*, *"Who was Io's father?"*; FACT — *"Why did Athena turn
       Arachne into a spider?"*; DATA — *"Which Olympians are children of Cronus?"*; MIXED — *"Which
@@ -120,7 +120,7 @@ scratch note; none is a deviation unless it contradicts ADR-016.
       data-question="…">`; `examples.js` sets the input value and submits the form (single-turn model
       preserved). Decide graceful no-JS behavior (chips can be plain and simply inert, or be links —
       keep it simple; JS-fill is the primary path).
-- [ ] **A5 — Answer / Sources / Conflict layout.** "Verdict" = thin terracotta left-border rule +
+- [x] **A5 — Answer / Sources / Conflict layout.** "Verdict" = thin terracotta left-border rule +
       small uppercase terracotta label + serif answer. "Sources" = a first-class panel (uppercase
       terracotta label + one card/row per citation), always visible when `citations` non-empty.
       "Sources disagree" = terracotta-accented panel, visually paired with Sources, gated **exactly**
@@ -133,16 +133,16 @@ scratch note; none is a deviation unless it contradicts ADR-016.
 
 _Independent of the frontend tracks._ No `core-api` code depends on it (0.1).
 
-- [ ] **B1** Delete the entire `telegram-bot/` directory (including its `build/` output).
-- [ ] **B2** `settings.gradle.kts` — change `include("core-api", "telegram-bot")` →
+- [x] **B1** Delete the entire `telegram-bot/` directory (including its `build/` output).
+- [x] **B2** `settings.gradle.kts` — change `include("core-api", "telegram-bot")` →
       `include("core-api")`. (Leave the unrelated `ingestion` comment.)
-- [ ] **B3** `docker-compose.full.yml` — delete the whole `telegram-bot:` service block
+- [x] **B3** `docker-compose.full.yml` — delete the whole `telegram-bot:` service block
       (`build`/`image`, `depends_on: core-api: service_healthy`, and the `CORE_API_BASE_URL` /
       `TELEGRAM_BOT_TOKEN` / `TELEGRAM_BOT_USERNAME` env). Leave `core-api` + `postgres` intact.
-- [ ] **B4** `.env` and `.env.example` — remove the telegram block (`# Telegram bot (Phase 2)`,
+- [x] **B4** `.env` and `.env.example` — remove the telegram block (`# Telegram bot (Phase 2)`,
       `TELEGRAM_BOT_TOKEN`, `TELEGRAM_BOT_USERNAME`, the `# core-api base URL …` comment, and
       `CORE_API_BASE_URL`). These vars are used **only** by the removed compose block.
-- [ ] **B5** Verify: `./gradlew projects` lists only `core-api`; `./gradlew build` green;
+- [x] **B5** Verify: `./gradlew projects` lists only `core-api`; `./gradlew build` green;
       `grep -ri "telegram" --exclude-dir=build --exclude-dir=.git .` returns only the intentional
       historical notes in `docs/DEVIATIONS.md` (DEV-007/DEV-058) and ADR-016 — no live code/build/env.
 
@@ -152,17 +152,17 @@ _Independent of the frontend tracks._ No `core-api` code depends on it (0.1).
 
 _Depends on: A1–A3, A5._ New file `core-api/src/main/resources/static/css/blame-zeus.css`.
 
-- [ ] **C1** Create `static/css/` and the stylesheet. Encode the A1 palette vars, the cream page
+- [x] **C1** Create `static/css/` and the stylesheet. Encode the A1 palette vars, the cream page
       background, centered `max-width` content column, and the A3 typography.
-- [ ] **C2** Implement the A2 meander (top) + wave-scroll (bottom) border strips as pure CSS /
+- [x] **C2** Implement the A2 meander (top) + wave-scroll (bottom) border strips as pure CSS /
       inline-SVG `data:` URIs. Confirm no horizontal overflow at ~360px width.
-- [ ] **C3** Style the header ("Blame Zeus" serif steel-blue + sans warm-gray tagline), the input
+- [x] **C3** Style the header ("Blame Zeus" serif steel-blue + sans warm-gray tagline), the input
       (pale-blue `#eef4f8` rounded rectangle, soft blue border, muted placeholder) with the terracotta
       submit **arrow** on the right, and the example-question **chips**.
-- [ ] **C4** Style the results area: "Verdict" label + answer, route badge (palette-toned), the
+- [x] **C4** Style the results area: "Verdict" label + answer, route badge (palette-toned), the
       first-class **Sources** panel, the paired **"Sources disagree"** panel (terracotta accent), the
       `serviceError` box (terracotta-toned), and the generated-SQL `<pre>` (restyled, still readable).
-- [ ] **C5** No `@import`, no external font/CDN URL anywhere in the file (self-contained requirement).
+- [x] **C5** No `@import`, no external font/CDN URL anywhere in the file (self-contained requirement).
 
 ---
 
@@ -170,26 +170,26 @@ _Depends on: A1–A3, A5._ New file `core-api/src/main/resources/static/css/blam
 
 _Depends on: C + E._ Edit `core-api/src/main/resources/templates/index.html`.
 
-- [ ] **D1** Replace the Tailwind-CDN `<head>` with `<link rel="stylesheet" href="/css/blame-zeus.css">`
+- [x] **D1** Replace the Tailwind-CDN `<head>` with `<link rel="stylesheet" href="/css/blame-zeus.css">`
       (and defer `/js/examples.js`). Keep the Thymeleaf namespace and `<title>`.
-- [ ] **D2** Top meander strip (decorative, `aria-hidden`) → header block ("Blame Zeus" + tagline) →
+- [x] **D2** Top meander strip (decorative, `aria-hidden`) → header block ("Blame Zeus" + tagline) →
       the question `<form method="post" action="/web/query">` with `input name="question"`
       `th:value="${question}"`, placeholder *"Who slew the Hydra?"*, and the terracotta submit arrow.
       **Unchanged form contract** (0.4).
-- [ ] **D3** Example-question **chips** block under the input (A4 set), each a
+- [x] **D3** Example-question **chips** block under the input (A4 set), each a
       `<button type="button" data-question="…">`; add the bottom wave-scroll strip.
-- [ ] **D4** Results block (`th:if="${response != null}"`), preserving **every** binding:
-  - [ ] **D4.1** Route badge `th:switch="${response.routeDecision?.name()}"` (SQL/RAG/MIXED/default),
+- [x] **D4** Results block (`th:if="${response != null}"`), preserving **every** binding:
+  - [x] **D4.1** Route badge `th:switch="${response.routeDecision?.name()}"` (SQL/RAG/MIXED/default),
         restyled/de-emphasized.
-  - [ ] **D4.2** `serviceError` box (`th:if="${response.serviceError}"`) — terracotta-toned copy.
-  - [ ] **D4.3** "Verdict" answer (`th:unless="${response.serviceError}"`, `th:text="${response.answer}"`).
-  - [ ] **D4.4** First-class **Sources** panel (`th:if="${!response.citations.isEmpty()}"`) — one
+  - [x] **D4.2** `serviceError` box (`th:if="${response.serviceError}"`) — terracotta-toned copy.
+  - [x] **D4.3** "Verdict" answer (`th:unless="${response.serviceError}"`, `th:text="${response.answer}"`).
+  - [x] **D4.4** First-class **Sources** panel (`th:if="${!response.citations.isEmpty()}"`) — one
         row/card per `citation` binding `author`, `work`, optional `passageRef`, optional `stance`.
-  - [ ] **D4.5** **"Sources disagree"** panel — gate **exactly**
+  - [x] **D4.5** **"Sources disagree"** panel — gate **exactly**
         `th:if="${!response.conflictsInProse && !response.conflicts.isEmpty()}"` (ADR-015/DEV-056),
         each `conflict` binding `sourceAuthor`, `sourceWork`, `claimValue`, optional `passageRef`.
-  - [ ] **D4.6** Generated-SQL `<details>` (`th:if="${response.sqlGenerated != null}"`) — restyled `<pre>`.
-- [ ] **D5** Watch the field-name asymmetry: citations use bare `author`/`work`; conflicts use
+  - [x] **D4.6** Generated-SQL `<details>` (`th:if="${response.sqlGenerated != null}"`) — restyled `<pre>`.
+- [x] **D5** Watch the field-name asymmetry: citations use bare `author`/`work`; conflicts use
       `sourceAuthor`/`sourceWork` and the claim text is `claimValue`; `Citation.passageRef` is
       non-nullable, `ConflictEntry.passageRef` nullable.
 
@@ -199,9 +199,9 @@ _Depends on: C + E._ Edit `core-api/src/main/resources/templates/index.html`.
 
 _Depends on: A4._ New file `core-api/src/main/resources/static/js/examples.js`.
 
-- [ ] **E1** Vanilla JS (no library, no CDN): on chip click, read `data-question`, set the
+- [x] **E1** Vanilla JS (no library, no CDN): on chip click, read `data-question`, set the
       `name="question"` input's value, and submit its form. Keeps the single-turn flow.
-- [ ] **E2** Progressive enhancement: script is `defer`-loaded; if JS is unavailable the page still
+- [x] **E2** Progressive enhancement: script is `defer`-loaded; if JS is unavailable the page still
       renders and the manual input still works (chips simply do nothing, or are plain text) — decide
       per A4 and keep it graceful.
 
@@ -212,14 +212,14 @@ _Depends on: A4._ New file `core-api/src/main/resources/static/js/examples.js`.
 _Depends on: B._ Remove/annotate telegram mentions the ADR-016 pivot obsoletes. Prefer a short
 "(removed — see ADR-016 / DEV-058)" note over deleting history in the append-only/authoritative docs.
 
-- [ ] **F1** `README.md` — drop the `telegram-bot` line from the architecture diagram, the "Full
+- [x] **F1** `README.md` — drop the `telegram-bot` line from the architecture diagram, the "Full
       stack with Telegram bot" section, and the module list; make the module list web-only.
-- [ ] **F2** `CLAUDE.md` — language list (`core-api`, ~~`telegram-bot`~~), the Service Layout table
+- [x] **F2** `CLAUDE.md` — language list (`core-api`, ~~`telegram-bot`~~), the Service Layout table
       row, and the directory-tree line.
-- [ ] **F3** `docs/TECH_GUARDRAILS.md` and `docs/TODO-stage1.md` — annotate/trim the telegram refs.
-- [ ] **F4** `docs/adr/adr-003-model-selection.md` and `docs/adr/adr-012-external-reference-identification.md`
+- [x] **F3** `docs/TECH_GUARDRAILS.md` and `docs/TODO-stage1.md` — annotate/trim the telegram refs.
+- [x] **F4** `docs/adr/adr-003-model-selection.md` and `docs/adr/adr-012-external-reference-identification.md`
       — leave the historical prose but note telegram is out of scope (web-only) where it would mislead.
-- [ ] **F5** `IMPLEMENTATION_PLAN.md §6` banner, roadmap Stage 11 strike, and `docs/TODO.md` Stage 11
+- [x] **F5** `IMPLEMENTATION_PLAN.md §6` banner, roadmap Stage 11 strike, and `docs/TODO.md` Stage 11
       "REMOVED" note — **already done** with DEV-058; just verify they read correctly after B lands.
 
 ---
@@ -228,12 +228,15 @@ _Depends on: B._ Remove/annotate telegram mentions the ADR-016 pivot obsoletes. 
 
 _Depends on: B + D._
 
-- [ ] **G1** Run `:core-api:test` after B (module removal) — confirm nothing referenced
+- [x] **G1** Run `:core-api:test` after B (module removal) — confirm nothing referenced
       `telegram-bot` and the suite still compiles/passes.
-- [ ] **G2** Update any test that asserts old markup. `WebControllerTest` (`@MockkBean QueryService`,
+- [x] **G2** Update any test that asserts old markup. `WebControllerTest` (`@MockkBean QueryService`,
       DEV-055) must stay green; if it asserts Tailwind classes or the old citations `<ol>`, re-point
       the assertions at the new structure (Sources panel, chips) — keep the mocking pattern.
-- [ ] **G3** Run the full `:core-api:test` — green.
+      (No update needed: its assertions check text content — "SQL", "Zeus", "Hesiod, Theogony",
+      "Show generated SQL", "Sources disagree" — not Tailwind classes or `<ol>` structure; all 5
+      cases passed unmodified against the new template.)
+- [x] **G3** Run the full `:core-api:test` — green.
 
 ---
 
@@ -262,16 +265,16 @@ claude-in-chrome skill.
 
 ## Definition of Done (roll-up)
 
-- [ ] `telegram-bot/` deleted; `settings.gradle.kts`, `docker-compose.full.yml`, `.env`/`.env.example`
+- [x] `telegram-bot/` deleted; `settings.gradle.kts`, `docker-compose.full.yml`, `.env`/`.env.example`
       cleaned; `./gradlew projects` lists only `core-api`; `./gradlew build` green; no live telegram
       reference remains (only historical DEV-007/DEV-058 + ADR-016 notes).
-- [ ] `static/css/blame-zeus.css` + `static/js/examples.js` created; fully self-contained (no CDN, no
+- [x] `static/css/blame-zeus.css` + `static/js/examples.js` created; fully self-contained (no CDN, no
       web font); `index.html` rewritten into the mosaic theme with the Verdict/Sources/"Sources
       disagree" layout.
-- [ ] Every `QueryResponse` binding preserved; the `!conflictsInProse && !conflicts.isEmpty()`
+- [x] Every `QueryResponse` binding preserved; the `!conflictsInProse && !conflicts.isEmpty()`
       conflict gate kept exactly; `WebController`/`QueryService`/DTOs unchanged.
-- [ ] Example-question chips fill+submit the input (single-turn).
-- [ ] Docs cleaned of stale telegram references (README, CLAUDE.md, guardrails/stage1, ADR-003/012).
-- [ ] `:core-api:test` green (markup-asserting tests updated).
+- [x] Example-question chips fill+submit the input (single-turn).
+- [x] Docs cleaned of stale telegram references (README, CLAUDE.md, guardrails/stage1, ADR-003/012).
+- [x] `:core-api:test` green (markup-asserting tests updated).
 - [ ] Manual browser smoke passes (Track H), including the no-CDN network check and the DATA-question
       Sources regression guard.

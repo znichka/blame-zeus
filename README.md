@@ -30,9 +30,6 @@ General-purpose LLMs answer mythology questions fluently but hallucinate details
    ├── POST /api/v1/query
    ├── Swagger UI  /swagger-ui.html
    └── Thymeleaf   /
-
-[telegram-bot — Phase 2]
-   └── thin adapter → core-api REST
 ```
 
 **core-api** is the Q&A brain. It routes each question, runs SQL or RAG (or both), and returns a structured response with `citations[]` and `conflicts[]`. Every LLM role is a LangChain4j `@AiService` interface.
@@ -93,14 +90,9 @@ python main.py
 
 Open `http://localhost:8080` for the web UI or `http://localhost:8080/swagger-ui.html` for the API.
 
-**Full stack with Telegram bot (Phase 2):**
-```bash
-docker-compose -f docker-compose.full.yml up
-```
-
 ## Tech Stack
 
-- **core-api / telegram-bot:** Kotlin 1.9 + Spring Boot 3.2 + LangChain4j + Flyway + pgvector
+- **core-api:** Kotlin 1.9 + Spring Boot 3.2 + LangChain4j + Flyway + pgvector
 - **ingestion:** Python 3.12 + openai + psycopg2 + pgvector
 - **DB:** PostgreSQL 16 + pgvector extension
 - **Build:** Gradle Kotlin DSL
