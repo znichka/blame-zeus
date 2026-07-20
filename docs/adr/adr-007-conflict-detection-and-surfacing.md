@@ -5,6 +5,7 @@
 | **Date**     | 2026-07-10  |
 | **Status**   | Accepted    |
 | **Amends**   | ADR-004 (seed-data extraction), ADR-005 (schema-boundary routing) |
+| **Amended by** | ADR-015 (§5 — presentation only; data model unchanged) |
 
 ---
 
@@ -160,6 +161,15 @@ needed. `ContentRetriever` `maxResults=5` already allows multiple sources to be 
 The router never makes a conflict-intent guess. There is one conflict path (enrichment), not two.
 
 ### 5. Data-driven, claim-type-relevant enrichment on every query (query-time surfacing)
+
+> **Amended by ADR-015** (`docs/adr/adr-015-unified-answer-composition.md`, 2026-07-20,
+> DEV-056): the *presentation* half of this section — rendering `conflicts[]` as a detached,
+> deterministic side-box, kept out of `answer` — is superseded. A final `AnswerComposer` stage now
+> weaves `conflicts[]` into `answer` (attributed, without picking a winner) on every non-error
+> route; the legacy side-box below survives only as the fallback rendering when composition fails
+> or a `serviceError` draft skips it (`conflictsInProse=false`). The **data model and detection
+> logic described below are unchanged**: `variant_claims`, `ConflictProbe`, `ConflictLookup`
+> (both fetches), and `ConflictSynthesizer` all remain exactly as specified.
 
 After *any* handler answers, `QueryService` runs an enrichment step:
 

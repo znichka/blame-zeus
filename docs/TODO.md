@@ -334,11 +334,11 @@ response; `:core-api:test` green.
 > Q9/Q11/Q12 still fail → `serviceError` → composer fallback). Cost: **one extra LLM call per
 > query**, on every non-error route incl. plain RAG (accepted quality-first trade-off).
 
-- [ ] `AnswerComposer.kt` `@AiService` (`synthesisModel`, EXPLICIT wiring per DEV-046) + `ComposedAnswer` DTO — no new bean, no new provider surface
-- [ ] `SqlQueryHandler.formatAnswer` → column-named material (`name=Zeus, type=olympian`)
-- [ ] `QueryService` reorder: `route → dispatch (DRAFT) → claims → answerComposer.compose (FINAL)`, wrapped fallback to the draft
-- [ ] `QueryResponse.conflictsInProse` + template (single unified References list; legacy "Sources disagree" box rendered **only** when `conflictsInProse=false`)
-- [ ] Tests: `QueryServiceTest` (uniform composition + `conflictsInProse` + fallback), `SqlQueryHandlerTest` (column-named), controller/web tests (`@MockkBean`, DEV-055)
-- [ ] Traceability: log `DEV-056`; annotate ADR-007 §5 "Amended by ADR-015"; add stage-note pointer
+- [x] `AnswerComposer.kt` `@AiService` (`synthesisModel`, EXPLICIT wiring per DEV-046) + `ComposedAnswer` DTO — no new bean, no new provider surface
+- [x] `SqlQueryHandler.formatAnswer` → column-named material (`name=Zeus, type=olympian`)
+- [x] `QueryService` reorder: `route → dispatch (DRAFT) → claims → answerComposer.compose (FINAL)`, wrapped fallback to the draft
+- [x] `QueryResponse.conflictsInProse` + template (single unified References list; legacy "Sources disagree" box rendered **only** when `conflictsInProse=false`)
+- [x] Tests: `QueryServiceTest` (uniform composition + `conflictsInProse` + fallback), `SqlQueryHandlerTest` (column-named), controller/web tests (`@MockkBean`, DEV-055)
+- [x] Traceability: log `DEV-056`; annotate ADR-007 §5 "Amended by ADR-015"; add stage-note pointer `[DEVIATED - see DEVIATIONS.md DEV-056]`
 
 → [Detailed track-by-track checklist](TODO-adr-015.md)

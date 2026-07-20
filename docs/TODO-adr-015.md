@@ -230,6 +230,11 @@ _Depends on: B + C._ Edit `service/QueryService.kt` (inject `AnswerComposer`) an
       Success ⇒ `draft.copy(answer = composed.answer, citations = composed.citations, conflicts =
       synthesize(claims), conflictsInProse = claims.isNotEmpty())`. Any exception ⇒ log + return the
       draft with `conflicts = synthesize(claims)` and `conflictsInProse = false`.
+      `[DEVIATED - see DEVIATIONS.md DEV-056]` implemented as a dedicated `synthesizeSafely(claims)`
+      helper called **once** (not inline in both the success and catch branches as sketched above) —
+      the literal two-call reading double-invokes `ConflictSynthesizer.synthesize(claims)` if that
+      call is itself what throws, which re-throws (deterministic pure mapper, DEV-051) uncaught from
+      inside the catch block instead of degrading gracefully.
       **Note (behavior change):** the claims helper runs *before* the `serviceError` branch, so the
       `ConflictProbe` LLM call now fires on `serviceError` drafts too — the current `enrich()`
       (`QueryService.kt:70`) early-returns before the probe. Accepted deliberately so `serviceError`
@@ -269,12 +274,12 @@ controller/web tests.
 
 _Depends on: the behaviour above existing._ Per the deviation protocol + ADR-015 Follow-ups.
 
-- [ ] **F1** Log **DEV-056** in `docs/DEVIATIONS.md` (append-only) cross-referencing ADR-015:
+- [x] **F1** Log **DEV-056** in `docs/DEVIATIONS.md` (append-only) cross-referencing ADR-015:
       Stage/Original Plan/What Changed/Reason/Impact/Date. Note it supersedes ADR-007 §5's prose
       presentation and closes the user-facing half of DEV-053.
-- [ ] **F2** Annotate `docs/adr/adr-007-conflict-detection-and-surfacing.md` §5 as **"Amended by
+- [x] **F2** Annotate `docs/adr/adr-007-conflict-detection-and-surfacing.md` §5 as **"Amended by
       ADR-015"** (presentation only; data model unchanged).
-- [ ] **F3** Mark affected checklist lines `[DEVIATED - see DEVIATIONS.md DEV-056]` where the
+- [x] **F3** Mark affected checklist lines `[DEVIATED - see DEVIATIONS.md DEV-056]` where the
       implementation diverged from ADR-015, and update the `TODO.md` Post-MVP entry's boxes.
 
 ---
@@ -283,16 +288,16 @@ _Depends on: the behaviour above existing._ Per the deviation protocol + ADR-015
 
 _Depends on: B–E wired, app runnable (`docker-compose` DB up, seeded)._
 
-- [ ] **G1** Submit a **DATA/SQL** gold question — `answer` is now prose (not a column dump), with
+- [x] **G1** Submit a **DATA/SQL** gold question — `answer` is now prose (not a column dump), with
       inline `[n]` and a single numbered References list; the collapsible SQL block still shows the
       generated SQL.
-- [ ] **G2** Submit a **FACT/RAG** and a **MIXED** question — same uniform shape (prose + `[n]` +
+- [x] **G2** Submit a **FACT/RAG** and a **MIXED** question — same uniform shape (prose + `[n]` +
       unified References).
-- [ ] **G3** Submit a **conflict-shaped** question (e.g. "Who were Aphrodite's parents?") — each
+- [x] **G3** Submit a **conflict-shaped** question (e.g. "Who were Aphrodite's parents?") — each
       attributed version is **woven into the prose**, no winner picked; the separate "Sources
       disagree" box is **absent** (`conflictsInProse = true`); `conflicts[]` still present in the
       JSON.
-- [ ] **G4** Force the **fallback**: a `serviceError` question (one of Q9/Q11/Q12, still
+- [x] **G4** Force the **fallback**: a `serviceError` question (one of Q9/Q11/Q12, still
       broken per DEV-054) renders the error banner unchanged; and a simulated composer failure (if
       practical) shows the pre-composition draft **plus** the legacy "Sources disagree" box
       (`conflictsInProse = false`) — confirming no conflict info is lost.
@@ -301,14 +306,15 @@ _Depends on: B–E wired, app runnable (`docker-compose` DB up, seeded)._
 
 ## Definition of Done (roll-up)
 
-- [ ] `AnswerComposer.kt` (`@AiService`, `synthesisModel`, EXPLICIT wiring) + `ComposedAnswer` DTO;
+- [x] `AnswerComposer.kt` (`@AiService`, `synthesisModel`, EXPLICIT wiring) + `ComposedAnswer` DTO;
       no new bean, no new provider surface.
-- [ ] `SqlQueryHandler.formatAnswer` emits column-named material.
-- [ ] `QueryService` runs `route → dispatch (DRAFT) → claims → answerComposer.compose (FINAL)`,
+- [x] `SqlQueryHandler.formatAnswer` emits column-named material.
+- [x] `QueryService` runs `route → dispatch (DRAFT) → claims → answerComposer.compose (FINAL)`,
       wrapped; fallback to the draft on composer failure / `serviceError`, `conflicts[]` always
       present (possibly empty).
-- [ ] `QueryResponse.conflictsInProse` added; template renders one unified References list on all
+- [x] `QueryResponse.conflictsInProse` added; template renders one unified References list on all
       routes and the legacy conflict box only in the fallback case.
-- [ ] `QueryServiceTest` (uniform composition + `conflictsInProse` + fallback), `SqlQueryHandlerTest`
+- [x] `QueryServiceTest` (uniform composition + `conflictsInProse` + fallback), `SqlQueryHandlerTest`
       (column-named), and controller/web tests updated; `:core-api:test` fully green.
-- [ ] DEV-056 logged; ADR-007 §5 annotated "Amended by ADR-015"; manual gold-question smoke passes.
+- [x] DEV-056 logged; ADR-007 §5 annotated "Amended by ADR-015".
+- [x] Manual gold-question smoke passes (Track G).
