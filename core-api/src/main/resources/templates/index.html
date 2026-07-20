@@ -22,7 +22,7 @@
         <button type="submit" class="query-submit" aria-label="Ask">&#8594;</button>
     </form>
 
-    <div class="chips">
+    <div th:if="${response == null}" class="chips">
         <button type="button" class="chip" data-question="Who were Aphrodite's parents?">Who were Aphrodite's parents?</button>
         <button type="button" class="chip" data-question="How did Achilles die?">How did Achilles die?</button>
         <button type="button" class="chip" data-question="Who was Io's father?">Who was Io's father?</button>
