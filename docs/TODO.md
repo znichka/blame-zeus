@@ -311,3 +311,34 @@ two `serviceError`s — Q9 and Q12 — plus Q11's empty-filter fallback. Details
 - [ ] `TelegramResponseFormatter` — MarkdownV2 formatting, message splitting at >4096 chars
 - [ ] `docker-compose.full.yml` — add `telegram-bot` service with `depends_on: core-api: condition: service_healthy`
 - [ ] Add `TELEGRAM_BOT_TOKEN` + `TELEGRAM_BOT_USERNAME` + `CORE_API_BASE_URL` to `.env.example`
+
+---
+
+## Post-MVP Enhancements
+
+Work decided **after** the MVP (`IMPLEMENTATION_PLAN.md §9`, Stages 1–11) shipped. **Not part of
+§9** — each item is backed by its own ADR and an ADR-named detail doc (not a numbered stage), so
+the §9 stage history stays untouched.
+
+### ADR-015 — Unified Answer Composition
+**Done when:** every non-error route returns prose `answer` with inline `[n]` markers + one unified
+References list where `[n]` indexes `citations[n-1]`; conflict-shaped questions **weave** each
+attributed version into the prose without picking a winner (`conflictsInProse=true`); on composer
+failure or a `serviceError` draft, `QueryService` falls back to the pre-composition draft with
+structured `conflicts[]` (`conflictsInProse=false`); `conflicts[]` stays populated on every
+response; `:core-api:test` green.
+
+> ⚠️ Implements `docs/adr/adr-015-unified-answer-composition.md`. **Amends ADR-007 §5** (prose
+> presentation only — the conflict *data model* is unchanged). **Closes the user-facing half of
+> DEV-053** (SQL raw-row-dump → prose); does **not** touch DEV-054/Stage 8.5 (`WITH RECURSIVE`
+> Q9/Q11/Q12 still fail → `serviceError` → composer fallback). Cost: **one extra LLM call per
+> query**, on every non-error route incl. plain RAG (accepted quality-first trade-off).
+
+- [ ] `AnswerComposer.kt` `@AiService` (`synthesisModel`, EXPLICIT wiring per DEV-046) + `ComposedAnswer` DTO — no new bean, no new provider surface
+- [ ] `SqlQueryHandler.formatAnswer` → column-named material (`name=Zeus, type=olympian`)
+- [ ] `QueryService` reorder: `route → dispatch (DRAFT) → claims → answerComposer.compose (FINAL)`, wrapped fallback to the draft
+- [ ] `QueryResponse.conflictsInProse` + template (single unified References list; legacy "Sources disagree" box rendered **only** when `conflictsInProse=false`)
+- [ ] Tests: `QueryServiceTest` (uniform composition + `conflictsInProse` + fallback), `SqlQueryHandlerTest` (column-named), controller/web tests (`@MockkBean`, DEV-055)
+- [ ] Traceability: log `DEV-056`; annotate ADR-007 §5 "Amended by ADR-015"; add stage-note pointer
+
+→ [Detailed track-by-track checklist](TODO-adr-015.md)
