@@ -911,6 +911,10 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO zeus_app;
 
 ## 6. Consumer Layer — Telegram Bot (Phase 2)
 
+> ⚠️ **WITHDRAWN — see ADR-016 / DEVIATIONS.md DEV-058.** The Telegram consumer was dropped from
+> scope; the product is now web-only. This section is retained for historical context only and does
+> not describe shipped or planned work. (Supersedes DEV-007.)
+
 Module `telegram-bot/` is a thin Spring Boot service. It knows nothing about mythology.
 
 Key files:
@@ -1222,7 +1226,7 @@ Build in phases to validate each layer before building on it. For each phase, wr
 | **8 — Mixed Pipeline** | `MixedQueryHandler` | Multi-hop questions return SQL + narrative |
 | **9 — Web UI** | Thymeleaf `index.html` + `WebController` | Manual smoke test all 17 gold questions in browser |
 | **10 — Evaluation** | `EvaluationRunner`, run full gold set | ≥75% score |
-| **11 — Telegram (opt.)** | `telegram-bot` module | Bot answers in chat |
+| **11 — Telegram (opt.)** | ~~`telegram-bot` module~~ **WITHDRAWN — web-only (ADR-016 / DEV-058)** | — |
 
 ---
 

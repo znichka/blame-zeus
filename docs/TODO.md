@@ -300,10 +300,12 @@ two `serviceError`s — Q9 and Q12 — plus Q11's empty-filter fallback. Details
 
 ---
 
-## Stage 11 — Telegram Bot (Phase 2, optional)
-**Done when:** Bot answers questions in Telegram chat; `/start` command works.
+## Stage 11 — Telegram Bot (Phase 2, optional) — ❌ REMOVED (see ADR-016 / DEVIATIONS.md DEV-058)
+**Done when:** ~~Bot answers questions in Telegram chat; `/start` command works.~~
 
-> ⚠️ Updated assumptions based on DEV-007 (see DEVIATIONS.md): `telegrambots-spring-boot-starter` is currently commented out in `telegram-bot/build.gradle.kts`. Verify correct artifact coordinates before adding (likely `org.telegram:telegrambots-spring-boot-starter:6.9.7`).
+> ❌ **REMOVED — the product is web-only (ADR-016 / DEV-058).** The `telegram-bot` module and all its
+> wiring are being removed; this stage is withdrawn. The checklist below is retained for history only.
+> (DEV-007, about the commented-out starter, is superseded.)
 
 - [ ] `telegram-bot/build.gradle.kts` — add `telegrambots-spring-boot-starter:6.9.x` (verify coordinates first) + `spring-boot-starter-web` `[DEVIATED - see DEVIATIONS.md DEV-007]`
 - [ ] `BlamezeusBot` extending `TelegramLongPollingBot`
