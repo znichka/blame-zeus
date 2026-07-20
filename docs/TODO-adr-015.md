@@ -204,26 +204,26 @@ _Depends on: B + C._ Edit `service/QueryService.kt` (inject `AnswerComposer`) an
 `domain/dto/QueryResponse.kt` (add the `conflictsInProse` field **here, not in Track E** — D3's
 `draft.copy(...)` and the D1 assertions reference it).
 
-- [ ] **D0 — Add the field first.** Add `conflictsInProse: Boolean = false` to `QueryResponse` (A2)
+- [x] **D0 — Add the field first.** Add `conflictsInProse: Boolean = false` to `QueryResponse` (A2)
       *before* the reorder — D3's `draft.copy(...)` and the D1 tests won't compile without it. The
       `false` default keeps every other construction site compiling; Track E only renders it.
-- [ ] **D1 — Test first.** Extend `QueryServiceTest` (add an `AnswerComposer` mockk):
-  - [ ] **D1.1** A normal route ⇒ `answer`/`citations` come from the composer's `ComposedAnswer`,
+- [x] **D1 — Test first.** Extend `QueryServiceTest` (add an `AnswerComposer` mockk):
+  - [x] **D1.1** A normal route ⇒ `answer`/`citations` come from the composer's `ComposedAnswer`,
         and `conflictsInProse = true` when claims were present and woven.
-  - [ ] **D1.2** A conflict-shaped question ⇒ composer received the claims and the result carries
+  - [x] **D1.2** A conflict-shaped question ⇒ composer received the claims and the result carries
         both the woven `answer` **and** a populated `conflicts[]` (via `ConflictSynthesizer`).
-  - [ ] **D1.3** **Composer throws** ⇒ `QueryService` returns the **pre-composition draft
+  - [x] **D1.3** **Composer throws** ⇒ `QueryService` returns the **pre-composition draft
         unchanged** (draft `answer`/`citations`), `conflicts[]` still populated, `conflictsInProse =
         false`.
-  - [ ] **D1.4** **`serviceError` draft** ⇒ composer is **not** called; `answer`/`citations`
+  - [x] **D1.4** **`serviceError` draft** ⇒ composer is **not** called; `answer`/`citations`
         unchanged, but `conflicts[]` is still populated via `synthesize(claims)` and
         `conflictsInProse = false` (per D3 — the draft object is *not* literally untouched).
-  - [ ] **D1.5** Existing pre-composition tests still hold (probe defaults to the `none` sentinel ⇒
+  - [x] **D1.5** Existing pre-composition tests still hold (probe defaults to the `none` sentinel ⇒
         no claims ⇒ composer still runs on the draft with `conflicts = none`).
-- [ ] **D2 — Refactor `enrich()` → a claims helper** that *returns* `List<ConflictClaim>` (probe →
+- [x] **D2 — Refactor `enrich()` → a claims helper** that *returns* `List<ConflictClaim>` (probe →
       `conflictLookup.find`; `none`/empty ⇒ empty list), instead of copying `conflicts[]` onto the
       answer.
-- [ ] **D3 — New composition step in `handle()`:** after `dispatch` (DRAFT) and the claims helper
+- [x] **D3 — New composition step in `handle()`:** after `dispatch` (DRAFT) and the claims helper
       (CLAIMS): if `draft.serviceError` → return draft with `conflicts = synthesize(claims)` and
       `conflictsInProse = false`; else build `material` from the draft (A3), call
       `answerComposer.compose(question, material, renderConflicts(claims))` **wrapped in try/catch**.
@@ -235,10 +235,10 @@ _Depends on: B + C._ Edit `service/QueryService.kt` (inject `AnswerComposer`) an
       (`QueryService.kt:70`) early-returns before the probe. Accepted deliberately so `serviceError`
       responses still carry `conflicts[]` (ADR-015 §3); budget this probe call alongside the composer
       call noted above.
-- [ ] **D4** Keep `conflicts[]` present (possibly empty) in **all** branches via `ConflictSynthesizer` (API
+- [x] **D4** Keep `conflicts[]` present (possibly empty) in **all** branches via `ConflictSynthesizer` (API
       consumers + fallback box). `ConflictSynthesizer` / `ConflictLookup` / `ConflictProbe`
       signatures unchanged.
-- [ ] **D5** Run `:core-api:test` — `QueryServiceTest` green.
+- [x] **D5** Run `:core-api:test` — `QueryServiceTest` green.
 
 ---
 
