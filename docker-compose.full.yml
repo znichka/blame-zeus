@@ -42,16 +42,5 @@ services:
       timeout: 10s
       retries: 5
 
-  telegram-bot:
-    # build: ./telegram-bot  # TODO: add Dockerfile in Stage 11
-    image: eclipse-temurin:21-jre
-    depends_on:
-      core-api:
-        condition: service_healthy
-    environment:
-      CORE_API_BASE_URL: ${CORE_API_BASE_URL:-http://core-api:8080}
-      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
-      TELEGRAM_BOT_USERNAME: ${TELEGRAM_BOT_USERNAME:-BlameZeusBot}
-
 volumes:
   postgres_data:

@@ -21,4 +21,4 @@ rootProject.name = "blame-zeus"
 
 // ingestion/ is a standalone Python offline job — excluded from Gradle scanning
 // to prevent IDE/Gradle from picking up .venv artifacts
-include("core-api", "telegram-bot")
+include("core-api")
