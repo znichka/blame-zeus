@@ -181,19 +181,22 @@ testable with fixtures, no server. This is the correctness-critical track.
 
 Isolated because it is the only scoring path that touches a DB. Ownable independently of the rest of B.
 
-- [ ] **F1** — `runner/sql_check.py`: `count_rows(sql: str, cfg) -> int` opening a **read-only
-      `zeus_app`** psycopg2 connection from the A2 `db` block.
-- [ ] **F2** — set `SET statement_timeout = <ms>` (or `options='-c statement_timeout=…'`) per
-      connection — the guardrail 3s cap; a timeout → treat as a content-point fail, surfaced in the
-      report, never a crash.
-- [ ] **F3** — execute the **model-generated** `resp.sql_generated` (not a hand-written query) inside
-      `SELECT count(*) FROM (<sql>) t` (or fetch + `len`), guarding null/non-SELECT `sql_generated`
-      (fail cleanly). Return the count; B3 compares `>= q.min_row_count` (≥12 for Q10).
-- [ ] **F4** — connection lifecycle: one short-lived connection per check (or a tiny pool), always
-      closed; failures (auth/timeout/bad SQL) → `(passed=False, note=...)`, surfaced in triage.
-- [ ] **F5** — **TDD:** `tests/test_sql_check.py` against a Testcontainers-free path is hard (needs a
-      DB) — gate this test behind an env flag / mark `@pytest.mark.db`, or unit-test the wrapping/guard
-      logic with a stubbed cursor. Do **not** add H2/mock-SQL; document that the real check runs in H.
+- [x] **F1** — `runner/sql_check.py`: `count_rows(sql, cfg, connect=None) -> RowCountCheck` opening a
+      **read-only `zeus_app`** psycopg2 connection from the A2 `db` block. Returns a `RowCountCheck`
+      (`count`/`ok`/`note`) so the failure reason surfaces in triage; `make_row_count_fn(cfg)` adapts
+      it to Track B's `(sql) -> int | None` seam.
+- [x] **F2** — statement-timeout via `options='-c statement_timeout=<ms>'` on the connection (from
+      `DbConfig.psycopg2_kwargs()`, the 3s cap) **and** `set_session(readonly=True)`; a timeout/any
+      failure → `ok=False` note, never a crash.
+- [x] **F3** — executes the **model-generated** `resp.sql_generated` inside
+      `SELECT count(*) FROM (<sql>) AS _rowcount_sub`, guarding null/non-SELECT `sql_generated` via
+      `_sanitize_sql` (fail cleanly, no connect). Returns the count; B3 compares `>= q.min_row_count`.
+- [x] **F4** — one short-lived connection per check, always `close()`d in `finally`; failures
+      (auth/timeout/bad SQL) → `RowCountCheck(None, ok=False, note=...)`, surfaced in triage.
+- [x] **F5** — **TDD:** `tests/test_sql_check.py` — pure guard/wrapping tests + injected-`connect`
+      stub-cursor tests (no real DB), a connect-failure→note test, and a live-DB smoke test gated
+      behind `RUN_DB_TESTS` (skipped by default; real check runs in H). No H2/mock-SQL. **30 passed,
+      1 skipped** overall.
 
 ---
 
