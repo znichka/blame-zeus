@@ -1,0 +1,346 @@
+# Stage P1 — Evaluation harness + baseline: Detailed Checklist
+
+**Done when:** `python -m runner --runs 3 --label baseline` completes against a running, seeded
+server and writes a **committed** `evaluation/results/<UTC>__<sha>__baseline/` (`raw_responses.json`
++ `scores.json` + `report.md`); the aggregate is the worst-run (pessimistic) score with per-category
+pass rates and floors reported; every failing gold question is triaged in `report.md` as
+**pipeline-bug / data-gap / corpus-gap / eval-bug**; `ADR-010`'s **Accepted** status is confirmed
+(it was already flipped at documentation time — DEV-059 — so this is a verify, not an edit) and the
+`TECH_GUARDRAILS.md` "No live LLM calls in tests" scoping clause (ADR-018 §Decision 2) is added;
+`DEV-059` is recorded.
+
+> **Design source of truth:** `IMPLEMENTATION_PLAN_PHASE2.md §2` (the *what/how*), `ADR-018` (the
+> *why* — offline operator tool, N-run classification, committed artifacts), `ADR-010` (per-category
+> floors), and `IMPLEMENTATION_PLAN.md §7` (the rubric, implemented **verbatim**). This checklist is
+> the *granular task breakdown* — it does not re-justify the design.
+
+> **This stage ships ZERO `core-api` code.** P1 is measurement-only: a standalone Python tool under
+> `evaluation/runner/` plus a config file and doc edits. It does **not** touch `LangChain4jConfig.kt`,
+> any `@AiService`, the Gradle build, or CI. It is invoked by an operator against an already-running
+> server (`scripts/run-local.sh`). Any temptation to "fix" a failing question here is out of scope —
+> P1 only *measures and triages*; fixes are P2+.
+
+Before starting, re-read `DEVIATIONS.md` (deviation protocol). Relevant carry-overs:
+- **DEV-059** — this program's documentation-first landing (ADR-017/018/019 + this plan) is already
+  logged; P1 is its first implementation stage.
+- **DEV-055** — the automated test suite mocks every `@AiService`. ADR-018 §Decision 2 explicitly
+  scopes that guardrail to the **Gradle/CI suite**, *not* to this offline operator tool. Track G adds
+  that scoping clause so the harness's live calls are sanctioned, not a violation.
+- **DEV-054** — Q9/Q12 `WITH RECURSIVE` serviceError and the Q14 route-label ambiguity are *expected*
+  baseline findings, triaged here (Track H), fixed in P2. Do **not** pre-fix them.
+- **DEV-053 / DEV-056 / DEV-057** — Q13 is *expected to pass* at baseline; a Q13 failure is a signal
+  to reopen, not the baseline expectation. Record whichever the run actually shows.
+- **DEV-052** — the committed `gold-questions.json` already carries `conflicts_min_count` (Q13–15),
+  `min_row_count` (Q10), `sql_must_contain` (Q9), and an id-18 negative case; the runner reads these
+  keys — confirm against the live file, don't assume the §7 table.
+- **DEV-048 / DEV-050** — `required_keywords` are live-verified; the runner only *reads* them. Any
+  keyword edit provoked by triage is a logged **eval-bug** fix (Track H), never silent tuning.
+
+**Deviation protocol:** if the shipped scoring/CLI diverges from `IMPLEMENTATION_PLAN.md §7` or
+`IMPLEMENTATION_PLAN_PHASE2.md §2` in any way (extra CLI flag, different results-dir layout, a scoring
+edge case §7 didn't specify), log it as the next `DEV-NNN` and annotate per the CLAUDE.md protocol.
+
+---
+
+## Gold-question schema (verified against the live fixture — code against these exact keys)
+
+`evaluation/gold-questions.json` is a **flat JSON array of 16 objects today** (ids 1–15 all filled +
+the id-18 negative case; only Q16/Q17 — the REFUSAL pair — remain deliberately unfilled, authored in
+P4). Note Q11/Q12 (MIXED) are **filled** in the live fixture — they carry `required_authors`
+(Q11 `["Homer"]`, Q12 `["Apollodorus"]`) and refined question text that diverge from the stale §7
+reference table; code against the fixture, not §7. Union of keys actually
+present: `id`, `category`, `question`, `expected_route`, `required_authors`, `required_keywords`,
+`forbidden_patterns`, `conflicts_min_count`, `min_row_count`, `sql_must_contain`. REFUSAL questions
+(land in P4) will additionally carry `refusal_criteria` — the runner must handle its absence today and
+its presence later **without a scorer change** (that is the whole point of building refusal scoring now).
+
+`QueryResponse` fields the runner reads (verified in `domain/dto/QueryResponse.kt`):
+`answer: String`, `routeDecision: RouteDecision?` (`"RAG"|"SQL"|"MIXED"` — never `"CONFLICT"`),
+`citations: List<Citation>`, `conflicts: List<ConflictEntry>`, `sqlGenerated: String?`,
+`serviceError: Boolean`, `conflictsInProse: Boolean`.
+`Citation` = `{author, work, passageRef, stance?}`. `ConflictEntry` = `{claimValue, sourceAuthor,
+sourceWork, passageRef?}`. Request body: `POST /api/v1/query` with `{"question": "..."}`.
+
+---
+
+## Parallelization Guide
+
+```
+Track A  eval-config.json + shared I/O contracts  ─┐  (foundational — unblocks B,C,D,E)
+                                                    │
+Track B  scoring.py (pure rubric)          ────────┤  needs A's dataclasses/keys only
+Track F  Q10 min_row_count re-executor      ───────┤  a scoring sub-module; parallel to B
+Track C  __main__.py (HTTP + N-run + CLI)   ───────┤  needs A; mocks scoring during dev
+Track D  report.py (artifact writer)        ───────┤  needs A; independent of B/C internals
+Track E  compare.py (diff.md)               ───────┘  needs A + D's on-disk schema only
+
+Track G  docs/ADR housekeeping             ─────────  fully independent, no code, do anytime
+
+Track H  baseline run + triage + commit     ─────────  SERIAL — needs A–F merged + running server
+```
+
+**Rule of thumb:** A is the only hard blocker. B/C/D/E/F are independently ownable once A pins the
+data contracts. G is pure prose. H is the integration point and must run last against a live stack.
+
+---
+
+## Track A — Config + shared contracts (foundational; do first)
+
+Pins the interfaces every other track codes against. Small, fast, merge before B–F start in earnest.
+
+- [ ] **A1** — `evaluation/runner/__init__.py` (empty, makes the package importable as `runner`).
+- [ ] **A2** — `evaluation/eval-config.json`:
+  - [ ] `base_url` default (`"http://localhost:8080"`), `query_path` (`/api/v1/query`),
+        `preflight_path` (`/api/v1/sources`), request `timeout_seconds`.
+  - [ ] `overall_target: 0.75`.
+  - [ ] `category_floors` object — per ADR-010, floors on **CONFLICT** and **REFUSAL** at minimum;
+        include `DATA` too (§2.2). REFUSAL floor may be `null`/absent until P4 authors the questions —
+        loader must tolerate a missing floor (report N/A, never crash).
+  - [ ] `db` block for the Q10 re-executor: DSN pieces for the **read-only `zeus_app`** user
+        (host/port/db/user/password via env, e.g. `${ZEUS_APP_URL}`), `statement_timeout_ms`.
+        Document that this is intentionally the read-only user (guardrail).
+- [ ] **A3** — `runner/config.py`: `load_config(path)` → typed `EvalConfig` dataclass; resolves env
+      placeholders; validates required keys; clear error if `eval-config.json` missing.
+- [ ] **A4** — `runner/gold.py`: `load_gold(path)` → `list[GoldQuestion]` dataclass. Normalizes the
+      **optional** keys to `None`/`[]` so downstream code never does membership checks on missing
+      keys. Expose `category`, `expected_route`, and every scoring key as attributes. Include an
+      `is_refusal` helper (`category == "REFUSAL"` / presence of `refusal_criteria`).
+- [ ] **A5** — `runner/model.py`: dataclasses mirroring the response contract — `ParsedResponse`
+      (`answer`, `route_decision`, `citations: list[Citation]`, `conflicts: list[ConflictEntry]`,
+      `sql_generated`, `service_error`, `conflicts_in_prose`) + `Citation`/`ConflictEntry`; a
+      `from_json(dict)` factory tolerant of nulls/missing fields (so a malformed/partial server
+      response degrades to a scored fail, never a runner crash). This is the seam B and C share.
+- [ ] **A6** — commit A as one unit; note in the PR that B–F may now branch.
+
+---
+
+## Track B — `scoring.py` (pure §7 rubric; no network, fully unit-testable)
+
+One question × one `ParsedResponse` → a 3-point breakdown. **Implements `IMPLEMENTATION_PLAN.md §7`
+verbatim** + ADR-010 per-category aggregation. Pure functions over Track-A dataclasses → trivially
+testable with fixtures, no server. This is the correctness-critical track.
+
+- [ ] **B1** — `score_route(q, resp) -> bool` (1 pt): `resp.route_decision == q.expected_route`.
+      **Guard:** CONFLICT-category questions are **not** scored on route (ADR-007/DEV-014). Note §7 is
+      self-inconsistent here — its ADR-007 amendment banner says conflict questions are "scored on
+      `conflicts[]` … **not** on a route match," but the §7 scoring rubric still lists a "Route match
+      (1pt)" step whose only carve-out is REFUSAL/DATA, never CONFLICT. **Pin one rule (do not invent a
+      "route point folded into the author check" — no such fold exists in §7):** for a CONFLICT
+      question, point-1 is awarded by B2's `conflicts[]` check (≥2 distinct `claimValue`s) and route is
+      ignored entirely, so a route mismatch can neither lose nor gain a point. Log the §7
+      banner-vs-rubric mismatch as this stage's `DEV-NNN` (the deviation-protocol note above already
+      anticipates it).
+- [ ] **B2** — `score_author_or_conflict(q, resp) -> bool` (1 pt), branch on category:
+  - [ ] FACT/MIXED → ≥1 of `q.required_authors` appears in `resp.citations[].author`
+        (case-insensitive substring/`author` match). If `required_authors` empty → auto-pass (§7: the
+        check only applies when authors are specified; Q4/Q5/Q8/Q15 have none — **not** Q11, which
+        carries `["Homer"]` in the live fixture).
+  - [ ] CONFLICT → `resp.conflicts` has ≥ `q.conflicts_min_count` **distinct** `claimValue`s
+        (default 2 when key absent). **Plus** the per-author guard: **only when
+        `len(q.required_authors) >= 2`**, assert each listed author appears in ≥1
+        `conflicts[].sourceAuthor` (Q13). Q14 (single author, both variants Apollodorus) → skip the
+        per-author check. Bake the `>= 2` guard in — it is the documented Q14 trap.
+  - [ ] DATA/REFUSAL → auto-1 **if route matched** (§7). Wire so this reads B1's result.
+- [ ] **B3** — `score_content(q, resp) -> bool` (1 pt):
+  - [ ] Keyword match helper: `re.search(r'\b' + re.escape(kw) + r'\b', text, re.IGNORECASE)` for
+        **every** `required_keyword` (all must match). Word-boundary, as §7 mandates.
+  - [ ] FACT/DATA/MIXED → keywords matched over `resp.answer`. **BUT** Q10 has no keywords — it uses
+        `min_row_count` instead (delegate to Track F); Q9 additionally requires `sql_must_contain`.
+        Encode: if `min_row_count` present → F's row-count check *is* the content point; if
+        `sql_must_contain` present → `resp.sql_generated` is non-null **and** contains the token
+        (null-guard first, §7 Q9 note) **in addition** to keywords.
+  - [ ] CONFLICT → keywords matched over the concatenation of `resp.conflicts[].claimValue` (§7:
+        "across `conflicts[].claimValue`"), not `answer`.
+  - [ ] `forbidden_patterns` → **any** case-insensitive match anywhere in the scored text = automatic
+        content-point **fail** (applies to all categories incl. REFUSAL).
+- [ ] **B4** — `score_refusal(q, resp) -> bool` (REFUSAL content point) — **implement now** though no
+      REFUSAL question exists until P4 (§2.2 mandate). All three `refusal_criteria` must pass +
+      no `forbidden_patterns`:
+  - [ ] `must_not_assert_answer` — no positive-claim signature (reuse `forbidden_patterns` +
+        the phrase heuristics §7 lists).
+  - [ ] `must_mention_source_limit` — a source-silence phrase list ("the texts do not", "does not
+        describe", "no surviving account", "not preserved", …) — configurable, seeded from §7.
+  - [ ] `must_not_fabricate_citation` — `resp.citations` empty (or only known-relevant refs). Phase-1
+        heuristic per §2.2 = **empty `citations[]`**; keep the phrase-list + empty-citations shape so
+        P4 needs no scorer change.
+- [ ] **B5** — `score_question(q, resp) -> QuestionScore` composing B1–B4: three booleans + total
+      `/3`, plus a per-point breakdown for `report.md`. On `resp.service_error is True` → **all three
+      points 0** (scored fail, ADR-018 §Decision 4), with a `service_error` flag on the score object.
+- [ ] **B6** — `aggregate(scores) -> Aggregate`: overall % **and** per-category pass rate; a question
+      "passes" the category rate at full 3/3 (confirm §7/ADR-010 intent — full-score, not partial).
+      Compare each category rate to its `category_floors` entry; emit `floor_breaches: list`.
+- [ ] **B7** — **TDD:** `evaluation/runner/tests/test_scoring.py` (pytest) with hand-built fixtures:
+      one passing + one failing case **per category**, the Q14 single-author skip, the Q10-no-keyword
+      path, the Q9 `sql_must_contain` null-guard, a `serviceError` fail, a `forbidden_patterns` trip,
+      and a REFUSAL pass/fail pair. No network, no DB (mock F's row-count).
+
+---
+
+## Track F — Q10 `min_row_count` SQL re-executor (scoring sub-module; parallel to B)
+
+Isolated because it is the only scoring path that touches a DB. Ownable independently of the rest of B.
+
+- [ ] **F1** — `runner/sql_check.py`: `count_rows(sql: str, cfg) -> int` opening a **read-only
+      `zeus_app`** psycopg2 connection from the A2 `db` block.
+- [ ] **F2** — set `SET statement_timeout = <ms>` (or `options='-c statement_timeout=…'`) per
+      connection — the guardrail 3s cap; a timeout → treat as a content-point fail, surfaced in the
+      report, never a crash.
+- [ ] **F3** — execute the **model-generated** `resp.sql_generated` (not a hand-written query) inside
+      `SELECT count(*) FROM (<sql>) t` (or fetch + `len`), guarding null/non-SELECT `sql_generated`
+      (fail cleanly). Return the count; B3 compares `>= q.min_row_count` (≥12 for Q10).
+- [ ] **F4** — connection lifecycle: one short-lived connection per check (or a tiny pool), always
+      closed; failures (auth/timeout/bad SQL) → `(passed=False, note=...)`, surfaced in triage.
+- [ ] **F5** — **TDD:** `tests/test_sql_check.py` against a Testcontainers-free path is hard (needs a
+      DB) — gate this test behind an env flag / mark `@pytest.mark.db`, or unit-test the wrapping/guard
+      logic with a stubbed cursor. Do **not** add H2/mock-SQL; document that the real check runs in H.
+
+---
+
+## Track C — `__main__.py` (HTTP client + N-run orchestration + CLI)
+
+The operator entrypoint. Can be built against a stubbed `scoring.score_question` until B lands.
+
+- [ ] **C1** — CLI (argparse) flags exactly per §2.1 / TODO2: `--runs` (default 1), `--label`
+      (required for a named results dir), `--base-url` (default from config), `--questions` (path,
+      default `evaluation/gold-questions.json`), `--ids` (comma list to run a subset), `--debug`
+      (sets `debug:true` in the request body — no-op until P2 adds `DebugInfo`, but wire it now).
+- [ ] **C2** — **Preflight:** `GET {base_url}/api/v1/sources` before any scoring; non-200/empty →
+      abort with a clear "server not up/seeded" message (§2.1). Do not silently score against a dead
+      server.
+- [ ] **C3** — HTTP: `POST {base_url}/api/v1/query` `{"question": q.question, "debug": debug}` per
+      question; parse via `model.ParsedResponse.from_json`. Transport/HTTP-5xx/connection errors →
+      **retry once** (ADR-018 §Decision 4); a 200 with `serviceError:true` → **no retry**, hand to
+      scoring as a fail. Distinguish these two paths explicitly.
+- [ ] **C4** — **N-run loop:** run the whole selected set `--runs` times; keep every raw response
+      (per question per repetition) for Track D's `raw_responses.json`.
+- [ ] **C5** — **Classification** per question across the N runs: `stable-pass` (N/N full score),
+      `stable-fail` (0/N), `flaky` (mixed) — per §2.3. Aggregate = **worst run (pessimistic)**; the
+      flaky list is called out separately. Put this in `runner/classify.py` so it is unit-testable
+      without HTTP.
+- [ ] **C6** — orchestrate: preflight → run loop → score each (Track B) → classify (C5) → hand
+      results + classification to `report.write(...)` (Track D). Exit non-zero if the server was
+      unreachable; exit 0 on a completed run even if questions failed (a baseline with failures is a
+      *successful* run).
+- [ ] **C7** — **TDD:** `tests/test_classify.py` (pure) — stable/flaky/stable-fail and worst-run
+      aggregate over synthetic per-run score lists. HTTP layer can be smoke-tested with `responses`/a
+      stub in a separate optional test.
+
+---
+
+## Track D — `report.py` (results-dir artifact writer)
+
+Owns the committed on-disk contract. Independent of B/C internals — it consumes their output shapes.
+
+- [ ] **D1** — results dir name: `evaluation/results/<UTC-ISO>__<git-sha>__<label>/`. Derive UTC
+      timestamp (compact ISO, filesystem-safe, e.g. `2026-07-21T14-03-11Z`) and short git sha
+      (`git rev-parse --short HEAD` via subprocess; degrade to `nogit` if unavailable). `mkdir -p`.
+- [ ] **D2** — `raw_responses.json`: the **full `QueryResponse` per question per repetition** (§2.3 —
+      the poor-man's query history; becomes a forensic record once P2 adds `DebugInfo`). Preserve the
+      raw server JSON, not the parsed dataclass, so nothing is lost.
+- [ ] **D3** — `scores.json`: per-question per-point booleans, per-run totals, the classification
+      label, the pessimistic aggregate, and per-category rates + floor-breach list (Track B6 output).
+      Machine-diffable — this is what `compare.py` reads.
+- [ ] **D4** — `report.md`: human table — one row per question (id, category, route
+      expected/actual, 3 point cells, total, **classification** column, and an empty-until-filled
+      **triage** column: pipeline-bug / data-gap / corpus-gap / eval-bug). Header block: overall %,
+      per-category pass rates with floor pass/fail, flaky list, run count, sha, label. §2.3 layout.
+- [ ] **D5** — leave the triage column machine-writable but expect **manual** fill in Track H (the
+      triage is a human judgement). Provide a stable id anchor per row so H can annotate in place.
+- [ ] **D6** — **TDD:** `tests/test_report.py` — write to a tmp dir from a synthetic aggregate,
+      assert the three files exist, `scores.json` round-trips, `report.md` contains the header +
+      every question row + the triage column.
+
+---
+
+## Track E — `compare.py` (baseline vs candidate → `diff.md`)
+
+Used at every *later* stage's gate; built now so P2 can diff against this baseline immediately.
+
+- [ ] **E1** — `python -m runner.compare <baseline_dir> <candidate_dir>` (or a `compare` subcommand);
+      read both `scores.json`.
+- [ ] **E2** — `diff.md` content order per §2.3: **PASS→FAIL regressions first** (the gate-blocking
+      set), then per-category deltas, then route changes, then conflict-count changes
+      (`conflicts[]` length deltas per question).
+- [ ] **E3** — honour the **stable-only** contract: a change is a *regression* only if it is
+      stable→stable (PASS→FAIL where both classifications are stable), never a flaky flip
+      (cross-cutting rule "never act on a single-run delta"). Flag flaky flips separately as
+      informational, not regressions.
+- [ ] **E4** — exit code: non-zero when a **stable** PASS→FAIL regression exists (so P2+ can gate CI-lessly
+      in a script), zero otherwise.
+- [ ] **E5** — **TDD:** `tests/test_compare.py` — synthetic baseline/candidate `scores.json` pairs
+      covering a stable regression (→ listed + nonzero exit), a flaky flip (→ informational only), an
+      improvement, and a per-category delta.
+
+---
+
+## Track G — Docs / ADR housekeeping (no code; fully independent — do anytime)
+
+- [ ] **G1** — `TECH_GUARDRAILS.md`: add the ADR-018 §Decision 2 **scoping clause** to the "No live
+      LLM calls in tests" rule — it governs the **automated Gradle/CI suite** (all `@AiService`
+      mocked), **not** developer-invoked offline operator tools (`evaluation/runner/`, `ingestion/`).
+      Cross-reference ADR-018.
+- [ ] **G2** — `docs/adr/adr-010-evaluation-set-expansion.md`: **confirm Status is already Accepted**
+      (it was flipped at documentation time per §2.2 / DEV-059 — this is a verification, no edit is
+      expected; if it still reads Proposed, flip it and note the discrepancy).
+      **Do NOT author its ~8 new questions here** —
+      that is deferred to P4 (don't change the yardstick and the data in the same stage). Leave a note
+      that per-category floors land in `eval-config.json` (Track A2) now, questions in P4.
+- [ ] **G3** — `docs/DEVIATIONS.md`: record the P1 deviation entry (next `DEV-NNN`) — the harness is
+      built in Python under `evaluation/runner/` (not the Kotlin `EvaluationRunner` the MVP §7 text
+      implies), per ADR-018. Mark the affected §7 "Evaluation Runner" lines
+      `[DEVIATED - see DEVIATIONS.md #DEV-NNN]` and add the `IMPLEMENTATION_PLAN.md §7` stage-note
+      banner pointer. (§7 already carries a forward "➕ Phase 2 builds the runner" note — extend, don't
+      overwrite.)
+- [ ] **G4** — `evaluation/README.md` (new, short): how to run — start the stack
+      (`scripts/run-local.sh`), export `ZEUS_APP_URL`/keys, `python -m runner --runs 3 --label
+      baseline`; where results land; the "results dirs are committed" convention; the Q10 read-only-DB
+      requirement.
+
+---
+
+## Track H — Baseline run + triage + commit (SERIAL; needs A–F merged + a running, seeded server)
+
+The integration gate. Everything above converges here.
+
+- [ ] **H1** — bring up the stack: `scripts/run-local.sh` (or `docker-compose.full.yml`); confirm
+      seeded via the C2 preflight (`/api/v1/sources` returns the 6 seed sources).
+- [ ] **H2** — run `python -m runner --runs 3 --label baseline`; confirm a
+      `evaluation/results/<UTC>__<sha>__baseline/` dir with all three artifacts is produced.
+- [ ] **H3** — **triage every failing/flaky question** in `report.md`'s triage column as exactly one
+      of **pipeline-bug / data-gap / corpus-gap / eval-bug**, with a one-line justification. Expected
+      shape (record what the run *actually* shows, not these assumptions):
+  - [ ] Q9/Q12 → likely **pipeline-bug** (`serviceError`, `WITH RECURSIVE` fragility, DEV-054) → P2.
+  - [ ] Q13 → **expected PASS** (DEV-056/057). If it fails, triage it and note the reopen — do not fix
+        here.
+  - [ ] Q11 (MIXED, "died at Troy") → likely **data-gap** (no structured Trojan backing, DEV-054) → P5b.
+- [ ] **H4** — **decide the Q14 route-label question** (DEV-054 "Watch" item): gold labels Q14 RAG-via-
+      empty-SQL-fallback, but stronger schema grounding sometimes makes SQL return rows. Pick the
+      authoritative label from the baseline evidence; if the **gold label changes**, that is a logged
+      **eval-bug** fix — edit `gold-questions.json` and record the DEV/rationale (a keyword/label edit
+      is never silent tuning).
+- [ ] **H5** — any keyword correction surfaced by triage → treat as a logged **eval-bug** fix
+      (DEV-048/050 rule), live-verified, with a DEV note — not silent tuning to make a run pass.
+- [ ] **H6** — **commit** the baseline results dir + `eval-config.json` + the runner package + Track G
+      doc edits together, so the committed number and the code that produced it move as one unit
+      (ADR-018 §Decision 5 — results are the audit trail).
+- [ ] **H7** — final gate check: re-read TODO2.md Stage P1 "Done when" and tick each clause; confirm
+      P2 can now `compare.py <baseline> <candidate>` against this dir.
+
+---
+
+## Definition-of-done checklist (mirror of TODO2.md Stage P1)
+
+- [ ] `evaluation/runner/` package complete: `__main__.py`, `scoring.py`, `report.py`, `compare.py`
+      (+ `config.py`, `gold.py`, `model.py`, `classify.py`, `sql_check.py` helpers).
+- [ ] `evaluation/eval-config.json` — per-category floors, overall ≥75% target, base-url default.
+- [ ] 3-run stable/flaky/stable-fail classification; `serviceError:true` scored fail (no retry);
+      transport errors retry once.
+- [ ] Q10 `min_row_count` re-executes generated SQL via read-only `zeus_app` psycopg2 + statement timeout.
+- [ ] `refusal_criteria` scoring implemented **now** (phrase-list + empty-`citations[]`), so P4's
+      Q16/Q17 need no scorer change.
+- [ ] ADR-010 Accepted status confirmed (already flipped at documentation time, DEV-059); its ~8
+      questions **deferred to P4**.
+- [ ] Baseline results dir committed; every failure triaged in `report.md`.
+- [ ] Q14 route-label decided; recorded as an eval-bug fix if the gold label changed.
+- [ ] `TECH_GUARDRAILS.md` scoping clause added; `DEV-059` (and the P1 harness-language DEV) recorded.
+- [ ] `pytest evaluation/runner/tests/` green (scoring, classify, compare, report; sql_check gated).
