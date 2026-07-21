@@ -192,7 +192,7 @@ Structured tables: ~60–100 entities (Olympians, Titans, major heroes) hand-cur
 
 ## Evaluation
 
-17 gold questions across five categories (FACT, DATA, MIXED, CONFLICT, REFUSAL) in `evaluation/gold-questions.json`; scored at 3 pts each. Target ≥75% overall. See `docs/IMPLEMENTATION_PLAN.md §7` for full schema and scoring rules.
+16 gold questions across four categories (FACT, DATA, MIXED, CONFLICT) in `evaluation/gold-questions.json`; scored at 3 pts each. Target ≥75% overall. REFUSAL is a fifth planned category whose questions are authored in Phase 2 P4 (ADR-010, per DEV-059). See `docs/IMPLEMENTATION_PLAN.md §7` for full schema and scoring rules.
 
 ## Deviation Tracking Protocol
 

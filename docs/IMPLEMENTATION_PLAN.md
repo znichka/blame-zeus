@@ -1,5 +1,10 @@
 # blame-zeus: Implementation Plan
 
+> ➕ **Phase 2 (post-MVP) — Data-Quality & Evaluation Program.** This plan (§1–§11) covers the MVP
+> and remains authoritative and unchanged. Post-MVP data-quality/evaluation work is designed in
+> `IMPLEMENTATION_PLAN_PHASE2.md` (roadmap: `TODO2.md`), implementing **ADR-017/018/019** — see
+> `DEVIATIONS.md` DEV-059.
+
 ## 1. Executive Summary
 
 blame-zeus is a Greek mythology lore assistant PoC whose defining feature is source attribution and conflict detection — surfacing disagreements between ancient texts rather than giving a single confident answer. A user asks a natural-language mythology question; the system routes it through SQL, RAG, or a conflict-detection pipeline; and every claim in the answer cites the ancient work it came from.
@@ -934,6 +939,10 @@ Key files:
 > enrichment, **not** on a route match. The `CONFLICT` value survives only as a gold-question *category* label,
 > not as a `RouteDecision`. (Broader eval expansion is ADR-010, still Proposed — not applied here.)
 
+> ➕ **Phase 2 builds the runner specified in this section** as an offline Python operator tool and
+> extends scoring with per-category floors — see `IMPLEMENTATION_PLAN_PHASE2.md §2`, **ADR-018**
+> (harness), and **ADR-010** (now *Accepted*). The §7 rubric below is implemented verbatim.
+
 ### Gold Question JSON Schema
 
 Each entry in `evaluation/gold-questions.json` has these fields:
@@ -1190,6 +1199,11 @@ Run: `pytest ingestion/tests/`
 ## 9. Implementation Sequence
 
 Build in phases to validate each layer before building on it. For each phase, write the tests listed in §8 **before** writing production code.
+
+> ➕ **Phase 2 (post-MVP)** continues after Stage 10 with the Data-Quality & Evaluation Program
+> (Stages P1–P5) — designed in `IMPLEMENTATION_PLAN_PHASE2.md`, roadmapped in `TODO2.md`, tracked
+> under `TODO.md` → *Post-MVP Enhancements*. It does not alter the §9 stage history below. See
+> **ADR-017** and `DEVIATIONS.md` DEV-059.
 
 > ⚠️ Deviations occurred in Stage 1. See DEVIATIONS.md for details (DEV-001 through DEV-009).
 >

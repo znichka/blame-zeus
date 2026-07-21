@@ -3,8 +3,9 @@
 | Field        | Value       |
 |--------------|-------------|
 | **Date**     | 2026-07-10  |
-| **Status**   | Proposed    |
+| **Status**   | Accepted (2026-07-21, activated by ADR-017/ADR-018) |
 | **Amends**   | IMPLEMENTATION_PLAN.md §7 (Evaluation); ADR-007 (Q13–15 re-pointing) |
+| **Activated by** | ADR-017 (Phase 2 direction) / ADR-018 (harness) — this ADR's content is unchanged; it is flipped Proposed → Accepted and implemented at Phase 2 Stage P1, with per-category floors landing in `evaluation/eval-config.json`. See DEV-059. |
 
 ---
 

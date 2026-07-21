@@ -3,7 +3,7 @@
 | Field        | Value       |
 |--------------|-------------|
 | **Date**     | 2026-07-10  |
-| **Status**   | Proposed    |
+| **Status**   | Proposed — scheduled for acceptance at Phase 2 Stage P5a (per ADR-017 §Decision 5; see DEV-059) |
 | **Amends**   | ADR-005 (schema-boundary non-goal), ADR-007 §7 (attribute-structuring rule) |
 
 ---

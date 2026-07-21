@@ -369,3 +369,26 @@ telegram doc references cleaned up.
 - [ ] Manual browser smoke: mosaic renders, no-CDN network check, chips work, DATA question shows Sources (DEV-057 guard), conflict question weaves prose (no dup box)
 
 → [Detailed track-by-track checklist](TODO-adr-016.md)
+
+### Phase 2 — Data Quality & Evaluation Program (ADR-017 / ADR-018 / ADR-019)
+**Done when:** an offline evaluation harness produces a committed, per-category-scored baseline;
+wrong answers are diagnosable (DEBUG logging + a `debug` response surface); the two known runtime
+defects (Q13 formatting / DEV-053, Q9/Q12 `WITH RECURSIVE` / DEV-054) are fixed; the existing seed is
+audited and corrected (duplicates, relation-label canonicalization via `relation_aliases`, the 29-pair
++ 203-row backlogs); and an eval-gated batch loop grows conflict depth and new data types with the
+gold set expanding in lockstep — all with **≥75% sustained** across 3-run evals and zero stable
+regressions.
+
+> ⚠️ Implements **ADR-017** (measurement-first, eval-gated direction), **ADR-018** (evaluation
+> harness as an offline Python operator tool + the "no live LLM in tests" scoping clause), and
+> **ADR-019** (relation-label canonicalization). Design detail in `IMPLEMENTATION_PLAN_PHASE2.md`;
+> stage roadmap + "Done when" gates in `TODO2.md`. Activates **ADR-010** (Accepted now) and, at P5a,
+> **ADR-009**. Documentation landed as **DEV-059**. Not part of `IMPLEMENTATION_PLAN.md §9`.
+
+- [ ] Stage P1 — Evaluation harness + committed baseline (ADR-018; ADR-010 accepted)
+- [ ] Stage P2 — Debuggability (`DebugInfo`, DEBUG logging, `reseed-local.sh`) + DEV-053/DEV-054 fixes
+- [ ] Stage P3 — Data audit & fixing (`ingestion/audit/`, `relation_aliases`, backlogs) — priority
+- [ ] Stage P4 — Iterative conflict-depth loop; gold set grows in lockstep (ADR-010 questions)
+- [ ] Stage P5 — New data types (P5a numeric/ADR-009, P5b myths, P5c geography/epithets) + gap discovery
+
+→ [Phase-2 roadmap](TODO2.md) · [Phase-2 design](IMPLEMENTATION_PLAN_PHASE2.md)
