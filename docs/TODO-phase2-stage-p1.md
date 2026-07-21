@@ -204,30 +204,30 @@ Isolated because it is the only scoring path that touches a DB. Ownable independ
 
 The operator entrypoint. Can be built against a stubbed `scoring.score_question` until B lands.
 
-- [ ] **C1** — CLI (argparse) flags exactly per §2.1 / TODO2: `--runs` (default 1), `--label`
-      (required for a named results dir), `--base-url` (default from config), `--questions` (path,
-      default `evaluation/gold-questions.json`), `--ids` (comma list to run a subset), `--debug`
-      (sets `debug:true` in the request body — no-op until P2 adds `DebugInfo`, but wire it now).
-- [ ] **C2** — **Preflight:** `GET {base_url}/api/v1/sources` before any scoring; non-200/empty →
-      abort with a clear "server not up/seeded" message (§2.1). Do not silently score against a dead
-      server.
-- [ ] **C3** — HTTP: `POST {base_url}/api/v1/query` `{"question": q.question, "debug": debug}` per
-      question; parse via `model.ParsedResponse.from_json`. Transport/HTTP-5xx/connection errors →
-      **retry once** (ADR-018 §Decision 4); a 200 with `serviceError:true` → **no retry**, hand to
-      scoring as a fail. Distinguish these two paths explicitly.
-- [ ] **C4** — **N-run loop:** run the whole selected set `--runs` times; keep every raw response
-      (per question per repetition) for Track D's `raw_responses.json`.
-- [ ] **C5** — **Classification** per question across the N runs: `stable-pass` (N/N full score),
-      `stable-fail` (0/N), `flaky` (mixed) — per §2.3. Aggregate = **worst run (pessimistic)**; the
-      flaky list is called out separately. Put this in `runner/classify.py` so it is unit-testable
-      without HTTP.
-- [ ] **C6** — orchestrate: preflight → run loop → score each (Track B) → classify (C5) → hand
-      results + classification to `report.write(...)` (Track D). Exit non-zero if the server was
-      unreachable; exit 0 on a completed run even if questions failed (a baseline with failures is a
-      *successful* run).
-- [ ] **C7** — **TDD:** `tests/test_classify.py` (pure) — stable/flaky/stable-fail and worst-run
-      aggregate over synthetic per-run score lists. HTTP layer can be smoke-tested with `responses`/a
-      stub in a separate optional test.
+- [x] **C1** — CLI (argparse) flags per §2.1: `--runs` (default 1), `--label` (default `adhoc`),
+      `--base-url` (override; default from config), `--questions` (default `gold-questions.json`),
+      `--config` (path to eval-config.json), `--ids` (comma-list subset), `--debug` (sets
+      `debug:true` in the body — no-op until P2, wired now). `--help` renders without Track D present.
+- [x] **C2** — **Preflight:** `GET /api/v1/sources` before scoring; transport error / non-200 /
+      empty-list → `(False, msg)` and `main()` exits 2 with a "start the stack + seed" hint. Never
+      scores against a dead/unseeded server.
+- [x] **C3** — HTTP `POST /api/v1/query` `{"question", "debug"}`; parsed via `ParsedResponse.from_json`.
+      Injectable `transport`; `TransportError`/HTTP-5xx → **retry once**, then a synthetic
+      `serviceError` raw+parsed (scored 0, no crash); 4xx → no retry; a 200 with `serviceError:true`
+      → **no retry**, handed to scoring as a fail. Paths distinguished + unit-tested.
+- [x] **C4** — **N-run loop** (`run_all`): runs the selected set `--runs` times; `raw_by_run` keeps
+      every raw server JSON per question per repetition for Track D's `raw_responses.json`.
+- [x] **C5** — **Classification** in `runner/classify.py` (pure, HTTP-free): `stable-pass` (N/N full),
+      `stable-fail` (0/N), `flaky` (mixed); aligned by question **id**. Aggregate = **worst run**
+      (fewest full passes, tie-broken by total points); `RunResults.flaky_ids` called out.
+- [x] **C6** — `main()` orchestrates preflight → `run_all` (score B + Track F row-count) → classify →
+      `report.write(results, cfg)` (imported lazily). Exit 2 if server unreachable/unseeded; exit 0
+      on a completed run even with failing questions.
+- [x] **C7** — **TDD:** `tests/test_classify.py` — stable/flaky/stable-fail, transpose-by-id +
+      misalignment guard, worst-run aggregate (+ points tiebreak), and a `StubTransport` HTTP layer
+      covering success/serviceError-no-retry/5xx-retry/transport-retry-recover/4xx-no-retry, preflight
+      ok/empty/non-200/unreachable, and a `run_all` end-to-end (stub transport + stub row-counter,
+      no server/DB). **45 passed, 1 skipped** overall.
 
 ---
 
