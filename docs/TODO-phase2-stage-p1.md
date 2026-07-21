@@ -262,20 +262,21 @@ Owns the committed on-disk contract. Independent of B/C internals — it consume
 
 Used at every *later* stage's gate; built now so P2 can diff against this baseline immediately.
 
-- [ ] **E1** — `python -m runner.compare <baseline_dir> <candidate_dir>` (or a `compare` subcommand);
-      read both `scores.json`.
-- [ ] **E2** — `diff.md` content order per §2.3: **PASS→FAIL regressions first** (the gate-blocking
-      set), then per-category deltas, then route changes, then conflict-count changes
-      (`conflicts[]` length deltas per question).
-- [ ] **E3** — honour the **stable-only** contract: a change is a *regression* only if it is
-      stable→stable (PASS→FAIL where both classifications are stable), never a flaky flip
-      (cross-cutting rule "never act on a single-run delta"). Flag flaky flips separately as
-      informational, not regressions.
-- [ ] **E4** — exit code: non-zero when a **stable** PASS→FAIL regression exists (so P2+ can gate CI-lessly
-      in a script), zero otherwise.
-- [ ] **E5** — **TDD:** `tests/test_compare.py` — synthetic baseline/candidate `scores.json` pairs
-      covering a stable regression (→ listed + nonzero exit), a flaky flip (→ informational only), an
-      improvement, and a per-category delta.
+- [x] **E1** — `python -m runner.compare <baseline> <candidate>` (`--out` optional); `load_scores`
+      accepts a results dir or a `scores.json` path. Writes `diff.md` into the candidate dir by default.
+- [x] **E2** — `diff.md` order per §2.3: **regressions first** (gate-blocking), then per-category
+      rate deltas, then route changes, then conflict-count changes (`conflicts[]` length via D's
+      per-run `conflicts_count`), then an Informational section (improvements/flaky flips/added/removed).
+      Route + conflict deltas use each side's **worst-run** representative entry.
+- [x] **E3** — **stable-only** contract: a regression is only stable-pass → stable-fail; any
+      transition touching `flaky` is an informational flaky flip, never a regression (verified both
+      directions: stable-pass→flaky and flaky→stable-fail).
+- [x] **E4** — `main()` exits **1** iff a stable regression exists, else **0**; prints the regressed
+      ids to stderr. Lets P2+ gate in a plain script, no CI.
+- [x] **E5** — **TDD:** `tests/test_compare.py` — stable regression (listed + exit 1), flaky flip
+      (informational, exit 0, both directions), improvement (exit 0), no-change, route change,
+      conflict-count change, per-category delta, added/removed ids, render-ordering, and CLI
+      exit-code + `diff.md` write. **61 passed, 1 skipped** overall.
 
 ---
 
