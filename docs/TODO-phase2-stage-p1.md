@@ -123,7 +123,7 @@ One question × one `ParsedResponse` → a 3-point breakdown. **Implements `IMPL
 verbatim** + ADR-010 per-category aggregation. Pure functions over Track-A dataclasses → trivially
 testable with fixtures, no server. This is the correctness-critical track.
 
-- [ ] **B1** — `score_route(q, resp) -> bool` (1 pt): `resp.route_decision == q.expected_route`.
+- [x] **B1** — `score_route(q, resp) -> bool` (1 pt): `resp.route_decision == q.expected_route`.
       **Guard:** CONFLICT-category questions are **not** scored on route (ADR-007/DEV-014). Note §7 is
       self-inconsistent here — its ADR-007 amendment banner says conflict questions are "scored on
       `conflicts[]` … **not** on a route match," but the §7 scoring rubric still lists a "Route match
@@ -132,50 +132,48 @@ testable with fixtures, no server. This is the correctness-critical track.
       question, point-1 is awarded by B2's `conflicts[]` check (≥2 distinct `claimValue`s) and route is
       ignored entirely, so a route mismatch can neither lose nor gain a point. Log the §7
       banner-vs-rubric mismatch as this stage's `DEV-NNN` (the deviation-protocol note above already
-      anticipates it).
-- [ ] **B2** — `score_author_or_conflict(q, resp) -> bool` (1 pt), branch on category:
-  - [ ] FACT/MIXED → ≥1 of `q.required_authors` appears in `resp.citations[].author`
+      anticipates it). **[implemented: CONFLICT `score_route` returns the conflicts-min check, route
+      ignored. TWO pending DEV entries for Track G/H to record: (a) the §7 banner-vs-rubric mismatch;
+      (b) the Q18 edge — a `conflicts_min_count:0` CONFLICT scores content over an intentionally-empty
+      `claimValue` concat, so its keyword can't match; implemented §7-verbatim, no special-case (no
+      silent tuning), flagged in a `score_content` comment for Track-H triage.]**
+- [x] **B2** — `score_author_or_conflict(q, resp) -> bool` (1 pt), branch on category:
+  - [x] FACT/MIXED → ≥1 of `q.required_authors` appears in `resp.citations[].author`
         (case-insensitive substring/`author` match). If `required_authors` empty → auto-pass (§7: the
         check only applies when authors are specified; Q4/Q5/Q8/Q15 have none — **not** Q11, which
         carries `["Homer"]` in the live fixture).
-  - [ ] CONFLICT → `resp.conflicts` has ≥ `q.conflicts_min_count` **distinct** `claimValue`s
-        (default 2 when key absent). **Plus** the per-author guard: **only when
-        `len(q.required_authors) >= 2`**, assert each listed author appears in ≥1
-        `conflicts[].sourceAuthor` (Q13). Q14 (single author, both variants Apollodorus) → skip the
-        per-author check. Bake the `>= 2` guard in — it is the documented Q14 trap.
-  - [ ] DATA/REFUSAL → auto-1 **if route matched** (§7). Wire so this reads B1's result.
-- [ ] **B3** — `score_content(q, resp) -> bool` (1 pt):
-  - [ ] Keyword match helper: `re.search(r'\b' + re.escape(kw) + r'\b', text, re.IGNORECASE)` for
+  - [x] CONFLICT → `resp.conflicts` has ≥ `q.conflicts_min_count` **distinct** `claimValue`s
+        (default 2 when key absent, via `GoldQuestion.effective_conflicts_min_count`). **Plus** the
+        per-author guard: **only when `len(q.required_authors) >= 2`**, assert each listed author
+        appears in ≥1 `conflicts[].sourceAuthor` (Q13). Q14 (single author) → skip. `>= 2` guard baked in.
+  - [x] DATA/REFUSAL → auto-1 **if route matched** (§7). `score_question` threads B1's `route_point` in.
+- [x] **B3** — `score_content(q, resp) -> (bool, notes)` (1 pt):
+  - [x] Keyword match helper: `re.search(r'\b' + re.escape(kw) + r'\b', text, re.IGNORECASE)` for
         **every** `required_keyword` (all must match). Word-boundary, as §7 mandates.
-  - [ ] FACT/DATA/MIXED → keywords matched over `resp.answer`. **BUT** Q10 has no keywords — it uses
-        `min_row_count` instead (delegate to Track F); Q9 additionally requires `sql_must_contain`.
-        Encode: if `min_row_count` present → F's row-count check *is* the content point; if
-        `sql_must_contain` present → `resp.sql_generated` is non-null **and** contains the token
-        (null-guard first, §7 Q9 note) **in addition** to keywords.
-  - [ ] CONFLICT → keywords matched over the concatenation of `resp.conflicts[].claimValue` (§7:
-        "across `conflicts[].claimValue`"), not `answer`.
-  - [ ] `forbidden_patterns` → **any** case-insensitive match anywhere in the scored text = automatic
-        content-point **fail** (applies to all categories incl. REFUSAL).
-- [ ] **B4** — `score_refusal(q, resp) -> bool` (REFUSAL content point) — **implement now** though no
-      REFUSAL question exists until P4 (§2.2 mandate). All three `refusal_criteria` must pass +
-      no `forbidden_patterns`:
-  - [ ] `must_not_assert_answer` — no positive-claim signature (reuse `forbidden_patterns` +
-        the phrase heuristics §7 lists).
-  - [ ] `must_mention_source_limit` — a source-silence phrase list ("the texts do not", "does not
-        describe", "no surviving account", "not preserved", …) — configurable, seeded from §7.
-  - [ ] `must_not_fabricate_citation` — `resp.citations` empty (or only known-relevant refs). Phase-1
-        heuristic per §2.2 = **empty `citations[]`**; keep the phrase-list + empty-citations shape so
-        P4 needs no scorer change.
-- [ ] **B5** — `score_question(q, resp) -> QuestionScore` composing B1–B4: three booleans + total
-      `/3`, plus a per-point breakdown for `report.md`. On `resp.service_error is True` → **all three
-      points 0** (scored fail, ADR-018 §Decision 4), with a `service_error` flag on the score object.
-- [ ] **B6** — `aggregate(scores) -> Aggregate`: overall % **and** per-category pass rate; a question
-      "passes" the category rate at full 3/3 (confirm §7/ADR-010 intent — full-score, not partial).
-      Compare each category rate to its `category_floors` entry; emit `floor_breaches: list`.
-- [ ] **B7** — **TDD:** `evaluation/runner/tests/test_scoring.py` (pytest) with hand-built fixtures:
-      one passing + one failing case **per category**, the Q14 single-author skip, the Q10-no-keyword
-      path, the Q9 `sql_must_contain` null-guard, a `serviceError` fail, a `forbidden_patterns` trip,
-      and a REFUSAL pass/fail pair. No network, no DB (mock F's row-count).
+  - [x] FACT/DATA/MIXED → keywords over `resp.answer`. Q10 `min_row_count` → Track F's row count IS
+        the content point (via injected `row_count_fn`); Q9 `sql_must_contain` → `sql_generated`
+        null-guarded first (§7 Q9 note) then token-checked, in addition to keywords.
+  - [x] CONFLICT → keywords over the concatenation of `resp.conflicts[].claimValue`, not `answer`.
+  - [x] `forbidden_patterns` → **any** case-insensitive match in the scored text = automatic
+        content-point **fail** (all categories incl. REFUSAL).
+- [x] **B4** — `score_refusal(q, resp) -> (bool, notes)` (REFUSAL content point) — **implemented now**
+      though no REFUSAL question exists until P4 (§2.2). All *enabled* `refusal_criteria` + no
+      `forbidden_patterns`:
+  - [x] `must_not_assert_answer` — reuse `forbidden_patterns` as the positive-claim signature.
+  - [x] `must_mention_source_limit` — `SOURCE_SILENCE_PHRASES` module constant (seeded from §7,
+        extendable in P4 without a scorer change).
+  - [x] `must_not_fabricate_citation` — Phase-1 heuristic = **empty `citations[]`**; phrase-list +
+        empty-citations shape preserved so P4 needs no scorer change.
+- [x] **B5** — `score_question(q, resp, row_count_fn=None) -> QuestionScore` composing B1–B4: three
+      booleans + `total`/`passed` + `notes` breakdown for `report.md`. `resp.service_error is True` →
+      **all three points 0** with a `service_error` flag (ADR-018 §Decision 4).
+- [x] **B6** — `aggregate(scores, category_floors, overall_target) -> Aggregate`: overall pass rate
+      **and** per-category rate; a question "passes" at full 3/3 (§7/ADR-010 full-score intent).
+      `CategoryRate.floor_met` compares to the floor (None ⇒ N/A, never a breach); `floor_breaches: list`.
+- [x] **B7** — **TDD:** `evaluation/runner/tests/test_scoring.py` (pytest) — one pass + one fail **per
+      category**, Q14 single-author skip, Q10-no-keyword row-count path, Q9 `sql_must_contain`
+      null-guard, `serviceError` fail, `forbidden_patterns` trip, REFUSAL pass/fail pair, and aggregate
+      floor-breach + None-floor N/A. **22 tests green** (run via `ingestion/.venv` pytest). No network, no DB.
 
 ---
 
