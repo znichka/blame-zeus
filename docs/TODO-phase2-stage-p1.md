@@ -88,29 +88,32 @@ data contracts. G is pure prose. H is the integration point and must run last ag
 
 Pins the interfaces every other track codes against. Small, fast, merge before B–F start in earnest.
 
-- [ ] **A1** — `evaluation/runner/__init__.py` (empty, makes the package importable as `runner`).
-- [ ] **A2** — `evaluation/eval-config.json`:
-  - [ ] `base_url` default (`"http://localhost:8080"`), `query_path` (`/api/v1/query`),
+- [x] **A1** — `evaluation/runner/__init__.py` (empty, makes the package importable as `runner`).
+- [x] **A2** — `evaluation/eval-config.json`:
+  - [x] `base_url` default (`"http://localhost:8080"`), `query_path` (`/api/v1/query`),
         `preflight_path` (`/api/v1/sources`), request `timeout_seconds`.
-  - [ ] `overall_target: 0.75`.
-  - [ ] `category_floors` object — per ADR-010, floors on **CONFLICT** and **REFUSAL** at minimum;
+  - [x] `overall_target: 0.75`.
+  - [x] `category_floors` object — per ADR-010, floors on **CONFLICT** and **REFUSAL** at minimum;
         include `DATA` too (§2.2). REFUSAL floor may be `null`/absent until P4 authors the questions —
         loader must tolerate a missing floor (report N/A, never crash).
-  - [ ] `db` block for the Q10 re-executor: DSN pieces for the **read-only `zeus_app`** user
-        (host/port/db/user/password via env, e.g. `${ZEUS_APP_URL}`), `statement_timeout_ms`.
-        Document that this is intentionally the read-only user (guardrail).
-- [ ] **A3** — `runner/config.py`: `load_config(path)` → typed `EvalConfig` dataclass; resolves env
+        (Initial values: CONFLICT 0.5, DATA 0.5, REFUSAL null — config-adjustable; ADR-010 prescribes
+        floors exist but no numbers, so these are defensible starting bars, not a plan deviation.)
+  - [x] `db` block for the Q10 re-executor: DSN pieces for the **read-only `zeus_app`** user
+        (host/port/db/user/password via env, `${VAR:-default}` placeholders), `statement_timeout_ms`.
+        Documented as intentionally the read-only user (guardrail) in `config.py DbConfig` docstring.
+- [x] **A3** — `runner/config.py`: `load_config(path)` → typed `EvalConfig` dataclass; resolves env
       placeholders; validates required keys; clear error if `eval-config.json` missing.
-- [ ] **A4** — `runner/gold.py`: `load_gold(path)` → `list[GoldQuestion]` dataclass. Normalizes the
+- [x] **A4** — `runner/gold.py`: `load_gold(path)` → `list[GoldQuestion]` dataclass. Normalizes the
       **optional** keys to `None`/`[]` so downstream code never does membership checks on missing
       keys. Expose `category`, `expected_route`, and every scoring key as attributes. Include an
       `is_refusal` helper (`category == "REFUSAL"` / presence of `refusal_criteria`).
-- [ ] **A5** — `runner/model.py`: dataclasses mirroring the response contract — `ParsedResponse`
+- [x] **A5** — `runner/model.py`: dataclasses mirroring the response contract — `ParsedResponse`
       (`answer`, `route_decision`, `citations: list[Citation]`, `conflicts: list[ConflictEntry]`,
       `sql_generated`, `service_error`, `conflicts_in_prose`) + `Citation`/`ConflictEntry`; a
       `from_json(dict)` factory tolerant of nulls/missing fields (so a malformed/partial server
       response degrades to a scored fail, never a runner crash). This is the seam B and C share.
 - [ ] **A6** — commit A as one unit; note in the PR that B–F may now branch.
+      _(pending — left to the operator per repo convention of committing only on request; B–F may branch once committed.)_
 
 ---
 

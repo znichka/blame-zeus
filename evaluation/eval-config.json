@@ -1,0 +1,23 @@
+{
+  "base_url": "http://localhost:8080",
+  "query_path": "/api/v1/query",
+  "preflight_path": "/api/v1/sources",
+  "timeout_seconds": 60,
+
+  "overall_target": 0.75,
+
+  "category_floors": {
+    "CONFLICT": 0.5,
+    "DATA": 0.5,
+    "REFUSAL": null
+  },
+
+  "db": {
+    "host": "${POSTGRES_HOST:-localhost}",
+    "port": "${POSTGRES_PORT:-5432}",
+    "dbname": "${POSTGRES_DB:-blamezeus}",
+    "user": "${POSTGRES_APP_USER:-zeus_app}",
+    "password": "${POSTGRES_APP_PASSWORD:-app_password}",
+    "statement_timeout_ms": 3000
+  }
+}
