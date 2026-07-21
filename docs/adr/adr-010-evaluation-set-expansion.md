@@ -7,6 +7,14 @@
 | **Amends**   | IMPLEMENTATION_PLAN.md §7 (Evaluation); ADR-007 (Q13–15 re-pointing) |
 | **Activated by** | ADR-017 (Phase 2 direction) / ADR-018 (harness) — this ADR's content is unchanged; it is flipped Proposed → Accepted and implemented at Phase 2 Stage P1, with per-category floors landing in `evaluation/eval-config.json`. See DEV-059. |
 
+> **P1 implementation note (DEV-060):** the two halves of this ADR land in different stages.
+> The **scoring half** — per-category pass rates + floors (CONFLICT/DATA now, REFUSAL once its
+> questions exist), and conflict questions scored on `conflicts[]` not route — is **implemented in
+> P1** (`evaluation/runner/scoring.py`, `eval-config.json`). The **expansion half** — the ~8 new
+> gold questions — is **deferred to P4** (don't change the yardstick and the data it measures in the
+> same stage). Floor *values* are config-adjustable starting bars; this ADR mandates that floors
+> exist, not specific numbers.
+
 ---
 
 ## Context

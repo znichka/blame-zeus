@@ -282,26 +282,21 @@ Used at every *later* stage's gate; built now so P2 can diff against this baseli
 
 ## Track G — Docs / ADR housekeeping (no code; fully independent — do anytime)
 
-- [ ] **G1** — `TECH_GUARDRAILS.md`: add the ADR-018 §Decision 2 **scoping clause** to the "No live
-      LLM calls in tests" rule — it governs the **automated Gradle/CI suite** (all `@AiService`
-      mocked), **not** developer-invoked offline operator tools (`evaluation/runner/`, `ingestion/`).
-      Cross-reference ADR-018.
-- [ ] **G2** — `docs/adr/adr-010-evaluation-set-expansion.md`: **confirm Status is already Accepted**
-      (it was flipped at documentation time per §2.2 / DEV-059 — this is a verification, no edit is
-      expected; if it still reads Proposed, flip it and note the discrepancy).
-      **Do NOT author its ~8 new questions here** —
-      that is deferred to P4 (don't change the yardstick and the data in the same stage). Leave a note
-      that per-category floors land in `eval-config.json` (Track A2) now, questions in P4.
-- [ ] **G3** — `docs/DEVIATIONS.md`: record the P1 deviation entry (next `DEV-NNN`) — the harness is
-      built in Python under `evaluation/runner/` (not the Kotlin `EvaluationRunner` the MVP §7 text
-      implies), per ADR-018. Mark the affected §7 "Evaluation Runner" lines
-      `[DEVIATED - see DEVIATIONS.md #DEV-NNN]` and add the `IMPLEMENTATION_PLAN.md §7` stage-note
-      banner pointer. (§7 already carries a forward "➕ Phase 2 builds the runner" note — extend, don't
-      overwrite.)
-- [ ] **G4** — `evaluation/README.md` (new, short): how to run — start the stack
-      (`scripts/run-local.sh`), export `ZEUS_APP_URL`/keys, `python -m runner --runs 3 --label
-      baseline`; where results land; the "results dirs are committed" convention; the Q10 read-only-DB
-      requirement.
+- [x] **G1** — `TECH_GUARDRAILS.md`: **already present** (added at doc-time per DEV-059) — verified.
+      The "No live LLM calls in tests" rule already carries the ADR-018 scoping clause (governs
+      `:core-api:test` only, not `evaluation/runner/` or `ingestion/`). No edit needed.
+- [x] **G2** — ADR-010 Status **confirmed Accepted** (`Accepted (2026-07-21, activated by
+      ADR-017/ADR-018)`) — no flip needed. Added a **P1 implementation note** (DEV-060): scoring half
+      (floors + conflict-scored-on-`conflicts[]`) lands in P1; the ~8 new questions are deferred to
+      P4; floor values are config-adjustable bars. Did **not** author the new questions.
+- [x] **G3** — `docs/DEVIATIONS.md`: recorded **DEV-060** (harness is Python `evaluation/runner/`,
+      not the Kotlin `EvaluationRunner`; + the two §7 scoring-edge pins from B1/B3 and the F/D/config
+      minor shapes). Tagged `IMPLEMENTATION_PLAN.md §7 "### Evaluation Runner"`
+      `[DEVIATED - see DEVIATIONS.md #DEV-060]` + a Python-runner sub-banner, and **extended** (not
+      overwrote) the §7 forward "➕ Phase 2 builds the runner" note with a DEV-060 pointer.
+- [x] **G4** — `evaluation/README.md` (new): prerequisites (start stack, seed, read-only DB env,
+      `ingestion/.venv` pytest), `python -m runner --runs 3 --label baseline`, results-dir layout +
+      "results dirs are committed" convention, `compare` usage, and the package layout.
 
 ---
 

@@ -942,6 +942,11 @@ Key files:
 > ➕ **Phase 2 builds the runner specified in this section** as an offline Python operator tool and
 > extends scoring with per-category floors — see `IMPLEMENTATION_PLAN_PHASE2.md §2`, **ADR-018**
 > (harness), and **ADR-010** (now *Accepted*). The §7 rubric below is implemented verbatim.
+>
+> ⚠️ **Built in Phase 2 Stage P1 — deviations occurred. See DEVIATIONS.md #DEV-060.** The runner is
+> the Python package `evaluation/runner/` (not the Kotlin `EvaluationRunner` this section sketches);
+> two §7 scoring edge cases the rubric left unspecified were pinned there (the CONFLICT
+> route-vs-`conflicts[]` banner conflict, and the Q18 `conflicts_min_count:0` negative case).
 
 ### Gold Question JSON Schema
 
@@ -1029,7 +1034,11 @@ Pass criteria for REFUSAL:
 - Q10 (olympian count): no keyword list. Assert `sqlGenerated != null`, then execute the generated SQL against the test DB and assert `rowCount >= 12`. Do not keyword-search the prose — the LLM may format the list as a table or truncate it.
 - Q13–15 (conflict): assert `conflicts[]` has ≥2 entries with distinct `claimValue`s. For Q13 and Q15, also assert each entry in `required_authors` appears in at least one conflict entry. Q14 (Io) has both variants attributed to Apollodorus — `required_authors` has only one entry, so the per-author assertion is skipped. The runner must guard: only apply the per-author check when `required_authors.size >= 2`; otherwise the ≥2 distinct claims check is sufficient.
 
-### Evaluation Runner
+### Evaluation Runner  [DEVIATED - see DEVIATIONS.md #DEV-060]
+
+> Built as the Python package `evaluation/runner/` (`python -m runner`), not a Kotlin
+> `fun main()`/JUnit runner — an offline operator tool per ADR-018. Steps 1–4 below are
+> implemented verbatim in `runner/__main__.py` + `runner/scoring.py`.
 
 `EvaluationRunner` (`fun main()` or JUnit integration test):
 1. Load `gold-questions.json`
