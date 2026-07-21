@@ -235,24 +235,26 @@ The operator entrypoint. Can be built against a stubbed `scoring.score_question`
 
 Owns the committed on-disk contract. Independent of B/C internals — it consumes their output shapes.
 
-- [ ] **D1** — results dir name: `evaluation/results/<UTC-ISO>__<git-sha>__<label>/`. Derive UTC
-      timestamp (compact ISO, filesystem-safe, e.g. `2026-07-21T14-03-11Z`) and short git sha
-      (`git rev-parse --short HEAD` via subprocess; degrade to `nogit` if unavailable). `mkdir -p`.
-- [ ] **D2** — `raw_responses.json`: the **full `QueryResponse` per question per repetition** (§2.3 —
-      the poor-man's query history; becomes a forensic record once P2 adds `DebugInfo`). Preserve the
-      raw server JSON, not the parsed dataclass, so nothing is lost.
-- [ ] **D3** — `scores.json`: per-question per-point booleans, per-run totals, the classification
-      label, the pessimistic aggregate, and per-category rates + floor-breach list (Track B6 output).
-      Machine-diffable — this is what `compare.py` reads.
-- [ ] **D4** — `report.md`: human table — one row per question (id, category, route
-      expected/actual, 3 point cells, total, **classification** column, and an empty-until-filled
-      **triage** column: pipeline-bug / data-gap / corpus-gap / eval-bug). Header block: overall %,
-      per-category pass rates with floor pass/fail, flaky list, run count, sha, label. §2.3 layout.
-- [ ] **D5** — leave the triage column machine-writable but expect **manual** fill in Track H (the
-      triage is a human judgement). Provide a stable id anchor per row so H can annotate in place.
-- [ ] **D6** — **TDD:** `tests/test_report.py` — write to a tmp dir from a synthetic aggregate,
-      assert the three files exist, `scores.json` round-trips, `report.md` contains the header +
-      every question row + the triage column.
+- [x] **D1** — results dir `evaluation/results/<UTC>__<sha>__<label>/` via
+      `report.write(results, cfg, results_root=?, now=?, git_sha=?)`. Compact filesystem-safe UTC
+      (`2026-07-21T14-03-11Z`) + `git rev-parse --short HEAD` (degrades to `nogit`); `mkdir -p`.
+      `now`/`git_sha`/`results_root` injectable so D6 writes to tmp without touching git/results tree.
+- [x] **D2** — `raw_responses.json`: `{label, runs, responses_by_run: [[raw...]...]}` — the raw
+      server JSON per question per repetition, preserved verbatim (parsed dataclass never substituted).
+- [x] **D3** — `scores.json`: per-question `classification` + `worst_run_total` + `per_run`
+      (per-point booleans, total, passed, service_error, `conflicts_count` [for E's conflict-delta],
+      actual_route, notes) + the pessimistic `aggregate` (per-category rates, `floor_met`,
+      `floor_breaches`, `worst_run_index`) + `flaky_ids`. Machine-diffable — the file `compare.py` reads.
+- [x] **D4** — `report.md`: header block (overall pessimistic %, per-category rates with floor
+      PASS/BREACH/n-a, flaky list, runs, sha, label) + one row per question (id, category, route
+      exp/act, 3 point cells `✓`/`✗`, total, **classification**, empty **triage**). Point cells are the
+      worst run; `class` is across all runs.
+- [x] **D5** — triage column left empty & machine-writable, filled manually in Track H; the unique
+      `id` column is the stable per-row anchor, with a legend naming the four triage labels.
+- [x] **D6** — **TDD:** `tests/test_report.py` — synthetic RunResults → tmp dir (injected now/sha);
+      asserts dir name, all three files exist, `scores.json` round-trips with flaky/worst-run/
+      conflicts_count/notes fields, raw preserved verbatim, and `report.md` has header + every question
+      row + triage column. **49 passed, 1 skipped** overall.
 
 ---
 
