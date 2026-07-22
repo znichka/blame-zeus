@@ -138,11 +138,12 @@ def score_content(q: GoldQuestion, resp: ParsedResponse, row_count_fn: RowCountF
         return score_refusal(q, resp)
 
     # Scored text: CONFLICT scores over conflicts[].claimValue (§7); all others over answer.
-    # NOTE (Q18 edge): the DEV-052 negative case is CONFLICT with conflicts_min_count=0 and
-    # expects an EMPTY conflicts[]. §7 never specified a zero-conflict CONFLICT, so its keyword
-    # ("Agamemnon") is scored over the empty claimValue concatenation and will not match —
-    # a Track-H triage candidate (eval-bug?), deliberately NOT special-cased here (no silent tuning).
-    if q.category == "CONFLICT":
+    # Q18 negative-case exception (DEV-061, resolving the DEV-060-flagged edge at Track H with
+    # live evidence): a CONFLICT with conflicts_min_count == 0 is the DEV-052 negative case that
+    # correctly EXPECTS an empty conflicts[] (claim-type filtering surfaced no conflict). There is
+    # no claimValue text to score against, so its content is scored over `answer` like a FACT
+    # question — otherwise the scorer penalizes the exact correct behavior it means to verify.
+    if q.category == "CONFLICT" and q.conflicts_min_count != 0:
         scored_text = " ".join(c.claim_value for c in resp.conflicts)
     else:
         scored_text = resp.answer

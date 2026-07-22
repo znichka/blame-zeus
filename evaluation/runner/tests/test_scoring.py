@@ -201,6 +201,18 @@ def test_conflict_q14_single_author_skips_per_author_guard():
     assert (s.route_point, s.author_point, s.content_point) == (True, True, True)
 
 
+def test_conflict_negative_case_min0_scores_content_over_answer():
+    # DEV-061: a conflicts_min_count:0 CONFLICT (Q18 negative case) expects EMPTY conflicts[];
+    # its content point is scored over `answer`, not the empty claimValue concat.
+    q = gq(id=18, category="CONFLICT", expected_route="RAG", required_authors=["Homer"],
+           required_keywords=["Agamemnon"], conflicts_min_count=0, forbidden_patterns=FORBIDDEN)
+    r = resp(route_decision="RAG", answer="Achilles withdrew after Agamemnon took Briseis.",
+             citations=[cite("Homer")], conflicts=[])
+    s = score_question(q, r)
+    assert (s.route_point, s.author_point, s.content_point) == (True, True, True)
+    assert s.passed
+
+
 def test_conflict_content_scored_over_claimvalues_not_answer():
     q = gq(id=15, category="CONFLICT", expected_route="RAG", required_authors=[],
            required_keywords=["heel"], conflicts_min_count=2, forbidden_patterns=FORBIDDEN)

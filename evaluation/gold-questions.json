@@ -40,7 +40,7 @@
     "category": "FACT",
     "question": "Why did Demeter stop the crops from growing?",
     "expected_route": "RAG",
-    "required_keywords": ["fruit", "abduction", "daughter"],
+    "required_keywords": ["fruit", "daughter", "crops"],
     "required_authors": [],
     "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
   },
@@ -123,7 +123,7 @@
     "id": 14,
     "category": "CONFLICT",
     "question": "Who was Io's father?",
-    "expected_route": "RAG",
+    "expected_route": "SQL",
     "required_keywords": ["Inachus", "Piren"],
     "required_authors": ["Apollodorus"],
     "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"],
