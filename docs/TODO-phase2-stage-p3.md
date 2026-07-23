@@ -390,6 +390,13 @@ hardcoded in code/JSON). Build the code against a **stub map** immediately; fill
 > `child_of`/`son_of` into `parent_of` for the first time; the pre-existing `Astyoche ⇄ Tros ⇄ Ilus
 > ⇄ Laomedon` cycle disappeared as a side effect. Logged as a new Track J lead, not fixed in this
 > pass (never two backlogs in one reseed).
+>
+> ⚠️ [DEVIATED - see DEVIATIONS.md #DEV-083] — **second pass** (the batched J3 backlog — DEV-077
+> through DEV-082, 6 entity splits) complete: single reseed (no chicken-and-egg this time,
+> `relation_aliases` already live), `python -m audit --db` now reports **A3: 0 `parent_of`
+> cycles** — the graph is fully clean for the first time. Eval: zero stable regressions, identical
+> profile to the first pass (none of the 16 gold questions touch the entities this batch fixed).
+> I7 (commit) again deliberately not run — pending an explicit decision.
 
 The standing per-batch loop. **No candidate edit reaches a commit except through this cycle.** Run it
 once for the F/relation_aliases landing, then once per J backlog batch. **G and H are not preconditions
@@ -483,9 +490,10 @@ that can land anytime.
       `Aeneas parent_of/ancestor_of Ilus` rows whose cited Ovid passages never mention "Ilus" at all
       — likely a `Iulus`/`Ilus` extraction confusion, a new lead for a future batch.
       **Batched, not yet reseeded** — sits with DEV-077/078/079.
-- [ ] **J3d** — after each fix: `cycle_check --db` (A3) must show the cycle gone; the batch goes through
+- [x] **J3d** [DEVIATED - see DEVIATIONS.md #DEV-083] — after each fix: `cycle_check --db` (A3) must show the cycle gone; the batch goes through
       Track I. Target: **A3 reports the `parent_of` graph fully clean** (or remaining cycles waived
-      with a written reason).
+      with a written reason). **Achieved** — `python -m audit --db` reports **A3: 0 parent_of
+      cycles** after the second Track I pass landed all of DEV-077–082 in one batch.
 - [x] **J3e** [DEVIATED - see DEVIATIONS.md #DEV-081] — **`Creon ⇄ Menoeceus`** (surfaced by Track I's
       F-landing pass, DEV-076 — newly visible once `child_of`/`son_of` normalized into `parent_of`):
       **source-verified as a namesake collision, not a reversed edge** — `apollodorus_bibliotheca_frazer1921.txt`
