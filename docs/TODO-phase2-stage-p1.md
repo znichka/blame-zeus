@@ -304,45 +304,52 @@ Used at every *later* stage's gate; built now so P2 can diff against this baseli
 
 The integration gate. Everything above converges here.
 
-- [ ] **H1** — bring up the stack: `scripts/run-local.sh` (or `docker-compose.full.yml`); confirm
-      seeded via the C2 preflight (`/api/v1/sources` returns the 6 seed sources).
-- [ ] **H2** — run `python -m runner --runs 3 --label baseline`; confirm a
-      `evaluation/results/<UTC>__<sha>__baseline/` dir with all three artifacts is produced.
-- [ ] **H3** — **triage every failing/flaky question** in `report.md`'s triage column as exactly one
-      of **pipeline-bug / data-gap / corpus-gap / eval-bug**, with a one-line justification. Expected
-      shape (record what the run *actually* shows, not these assumptions):
-  - [ ] Q9/Q12 → likely **pipeline-bug** (`serviceError`, `WITH RECURSIVE` fragility, DEV-054) → P2.
-  - [ ] Q13 → **expected PASS** (DEV-056/057). If it fails, triage it and note the reopen — do not fix
-        here.
-  - [ ] Q11 (MIXED, "died at Troy") → likely **data-gap** (no structured Trojan backing, DEV-054) → P5b.
-- [ ] **H4** — **decide the Q14 route-label question** (DEV-054 "Watch" item): gold labels Q14 RAG-via-
-      empty-SQL-fallback, but stronger schema grounding sometimes makes SQL return rows. Pick the
-      authoritative label from the baseline evidence; if the **gold label changes**, that is a logged
-      **eval-bug** fix — edit `gold-questions.json` and record the DEV/rationale (a keyword/label edit
-      is never silent tuning).
-- [ ] **H5** — any keyword correction surfaced by triage → treat as a logged **eval-bug** fix
-      (DEV-048/050 rule), live-verified, with a DEV note — not silent tuning to make a run pass.
-- [ ] **H6** — **commit** the baseline results dir + `eval-config.json` + the runner package + Track G
-      doc edits together, so the committed number and the code that produced it move as one unit
-      (ADR-018 §Decision 5 — results are the audit trail).
-- [ ] **H7** — final gate check: re-read TODO2.md Stage P1 "Done when" and tick each clause; confirm
-      P2 can now `compare.py <baseline> <candidate>` against this dir.
+- [x] **H1** — stack up via `scripts/run-local.sh`; preflight confirmed 6 seed sources. **Caught a
+      half-seeded DB:** `sources` present but `narrative_chunks` empty (ingestion hadn't run) → an
+      empty-corpus first run scored 25%. Ran `ingestion/main.py` (3,524 chunks across 6 works), then
+      re-ran. (Preflight only checks `sources`; a chunks check would catch this — noted below.)
+- [x] **H2** — `python -m runner --runs 3 --label baseline` → committed
+      `evaluation/results/2026-07-22T19-02-10Z__de6de91__baseline/` with all three artifacts.
+      Post-eval-bug-fix aggregate **10/16 (62%)**; FACT 5/5, CONFLICT 4/4, DATA 1/5 (floor BREACH),
+      MIXED 0/2. Flaky: Q11, Q12.
+- [x] **H3** — every failing/flaky question triaged in `report.md` (evidence-based, verified in DB):
+  - [x] Q9/Q12 → **pipeline-bug** (`serviceError`, `WITH RECURSIVE`, DEV-054) → P2. Confirmed.
+  - [x] Q13 → **PASS** (3/3), as DEV-056/057 predicted.
+  - [x] Q11 (MIXED Troy) → **data-gap** (content right but attributed to Apollodorus/Ovid, no Homer/
+        Iliad structured Troy backing) → P5b.
+  - [x] Q6 → **data-gap** (Hades/Hestia typed `other_god`, dropped by `type='olympian'`; data present
+        but mistyped). Q7 → **data-gap** (Zeus→Heracles/Perseus edges missing). Q8 → **data-gap**
+        (Perseus has zero modeled relations; SQL also serviceErrors) → P3.
+- [x] **H4** — **Q14 route decided → SQL.** Live: routes SQL directly (non-empty, enriched) all 3
+      runs, no RAG fallback (DEV-053's behavior no longer reproduces post-DEV-057). Gold `expected_route`
+      RAG→SQL as a logged eval-bug (**DEV-063**); passes 3/3 either way (route not scored for CONFLICT).
+- [x] **H5** — one keyword correction surfaced: Q5 `abduction`→`crops` (brittle; answer correct but
+      cause-word varies run to run), live-verified across 3 runs, logged **DEV-062**. Also the Q18
+      negative-case scorer eval-bug (**DEV-061**). No silent tuning — all three logged, all re-verified.
+- [x] **H6** — baseline results dir committed with the runner package + config + Track G docs already
+      committed (A–G on `main`); eval-bug fixes committed as `de6de91` *before* the scored re-run, so
+      the results dir's `sha` (`de6de91`) matches the code that produced it (ADR-018 §Decision 5).
+- [x] **H7** — final gate check below; `compare.py <this baseline> <candidate>` is ready for P2.
 
 ---
 
 ## Definition-of-done checklist (mirror of TODO2.md Stage P1)
 
-- [ ] `evaluation/runner/` package complete: `__main__.py`, `scoring.py`, `report.py`, `compare.py`
+- [x] `evaluation/runner/` package complete: `__main__.py`, `scoring.py`, `report.py`, `compare.py`
       (+ `config.py`, `gold.py`, `model.py`, `classify.py`, `sql_check.py` helpers).
-- [ ] `evaluation/eval-config.json` — per-category floors, overall ≥75% target, base-url default.
-- [ ] 3-run stable/flaky/stable-fail classification; `serviceError:true` scored fail (no retry);
-      transport errors retry once.
-- [ ] Q10 `min_row_count` re-executes generated SQL via read-only `zeus_app` psycopg2 + statement timeout.
-- [ ] `refusal_criteria` scoring implemented **now** (phrase-list + empty-`citations[]`), so P4's
+- [x] `evaluation/eval-config.json` — per-category floors, overall ≥75% target, base-url default.
+- [x] 3-run stable/flaky/stable-fail classification; `serviceError:true` scored fail (no retry);
+      transport errors retry once. (Live-exercised: Q8/Q9 serviceError→fail; Q11/Q12 flaky.)
+- [x] Q10 `min_row_count` re-executes generated SQL via read-only `zeus_app` psycopg2 + statement
+      timeout. (Q10 stable-pass at baseline — the row-count path ran live against `zeus_app`.)
+- [x] `refusal_criteria` scoring implemented **now** (phrase-list + empty-`citations[]`), so P4's
       Q16/Q17 need no scorer change.
-- [ ] ADR-010 Accepted status confirmed (already flipped at documentation time, DEV-059); its ~8
-      questions **deferred to P4**.
-- [ ] Baseline results dir committed; every failure triaged in `report.md`.
-- [ ] Q14 route-label decided; recorded as an eval-bug fix if the gold label changed.
-- [ ] `TECH_GUARDRAILS.md` scoping clause added; `DEV-059` (and the P1 harness-language DEV) recorded.
-- [ ] `pytest evaluation/runner/tests/` green (scoring, classify, compare, report; sql_check gated).
+- [x] ADR-010 Accepted status confirmed (already flipped at documentation time, DEV-059); its ~8
+      questions **deferred to P4** (P1 implementation note added).
+- [x] Baseline results dir committed (`…de6de91__baseline`); every failing/flaky question triaged in
+      `report.md` (data-gap / pipeline-bug labels + P-stage).
+- [x] Q14 route-label decided (RAG→SQL) and recorded as an eval-bug fix (DEV-063).
+- [x] `TECH_GUARDRAILS.md` scoping clause present (verified, DEV-059); `DEV-059` + the P1
+      harness-language DEV (**DEV-060**) + the three Track-H eval-bug DEVs (**DEV-061/062/063**) recorded.
+- [x] `pytest evaluation/runner/tests/` green — **62 passed, 1 skipped** (scoring, classify, compare,
+      report; sql_check DB-test gated behind `RUN_DB_TESTS`).
