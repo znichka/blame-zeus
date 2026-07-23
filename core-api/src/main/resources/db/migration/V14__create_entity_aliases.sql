@@ -51,7 +51,9 @@ FROM (VALUES
     ('Euneos',   'Euneus'),
     ('Cebrenus', 'Cebren'),
     ('Perimela', 'Perimele'),
-    ('Lampetia', 'Lampetie')
+    ('Lampetia', 'Lampetie'),
+    -- J-lead follow-up (Coeranos/Coeranus untangling, DEV-087)
+    ('Coeranos', 'Coeranus (Lycian warrior)')
 ) AS v(alias, entity_name)
 JOIN entities e ON e.name = v.entity_name
 ON CONFLICT (alias) DO NOTHING;

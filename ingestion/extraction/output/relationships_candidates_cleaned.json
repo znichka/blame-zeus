@@ -9202,7 +9202,7 @@
   {
     "from_name": "Heracles",
     "relation": "married_to",
-    "to_name": "Megaera",
+    "to_name": "Megara",
     "is_contested": false,
     "passage_ref": "2.4.11-2.4.12",
     "source_id": "apollodorus-bibliotheca"
@@ -10026,7 +10026,7 @@
   {
     "from_name": "Heracles",
     "relation": "married_to",
-    "to_name": "Megaera",
+    "to_name": "Megara",
     "is_contested": false,
     "passage_ref": "2.5.12-2.6.1",
     "source_id": "apollodorus-bibliotheca"
@@ -10336,7 +10336,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Astyoche",
+    "from_name": "Astyoche (daughter of Phylas)",
     "relation": "parent_of",
     "to_name": "Tlepolemus",
     "is_contested": false,
@@ -10346,7 +10346,7 @@
   {
     "from_name": "Phylas",
     "relation": "parent_of",
-    "to_name": "Astyoche",
+    "to_name": "Astyoche (daughter of Phylas)",
     "is_contested": false,
     "passage_ref": "2.7.4-2.7.6",
     "source_id": "apollodorus-bibliotheca"
@@ -11440,7 +11440,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Megaera",
+    "from_name": "Megara",
     "relation": "parent_of",
     "to_name": "Therimachus",
     "is_contested": false,
@@ -11448,7 +11448,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Megaera",
+    "from_name": "Megara",
     "relation": "parent_of",
     "to_name": "Deicoon",
     "is_contested": false,
@@ -11456,7 +11456,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Megaera",
+    "from_name": "Megara",
     "relation": "parent_of",
     "to_name": "Creontiades",
     "is_contested": false,
@@ -11466,7 +11466,7 @@
   {
     "from_name": "Creon (king of Thebes)",
     "relation": "parent_of",
-    "to_name": "Megaera",
+    "to_name": "Megara",
     "is_contested": false,
     "passage_ref": "2.7.8-2.8.1",
     "source_id": "apollodorus-bibliotheca"
@@ -11552,7 +11552,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Astyoche",
+    "from_name": "Astyoche (daughter of Phylas)",
     "relation": "parent_of",
     "to_name": "Tlepolemus",
     "is_contested": false,
@@ -11562,7 +11562,7 @@
   {
     "from_name": "Phylas",
     "relation": "parent_of",
-    "to_name": "Astyoche",
+    "to_name": "Astyoche (daughter of Phylas)",
     "is_contested": false,
     "passage_ref": "2.7.8-2.8.1",
     "source_id": "apollodorus-bibliotheca"
@@ -12424,9 +12424,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Polyidus",
+    "from_name": "Coeranus (father of Polyidus)",
     "relation": "parent_of",
-    "to_name": "Coeranus",
+    "to_name": "Polyidus",
     "is_contested": false,
     "passage_ref": "3.3.1-3.4.1",
     "source_id": "apollodorus-bibliotheca"
@@ -12986,7 +12986,7 @@
   {
     "from_name": "Niobe",
     "relation": "parent_of",
-    "to_name": "Astyoche",
+    "to_name": "Astyoche (daughter of Niobe)",
     "is_contested": false,
     "passage_ref": "3.5.6-3.5.7",
     "source_id": "apollodorus-bibliotheca"
@@ -19472,7 +19472,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Astyoche",
+    "from_name": "Astyoche (daughter of Phylas)",
     "relation": "parent_of",
     "to_name": "Tlepolemus",
     "is_contested": false,
@@ -27200,7 +27200,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Astyoche",
+    "from_name": "Astyoche (daughter of Actor)",
     "relation": "parent_of",
     "to_name": "Ascalaphus",
     "is_contested": false,
@@ -27208,7 +27208,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Astyoche",
+    "from_name": "Astyoche (daughter of Actor)",
     "relation": "parent_of",
     "to_name": "Ialmenus",
     "is_contested": false,
@@ -27312,7 +27312,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Astyoche",
+    "from_name": "Astyoche (daughter of Phylas)",
     "relation": "parent_of",
     "to_name": "Tlepolemus",
     "is_contested": false,
@@ -28584,7 +28584,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Coeranus",
+    "from_name": "Coeranus (Lycian warrior)",
     "relation": "killed_by",
     "to_name": "Odysseus",
     "is_contested": false,
@@ -33656,7 +33656,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Coeranus",
+    "from_name": "Coeranus (charioteer of Meriones)",
     "relation": "killed_by",
     "to_name": "Hector",
     "is_contested": false,
@@ -38058,13 +38058,13 @@
   {
     "from_name": "Creon (king of Thebes)",
     "relation": "parent_of",
-    "to_name": "Megaera",
+    "to_name": "Megara",
     "is_contested": false,
     "passage_ref": "11.225-11.270",
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Megaera",
+    "from_name": "Megara",
     "relation": "married_to",
     "to_name": "Heracles",
     "is_contested": false,
@@ -46672,9 +46672,9 @@
     "source_id": "ovid-metamorphoses"
   },
   {
-    "from_name": "Odysseus",
+    "from_name": "Coeranus (Lycian warrior)",
     "relation": "killed_by",
-    "to_name": "Coeranos",
+    "to_name": "Odysseus",
     "is_contested": false,
     "passage_ref": "13.238-13.279",
     "source_id": "ovid-metamorphoses"
@@ -47522,7 +47522,7 @@
   {
     "from_name": "Aeneas",
     "relation": "parent_of",
-    "to_name": "Ilus",
+    "to_name": "Ascanius",
     "is_contested": false,
     "passage_ref": "14.566-14.608",
     "source_id": "ovid-metamorphoses"
@@ -47874,7 +47874,7 @@
   {
     "from_name": "Aeneas",
     "relation": "ancestor_of",
-    "to_name": "Ilus",
+    "to_name": "Ascanius",
     "is_contested": false,
     "passage_ref": "15.431-15.452",
     "source_id": "ovid-metamorphoses"
@@ -47986,7 +47986,7 @@
   {
     "from_name": "Aeneas",
     "relation": "parent_of",
-    "to_name": "Ilus",
+    "to_name": "Ascanius",
     "is_contested": false,
     "passage_ref": "15.760-15.806",
     "source_id": "ovid-metamorphoses"

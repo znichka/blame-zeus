@@ -462,9 +462,8 @@ that can land anytime.
 - [ ] **J1c** — run the batch through Track I (audit A1 should now report those pairs resolved). **Not
       yet run** — the J1a/b edits are sitting in the candidate JSON; `python -m audit.duplicate_entities`
       already confirms candidates-mode count dropped 48 → 40 (the 8 merges), but this hasn't gone
-      through `seedgen --strict` → `reseed-local.sh` → eval yet. New lead from J1a's triage, not yet
-      its own checklist item: `Coeranos`/`Coeranus` needs untangling (likely 2+ Iliad casualties
-      sharing the `Coeranus` name) before any merge decision is safe.
+      through `seedgen --strict` → `reseed-local.sh` → eval yet. `Coeranos`/`Coeranus` (flagged here
+      as a new lead) untangled in J3h (DEV-087) — turned out to be 3 distinct figures, not 2.
 
 ### J2 — 203 flagged relationships (`relationships_flagged_for_review.json`)
 - [x] **J2a** [DEVIATED - see DEVIATIONS.md #DEV-085] — triage each of the 203 rows: **promote-with-fix**
@@ -483,20 +482,6 @@ that can land anytime.
       cost-minimization convention established for J3.
 - [ ] **J2c** — after promotion, re-run A2 drop-accounting: promoted rows should no longer appear as
       unknown-name/collapse drops. **Not yet run through Track I** — pending, alongside J1c.
-
-### J3g — new lead (DEV-085/086): 8 pre-existing majority/minority reversed-direction pairs surfaced by J2
-- [x] **J3g** [DEVIATED - see DEVIATIONS.md #DEV-086] — promoting J2's 895 rows unexpectedly raised A3's
-      `parent_of` cycle count from 89 to 127. Investigated and confirmed all 8 new "near-certain"
-      (2-node) cycles (`Achilles⇄Peleus`, `Priam⇄Hector`, `Telamon⇄Ajax`, `Penelope⇄Telemachus`,
-      `Clymene⇄Oceanus`, `Cronus⇄Hestia`, `Zeus⇄Cronus`, `Tantalus⇄Niobe`) were **pre-existing**
-      majority/minority direction splits already in `relationships_candidates_cleaned.json`
-      (unrelated to the J2-promoted rows), previously hidden inside larger already-counted tangled
-      SCCs — `cycle_check.py` reports only one back-edge per SCC (documented as non-exhaustive), and
-      adding 895 new edges changed DFS iteration order enough to surface these specific back-edges
-      directly. Reversed the 45 minority-direction rows across the 8 pairs to match the (mythologically
-      standard) majority direction, keeping original `source_id`/`passage_ref` citations. A3 dropped
-      127 → 99 with 0 remaining 2-node cycles. **Batched, not yet reseeded** — sits with J1/J2 for a
-      future Track I pass. Remaining 99 cycles are longer chains, a separate not-yet-triaged backlog.
 
 ### J3 — DEV-068: 3 entity-conflation `parent_of` cycles (entity SPLIT, not merge)
 - [x] **J3a** [DEVIATED - see DEVIATIONS.md #DEV-078] — `Aeolus ⇄ … ⇄ Endymion` (source-verified): **split** Aeolus from descendant Aetolus
@@ -527,11 +512,9 @@ that can land anytime.
       (Tros's mother, `[3.12.2]`: "Astyoche, daughter of Simoeis") with Laomedon's daughter (Priam's
       sister, `[E.6.15c]`) — split both out, plus repointed the `Ilus`/`Dardanus` mislabel to the
       already-existing `Ilus (son of Dardanus)` entity. Cycle confirmed gone (candidates mode) for a
-      genuine reason this time. **Noted, not fixed**: `Astyoche` still ambiguously covers at least 2
-      more distinct people (Phylas's daughter/Tlepolemus's mother; Niobe's daughter) — flagged for a
-      future pass, not part of this cycle. Also noticed (separately, not fixed): 3
-      `Aeneas parent_of/ancestor_of Ilus` rows whose cited Ovid passages never mention "Ilus" at all
-      — likely a `Iulus`/`Ilus` extraction confusion, a new lead for a future batch.
+      genuine reason this time. **Noted, not fixed** (at the time — both resolved later in J3h,
+      DEV-087): `Astyoche` still ambiguously covering more distinct people, and 3
+      `Aeneas parent_of/ancestor_of Ilus` rows whose cited Ovid passages never mention "Ilus" at all.
       **Batched, not yet reseeded** — sits with DEV-077/078/079.
 - [x] **J3d** [DEVIATED - see DEVIATIONS.md #DEV-083] — after each fix: `cycle_check --db` (A3) must show the cycle gone; the batch goes through
       Track I. Target: **A3 reports the `parent_of` graph fully clean** (or remaining cycles waived
@@ -569,6 +552,36 @@ that can land anytime.
       `--candidates` cycle count dropped 100 → 89 (11 fewer, not 1 — `Hellen`'s conflated edges were
       threading through several already-observed tangled chains too). **Batched, not yet reseeded**
       — sits with DEV-077/078/079/080/081, closing out the currently-known live-cycle backlog.
+
+### J3g — new lead (DEV-085/086): 8 pre-existing majority/minority reversed-direction pairs surfaced by J2
+- [x] **J3g** [DEVIATED - see DEVIATIONS.md #DEV-086] — promoting J2's 895 rows unexpectedly raised A3's
+      `parent_of` cycle count from 89 to 127. Investigated and confirmed all 8 new "near-certain"
+      (2-node) cycles (`Achilles⇄Peleus`, `Priam⇄Hector`, `Telamon⇄Ajax`, `Penelope⇄Telemachus`,
+      `Clymene⇄Oceanus`, `Cronus⇄Hestia`, `Zeus⇄Cronus`, `Tantalus⇄Niobe`) were **pre-existing**
+      majority/minority direction splits already in `relationships_candidates_cleaned.json`
+      (unrelated to the J2-promoted rows), previously hidden inside larger already-counted tangled
+      SCCs — `cycle_check.py` reports only one back-edge per SCC (documented as non-exhaustive), and
+      adding 895 new edges changed DFS iteration order enough to surface these specific back-edges
+      directly. Reversed the 45 minority-direction rows across the 8 pairs to match the (mythologically
+      standard) majority direction, keeping original `source_id`/`passage_ref` citations. A3 dropped
+      127 → 99 with 0 remaining 2-node cycles. **Batched, not yet reseeded** — sits with J1/J2 for a
+      future Track I pass. Remaining 99 cycles are longer chains, a separate not-yet-triaged backlog.
+
+### J3h — loose-lead cleanup (DEV-087): `Coeranos`/`Coeranus`, `Astyoche`'s remaining 2 meanings, `Aeneas`/`Iulus`, `Megaera`/`Megara`
+- [x] **J3h** [DEVIATED - see DEVIATIONS.md #DEV-087] — closed out four leads that had been noted in
+      passing (J1c, J3c, J3e) but never promoted to their own checklist items. `Coeranos`/`Coeranus`:
+      3-way split (`Coeranus (Lycian warrior)`, `Coeranus (charioteer of Meriones)`, `Coeranus (father
+      of Polyidus)`), `Coeranos` merged into the first via an `entity_aliases` row (also fixed a
+      reversed `Polyidus parent_of Coeranus` edge — should be the father→son direction). `Astyoche`:
+      split the 2 remaining meanings J3c had flagged but not named — `Astyoche (daughter of Phylas)`
+      (Tlepolemus's mother), `Astyoche (daughter of Niobe)`, `Astyoche (daughter of Actor)` (mother of
+      Ascalaphus/Ialmenus) — zero bare `Astyoche` rows remain. `Aeneas`/`Ilus`: all 3 flagged rows
+      actually cite passages naming **Iulus** (Ascanius), not the unrelated Trojan `Ilus` — renamed to
+      the already-existing `Ascanius` entity. `Megaera`/`Megara`: confirmed the real Fury `Megaera`
+      (`Sky parent_of Megaera`) is untouched; the 8 rows for Heracles's wife (every citing passage
+      spells her "Megara") were retitled to a new `Megara` entity. **Batched, not yet reseeded** —
+      sits with J1/J2/J3g for a future Track I pass. `python -m audit --candidates`: A1 40→39, A3
+      99→96.
 
 ### J4 — DEV-069: Q9 Zeus→Chaos lineage gap (may exceed P3 scope)
 - [ ] **J4a** — decide the model: **(a)** restore a second-parent `Sky (Ouranos) parent_of Cronus`

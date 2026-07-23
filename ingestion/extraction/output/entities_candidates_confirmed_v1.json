@@ -3465,20 +3465,6 @@
     "subtype": null
   },
   {
-    "name": "Coeranos",
-    "type": "mortal",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
-    "name": "Coeranus",
-    "type": "mortal",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
     "name": "Coeus",
     "type": "titan",
     "generation": null,
@@ -13833,6 +13819,55 @@
   },
   {
     "name": "Creon (father of Lycomedes)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Coeranus (Lycian warrior)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Coeranus (charioteer of Meriones)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Coeranus (father of Polyidus)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Astyoche (daughter of Phylas)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Astyoche (daughter of Niobe)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Astyoche (daughter of Actor)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Megara",
     "type": "mortal",
     "generation": null,
     "domain": null,
