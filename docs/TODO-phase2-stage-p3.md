@@ -213,20 +213,30 @@ candidate JSON + live DB; **no check mutates any file or table** (the README inv
 
 ## Track C — A2 candidate-drop accounting (needs A; raw→seeded diff)
 
-- [ ] **C1** — `ingestion/audit/drop_accounting.py`: pure core diffing
+> ⚠️ [DEVIATED - see DEVIATIONS.md #DEV-074] — implemented; details below. "Raw" is
+> `relationships_candidates_cleaned.json` (**6,009** today — seedgen's actual input), not the
+> literal `relationships_candidates_raw.json` file (7,406, pre-B4-manual-cleanup) — the "6,026" this
+> checklist names is itself the pre-DEV-067 count of the *cleaned* file, matching
+> `IMPLEMENTATION_PLAN_PHASE2.md §4.1`'s own "the 6,026→2,496 relationship drop" framing. The
+> three named buckets are exactly `relationships_gen.py`'s own mechanical filters, which only ever
+> run over the cleaned file — the earlier raw→cleaned gap (B4's manual review + the 203-row
+> `relationships_flagged_for_review.json` held-out set) is a separate, already-documented,
+> one-off historical decision (DEV-043/044), not a repeatable arithmetic this check re-derives.
+
+- [x] **C1** [DEVIATED - see DEVIATIONS.md #DEV-074] — `ingestion/audit/drop_accounting.py`: pure core diffing
       `relationships_candidates_raw.json` (**6,026**) against the seeded/generated set (**2,496**),
       bucketing every dropped row by reason: **unknown-entity-name** (from/to not in V10 —
       `relationships_gen._filter_and_dedup`), **contested-edge collapse**
       (`canonical_edge.resolve_canonical_edges`), **exact-duplicate dedupe**.
-- [ ] **C2** — **unknown-name drilldown** (the DEV-042 Io precedent): list the distinct unknown
+- [x] **C2** [DEVIATED - see DEVIATIONS.md #DEV-074] — **unknown-name drilldown** (the DEV-042 Io precedent): list the distinct unknown
       from/to names by drop-frequency. These are where **missing or split entities hide** — the
       highest-value output of A2. Each becomes a finding with `suggested_fix` = "add/split entity" and
       feeds Track J.
-- [ ] **C3** — reconcile the arithmetic: `raw − unknown_name − contested_collapse − dedupe == seeded`.
+- [x] **C3** [DEVIATED - see DEVIATIONS.md #DEV-074] — reconcile the arithmetic: `raw − unknown_name − contested_collapse − dedupe == seeded`.
       The runner reports the residual; a non-zero residual is itself a finding (an unaccounted drop
       path). Reuse `relationships_gen`'s actual filter/dedup functions rather than re-deriving them, so
       the accounting matches what `seedgen` really does.
-- [ ] **C4** — register into the runner; **TDD** `tests/test_drop_accounting.py`: a small raw set with
+- [x] **C4** [DEVIATED - see DEVIATIONS.md #DEV-074] — register into the runner; **TDD** `tests/test_drop_accounting.py`: a small raw set with
       one of each drop reason → each bucket counted correctly and the arithmetic reconciles to zero
       residual.
 

@@ -12,9 +12,9 @@ Every check in this package **reports only** — none of them mutate any file or
 `__main__.py` walks the package for any sibling module exposing the contract in `contract.py`
 (module-level `NAME: str` + `run(candidates_dir, db_conn) -> CheckResult`) — a module needs no
 separate registration call, just those two names, to be picked up. Today that's
-**`duplicate_entities.py` (check `A1`)**, **`cycle_check.py` (check `A3`)**, and
-**`relation_taxonomy.py` (check `A4`)**; **A2/A5** (candidate-drop accounting, alias/participant
-integrity) are Phase 3 Tracks C/E, not yet built.
+**`duplicate_entities.py` (check `A1`)**, **`drop_accounting.py` (check `A2`)**,
+**`cycle_check.py` (check `A3`)**, and **`relation_taxonomy.py` (check `A4`)**; **A5**
+(alias/participant integrity) is Phase 3 Track E, not yet built.
 
 ```
 python -m audit                    # both sources (default): candidate JSON + a live DB connection
@@ -100,6 +100,38 @@ or the model declines to emit unbounded recursion.
 3. `python -m seedgen --strict` to regenerate `V11__seed_relationships.sql`.
 4. `scripts/reseed-local.sh --local-only` to re-apply it (see the checksum-trap note below).
 5. `python -m audit.cycle_check --db` again — repeat until clean.
+
+## `drop_accounting.py` — the A2 raw→seeded drop explanation
+
+Explains `relationships_candidates_cleaned.json` (seedgen's actual input, 6,009 rows today) →
+seeded `V11` (2,494 rows) by reason, calling `relationships_gen._filter_and_dedup` and
+`canonical_edge.resolve_canonical_edges` **directly** rather than re-deriving equivalent logic — if
+those functions change, this check's numbers change with them automatically, so it can never
+silently drift from what `seedgen` really does. Buckets: **unknown-entity-name** (from/to not in
+the confirmed entity set), **exact-duplicate dedupe**, **contested-edge collapse**. The arithmetic
+(`raw − unknown_name − exact_dup − contested_collapse == seeded`) always reconciles by
+construction; a non-zero residual would itself be a finding (an uncounted drop path this check
+doesn't know about yet).
+
+The **unknown-name drilldown** is the highest-value output — every distinct name referenced by a
+dropped row but absent from the confirmed entity set is either a genuinely missing/split entity
+(the Io/DEV-042 precedent) or the `<UNKNOWN>` extraction placeholder (flagged separately, `info`
+severity, since there's no entity to add). Live-verifying this (not just trusting a synthetic test
+fixture) surfaced a real, previously-unnoticed gap: **367 distinct names** are referenced by
+dropped rows but missing from the confirmed set, including major figures like `Nereus` (105
+references), `Doris`, `Styx`, `Ceto`, and `Chiron` — none of them spelling variants of an existing
+entity. A much larger missing-entity backlog than DEV-042's single Io case, now feeding Track J.
+
+Unlike A1/A3/A4, `candidates`/`db` aren't independent equivalent sources here — this check explains
+a *transformation*, so it always needs the candidate JSON. When a DB connection is also available,
+it adds a **drift** check instead of repeating the same breakdown: does the live, already-seeded
+`relationships` count still match what regenerating from the current candidates would produce right
+now? (Today: yes, exactly — `live=2494`, `drift=0`.)
+
+```
+python -m audit.drop_accounting                 # candidates-only breakdown
+python -m audit.drop_accounting --db            # + live-vs-regenerated drift check
+```
 
 ## `relation_taxonomy.py` — the A4 label-canonicalization proposal
 
