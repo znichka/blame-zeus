@@ -100,7 +100,13 @@ canonical relations plus genuine long-tail, improving text-to-SQL directly.
   runs first so contested edges are compared on canonical relation+direction.
 
 **Follow-ups**
-- Record `DEV-059`; author the `relation_aliases` migration (new Phase-2 V-number) at Stage P3;
-  wire it into `seedgen/relationships_gen.py` and confirm `SchemaIntrospector` reflects the shrunk
-  vocabulary. Initial alias rows come from the audit A4 taxonomy output.
+- [DEVIATED - see DEVIATIONS.md #DEV-072, #DEV-076] `DEV-059` above was a placeholder written before
+  Stage P3 implementation began; the checklist (`docs/TODO-phase2-stage-p3.md` H4) flagged it for
+  reconciliation once the real number was known. It is **not DEV-075** either (that checklist bullet's
+  own guess, written before the actual Track B–F sequencing was decided) — the `relation_aliases`
+  V17 migration, `relation_normalizer.py`, and `relationships_gen.py` wiring were authored and
+  recorded as **DEV-072** (Track F); `SchemaIntrospector`'s shrunk-vocabulary confirmation (124 → 116
+  distinct relations live) happened during Track I's first fix-loop pass, recorded as **DEV-076**.
+  Initial alias rows came from the audit A4 taxonomy check (`ingestion/audit/relation_taxonomy.py`,
+  DEV-071), exactly as planned.
 - Implementation detail: `IMPLEMENTATION_PLAN_PHASE2.md §4`; checklist: `TODO2.md` Stage P3.

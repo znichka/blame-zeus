@@ -349,19 +349,31 @@ hardcoded in code/JSON). Build the code against a **stub map** immediately; fill
 
 ## Track H — Docs / DEV entries / banners (pure prose — do anytime)
 
-- [ ] **H1** — `docs/DEVIATIONS.md`: append DEV-070..DEV-075 (audit runner, A1, A2, A4, A5,
+> ⚠️ Done throughout, incrementally, as each track landed (not as one separate pass) — H1/H2/H3/H5
+> were satisfied inline by each track's own DEV entry + checklist annotation + README update; only
+> H4 (the ADR-019 DEV-number reconciliation) needed a dedicated pass, done now.
+
+- [x] **H1** — `docs/DEVIATIONS.md`: append DEV-070..DEV-075 (audit runner, A1, A2, A4, A5,
       `relation_aliases`) and DEV-076+ per fix batch, using the Stage/Original-Plan/What-Changed/
-      Reason/Impact/Date format. Convert relative dates to absolute.
-- [ ] **H2** — mark the corresponding `TODO2.md` Stage P3 items and this file's tracks with
-      `[DEVIATED - see DEVIATIONS.md #DEV-NNN]` inline per the CLAUDE.md protocol.
-- [ ] **H3** — add the `> ⚠️ Deviations occurred in this stage.` banner to the P3 section of
-      `IMPLEMENTATION_PLAN_PHASE2.md` (never overwrite the plan body).
-- [ ] **H4** — ADR-019 **follow-up**: its Consequences list "Record DEV-059; author the migration at
+      Reason/Impact/Date format. Convert relative dates to absolute. Done through **DEV-077**
+      (actual sequence: 070 runner, 071 A4, 072 relation_aliases, 073 A1, 074 A2, 075 A5, 076 Track
+      I first pass, 077 J3 triage — order differs from the checklist's indicative guess, per each
+      entry's own reconciliation note).
+- [x] **H2** — mark the corresponding `TODO2.md` Stage P3 items and this file's tracks with
+      `[DEVIATED - see DEVIATIONS.md #DEV-NNN]` inline per the CLAUDE.md protocol. Done in this file
+      throughout; `TODO2.md` itself is the earlier, less granular planning doc superseded by this
+      checklist (its own P3 section already just points here) — not separately annotated line-by-line.
+- [x] **H3** — add the `> ⚠️ Deviations occurred in this stage.` banner to the P3 section of
+      `IMPLEMENTATION_PLAN_PHASE2.md` (never overwrite the plan body). Added during Track A (DEV-070).
+- [x] **H4** — ADR-019 **follow-up**: its Consequences list "Record DEV-059; author the migration at
       Stage P3." The DEV number actually used is DEV-075 (059 was consumed elsewhere) — reconcile the
       ADR's follow-up note to the real number, or add a one-line correction, so the ADR↔DEV linkage is
-      accurate.
-- [ ] **H5** — update `ingestion/audit/README.md` (done in A7r) **and** confirm the
-      Flyway-checksum-trap note references V17 among the regenerable-while-local-only set.
+      accurate. **Reconciled** [DEVIATED - see DEVIATIONS.md #DEV-072, #DEV-076] — the real numbers
+      are **DEV-072** (the migration/normalizer/wiring itself) and **DEV-076** (the `SchemaIntrospector`
+      confirmation) — neither DEV-059 nor this bullet's own guess of DEV-075 was correct; `adr-019-relation-label-canonicalization.md`'s Follow-ups section corrected accordingly.
+- [x] **H5** — update `ingestion/audit/README.md` (done in A7r) **and** confirm the
+      Flyway-checksum-trap note references V17 among the regenerable-while-local-only set. Done
+      during Track F (DEV-072).
 
 ---
 
