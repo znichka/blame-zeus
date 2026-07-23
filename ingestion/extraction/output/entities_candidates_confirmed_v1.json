@@ -13823,5 +13823,19 @@
     "generation": null,
     "domain": null,
     "subtype": null
+  },
+  {
+    "name": "Phocus",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Creon (father of Lycomedes)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
   }
 ]

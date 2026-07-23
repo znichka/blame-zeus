@@ -467,13 +467,36 @@ that can land anytime.
       sharing the `Coeranus` name) before any merge decision is safe.
 
 ### J2 — 203 flagged relationships (`relationships_flagged_for_review.json`)
-- [ ] **J2a** — triage each of the 203 rows: **promote-with-fix** (correct direction/relation/entity,
-      move into `relationships_candidates_cleaned.json`) or **reject** (record the decision in the file
-      — the file is the audit trail).
-- [ ] **J2b** — batch these (they're numerous — slice into review-sized groups; each group is one
-      Track I pass, never all 203 in one unaudited reseed).
+- [x] **J2a** [DEVIATED - see DEVIATIONS.md #DEV-085] — triage each of the 203 rows: **promote-with-fix**
+      (correct direction/relation/entity, move into `relationships_candidates_cleaned.json`) or
+      **reject** (record the decision in the file — the file is the audit trail). **All 203 triaged**
+      via a 3-tier method (majority-vote by corroborating-row count → `SPINE_PRIORITY` tie-break →
+      manual corpus verification): **202 resolved** (895 rows promoted), **1 rejected**
+      (`Eumelus`/`Pheres` — a generation-skip extraction error, no valid claim either direction).
+      Triage surfaced 2 more entity conflations needing splits (a second `Helen`/`Hellen` instance at
+      entry 16; a 4th `Creon` — `Creon (father of Lycomedes)` — at entry 173) and a `Phorcus`→`Phocus`
+      mislabeling spanning entries 114/200 **plus 3 pre-existing main-file rows** fixed alongside.
+- [x] **J2b** [DEVIATED - see DEVIATIONS.md #DEV-085] — batch these (they're numerous — slice into
+      review-sized groups; each group is one Track I pass, never all 203 in one unaudited reseed).
+      **All 203 processed and written as one batch** (not sliced further — the 3-tier method made
+      per-entry review tractable in one pass); sits with J1 for one future Track I pass, matching the
+      cost-minimization convention established for J3.
 - [ ] **J2c** — after promotion, re-run A2 drop-accounting: promoted rows should no longer appear as
-      unknown-name/collapse drops.
+      unknown-name/collapse drops. **Not yet run through Track I** — pending, alongside J1c.
+
+### J3g — new lead (DEV-085/086): 8 pre-existing majority/minority reversed-direction pairs surfaced by J2
+- [x] **J3g** [DEVIATED - see DEVIATIONS.md #DEV-086] — promoting J2's 895 rows unexpectedly raised A3's
+      `parent_of` cycle count from 89 to 127. Investigated and confirmed all 8 new "near-certain"
+      (2-node) cycles (`Achilles⇄Peleus`, `Priam⇄Hector`, `Telamon⇄Ajax`, `Penelope⇄Telemachus`,
+      `Clymene⇄Oceanus`, `Cronus⇄Hestia`, `Zeus⇄Cronus`, `Tantalus⇄Niobe`) were **pre-existing**
+      majority/minority direction splits already in `relationships_candidates_cleaned.json`
+      (unrelated to the J2-promoted rows), previously hidden inside larger already-counted tangled
+      SCCs — `cycle_check.py` reports only one back-edge per SCC (documented as non-exhaustive), and
+      adding 895 new edges changed DFS iteration order enough to surface these specific back-edges
+      directly. Reversed the 45 minority-direction rows across the 8 pairs to match the (mythologically
+      standard) majority direction, keeping original `source_id`/`passage_ref` citations. A3 dropped
+      127 → 99 with 0 remaining 2-node cycles. **Batched, not yet reseeded** — sits with J1/J2 for a
+      future Track I pass. Remaining 99 cycles are longer chains, a separate not-yet-triaged backlog.
 
 ### J3 — DEV-068: 3 entity-conflation `parent_of` cycles (entity SPLIT, not merge)
 - [x] **J3a** [DEVIATED - see DEVIATIONS.md #DEV-078] — `Aeolus ⇄ … ⇄ Endymion` (source-verified): **split** Aeolus from descendant Aetolus
@@ -568,13 +591,14 @@ that can land anytime.
 - [x] `python -m audit` runs end-to-end (A1–A5 registered, A3 = existing `cycle_check`), emits
       `reports/<date>.md` + findings JSON, exits non-zero on un-waived findings. [DEVIATED - see
       DEVIATIONS.md #DEV-070, #DEV-071, #DEV-072, #DEV-073, #DEV-074, #DEV-075]
-- [ ] All five checks **clean or explicitly waived with a written note**. Currently (as of the
-      second Track I pass, DEV-083): **A3 clean (0 cycles)**, **A5 clean** — both reached; A1 (48
-      pairs — ticked up from 45, the new split entities add a few fuzzy-similarity leads), A2 (367
-      unknown names + others), A4 (9 candidates-mode proposals, 0 db-mode) still have real,
-      un-triaged findings — Track J1/J2 triage, not yet started.
-- [ ] 29 fuzzy-dup pairs triaged (merge+alias or reject-with-note); 203 flagged relationships triaged
-      (promote-with-fix or reject-recorded).
+- [ ] All five checks **clean or explicitly waived with a written note**. Currently (post-J2/J3g,
+      DEV-085/086, candidates-mode, not yet reseeded): **A3 99 cycles** (down from 127, which was
+      itself a temporary post-J2 spike off a pre-batch 89 — the 8 near-certain 2-cycles are gone,
+      remaining 99 are longer chains, not yet triaged), **A5 clean**; A1 (40 pairs, post-J1),
+      A2 (367 unknown names + others), A4 (9 candidates-mode proposals, 0 db-mode) still have real,
+      un-triaged findings.
+- [x] 29 (grown to 48 live) fuzzy-dup pairs triaged (merge+alias or reject-with-note) — J1, DEV-084.
+      [x] 203 flagged relationships triaged (promote-with-fix or reject-recorded) — J2, DEV-085.
 - [x] DEV-068's 3 conflation cycles resolved (entity split) or waived; **A3 `parent_of` graph clean**.
       [DEVIATED - see DEVIATIONS.md #DEV-078, #DEV-079, #DEV-080, #DEV-081, #DEV-082, #DEV-083] —
       all 3 resolved by split (plus 2 more discovered along the way: `Agastrophus`/`Paeëon` a

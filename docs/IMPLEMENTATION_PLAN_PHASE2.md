@@ -203,10 +203,10 @@ cycle-detection check, and DebugCapture unit-tested, `@AiService` mocked, TDD).
 
 ## 4. Data audit & relation canonicalization (P3) — implements ADR-019
 
-> ⚠️ Deviations occurred in this stage. See DEVIATIONS.md for details (DEV-070 through DEV-083 as
-> of the second Track I pass — the audit runner + all five checks, `relation_aliases` (Track F),
-> two fix-loop passes, and the Track J3 cycle-conflation triage; detailed checklist:
-> `docs/TODO-phase2-stage-p3.md`).
+> ⚠️ Deviations occurred in this stage. See DEVIATIONS.md for details (DEV-070 through DEV-086 as
+> of the J2 triage and its cycle-count follow-on — the audit runner + all five checks,
+> `relation_aliases` (Track F), two fix-loop passes, the Track J3 cycle-conflation triage, and the
+> Track J1/J2 backlog triage; detailed checklist: `docs/TODO-phase2-stage-p3.md`).
 
 ### 4.1 Audit package
 
