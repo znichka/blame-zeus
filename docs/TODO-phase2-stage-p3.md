@@ -321,8 +321,10 @@ hardcoded in code/JSON). Build the code against a **stub map** immediately; fill
       `gave_scepter_to` legit row → passes through unchanged; a synonym-non-inverse row → relabeled,
       direction kept. Confirm dedupe now collapses rows that were previously split across synonym
       labels (the ADR-019 "counts stop fragmenting" claim).
-- [ ] **F6** — regenerate `V11__seed_relationships.sql` via `seedgen --strict` (part of Track I's loop,
+- [x] **F6** [DEVIATED - see DEVIATIONS.md #DEV-076] — regenerate `V11__seed_relationships.sql` via `seedgen --strict` (part of Track I's loop,
       not a standalone reseed) and eyeball a spot sample of former-synonym rows landing canonical.
+      Done during Track I's first pass; re-run again during the second (J3 batch) pass. Confirmed
+      zero occurrences of any of the 9 synonym/inverse labels in the regenerated file both times.
       **Not yet done — deferred to Track I**, per this bullet's own instruction.
 
 ---
@@ -548,21 +550,32 @@ that can land anytime.
 - [x] `python -m audit` runs end-to-end (A1–A5 registered, A3 = existing `cycle_check`), emits
       `reports/<date>.md` + findings JSON, exits non-zero on un-waived findings. [DEVIATED - see
       DEVIATIONS.md #DEV-070, #DEV-071, #DEV-072, #DEV-073, #DEV-074, #DEV-075]
-- [ ] All five checks **clean or explicitly waived with a written note**. Currently: A5 clean; A1
-      (45 pairs), A2 (367 unknown names + others), A3 (3 live cycles), A4 (9 proposed aliases) all
-      have real, un-triaged findings — Track J's job, not yet started.
+- [ ] All five checks **clean or explicitly waived with a written note**. Currently (as of the
+      second Track I pass, DEV-083): **A3 clean (0 cycles)**, **A5 clean** — both reached; A1 (48
+      pairs — ticked up from 45, the new split entities add a few fuzzy-similarity leads), A2 (367
+      unknown names + others), A4 (9 candidates-mode proposals, 0 db-mode) still have real,
+      un-triaged findings — Track J1/J2 triage, not yet started.
 - [ ] 29 fuzzy-dup pairs triaged (merge+alias or reject-with-note); 203 flagged relationships triaged
       (promote-with-fix or reject-recorded).
-- [ ] DEV-068's 3 conflation cycles resolved (entity split) or waived; **A3 `parent_of` graph clean**.
+- [x] DEV-068's 3 conflation cycles resolved (entity split) or waived; **A3 `parent_of` graph clean**.
+      [DEVIATED - see DEVIATIONS.md #DEV-078, #DEV-079, #DEV-080, #DEV-081, #DEV-082, #DEV-083] —
+      all 3 resolved by split (plus 2 more discovered along the way: `Agastrophus`/`Paeëon` a
+      reversed edge, `Hellen`/`Helen`/`Helle` a 3-way conflation); **A3 confirmed 0 live cycles**
+      after the second Track I pass.
 - [ ] DEV-069 Q9 Chaos/Ouranos gap fixed **or** explicitly deferred to P5b with a written note.
-- [ ] `relation_aliases` **V17** live; `relation_normalizer.py` mirrors `claim_type_normalizer.py`;
-      `relationships_gen.py` normalizes + swaps `from`/`to` on `inverse` (TDD green).
-- [ ] `SchemaIntrospector`'s advertised relation vocabulary **confirmed shrunk** (before/after counts
-      recorded).
+- [x] `relation_aliases` **V17** live; `relation_normalizer.py` mirrors `claim_type_normalizer.py`;
+      `relationships_gen.py` normalizes + swaps `from`/`to` on `inverse` (TDD green). [DEVIATED - see
+      DEVIATIONS.md #DEV-072, #DEV-076]
+- [x] `SchemaIntrospector`'s advertised relation vocabulary **confirmed shrunk** (before/after counts
+      recorded). [DEVIATED - see DEVIATIONS.md #DEV-076] — 124 → 116 distinct relations live.
 - [ ] Full fix-loop pass: `seedgen --strict` → `reseed-local.sh` → `audit` clean → `runner --runs 3`
       → `compare.py` vs P2-accepted → **DATA/MIXED ≥ baseline, zero stable regressions**; results dir +
-      candidates + migrations committed together.
-- [ ] DEV-070..DEV-076+ logged in `DEVIATIONS.md`; `TODO2.md` + `IMPLEMENTATION_PLAN_PHASE2.md` P3
-      annotated per protocol; ADR-019 follow-up DEV-number reconciled.
-- [ ] `./gradlew :core-api:test` green (no Kotlin change expected — SchemaIntrospector verification
-      only; run it to prove no regression from the reseeded vocabulary).
+      candidates + migrations committed together. **Mechanism proven twice** (DEV-076, DEV-083 —
+      both zero stable regressions), but stays unchecked: "audit clean" here means *all five*
+      checks, and A1/A2/A4 still carry real findings (see above); nothing has been committed yet.
+- [x] DEV-070..DEV-076+ logged in `DEVIATIONS.md`; `TODO2.md` + `IMPLEMENTATION_PLAN_PHASE2.md` P3
+      annotated per protocol; ADR-019 follow-up DEV-number reconciled. Logged through **DEV-083** as
+      of this check.
+- [x] `./gradlew :core-api:test` green (no Kotlin change expected — SchemaIntrospector verification
+      only; run it to prove no regression from the reseeded vocabulary). Re-verified against the
+      *current* (twice-regenerated) `V10`/`V11` migrations — `BUILD SUCCESSFUL`.
