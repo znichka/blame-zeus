@@ -16258,7 +16258,7 @@
   {
     "from_name": "Erichthonius",
     "relation": "married_to",
-    "to_name": "Astyoche",
+    "to_name": "Astyoche (wife of Erichthonius)",
     "is_contested": false,
     "passage_ref": "3.11.2-3.12.2",
     "source_id": "apollodorus-bibliotheca"
@@ -16272,7 +16272,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Astyoche",
+    "from_name": "Astyoche (wife of Erichthonius)",
     "relation": "parent_of",
     "to_name": "Tros",
     "is_contested": false,
@@ -16554,7 +16554,7 @@
   {
     "from_name": "Laomedon",
     "relation": "parent_of",
-    "to_name": "Astyoche",
+    "to_name": "Astyoche (daughter of Laomedon)",
     "is_contested": false,
     "passage_ref": "3.12.3-3.12.4",
     "source_id": "apollodorus-bibliotheca"
@@ -20354,7 +20354,7 @@
   {
     "from_name": "Laomedon",
     "relation": "parent_of",
-    "to_name": "Astyoche",
+    "to_name": "Astyoche (daughter of Laomedon)",
     "is_contested": false,
     "passage_ref": "E.6.15-E.6.22",
     "source_id": "apollodorus-bibliotheca"
@@ -30792,7 +30792,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Ilus",
+    "from_name": "Ilus (son of Dardanus)",
     "relation": "son_of",
     "to_name": "Dardanus",
     "is_contested": false,

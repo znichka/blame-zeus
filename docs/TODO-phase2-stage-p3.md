@@ -465,13 +465,24 @@ that can land anytime.
       unrelated third Pandion from the Danaid myth, `[2.1.5]`, surfaced only by checking every row
       referencing the name, not just the cycle's own 3 edges). Cycle confirmed gone (candidates
       mode). **Batched, not yet reseeded** — sits with DEV-077/DEV-078 for one future Track I pass.
-- [ ] **J3c** — `Astyoche ⇄ Tros ⇄ Ilus ⇄ Laomedon`: **trace it** (not yet traced) — identify whether
-      reversed edge or conflation, fix or defer-with-note accordingly. **[DEVIATED - see
-      DEVIATIONS.md #DEV-076/#DEV-077] — this cycle no longer appears in `cycle_check --db`** as of
-      the Track I F-landing pass (3→4 cycles, but a *different* 4: this one disappeared, replaced by
-      the 2 new J3e leads below). Not yet root-caused **why** it disappeared (a `relation_aliases`
-      normalization side effect coincidentally breaking it, vs. something else) — re-verify before
-      assuming it's actually fixed; don't just take the absence at face value.
+- [x] **J3c** [DEVIATED - see DEVIATIONS.md #DEV-080] — `Astyoche ⇄ Tros ⇄ Ilus ⇄ Laomedon`: **trace it** (not yet traced) — identify whether
+      reversed edge or conflation, fix or defer-with-note accordingly. **Root-caused**: the `--db`
+      disappearance (DEV-076) was a **masking artifact**, not a fix — an unrelated bare `Ilus son_of
+      Dardanus` row (Homer, `11.368-11.410` — the same passage checked for DEV-077's `Agastrophus`
+      fix, about a *different*, ancient "Ilus, son of Dardanus... an elder... in days of old") got
+      normalized by Track F into a new competing `parent_of` claim that happened to win the
+      alphabetical tie-break over the real `Tros parent_of Ilus`, hiding the cycle without actually
+      fixing anything (confirmed still present in `--candidates` mode the whole time, which applies
+      no normalization/collapse). **Fixed the real cause**: `Astyoche` conflates Erichthonius's wife
+      (Tros's mother, `[3.12.2]`: "Astyoche, daughter of Simoeis") with Laomedon's daughter (Priam's
+      sister, `[E.6.15c]`) — split both out, plus repointed the `Ilus`/`Dardanus` mislabel to the
+      already-existing `Ilus (son of Dardanus)` entity. Cycle confirmed gone (candidates mode) for a
+      genuine reason this time. **Noted, not fixed**: `Astyoche` still ambiguously covers at least 2
+      more distinct people (Phylas's daughter/Tlepolemus's mother; Niobe's daughter) — flagged for a
+      future pass, not part of this cycle. Also noticed (separately, not fixed): 3
+      `Aeneas parent_of/ancestor_of Ilus` rows whose cited Ovid passages never mention "Ilus" at all
+      — likely a `Iulus`/`Ilus` extraction confusion, a new lead for a future batch.
+      **Batched, not yet reseeded** — sits with DEV-077/078/079.
 - [ ] **J3d** — after each fix: `cycle_check --db` (A3) must show the cycle gone; the batch goes through
       Track I. Target: **A3 reports the `parent_of` graph fully clean** (or remaining cycles waived
       with a written reason).
