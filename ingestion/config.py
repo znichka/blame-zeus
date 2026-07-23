@@ -14,6 +14,12 @@ POSTGRES_USER = os.environ["POSTGRES_USER"]
 POSTGRES_PASSWORD = os.environ["POSTGRES_PASSWORD"]
 POSTGRES_DB = os.environ["POSTGRES_DB"]
 
+# Read-only runtime user (Stage P2 Track G: ingestion/audit/cycle_check.py's --db reader
+# connects as this user, never the superuser above, since it only reads). Optional --
+# only audit's --db path needs it, so importing config shouldn't fail without it set.
+POSTGRES_APP_USER = os.environ.get("POSTGRES_APP_USER")
+POSTGRES_APP_PASSWORD = os.environ.get("POSTGRES_APP_PASSWORD")
+
 # Not in .env.example (Stage 1b) — ingestion runs from the host against the Dockerized
 # Postgres via its published port, not from inside the compose network.
 POSTGRES_HOST = os.environ.get("POSTGRES_HOST", "localhost")

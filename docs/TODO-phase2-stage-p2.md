@@ -298,27 +298,27 @@ costly OpenAI re-embed). Mirrors `run-local.sh`'s repo-root/`.env` bootstrap sty
 every batch thereafter. A cycle in `parent_of` — self-loop, 2-cycle (`A parent_of B` **and** `B
 parent_of A`), or **longer** — is a near-certain reversed-direction edge, since a genealogy is a DAG.
 
-- [ ] **G1** — create the `ingestion/audit/` package (`__init__.py`) — the seed of P3's `python -m
+- [x] **G1** — create the `ingestion/audit/` package (`__init__.py`) — the seed of P3's `python -m
       audit`. Add `ingestion/audit/cycle_check.py` with a **pure** core: `find_cycles(edges:
       list[Edge]) -> list[Cycle]` over a directed graph (Tarjan SCC or DFS back-edge), where each
       `Cycle` lists its **edges + `source_id` + `passage_ref`** per hop (so a reviewer can reverse/drop
       the offender). Filter to `relation == "parent_of"` by default; accept a relation-set param so
       P3 can widen it to all transitive relations.
-- [ ] **G2** — two readers over the **same** pure core (read-only, no mutation): (a)
+- [x] **G2** — two readers over the **same** pure core (read-only, no mutation): (a)
       `load_from_candidates(path)` over `relationships_candidates_cleaned.json` (the editable source of
       truth — this is where fixes land); (b) `load_from_db(dsn)` over the live `relationships` table
       as `zeus_app` (read-only, statement timeout) to confirm the *seeded* graph matches. Both map to
       the same `Edge(from_name, to_name, relation, source_id, passage_ref)`.
-- [ ] **G3** — thin CLI `python -m audit.cycle_check [--candidates PATH | --db] [--relation parent_of]`
+- [x] **G3** — thin CLI `python -m audit.cycle_check [--candidates PATH | --db] [--relation parent_of]`
       printing a human report (each cycle: the edge chain + sources, flagged self-loop/2-cycle first as
       "near-certain reversed edge") **and** a machine-readable `findings.json`. Exit non-zero if any
       cycle is found (so the P3 fix loop can gate on it). **No mutation** — it *reports*, the human
       edits candidate JSON.
-- [ ] **G4** — **TDD** `ingestion/audit/tests/test_cycle_check.py` (pytest via `ingestion/.venv`):
+- [x] **G4** — **TDD** `ingestion/audit/tests/test_cycle_check.py` (pytest via `ingestion/.venv`):
       clean DAG → `[]`; self-loop; 2-cycle; a 3+-node cycle; a graph with one cycle + one clean
       component (only the cycle reported); each reported cycle carries the right edges + sources;
       relation filter excludes non-`parent_of` edges. **Pure over fixture graphs — no DB, no network.**
-- [ ] **G5** — README stub `ingestion/audit/README.md`: what A3 is, the DAG invariant, the
+- [x] **G5** — README stub `ingestion/audit/README.md`: what A3 is, the DAG invariant, the
       candidate-JSON-layer fix rule, and the Flyway-checksum-trap cross-reference (shared with Track F).
 
 ---
