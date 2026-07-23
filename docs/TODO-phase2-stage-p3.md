@@ -271,34 +271,40 @@ candidate JSON + live DB; **no check mutates any file or table** (the README inv
 
 ## Track F — `relation_aliases`: V17 migration + normalizer + `seedgen` wiring (code independent; seed rows ← D)
 
+> ⚠️ [DEVIATED - see DEVIATIONS.md #DEV-072] — F1–F5 implemented (code + migration + TDD); F6
+> deliberately deferred to Track I as this checklist itself specifies ("part of Track I's loop, not
+> a standalone reseed" — V17 has not been applied to any DB, only syntax/semantics-verified via a
+> rolled-back transaction).
+
 Mirror the `claim_type_aliases` mechanism exactly (DEV-022 rule — one DB source of truth, never
 hardcoded in code/JSON). Build the code against a **stub map** immediately; fill the real rows from D3.
 
-- [ ] **F1** — **V17 migration** `core-api/src/main/resources/db/migration/V17__create_relation_aliases.sql`:
+- [x] **F1** [DEVIATED - see DEVIATIONS.md #DEV-072] — **V17 migration** `core-api/src/main/resources/db/migration/V17__create_relation_aliases.sql`:
       `relation_aliases(alias TEXT PRIMARY KEY, canonical TEXT NOT NULL, inverse BOOLEAN NOT NULL
       DEFAULT FALSE)` (ADR-019 §7 DDL). Include a schema comment (the V8_3/V15/V16 convention) and the
       **initial alias rows from D3**. `afterMigrate__grant_app_user.sql` already grants the app user —
       confirm the new table is covered (it grants schema-wide; verify, don't assume).
-- [ ] **F2** — `ingestion/extraction/relation_normalizer.py` (sibling of `claim_type_normalizer.py`):
+- [x] **F2** [DEVIATED - see DEVIATIONS.md #DEV-072] — `ingestion/extraction/relation_normalizer.py` (sibling of `claim_type_normalizer.py`):
       `load_relation_alias_map(conn) -> dict[str, tuple[str, bool]]` runs `SELECT alias, canonical,
       inverse FROM relation_aliases`; `normalize_relation(map, label) -> tuple[str, bool]` returns
       `(canonical, inverse)` on a hit (keyed by `label.strip().lower()`), `(label, False)` otherwise
       (identity for legit long-tail). **TDD** `test_relation_normalizer.py` alongside.
-- [ ] **F3** — wire into `seedgen/__main__.py`: load the relation alias map from the same live
+- [x] **F3** [DEVIATED - see DEVIATIONS.md #DEV-072] — wire into `seedgen/__main__.py`: load the relation alias map from the same live
       connection that already loads `claim_type_aliases` (`load_alias_map`), pass it into
       `relationships_gen.build_relationship_rows`.
-- [ ] **F4** — apply in `seedgen/relationships_gen.py`: call `normalize_relation` **before**
+- [x] **F4** [DEVIATED - see DEVIATIONS.md #DEV-072] — apply in `seedgen/relationships_gen.py`: call `normalize_relation` **before**
       `_filter_and_dedup` / `resolve_canonical_edges` (ADR-019 Consequences: normalization runs first
       so contested edges compare on canonical relation+direction). On `inverse == True`, **swap
       `from_name`/`to_name`** so every row lands on the canonical relation *and* canonical direction
       (DEV-047: `parent_of` `from_id` = parent). Preserve `source_id`/`passage_ref` through the swap.
-- [ ] **F5** — **TDD** `ingestion/seedgen/tests/` (or extend existing): a candidate set with a
+- [x] **F5** [DEVIATED - see DEVIATIONS.md #DEV-072] — **TDD** `ingestion/seedgen/tests/` (or extend existing): a candidate set with a
       `son_of`-inverse row → generated V11 row is `parent_of` with `from`/`to` swapped; a
       `gave_scepter_to` legit row → passes through unchanged; a synonym-non-inverse row → relabeled,
       direction kept. Confirm dedupe now collapses rows that were previously split across synonym
       labels (the ADR-019 "counts stop fragmenting" claim).
 - [ ] **F6** — regenerate `V11__seed_relationships.sql` via `seedgen --strict` (part of Track I's loop,
       not a standalone reseed) and eyeball a spot sample of former-synonym rows landing canonical.
+      **Not yet done — deferred to Track I**, per this bullet's own instruction.
 
 ---
 

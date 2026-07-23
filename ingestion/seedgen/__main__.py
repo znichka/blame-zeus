@@ -29,6 +29,7 @@ import psycopg2
 
 import config
 from extraction.claim_type_normalizer import load_alias_map
+from extraction.relation_normalizer import load_relation_alias_map
 
 from seedgen import entities_gen, relationships_gen, variant_claims_gen
 from seedgen.migration_writer import render_batched_insert, write_migration
@@ -82,12 +83,15 @@ def main() -> None:
         password=config.POSTGRES_PASSWORD,
     )
     alias_map = load_alias_map(conn)
+    relation_alias_map = load_relation_alias_map(conn)
     conn.close()
 
     entity_names = {e["name"] for e in entities}
 
     entity_rows = entities_gen.build_entity_rows(entities)
-    relationship_rows = relationships_gen.build_relationship_rows(relationships, entity_names, alias_map)
+    relationship_rows = relationships_gen.build_relationship_rows(
+        relationships, entity_names, alias_map, relation_alias_map
+    )
     variant_claim_rows = variant_claims_gen.build_variant_claim_rows(variant_claims, entity_names, alias_map)
 
     write_migration(

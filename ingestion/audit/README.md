@@ -105,6 +105,13 @@ exactly why `reseed-local.sh` refuses to run without `--local-only` / `ALLOW_RES
 `docker compose down -v` as a shortcut either: it drops `narrative_chunks`, whose embeddings cost
 real OpenAI API calls to regenerate.
 
+**`V17__create_relation_aliases.sql`** (Track F, DEV-072) is currently in this same free-regeneration
+window — it has not been applied to any DB yet (only syntax/semantics-verified via a rolled-back
+transaction), so its seed rows can still be freely edited in place as Track D's taxonomy findings
+get reviewed/extended. The moment it's applied anywhere (Track I's first reseed), corrections must
+switch to an additive follow-up migration (a `V17_1`-style file), exactly like `claim_type_aliases`
+(V8_2) and the V10–V12 precedent above.
+
 ## Design notes
 
 - `find_cycles` (the pure core) is a DFS back-edge detector over the directed graph, deduped by a
