@@ -13830,5 +13830,40 @@
     "generation": null,
     "domain": null,
     "subtype": null
+  },
+  {
+    "name": "Creon (king of Corinth)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": "king"
+  },
+  {
+    "name": "Menoeceus (father of Creon)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Menoeceus (son of Creon)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Helen",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Helle",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
   }
 ]

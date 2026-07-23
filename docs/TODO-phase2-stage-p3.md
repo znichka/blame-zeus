@@ -486,17 +486,38 @@ that can land anytime.
 - [ ] **J3d** — after each fix: `cycle_check --db` (A3) must show the cycle gone; the batch goes through
       Track I. Target: **A3 reports the `parent_of` graph fully clean** (or remaining cycles waived
       with a written reason).
-- [ ] **J3e** — [DEVIATED - see DEVIATIONS.md #DEV-077] **`Creon ⇄ Menoeceus`** (surfaced by Track I's
+- [x] **J3e** [DEVIATED - see DEVIATIONS.md #DEV-081] — **`Creon ⇄ Menoeceus`** (surfaced by Track I's
       F-landing pass, DEV-076 — newly visible once `child_of`/`son_of` normalized into `parent_of`):
       **source-verified as a namesake collision, not a reversed edge** — `apollodorus_bibliotheca_frazer1921.txt`
       `[3.5.8]` ("Creon, son of Menoeceus, succeeded to the kingdom") names Menoeceus **the elder**,
       Creon's father; `[3.6.7]` ("Menoeceus, son of Creon, would offer himself... slew himself before
       the gates") names Menoeceus **the younger**, Creon's son who sacrifices himself in the Seven
       Against Thebes war. Both edges are individually correct; extraction merged two different people
-      into one entity. Needs an entity **split** (`Menoeceus (elder)` / `Menoeceus (younger)`,
-      DEV-068 pattern) — **not fixed yet**, filed here per user direction (2026-07-23): fix the
-      clean, source-verified reversed-edge lead (`Agastrophus ⇄ Paeëon`, DEV-077) now, defer this
-      conflation for its own batch rather than force it same-session (the DEV-068 precedent exactly).
+      into one entity. **Split, and turned out bigger than diagnosed**: `Creon` actually names
+      **three** people (Thebes, Corinth, son of Hercules — the last two already partially
+      disambiguated in an earlier pass, the same "some rows got the memo, some didn't" pattern
+      DEV-080 found for `Ilus`). Added `Creon (king of Corinth)`, `Menoeceus (father of Creon)`,
+      `Menoeceus (son of Creon)`; repointed 8 rows. Verified via the same simulated-resolved-graph
+      method DEV-080 used (this cycle only exists post-normalization, invisible to plain
+      `cycle_check --candidates`). **New unrelated lead found while verifying, not fixed**: the
+      simulated graph's one remaining cycle (`Aeolus ⇄ Athamas ⇄ Hellen`) traces to `Athamas`'s
+      daughter **`Helle`** (of Hellespont fame, `[1.9.1]`) extracted as `Hellen` (the male
+      ancestor-figure) — a fresh spelling conflation, not yet its own checklist item. **Batched, not
+      yet reseeded** — sits with DEV-077/078/079/080.
+
+### J3f — new lead (DEV-081): `Helle`/`Hellen` spelling conflation
+- [x] **J3f** [DEVIATED - see DEVIATIONS.md #DEV-082] `Athamas parent_of Hellen` (`apollodorus-bibliotheca`,
+      `1.9.1`) should be `Athamas parent_of Helle` — Athamas's daughter `Helle` (who fell into the
+      strait later named the Hellespont after her) was extracted under the name of the unrelated,
+      much more heavily-referenced `Hellen` (Deucalion's son, eponym of the Greeks). **Turned out to
+      be a 3-way, 60-row conflation, not a 1-row typo**: bare `Hellen` mixed the real `Hellen`
+      (5 rows), `Helle` (3 rows), and **`Helen` of Troy** (52 rows — married to Menelaus, then
+      Paris, then Deiphobus; daughter of Zeus/Leda; mother of Hermione). Split all three out
+      (bucketed by passage-ref, verified against source, asserted exact bucket sizes 5/3/52 before
+      writing). Simulated post-Track-F resolved graph now has **zero** `parent_of` cycles (was 1);
+      `--candidates` cycle count dropped 100 → 89 (11 fewer, not 1 — `Hellen`'s conflated edges were
+      threading through several already-observed tangled chains too). **Batched, not yet reseeded**
+      — sits with DEV-077/078/079/080/081, closing out the currently-known live-cycle backlog.
 
 ### J4 — DEV-069: Q9 Zeus→Chaos lineage gap (may exceed P3 scope)
 - [ ] **J4a** — decide the model: **(a)** restore a second-parent `Sky (Ouranos) parent_of Cronus`

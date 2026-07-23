@@ -4218,7 +4218,7 @@
   {
     "from_name": "Athamas",
     "relation": "parent_of",
-    "to_name": "Hellen",
+    "to_name": "Helle",
     "is_contested": false,
     "passage_ref": "1.8.6-1.9.1",
     "source_id": "apollodorus-bibliotheca"
@@ -4234,7 +4234,7 @@
   {
     "from_name": "Nephele",
     "relation": "parent_of",
-    "to_name": "Hellen",
+    "to_name": "Helle",
     "is_contested": false,
     "passage_ref": "1.8.6-1.9.1",
     "source_id": "apollodorus-bibliotheca"
@@ -4288,7 +4288,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Hellen",
+    "from_name": "Helle",
     "relation": "killed_by",
     "to_name": "Hellespont",
     "is_contested": false,
@@ -6240,7 +6240,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Creon",
+    "from_name": "Creon (king of Corinth)",
     "relation": "parent_of",
     "to_name": "Glauce",
     "is_contested": false,
@@ -6272,7 +6272,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Creon",
+    "from_name": "Creon (king of Corinth)",
     "relation": "killed_by",
     "to_name": "Medea",
     "is_contested": false,
@@ -13080,7 +13080,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Menoeceus",
+    "from_name": "Menoeceus (father of Creon)",
     "relation": "parent_of",
     "to_name": "Jocasta",
     "is_contested": true,
@@ -13088,7 +13088,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Menoeceus",
+    "from_name": "Menoeceus (father of Creon)",
     "relation": "parent_of",
     "to_name": "Epicasta",
     "is_contested": true,
@@ -13128,7 +13128,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Creon",
+    "from_name": "Creon (king of Thebes)",
     "relation": "parent_of",
     "to_name": "Haemon",
     "is_contested": false,
@@ -13136,9 +13136,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Creon",
+    "from_name": "Creon (king of Thebes)",
     "relation": "child_of",
-    "to_name": "Menoeceus",
+    "to_name": "Menoeceus (father of Creon)",
     "is_contested": false,
     "passage_ref": "3.5.8-3.5.9",
     "source_id": "apollodorus-bibliotheca"
@@ -13392,9 +13392,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Creon",
+    "from_name": "Creon (king of Thebes)",
     "relation": "parent_of",
-    "to_name": "Menoeceus",
+    "to_name": "Menoeceus (son of Creon)",
     "is_contested": false,
     "passage_ref": "3.6.7",
     "source_id": "apollodorus-bibliotheca"
@@ -15858,7 +15858,7 @@
   {
     "from_name": "Nemesis",
     "relation": "parent_of",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": true,
     "passage_ref": "3.10.4-3.10.7",
     "source_id": "apollodorus-bibliotheca"
@@ -15866,7 +15866,7 @@
   {
     "from_name": "Leda",
     "relation": "parent_of",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": true,
     "passage_ref": "3.10.4-3.10.7",
     "source_id": "apollodorus-bibliotheca"
@@ -15994,7 +15994,7 @@
   {
     "from_name": "Tyndareus",
     "relation": "parent_of",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "3.10.8-3.11.1",
     "source_id": "apollodorus-bibliotheca"
@@ -16010,7 +16010,7 @@
   {
     "from_name": "Menelaus",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "3.10.8-3.11.1",
     "source_id": "apollodorus-bibliotheca"
@@ -16024,7 +16024,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Hellen",
+    "from_name": "Helen",
     "relation": "parent_of",
     "to_name": "Hermione",
     "is_contested": false,
@@ -16040,7 +16040,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Hellen",
+    "from_name": "Helen",
     "relation": "parent_of",
     "to_name": "Nicostratus",
     "is_contested": true,
@@ -19090,7 +19090,7 @@
   {
     "from_name": "Theseus",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "E.1.17-E.1.23",
     "source_id": "apollodorus-bibliotheca"
@@ -19258,7 +19258,7 @@
   {
     "from_name": "Tyndareus",
     "relation": "parent_of",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "E.2.15-E.3.5",
     "source_id": "apollodorus-bibliotheca"
@@ -19274,7 +19274,7 @@
   {
     "from_name": "Menelaus",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "E.2.15-E.3.5",
     "source_id": "apollodorus-bibliotheca"
@@ -19368,7 +19368,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Hellen",
+    "from_name": "Helen",
     "relation": "parent_of",
     "to_name": "Hermione",
     "is_contested": false,
@@ -19386,7 +19386,7 @@
   {
     "from_name": "Alexander",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": true,
     "passage_ref": "E.2.15-E.3.5",
     "source_id": "apollodorus-bibliotheca"
@@ -19394,7 +19394,7 @@
   {
     "from_name": "Menelaus",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "E.3.6-E.3.12",
     "source_id": "apollodorus-bibliotheca"
@@ -20010,7 +20010,7 @@
   {
     "from_name": "Deiphobus",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "E.5.5-E.5.13",
     "source_id": "apollodorus-bibliotheca"
@@ -20522,7 +20522,7 @@
   {
     "from_name": "Menelaus",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "E.6.23-E.6.29",
     "source_id": "apollodorus-bibliotheca"
@@ -27624,7 +27624,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Hellen",
+    "from_name": "Helen",
     "relation": "married_to",
     "to_name": "Menelaus",
     "is_contested": false,
@@ -27632,7 +27632,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Hellen",
+    "from_name": "Helen",
     "relation": "taken_by",
     "to_name": "Paris",
     "is_contested": false,
@@ -27712,7 +27712,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Hellen",
+    "from_name": "Helen",
     "relation": "married_to",
     "to_name": "Menelaus",
     "is_contested": false,
@@ -27720,7 +27720,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Hellen",
+    "from_name": "Helen",
     "relation": "married_to",
     "to_name": "Alexander",
     "is_contested": false,
@@ -27736,7 +27736,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Hellen",
+    "from_name": "Helen",
     "relation": "married_to",
     "to_name": "Menelaus",
     "is_contested": false,
@@ -27752,7 +27752,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Hellen",
+    "from_name": "Helen",
     "relation": "sibling_of",
     "to_name": "Castor",
     "is_contested": false,
@@ -27760,7 +27760,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Hellen",
+    "from_name": "Helen",
     "relation": "sibling_of",
     "to_name": "Polydectes",
     "is_contested": false,
@@ -27786,7 +27786,7 @@
   {
     "from_name": "Menelaus",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "3.245-3.291",
     "source_id": "homer-iliad"
@@ -27818,7 +27818,7 @@
   {
     "from_name": "Paris",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "3.292-3.339",
     "source_id": "homer-iliad"
@@ -27826,7 +27826,7 @@
   {
     "from_name": "Menelaus",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "3.292-3.339",
     "source_id": "homer-iliad"
@@ -27842,13 +27842,13 @@
   {
     "from_name": "Menelaus",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "3.381-3.420",
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Hellen",
+    "from_name": "Helen",
     "relation": "married_to",
     "to_name": "Menelaus",
     "is_contested": false,
@@ -27856,7 +27856,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Hellen",
+    "from_name": "Helen",
     "relation": "married_to",
     "to_name": "Alexander",
     "is_contested": false,
@@ -27890,7 +27890,7 @@
   {
     "from_name": "Menelaus",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "4.1-4.49",
     "source_id": "homer-iliad"
@@ -29098,7 +29098,7 @@
   {
     "from_name": "Alexander",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "6.286-6.331",
     "source_id": "homer-iliad"
@@ -29136,7 +29136,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Hellen",
+    "from_name": "Helen",
     "relation": "married_to",
     "to_name": "Alexander",
     "is_contested": false,
@@ -29418,7 +29418,7 @@
   {
     "from_name": "Alexander",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "7.354-7.402",
     "source_id": "homer-iliad"
@@ -29426,7 +29426,7 @@
   {
     "from_name": "Menelaus",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "7.354-7.402",
     "source_id": "homer-iliad"
@@ -29490,7 +29490,7 @@
   {
     "from_name": "Paris",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "8.78-8.111",
     "source_id": "homer-iliad"
@@ -30496,7 +30496,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Hellen",
+    "from_name": "Helen",
     "relation": "married_to",
     "to_name": "Menelaus",
     "is_contested": false,
@@ -30778,7 +30778,7 @@
   {
     "from_name": "Paris",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "11.368-11.410",
     "source_id": "homer-iliad"
@@ -30898,7 +30898,7 @@
   {
     "from_name": "Alexander",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "11.489-11.530",
     "source_id": "homer-iliad"
@@ -31610,7 +31610,7 @@
   {
     "from_name": "Menelaus",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "13.601-13.642",
     "source_id": "homer-iliad"
@@ -31714,7 +31714,7 @@
   {
     "from_name": "Paris",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "13.754-13.787",
     "source_id": "homer-iliad"
@@ -36008,7 +36008,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Hellen",
+    "from_name": "Helen",
     "relation": "married_to",
     "to_name": "Alexander",
     "is_contested": false,
@@ -36664,7 +36664,7 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Hellen",
+    "from_name": "Helen",
     "relation": "parent_of",
     "to_name": "Hermione",
     "is_contested": false,
@@ -36690,7 +36690,7 @@
   {
     "from_name": "Menelaus",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "3.478-4.19",
     "source_id": "homer-odyssey"
@@ -36722,7 +36722,7 @@
   {
     "from_name": "Menelaus",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "4.65-4.112",
     "source_id": "homer-odyssey"
@@ -36752,7 +36752,7 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Hellen",
+    "from_name": "Helen",
     "relation": "married_to",
     "to_name": "Menelaus",
     "is_contested": false,
@@ -36770,7 +36770,7 @@
   {
     "from_name": "Menelaus",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "4.155-4.202",
     "source_id": "homer-odyssey"
@@ -36784,7 +36784,7 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Hellen",
+    "from_name": "Helen",
     "relation": "married_to",
     "to_name": "Menelaus",
     "is_contested": false,
@@ -36794,7 +36794,7 @@
   {
     "from_name": "Menelaus",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "4.265-4.314",
     "source_id": "homer-odyssey"
@@ -36866,13 +36866,13 @@
   {
     "from_name": "Menelaus",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "4.538-4.586",
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Hellen",
+    "from_name": "Helen",
     "relation": "daughter_of",
     "to_name": "Zeus",
     "is_contested": false,
@@ -38056,7 +38056,7 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Creon",
+    "from_name": "Creon (king of Thebes)",
     "relation": "parent_of",
     "to_name": "Megaera",
     "is_contested": false,
@@ -38818,7 +38818,7 @@
   {
     "from_name": "Menelaus",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "15.48-15.91",
     "source_id": "homer-odyssey"
@@ -38834,7 +38834,7 @@
   {
     "from_name": "Menelaus",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "15.92-15.142",
     "source_id": "homer-odyssey"
@@ -45866,7 +45866,7 @@
   {
     "from_name": "Paris",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "11.783-12.23",
     "source_id": "ovid-metamorphoses"
@@ -46642,7 +46642,7 @@
   {
     "from_name": "Menelaus",
     "relation": "married_to",
-    "to_name": "Hellen",
+    "to_name": "Helen",
     "is_contested": false,
     "passage_ref": "13.162-13.204",
     "source_id": "ovid-metamorphoses"
