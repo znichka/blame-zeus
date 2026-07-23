@@ -268,26 +268,26 @@ correctness-critical wiring** — a leaked ThreadLocal across pooled request thr
 The **only** sanctioned reseed path; **never** `docker compose down -v` (drops `narrative_chunks` →
 costly OpenAI re-embed). Mirrors `run-local.sh`'s repo-root/`.env` bootstrap style.
 
-- [ ] **F1** — preconditions: app **stopped**, run as the **Flyway superuser** (`zeus`/`olympus`, the
+- [x] **F1** — preconditions: app **stopped**, run as the **Flyway superuser** (`zeus`/`olympus`, the
       `POSTGRES_USER` creds — *not* `zeus_app`). Fail fast with a clear message if the app is up or
       creds are missing.
-- [ ] **F2** — **`DROP TABLE entity_aliases;`** (not `DELETE FROM`) — V14 is a bare `CREATE TABLE`
+- [x] **F2** — **`DROP TABLE entity_aliases;`** (not `DELETE FROM`) — V14 is a bare `CREATE TABLE`
       (no `IF NOT EXISTS`) that both creates *and* seeds, so it must be dropped to re-apply cleanly.
-- [ ] **F3** — `TRUNCATE myth_participants, variant_claims, relationships, myths, entities CASCADE;`
+- [x] **F3** — `TRUNCATE myth_participants, variant_claims, relationships, myths, entities CASCADE;`
       (`narrative_chunks` has **no** entity FK → deliberately left intact; embeddings preserved).
-- [ ] **F4** — `DELETE FROM flyway_schema_history WHERE version IN ('10','11','12','13','14','15','16');`
+- [x] **F4** — `DELETE FROM flyway_schema_history WHERE version IN ('10','11','12','13','14','15','16');`
       — **must include V15 and V16.** Flyway won't re-apply a migration below the current max applied
       version, so leaving V16 in history makes it silently skip V10–V14; V15/V16 are COMMENT-only and
       idempotent, so re-applying is harmless. (Extend the list as new V-numbers land.)
-- [ ] **F5** — restart the app → Flyway re-applies V10–V16 (+ anything newer) in order; the
+- [x] **F5** — restart the app → Flyway re-applies V10–V16 (+ anything newer) in order; the
       `afterMigrate` callback re-grants `zeus_app`. Echo a "reseed complete — embeddings preserved"
       confirmation and a row-count sanity print (`entities`, `relationships`, `variant_claims`,
       `narrative_chunks`).
-- [ ] **F6** — **Shared-environment guard (the Flyway checksum trap, §8):** refuse to run (loud abort)
+- [x] **F6** — **Shared-environment guard (the Flyway checksum trap, §8):** refuse to run (loud abort)
       if a shared/demo DB is detected — regenerating an *applied* V10–V12 breaks `flyway validate`
       everywhere. Gate on an explicit `ALLOW_RESEED=1` env or a `--local-only` flag + a printed
       warning; document the rule in the script header **and** cross-reference it in the (P3) audit README.
-- [ ] **F7** — a dry-run/`--check` mode that prints the SQL it *would* run without executing, so the
+- [x] **F7** — a dry-run/`--check` mode that prints the SQL it *would* run without executing, so the
       first use is auditable.
 
 ---
