@@ -32,6 +32,7 @@ class QueryServiceTest {
     private val conflictLookup = mockk<ConflictLookup>()
     private val conflictSynthesizer = mockk<ConflictSynthesizer>()
     private val answerComposer = mockk<AnswerComposer>()
+    private val debugCapture = DebugCapture()
 
     private val service = QueryService(
         queryRouter,
@@ -42,6 +43,7 @@ class QueryServiceTest {
         conflictLookup,
         conflictSynthesizer,
         answerComposer,
+        debugCapture,
     )
 
     init {
@@ -620,5 +622,143 @@ class QueryServiceTest {
         }
         assertThat(response.conflicts).isEmpty()
         assertThat(response.conflictsInProse).isFalse()
+    }
+
+    // --- Stage P2 Track C4: debug surface ---
+
+    @Test
+    fun `debug defaults to false -- response is byte-identical to the pre-P2 contract, debug is null`() {
+        every { queryRouter.classify(any()) } returns RouteDecision.RAG
+        val ragResponse = QueryResponse(
+            answer = "Athena turned Arachne into a spider out of jealousy over her weaving skill.",
+            routeDecision = RouteDecision.RAG,
+            citations = emptyList(),
+            conflicts = emptyList(),
+            sqlGenerated = null,
+        )
+        every { ragQueryHandler.handle(any()) } returns ragResponse
+
+        val response = service.handle("Why did Athena turn Arachne into a spider?")
+
+        assertThat(response).isEqualTo(ragResponse)
+        assertThat(response.debug).isNull()
+    }
+
+    @Test
+    fun `debug=true on a composed route populates probe fields, composerSucceeded and draftAnswer`() {
+        every { queryRouter.classify(any()) } returns RouteDecision.RAG
+        val ragResponse = QueryResponse(
+            answer = "Zeus rules Olympus.",
+            routeDecision = RouteDecision.RAG,
+            citations = emptyList(),
+            conflicts = emptyList(),
+            sqlGenerated = null,
+        )
+        every { ragQueryHandler.handle(any()) } returns ragResponse
+        every { conflictProbe.extract(any()) } returns ProbeResult(subject = "Zeus", claimType = "parentage")
+        val claims = listOf(ConflictClaim("child of Cronus", "Hesiod", "Theogony", "450-500"))
+        every { conflictLookup.find("Zeus", "parentage") } returns claims
+        every { conflictSynthesizer.synthesize(claims) } returns
+            listOf(ConflictEntry("child of Cronus", "Hesiod", "Theogony", "450-500"))
+        val composed = ComposedAnswer(
+            answer = "Zeus rules Olympus [1]. Hesiod names Cronus as his father [2].",
+            citations = listOf(Citation("Hesiod", "Theogony", "450-500")),
+        )
+        every { answerComposer.compose(any(), any(), any()) } returns composed
+
+        val response = service.handle("Who is Zeus?", debug = true)
+
+        val debug = response.debug
+        assertThat(debug).isNotNull
+        assertThat(debug!!.probeSubject).isEqualTo("Zeus")
+        assertThat(debug.probeClaimType).isEqualTo("parentage")
+        assertThat(debug.claimRowCount).isEqualTo(1)
+        assertThat(debug.composerSucceeded).isTrue()
+        assertThat(debug.draftAnswer).isEqualTo("Zeus rules Olympus.")
+    }
+
+    @Test
+    fun `debug=true when the composer throws still populates draftAnswer, composerSucceeded is false`() {
+        every { queryRouter.classify(any()) } returns RouteDecision.RAG
+        val ragResponse = QueryResponse(
+            answer = "Sources differ on Aphrodite's parentage.",
+            routeDecision = RouteDecision.RAG,
+            citations = emptyList(),
+            conflicts = emptyList(),
+            sqlGenerated = null,
+        )
+        every { ragQueryHandler.handle(any()) } returns ragResponse
+        every { conflictProbe.extract(any()) } returns ProbeResult(subject = "Aphrodite", claimType = "parentage")
+        every { conflictLookup.find(any(), any()) } returns emptyList()
+        every { answerComposer.compose(any(), any(), any()) } throws RuntimeException("chat model unavailable")
+
+        val response = service.handle("Who were Aphrodite's parents?", debug = true)
+
+        val debug = response.debug
+        assertThat(debug).isNotNull
+        assertThat(debug!!.draftAnswer).isEqualTo("Sources differ on Aphrodite's parentage.")
+        assertThat(debug.composerSucceeded).isFalse()
+    }
+
+    @Test
+    fun `debug=true on the SQL-empty-to-RAG fallback path captures fallbackFromSqlToRag`() {
+        every { queryRouter.classify(any()) } returns RouteDecision.SQL
+        val emptySqlResponse = QueryResponse(
+            answer = SqlQueryHandler.EMPTY_RESULT_ANSWER,
+            routeDecision = RouteDecision.SQL,
+            citations = emptyList(),
+            conflicts = emptyList(),
+            sqlGenerated = "SELECT name FROM entities WHERE name = 'Nobody'",
+        )
+        every { sqlQueryHandler.handle(any()) } returns emptySqlResponse
+        val ragResponse = QueryResponse(
+            answer = "The texts don't directly address this, but here's what they say...",
+            routeDecision = RouteDecision.RAG,
+            citations = emptyList(),
+            conflicts = emptyList(),
+            sqlGenerated = null,
+        )
+        every { ragQueryHandler.handle(any()) } returns ragResponse
+
+        val response = service.handle("Which Olympians are children of Nobody?", debug = true)
+
+        assertThat(response.debug?.fallbackFromSqlToRag).isTrue()
+    }
+
+    @Test
+    fun `a serviceError draft with debug=true still returns a populated DebugInfo, not null`() {
+        every { queryRouter.classify(any()) } returns RouteDecision.SQL
+        every { sqlQueryHandler.handle(any()) } throws RuntimeException("db unavailable")
+        every { conflictProbe.extract(any()) } returns ProbeResult(subject = "Zeus", claimType = "parentage")
+        every { conflictLookup.find("Zeus", "parentage") } returns emptyList()
+
+        val response = service.handle("Who are Zeus's parents?", debug = true)
+
+        assertThat(response.serviceError).isTrue()
+        assertThat(response.debug).isNotNull
+        assertThat(response.debug!!.probeSubject).isEqualTo("Zeus")
+    }
+
+    @Test
+    fun `two sequential calls on the same thread don't leak DebugCapture state -- a debug=false call after a debug=true call sees no bleed`() {
+        every { queryRouter.classify(any()) } returns RouteDecision.RAG
+        val ragResponse = QueryResponse(
+            answer = "Zeus rules Olympus.",
+            routeDecision = RouteDecision.RAG,
+            citations = emptyList(),
+            conflicts = emptyList(),
+            sqlGenerated = null,
+        )
+        every { ragQueryHandler.handle(any()) } returns ragResponse
+        every { conflictProbe.extract(any()) } returns ProbeResult(subject = "Zeus", claimType = "parentage")
+        every { conflictLookup.find("Zeus", "parentage") } returns
+            listOf(ConflictClaim("child of Cronus", "Hesiod", "Theogony", "450-500"))
+        every { conflictSynthesizer.synthesize(any()) } returns emptyList()
+
+        val first = service.handle("Who is Zeus?", debug = true)
+        val second = service.handle("Who is Zeus?", debug = false)
+
+        assertThat(first.debug).isNotNull
+        assertThat(second.debug).isNull()
     }
 }

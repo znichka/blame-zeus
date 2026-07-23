@@ -32,57 +32,80 @@ class QueryService(
     private val conflictLookup: ConflictLookup,
     private val conflictSynthesizer: ConflictSynthesizer,
     private val answerComposer: AnswerComposer,
+    private val debugCapture: DebugCapture,
 ) {
 
-    fun handle(question: String): QueryResponse {
-        val route = try {
-            queryRouter.classify(question)
-        } catch (e: Exception) {
-            log.warn("Router failed for '{}', defaulting to RAG: {}", question, e.message)
-            RouteDecision.RAG
-        }
-
-        val draft = try {
-            when (route) {
-                RouteDecision.SQL -> handleSql(question)
-                RouteDecision.RAG -> ragQueryHandler.handle(question)
-                RouteDecision.MIXED -> mixedQueryHandler.handle(question)
+    // Stage P2 Track C1 [DEVIATED - see DEVIATIONS.md #DEV-064]: `debug` is trailing + defaulted
+    // so every existing caller keeps compiling. `reset()` at entry and in `finally` bracket the
+    // whole method so the ThreadLocal never leaks state onto the next request served by a pooled
+    // thread, even if a handler throws something `finalize()` never gets to see.
+    fun handle(question: String, debug: Boolean = false): QueryResponse {
+        debugCapture.reset()
+        try {
+            val route = try {
+                queryRouter.classify(question)
+            } catch (e: Exception) {
+                log.warn("Router failed for '{}', defaulting to RAG: {}", question, e.message)
+                RouteDecision.RAG
             }
-        } catch (e: Exception) {
-            log.error("Handler failed for route {} on '{}': {}", route, question, e.message)
-            QueryResponse(
-                answer = "The service is temporarily unavailable. Please try again later.",
-                routeDecision = route,
-                citations = emptyList(),
-                conflicts = emptyList(),
-                sqlGenerated = null,
-                serviceError = true,
-            )
-        }
 
-        // ADR-015 Track D3: the claims fetch runs *before* the serviceError check, so a
-        // serviceError draft still carries structured `conflicts[]` — a deliberate behavior
-        // change from the old enrich(), which early-returned before ever probing.
-        val claims = fetchClaims(question)
-        val conflictEntries = synthesizeSafely(claims)
+            val draft = try {
+                when (route) {
+                    RouteDecision.SQL -> handleSql(question)
+                    RouteDecision.RAG -> ragQueryHandler.handle(question)
+                    RouteDecision.MIXED -> mixedQueryHandler.handle(question)
+                }
+            } catch (e: Exception) {
+                log.error("Handler failed for route {} on '{}': {}", route, question, e.message)
+                QueryResponse(
+                    answer = "The service is temporarily unavailable. Please try again later.",
+                    routeDecision = route,
+                    citations = emptyList(),
+                    conflicts = emptyList(),
+                    sqlGenerated = null,
+                    serviceError = true,
+                )
+            }
 
-        if (draft.serviceError) {
-            return draft.copy(conflicts = conflictEntries, conflictsInProse = false)
-        }
+            // ADR-015 Track D3: the claims fetch runs *before* the serviceError check, so a
+            // serviceError draft still carries structured `conflicts[]` — a deliberate behavior
+            // change from the old enrich(), which early-returned before ever probing.
+            val claims = fetchClaims(question)
+            val conflictEntries = synthesizeSafely(claims)
 
-        return try {
-            val composed = answerComposer.compose(question, renderMaterial(draft), renderConflicts(claims))
-            draft.copy(
-                answer = composed.answer,
-                citations = composed.citations,
-                conflicts = conflictEntries,
-                conflictsInProse = claims.isNotEmpty(),
-            )
-        } catch (e: Exception) {
-            log.warn("Answer composition failed for '{}': {}", question, e.message)
-            draft.copy(conflicts = conflictEntries, conflictsInProse = false)
+            if (draft.serviceError) {
+                return finalize(draft.copy(conflicts = conflictEntries, conflictsInProse = false), debug)
+            }
+
+            debugCapture.setDraftAnswer(draft.answer)
+
+            return try {
+                val composed = answerComposer.compose(question, renderMaterial(draft), renderConflicts(claims))
+                debugCapture.setComposerSucceeded(true)
+                finalize(
+                    draft.copy(
+                        answer = composed.answer,
+                        citations = composed.citations,
+                        conflicts = conflictEntries,
+                        conflictsInProse = claims.isNotEmpty(),
+                    ),
+                    debug,
+                )
+            } catch (e: Exception) {
+                log.warn("Answer composition failed for '{}': {}", question, e.message)
+                debugCapture.setComposerSucceeded(false)
+                finalize(draft.copy(conflicts = conflictEntries, conflictsInProse = false), debug)
+            }
+        } finally {
+            debugCapture.reset()
         }
     }
+
+    // Stage P2 Track C2: the single place a debug snapshot is built + attached. When
+    // `debug=false`, `debug` stays `null` -> QueryResponse's NON_NULL annotation omits the key
+    // entirely, preserving the pre-P2 wire contract byte-for-byte.
+    private fun finalize(response: QueryResponse, debug: Boolean): QueryResponse =
+        response.copy(debug = if (debug) debugCapture.snapshot() else null)
 
     // ADR-015 Track D2 (formerly `enrich()`'s probe -> lookup half, ADR-007 §5): returns the
     // structured claims for the question instead of writing them onto the answer — composition
@@ -91,13 +114,15 @@ class QueryService(
     private fun fetchClaims(question: String): List<ConflictClaim> = try {
         val probe = conflictProbe.extract(question)
         log.debug("Conflict probe for '{}': subject='{}', claimType='{}'", question, probe.subject, probe.claimType)
-        if (probe.claimType == NO_CLAIM_TYPE) {
+        val claims = if (probe.claimType == NO_CLAIM_TYPE) {
             emptyList()
         } else {
-            val claims = conflictLookup.find(probe.subject, probe.claimType)
-            log.debug("Conflict lookup for subject='{}', claimType='{}': {} rows", probe.subject, probe.claimType, claims.size)
-            claims
+            val found = conflictLookup.find(probe.subject, probe.claimType)
+            log.debug("Conflict lookup for subject='{}', claimType='{}': {} rows", probe.subject, probe.claimType, found.size)
+            found
         }
+        debugCapture.setProbe(probe.subject, probe.claimType, claims.size)
+        claims
     } catch (e: Exception) {
         log.warn("Conflict claim fetch failed for '{}': {}", question, e.message)
         emptyList()
@@ -142,6 +167,7 @@ class QueryService(
             return sqlResponse
         }
         log.info("SQL returned no rows for '{}', falling back to RAG", question)
+        debugCapture.setFallbackFromSqlToRag(true)
         return ragQueryHandler.handle(question)
     }
 

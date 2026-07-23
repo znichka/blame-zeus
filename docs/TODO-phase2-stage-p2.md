@@ -217,7 +217,7 @@ writes are cheap even when debug is off (the snapshot is only *built* by QuerySe
 The single place the debug snapshot is built + attached and the ThreadLocal is reset. **This is the
 correctness-critical wiring** — a leaked ThreadLocal across pooled request threads is a real bug.
 
-- [ ] **C1** — `handle(question: String, debug: Boolean = false)`: `debugCapture.reset()` at the very
+- [x] **C1** — `handle(question: String, debug: Boolean = false)`: `debugCapture.reset()` at the very
       top; wrap the whole body so **every** exit path (serviceError branch `:69`, composed return
       `:73-80`, compose-catch `:83` — the **same three** the contracts note enumerates; a router
       failure is **not** a separate exit, it sets `route = RAG` and flows into one of these three)
@@ -225,14 +225,14 @@ correctness-critical wiring** — a leaked ThreadLocal across pooled request thr
       `finalize(response: QueryResponse, debug: Boolean): QueryResponse`. Use `try { ... } finally {
       debugCapture.reset() }` so the thread-local is cleared even on an unexpected throw (no bleed to
       the next request on a reused thread).
-- [ ] **C2** — `finalize()` attaches `response.copy(debug = if (debug) debugCapture.snapshot() else
+- [x] **C2** — `finalize()` attaches `response.copy(debug = if (debug) debugCapture.snapshot() else
       null)`. When `debug=false`, `debug` stays `null` → NON_NULL omits it (Track A3's invariant).
-- [ ] **C3** — capture the QueryService-owned fields into `DebugCapture` at their natural points:
+- [x] **C3** — capture the QueryService-owned fields into `DebugCapture` at their natural points:
       `setProbe(probe.subject, probe.claimType, claims.size)` inside/after `fetchClaims` (`:91-104`);
       `setFallbackFromSqlToRag(true)` in `handleSql` on the `EMPTY_RESULT_ANSWER` RAG fallback (`:144`);
       `setDraftAnswer(draft.answer)` before composition; `setComposerSucceeded(true/false)` in the
       compose `try`/`catch` (`:73-84`).
-- [ ] **C4** — **TDD** extend `QueryServiceTest`: (a) `debug=false` → `response.debug == null` and the
+- [x] **C4** — **TDD** extend `QueryServiceTest`: (a) `debug=false` → `response.debug == null` and the
       answer/route/citations are byte-identical to the pre-change behavior for SQL/RAG/MIXED and the
       serviceError branch; (b) `debug=true` → `response.debug` is populated with the probe fields,
       `fallbackFromSqlToRag`, `composerSucceeded`, `draftAnswer` for a fallback path and a composed
