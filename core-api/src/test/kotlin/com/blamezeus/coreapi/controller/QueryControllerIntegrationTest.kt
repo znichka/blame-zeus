@@ -3,6 +3,7 @@ package com.blamezeus.coreapi.controller
 import com.blamezeus.coreapi.AbstractContainerTest
 import com.blamezeus.coreapi.domain.dto.Citation
 import com.blamezeus.coreapi.domain.dto.ConflictEntry
+import com.blamezeus.coreapi.domain.dto.DebugInfo
 import com.blamezeus.coreapi.domain.dto.QueryRequest
 import com.blamezeus.coreapi.domain.dto.QueryResponse
 import com.blamezeus.coreapi.routing.RouteDecision
@@ -164,5 +165,49 @@ class QueryControllerIntegrationTest : AbstractContainerTest() {
         )
             .andExpect(status().isOk)
             .andExpect(jsonPath("$.serviceError").value(true))
+    }
+
+    // Stage P2 Track D3: proves the controller forwards `request.debug` through to
+    // QueryService.handle and that the wire contract stays byte-for-byte unchanged when absent.
+    @Test
+    fun `POST query with debug true returns a response body containing a debug object`() {
+        val response = QueryResponse(
+            answer = "Zeus rules Olympus.",
+            routeDecision = RouteDecision.RAG,
+            citations = emptyList(),
+            conflicts = emptyList(),
+            sqlGenerated = null,
+            debug = DebugInfo(probeSubject = "Zeus", probeClaimType = "parentage", claimRowCount = 1),
+        )
+        every { queryService.handle("Who is Zeus?", true) } returns response
+
+        mockMvc.perform(
+            post("/api/v1/query")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(QueryRequest("Who is Zeus?", debug = true)))
+        )
+            .andExpect(status().isOk)
+            .andExpect(jsonPath("$.debug").exists())
+            .andExpect(jsonPath("$.debug.probeSubject").value("Zeus"))
+    }
+
+    @Test
+    fun `POST query without a debug field omits the debug key entirely from the response body`() {
+        val response = QueryResponse(
+            answer = "Zeus rules Olympus.",
+            routeDecision = RouteDecision.RAG,
+            citations = emptyList(),
+            conflicts = emptyList(),
+            sqlGenerated = null,
+        )
+        every { queryService.handle("Who is Zeus?") } returns response
+
+        mockMvc.perform(
+            post("/api/v1/query")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(QueryRequest("Who is Zeus?")))
+        )
+            .andExpect(status().isOk)
+            .andExpect(jsonPath("$.debug").doesNotExist())
     }
 }

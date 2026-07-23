@@ -34,7 +34,7 @@ class QueryController(
     fun sources(): List<Source> = sourceRepository.findAll()
 
     @PostMapping("/query")
-    fun query(@RequestBody request: QueryRequest): QueryResponse = queryService.handle(request.question)
+    fun query(@RequestBody request: QueryRequest): QueryResponse = queryService.handle(request.question, request.debug)
 
     // Stage 7 Track F: the one caller of ConflictLookup's subject-only fetch (ADR-007 §5) — an
     // explicit by-entity dev/demo lookup across every claim_type, never wired into the per-query

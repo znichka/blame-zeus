@@ -243,10 +243,10 @@ correctness-critical wiring** — a leaked ThreadLocal across pooled request thr
 
 ## Track D — Controller / request plumbing (needs A's `QueryRequest.debug`)
 
-- [ ] **D1** — `QueryController.query`: `queryService.handle(request.question, request.debug)`.
-- [ ] **D2** — Confirm `WebController`/Thymeleaf (`index.html`) path is untouched — the web UI never
+- [x] **D1** — `QueryController.query`: `queryService.handle(request.question, request.debug)`.
+- [x] **D2** — Confirm `WebController`/Thymeleaf (`index.html`) path is untouched — the web UI never
       sends `debug`, so it defaults to `false` and its response omits the key (no template change).
-- [ ] **D3** — **TDD/manual:** a `POST /api/v1/query {"question": "...", "debug": true}` slice/MockMvc
+- [x] **D3** — **TDD/manual:** a `POST /api/v1/query {"question": "...", "debug": true}` slice/MockMvc
       test asserts the response body contains a `debug` object; a `{"question": "..."}` body asserts
       **no** `debug` key. (Full populated-DebugInfo assertion belongs to the live Track I run.)
 
