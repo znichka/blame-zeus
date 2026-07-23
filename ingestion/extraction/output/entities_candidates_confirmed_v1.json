@@ -13795,5 +13795,26 @@
     "generation": null,
     "domain": null,
     "subtype": null
+  },
+  {
+    "name": "Cecrops (son of Erechtheus)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": "king"
+  },
+  {
+    "name": "Pandion (son of Cecrops)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Pandion (son of Egyptus)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
   }
 ]

@@ -7850,7 +7850,7 @@
   {
     "from_name": "Hephaestine",
     "relation": "parent_of",
-    "to_name": "Pandion",
+    "to_name": "Pandion (son of Egyptus)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -7952,7 +7952,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Pandion",
+    "from_name": "Pandion (son of Egyptus)",
     "relation": "married_to",
     "to_name": "Callidice",
     "is_contested": false,
@@ -18242,7 +18242,7 @@
   {
     "from_name": "Erechtheus",
     "relation": "parent_of",
-    "to_name": "Cecrops",
+    "to_name": "Cecrops (son of Erechtheus)",
     "is_contested": false,
     "passage_ref": "3.14.8-3.15.2",
     "source_id": "apollodorus-bibliotheca"
@@ -18520,7 +18520,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Cecrops",
+    "from_name": "Cecrops (son of Erechtheus)",
     "relation": "married_to",
     "to_name": "Metiadusa",
     "is_contested": false,
@@ -18528,9 +18528,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Cecrops",
+    "from_name": "Cecrops (son of Erechtheus)",
     "relation": "parent_of",
-    "to_name": "Pandion",
+    "to_name": "Pandion (son of Cecrops)",
     "is_contested": false,
     "passage_ref": "3.15.3-3.15.5",
     "source_id": "apollodorus-bibliotheca"
@@ -18538,7 +18538,7 @@
   {
     "from_name": "Metiadusa",
     "relation": "parent_of",
-    "to_name": "Pandion",
+    "to_name": "Pandion (son of Cecrops)",
     "is_contested": false,
     "passage_ref": "3.15.3-3.15.5",
     "source_id": "apollodorus-bibliotheca"
@@ -18552,7 +18552,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Pandion",
+    "from_name": "Pandion (son of Cecrops)",
     "relation": "married_to",
     "to_name": "Pylia",
     "is_contested": false,
@@ -18568,7 +18568,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Pandion",
+    "from_name": "Pandion (son of Cecrops)",
     "relation": "parent_of",
     "to_name": "Pallas",
     "is_contested": false,
@@ -18576,7 +18576,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Pandion",
+    "from_name": "Pandion (son of Cecrops)",
     "relation": "parent_of",
     "to_name": "Nisus",
     "is_contested": false,
@@ -18584,7 +18584,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Pandion",
+    "from_name": "Pandion (son of Cecrops)",
     "relation": "parent_of",
     "to_name": "Lycus",
     "is_contested": false,
@@ -18594,7 +18594,7 @@
   {
     "from_name": "Erechtheus",
     "relation": "parent_of",
-    "to_name": "Cecrops",
+    "to_name": "Cecrops (son of Erechtheus)",
     "is_contested": false,
     "passage_ref": "3.15.3-3.15.5",
     "source_id": "apollodorus-bibliotheca"
@@ -18640,7 +18640,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Pandion",
+    "from_name": "Pandion (son of Cecrops)",
     "relation": "parent_of",
     "to_name": "Nisus",
     "is_contested": false,

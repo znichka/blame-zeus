@@ -459,8 +459,12 @@ that can land anytime.
       split. Cycle confirmed gone via `cycle_check` (candidates mode). **Batched, not yet reseeded**:
       sits alongside DEV-077's `Agastrophus` fix for one future Track I pass (user's explicit
       cost-minimization call — Track I runs once per batch, not once per edit).
-- [ ] **J3b** — `Cecrops ⇄ Pandion ⇄ Erechtheus`: **source-verify first** (two Cecrops / two Pandions
+- [x] **J3b** [DEVIATED - see DEVIATIONS.md #DEV-079] — `Cecrops ⇄ Pandion ⇄ Erechtheus`: **source-verify first** (two Cecrops / two Pandions
       hypothesis) against the corpus; if confirmed, split analogously; if not, defer with a note.
+      **Confirmed and split** — two Cecrops as hypothesized, but **three** Pandions (a wholly
+      unrelated third Pandion from the Danaid myth, `[2.1.5]`, surfaced only by checking every row
+      referencing the name, not just the cycle's own 3 edges). Cycle confirmed gone (candidates
+      mode). **Batched, not yet reseeded** — sits with DEV-077/DEV-078 for one future Track I pass.
 - [ ] **J3c** — `Astyoche ⇄ Tros ⇄ Ilus ⇄ Laomedon`: **trace it** (not yet traced) — identify whether
       reversed edge or conflation, fix or defer-with-note accordingly. **[DEVIATED - see
       DEVIATIONS.md #DEV-076/#DEV-077] — this cycle no longer appears in `cycle_check --db`** as of
