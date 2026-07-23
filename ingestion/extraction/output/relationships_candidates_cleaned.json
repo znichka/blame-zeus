@@ -30761,14 +30761,6 @@
   },
   {
     "from_name": "Agastrophus",
-    "relation": "parent_of",
-    "to_name": "Paeëon",
-    "is_contested": false,
-    "passage_ref": "11.336-11.367",
-    "source_id": "homer-iliad"
-  },
-  {
-    "from_name": "Agastrophus",
     "relation": "killed_by",
     "to_name": "Diomedes",
     "is_contested": false,

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Stage P2 Track F [DEVIATED - see DEVIATIONS.md #DEV-065]: the ONLY sanctioned way to re-seed
-# entities/relationships/variant_claims/myths/entity_aliases from V10-V16 (e.g. after a
+# entities/relationships/variant_claims/myths/entity_aliases from V10-V17 (e.g. after a
 # reversed-edge fix at the candidate-JSON layer, docs/TODO-phase2-stage-p2.md Track I) without
 # dropping `narrative_chunks` — its pgvector embeddings cost real OpenAI API calls to regenerate.
 # NEVER use `docker compose down -v` for this: it drops the whole volume, chunks included.
@@ -16,7 +16,7 @@
 #   ALLOW_RESEED=1 scripts/reseed-local.sh        # same, via env var instead of a flag
 #
 # What it does: drop+truncate the V10-V14 seed tables (never narrative_chunks) -> delete
-# V10-V16 from flyway_schema_history -> start core-api so Flyway re-applies V10-V16 (+ anything
+# V10-V17 from flyway_schema_history -> start core-api so Flyway re-applies V10-V17 (+ anything
 # newer) and the afterMigrate callback re-grants zeus_app -> print a row-count sanity check.
 
 set -euo pipefail
@@ -47,9 +47,14 @@ if [ "${ALLOW_RESEED:-0}" = "1" ]; then
 fi
 
 # --- F2-F4: the reset SQL, defined once so --check and the real run share one source of truth ---
-DROP_ALIASES_SQL="DROP TABLE entity_aliases;"
+# relation_aliases (V17, Track F/ADR-019/DEV-072) joined the drop/clear lists here: without it,
+# clearing 10-16's history while 17 stays applied leaves Flyway seeing an out-of-order state
+# (a higher version already applied while lower versions are pending) and it refuses to migrate
+# (`Detected resolved migration not applied to database: 10` etc.) -- discovered live during the
+# Track I first pass landing relation_aliases (see docs/DEVIATIONS.md).
+DROP_ALIASES_SQL="DROP TABLE IF EXISTS entity_aliases; DROP TABLE IF EXISTS relation_aliases;"
 TRUNCATE_SQL="TRUNCATE myth_participants, variant_claims, relationships, myths, entities CASCADE;"
-CLEAR_HISTORY_SQL="DELETE FROM flyway_schema_history WHERE version IN ('10','11','12','13','14','15','16');"
+CLEAR_HISTORY_SQL="DELETE FROM flyway_schema_history WHERE version IN ('10','11','12','13','14','15','16','17');"
 
 if [ "$CHECK_ONLY" = true ]; then
   echo "==> --check: printing the reset steps, nothing will be executed"
@@ -59,7 +64,7 @@ if [ "$CHECK_ONLY" = true ]; then
   echo "     $TRUNCATE_SQL"
   echo "     $CLEAR_HISTORY_SQL"
   echo "   narrative_chunks is NOT touched (no entity FK; embeddings preserved)."
-  echo "2) Start core-api -- Flyway re-applies V10-V16 (+ anything newer); afterMigrate re-grants zeus_app."
+  echo "2) Start core-api -- Flyway re-applies V10-V17 (+ anything newer); afterMigrate re-grants zeus_app."
   echo "3) Print row counts for entities, relationships, variant_claims, narrative_chunks."
   exit 0
 fi
@@ -132,12 +137,12 @@ echo "    $TRUNCATE_SQL"
 echo "    $CLEAR_HISTORY_SQL"
 "${PSQL[@]}" -c "$DROP_ALIASES_SQL" -c "$TRUNCATE_SQL" -c "$CLEAR_HISTORY_SQL"
 
-# --- F5: restart the app so Flyway re-applies V10-V16 ---
+# --- F5: restart the app so Flyway re-applies V10-V17 ---
 BOOT_LOG="$REPO_ROOT/core-api/build/reseed-bootrun.log"
 mkdir -p "$(dirname "$BOOT_LOG")"
 : > "$BOOT_LOG"
 
-echo "==> Starting core-api (./gradlew :core-api:bootRun) to re-apply V10-V16"
+echo "==> Starting core-api (./gradlew :core-api:bootRun) to re-apply V10-V17"
 nohup ./gradlew :core-api:bootRun >"$BOOT_LOG" 2>&1 &
 BOOT_PID=$!
 

@@ -329,14 +329,20 @@ hardcoded in code/JSON). Build the code against a **stub map** immediately; fill
 
 ## Track G — `SchemaIntrospector` shrunk-vocabulary confirmation (needs F applied + reseed)
 
-- [ ] **G1** — after V17 + regenerated V11 are reseeded (via Track I), query the live distinct
+> ⚠️ [DEVIATED - see DEVIATIONS.md #DEV-076] — verified during Track I's first pass, as designed
+> (G needs I's reseed, not the reverse). 124 → 116 distinct relations; 8 → 0 synonym/inverse
+> candidates live. G2 verified indirectly (not a live debug-endpoint probe): the 3-run eval in the
+> same DEV-076 pass exercised `TextToSqlAgent` against this exact restarted server, so its
+> SQL-generation prompt necessarily used the post-reseed cached vocabulary already confirmed by G1.
+
+- [x] **G1** [DEVIATED - see DEVIATIONS.md #DEV-076] — after V17 + regenerated V11 are reseeded (via Track I), query the live distinct
       `relation` vocabulary and confirm it **shrank** to canonical + genuine long-tail (synonym/inverse
       labels gone). This is the ADR-019 net-effect acceptance.
-- [ ] **G2** — confirm `SchemaIntrospector` (startup `information_schema` + value-vocabulary cache)
+- [x] **G2** [DEVIATED - see DEVIATIONS.md #DEV-076] — confirm `SchemaIntrospector` (startup `information_schema` + value-vocabulary cache)
       **reflects** the shrunk set in the `TextToSqlAgent` system prompt (the DEV-041 frequency-ordered
       channel). No code change expected — this is a **verification**; if the vocabulary is still
       fragmented, that's a Track F bug, not a new task here.
-- [ ] **G3** — record the before/after distinct-label counts in the P3 results/DEV note (evidence the
+- [x] **G3** [DEVIATED - see DEVIATIONS.md #DEV-076] — record the before/after distinct-label counts in the P3 results/DEV note (evidence the
       vocabulary improved), and confirm the DATA/MIXED eval delta in Track I is consistent with it.
 
 ---
@@ -361,29 +367,47 @@ hardcoded in code/JSON). Build the code against a **stub map** immediately; fill
 
 ## Track I — Fix-loop integration gate (SERIAL — needs A–F merged + live stack)
 
+> ⚠️ [DEVIATED - see DEVIATIONS.md #DEV-076] — first pass (F/relation_aliases landing) complete:
+> I1–I6 done; I7 (commit) deliberately not run by the assistant — pending an explicit decision,
+> per this project's standing "never commit without being asked" convention. Along the way: fixed
+> a Flyway out-of-order bug in `scripts/reseed-local.sh` (it predated V17 and only knew about
+> V10–V16), and a staleness bug in A2 (`drop_accounting.py` had hardcoded "no relation_alias
+> normalization", now stale since V17 is genuinely live). **A live cycle count really did go 3→4**
+> in A3 (exactly the scenario I1's own note below anticipated) — `Creon ⇄
+> Menoeceus` and `Agastrophus ⇄ Paeëon`, both newly-visible because normalization unified
+> `child_of`/`son_of` into `parent_of` for the first time; the pre-existing `Astyoche ⇄ Tros ⇄ Ilus
+> ⇄ Laomedon` cycle disappeared as a side effect. Logged as a new Track J lead, not fixed in this
+> pass (never two backlogs in one reseed).
+
 The standing per-batch loop. **No candidate edit reaches a commit except through this cycle.** Run it
 once for the F/relation_aliases landing, then once per J backlog batch. **G and H are not preconditions
 for I:** Track G is a *verification performed during/after* I's first (F/`relation_aliases`) pass —
 it needs I's reseed, not the reverse (avoiding the G↔I circular dependency) — and Track H is pure prose
 that can land anytime.
 
-- [ ] **I1** — `python -m audit` (candidates + db) on the **current** tree → capture the baseline
+- [x] **I1** [DEVIATED - see DEVIATIONS.md #DEV-076] — `python -m audit` (candidates + db) on the **current** tree → capture the baseline
       findings/report as the starting point (expect: the 29 dups, the 3 known DEV-068 cycles, drop-accounting
       residual, taxonomy proposal — an unexpected 4th cycle is itself a finding to trace).
-- [ ] **I2** — apply the batch's candidate-JSON edits (a single backlog slice — see Track J; never two
-      backlogs in one reseed).
-- [ ] **I3** — `python -m seedgen --strict` → regenerates V10/V11/V12. **V17 is NOT seedgen-generated** —
+- [x] **I2** [DEVIATED - see DEVIATIONS.md #DEV-076] — apply the batch's candidate-JSON edits (a single backlog slice — see Track J; never two
+      backlogs in one reseed). **No-op for this batch** — the F/relation_aliases landing needs no candidate edits.
+- [x] **I3** [DEVIATED - see DEVIATIONS.md #DEV-076] — `python -m seedgen --strict` → regenerates V10/V11/V12. **V17 is NOT seedgen-generated** —
       it is a hand-authored DDL+seed migration (F1) whose rows come from D3, and `relation_aliases` is
       seedgen's *input* (`load_relation_alias_map`, read from the live DB), never its output. For the F
       batch the V17 file is applied by `reseed-local.sh` (I4); its rows change only via a manual edit to
       the V17 file (or a `V17_1` follow-up once shared), exactly as `claim_type_aliases` (V8_2) works.
       `--strict` must pass (referential integrity: every `variant_claims` subject + name-based subquery
       still resolves after any entity rename/split — the `§8` entity-merge-fallout guard).
-- [ ] **I4** — `scripts/reseed-local.sh` (local-only) → re-applies without dropping `narrative_chunks`
-      embeddings. **Never `down -v`.**
-- [ ] **I5** — `python -m audit` again → **must be clean or every remaining finding explicitly
-      waived** (Track A5r). This is the pre-commit gate.
-- [ ] **I6** — `python -m runner --runs 3 --label p3-<batch>` → `python -m compare.py <p2-accepted>
+- [x] **I4** [DEVIATED - see DEVIATIONS.md #DEV-076] — `scripts/reseed-local.sh` (local-only) → re-applies without dropping `narrative_chunks`
+      embeddings. **Never `down -v`.** Required a **two-reseed sequence** for this specific batch
+      (reseed → `seedgen --strict` (now able to read the live `relation_aliases`) → reseed again) —
+      a chicken-and-egg specific to landing a *new* seedgen-input table for the first time; ordinary
+      Track J batches (no new input table) will only need one reseed per pass.
+- [x] **I5** [DEVIATED - see DEVIATIONS.md #DEV-076] — `python -m audit` again → **must be clean or every remaining finding explicitly
+      waived** (Track A5r). This is the pre-commit gate. **Not fully clean**: A5 clean; A1/A2/A4
+      unchanged from I1 (pre-existing Track J backlog); A3 went 3→4 (see banner above) — none of
+      these are waived yet, so I7 (commit) is correctly gated pending Track J or explicit waivers.
+      This is expected for the *first* Track I pass (which only lands F, not any Track J batch).
+- [x] **I6** [DEVIATED - see DEVIATIONS.md #DEV-076] — `python -m runner --runs 3 --label p3-<batch>` → `python -m compare.py <p2-accepted>
       <p3-batch>`. Require **DATA/MIXED ≥ baseline and zero stable PASS→FAIL** (`§8`
       flakiness-vs-regression: never act on a single-run delta). A regression → triage
       **data-gap / pipeline-bug / eval-bug**, fix or **revert the batch**.
@@ -420,10 +444,26 @@ that can land anytime.
 - [ ] **J3b** — `Cecrops ⇄ Pandion ⇄ Erechtheus`: **source-verify first** (two Cecrops / two Pandions
       hypothesis) against the corpus; if confirmed, split analogously; if not, defer with a note.
 - [ ] **J3c** — `Astyoche ⇄ Tros ⇄ Ilus ⇄ Laomedon`: **trace it** (not yet traced) — identify whether
-      reversed edge or conflation, fix or defer-with-note accordingly.
+      reversed edge or conflation, fix or defer-with-note accordingly. **[DEVIATED - see
+      DEVIATIONS.md #DEV-076/#DEV-077] — this cycle no longer appears in `cycle_check --db`** as of
+      the Track I F-landing pass (3→4 cycles, but a *different* 4: this one disappeared, replaced by
+      the 2 new J3e leads below). Not yet root-caused **why** it disappeared (a `relation_aliases`
+      normalization side effect coincidentally breaking it, vs. something else) — re-verify before
+      assuming it's actually fixed; don't just take the absence at face value.
 - [ ] **J3d** — after each fix: `cycle_check --db` (A3) must show the cycle gone; the batch goes through
       Track I. Target: **A3 reports the `parent_of` graph fully clean** (or remaining cycles waived
       with a written reason).
+- [ ] **J3e** — [DEVIATED - see DEVIATIONS.md #DEV-077] **`Creon ⇄ Menoeceus`** (surfaced by Track I's
+      F-landing pass, DEV-076 — newly visible once `child_of`/`son_of` normalized into `parent_of`):
+      **source-verified as a namesake collision, not a reversed edge** — `apollodorus_bibliotheca_frazer1921.txt`
+      `[3.5.8]` ("Creon, son of Menoeceus, succeeded to the kingdom") names Menoeceus **the elder**,
+      Creon's father; `[3.6.7]` ("Menoeceus, son of Creon, would offer himself... slew himself before
+      the gates") names Menoeceus **the younger**, Creon's son who sacrifices himself in the Seven
+      Against Thebes war. Both edges are individually correct; extraction merged two different people
+      into one entity. Needs an entity **split** (`Menoeceus (elder)` / `Menoeceus (younger)`,
+      DEV-068 pattern) — **not fixed yet**, filed here per user direction (2026-07-23): fix the
+      clean, source-verified reversed-edge lead (`Agastrophus ⇄ Paeëon`, DEV-077) now, defer this
+      conflation for its own batch rather than force it same-session (the DEV-068 precedent exactly).
 
 ### J4 — DEV-069: Q9 Zeus→Chaos lineage gap (may exceed P3 scope)
 - [ ] **J4a** — decide the model: **(a)** restore a second-parent `Sky (Ouranos) parent_of Cronus`

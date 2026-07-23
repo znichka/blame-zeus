@@ -23,8 +23,9 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from extraction.claim_type_normalizer import load_alias_map
+from extraction.relation_normalizer import load_relation_alias_map
 from seedgen.canonical_edge import resolve_canonical_edges
-from seedgen.relationships_gen import _filter_and_dedup
+from seedgen.relationships_gen import _apply_relation_aliases, _filter_and_dedup
 
 from audit.contract import CheckResult, Finding
 
@@ -52,7 +53,10 @@ class DropAccounting:
 
 
 def compute_drop_accounting(
-    relationships: list[dict], entity_names: set[str], claim_type_alias_map: dict[str, str] | None = None
+    relationships: list[dict],
+    entity_names: set[str],
+    claim_type_alias_map: dict[str, str] | None = None,
+    relation_alias_map: dict[str, tuple[str, bool]] | None = None,
 ) -> DropAccounting:
     """Pure core -- no I/O. `claim_type_alias_map` is accepted for parity with
     `resolve_canonical_edges`'s real signature, but its *content* never changes
@@ -60,12 +64,18 @@ def compute_drop_accounting(
     `_RELATION_TO_CLAIM` only ever groups the fixed relation strings `parent_of`/
     `married_to`/`killed_by`, so every row of a given literal relation always
     lands in the same group regardless of what claim_type label the map assigns
-    it -- passing `{}` or the real live map yields identical bucket counts. No
-    relation_aliases (Track F) normalization is applied here: the currently-seeded
-    `V11` was generated before that mechanism existed (it hasn't been applied to
-    any DB yet), so accounting for "what's actually seeded today" must not apply a
-    normalization step that never ran."""
+    it -- passing `{}` or the real live map yields identical bucket counts.
+
+    `relation_alias_map` (Track F, DEV-072/DEV-076) **does** change the count --
+    applied via the real `_apply_relation_aliases` first, exactly mirroring
+    `build_relationship_rows`'s own order (normalize before filter/dedup), so
+    this accounting matches what `seedgen --strict` actually produces once
+    `relation_aliases` (V17) is live. Pass `{}` (the default) to approximate "no
+    Track F normalization" -- e.g. when no DB connection is available to load the
+    live map (candidates-only mode has no static-file source of truth for
+    `relation_aliases`, mirroring `claim_type_aliases`' own DB-only nature)."""
     claim_type_alias_map = claim_type_alias_map or {}
+    relationships = _apply_relation_aliases(relationships, relation_alias_map or {})
     total = len(relationships)
 
     unknown_name_rows = [
@@ -167,7 +177,8 @@ def run(candidates_dir: Path | None, db_conn: object | None) -> CheckResult:
     entity_names = {e["name"] for e in entities}
 
     claim_type_alias_map = load_alias_map(db_conn) if db_conn is not None else {}
-    accounting = compute_drop_accounting(relationships, entity_names, claim_type_alias_map)
+    relation_alias_map = load_relation_alias_map(db_conn) if db_conn is not None else {}
+    accounting = compute_drop_accounting(relationships, entity_names, claim_type_alias_map, relation_alias_map)
 
     findings = _accounting_to_findings(accounting, "candidates")
     summary = (

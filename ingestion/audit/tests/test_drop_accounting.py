@@ -47,6 +47,35 @@ def test_a_name_missing_on_both_sides_of_a_row_counts_for_each_side():
     assert dict(accounting.unknown_names) == {"Ghost1": 1, "Ghost2": 1}
 
 
+def test_relation_alias_map_normalizes_before_bucketing_and_can_collapse_dedup():
+    # Two rows that look distinct pre-normalization (different literal relation
+    # strings) collapse into one edge post-normalization (son_of -> parent_of,
+    # from/to swapped) -- exactly Track F's "counts stop fragmenting" effect,
+    # verified live during Track I's landing pass (V11 2494 -> 2369 rows).
+    entity_names = {"Zeus", "Athena"}
+    relationships = [
+        _rel("Zeus", "Athena", "hesiod-theogony", relation="parent_of"),
+        _rel("Athena", "Zeus", "hesiod-theogony", relation="son_of"),
+    ]
+    relation_alias_map = {"son_of": ("parent_of", True)}
+
+    accounting = compute_drop_accounting(relationships, entity_names, relation_alias_map=relation_alias_map)
+
+    assert accounting.total == 2
+    assert accounting.exact_dup_count == 1  # both rows now identical post-swap -> one dedupes away
+    assert accounting.seeded_count == 1
+
+
+def test_no_relation_alias_map_is_a_no_op():
+    entity_names = {"Zeus", "Athena"}
+    relationships = [_rel("Athena", "Zeus", "hesiod-theogony", relation="son_of")]
+
+    accounting = compute_drop_accounting(relationships, entity_names)
+
+    assert accounting.seeded_count == 1
+    assert accounting.unknown_name_count == 0
+
+
 def test_clean_input_with_no_drops_reconciles_with_zero_residual():
     entity_names = {"Zeus", "Athena"}
     relationships = [_rel("Zeus", "Athena", "hesiod-theogony")]
