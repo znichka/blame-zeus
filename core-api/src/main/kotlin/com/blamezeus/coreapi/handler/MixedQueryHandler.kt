@@ -6,6 +6,7 @@ import com.blamezeus.coreapi.config.SchemaIntrospector
 import com.blamezeus.coreapi.domain.dto.QueryResponse
 import com.blamezeus.coreapi.routing.RouteDecision
 import com.blamezeus.coreapi.safety.SqlSafetyValidator
+import com.blamezeus.coreapi.service.DebugCapture
 import org.slf4j.LoggerFactory
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Component
@@ -21,6 +22,7 @@ class MixedQueryHandler(
     private val validator: SqlSafetyValidator,
     private val jdbcTemplate: JdbcTemplate,
     private val ragAgent: RagAgent,
+    private val debugCapture: DebugCapture,
 ) {
 
     fun handle(question: String): QueryResponse {
@@ -32,6 +34,9 @@ class MixedQueryHandler(
         if (rows.isEmpty()) {
             log.info("Empty SQL filter for '{}' — injecting a no-matching-rows note and continuing to RAG", question)
         }
+        // Q12's SQL step (Stage P2 Track B2) — the origin of its serviceError when it fails.
+        debugCapture.setFirstAttemptSql(sql)
+        debugCapture.setSqlRows(rows.take(DebugCapture.SQL_ROWS_CAP))
 
         val augmentedQuestion = buildAugmentedQuestion(question, rows)
         val ragResponse = ragAgent.answer(augmentedQuestion)

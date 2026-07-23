@@ -15,9 +15,9 @@ data class DebugInfo(
     val composerSucceeded: Boolean = false,
     val draftAnswer: String? = null,
 ) {
-    // `id` is nullable: NarrativeChunkContentRetriever's RETRIEVAL_SQL does not select `nc.id`
-    // today. Track B either adds it to the query + Row mapper, or leaves this null permanently —
-    // whichever Track B decides, this stays the single source of truth for the choice (A1/B3).
+    // Stage P2 Track B3 decision: `nc.id` was added to RETRIEVAL_SQL + the Row mapper, so `id` is
+    // always populated by NarrativeChunkContentRetriever. Stays nullable for defensive
+    // construction elsewhere (e.g. a partially-filled snapshot before any retrieval has run).
     data class ChunkRef(
         val id: Int? = null,
         val sourceId: String? = null,

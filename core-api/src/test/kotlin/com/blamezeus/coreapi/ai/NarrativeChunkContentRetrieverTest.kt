@@ -1,6 +1,7 @@
 package com.blamezeus.coreapi.ai
 
 import com.blamezeus.coreapi.AbstractContainerTest
+import com.blamezeus.coreapi.service.DebugCapture
 import com.pgvector.PGvector
 import dev.langchain4j.rag.content.ContentMetadata
 import dev.langchain4j.rag.query.Query
@@ -46,7 +47,9 @@ class NarrativeChunkContentRetrieverTest : AbstractContainerTest() {
         insertChunk("row7 content", "ovid-metamorphoses", "7.7", vectorAtScore(0.70)) // 6th distinct ref clearing minScore -> cut by cap
         insertChunk("row8 content", "ovid-metamorphoses", "6.6", vectorAtScore(0.55)) // below minScore -> excluded
 
-        val retriever = NarrativeChunkContentRetriever(jdbcTemplate, fixedEmbeddingModel(queryVector), maxResults = 5, minScore = 0.65)
+        val retriever = NarrativeChunkContentRetriever(
+            jdbcTemplate, fixedEmbeddingModel(queryVector), maxResults = 5, minScore = 0.65, debugCapture = DebugCapture(),
+        )
 
         val results = retriever.retrieve(Query.from("what happened"))
 
@@ -61,7 +64,9 @@ class NarrativeChunkContentRetrieverTest : AbstractContainerTest() {
     fun `each returned Content carries source_id, author, work, stance, and passage_ref in metadata`() {
         insertChunk("row content", "ovid-metamorphoses", "6.129-6.145", vectorAtScore(1.00))
 
-        val retriever = NarrativeChunkContentRetriever(jdbcTemplate, fixedEmbeddingModel(queryVector), maxResults = 5, minScore = 0.65)
+        val retriever = NarrativeChunkContentRetriever(
+            jdbcTemplate, fixedEmbeddingModel(queryVector), maxResults = 5, minScore = 0.65, debugCapture = DebugCapture(),
+        )
 
         val result = retriever.retrieve(Query.from("what happened")).single()
 
@@ -74,10 +79,30 @@ class NarrativeChunkContentRetrieverTest : AbstractContainerTest() {
     }
 
     @Test
+    fun `captures retrievedChunks into DebugCapture with id, source_id, passage_ref and score (Stage P2 Track B3)`() {
+        insertChunk("row content", "ovid-metamorphoses", "6.129-6.145", vectorAtScore(1.00))
+        val debugCapture = DebugCapture()
+        val retriever = NarrativeChunkContentRetriever(
+            jdbcTemplate, fixedEmbeddingModel(queryVector), maxResults = 5, minScore = 0.65, debugCapture = debugCapture,
+        )
+
+        retriever.retrieve(Query.from("what happened"))
+
+        val chunks = debugCapture.snapshot().retrievedChunks
+        assertThat(chunks).hasSize(1)
+        assertThat(chunks[0].id).isNotNull()
+        assertThat(chunks[0].sourceId).isEqualTo("ovid-metamorphoses")
+        assertThat(chunks[0].passageRef).isEqualTo("6.129-6.145")
+        assertThat(chunks[0].score).isCloseTo(1.00, org.assertj.core.data.Offset.offset(1e-3))
+    }
+
+    @Test
     fun `returns an empty list when nothing clears minScore`() {
         insertChunk("orthogonal content", "ovid-metamorphoses", "9.9", vectorAtScore(0.0))
 
-        val retriever = NarrativeChunkContentRetriever(jdbcTemplate, fixedEmbeddingModel(queryVector), maxResults = 5, minScore = 0.65)
+        val retriever = NarrativeChunkContentRetriever(
+            jdbcTemplate, fixedEmbeddingModel(queryVector), maxResults = 5, minScore = 0.65, debugCapture = DebugCapture(),
+        )
 
         val results = retriever.retrieve(Query.from("unrelated question"))
 

@@ -5,6 +5,7 @@ import com.blamezeus.coreapi.config.SchemaIntrospector
 import com.blamezeus.coreapi.domain.dto.Citation
 import com.blamezeus.coreapi.routing.RouteDecision
 import com.blamezeus.coreapi.safety.SqlSafetyValidator
+import com.blamezeus.coreapi.service.DebugCapture
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -20,8 +21,9 @@ class SqlQueryHandlerTest {
     private val schemaIntrospector = mockk<SchemaIntrospector>()
     private val validator = mockk<SqlSafetyValidator>()
     private val jdbcTemplate = mockk<JdbcTemplate>()
+    private val debugCapture = DebugCapture()
 
-    private val handler = SqlQueryHandler(textToSqlAgent, schemaIntrospector, validator, jdbcTemplate)
+    private val handler = SqlQueryHandler(textToSqlAgent, schemaIntrospector, validator, jdbcTemplate, debugCapture)
 
     @Test
     fun `validates the exact generated SQL before executing it`() {
@@ -248,6 +250,59 @@ class SqlQueryHandlerTest {
         val response = handler.handle("question")
 
         assertThat(response.answer).isNotBlank()
+    }
+
+    @Test
+    fun `captures firstAttemptSql and sqlRows into DebugCapture on a normal SQL response (Stage P2 Track B1)`() {
+        every { schemaIntrospector.get() } returns "schema"
+        every { textToSqlAgent.generateSql(any(), any()) } returns "SELECT name FROM entities"
+        every { validator.validate(any()) } returns Unit
+        every { jdbcTemplate.queryForList("SELECT name FROM entities") } returns
+            listOf(mapOf("name" to "Zeus"), mapOf("name" to "Hera"))
+
+        val response = handler.handle("question")
+
+        val snapshot = debugCapture.snapshot()
+        assertThat(snapshot.firstAttemptSql).isEqualTo("SELECT name FROM entities")
+        assertThat(snapshot.sqlRows).containsExactly(mapOf("name" to "Zeus"), mapOf("name" to "Hera"))
+        // No behavior change: the response is unaffected by whether DebugCapture was populated.
+        assertThat(response.answer).contains("Zeus").contains("Hera")
+    }
+
+    @Test
+    fun `captures firstAttemptSql into DebugCapture even on the EMPTY_RESULT_ANSWER early return`() {
+        every { schemaIntrospector.get() } returns "schema"
+        every { textToSqlAgent.generateSql(any(), any()) } returns "SELECT name FROM entities WHERE name = 'Nobody'"
+        every { validator.validate(any()) } returns Unit
+        every { jdbcTemplate.queryForList(any<String>()) } returns emptyList()
+
+        handler.handle("question")
+
+        val snapshot = debugCapture.snapshot()
+        assertThat(snapshot.firstAttemptSql).isEqualTo("SELECT name FROM entities WHERE name = 'Nobody'")
+        assertThat(snapshot.sqlRows).isEmpty()
+    }
+
+    @Test
+    fun `firstAttemptSql captured is the pre-retry SQL, not the DEV-057 attribution retry`() {
+        every { schemaIntrospector.get() } returns "schema"
+        val firstSql = "SELECT child.name FROM relationships r JOIN entities child ON child.id = r.to_id WHERE r.relation = 'parent_of'"
+        every { textToSqlAgent.generateSql("schema", "Which Olympians are children of Cronus?") } returns firstSql
+        val retrySql =
+            "SELECT child.name AS name, s.author AS author, s.work AS work, s.passage_ref AS passage_ref, s.stance AS stance " +
+                "FROM relationships r JOIN entities child ON child.id = r.to_id JOIN sources s ON s.id = r.source_id"
+        every {
+            textToSqlAgent.generateSqlWithAttribution("schema", "Which Olympians are children of Cronus?", firstSql)
+        } returns retrySql
+        every { validator.validate(any()) } returns Unit
+        every { jdbcTemplate.queryForList(firstSql) } returns listOf(mapOf("name" to "Zeus"))
+        every { jdbcTemplate.queryForList(retrySql) } returns listOf(
+            mapOf("name" to "Zeus", "author" to "Hesiod", "work" to "Theogony", "passage_ref" to "453", "stance" to "cosmological"),
+        )
+
+        handler.handle("Which Olympians are children of Cronus?")
+
+        assertThat(debugCapture.snapshot().firstAttemptSql).isEqualTo(firstSql)
     }
 
     @Test

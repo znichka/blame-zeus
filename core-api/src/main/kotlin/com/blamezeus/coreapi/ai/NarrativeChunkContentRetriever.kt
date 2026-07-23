@@ -1,5 +1,7 @@
 package com.blamezeus.coreapi.ai
 
+import com.blamezeus.coreapi.domain.dto.DebugInfo
+import com.blamezeus.coreapi.service.DebugCapture
 import com.pgvector.PGvector
 import dev.langchain4j.data.document.Metadata
 import dev.langchain4j.data.segment.TextSegment
@@ -42,6 +44,7 @@ class NarrativeChunkContentRetriever(
     private val embeddingModel: EmbeddingModel,
     @Value("\${app.rag.max-results:5}") private val maxResults: Int,
     @Value("\${app.rag.min-score:0.65}") private val minScore: Double,
+    private val debugCapture: DebugCapture,
 ) : ContentRetriever {
 
     override fun retrieve(query: Query): List<Content> {
@@ -51,6 +54,7 @@ class NarrativeChunkContentRetriever(
             RETRIEVAL_SQL,
             { rs, _ ->
                 Row(
+                    id = rs.getInt("id"),
                     content = rs.getString("content"),
                     sourceId = rs.getString("source_id"),
                     passageRef = rs.getString("passage_ref"),
@@ -65,6 +69,12 @@ class NarrativeChunkContentRetriever(
         )
 
         val results = dedupeByPassageRef(rows.filter { it.score >= minScore }).take(maxResults)
+
+        // Stage P2 Track B3: written unconditionally (cheap map builds) — QueryService only
+        // *reads* this via DebugCapture.snapshot() when the request actually asked for debug.
+        debugCapture.setRetrievedChunks(
+            results.map { DebugInfo.ChunkRef(id = it.id, sourceId = it.sourceId, passageRef = it.passageRef, score = it.score) }
+        )
 
         log.debug(
             "RAG retrieval for '{}': {} chunks, top score {}, passage_refs {}",
@@ -85,6 +95,7 @@ class NarrativeChunkContentRetriever(
     }
 
     private data class Row(
+        val id: Int,
         val content: String,
         val sourceId: String,
         val passageRef: String?,
@@ -117,9 +128,9 @@ class NarrativeChunkContentRetriever(
         // (ascending = most similar first) computes the halfvec cast once and reuses it for both
         // ordering and the returned score, rather than repeating the cast expression twice.
         private val RETRIEVAL_SQL = """
-            SELECT content, source_id, passage_ref, author, work, stance, 1 - distance AS score
+            SELECT id, content, source_id, passage_ref, author, work, stance, 1 - distance AS score
             FROM (
-                SELECT nc.content, nc.source_id, nc.passage_ref, s.author, s.work, s.stance,
+                SELECT nc.id, nc.content, nc.source_id, nc.passage_ref, s.author, s.work, s.stance,
                        nc.embedding::halfvec(3072) <=> (?::vector(3072))::halfvec(3072) AS distance
                 FROM narrative_chunks nc
                 JOIN sources s ON s.id = nc.source_id

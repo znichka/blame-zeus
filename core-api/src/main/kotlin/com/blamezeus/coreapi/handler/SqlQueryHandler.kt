@@ -6,6 +6,7 @@ import com.blamezeus.coreapi.domain.dto.Citation
 import com.blamezeus.coreapi.domain.dto.QueryResponse
 import com.blamezeus.coreapi.routing.RouteDecision
 import com.blamezeus.coreapi.safety.SqlSafetyValidator
+import com.blamezeus.coreapi.service.DebugCapture
 import org.slf4j.LoggerFactory
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Component
@@ -16,6 +17,7 @@ class SqlQueryHandler(
     private val schemaIntrospector: SchemaIntrospector,
     private val validator: SqlSafetyValidator,
     private val jdbcTemplate: JdbcTemplate,
+    private val debugCapture: DebugCapture,
 ) {
 
     fun handle(question: String): QueryResponse {
@@ -25,6 +27,8 @@ class SqlQueryHandler(
             // (ADR-005 §Decision.3, DEV-026) — this handler stays decoupled from RagQueryHandler;
             // QueryService is the only class that dispatches across handlers.
             log.info("Empty/aggregate-zero SQL result for '{}' — QueryService will fall back to RAG", question)
+            debugCapture.setFirstAttemptSql(sql)
+            debugCapture.setSqlRows(rows.take(DebugCapture.SQL_ROWS_CAP))
             return QueryResponse(
                 answer = EMPTY_RESULT_ANSWER,
                 routeDecision = RouteDecision.SQL,
@@ -58,6 +62,10 @@ class SqlQueryHandler(
             }
         }
 
+        // `sql` (not `finalSql`) is captured here: the DEV-057 retry never reassigns `sql`, so it
+        // is still the immutable first attempt at this point — this is `firstAttemptSql`.
+        debugCapture.setFirstAttemptSql(sql)
+        debugCapture.setSqlRows(finalRows.take(DebugCapture.SQL_ROWS_CAP))
         return QueryResponse(
             answer = formatAnswer(finalRows),
             routeDecision = RouteDecision.SQL,

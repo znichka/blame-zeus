@@ -83,4 +83,10 @@ class DebugCapture {
     fun setDraftAnswer(answer: String?) {
         state.get().draftAnswer = answer
     }
+
+    companion object {
+        // Stage P2 Track B1/B2: shared cap so neither SqlQueryHandler nor MixedQueryHandler ever
+        // stores more than a bounded preview of a SQL result in the debug surface.
+        const val SQL_ROWS_CAP = 25
+    }
 }

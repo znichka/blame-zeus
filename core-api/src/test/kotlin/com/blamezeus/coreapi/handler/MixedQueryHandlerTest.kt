@@ -7,6 +7,7 @@ import com.blamezeus.coreapi.domain.dto.RagResponse
 import com.blamezeus.coreapi.ai.TextToSqlAgent
 import com.blamezeus.coreapi.routing.RouteDecision
 import com.blamezeus.coreapi.safety.SqlSafetyValidator
+import com.blamezeus.coreapi.service.DebugCapture
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -23,8 +24,9 @@ class MixedQueryHandlerTest {
     private val validator = mockk<SqlSafetyValidator>()
     private val jdbcTemplate = mockk<JdbcTemplate>()
     private val ragAgent = mockk<RagAgent>()
+    private val debugCapture = DebugCapture()
 
-    private val handler = MixedQueryHandler(textToSqlAgent, schemaIntrospector, validator, jdbcTemplate, ragAgent)
+    private val handler = MixedQueryHandler(textToSqlAgent, schemaIntrospector, validator, jdbcTemplate, ragAgent, debugCapture)
 
     @Test
     fun `injects SQL row values and the original question into the augmented string passed to RagAgent`() {
@@ -115,6 +117,24 @@ class MixedQueryHandlerTest {
 
         verify(exactly = 1) { validator.validate("SELECT name FROM entities") }
         assertThat(response.sqlGenerated).isEqualTo("SELECT name FROM entities")
+    }
+
+    @Test
+    fun `captures firstAttemptSql and sqlRows into DebugCapture -- this is Q12's SQL step (Stage P2 Track B2)`() {
+        every { schemaIntrospector.get() } returns "schema"
+        every { textToSqlAgent.generateSql(any(), any()) } returns "SELECT name FROM entities WHERE type = 'hero'"
+        every { validator.validate(any()) } returns Unit
+        every { jdbcTemplate.queryForList(any<String>()) } returns
+            listOf(mapOf("name" to "Achilles"), mapOf("name" to "Sarpedon"))
+        every { ragAgent.answer(any()) } returns RagResponse(answer = "answer", citations = emptyList())
+
+        val response = handler.handle("question")
+
+        val snapshot = debugCapture.snapshot()
+        assertThat(snapshot.firstAttemptSql).isEqualTo("SELECT name FROM entities WHERE type = 'hero'")
+        assertThat(snapshot.sqlRows).containsExactly(mapOf("name" to "Achilles"), mapOf("name" to "Sarpedon"))
+        // No behavior change: the response is unaffected by whether DebugCapture was populated.
+        assertThat(response.routeDecision).isEqualTo(RouteDecision.MIXED)
     }
 
     @Test

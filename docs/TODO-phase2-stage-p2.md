@@ -185,26 +185,26 @@ flag: zero behavior change when `debug=false`.**
 Each producer **only writes to `DebugCapture`** — no behavior change, no reads. Guardable so the
 writes are cheap even when debug is off (the snapshot is only *built* by QueryService when requested).
 
-- [ ] **B1** — `SqlQueryHandler`: capture `firstAttemptSql` = the immutable first-attempt `sql` (`:22`).
+- [x] **B1** — `SqlQueryHandler`: capture `firstAttemptSql` = the immutable first-attempt `sql` (`:22`).
       The DEV-057 retry writes a **separate** `retrySql`/`finalSql` (`:49,55`) and never reassigns
       `sql`, so `sql` is still the first attempt at the `:61` return — there is no overwrite to race,
       capturing at `:61` is safe. Capture `sqlRows` = `finalRows` capped to the
       first ~25 (a `SQL_ROWS_CAP` const). Do it at the single `return QueryResponse(...)` (`:61`) and
       the `EMPTY_RESULT_ANSWER` early-return (`:28`) so an empty result still records the SQL it ran.
-- [ ] **B2** — `MixedQueryHandler`: capture `firstAttemptSql` = `sql` (`:27`) and `sqlRows` = `rows`
+- [x] **B2** — `MixedQueryHandler`: capture `firstAttemptSql` = `sql` (`:27`) and `sqlRows` = `rows`
       capped (`:31`) — this is Q12's SQL step, the origin of its `serviceError`. Same cap const.
-- [ ] **B3** — `NarrativeChunkContentRetriever`: in `retrieve(...)` after `results` is computed
+- [x] **B3** — `NarrativeChunkContentRetriever`: in `retrieve(...)` after `results` is computed
       (`:67`), `debugCapture.setRetrievedChunks(results.map { ChunkRef(it.id?, it.sourceId,
       it.passageRef, it.score) })`. **Decide the `id` question from A1** (use A1's exact alternatives):
       either add `nc.id` to `RETRIEVAL_SQL` + the `Row` mapper, or make `ChunkRef.id` nullable and leave
       it `null`. Inject `DebugCapture` via
       constructor (add the bean arg; existing tests construct with explicit args — update them to pass
       a real `DebugCapture()`).
-- [ ] **B4** — **Guard the cost:** the append sites are unconditional (cheap map builds), but the SQL
+- [x] **B4** — **Guard the cost:** the append sites are unconditional (cheap map builds), but the SQL
       row cap must be applied *at capture*, never storing thousands of rows. Confirm no producer reads
       the ThreadLocal or changes its return value — a `git diff` of each `handle()`/`retrieve()` shows
       only added capture lines.
-- [ ] **B5** — **TDD:** extend `SqlQueryHandlerTest`, `MixedQueryHandlerTest`, and the retriever test
+- [x] **B5** — **TDD:** extend `SqlQueryHandlerTest`, `MixedQueryHandlerTest`, and the retriever test
       to inject a real `DebugCapture`, run `handle`/`retrieve`, and assert `snapshot()` carries the
       expected `firstAttemptSql`/`sqlRows`/`retrievedChunks` (mocked `@AiService`/`JdbcTemplate`).
       Assert the **return value is identical** with and without a fresh vs pre-reset capture (no
