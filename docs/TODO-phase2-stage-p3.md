@@ -149,10 +149,12 @@ reseed). Start A, D, and F-code together; D's output unblocks F's seed rows; the
 
 ## Track A — `python -m audit` runner + findings/report contract (foundational; do first)
 
+> ⚠️ [DEVIATED - see DEVIATIONS.md #DEV-070] — implemented; details below.
+
 Pins the check-registration API and the findings/report shapes B–E emit against. Read-only over
 candidate JSON + live DB; **no check mutates any file or table** (the README invariant).
 
-- [ ] **A1r** — `ingestion/audit/__main__.py`: `python -m audit` entrypoint. **Auto-discovers** every
+- [x] **A1r** [DEVIATED - see DEVIATIONS.md #DEV-070] — `ingestion/audit/__main__.py`: `python -m audit` entrypoint. **Auto-discovers** every
       check module that conforms to the A2r contract (A1 duplicate-entities, A2 drop-accounting, **A3 the
       existing `cycle_check`**, A4 relation-taxonomy, A5 integrity), runs them read-only, aggregates
       findings. (This is the single registration model: "register into the runner" in B4/C4/D4/E3 means
@@ -160,26 +162,26 @@ candidate JSON + live DB; **no check mutates any file or table** (the README inv
       / `--db` / (default both, mirroring `cycle_check`), `--only <check>` for iterating one check,
       `--out <dir>` (default `ingestion/audit/reports/`). **Exit non-zero if any check reports an
       un-waived finding** (so it can gate `seedgen` in Track I).
-- [ ] **A2r** — define the **check contract**: a small protocol/dataclass every check module exposes —
+- [x] **A2r** [DEVIATED - see DEVIATIONS.md #DEV-070] — define the **check contract**: a small protocol/dataclass every check module exposes —
       `name`, `run(candidates_dir, db_conn) -> CheckResult{findings: list[Finding], summary: str}`,
       where `Finding` carries `{check, severity, subject, detail, suggested_fix, waived: bool}`. A3's
       `cycle_check` gets a thin adapter to this shape (do **not** edit its pure `find_cycles` core).
-- [ ] **A3r** — **findings JSON emission**: write one machine-readable
+- [x] **A3r** [DEVIATED - see DEVIATIONS.md #DEV-070] — **findings JSON emission**: write one machine-readable
       `ingestion/audit/reports/<date>-findings.json` (all checks' `Finding`s), keeping backward-compat
       with the existing committed `findings-candidates.json` / `findings-db.json` shape where the two
       overlap (A3). State in the module docstring whether the per-check files are superseded by the
       aggregate or kept alongside.
-- [ ] **A4r** — **`reports/<date>.md`** human report: one section per check, PASS/FINDINGS/WAIVED
+- [x] **A4r** [DEVIATED - see DEVIATIONS.md #DEV-070] — **`reports/<date>.md`** human report: one section per check, PASS/FINDINGS/WAIVED
       badge, a table of findings with `suggested_fix`, and a top-line summary line (counts per
       severity). This is the file a reviewer reads before a fix batch.
-- [ ] **A5r** — **waiver mechanism**: a finding can be marked waived (e.g. an `audit-waivers.json` or a
+- [x] **A5r** [DEVIATED - see DEVIATIONS.md #DEV-070] — **waiver mechanism**: a finding can be marked waived (e.g. an `audit-waivers.json` or a
       per-finding note the runner reads) so a *known, explained* finding doesn't fail the exit code.
       The P3 exit explicitly allows "clean **or** waived with a note" — this is that mechanism. A
       waiver **requires** a written reason string.
-- [ ] **A6r** — **TDD**: `ingestion/audit/tests/test_runner.py` — a fake check reporting N findings →
+- [x] **A6r** [DEVIATED - see DEVIATIONS.md #DEV-070] — **TDD**: `ingestion/audit/tests/test_runner.py` — a fake check reporting N findings →
       runner aggregates, writes both artifacts, exits non-zero; a waived finding → exits zero; `--only`
       runs exactly one check. Pure, no live DB (fixture conn or `--candidates` only).
-- [ ] **A7r** — update `ingestion/audit/README.md`: document `python -m audit`, the five checks, the
+- [x] **A7r** [DEVIATED - see DEVIATIONS.md #DEV-070] — update `ingestion/audit/README.md`: document `python -m audit`, the five checks, the
       report/findings artifacts, the waiver mechanism, and the **"audit is the pre-seedgen gate"** rule
       (cross-ref the Flyway-checksum-trap note already in the README).
 

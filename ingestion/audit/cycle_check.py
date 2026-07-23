@@ -22,6 +22,12 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable
 
+from audit.contract import CheckResult, Finding
+
+# Track A2r [DEVIATED - see DEVIATIONS.md #DEV-070] check-contract id -- picked up
+# by python -m audit's auto-discovery via the module-level NAME + run() below.
+NAME = "A3"
+
 DEFAULT_RELATIONS = frozenset({"parent_of"})
 
 # Matches the `statement_timeout = '3s'` Hikari cap TECH_GUARDRAILS puts on every
@@ -161,18 +167,27 @@ def load_from_db(dsn: dict, connect: Callable[..., object] | None = None) -> lis
     conn = connect(**dsn)
     try:
         conn.set_session(readonly=True)
-        with conn.cursor() as cur:
-            cur.execute(
-                """
-                SELECT p.name, r.relation, c.name, r.source_id, r.passage_ref
-                FROM relationships r
-                JOIN entities p ON p.id = r.from_id
-                JOIN entities c ON c.id = r.to_id
-                """
-            )
-            rows = cur.fetchall()
+        return _query_edges(conn)
     finally:
         conn.close()
+
+
+def _query_edges(conn: object) -> list[Edge]:
+    """Runs the parent_of-graph query against an already-open, already-readonly
+    connection. Split out of `load_from_db` so the A3 runner adapter (`run`,
+    below) can reuse the exact same query against a connection `python -m audit`
+    opens and shares across every check, instead of opening a second connection
+    per check."""
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            SELECT p.name, r.relation, c.name, r.source_id, r.passage_ref
+            FROM relationships r
+            JOIN entities p ON p.id = r.from_id
+            JOIN entities c ON c.id = r.to_id
+            """
+        )
+        rows = cur.fetchall()
 
     return [
         Edge(from_name=row[0], to_name=row[2], relation=row[1], source_id=row[3], passage_ref=row[4])
@@ -194,6 +209,57 @@ def _db_dsn() -> dict:
         "password": config.POSTGRES_APP_PASSWORD,
         "options": f"-c statement_timeout={DB_STATEMENT_TIMEOUT_MS}",
     }
+
+
+def run(candidates_dir: Path | None, db_conn: object | None) -> CheckResult:
+    """Track A2r [DEVIATED - see DEVIATIONS.md #DEV-070] contract adapter for
+    `python -m audit`'s auto-discovery -- a thin wrapper around the pure
+    `find_cycles` core (unedited) reshaping its output into `Finding`/`CheckResult`.
+    Checks whichever source(s) the runner hands in: `candidates_dir` (reads
+    `relationships_candidates_cleaned.json`) and/or an already-open,
+    already-readonly `db_conn` (via `_query_edges`, no new connection opened
+    here). Either may be `None` if the runner was told to skip that source
+    (`--candidates` / `--db`); at least one is expected to be set."""
+    findings: list[Finding] = []
+    summaries: list[str] = []
+
+    if candidates_dir is not None:
+        edges = load_from_candidates(Path(candidates_dir) / "relationships_candidates_cleaned.json")
+        cycles = find_cycles(edges)
+        findings.extend(_cycles_to_findings(cycles, "candidates"))
+        summaries.append(f"candidates: {len(cycles)} parent_of cycle(s)")
+
+    if db_conn is not None:
+        edges = _query_edges(db_conn)
+        cycles = find_cycles(edges)
+        findings.extend(_cycles_to_findings(cycles, "db"))
+        summaries.append(f"db: {len(cycles)} parent_of cycle(s)")
+
+    return CheckResult(findings=tuple(findings), summary="; ".join(summaries) or "no source selected")
+
+
+def _cycles_to_findings(cycles: list[Cycle], source_label: str) -> list[Finding]:
+    findings = []
+    for cycle in cycles:
+        chain = " -> ".join(cycle.nodes) + f" -> {cycle.nodes[0]}"
+        edge_lines = "; ".join(
+            f"{e.from_name} {e.relation} {e.to_name}"
+            f" [{e.source_id}{', ' + e.passage_ref if e.passage_ref else ''}]"
+            for e in cycle.edges
+        )
+        findings.append(
+            Finding(
+                check=NAME,
+                severity="error" if cycle.is_near_certain_reversed_edge else "warning",
+                subject=f"{source_label}: {chain}",
+                detail=edge_lines,
+                suggested_fix=(
+                    "reverse or drop the offending edge in relationships_candidates_cleaned.json"
+                    " (tie-break by source_id / canonical_edge.py spine priority), then reseed"
+                ),
+            )
+        )
+    return findings
 
 
 def _format_report(cycles: list[Cycle]) -> str:

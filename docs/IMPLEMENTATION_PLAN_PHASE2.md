@@ -203,6 +203,9 @@ cycle-detection check, and DebugCapture unit-tested, `@AiService` mocked, TDD).
 
 ## 4. Data audit & relation canonicalization (P3) — implements ADR-019
 
+> ⚠️ Deviations occurred in this stage. See DEVIATIONS.md for details (DEV-070: the
+> `python -m audit` runner + check contract, Track A).
+
 ### 4.1 Audit package
 
 `ingestion/audit/` (`python -m audit`, read-only over candidate JSON + live DB; emits

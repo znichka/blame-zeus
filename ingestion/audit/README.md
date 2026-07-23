@@ -1,10 +1,50 @@
 # `ingestion/audit/`
 
 Data-quality checks over the extracted/seeded knowledge graph. Built in **Phase 2 Stage P2**
-(Track G) as a standalone package; **becomes audit check `A3`** in Phase 3's `python -m audit`
-runner (`docs/IMPLEMENTATION_PLAN_PHASE2.md §4.1`), which will add more checks alongside it.
+(Track G) as a standalone package; now hosts Phase 3's `python -m audit` runner
+(`docs/IMPLEMENTATION_PLAN_PHASE2.md §4.1`, `docs/TODO-phase2-stage-p3.md` Track A
+`[DEVIATED - see DEVIATIONS.md #DEV-070]`), which auto-discovers and aggregates every check.
 Every check in this package **reports only** — none of them mutate any file or table. A human
 (or a scripted fix loop) reads the findings and edits the source data.
+
+## `python -m audit` — the aggregate runner
+
+`__main__.py` walks the package for any sibling module exposing the contract in `contract.py`
+(module-level `NAME: str` + `run(candidates_dir, db_conn) -> CheckResult`) — a module needs no
+separate registration call, just those two names, to be picked up. Today that's just
+**`cycle_check.py` (check `A3`)**, via the thin `NAME`/`run` adapter added around its unedited
+`find_cycles` core; **A1/A2/A4/A5** (duplicate-entity detection, candidate-drop accounting,
+relation-label taxonomy, alias/participant integrity) are Phase 3 Tracks B–E, not yet built.
+
+```
+python -m audit                    # both sources (default): candidate JSON + a live DB connection
+python -m audit --candidates       # candidate JSON only, no DB connection opened
+python -m audit --db               # live DB only (via the read-only zeus_app user)
+python -m audit --only A3          # run exactly one check by NAME
+```
+
+Exits non-zero if any **un-waived** finding survives — this is the standing **pre-seedgen gate**
+(`docs/TODO-phase2-stage-p3.md` Track I): no batch of candidate-JSON edits reaches a commit
+except through a `seedgen --strict` → `reseed-local.sh` → `python -m audit` (clean or waived)
+→ eval → `compare.py` cycle.
+
+Each run writes two artifacts to `reports/` (default; `--out` overrides):
+- **`<date>-findings.json`** — every check's `Finding`s in one machine-readable shape (`check`,
+  `severity`, `subject`, `detail`, `suggestedFix`, `waived`, `waiverReason`). This is **additive,
+  not a replacement** for the committed `findings-candidates.json` / `findings-db.json` snapshots
+  from DEV-066 — those are one-off, manually-run artifacts in `cycle_check`'s own shape; the
+  standalone `python -m audit.cycle_check` CLI (still present, unchanged) keeps producing that
+  shape for direct/manual use, while the aggregate JSON here carries every check uniformly.
+- **`<date>.md`** — a human report: one `## <CHECK> — PASS|FINDINGS|WAIVED` section per check with
+  a findings table, plus a top-line summary count. This is the file a reviewer reads before a fix
+  batch (per the P3 exit: "all five checks clean **or** explicitly waived with a note").
+
+**Waivers** (`audit-waivers.json`, `--waivers` to override the path): a list of
+`{"check", "subject", "reason"}` objects. A waiver **requires** a non-empty `reason` — `load_waivers`
+raises if one is missing. A waived finding still appears in the report/findings JSON (marked
+`waived: true` with its reason) but does not fail the run's exit code — this is exactly the "clean
+or waived with a note" mechanism the P3 exit criteria call for (e.g. DEV-069's Q9 Chaos/Ouranos gap,
+if deferred to P5b, gets a waiver entry here rather than a silently-ignored finding).
 
 ## `cycle_check.py` — the DAG invariant
 
