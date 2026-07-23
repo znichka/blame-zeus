@@ -73,11 +73,13 @@ fixes and **zero stable regressions**.
       baseline still shows the dump/empty passageRef
 - [ ] Q9/Q12 = **Stage 8.5 gap (ii) — root cause first, code fix only if still needed** (gate each
       rung on the previous rung's eval):
-  - [ ] **Rung 0 (always):** cycle-detection check over `relationships` **authored now in P2** (→
+  - [x] **Rung 0 (always):** cycle-detection check over `relationships` **authored now in P2** (→
         audit A3), run **before any SQL/prompt change**; fix reversed edges in candidate JSON →
         reseed → re-run eval. If Q9/Q12 pass over the clean DAG, **stop — ship no code.**
-        Checker itself built + live-verified — DEV-066 (found 4 live cycles incl. a near-certain
-        `Laertes`⇄`Odysseus` reversed edge). Fix + reseed + re-verify still pending (Track I).
+        Checker built + live-verified (DEV-066, found 4 live cycles). The one genuine reversed edge
+        (`Laertes`⇄`Odysseus`, 17 wrong-direction candidate rows) fixed, regenerated, reseeded —
+        DEV-067; `cycle_check --db` now shows 3 (entity-conflation, flagged for P3 — DEV-068, not
+        reversed edges, out of Rung 0's scope). Re-measure eval is **I4**, tracked below.
   - [ ] **Rung 1 (only if clean DAG still fails/flakes):** LOUD bounded `WITH RECURSIVE` few-shot
         (depth cap + `visited`-id array) in `TextToSqlAgent`, breadcrumb via `sqlRows`
   - [ ] **Rung 2 (only if failure is malformed CTE, not data):** `runSqlWithErrorRecovery` +
@@ -105,6 +107,15 @@ stable regressions.
       direction/integrity — cycle detection (self-loop / 2-cycle / longer) as first-class invariant,
       authored in P2, run every batch** + symmetric duplicates + DEV-040 invariants, A4 relation-label
       taxonomy → initial `relation_aliases` map, A5 alias/participant integrity
+  - [ ] **Backlog from P2 Track I (DEV-068):** 3 `parent_of` cycles left unfixed in P2 because they're
+        entity-conflation, not reversed edges — findings committed at
+        `ingestion/audit/findings-db.json`. `Aeolus ⇄ ... ⇄ Endymion` is source-verified
+        (`apollodorus_bibliotheca_frazer1921.txt` `[1.7.1]`–`[1.8.1]`): "Aeolus" is conflated with his
+        descendant "Aetolus" (Endymion's real son), and "Calydon" with "Calyce" (Aeolus's real
+        daughter) — needs an entity split, not a merge. `Cecrops ⇄ Pandion ⇄ Erechtheus` likely fits
+        the same pattern (Athenian myth has two Cecrops/two Pandions) but is not yet source-verified.
+        `Astyoche ⇄ Tros ⇄ Ilus ⇄ Laomedon` not yet traced at all. Re-run `cycle_check --db` after each
+        fix to confirm.
 - [ ] `relation_aliases(alias PK, canonical, inverse BOOLEAN)` migration (new Phase-2 V-number);
       wire into `seedgen/relationships_gen.py` (apply map at generation; swap from/to on inverse)
 - [ ] Triage backlogs: 29 fuzzy-dup pairs (merge + alias, DEV-043 pattern); 203 flagged relationships

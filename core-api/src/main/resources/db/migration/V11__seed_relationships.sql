@@ -390,6 +390,7 @@ INSERT INTO relationships (from_id, relation, to_id, source_id, passage_ref) VAL
     ((SELECT id FROM entities WHERE name = 'Arcas'), 'parent_of', (SELECT id FROM entities WHERE name = 'Aphidas'), 'apollodorus-bibliotheca', '3.9.1'),
     ((SELECT id FROM entities WHERE name = 'Arcas'), 'parent_of', (SELECT id FROM entities WHERE name = 'Elatus'), 'apollodorus-bibliotheca', '3.9.1'),
     ((SELECT id FROM entities WHERE name = 'Arcesilaus'), 'killed_by', (SELECT id FROM entities WHERE name = 'Hector'), 'homer-iliad', '15.328-15.351'),
+    ((SELECT id FROM entities WHERE name = 'Arcesilaus'), 'parent_of', (SELECT id FROM entities WHERE name = 'Laertes'), 'ovid-metamorphoses', '13.128-13.161'),
     ((SELECT id FROM entities WHERE name = 'Archebates'), 'killed_by', (SELECT id FROM entities WHERE name = 'Zeus'), 'apollodorus-bibliotheca', '3.8.1-3.8.2'),
     ((SELECT id FROM entities WHERE name = 'Archelaus'), 'married_to', (SELECT id FROM entities WHERE name = 'Anaxibia'), 'apollodorus-bibliotheca', '2.1.5'),
     ((SELECT id FROM entities WHERE name = 'Areilycus'), 'killed_by', (SELECT id FROM entities WHERE name = 'Patroclus'), 'homer-iliad', '16.284-16.329'),
@@ -502,11 +503,11 @@ INSERT INTO relationships (from_id, relation, to_id, source_id, passage_ref) VAL
     ((SELECT id FROM entities WHERE name = 'Athena'), 'protector_of', (SELECT id FROM entities WHERE name = 'Echion'), 'ovid-metamorphoses', '3.95-3.137'),
     ((SELECT id FROM entities WHERE name = 'Athena'), 'sent_evil_wind_upon', (SELECT id FROM entities WHERE name = 'Odysseus'), 'homer-odyssey', '5.92-5.115'),
     ((SELECT id FROM entities WHERE name = 'Athena'), 'sibling_of', (SELECT id FROM entities WHERE name = 'Perses'), 'ovid-metamorphoses', '5.250-5.267'),
-    ((SELECT id FROM entities WHERE name = 'Atlas'), 'parent_of', (SELECT id FROM entities WHERE name = 'Calypso'), 'apollodorus-bibliotheca', 'E.7.17-E.7.24'),
-    ((SELECT id FROM entities WHERE name = 'Atlas'), 'parent_of', (SELECT id FROM entities WHERE name = 'Calypso'), 'homer-odyssey', '1.44-1.95')
+    ((SELECT id FROM entities WHERE name = 'Atlas'), 'parent_of', (SELECT id FROM entities WHERE name = 'Calypso'), 'apollodorus-bibliotheca', 'E.7.17-E.7.24')
 ON CONFLICT DO NOTHING;
 
 INSERT INTO relationships (from_id, relation, to_id, source_id, passage_ref) VALUES
+    ((SELECT id FROM entities WHERE name = 'Atlas'), 'parent_of', (SELECT id FROM entities WHERE name = 'Calypso'), 'homer-odyssey', '1.44-1.95'),
     ((SELECT id FROM entities WHERE name = 'Atlas'), 'parent_of', (SELECT id FROM entities WHERE name = 'Celaeno'), 'apollodorus-bibliotheca', '3.9.2-3.10.1'),
     ((SELECT id FROM entities WHERE name = 'Atlas'), 'parent_of', (SELECT id FROM entities WHERE name = 'Maia'), 'apollodorus-bibliotheca', '3.9.2-3.10.1'),
     ((SELECT id FROM entities WHERE name = 'Atlas'), 'parent_of', (SELECT id FROM entities WHERE name = 'Maia'), 'hesiod-homeric-hymns', '17.1-19.26'),
@@ -1005,11 +1006,11 @@ INSERT INTO relationships (from_id, relation, to_id, source_id, passage_ref) VAL
     ((SELECT id FROM entities WHERE name = 'Ecbasus'), 'parent_of', (SELECT id FROM entities WHERE name = 'Agenor'), 'apollodorus-bibliotheca', '2.1.2-2.1.3'),
     ((SELECT id FROM entities WHERE name = 'Echecles'), 'married_to', (SELECT id FROM entities WHERE name = 'Polymele'), 'homer-iliad', '16.155-16.197'),
     ((SELECT id FROM entities WHERE name = 'Echeclus'), 'killed_by', (SELECT id FROM entities WHERE name = 'Achilles'), 'homer-iliad', '20.455-20.489'),
-    ((SELECT id FROM entities WHERE name = 'Echemmon'), 'killed_by', (SELECT id FROM entities WHERE name = 'Diomedes'), 'homer-iliad', '5.121-5.165'),
-    ((SELECT id FROM entities WHERE name = 'Echepolus'), 'killed_by', (SELECT id FROM entities WHERE name = 'Antiochus'), 'homer-iliad', '4.446-4.488')
+    ((SELECT id FROM entities WHERE name = 'Echemmon'), 'killed_by', (SELECT id FROM entities WHERE name = 'Diomedes'), 'homer-iliad', '5.121-5.165')
 ON CONFLICT DO NOTHING;
 
 INSERT INTO relationships (from_id, relation, to_id, source_id, passage_ref) VALUES
+    ((SELECT id FROM entities WHERE name = 'Echepolus'), 'killed_by', (SELECT id FROM entities WHERE name = 'Antiochus'), 'homer-iliad', '4.446-4.488'),
     ((SELECT id FROM entities WHERE name = 'Echidna'), 'parent_of', (SELECT id FROM entities WHERE name = 'Cerberus'), 'hesiod-theogony', '306-345'),
     ((SELECT id FROM entities WHERE name = 'Echidna'), 'parent_of', (SELECT id FROM entities WHERE name = 'Hydra'), 'apollodorus-bibliotheca', '2.5.11'),
     ((SELECT id FROM entities WHERE name = 'Echidna'), 'parent_of', (SELECT id FROM entities WHERE name = 'Hydra'), 'hesiod-theogony', '306-345'),
@@ -1508,11 +1509,11 @@ INSERT INTO relationships (from_id, relation, to_id, source_id, passage_ref) VAL
     ((SELECT id FROM entities WHERE name = 'Itymoneus'), 'killed_by', (SELECT id FROM entities WHERE name = 'Nestor'), 'homer-iliad', '11.655-11.695'),
     ((SELECT id FROM entities WHERE name = 'Itys'), 'killed_by', (SELECT id FROM entities WHERE name = 'Procne'), 'apollodorus-bibliotheca', '3.14.8-3.15.2'),
     ((SELECT id FROM entities WHERE name = 'Itys'), 'killed_by', (SELECT id FROM entities WHERE name = 'Procne'), 'ovid-metamorphoses', '6.647-6.674'),
-    ((SELECT id FROM entities WHERE name = 'Ixion'), 'married_to', (SELECT id FROM entities WHERE name = 'Hera'), 'apollodorus-bibliotheca', 'E.1.17-E.1.23'),
-    ((SELECT id FROM entities WHERE name = 'Ixion'), 'married_to', (SELECT id FROM entities WHERE name = 'Hera'), 'ovid-metamorphoses', '12.494-12.535')
+    ((SELECT id FROM entities WHERE name = 'Ixion'), 'married_to', (SELECT id FROM entities WHERE name = 'Hera'), 'apollodorus-bibliotheca', 'E.1.17-E.1.23')
 ON CONFLICT DO NOTHING;
 
 INSERT INTO relationships (from_id, relation, to_id, source_id, passage_ref) VALUES
+    ((SELECT id FROM entities WHERE name = 'Ixion'), 'married_to', (SELECT id FROM entities WHERE name = 'Hera'), 'ovid-metamorphoses', '12.494-12.535'),
     ((SELECT id FROM entities WHERE name = 'Ixion'), 'parent_of', (SELECT id FROM entities WHERE name = 'Centaurus'), 'apollodorus-bibliotheca', 'E.1.17-E.1.23'),
     ((SELECT id FROM entities WHERE name = 'Ixion'), 'parent_of', (SELECT id FROM entities WHERE name = 'Centaurus'), 'ovid-metamorphoses', '12.494-12.535'),
     ((SELECT id FROM entities WHERE name = 'Ixion''s wife'), 'parent_of', (SELECT id FROM entities WHERE name = 'Pirithous'), 'homer-iliad', '14.312-14.360'),
@@ -1917,9 +1918,6 @@ INSERT INTO relationships (from_id, relation, to_id, source_id, passage_ref) VAL
     ((SELECT id FROM entities WHERE name = 'Odysseus'), 'killed_by', (SELECT id FROM entities WHERE name = 'Dolon'), 'ovid-metamorphoses', '13.238-13.279'),
     ((SELECT id FROM entities WHERE name = 'Odysseus'), 'married_to', (SELECT id FROM entities WHERE name = 'Callidice'), 'apollodorus-bibliotheca', 'E.7.33-E.7.40'),
     ((SELECT id FROM entities WHERE name = 'Odysseus'), 'parent_of', (SELECT id FROM entities WHERE name = 'Castor son of Hylax'), 'homer-odyssey', '14.191-14.234'),
-    ((SELECT id FROM entities WHERE name = 'Odysseus'), 'parent_of', (SELECT id FROM entities WHERE name = 'Laertes'), 'apollodorus-bibliotheca', 'E.3.6-E.3.12'),
-    ((SELECT id FROM entities WHERE name = 'Odysseus'), 'parent_of', (SELECT id FROM entities WHERE name = 'Laertes'), 'homer-iliad', '3.171-3.202'),
-    ((SELECT id FROM entities WHERE name = 'Odysseus'), 'parent_of', (SELECT id FROM entities WHERE name = 'Laertes'), 'homer-odyssey', '1.156-1.193'),
     ((SELECT id FROM entities WHERE name = 'Odysseus'), 'parent_of', (SELECT id FROM entities WHERE name = 'Leontophonus'), 'apollodorus-bibliotheca', 'E.7.33-E.7.40'),
     ((SELECT id FROM entities WHERE name = 'Odysseus'), 'parent_of', (SELECT id FROM entities WHERE name = 'Leucus'), 'homer-iliad', '4.489-4.526'),
     ((SELECT id FROM entities WHERE name = 'Odysseus'), 'parent_of', (SELECT id FROM entities WHERE name = 'Poliporthes'), 'apollodorus-bibliotheca', 'E.7.33-E.7.40'),
@@ -2012,12 +2010,12 @@ INSERT INTO relationships (from_id, relation, to_id, source_id, passage_ref) VAL
     ((SELECT id FROM entities WHERE name = 'Pelates'), 'killed_by', (SELECT id FROM entities WHERE name = 'Abas'), 'ovid-metamorphoses', '5.107-5.148'),
     ((SELECT id FROM entities WHERE name = 'Peleus'), 'father_figure_of', (SELECT id FROM entities WHERE name = 'Phoenix'), 'homer-iliad', '9.447-9.495'),
     ((SELECT id FROM entities WHERE name = 'Peleus'), 'father_of', (SELECT id FROM entities WHERE name = 'Achilles'), 'ovid-metamorphoses', '11.194-11.228'),
-    ((SELECT id FROM entities WHERE name = 'Peleus'), 'married_to', (SELECT id FROM entities WHERE name = 'Antigone'), 'apollodorus-bibliotheca', '3.12.7-3.13.4')
+    ((SELECT id FROM entities WHERE name = 'Peleus'), 'married_to', (SELECT id FROM entities WHERE name = 'Antigone'), 'apollodorus-bibliotheca', '3.12.7-3.13.4'),
+    ((SELECT id FROM entities WHERE name = 'Peleus'), 'parent_of', (SELECT id FROM entities WHERE name = 'Achilles'), 'apollodorus-bibliotheca', '3.13.5-3.13.7'),
+    ((SELECT id FROM entities WHERE name = 'Peleus'), 'parent_of', (SELECT id FROM entities WHERE name = 'Achilles'), 'hesiod-theogony', '956-1010')
 ON CONFLICT DO NOTHING;
 
 INSERT INTO relationships (from_id, relation, to_id, source_id, passage_ref) VALUES
-    ((SELECT id FROM entities WHERE name = 'Peleus'), 'parent_of', (SELECT id FROM entities WHERE name = 'Achilles'), 'apollodorus-bibliotheca', '3.13.5-3.13.7'),
-    ((SELECT id FROM entities WHERE name = 'Peleus'), 'parent_of', (SELECT id FROM entities WHERE name = 'Achilles'), 'hesiod-theogony', '956-1010'),
     ((SELECT id FROM entities WHERE name = 'Peleus'), 'parent_of', (SELECT id FROM entities WHERE name = 'Achilles'), 'homer-iliad', 'Homer, Iliad'),
     ((SELECT id FROM entities WHERE name = 'Peleus'), 'parent_of', (SELECT id FROM entities WHERE name = 'Achilles'), 'homer-odyssey', '11.486-11.537'),
     ((SELECT id FROM entities WHERE name = 'Peleus'), 'parent_of', (SELECT id FROM entities WHERE name = 'Achilles'), 'ovid-metamorphoses', '8.281-8.328'),

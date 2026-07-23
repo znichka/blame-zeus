@@ -1,0 +1,128 @@
+{
+  "source": "live DB (zeus_app)",
+  "relations": [
+    "parent_of"
+  ],
+  "cycles": [
+    {
+      "nodes": [
+        "Aeolus",
+        "Calydon",
+        "Protogenia",
+        "Aethlius",
+        "Endymion",
+        "Aeolus"
+      ],
+      "isNearCertainReversedEdge": false,
+      "edges": [
+        {
+          "fromName": "Aeolus",
+          "relation": "parent_of",
+          "toName": "Calydon",
+          "sourceId": "apollodorus-bibliotheca",
+          "passageRef": "1.7.4-1.7.8"
+        },
+        {
+          "fromName": "Calydon",
+          "relation": "parent_of",
+          "toName": "Protogenia",
+          "sourceId": "apollodorus-bibliotheca",
+          "passageRef": "1.7.4-1.7.8"
+        },
+        {
+          "fromName": "Protogenia",
+          "relation": "parent_of",
+          "toName": "Aethlius",
+          "sourceId": "apollodorus-bibliotheca",
+          "passageRef": "1.7.1-1.7.3"
+        },
+        {
+          "fromName": "Aethlius",
+          "relation": "parent_of",
+          "toName": "Endymion",
+          "sourceId": "apollodorus-bibliotheca",
+          "passageRef": "1.7.4-1.7.8"
+        },
+        {
+          "fromName": "Endymion",
+          "relation": "parent_of",
+          "toName": "Aeolus",
+          "sourceId": "apollodorus-bibliotheca",
+          "passageRef": "1.7.4-1.7.8"
+        }
+      ]
+    },
+    {
+      "nodes": [
+        "Astyoche",
+        "Tros",
+        "Ilus",
+        "Laomedon",
+        "Astyoche"
+      ],
+      "isNearCertainReversedEdge": false,
+      "edges": [
+        {
+          "fromName": "Astyoche",
+          "relation": "parent_of",
+          "toName": "Tros",
+          "sourceId": "apollodorus-bibliotheca",
+          "passageRef": "3.11.2-3.12.2"
+        },
+        {
+          "fromName": "Tros",
+          "relation": "parent_of",
+          "toName": "Ilus",
+          "sourceId": "homer-iliad",
+          "passageRef": "20.213-20.257"
+        },
+        {
+          "fromName": "Ilus",
+          "relation": "parent_of",
+          "toName": "Laomedon",
+          "sourceId": "apollodorus-bibliotheca",
+          "passageRef": "3.12.3-3.12.4"
+        },
+        {
+          "fromName": "Laomedon",
+          "relation": "parent_of",
+          "toName": "Astyoche",
+          "sourceId": "apollodorus-bibliotheca",
+          "passageRef": "3.12.3-3.12.4"
+        }
+      ]
+    },
+    {
+      "nodes": [
+        "Cecrops",
+        "Pandion",
+        "Erechtheus",
+        "Cecrops"
+      ],
+      "isNearCertainReversedEdge": false,
+      "edges": [
+        {
+          "fromName": "Cecrops",
+          "relation": "parent_of",
+          "toName": "Pandion",
+          "sourceId": "apollodorus-bibliotheca",
+          "passageRef": "3.15.3-3.15.5"
+        },
+        {
+          "fromName": "Pandion",
+          "relation": "parent_of",
+          "toName": "Erechtheus",
+          "sourceId": "apollodorus-bibliotheca",
+          "passageRef": "3.14.8-3.15.2"
+        },
+        {
+          "fromName": "Erechtheus",
+          "relation": "parent_of",
+          "toName": "Cecrops",
+          "sourceId": "apollodorus-bibliotheca",
+          "passageRef": "3.14.8-3.15.2"
+        }
+      ]
+    }
+  ]
+}

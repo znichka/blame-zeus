@@ -19464,14 +19464,6 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Odysseus",
-    "relation": "parent_of",
-    "to_name": "Laertes",
-    "is_contested": false,
-    "passage_ref": "E.3.6-E.3.12",
-    "source_id": "apollodorus-bibliotheca"
-  },
-  {
     "from_name": "Thoas",
     "relation": "parent_of",
     "to_name": "Gorge",
@@ -27744,14 +27736,6 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Odysseus",
-    "relation": "parent_of",
-    "to_name": "Laertes",
-    "is_contested": false,
-    "passage_ref": "3.171-3.202",
-    "source_id": "homer-iliad"
-  },
-  {
     "from_name": "Hellen",
     "relation": "married_to",
     "to_name": "Menelaus",
@@ -28005,14 +27989,6 @@
     "to_name": "Ereuthalion",
     "is_contested": false,
     "passage_ref": "4.310-4.355",
-    "source_id": "homer-iliad"
-  },
-  {
-    "from_name": "Odysseus",
-    "relation": "parent_of",
-    "to_name": "Laertes",
-    "is_contested": false,
-    "passage_ref": "4.356-4.400",
     "source_id": "homer-iliad"
   },
   {
@@ -36200,14 +36176,6 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Odysseus",
-    "relation": "parent_of",
-    "to_name": "Laertes",
-    "is_contested": false,
-    "passage_ref": "1.156-1.193",
-    "source_id": "homer-odyssey"
-  },
-  {
     "from_name": "Penelope",
     "relation": "parent_of",
     "to_name": "Telemachus",
@@ -37793,34 +37761,10 @@
   },
   {
     "from_name": "Odysseus",
-    "relation": "parent_of",
-    "to_name": "Laertes",
-    "is_contested": false,
-    "passage_ref": "10.388-10.438",
-    "source_id": "homer-odyssey"
-  },
-  {
-    "from_name": "Odysseus",
-    "relation": "parent_of",
-    "to_name": "Laertes",
-    "is_contested": false,
-    "passage_ref": "10.487-10.502",
-    "source_id": "homer-odyssey"
-  },
-  {
-    "from_name": "Odysseus",
     "relation": "descendant_of",
     "to_name": "Zeus",
     "is_contested": false,
     "passage_ref": "10.487-10.502",
-    "source_id": "homer-odyssey"
-  },
-  {
-    "from_name": "Odysseus",
-    "relation": "parent_of",
-    "to_name": "Laertes",
-    "is_contested": false,
-    "passage_ref": "10.503-10.549",
     "source_id": "homer-odyssey"
   },
   {
@@ -38656,14 +38600,6 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Odysseus",
-    "relation": "parent_of",
-    "to_name": "Laertes",
-    "is_contested": false,
-    "passage_ref": "12.374-12.425",
-    "source_id": "homer-odyssey"
-  },
-  {
     "from_name": "Zeus",
     "relation": "parent_of",
     "to_name": "Cronus",
@@ -39120,14 +39056,6 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Odysseus",
-    "relation": "parent_of",
-    "to_name": "Laertes",
-    "is_contested": false,
-    "passage_ref": "16.68-16.111",
-    "source_id": "homer-odyssey"
-  },
-  {
     "from_name": "Penelope",
     "relation": "married_to",
     "to_name": "Odysseus",
@@ -39211,14 +39139,6 @@
     "from_name": "Odysseus",
     "relation": "married_to",
     "to_name": "Penelope",
-    "is_contested": false,
-    "passage_ref": "16.448-17.15",
-    "source_id": "homer-odyssey"
-  },
-  {
-    "from_name": "Odysseus",
-    "relation": "parent_of",
-    "to_name": "Laertes",
     "is_contested": false,
     "passage_ref": "16.448-17.15",
     "source_id": "homer-odyssey"
@@ -39369,14 +39289,6 @@
   },
   {
     "from_name": "Odysseus",
-    "relation": "parent_of",
-    "to_name": "Laertes",
-    "is_contested": false,
-    "passage_ref": "18.1-18.49",
-    "source_id": "homer-odyssey"
-  },
-  {
-    "from_name": "Odysseus",
     "relation": "defeats",
     "to_name": "Irus",
     "is_contested": false,
@@ -39512,14 +39424,6 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Odysseus",
-    "relation": "parent_of",
-    "to_name": "Laertes",
-    "is_contested": false,
-    "passage_ref": "19.164-19.202",
-    "source_id": "homer-odyssey"
-  },
-  {
     "from_name": "Zeus",
     "relation": "parent_of",
     "to_name": "Minos",
@@ -39549,14 +39453,6 @@
     "to_name": "Penelope",
     "is_contested": false,
     "passage_ref": "19.203-19.247",
-    "source_id": "homer-odyssey"
-  },
-  {
-    "from_name": "Odysseus",
-    "relation": "parent_of",
-    "to_name": "Laertes",
-    "is_contested": false,
-    "passage_ref": "19.248-19.299",
     "source_id": "homer-odyssey"
   },
   {
@@ -39741,14 +39637,6 @@
     "to_name": "Odysseus",
     "is_contested": false,
     "passage_ref": "20.183-20.225",
-    "source_id": "homer-odyssey"
-  },
-  {
-    "from_name": "Odysseus",
-    "relation": "parent_of",
-    "to_name": "Laertes",
-    "is_contested": false,
-    "passage_ref": "20.275-20.319",
     "source_id": "homer-odyssey"
   },
   {
@@ -40168,14 +40056,6 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Odysseus",
-    "relation": "parent_of",
-    "to_name": "Laertes",
-    "is_contested": false,
-    "passage_ref": "23.344-23.366",
-    "source_id": "homer-odyssey"
-  },
-  {
     "from_name": "Peleus",
     "relation": "parent_of",
     "to_name": "Achilles",
@@ -40288,14 +40168,6 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Odysseus",
-    "relation": "parent_of",
-    "to_name": "Laertes",
-    "is_contested": false,
-    "passage_ref": "24.219-24.255",
-    "source_id": "homer-odyssey"
-  },
-  {
     "from_name": "Laertes",
     "relation": "parent_of",
     "to_name": "Odysseus",
@@ -40397,14 +40269,6 @@
     "to_name": "Dolius's son",
     "is_contested": false,
     "passage_ref": "24.450-24.495",
-    "source_id": "homer-odyssey"
-  },
-  {
-    "from_name": "Odysseus",
-    "relation": "parent_of",
-    "to_name": "Laertes",
-    "is_contested": false,
-    "passage_ref": "24.496-24.544",
     "source_id": "homer-odyssey"
   },
   {

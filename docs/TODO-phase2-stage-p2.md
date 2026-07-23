@@ -347,15 +347,15 @@ Needs A–H merged + a running, seeded server. **This is the only place Q9/Q12 f
 the conditional rungs are the only place Q9/Q12 *code* may ship.** Every rung is gated on the previous
 rung's **3-run** eval — never a single run (`§8` flakiness contract).
 
-- [ ] **I1** — stack up (`scripts/run-local.sh`), confirm seeded (6 sources **and** non-empty
+- [x] **I1** — stack up (`scripts/run-local.sh`), confirm seeded (6 sources **and** non-empty
       `narrative_chunks` — P1 H1 caught a half-seeded DB; run `ingestion/main.py` if chunks are empty).
       Smoke-test the debug surface live: `POST /api/v1/query {"question":"Which Olympians are children
       of Cronus?","debug":true}` → confirm a populated `DebugInfo` (probe, sqlRows, chunk refs as
       applicable); and the same question without `debug` → **no** `debug` key.
-- [ ] **I2** — **Rung 0 diagnose (always):** run `python -m audit.cycle_check --db` (seeded graph)
+- [x] **I2** — **Rung 0 diagnose (always):** run `python -m audit.cycle_check --db` (seeded graph)
       **and** `--candidates` (source of truth) **before touching any SQL or prompt**. Record every
       `parent_of` cycle with its edges + sources.
-- [ ] **I3** — **Rung 0 fix (always, if cycles found):** correct the offending edges at the
+- [x] **I3** — **Rung 0 fix (always, if cycles found):** correct the offending edges at the
       **candidate-JSON layer** (`relationships_candidates_cleaned.json`) — reverse or drop, using
       `source_id` / `canonical_edge.py` spine priority as the tie-breaker. If a cycle traces to a
       *split/duplicated* entity (the Io/DEV-042 class), note it for P3 (don't merge entities here) but

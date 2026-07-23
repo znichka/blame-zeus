@@ -1,0 +1,4017 @@
+{
+  "label": "p2",
+  "runs": 3,
+  "responses_by_run": [
+    [
+      {
+        "answer": "Athena turned Arachne into a spider as punishment for her pride and defiance [1]. Arachne was a mortal weaver of extraordinary skill who refused to acknowledge Athena's superiority in the art of weaving [1]. When Athena, disguised as an old woman, advised Arachne to show humility and ask the goddess for pardon, Arachne scornfully rejected the advice and challenged Athena herself to a weaving contest [1]. After they competed, Athena found Arachne's work flawless but was enraged by the girl's skill and defiance [2]. Athena destroyed Arachne's web and struck her repeatedly [2]. When Arachne attempted to hang herself in despair, Athena saved her life but pronounced a curse: Arachne would dangle on a cord forever as punishment, and her descendants would do the same [3]. Athena then sprinkled Arachne with a magical potion that transformed her body into that of a spider, condemning her to weave webs for eternity [3].",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "6.1-6.25",
+            "stance": "primary"
+          },
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "6.26-6.52",
+            "stance": "primary"
+          },
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "6.129-6.145",
+            "stance": "primary"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Arachne",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 3032,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "6.129-6.145",
+              "score": 0.6794369729694226
+            },
+            {
+              "id": 3025,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "6.26-6.52",
+              "score": 0.6393090035085585
+            },
+            {
+              "id": 3024,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "6.1-6.25",
+              "score": 0.6384394411741101
+            },
+            {
+              "id": 3028,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "6.83-6.102",
+              "score": 0.6214103779857499
+            },
+            {
+              "id": 3029,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "6.103-6.128",
+              "score": 0.5219958373328343
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "Athena (Minerva) turned Arachne into a spider as punishment for her pride and defiance. Arachne was a mortal weaver of extraordinary skill who refused to acknowledge Athena's superiority in the art of weaving. When Athena, disguised as an old woman, advised Arachne to show humility and ask the goddess for pardon, Arachne scornfully rejected the advice and challenged Athena herself to a weaving contest. After they competed, Athena found Arachne's work flawless but was enraged by the girl's skill and defiance. Athena destroyed Arachne's web and struck her repeatedly. When Arachne attempted to hang herself in despair, Athena saved her life but pronounced a curse: Arachne would dangle on a cord forever as punishment, and her descendants would do the same. Athena then sprinkled Arachne with a magical potion that transformed her body into that of a spider, condemning her to weave webs for eternity."
+        }
+      },
+      {
+        "answer": "Prometheus was punished for two main transgressions: stealing fire and giving it to humans, and for attempting to deceive Zeus during a dispute at Mecone by dividing sacrificial portions unfairly [1][2]. When Zeus discovered that Prometheus had hidden fire in a stalk of fennel and given it to mortals, he ordered Hephaestus to bind Prometheus to Mount Caucasus with inextricable bonds and set an eagle upon him to devour his liver daily, which would regenerate each night [1][2]. This severe punishment was inflicted because Prometheus 'matched himself in wit with the almighty son of Cronos' [1].",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Hesiod",
+            "work": "Theogony",
+            "passageRef": "507-544",
+            "stance": "primary account"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "1.7.1",
+            "stance": "corroborating account"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Prometheus",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 35,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "1.7.1",
+              "score": 0.6750433411063294
+            },
+            {
+              "id": 466,
+              "sourceId": "hesiod-theogony",
+              "passageRef": "545",
+              "score": 0.5355434405574265
+            },
+            {
+              "id": 472,
+              "sourceId": "hesiod-theogony",
+              "passageRef": "613-616",
+              "score": 0.5233102367111184
+            },
+            {
+              "id": 465,
+              "sourceId": "hesiod-theogony",
+              "passageRef": "507-544",
+              "score": 0.5116098541500694
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "Prometheus was punished for two main transgressions: stealing fire and giving it to humans, and for attempting to deceive Zeus during a dispute at Mecone by dividing sacrificial portions unfairly. When Zeus discovered that Prometheus had hidden fire in a stalk of fennel and given it to mortals, he ordered Hephaestus to bind Prometheus to Mount Caucasus with inextricable bonds and set an eagle upon him to devour his liver daily, which would regenerate each night. This severe punishment was inflicted because Prometheus 'matched himself in wit with the almighty son of Cronos.'"
+        }
+      },
+      {
+        "answer": "Odysseus escaped Polyphemus through a two-part plan. First, he blinded the Cyclops by sharpening a wooden club, heating it in fire, and driving it into Polyphemus's eye with the help of his comrades [1][2]. When Polyphemus cried out for help from other Cyclopes, they misunderstood his cries of \"Nobody\" and left him alone [1][2]. Second, after the blinding, Odysseus tied the sheep together in groups of three and hid himself under the largest ram by clinging to its fleece [3][4]. When Polyphemus opened the cave door in the morning to let his flocks out to pasture, he felt the sheep as they passed but could not detect the men hidden beneath them [3][4]. Odysseus and his comrades thus escaped with the sheep to their ship [3][4].",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Homer",
+            "work": "Odyssey",
+            "passageRef": "9.318-9.344",
+            "stance": "primary source"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "E.7.7",
+            "stance": "primary source"
+          },
+          {
+            "author": "Homer",
+            "work": "Odyssey",
+            "passageRef": "9.413-9.436",
+            "stance": "primary source"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "E.7.8",
+            "stance": "primary source"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Odysseus",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 394,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.7.7",
+              "score": 0.6052393355200681
+            },
+            {
+              "id": 395,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.7.8",
+              "score": 0.5975368387855998
+            },
+            {
+              "id": 2197,
+              "sourceId": "homer-odyssey",
+              "passageRef": "9.413-9.436",
+              "score": 0.5824837050797657
+            },
+            {
+              "id": 2188,
+              "sourceId": "homer-odyssey",
+              "passageRef": "9.318-9.344",
+              "score": 0.5588362581387457
+            },
+            {
+              "id": 391,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.7.4",
+              "score": 0.5551834864845959
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "Odysseus escaped Polyphemus through a two-part plan. First, he blinded the Cyclops by sharpening a wooden club, heating it in fire, and driving it into Polyphemus's eye with the help of his comrades. When Polyphemus cried out for help from other Cyclopes, they misunderstood his cries of \"Nobody\" and left him alone. Second, after the blinding, Odysseus tied the sheep together in groups of three and hid himself under the largest ram by clinging to its fleece. When Polyphemus opened the cave door in the morning to let his flocks out to pasture, he felt the sheep as they passed but could not detect the men hidden beneath them. Odysseus and his comrades thus escaped with the sheep to their ship."
+        }
+      },
+      {
+        "answer": "At the wedding of Peleus and Thetis, the gods celebrated the marriage with feast and song on Mount Pelion [1]. The marriage took place after Peleus seized Thetis despite her shape-shifting resistance, holding her fast as she transformed into fire, water, and various beasts until she resumed her original form [1]. As wedding gifts, Chiron gave Peleus an ashen spear [1], and Poseidon gave him two immortal horses named Balius and Xanthus [1].",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "3.13.5",
+            "stance": "neutral"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Peleus",
+          "probeClaimType": "marriage",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 228,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "3.13.5",
+              "score": 0.7159701759018763
+            },
+            {
+              "id": 3292,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "11.221-11.228",
+              "score": 0.636643836309235
+            },
+            {
+              "id": 3293,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "11.229-11.257",
+              "score": 0.6279505530521163
+            },
+            {
+              "id": 3291,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "11.194-11.220",
+              "score": 0.6172476475706304
+            },
+            {
+              "id": 3294,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "11.258-11.265",
+              "score": 0.6109781003221766
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "At the wedding of Peleus and Thetis, the gods celebrated the marriage with feast and song on Mount Pelion. Chiron gave Peleus an ashen spear as a wedding gift, and Poseidon gave him two immortal horses named Balius and Xanthus. The marriage took place after Peleus seized Thetis despite her shape-shifting resistance, holding her fast as she transformed into fire, water, and various beasts until she resumed her original form."
+        }
+      },
+      {
+        "answer": "Demeter stopped the crops from growing because she was grieving over the loss of her daughter, who had been carried off by Pluto [1]. She was 'wasting with yearning for her deep-bosomed daughter' [1] and vowed that she would never let fruit spring out of the ground until she beheld her own fair-faced daughter with her eyes [2]. Her yearning and wrath over this abduction caused her to withhold the growth of crops as a way to compel the gods to help her recover her daughter [3].",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Anonymous (\"Homeric\")",
+            "work": "Homeric Hymns",
+            "passageRef": "2.324-2.333",
+            "stance": "describes Pluto's abduction of Demeter's daughter"
+          },
+          {
+            "author": "Anonymous (\"Homeric\")",
+            "work": "Homeric Hymns",
+            "passageRef": "2.301-2.323",
+            "stance": "describes Demeter's yearning and vow regarding the crops"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "1.5.1",
+            "stance": "describes Demeter's withholding of crops due to grief and wrath"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Demeter",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 542,
+              "sourceId": "hesiod-homeric-hymns",
+              "passageRef": "2.301-2.323",
+              "score": 0.6267473001544107
+            },
+            {
+              "id": 530,
+              "sourceId": "hesiod-homeric-hymns",
+              "passageRef": "2.90-2.117",
+              "score": 0.603141989362718
+            },
+            {
+              "id": 551,
+              "sourceId": "hesiod-homeric-hymns",
+              "passageRef": "2.441-2.458",
+              "score": 0.5974961547064064
+            },
+            {
+              "id": 543,
+              "sourceId": "hesiod-homeric-hymns",
+              "passageRef": "2.324-2.333",
+              "score": 0.5820366576053254
+            },
+            {
+              "id": 27,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "1.5.1",
+              "score": 0.5671269691448386
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "Demeter stopped the crops from growing because she was grieving over the loss of her daughter. She was 'wasting with yearning for her deep-bosomed daughter' and vowed that she would never let fruit spring out of the ground until she beheld her own fair-faced daughter with her eyes. Her daughter had been carried off by Pluto, and Demeter's yearning and wrath over this abduction caused her to withhold the growth of crops as a way to compel the gods to help her recover her daughter."
+        }
+      },
+      {
+        "answer": "The Olympians who are children of Cronus include Zeus [1][2][3][4][5], Poseidon [1][2][6], Hera [1], and Demeter [1][2]. These deities are consistently identified across multiple ancient sources as the offspring of the Titan Cronus.",
+        "routeDecision": "SQL",
+        "citations": [
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "1.1.1-1.1.7",
+            "stance": "mythographic-handbook"
+          },
+          {
+            "author": "Hesiod",
+            "work": "Theogony",
+            "passageRef": "453-506",
+            "stance": "cosmological"
+          },
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "1.475-1.516",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Anonymous (\"Homeric\")",
+            "work": "Homeric Hymns",
+            "passageRef": "3.294-3.339",
+            "stance": "hymnic"
+          },
+          {
+            "author": "Homer",
+            "work": "Odyssey",
+            "passageRef": "1.44-1.95",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "13.330-13.360",
+            "stance": "poetic-myth"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": "SELECT child.name AS name,\n       s.author AS author, s.work AS work, s.stance AS stance, r.passage_ref AS passage_ref\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND parent.name ILIKE 'Cronus' AND child.type = 'olympian'",
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Cronus",
+          "probeClaimType": "parentage",
+          "claimRowCount": 0,
+          "firstAttemptSql": "SELECT child.name AS name,\n       s.author AS author, s.work AS work, s.stance AS stance, r.passage_ref AS passage_ref\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND parent.name ILIKE 'Cronus' AND child.type = 'olympian'",
+          "sqlRows": [
+            {
+              "name": "Demeter",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "stance": "mythographic-handbook",
+              "passage_ref": "1.1.1-1.1.7"
+            },
+            {
+              "name": "Demeter",
+              "author": "Hesiod",
+              "work": "Theogony",
+              "stance": "cosmological",
+              "passage_ref": "453-506"
+            },
+            {
+              "name": "Hera",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "stance": "mythographic-handbook",
+              "passage_ref": "1.1.1-1.1.7"
+            },
+            {
+              "name": "Poseidon",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "stance": "mythographic-handbook",
+              "passage_ref": "1.1.1-1.1.7"
+            },
+            {
+              "name": "Poseidon",
+              "author": "Hesiod",
+              "work": "Theogony",
+              "stance": "cosmological",
+              "passage_ref": "453-506"
+            },
+            {
+              "name": "Poseidon",
+              "author": "Homer",
+              "work": "Iliad",
+              "stance": "poetic-myth",
+              "passage_ref": "13.330-13.360"
+            },
+            {
+              "name": "Zeus",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "stance": "mythographic-handbook",
+              "passage_ref": "1.1.1-1.1.7"
+            },
+            {
+              "name": "Zeus",
+              "author": "Anonymous (\"Homeric\")",
+              "work": "Homeric Hymns",
+              "stance": "hymnic",
+              "passage_ref": "3.294-3.339"
+            },
+            {
+              "name": "Zeus",
+              "author": "Hesiod",
+              "work": "Theogony",
+              "stance": "cosmological",
+              "passage_ref": "453-506"
+            },
+            {
+              "name": "Zeus",
+              "author": "Homer",
+              "work": "Iliad",
+              "stance": "poetic-myth",
+              "passage_ref": "1.475-1.516"
+            },
+            {
+              "name": "Zeus",
+              "author": "Homer",
+              "work": "Odyssey",
+              "stance": "poetic-myth",
+              "passage_ref": "1.44-1.95"
+            }
+          ],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "name=Demeter, author=Apollodorus, work=Bibliotheca, stance=mythographic-handbook, passage_ref=1.1.1-1.1.7; name=Demeter, author=Hesiod, work=Theogony, stance=cosmological, passage_ref=453-506; name=Hera, author=Apollodorus, work=Bibliotheca, stance=mythographic-handbook, passage_ref=1.1.1-1.1.7; name=Poseidon, author=Apollodorus, work=Bibliotheca, stance=mythographic-handbook, passage_ref=1.1.1-1.1.7; name=Poseidon, author=Hesiod, work=Theogony, stance=cosmological, passage_ref=453-506; name=Poseidon, author=Homer, work=Iliad, stance=poetic-myth, passage_ref=13.330-13.360; name=Zeus, author=Apollodorus, work=Bibliotheca, stance=mythographic-handbook, passage_ref=1.1.1-1.1.7; name=Zeus, author=Anonymous (\"Homeric\"), work=Homeric Hymns, stance=hymnic, passage_ref=3.294-3.339; name=Zeus, author=Hesiod, work=Theogony, stance=cosmological, passage_ref=453-506; name=Zeus, author=Homer, work=Iliad, stance=poetic-myth, passage_ref=1.475-1.516; name=Zeus, author=Homer, work=Odyssey, stance=poetic-myth, passage_ref=1.44-1.95"
+        }
+      },
+      {
+        "answer": "Several heroes are identified as children of Zeus in classical sources. Aeneas [1] is described as a son of Zeus, as is Arcesilaus [2]. Additionally, Iasion [3] is counted among Zeus's offspring.",
+        "routeDecision": "SQL",
+        "citations": [
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "17.288-17.332",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "13.128-13.161",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "3.11.2-3.12.2",
+            "stance": "mythographic-handbook"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": "SELECT child.name AS name,\n       s.author AS author, s.work AS work, r.passage_ref AS passage_ref, s.stance AS stance\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND parent.name ILIKE 'Zeus' AND child.type = 'hero'",
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Zeus",
+          "probeClaimType": "parentage",
+          "claimRowCount": 0,
+          "firstAttemptSql": "SELECT child.name AS name,\n       s.author AS author, s.work AS work, r.passage_ref AS passage_ref, s.stance AS stance\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND parent.name ILIKE 'Zeus' AND child.type = 'hero'",
+          "sqlRows": [
+            {
+              "name": "Aeneas",
+              "author": "Homer",
+              "work": "Iliad",
+              "passage_ref": "17.288-17.332",
+              "stance": "poetic-myth"
+            },
+            {
+              "name": "Arcesilaus",
+              "author": "Ovid",
+              "work": "Metamorphoses",
+              "passage_ref": "13.128-13.161",
+              "stance": "poetic-myth"
+            },
+            {
+              "name": "Iasion",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "passage_ref": "3.11.2-3.12.2",
+              "stance": "mythographic-handbook"
+            }
+          ],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "name=Aeneas, author=Homer, work=Iliad, passage_ref=17.288-17.332, stance=poetic-myth; name=Arcesilaus, author=Ovid, work=Metamorphoses, passage_ref=13.128-13.161, stance=poetic-myth; name=Iasion, author=Apollodorus, work=Bibliotheca, passage_ref=3.11.2-3.12.2, stance=mythographic-handbook"
+        }
+      },
+      {
+        "answer": "The service is temporarily unavailable. Please try again later.",
+        "routeDecision": "SQL",
+        "citations": [],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": true,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Perseus",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": false,
+          "draftAnswer": null
+        }
+      },
+      {
+        "answer": "The service is temporarily unavailable. Please try again later.",
+        "routeDecision": "SQL",
+        "citations": [],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": true,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Zeus",
+          "probeClaimType": "parentage",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": false,
+          "draftAnswer": null
+        }
+      },
+      {
+        "answer": "The following entities have the 'olympian' type: Aphrodite, Apollo, Ares, Artemis, Athena, Demeter, Dionysus, Hephaestus, Hera, Hermes, Poseidon, and Zeus.",
+        "routeDecision": "SQL",
+        "citations": [],
+        "conflicts": [],
+        "sqlGenerated": "SELECT id, name, type, generation, domain, subtype\nFROM entities\nWHERE type = 'olympian'",
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Olympian",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": "SELECT id, name, type, generation, domain, subtype\nFROM entities\nWHERE type = 'olympian'",
+          "sqlRows": [
+            {
+              "id": 4159,
+              "name": "Aphrodite",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4162,
+              "name": "Apollo",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4185,
+              "name": "Ares",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4210,
+              "name": "Artemis",
+              "type": "olympian",
+              "generation": null,
+              "domain": "the hunt",
+              "subtype": null
+            },
+            {
+              "id": 4245,
+              "name": "Athena",
+              "type": "olympian",
+              "generation": null,
+              "domain": "wisdom/war",
+              "subtype": null
+            },
+            {
+              "id": 4545,
+              "name": "Demeter",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4578,
+              "name": "Dionysus",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4856,
+              "name": "Hephaestus",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4858,
+              "name": "Hera",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4862,
+              "name": "Hermes",
+              "type": "olympian",
+              "generation": null,
+              "domain": "messenger",
+              "subtype": null
+            },
+            {
+              "id": 5604,
+              "name": "Poseidon",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 5901,
+              "name": "Zeus",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            }
+          ],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "id=4159, name=Aphrodite, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4162, name=Apollo, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4185, name=Ares, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4210, name=Artemis, type=olympian, generation=unknown, domain=the hunt, subtype=unknown; id=4245, name=Athena, type=olympian, generation=unknown, domain=wisdom/war, subtype=unknown; id=4545, name=Demeter, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4578, name=Dionysus, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4856, name=Hephaestus, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4858, name=Hera, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4862, name=Hermes, type=olympian, generation=unknown, domain=messenger, subtype=unknown; id=5604, name=Poseidon, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=5901, name=Zeus, type=olympian, generation=unknown, domain=unknown, subtype=unknown"
+        }
+      },
+      {
+        "answer": "Achilles is identified as a hero with a divine parent who died at Troy [1][2]. He was the son of Thetis, a goddess, and Peleus, and he went to Troy and fought in the war [1][2].",
+        "routeDecision": "MIXED",
+        "citations": [
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "11.194-11.220",
+            "stance": "neutral"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "3.13.8",
+            "stance": "neutral"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": "WITH heroes_with_divine_parents AS (\n  SELECT DISTINCT child.id, child.name\n  FROM relationships r\n  JOIN entities child ON child.id = r.to_id\n  JOIN entities parent ON parent.id = r.from_id\n  WHERE r.relation IN ('parent_of', 'father_of', 'mother_of')\n    AND child.type = 'hero'\n    AND parent.type IN ('primordial', 'titan', 'olympian', 'other_god')\n)\nSELECT h.name,\n       s.author AS author, s.work AS work, s.stance AS stance, vc.passage_ref AS passage_ref\nFROM heroes_with_divine_parents h\nJOIN variant_claims vc ON vc.subject_entity_id = h.id\nJOIN sources s ON s.id = vc.source_id\nWHERE vc.claim_type = 'death'\n  AND vc.claim_value ILIKE '%Troy%'",
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "none",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": "WITH heroes_with_divine_parents AS (\n  SELECT DISTINCT child.id, child.name\n  FROM relationships r\n  JOIN entities child ON child.id = r.to_id\n  JOIN entities parent ON parent.id = r.from_id\n  WHERE r.relation IN ('parent_of', 'father_of', 'mother_of')\n    AND child.type = 'hero'\n    AND parent.type IN ('primordial', 'titan', 'olympian', 'other_god')\n)\nSELECT h.name,\n       s.author AS author, s.work AS work, s.stance AS stance, vc.passage_ref AS passage_ref\nFROM heroes_with_divine_parents h\nJOIN variant_claims vc ON vc.subject_entity_id = h.id\nJOIN sources s ON s.id = vc.source_id\nWHERE vc.claim_type = 'death'\n  AND vc.claim_value ILIKE '%Troy%'",
+          "sqlRows": [
+            {
+              "name": "Achilles",
+              "author": "Homer",
+              "work": "Iliad",
+              "stance": "poetic-myth",
+              "passage_ref": "24.77-24.119"
+            },
+            {
+              "name": "Achilles",
+              "author": "Homer",
+              "work": "Odyssey",
+              "stance": "poetic-myth",
+              "passage_ref": "3.102-3.154"
+            },
+            {
+              "name": "Achilles",
+              "author": "Homer",
+              "work": "Odyssey",
+              "stance": "poetic-myth",
+              "passage_ref": "24.35-24.84"
+            }
+          ],
+          "retrievedChunks": [
+            {
+              "id": 231,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "3.13.8",
+              "score": 0.5917079879465634
+            },
+            {
+              "id": 1480,
+              "sourceId": "homer-iliad",
+              "passageRef": "16.569-16.581",
+              "score": 0.5788199412076745
+            },
+            {
+              "id": 3291,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "11.194-11.220",
+              "score": 0.5680497274523569
+            },
+            {
+              "id": 1013,
+              "sourceId": "homer-iliad",
+              "passageRef": "6.414-6.428",
+              "score": 0.5584090534571419
+            },
+            {
+              "id": 1669,
+              "sourceId": "homer-iliad",
+              "passageRef": "20.393-20.418",
+              "score": 0.5570361104902137
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "Based on the provided passages, Achilles is identified as a hero with a divine parent who died at Troy. Achilles was the son of Thetis, a goddess, and Peleus. The passages confirm he went to Troy and fought in the war, though the provided texts do not explicitly state the manner or confirmation of his death at Troy."
+        }
+      },
+      {
+        "answer": "The service is temporarily unavailable. Please try again later.",
+        "routeDecision": "MIXED",
+        "citations": [],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": true,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Achilles",
+          "probeClaimType": "parentage",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": false,
+          "draftAnswer": null
+        }
+      },
+      {
+        "answer": "Aphrodite's parentage varies across ancient sources. According to Homer in the Iliad, Aphrodite was the daughter of Dione [1], a tradition also recorded by Apollodorus in the Bibliotheca [2]. However, other sources present a different account: Hesiod's Theogony describes Aphrodite as born from the sea foam formed by the severed members of Heaven, cast into the sea by Cronus [3]. Additionally, multiple sources identify Zeus as her father—including Apollodorus in the Bibliotheca [4], the Homeric Hymns [5], Homer's Iliad [6], Homer's Odyssey [7], and Ovid's Metamorphoses [8].",
+        "routeDecision": "SQL",
+        "citations": [
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "5.334-5.380",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "1.3.1-1.3.5",
+            "stance": "mythographic-handbook"
+          },
+          {
+            "author": "Hesiod",
+            "work": "Theogony",
+            "passageRef": "176-232",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "1.3.1-1.3.5",
+            "stance": "mythographic-handbook"
+          },
+          {
+            "author": "Anonymous (Homeric)",
+            "work": "Homeric Hymns",
+            "passageRef": "3.182-3.238",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "3.340-3.380",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Homer",
+            "work": "Odyssey",
+            "passageRef": "8.256-8.294",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "14.566-14.608",
+            "stance": "poetic-myth"
+          }
+        ],
+        "conflicts": [
+          {
+            "claimValue": "Born from the sea foam formed by the severed members of Heaven, cast into the sea by Cronus",
+            "sourceAuthor": "Hesiod",
+            "sourceWork": "Theogony",
+            "passageRef": "176-232"
+          },
+          {
+            "claimValue": "child of Dione",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "1.3.1-1.3.5"
+          },
+          {
+            "claimValue": "child of Dione",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "5.334-5.380"
+          },
+          {
+            "claimValue": "child of Zeus",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "1.3.1-1.3.5"
+          },
+          {
+            "claimValue": "child of Zeus",
+            "sourceAuthor": "Anonymous (\"Homeric\")",
+            "sourceWork": "Homeric Hymns",
+            "passageRef": "3.182-3.238"
+          },
+          {
+            "claimValue": "child of Zeus",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "3.340-3.380"
+          },
+          {
+            "claimValue": "child of Zeus",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Odyssey",
+            "passageRef": "8.256-8.294"
+          },
+          {
+            "claimValue": "child of Zeus",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "14.566-14.608"
+          },
+          {
+            "claimValue": "daughter of Dione",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "5.334-5.380"
+          },
+          {
+            "claimValue": "daughter of Zeus",
+            "sourceAuthor": "Anonymous (\"Homeric\")",
+            "sourceWork": "Homeric Hymns",
+            "passageRef": "3.182-3.238"
+          },
+          {
+            "claimValue": "daughter of Zeus",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "3.340-3.380"
+          },
+          {
+            "claimValue": "daughter of Zeus",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Odyssey",
+            "passageRef": "8.295-8.342"
+          },
+          {
+            "claimValue": "daughter of Zeus (the mighty son of Cronos)",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Odyssey",
+            "passageRef": "8.256-8.294"
+          }
+        ],
+        "sqlGenerated": "SELECT child.name AS child_name,\n       parent.name AS parent_name,\n       s.author AS author, s.work AS work, s.stance AS stance,\n       r.passage_ref AS passage_ref\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND child.name ILIKE 'Aphrodite'\nORDER BY parent.name",
+        "serviceError": false,
+        "conflictsInProse": true,
+        "debug": {
+          "probeSubject": "Aphrodite",
+          "probeClaimType": "parentage",
+          "claimRowCount": 13,
+          "firstAttemptSql": "SELECT child.name AS child_name,\n       parent.name AS parent_name,\n       s.author AS author, s.work AS work, s.stance AS stance,\n       r.passage_ref AS passage_ref\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND child.name ILIKE 'Aphrodite'\nORDER BY parent.name",
+          "sqlRows": [
+            {
+              "child_name": "Aphrodite",
+              "parent_name": "Dione",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "stance": "mythographic-handbook",
+              "passage_ref": "1.3.1-1.3.5"
+            },
+            {
+              "child_name": "Aphrodite",
+              "parent_name": "Dione",
+              "author": "Homer",
+              "work": "Iliad",
+              "stance": "poetic-myth",
+              "passage_ref": "5.334-5.380"
+            }
+          ],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "child_name=Aphrodite, parent_name=Dione, author=Apollodorus, work=Bibliotheca, stance=mythographic-handbook, passage_ref=1.3.1-1.3.5; child_name=Aphrodite, parent_name=Dione, author=Homer, work=Iliad, stance=poetic-myth, passage_ref=5.334-5.380"
+        }
+      },
+      {
+        "answer": "Io's father is identified differently across ancient sources. According to Apollodorus in the Bibliotheca, Io was the daughter of Iasus in the main narrative [1], though Apollodorus also notes that Castor and many tragedians identified her as the daughter of Inachus [2], while Hesiod and Acusilaus claimed she was the daughter of Piren [3]. Ovid, in the Metamorphoses, consistently presents Io as the daughter of Inachus [4].",
+        "routeDecision": "SQL",
+        "citations": [
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3",
+            "stance": "daughter of Iasus, according to the main narrative"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3",
+            "stance": "daughter of Inachus, according to Castor and many tragedians"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3",
+            "stance": "daughter of Piren, according to Hesiod and Acusilaus"
+          },
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "1.622-1.667",
+            "stance": "Io is the daughter of Inachus"
+          }
+        ],
+        "conflicts": [
+          {
+            "claimValue": "Io is the daughter of Inachus",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "1.622-1.667"
+          },
+          {
+            "claimValue": "child of Iasus",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3"
+          },
+          {
+            "claimValue": "child of Inachus",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3"
+          },
+          {
+            "claimValue": "child of Inachus",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "1.567-1.600"
+          },
+          {
+            "claimValue": "child of Piren",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3"
+          },
+          {
+            "claimValue": "daughter of Iasus, according to the main narrative",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3"
+          },
+          {
+            "claimValue": "daughter of Inachus",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "1.567-1.600"
+          },
+          {
+            "claimValue": "daughter of Inachus, according to Castor and many tragedians",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3"
+          },
+          {
+            "claimValue": "daughter of Piren, according to Hesiod and Acusilaus",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3"
+          }
+        ],
+        "sqlGenerated": "SELECT parent.name AS name,\n       s.author AS author, s.work AS work, r.passage_ref AS passage_ref, s.stance AS stance\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND child.name ILIKE 'Io'",
+        "serviceError": false,
+        "conflictsInProse": true,
+        "debug": {
+          "probeSubject": "Io",
+          "probeClaimType": "parentage",
+          "claimRowCount": 9,
+          "firstAttemptSql": "SELECT parent.name AS name,\n       s.author AS author, s.work AS work, r.passage_ref AS passage_ref, s.stance AS stance\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND child.name ILIKE 'Io'",
+          "sqlRows": [
+            {
+              "name": "Iasus",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "passage_ref": "2.1.2-2.1.3",
+              "stance": "mythographic-handbook"
+            }
+          ],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "name=Iasus, author=Apollodorus, work=Bibliotheca, passage_ref=2.1.2-2.1.3, stance=mythographic-handbook"
+        }
+      },
+      {
+        "answer": "Achilles died by being shot with an arrow. According to Ovid, Paris shot the arrow that fatally struck Achilles, with Apollo guiding it to its mark at the instigation of Apollo and Neptune [1]. Homer's account provides additional context, noting that the dying Hector foretold Achilles would be slain by Paris and Phoebus Apollo at the Scaean gate [2], and that Thetis had foretold her son would perish beneath the wall of the Trojans by the swift missiles of Apollo [3]. Apollodorus similarly records that Thetis forewarned Achilles he would die by the hand of Apollo if he slew Tenes [4], foreshadowing his eventual death at Apollo's hand [5]. After his death, Ajax carried Achilles' body from the battlefield [6].",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "12.580-12.612",
+            "stance": "Killed by an arrow shot by Paris, guided by Apollo, at Apollo's and Neptune's instigation"
+          },
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "22.328-22.374",
+            "stance": "Foretold by dying Hector to be slain by Paris and Phoebus Apollo at the Scaean gate"
+          },
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "21.272-21.297",
+            "stance": "Thetis foretold he would perish beneath the wall of the Trojans by the swift missiles of Apollo"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "E.3.20-E.3.26",
+            "stance": "Thetis forewarned Achilles that he would die by the hand of Apollo if he slew Tenes"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "E.3.26",
+            "stance": "Killed by Apollo"
+          },
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "13.280-13.312",
+            "stance": "Achilles was slain; Ajax carried his dead body from the battlefield"
+          }
+        ],
+        "conflicts": [
+          {
+            "claimValue": "Achilles was slain; Ajax carried his dead body from the battlefield",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "13.280-13.312"
+          },
+          {
+            "claimValue": "Achilles wished Hector had slain him instead of dying swept away by the river",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "21.272-21.297"
+          },
+          {
+            "claimValue": "Foretold by dying Hector to be slain by Paris and Phoebus Apollo at the Scaean gate",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "22.328-22.374"
+          },
+          {
+            "claimValue": "Killed by Paris and Apollo with arrows/shafts",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "13.481-13.507"
+          },
+          {
+            "claimValue": "Killed by an arrow shot by Paris, guided by Apollo, at Apollo's and Neptune's instigation - a divergence from the more common tradition of Achilles being wounded in the heel",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "12.580-12.612"
+          },
+          {
+            "claimValue": "Thetis foretells his death will follow soon after Hector's death",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "18.50-18.96"
+          },
+          {
+            "claimValue": "Thetis foretold he would perish beneath the wall of the Trojans by the swift missiles of Apollo",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "21.272-21.297"
+          },
+          {
+            "claimValue": "Thetis forewarned Achilles that he would die by the hand of Apollo if he slew Tenes",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "E.3.20-E.3.26"
+          },
+          {
+            "claimValue": "denied by unjust fate to both the Greeks and Ulysses, implying his death before the contest for his arms",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "13.128-13.161"
+          },
+          {
+            "claimValue": "destined to meet his death and fate at some future point",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "20.292-20.339"
+          },
+          {
+            "claimValue": "destined to perish in deep-soiled Troy, far from his native land",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "24.77-24.119"
+          },
+          {
+            "claimValue": "doomed to a speedy death, brief span of life",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "1.386-1.427"
+          },
+          {
+            "claimValue": "doomed to be brought low beneath the wall of the wealthy Trojans",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "23.54-23.98"
+          },
+          {
+            "claimValue": "fated to be slain in fight by a god and a mortal, far from his father and mother",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "19.392-20.11"
+          },
+          {
+            "claimValue": "foretold that he will die in battle, smitten by a spear cast or an arrow from the string",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "21.97-21.135"
+          },
+          {
+            "claimValue": "killed by Alexander",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "E.4.6-E.5.4"
+          },
+          {
+            "claimValue": "killed by Apollo",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "E.3.20-E.3.26"
+          },
+          {
+            "claimValue": "killed by Apollo",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "19.392-20.11"
+          },
+          {
+            "claimValue": "killed by Apollo",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "13.481-13.507"
+          },
+          {
+            "claimValue": "killed by Paris",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "12.580-12.612"
+          },
+          {
+            "claimValue": "slain at Troy",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Odyssey",
+            "passageRef": "3.102-3.154"
+          },
+          {
+            "claimValue": "slain in the land of Troy, far from Argos",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Odyssey",
+            "passageRef": "24.35-24.84"
+          }
+        ],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": true,
+        "debug": {
+          "probeSubject": "Achilles",
+          "probeClaimType": "death",
+          "claimRowCount": 22,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 316,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.3.26",
+              "score": 0.5715282560085242
+            },
+            {
+              "id": 1688,
+              "sourceId": "homer-iliad",
+              "passageRef": "21.161-21.181",
+              "score": 0.5629194030068349
+            },
+            {
+              "id": 337,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.5.5",
+              "score": 0.5623853101522521
+            },
+            {
+              "id": 322,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.3.32",
+              "score": 0.5582064361392999
+            },
+            {
+              "id": 3359,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "12.580-12.611",
+              "score": 0.549749758464632
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "According to the provided sources, Achilles died by being shot with an arrow. Ovid describes how Apollo, at the request of Achilles' enemies, guided Paris's arrow to strike Achilles fatally. Additionally, Apollodorus mentions in his account of Achilles' earlier deeds that Thetis had forewarned Achilles that he would die by the hand of Apollo if he killed Tenes, which foreshadows his eventual death at Apollo's hand."
+        }
+      },
+      {
+        "answer": "Achilles withdrew from the fighting after his quarrel with Agamemnon because Agamemnon took his prize of honor, Briseis. According to Homer's account, Achilles was angry that Agamemnon threatened to seize Briseis, the girl he had won through his own efforts in battle, while Agamemnon's own prize remained greater [1]. Achilles felt dishonored by this action and declared he would return home to Phthia rather than continue fighting while treated with such disrespect [1]. Apollodorus provides a more concise account, stating that Achilles did not go forth to war because he was angry on account of Briseis, the daughter of the priest Chryses [2].",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "1.147-1.171",
+            "stance": "primary source"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "E.4.1",
+            "stance": "primary source"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Achilles",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 326,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.4.1",
+              "score": 0.6097646640109864
+            },
+            {
+              "id": 705,
+              "sourceId": "homer-iliad",
+              "passageRef": "1.147-1.171",
+              "score": 0.5614559979221414
+            },
+            {
+              "id": 707,
+              "sourceId": "homer-iliad",
+              "passageRef": "1.187-1.205",
+              "score": 0.5510023042062505
+            },
+            {
+              "id": 332,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.4.7",
+              "score": 0.5385782831377423
+            },
+            {
+              "id": 1618,
+              "sourceId": "homer-iliad",
+              "passageRef": "19.54-19.73",
+              "score": 0.5374848217433021
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "Achilles withdrew from the fighting because Agamemnon took his prize of honor, Briseis. According to Homer's account, Achilles was angry that Agamemnon threatened to seize Briseis, the girl he had won through his own efforts in battle, while Agamemnon's own prize remained greater. Achilles felt dishonored by this action and declared he would return home to Phthia rather than continue fighting while treated with such disrespect. Apollodorus provides a more concise account, stating that Achilles did not go forth to war because he was angry on account of Briseis, the daughter of the priest Chryses."
+        }
+      }
+    ],
+    [
+      {
+        "answer": "Athena turned Arachne into a spider as punishment for her pride and defiance [1]. Arachne was an extraordinarily skilled weaver who refused to acknowledge that her talent came from Athena or to show the goddess proper respect [1]. When Athena challenged her to a weaving contest, Arachne not only competed but wove scenes depicting the gods' shameful deeds and immoral actions [1]. Enraged that Arachne's work was flawless and that the mortal had dared to rival her, Athena destroyed Arachne's web and struck her repeatedly [1]. After Arachne attempted suicide in response to this humiliation, Athena saved her life but transformed her into a spider, condemning her to dangle on a cord forever and to weave endlessly as eternal punishment for her presumption [2].",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "6.1-6.25",
+            "stance": "narrative"
+          },
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "6.129-6.145",
+            "stance": "narrative"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Arachne",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 3032,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "6.129-6.145",
+              "score": 0.6794369729694226
+            },
+            {
+              "id": 3025,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "6.26-6.52",
+              "score": 0.6393090035085585
+            },
+            {
+              "id": 3024,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "6.1-6.25",
+              "score": 0.6384394411741101
+            },
+            {
+              "id": 3028,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "6.83-6.102",
+              "score": 0.6214103779857499
+            },
+            {
+              "id": 3029,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "6.103-6.128",
+              "score": 0.5219958373328343
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "Athena (Minerva) turned Arachne into a spider as punishment for her pride and defiance. Arachne was an extraordinarily skilled weaver who refused to acknowledge that her talent came from Minerva or to show the goddess proper respect. When Minerva challenged her to a weaving contest, Arachne not only competed but wove scenes depicting the gods' shameful deeds and immoral actions. Enraged that Arachne's work was flawless and that the mortal had dared to rival her, Minerva destroyed Arachne's web and struck her repeatedly. After Arachne attempted suicide in response to this humiliation, Minerva saved her life but transformed her into a spider, condemning her to dangle on a cord forever and to weave endlessly as eternal punishment for her presumption."
+        }
+      },
+      {
+        "answer": "Prometheus was punished for stealing fire and giving it to humans [1]. According to Apollodorus, Prometheus hid fire in a stalk of fennel and gave it to men, and when Zeus learned of this theft, he ordered Hephaestus to nail Prometheus to Mount Caucasus [1]. According to Hesiod, Prometheus was also punished for attempting to deceive Zeus by dividing portions of an ox unfairly during a dispute between gods and mortals at Mecone, setting aside bones covered with fat for Zeus while giving the flesh to mortals [2][3]. His punishment involved being bound with chains and having an eagle devour his liver daily, which would regenerate each night [2][3].",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "1.7.1",
+            "stance": "neutral"
+          },
+          {
+            "author": "Hesiod",
+            "work": "Theogony",
+            "passageRef": "507-544",
+            "stance": "neutral"
+          },
+          {
+            "author": "Hesiod",
+            "work": "Theogony",
+            "passageRef": "545",
+            "stance": "neutral"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Prometheus",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 35,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "1.7.1",
+              "score": 0.6750658016434676
+            },
+            {
+              "id": 466,
+              "sourceId": "hesiod-theogony",
+              "passageRef": "545",
+              "score": 0.5355461613926273
+            },
+            {
+              "id": 472,
+              "sourceId": "hesiod-theogony",
+              "passageRef": "613-616",
+              "score": 0.5232988171549451
+            },
+            {
+              "id": 465,
+              "sourceId": "hesiod-theogony",
+              "passageRef": "507-544",
+              "score": 0.5115957142181151
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "Prometheus was punished for stealing fire and giving it to humans. According to Apollodorus, Prometheus hid fire in a stalk of fennel and gave it to men, and when Zeus learned of this theft, he ordered Hephaestus to nail Prometheus to Mount Caucasus. According to Hesiod, Prometheus was also punished for attempting to deceive Zeus by dividing portions of an ox unfairly during a dispute between gods and mortals at Mecone, setting aside bones covered with fat for Zeus while giving the flesh to mortals. His punishment involved being bound with chains and having an eagle devour his liver daily, which would regenerate each night."
+        }
+      },
+      {
+        "answer": "Odysseus escaped Polyphemus through a two-part plan. First, he blinded the Cyclops by sharpening a wooden club, heating it in fire, and driving it into Polyphemus's eye with the help of his comrades [1][2]. When Polyphemus called out to other Cyclopes for help, they misunderstood his cries of \"Nobody\" and left him alone [1][2]. Second, after the blinded Cyclops opened the cave door to let his sheep out to pasture, Odysseus tied the sheep together in groups of three and hid himself beneath the largest ram, escaping with his comrades as the sheep passed through the doorway [1][2].",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Homer",
+            "work": "Odyssey",
+            "passageRef": "9.318-9.344",
+            "stance": "describes Odysseus blinding Polyphemus and the misunderstanding of 'Nobody'"
+          },
+          {
+            "author": "Homer",
+            "work": "Odyssey",
+            "passageRef": "9.413-9.436",
+            "stance": "describes Odysseus's escape by hiding beneath the ram"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Odysseus",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 394,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.7.7",
+              "score": 0.6052393355200681
+            },
+            {
+              "id": 395,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.7.8",
+              "score": 0.5975368387855998
+            },
+            {
+              "id": 2197,
+              "sourceId": "homer-odyssey",
+              "passageRef": "9.413-9.436",
+              "score": 0.5824837050797657
+            },
+            {
+              "id": 2188,
+              "sourceId": "homer-odyssey",
+              "passageRef": "9.318-9.344",
+              "score": 0.5588362581387457
+            },
+            {
+              "id": 391,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.7.4",
+              "score": 0.5551834864845959
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "Odysseus escaped Polyphemus through a two-part plan. First, he blinded the Cyclops by sharpening a wooden club, heating it in fire, and driving it into Polyphemus's eye with the help of his comrades. When Polyphemus called out to other Cyclopes for help, they misunderstood his cries of \"Nobody\" and left him alone. Second, after the blinded Cyclops opened the cave door to let his sheep out to pasture, Odysseus tied the sheep together in groups of three and hid himself beneath the largest ram, escaping with his comrades as the sheep passed through the doorway."
+        }
+      },
+      {
+        "answer": "At the wedding of Peleus and Thetis, the gods celebrated the marriage with feast and song on Mount Pelion [1]. The marriage took place after Peleus seized Thetis and held her fast despite her shape-shifting into fire, water, and various beasts, until she resumed her true form [1]. As wedding gifts, Chiron gave Peleus an ashen spear [1], and Poseidon gave him immortal horses named Balius and Xanthus [1].",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "3.13.5",
+            "stance": "neutral"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Peleus",
+          "probeClaimType": "marriage",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 228,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "3.13.5",
+              "score": 0.7159701759018763
+            },
+            {
+              "id": 3292,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "11.221-11.228",
+              "score": 0.636643836309235
+            },
+            {
+              "id": 3293,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "11.229-11.257",
+              "score": 0.6279505530521163
+            },
+            {
+              "id": 3291,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "11.194-11.220",
+              "score": 0.6172476475706304
+            },
+            {
+              "id": 3294,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "11.258-11.265",
+              "score": 0.6109781003221766
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "At the wedding of Peleus and Thetis, the gods celebrated the marriage with feast and song on Mount Pelion. Chiron gave Peleus an ashen spear as a wedding gift, and Poseidon gave him immortal horses named Balius and Xanthus. The marriage took place after Peleus seized Thetis and held her fast despite her shape-shifting into fire, water, and various beasts, until she resumed her true form."
+        }
+      },
+      {
+        "answer": "Demeter stopped the crops from growing because she was grieving over the loss of her daughter. She was 'wasting with yearning for her deep-bosomed daughter' [1] and vowed that she would 'never set foot on fragrant Olympus nor let fruit spring out of the ground, until she beheld with her eyes her own fair-faced daughter' [2]. Her daughter had been carried off by Pluto [3], and Demeter's refusal to allow crops to grow was her way of forcing the gods to help her recover her child.",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Anonymous (\"Homeric\")",
+            "work": "Homeric Hymns",
+            "passageRef": "2.301-2.323",
+            "stance": "describes Demeter's grief and yearning"
+          },
+          {
+            "author": "Anonymous (\"Homeric\")",
+            "work": "Homeric Hymns",
+            "passageRef": "2.324-2.333",
+            "stance": "records Demeter's vow to withhold crops"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "1.5.1",
+            "stance": "attests to Pluto's abduction of Demeter's daughter"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Demeter",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 542,
+              "sourceId": "hesiod-homeric-hymns",
+              "passageRef": "2.301-2.323",
+              "score": 0.6267473001544107
+            },
+            {
+              "id": 530,
+              "sourceId": "hesiod-homeric-hymns",
+              "passageRef": "2.90-2.117",
+              "score": 0.603141989362718
+            },
+            {
+              "id": 551,
+              "sourceId": "hesiod-homeric-hymns",
+              "passageRef": "2.441-2.458",
+              "score": 0.5974961547064064
+            },
+            {
+              "id": 543,
+              "sourceId": "hesiod-homeric-hymns",
+              "passageRef": "2.324-2.333",
+              "score": 0.5820366576053254
+            },
+            {
+              "id": 27,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "1.5.1",
+              "score": 0.5671269691448386
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "Demeter stopped the crops from growing because she was grieving over the loss of her daughter. She was 'wasting with yearning for her deep-bosomed daughter' and vowed that she would 'never set foot on fragrant Olympus nor let fruit spring out of the ground, until she beheld with her eyes her own fair-faced daughter.' Her daughter had been carried off by Pluto, and Demeter's refusal to allow crops to grow was her way of forcing the gods to help her recover her child."
+        }
+      },
+      {
+        "answer": "The Olympians who are children of Cronus include Zeus [1][2][3][4][5], Poseidon [1][2][6], Hera [1], and Demeter [2][3]. These deities are consistently identified across multiple ancient sources as the offspring of the Titan Cronus.",
+        "routeDecision": "SQL",
+        "citations": [
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "1.1.1-1.1.7",
+            "stance": "mythographic-handbook"
+          },
+          {
+            "author": "Hesiod",
+            "work": "Theogony",
+            "passageRef": "453-506",
+            "stance": "cosmological"
+          },
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "1.475-1.516",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Anonymous (\"Homeric\")",
+            "work": "Homeric Hymns",
+            "passageRef": "3.294-3.339",
+            "stance": "hymnic"
+          },
+          {
+            "author": "Homer",
+            "work": "Odyssey",
+            "passageRef": "1.44-1.95",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "13.330-13.360",
+            "stance": "poetic-myth"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": "SELECT child.name AS name,\n       s.author AS author, s.work AS work, s.stance AS stance, r.passage_ref AS passage_ref\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND parent.name ILIKE 'Cronus' AND child.type = 'olympian'",
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Cronus",
+          "probeClaimType": "parentage",
+          "claimRowCount": 0,
+          "firstAttemptSql": "SELECT child.name AS name,\n       s.author AS author, s.work AS work, s.stance AS stance, r.passage_ref AS passage_ref\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND parent.name ILIKE 'Cronus' AND child.type = 'olympian'",
+          "sqlRows": [
+            {
+              "name": "Demeter",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "stance": "mythographic-handbook",
+              "passage_ref": "1.1.1-1.1.7"
+            },
+            {
+              "name": "Demeter",
+              "author": "Hesiod",
+              "work": "Theogony",
+              "stance": "cosmological",
+              "passage_ref": "453-506"
+            },
+            {
+              "name": "Hera",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "stance": "mythographic-handbook",
+              "passage_ref": "1.1.1-1.1.7"
+            },
+            {
+              "name": "Poseidon",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "stance": "mythographic-handbook",
+              "passage_ref": "1.1.1-1.1.7"
+            },
+            {
+              "name": "Poseidon",
+              "author": "Hesiod",
+              "work": "Theogony",
+              "stance": "cosmological",
+              "passage_ref": "453-506"
+            },
+            {
+              "name": "Poseidon",
+              "author": "Homer",
+              "work": "Iliad",
+              "stance": "poetic-myth",
+              "passage_ref": "13.330-13.360"
+            },
+            {
+              "name": "Zeus",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "stance": "mythographic-handbook",
+              "passage_ref": "1.1.1-1.1.7"
+            },
+            {
+              "name": "Zeus",
+              "author": "Anonymous (\"Homeric\")",
+              "work": "Homeric Hymns",
+              "stance": "hymnic",
+              "passage_ref": "3.294-3.339"
+            },
+            {
+              "name": "Zeus",
+              "author": "Hesiod",
+              "work": "Theogony",
+              "stance": "cosmological",
+              "passage_ref": "453-506"
+            },
+            {
+              "name": "Zeus",
+              "author": "Homer",
+              "work": "Iliad",
+              "stance": "poetic-myth",
+              "passage_ref": "1.475-1.516"
+            },
+            {
+              "name": "Zeus",
+              "author": "Homer",
+              "work": "Odyssey",
+              "stance": "poetic-myth",
+              "passage_ref": "1.44-1.95"
+            }
+          ],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "name=Demeter, author=Apollodorus, work=Bibliotheca, stance=mythographic-handbook, passage_ref=1.1.1-1.1.7; name=Demeter, author=Hesiod, work=Theogony, stance=cosmological, passage_ref=453-506; name=Hera, author=Apollodorus, work=Bibliotheca, stance=mythographic-handbook, passage_ref=1.1.1-1.1.7; name=Poseidon, author=Apollodorus, work=Bibliotheca, stance=mythographic-handbook, passage_ref=1.1.1-1.1.7; name=Poseidon, author=Hesiod, work=Theogony, stance=cosmological, passage_ref=453-506; name=Poseidon, author=Homer, work=Iliad, stance=poetic-myth, passage_ref=13.330-13.360; name=Zeus, author=Apollodorus, work=Bibliotheca, stance=mythographic-handbook, passage_ref=1.1.1-1.1.7; name=Zeus, author=Anonymous (\"Homeric\"), work=Homeric Hymns, stance=hymnic, passage_ref=3.294-3.339; name=Zeus, author=Hesiod, work=Theogony, stance=cosmological, passage_ref=453-506; name=Zeus, author=Homer, work=Iliad, stance=poetic-myth, passage_ref=1.475-1.516; name=Zeus, author=Homer, work=Odyssey, stance=poetic-myth, passage_ref=1.44-1.95"
+        }
+      },
+      {
+        "answer": "Several heroes are identified as children of Zeus in classical sources. Aeneas [1] is described as a son of Zeus, as is Arcesilaus [2]. Additionally, Iasion [3] is counted among Zeus's children.",
+        "routeDecision": "SQL",
+        "citations": [
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "17.288-17.332",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "13.128-13.161",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "3.11.2-3.12.2",
+            "stance": "mythographic-handbook"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": "SELECT child.name AS name,\n       s.author AS author, s.work AS work, r.passage_ref AS passage_ref, s.stance AS stance\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND parent.name ILIKE 'Zeus' AND child.type = 'hero'",
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Zeus",
+          "probeClaimType": "parentage",
+          "claimRowCount": 0,
+          "firstAttemptSql": "SELECT child.name AS name,\n       s.author AS author, s.work AS work, r.passage_ref AS passage_ref, s.stance AS stance\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND parent.name ILIKE 'Zeus' AND child.type = 'hero'",
+          "sqlRows": [
+            {
+              "name": "Aeneas",
+              "author": "Homer",
+              "work": "Iliad",
+              "passage_ref": "17.288-17.332",
+              "stance": "poetic-myth"
+            },
+            {
+              "name": "Arcesilaus",
+              "author": "Ovid",
+              "work": "Metamorphoses",
+              "passage_ref": "13.128-13.161",
+              "stance": "poetic-myth"
+            },
+            {
+              "name": "Iasion",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "passage_ref": "3.11.2-3.12.2",
+              "stance": "mythographic-handbook"
+            }
+          ],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "name=Aeneas, author=Homer, work=Iliad, passage_ref=17.288-17.332, stance=poetic-myth; name=Arcesilaus, author=Ovid, work=Metamorphoses, passage_ref=13.128-13.161, stance=poetic-myth; name=Iasion, author=Apollodorus, work=Bibliotheca, passage_ref=3.11.2-3.12.2, stance=mythographic-handbook"
+        }
+      },
+      {
+        "answer": "The service is temporarily unavailable. Please try again later.",
+        "routeDecision": "SQL",
+        "citations": [],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": true,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Perseus",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": false,
+          "draftAnswer": null
+        }
+      },
+      {
+        "answer": "The service is temporarily unavailable. Please try again later.",
+        "routeDecision": "SQL",
+        "citations": [],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": true,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Zeus",
+          "probeClaimType": "parentage",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": false,
+          "draftAnswer": null
+        }
+      },
+      {
+        "answer": "The following entities have the 'olympian' type: Aphrodite, Apollo, Ares, Artemis, Athena, Demeter, Dionysus, Hephaestus, Hera, Hermes, Poseidon, and Zeus.",
+        "routeDecision": "SQL",
+        "citations": [],
+        "conflicts": [],
+        "sqlGenerated": "SELECT id, name, type, generation, domain, subtype\nFROM entities\nWHERE type = 'olympian'",
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "none",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": "SELECT id, name, type, generation, domain, subtype\nFROM entities\nWHERE type = 'olympian'",
+          "sqlRows": [
+            {
+              "id": 4159,
+              "name": "Aphrodite",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4162,
+              "name": "Apollo",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4185,
+              "name": "Ares",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4210,
+              "name": "Artemis",
+              "type": "olympian",
+              "generation": null,
+              "domain": "the hunt",
+              "subtype": null
+            },
+            {
+              "id": 4245,
+              "name": "Athena",
+              "type": "olympian",
+              "generation": null,
+              "domain": "wisdom/war",
+              "subtype": null
+            },
+            {
+              "id": 4545,
+              "name": "Demeter",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4578,
+              "name": "Dionysus",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4856,
+              "name": "Hephaestus",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4858,
+              "name": "Hera",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4862,
+              "name": "Hermes",
+              "type": "olympian",
+              "generation": null,
+              "domain": "messenger",
+              "subtype": null
+            },
+            {
+              "id": 5604,
+              "name": "Poseidon",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 5901,
+              "name": "Zeus",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            }
+          ],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "id=4159, name=Aphrodite, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4162, name=Apollo, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4185, name=Ares, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4210, name=Artemis, type=olympian, generation=unknown, domain=the hunt, subtype=unknown; id=4245, name=Athena, type=olympian, generation=unknown, domain=wisdom/war, subtype=unknown; id=4545, name=Demeter, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4578, name=Dionysus, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4856, name=Hephaestus, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4858, name=Hera, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4862, name=Hermes, type=olympian, generation=unknown, domain=messenger, subtype=unknown; id=5604, name=Poseidon, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=5901, name=Zeus, type=olympian, generation=unknown, domain=unknown, subtype=unknown"
+        }
+      },
+      {
+        "answer": "Achilles is identified as a hero with a divine parent who died at Troy [1][2]. He was the son of Thetis, a goddess, and Peleus [1][2]. Achilles participated in the Trojan War, and the sources confirm his divine parentage through his mother Thetis [1][2].",
+        "routeDecision": "MIXED",
+        "citations": [
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "3.13.8",
+            "stance": "Achilles had divine parentage (Thetis) and was involved in the Trojan War"
+          },
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "11.194-11.220",
+            "stance": "Achilles had divine parentage (Thetis) and was involved in the Trojan War"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": "WITH heroes_with_divine_parents AS (\n  SELECT DISTINCT child.id, child.name\n  FROM relationships r\n  JOIN entities child ON child.id = r.to_id\n  JOIN entities parent ON parent.id = r.from_id\n  WHERE r.relation IN ('parent_of', 'father_of', 'mother_of')\n    AND child.type = 'hero'\n    AND parent.type IN ('primordial', 'titan', 'olympian', 'other_god')\n)\nSELECT h.name,\n       s.author AS author, s.work AS work, vc.passage_ref AS passage_ref, s.stance AS stance\nFROM heroes_with_divine_parents h\nJOIN variant_claims vc ON vc.subject_entity_id = h.id\nJOIN sources s ON s.id = vc.source_id\nWHERE vc.claim_type = 'death'\n  AND vc.claim_value ILIKE '%Troy%'",
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "none",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": "WITH heroes_with_divine_parents AS (\n  SELECT DISTINCT child.id, child.name\n  FROM relationships r\n  JOIN entities child ON child.id = r.to_id\n  JOIN entities parent ON parent.id = r.from_id\n  WHERE r.relation IN ('parent_of', 'father_of', 'mother_of')\n    AND child.type = 'hero'\n    AND parent.type IN ('primordial', 'titan', 'olympian', 'other_god')\n)\nSELECT h.name,\n       s.author AS author, s.work AS work, vc.passage_ref AS passage_ref, s.stance AS stance\nFROM heroes_with_divine_parents h\nJOIN variant_claims vc ON vc.subject_entity_id = h.id\nJOIN sources s ON s.id = vc.source_id\nWHERE vc.claim_type = 'death'\n  AND vc.claim_value ILIKE '%Troy%'",
+          "sqlRows": [
+            {
+              "name": "Achilles",
+              "author": "Homer",
+              "work": "Iliad",
+              "passage_ref": "24.77-24.119",
+              "stance": "poetic-myth"
+            },
+            {
+              "name": "Achilles",
+              "author": "Homer",
+              "work": "Odyssey",
+              "passage_ref": "3.102-3.154",
+              "stance": "poetic-myth"
+            },
+            {
+              "name": "Achilles",
+              "author": "Homer",
+              "work": "Odyssey",
+              "passage_ref": "24.35-24.84",
+              "stance": "poetic-myth"
+            }
+          ],
+          "retrievedChunks": [
+            {
+              "id": 231,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "3.13.8",
+              "score": 0.6018590377913553
+            },
+            {
+              "id": 1480,
+              "sourceId": "homer-iliad",
+              "passageRef": "16.569-16.581",
+              "score": 0.5865870980948718
+            },
+            {
+              "id": 3291,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "11.194-11.220",
+              "score": 0.5750833176448075
+            },
+            {
+              "id": 1669,
+              "sourceId": "homer-iliad",
+              "passageRef": "20.393-20.418",
+              "score": 0.5654048788439765
+            },
+            {
+              "id": 1827,
+              "sourceId": "homer-iliad",
+              "passageRef": "24.22-24.30",
+              "score": 0.5644436317990165
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "Based on the provided passages, Achilles is identified as a hero with a divine parent who died at Troy. Achilles was the son of Thetis, a goddess, and Peleus. The passages confirm his divine parentage through Thetis and reference his involvement in the Trojan War, though the provided texts do not explicitly state the manner or confirmation of his death at Troy."
+        }
+      },
+      {
+        "answer": "The service is temporarily unavailable. Please try again later.",
+        "routeDecision": "MIXED",
+        "citations": [],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": true,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Achilles",
+          "probeClaimType": "parentage",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": false,
+          "draftAnswer": null
+        }
+      },
+      {
+        "answer": "Aphrodite's parentage is described differently across ancient sources. According to Homer in the Iliad, Aphrodite was the daughter of Dione [1], a tradition also recorded by Apollodorus in the Bibliotheca [2]. However, other sources attribute her to different parents: Hesiod's Theogony describes her as born from the sea foam formed by the severed members of Heaven, cast into the sea by Cronus [3]. Additionally, several sources identify Zeus as her father—including Apollodorus in the Bibliotheca [4], the Homeric Hymns [5], Homer's Iliad [6], Homer's Odyssey [7], and Ovid's Metamorphoses [8].",
+        "routeDecision": "SQL",
+        "citations": [
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "5.334-5.380",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "1.3.1-1.3.5",
+            "stance": "mythographic-handbook"
+          },
+          {
+            "author": "Hesiod",
+            "work": "Theogony",
+            "passageRef": "176-232",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "1.3.1-1.3.5",
+            "stance": "mythographic-handbook"
+          },
+          {
+            "author": "Anonymous (Homeric)",
+            "work": "Homeric Hymns",
+            "passageRef": "3.182-3.238",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "3.340-3.380",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Homer",
+            "work": "Odyssey",
+            "passageRef": "8.256-8.294",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "14.566-14.608",
+            "stance": "poetic-myth"
+          }
+        ],
+        "conflicts": [
+          {
+            "claimValue": "Born from the sea foam formed by the severed members of Heaven, cast into the sea by Cronus",
+            "sourceAuthor": "Hesiod",
+            "sourceWork": "Theogony",
+            "passageRef": "176-232"
+          },
+          {
+            "claimValue": "child of Dione",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "1.3.1-1.3.5"
+          },
+          {
+            "claimValue": "child of Dione",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "5.334-5.380"
+          },
+          {
+            "claimValue": "child of Zeus",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "1.3.1-1.3.5"
+          },
+          {
+            "claimValue": "child of Zeus",
+            "sourceAuthor": "Anonymous (\"Homeric\")",
+            "sourceWork": "Homeric Hymns",
+            "passageRef": "3.182-3.238"
+          },
+          {
+            "claimValue": "child of Zeus",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "3.340-3.380"
+          },
+          {
+            "claimValue": "child of Zeus",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Odyssey",
+            "passageRef": "8.256-8.294"
+          },
+          {
+            "claimValue": "child of Zeus",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "14.566-14.608"
+          },
+          {
+            "claimValue": "daughter of Dione",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "5.334-5.380"
+          },
+          {
+            "claimValue": "daughter of Zeus",
+            "sourceAuthor": "Anonymous (\"Homeric\")",
+            "sourceWork": "Homeric Hymns",
+            "passageRef": "3.182-3.238"
+          },
+          {
+            "claimValue": "daughter of Zeus",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "3.340-3.380"
+          },
+          {
+            "claimValue": "daughter of Zeus",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Odyssey",
+            "passageRef": "8.295-8.342"
+          },
+          {
+            "claimValue": "daughter of Zeus (the mighty son of Cronos)",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Odyssey",
+            "passageRef": "8.256-8.294"
+          }
+        ],
+        "sqlGenerated": "SELECT child.name AS child_name,\n       parent.name AS parent_name,\n       s.author AS author, s.work AS work, s.stance AS stance,\n       r.passage_ref AS passage_ref\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND child.name ILIKE 'Aphrodite'\nORDER BY parent.name",
+        "serviceError": false,
+        "conflictsInProse": true,
+        "debug": {
+          "probeSubject": "Aphrodite",
+          "probeClaimType": "parentage",
+          "claimRowCount": 13,
+          "firstAttemptSql": "SELECT child.name AS child_name,\n       parent.name AS parent_name,\n       s.author AS author, s.work AS work, s.stance AS stance,\n       r.passage_ref AS passage_ref\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND child.name ILIKE 'Aphrodite'\nORDER BY parent.name",
+          "sqlRows": [
+            {
+              "child_name": "Aphrodite",
+              "parent_name": "Dione",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "stance": "mythographic-handbook",
+              "passage_ref": "1.3.1-1.3.5"
+            },
+            {
+              "child_name": "Aphrodite",
+              "parent_name": "Dione",
+              "author": "Homer",
+              "work": "Iliad",
+              "stance": "poetic-myth",
+              "passage_ref": "5.334-5.380"
+            }
+          ],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "child_name=Aphrodite, parent_name=Dione, author=Apollodorus, work=Bibliotheca, stance=mythographic-handbook, passage_ref=1.3.1-1.3.5; child_name=Aphrodite, parent_name=Dione, author=Homer, work=Iliad, stance=poetic-myth, passage_ref=5.334-5.380"
+        }
+      },
+      {
+        "answer": "Io's father is identified differently across ancient sources. According to Apollodorus in the Bibliotheca, Io was the daughter of Iasus in the main narrative [1], though Apollodorus also notes that Castor and many tragedians called her the daughter of Inachus [2]. Additionally, Apollodorus records that Hesiod and Acusilaus identified her father as Piren [3]. Ovid, in the Metamorphoses, consistently presents Io as the daughter of Inachus [4].",
+        "routeDecision": "SQL",
+        "citations": [
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3",
+            "stance": "daughter of Iasus, according to the main narrative"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3",
+            "stance": "daughter of Inachus, according to Castor and many tragedians"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3",
+            "stance": "daughter of Piren, according to Hesiod and Acusilaus"
+          },
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "1.622-1.667",
+            "stance": "Io is the daughter of Inachus"
+          }
+        ],
+        "conflicts": [
+          {
+            "claimValue": "Io is the daughter of Inachus",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "1.622-1.667"
+          },
+          {
+            "claimValue": "child of Iasus",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3"
+          },
+          {
+            "claimValue": "child of Inachus",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3"
+          },
+          {
+            "claimValue": "child of Inachus",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "1.567-1.600"
+          },
+          {
+            "claimValue": "child of Piren",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3"
+          },
+          {
+            "claimValue": "daughter of Iasus, according to the main narrative",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3"
+          },
+          {
+            "claimValue": "daughter of Inachus",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "1.567-1.600"
+          },
+          {
+            "claimValue": "daughter of Inachus, according to Castor and many tragedians",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3"
+          },
+          {
+            "claimValue": "daughter of Piren, according to Hesiod and Acusilaus",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3"
+          }
+        ],
+        "sqlGenerated": "SELECT parent.name AS name,\n       s.author AS author, s.work AS work, r.passage_ref AS passage_ref, s.stance AS stance\nFROM relationships r\nJOIN entities child ON child.id = r.to_id\nJOIN entities parent ON parent.id = r.from_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND child.name ILIKE 'Io'",
+        "serviceError": false,
+        "conflictsInProse": true,
+        "debug": {
+          "probeSubject": "Io",
+          "probeClaimType": "parentage",
+          "claimRowCount": 9,
+          "firstAttemptSql": "SELECT parent.name AS name,\n       s.author AS author, s.work AS work, r.passage_ref AS passage_ref, s.stance AS stance\nFROM relationships r\nJOIN entities child ON child.id = r.to_id\nJOIN entities parent ON parent.id = r.from_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND child.name ILIKE 'Io'",
+          "sqlRows": [
+            {
+              "name": "Iasus",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "passage_ref": "2.1.2-2.1.3",
+              "stance": "mythographic-handbook"
+            }
+          ],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "name=Iasus, author=Apollodorus, work=Bibliotheca, passage_ref=2.1.2-2.1.3, stance=mythographic-handbook"
+        }
+      },
+      {
+        "answer": "Achilles died by being shot with an arrow. According to Ovid, Apollo guided Paris's arrow to strike Achilles fatally [1], with some accounts noting this occurred at Apollo's and Neptune's instigation [2]. Homer's Iliad foretells this death, with the dying Hector prophesying that Achilles would be slain by Paris and Phoebus Apollo at the Scaean gate [3], and Thetis warning her son that he would perish beneath the wall of the Trojans by the swift missiles of Apollo [4]. Apollodorus notes in his Bibliotheca that Achilles would die by the hand of Apollo if he killed Tenes [5], foreshadowing his eventual death at Apollo's involvement [6]. After his death, Achilles was buried with Patroclus in the White Isle [7].",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "12.580-12.611",
+            "stance": "Achilles killed by arrow shot by Paris, guided by Apollo"
+          },
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "12.580-12.612",
+            "stance": "Killed by arrow shot by Paris, guided by Apollo, at Apollo's and Neptune's instigation"
+          },
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "22.328-22.374",
+            "stance": "Foretold by dying Hector to be slain by Paris and Phoebus Apollo at the Scaean gate"
+          },
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "21.272-21.297",
+            "stance": "Thetis foretold he would perish beneath the wall of the Trojans by the swift missiles of Apollo"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "E.3.20-E.3.26",
+            "stance": "Thetis forewarned Achilles that he would die by the hand of Apollo if he slew Tenes"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "E.5.5",
+            "stance": "Achilles would die by the hand of Apollo if he killed Tenes"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "E.3.26",
+            "stance": "Burial with Patroclus in the White Isle"
+          }
+        ],
+        "conflicts": [
+          {
+            "claimValue": "Achilles was slain; Ajax carried his dead body from the battlefield",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "13.280-13.312"
+          },
+          {
+            "claimValue": "Achilles wished Hector had slain him instead of dying swept away by the river",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "21.272-21.297"
+          },
+          {
+            "claimValue": "Foretold by dying Hector to be slain by Paris and Phoebus Apollo at the Scaean gate",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "22.328-22.374"
+          },
+          {
+            "claimValue": "Killed by Paris and Apollo with arrows/shafts",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "13.481-13.507"
+          },
+          {
+            "claimValue": "Killed by an arrow shot by Paris, guided by Apollo, at Apollo's and Neptune's instigation - a divergence from the more common tradition of Achilles being wounded in the heel",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "12.580-12.612"
+          },
+          {
+            "claimValue": "Thetis foretells his death will follow soon after Hector's death",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "18.50-18.96"
+          },
+          {
+            "claimValue": "Thetis foretold he would perish beneath the wall of the Trojans by the swift missiles of Apollo",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "21.272-21.297"
+          },
+          {
+            "claimValue": "Thetis forewarned Achilles that he would die by the hand of Apollo if he slew Tenes",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "E.3.20-E.3.26"
+          },
+          {
+            "claimValue": "denied by unjust fate to both the Greeks and Ulysses, implying his death before the contest for his arms",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "13.128-13.161"
+          },
+          {
+            "claimValue": "destined to meet his death and fate at some future point",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "20.292-20.339"
+          },
+          {
+            "claimValue": "destined to perish in deep-soiled Troy, far from his native land",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "24.77-24.119"
+          },
+          {
+            "claimValue": "doomed to a speedy death, brief span of life",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "1.386-1.427"
+          },
+          {
+            "claimValue": "doomed to be brought low beneath the wall of the wealthy Trojans",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "23.54-23.98"
+          },
+          {
+            "claimValue": "fated to be slain in fight by a god and a mortal, far from his father and mother",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "19.392-20.11"
+          },
+          {
+            "claimValue": "foretold that he will die in battle, smitten by a spear cast or an arrow from the string",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "21.97-21.135"
+          },
+          {
+            "claimValue": "killed by Alexander",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "E.4.6-E.5.4"
+          },
+          {
+            "claimValue": "killed by Apollo",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "E.3.20-E.3.26"
+          },
+          {
+            "claimValue": "killed by Apollo",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "19.392-20.11"
+          },
+          {
+            "claimValue": "killed by Apollo",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "13.481-13.507"
+          },
+          {
+            "claimValue": "killed by Paris",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "12.580-12.612"
+          },
+          {
+            "claimValue": "slain at Troy",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Odyssey",
+            "passageRef": "3.102-3.154"
+          },
+          {
+            "claimValue": "slain in the land of Troy, far from Argos",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Odyssey",
+            "passageRef": "24.35-24.84"
+          }
+        ],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": true,
+        "debug": {
+          "probeSubject": "Achilles",
+          "probeClaimType": "death",
+          "claimRowCount": 22,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 316,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.3.26",
+              "score": 0.5715282560085242
+            },
+            {
+              "id": 1688,
+              "sourceId": "homer-iliad",
+              "passageRef": "21.161-21.181",
+              "score": 0.5629194030068349
+            },
+            {
+              "id": 337,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.5.5",
+              "score": 0.5623853101522521
+            },
+            {
+              "id": 322,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.3.32",
+              "score": 0.5582064361392999
+            },
+            {
+              "id": 3359,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "12.580-12.611",
+              "score": 0.549749758464632
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "According to the provided sources, Achilles died by being shot with an arrow. Ovid describes how Apollo, at the request of Achilles' enemy, guided Paris's arrow to strike Achilles fatally. Additionally, Apollodorus notes in his Bibliotheca that Achilles would die by the hand of Apollo if he killed Tenes, foreshadowing his death at Apollo's involvement. After his death, Achilles was buried with Patroclus in the White Isle."
+        }
+      },
+      {
+        "answer": "Achilles withdrew from the fighting after Agamemnon took his prize, Briseis, the daughter of Chryses the priest [1][2]. In his confrontation with Agamemnon, Achilles expressed his anger over being dishonored, stating that while he undertook the brunt of furious battle, Agamemnon's prize was far greater while his own reward was small [1][2]. Achilles declared he would return home to Phthia rather than remain dishonored and pile up riches for Agamemnon [1][2].",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "1.147-1.171",
+            "stance": "primary source"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "E.4.1",
+            "stance": "primary source"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Achilles",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 326,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.4.1",
+              "score": 0.6098289659482597
+            },
+            {
+              "id": 705,
+              "sourceId": "homer-iliad",
+              "passageRef": "1.147-1.171",
+              "score": 0.5614167823546421
+            },
+            {
+              "id": 707,
+              "sourceId": "homer-iliad",
+              "passageRef": "1.187-1.205",
+              "score": 0.5509915285345309
+            },
+            {
+              "id": 332,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.4.7",
+              "score": 0.5386142172118439
+            },
+            {
+              "id": 1618,
+              "sourceId": "homer-iliad",
+              "passageRef": "19.54-19.73",
+              "score": 0.5374548377610425
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "Achilles withdrew from the fighting because Agamemnon took his prize, Briseis, the daughter of Chryses the priest. In his confrontation with Agamemnon, Achilles expressed his anger over being dishonored, stating that while he undertook the brunt of furious battle, Agamemnon's prize was far greater while his own reward was small. Achilles declared he would return home to Phthia rather than remain dishonored and pile up riches for Agamemnon."
+        }
+      }
+    ],
+    [
+      {
+        "answer": "Athena turned Arachne into a spider as punishment for her pride and defiance [1]. Arachne was a mortal weaver of extraordinary skill who refused to acknowledge Athena's superiority in the art of weaving [1]. When Athena, disguised as an old woman, advised Arachne to show respect to the goddess, Arachne scornfully rejected the counsel and challenged Athena to a weaving contest [1]. After Athena won the contest and destroyed Arachne's web—which depicted the gods' shameful deeds—she struck Arachne repeatedly [1]. Arachne then attempted to hang herself, but Athena saved her life while pronouncing a transformative punishment: 'your fate shall be to dangle on a cord, and your posterity forever shall take your example, that your punishment may last forever!' [1]. Athena then sprinkled Arachne with magical herbs, causing her body to shrink and transform into a spider, condemning her to weave webs eternally as a reminder of her presumption [1].",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "6.1-6.145",
+            "stance": "narrative account"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Arachne",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 3032,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "6.129-6.145",
+              "score": 0.6794369729694226
+            },
+            {
+              "id": 3025,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "6.26-6.52",
+              "score": 0.6393090035085585
+            },
+            {
+              "id": 3024,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "6.1-6.25",
+              "score": 0.6384394411741101
+            },
+            {
+              "id": 3028,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "6.83-6.102",
+              "score": 0.6214103779857499
+            },
+            {
+              "id": 3029,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "6.103-6.128",
+              "score": 0.5219958373328343
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "Athena (Minerva) turned Arachne into a spider as punishment for her pride and defiance. Arachne was a mortal weaver of extraordinary skill who refused to acknowledge Athena's superiority in the art of weaving. When Athena, disguised as an old woman, advised Arachne to show respect to the goddess, Arachne scornfully rejected the counsel and challenged Athena to a weaving contest. After Athena won the contest and destroyed Arachne's web—which depicted the gods' shameful deeds—she struck Arachne repeatedly. Arachne then attempted to hang herself, but Athena saved her life while pronouncing a transformative punishment: 'your fate shall be to dangle on a cord, and your posterity forever shall take your example, that your punishment may last forever!' Athena then sprinkled Arachne with magical herbs, causing her body to shrink and transform into a spider, condemning her to weave webs eternally as a reminder of her presumption."
+        }
+      },
+      {
+        "answer": "Prometheus was punished for two main transgressions: stealing fire and giving it to humans [1], and for attempting to deceive Zeus during a dispute at Mecone by dividing sacrificial portions unfairly [2]. When Zeus discovered that Prometheus had hidden fire in a fennel stalk and given it to mankind, Zeus ordered Hephaestus to bind Prometheus to Mount Caucasus with inextricable chains and set an eagle upon him to devour his liver daily—a liver that would grow back each night, perpetuating his torment [1]. Hesiod indicates that Prometheus's punishment was ultimately for matching his wit against Zeus, the almighty son of Cronos [3].",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "1.7.1",
+            "stance": "neutral"
+          },
+          {
+            "author": "Hesiod",
+            "work": "Theogony",
+            "passageRef": "507-544",
+            "stance": "neutral"
+          },
+          {
+            "author": "Hesiod",
+            "work": "Theogony",
+            "passageRef": "545",
+            "stance": "neutral"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Prometheus",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 35,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "1.7.1",
+              "score": 0.6750433411063294
+            },
+            {
+              "id": 466,
+              "sourceId": "hesiod-theogony",
+              "passageRef": "545",
+              "score": 0.5355434405574265
+            },
+            {
+              "id": 472,
+              "sourceId": "hesiod-theogony",
+              "passageRef": "613-616",
+              "score": 0.5233102367111184
+            },
+            {
+              "id": 465,
+              "sourceId": "hesiod-theogony",
+              "passageRef": "507-544",
+              "score": 0.5116098541500694
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "Prometheus was punished for two main transgressions: stealing fire and giving it to humans, and for attempting to deceive Zeus during a dispute at Mecone by dividing sacrificial portions unfairly. When Zeus discovered that Prometheus had hidden fire in a fennel stalk and given it to mankind, Zeus ordered Hephaestus to bind Prometheus to Mount Caucasus with inextricable chains and set an eagle upon him to devour his liver daily—a liver that would grow back each night, perpetuating his torment. Hesiod indicates that Prometheus's punishment was ultimately for matching his wit against Zeus, the almighty son of Cronos."
+        }
+      },
+      {
+        "answer": "Odysseus escaped Polyphemus through a two-part plan. First, he blinded the Cyclops by sharpening a wooden club, heating it in fire, and driving it into Polyphemus's eye with the help of his comrades [1][2]. When Polyphemus cried out for help from other Cyclopes, they misunderstood his cries of \"Nobody\" and left him alone [2]. Second, after the blinding, Odysseus tied the sheep together in groups of three and hid himself under the largest ram by clinging to its fleece [3]. When Polyphemus opened the cave door to let his flocks out to pasture, he felt the sheep as they passed but could not detect the men hidden beneath them [3]. Odysseus and his comrades thus escaped with the sheep to their ships [3].",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Homer",
+            "work": "Odyssey",
+            "passageRef": "9.318-9.344",
+            "stance": "describes Odysseus blinding Polyphemus"
+          },
+          {
+            "author": "Homer",
+            "work": "Odyssey",
+            "passageRef": "9.318-9.344",
+            "stance": "describes the 'Nobody' deception"
+          },
+          {
+            "author": "Homer",
+            "work": "Odyssey",
+            "passageRef": "9.413-9.436",
+            "stance": "describes Odysseus hiding under the ram and escaping"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Odysseus",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 394,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.7.7",
+              "score": 0.6052393355200681
+            },
+            {
+              "id": 395,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.7.8",
+              "score": 0.5975368387855998
+            },
+            {
+              "id": 2197,
+              "sourceId": "homer-odyssey",
+              "passageRef": "9.413-9.436",
+              "score": 0.5824837050797657
+            },
+            {
+              "id": 2188,
+              "sourceId": "homer-odyssey",
+              "passageRef": "9.318-9.344",
+              "score": 0.5588362581387457
+            },
+            {
+              "id": 391,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.7.4",
+              "score": 0.5551834864845959
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "Odysseus escaped Polyphemus through a two-part plan. First, he blinded the Cyclops by sharpening a wooden club, heating it in fire, and driving it into Polyphemus's eye with the help of his comrades. When Polyphemus cried out for help from other Cyclopes, they misunderstood his cries of \"Nobody\" and left him alone. Second, after the blinding, Odysseus tied the sheep together in groups of three and hid himself under the largest ram by clinging to its fleece. When Polyphemus opened the cave door to let his flocks out to pasture, he felt the sheep as they passed but could not detect the men hidden beneath them. Odysseus and his comrades thus escaped with the sheep to their ships."
+        }
+      },
+      {
+        "answer": "At the wedding of Peleus and Thetis, the gods celebrated the marriage with feast and song on Mount Pelion [1]. The marriage took place after Peleus seized Thetis despite her shape-shifting resistance, holding her fast as she transformed into fire, water, and various beasts until she resumed her original form [1]. As wedding gifts, Chiron gave Peleus an ashen spear [1], and Poseidon gave him two immortal horses named Balius and Xanthus [1].",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "3.13.5",
+            "stance": "describes the wedding celebration, Thetis's capture, and the gifts given to Peleus"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Peleus",
+          "probeClaimType": "marriage",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 228,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "3.13.5",
+              "score": 0.7159701759018763
+            },
+            {
+              "id": 3292,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "11.221-11.228",
+              "score": 0.636643836309235
+            },
+            {
+              "id": 3293,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "11.229-11.257",
+              "score": 0.6279505530521163
+            },
+            {
+              "id": 3291,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "11.194-11.220",
+              "score": 0.6172476475706304
+            },
+            {
+              "id": 3294,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "11.258-11.265",
+              "score": 0.6109781003221766
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "At the wedding of Peleus and Thetis, the gods celebrated the marriage with feast and song on Mount Pelion. Chiron gave Peleus an ashen spear as a wedding gift, and Poseidon gave him two immortal horses named Balius and Xanthus. The marriage took place after Peleus seized Thetis despite her shape-shifting resistance, holding her fast as she transformed into fire, water, and various beasts until she resumed her original form."
+        }
+      },
+      {
+        "answer": "Demeter stopped the crops from growing because she was grieving over the loss of her daughter. She was 'wasting with yearning for her deep-bosomed daughter' [1] and vowed that she would never let fruit spring out of the ground until she beheld her own fair-faced daughter with her eyes [2].",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Anonymous (\"Homeric\")",
+            "work": "Homeric Hymns",
+            "passageRef": "2.301-2.323",
+            "stance": "describes Demeter's grief"
+          },
+          {
+            "author": "Anonymous (\"Homeric\")",
+            "work": "Homeric Hymns",
+            "passageRef": "2.324-2.333",
+            "stance": "describes Demeter's vow regarding the crops"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Demeter",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 542,
+              "sourceId": "hesiod-homeric-hymns",
+              "passageRef": "2.301-2.323",
+              "score": 0.6267473001544107
+            },
+            {
+              "id": 530,
+              "sourceId": "hesiod-homeric-hymns",
+              "passageRef": "2.90-2.117",
+              "score": 0.603141989362718
+            },
+            {
+              "id": 551,
+              "sourceId": "hesiod-homeric-hymns",
+              "passageRef": "2.441-2.458",
+              "score": 0.5974961547064064
+            },
+            {
+              "id": 543,
+              "sourceId": "hesiod-homeric-hymns",
+              "passageRef": "2.324-2.333",
+              "score": 0.5820366576053254
+            },
+            {
+              "id": 27,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "1.5.1",
+              "score": 0.5671269691448386
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "Demeter stopped the crops from growing because she was grieving over the loss of her daughter. She was 'wasting with yearning for her deep-bosomed daughter' and vowed that she would never let fruit spring out of the ground until she beheld her own fair-faced daughter with her eyes."
+        }
+      },
+      {
+        "answer": "The Olympians who are children of Cronus include Zeus [1][2][3][4][5], Poseidon [1][2][6], Hera [1], and Demeter [1][2]. These deities are consistently identified across multiple sources as the offspring of the Titan Cronus.",
+        "routeDecision": "SQL",
+        "citations": [
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "1.1.1-1.1.7",
+            "stance": "mythographic-handbook"
+          },
+          {
+            "author": "Hesiod",
+            "work": "Theogony",
+            "passageRef": "453-506",
+            "stance": "cosmological"
+          },
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "1.475-1.516",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Anonymous (\"Homeric\")",
+            "work": "Homeric Hymns",
+            "passageRef": "3.294-3.339",
+            "stance": "hymnic"
+          },
+          {
+            "author": "Homer",
+            "work": "Odyssey",
+            "passageRef": "1.44-1.95",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "13.330-13.360",
+            "stance": "poetic-myth"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": "SELECT child.name AS name,\n       s.author AS author, s.work AS work, s.stance AS stance, r.passage_ref AS passage_ref\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND parent.name ILIKE 'Cronus' AND child.type = 'olympian'",
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Cronus",
+          "probeClaimType": "parentage",
+          "claimRowCount": 0,
+          "firstAttemptSql": "SELECT child.name AS name,\n       s.author AS author, s.work AS work, s.stance AS stance, r.passage_ref AS passage_ref\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND parent.name ILIKE 'Cronus' AND child.type = 'olympian'",
+          "sqlRows": [
+            {
+              "name": "Demeter",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "stance": "mythographic-handbook",
+              "passage_ref": "1.1.1-1.1.7"
+            },
+            {
+              "name": "Demeter",
+              "author": "Hesiod",
+              "work": "Theogony",
+              "stance": "cosmological",
+              "passage_ref": "453-506"
+            },
+            {
+              "name": "Hera",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "stance": "mythographic-handbook",
+              "passage_ref": "1.1.1-1.1.7"
+            },
+            {
+              "name": "Poseidon",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "stance": "mythographic-handbook",
+              "passage_ref": "1.1.1-1.1.7"
+            },
+            {
+              "name": "Poseidon",
+              "author": "Hesiod",
+              "work": "Theogony",
+              "stance": "cosmological",
+              "passage_ref": "453-506"
+            },
+            {
+              "name": "Poseidon",
+              "author": "Homer",
+              "work": "Iliad",
+              "stance": "poetic-myth",
+              "passage_ref": "13.330-13.360"
+            },
+            {
+              "name": "Zeus",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "stance": "mythographic-handbook",
+              "passage_ref": "1.1.1-1.1.7"
+            },
+            {
+              "name": "Zeus",
+              "author": "Anonymous (\"Homeric\")",
+              "work": "Homeric Hymns",
+              "stance": "hymnic",
+              "passage_ref": "3.294-3.339"
+            },
+            {
+              "name": "Zeus",
+              "author": "Hesiod",
+              "work": "Theogony",
+              "stance": "cosmological",
+              "passage_ref": "453-506"
+            },
+            {
+              "name": "Zeus",
+              "author": "Homer",
+              "work": "Iliad",
+              "stance": "poetic-myth",
+              "passage_ref": "1.475-1.516"
+            },
+            {
+              "name": "Zeus",
+              "author": "Homer",
+              "work": "Odyssey",
+              "stance": "poetic-myth",
+              "passage_ref": "1.44-1.95"
+            }
+          ],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "name=Demeter, author=Apollodorus, work=Bibliotheca, stance=mythographic-handbook, passage_ref=1.1.1-1.1.7; name=Demeter, author=Hesiod, work=Theogony, stance=cosmological, passage_ref=453-506; name=Hera, author=Apollodorus, work=Bibliotheca, stance=mythographic-handbook, passage_ref=1.1.1-1.1.7; name=Poseidon, author=Apollodorus, work=Bibliotheca, stance=mythographic-handbook, passage_ref=1.1.1-1.1.7; name=Poseidon, author=Hesiod, work=Theogony, stance=cosmological, passage_ref=453-506; name=Poseidon, author=Homer, work=Iliad, stance=poetic-myth, passage_ref=13.330-13.360; name=Zeus, author=Apollodorus, work=Bibliotheca, stance=mythographic-handbook, passage_ref=1.1.1-1.1.7; name=Zeus, author=Anonymous (\"Homeric\"), work=Homeric Hymns, stance=hymnic, passage_ref=3.294-3.339; name=Zeus, author=Hesiod, work=Theogony, stance=cosmological, passage_ref=453-506; name=Zeus, author=Homer, work=Iliad, stance=poetic-myth, passage_ref=1.475-1.516; name=Zeus, author=Homer, work=Odyssey, stance=poetic-myth, passage_ref=1.44-1.95"
+        }
+      },
+      {
+        "answer": "Several heroes are identified as children of Zeus in classical sources. Aeneas [1] is described as a son of Zeus, as is Arcesilaus [2]. Additionally, Iasion [3] is counted among Zeus's children.",
+        "routeDecision": "SQL",
+        "citations": [
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "17.288-17.332",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "13.128-13.161",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "3.11.2-3.12.2",
+            "stance": "mythographic-handbook"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": "SELECT child.name AS name,\n       s.author AS author, s.work AS work, r.passage_ref AS passage_ref, s.stance AS stance\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND parent.name ILIKE 'Zeus' AND child.type = 'hero'",
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Zeus",
+          "probeClaimType": "parentage",
+          "claimRowCount": 0,
+          "firstAttemptSql": "SELECT child.name AS name,\n       s.author AS author, s.work AS work, r.passage_ref AS passage_ref, s.stance AS stance\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND parent.name ILIKE 'Zeus' AND child.type = 'hero'",
+          "sqlRows": [
+            {
+              "name": "Aeneas",
+              "author": "Homer",
+              "work": "Iliad",
+              "passage_ref": "17.288-17.332",
+              "stance": "poetic-myth"
+            },
+            {
+              "name": "Arcesilaus",
+              "author": "Ovid",
+              "work": "Metamorphoses",
+              "passage_ref": "13.128-13.161",
+              "stance": "poetic-myth"
+            },
+            {
+              "name": "Iasion",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "passage_ref": "3.11.2-3.12.2",
+              "stance": "mythographic-handbook"
+            }
+          ],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "name=Aeneas, author=Homer, work=Iliad, passage_ref=17.288-17.332, stance=poetic-myth; name=Arcesilaus, author=Ovid, work=Metamorphoses, passage_ref=13.128-13.161, stance=poetic-myth; name=Iasion, author=Apollodorus, work=Bibliotheca, passage_ref=3.11.2-3.12.2, stance=mythographic-handbook"
+        }
+      },
+      {
+        "answer": "The service is temporarily unavailable. Please try again later.",
+        "routeDecision": "SQL",
+        "citations": [],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": true,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Perseus",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": false,
+          "draftAnswer": null
+        }
+      },
+      {
+        "answer": "The service is temporarily unavailable. Please try again later.",
+        "routeDecision": "SQL",
+        "citations": [],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": true,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Zeus",
+          "probeClaimType": "parentage",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": false,
+          "draftAnswer": null
+        }
+      },
+      {
+        "answer": "The following entities have the 'olympian' type: Aphrodite, Apollo, Ares, Artemis, Athena, Demeter, Dionysus, Hephaestus, Hera, Hermes, Poseidon, and Zeus.",
+        "routeDecision": "SQL",
+        "citations": [],
+        "conflicts": [],
+        "sqlGenerated": "SELECT id, name, type, generation, domain, subtype\nFROM entities\nWHERE type = 'olympian'",
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Olympian",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": "SELECT id, name, type, generation, domain, subtype\nFROM entities\nWHERE type = 'olympian'",
+          "sqlRows": [
+            {
+              "id": 4159,
+              "name": "Aphrodite",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4162,
+              "name": "Apollo",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4185,
+              "name": "Ares",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4210,
+              "name": "Artemis",
+              "type": "olympian",
+              "generation": null,
+              "domain": "the hunt",
+              "subtype": null
+            },
+            {
+              "id": 4245,
+              "name": "Athena",
+              "type": "olympian",
+              "generation": null,
+              "domain": "wisdom/war",
+              "subtype": null
+            },
+            {
+              "id": 4545,
+              "name": "Demeter",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4578,
+              "name": "Dionysus",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4856,
+              "name": "Hephaestus",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4858,
+              "name": "Hera",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 4862,
+              "name": "Hermes",
+              "type": "olympian",
+              "generation": null,
+              "domain": "messenger",
+              "subtype": null
+            },
+            {
+              "id": 5604,
+              "name": "Poseidon",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            },
+            {
+              "id": 5901,
+              "name": "Zeus",
+              "type": "olympian",
+              "generation": null,
+              "domain": null,
+              "subtype": null
+            }
+          ],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "id=4159, name=Aphrodite, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4162, name=Apollo, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4185, name=Ares, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4210, name=Artemis, type=olympian, generation=unknown, domain=the hunt, subtype=unknown; id=4245, name=Athena, type=olympian, generation=unknown, domain=wisdom/war, subtype=unknown; id=4545, name=Demeter, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4578, name=Dionysus, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4856, name=Hephaestus, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4858, name=Hera, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=4862, name=Hermes, type=olympian, generation=unknown, domain=messenger, subtype=unknown; id=5604, name=Poseidon, type=olympian, generation=unknown, domain=unknown, subtype=unknown; id=5901, name=Zeus, type=olympian, generation=unknown, domain=unknown, subtype=unknown"
+        }
+      },
+      {
+        "answer": "Achilles is identified as a hero with a divine parent who died at Troy. Achilles was the son of Thetis, a goddess, and Peleus [1]. His divine parentage through Thetis is confirmed in the sources, and he was present at Troy during the war [1][2]. However, the provided passages do not explicitly state that Achilles died at Troy—they describe his actions during the war but do not contain information about his death at Troy.",
+        "routeDecision": "MIXED",
+        "citations": [
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "3.13.8",
+            "stance": "neutral"
+          },
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "11.194-11.220",
+            "stance": "neutral"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": "WITH heroes_with_divine_parents AS (\n  SELECT DISTINCT child.id, child.name\n  FROM relationships r\n  JOIN entities parent ON parent.id = r.from_id\n  JOIN entities child ON child.id = r.to_id\n  WHERE r.relation IN ('parent_of', 'father_of', 'mother_of')\n    AND parent.type IN ('primordial', 'titan', 'olympian', 'other_god')\n    AND child.type = 'hero'\n)\nSELECT hwdp.name,\n       s.author AS author, s.work AS work, vc.passage_ref AS passage_ref, s.stance AS stance\nFROM heroes_with_divine_parents hwdp\nJOIN variant_claims vc ON vc.subject_entity_id = hwdp.id\nJOIN sources s ON s.id = vc.source_id\nWHERE vc.claim_type = 'death'\n  AND vc.claim_value ILIKE '%Troy%'",
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "none",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": "WITH heroes_with_divine_parents AS (\n  SELECT DISTINCT child.id, child.name\n  FROM relationships r\n  JOIN entities parent ON parent.id = r.from_id\n  JOIN entities child ON child.id = r.to_id\n  WHERE r.relation IN ('parent_of', 'father_of', 'mother_of')\n    AND parent.type IN ('primordial', 'titan', 'olympian', 'other_god')\n    AND child.type = 'hero'\n)\nSELECT hwdp.name,\n       s.author AS author, s.work AS work, vc.passage_ref AS passage_ref, s.stance AS stance\nFROM heroes_with_divine_parents hwdp\nJOIN variant_claims vc ON vc.subject_entity_id = hwdp.id\nJOIN sources s ON s.id = vc.source_id\nWHERE vc.claim_type = 'death'\n  AND vc.claim_value ILIKE '%Troy%'",
+          "sqlRows": [
+            {
+              "name": "Achilles",
+              "author": "Homer",
+              "work": "Iliad",
+              "passage_ref": "24.77-24.119",
+              "stance": "poetic-myth"
+            },
+            {
+              "name": "Achilles",
+              "author": "Homer",
+              "work": "Odyssey",
+              "passage_ref": "3.102-3.154",
+              "stance": "poetic-myth"
+            },
+            {
+              "name": "Achilles",
+              "author": "Homer",
+              "work": "Odyssey",
+              "passage_ref": "24.35-24.84",
+              "stance": "poetic-myth"
+            }
+          ],
+          "retrievedChunks": [
+            {
+              "id": 231,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "3.13.8",
+              "score": 0.6021039753852688
+            },
+            {
+              "id": 1480,
+              "sourceId": "homer-iliad",
+              "passageRef": "16.569-16.581",
+              "score": 0.5870696932003037
+            },
+            {
+              "id": 3291,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "11.194-11.220",
+              "score": 0.5760120947795118
+            },
+            {
+              "id": 1669,
+              "sourceId": "homer-iliad",
+              "passageRef": "20.393-20.418",
+              "score": 0.5655906549576664
+            },
+            {
+              "id": 1827,
+              "sourceId": "homer-iliad",
+              "passageRef": "24.22-24.30",
+              "score": 0.5655171843566543
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "Based on the provided passages, Achilles is identified as a hero with a divine parent who died at Troy. Achilles was the son of Thetis, a goddess, and Peleus. The passages confirm his divine parentage through Thetis and reference his presence at Troy during the war. However, the provided passages do not explicitly state that Achilles died at Troy—they describe his actions during the war but do not contain information about his death at Troy."
+        }
+      },
+      {
+        "answer": "The service is temporarily unavailable. Please try again later.",
+        "routeDecision": "MIXED",
+        "citations": [],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": true,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Achilles",
+          "probeClaimType": "parentage",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": false,
+          "draftAnswer": null
+        }
+      },
+      {
+        "answer": "Aphrodite's parentage varies across ancient sources. According to Homer in the Iliad, Aphrodite was the daughter of Dione [1], a tradition also recorded by Apollodorus in the Bibliotheca [2]. However, other sources present a different account: Hesiod's Theogony describes Aphrodite as born from the sea foam formed by the severed members of Heaven, cast into the sea by Cronus [3]. Additionally, several sources identify Zeus as her father—including Homer himself in the Odyssey [4], the Homeric Hymns [5], and later Roman sources such as Ovid's Metamorphoses [6].",
+        "routeDecision": "SQL",
+        "citations": [
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "5.334-5.380",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "1.3.1-1.3.5",
+            "stance": "mythographic-handbook"
+          },
+          {
+            "author": "Hesiod",
+            "work": "Theogony",
+            "passageRef": "176-232",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Homer",
+            "work": "Odyssey",
+            "passageRef": "8.256-8.294",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Anonymous (Homeric)",
+            "work": "Homeric Hymns",
+            "passageRef": "3.182-3.238",
+            "stance": "poetic-myth"
+          },
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "14.566-14.608",
+            "stance": "poetic-myth"
+          }
+        ],
+        "conflicts": [
+          {
+            "claimValue": "Born from the sea foam formed by the severed members of Heaven, cast into the sea by Cronus",
+            "sourceAuthor": "Hesiod",
+            "sourceWork": "Theogony",
+            "passageRef": "176-232"
+          },
+          {
+            "claimValue": "child of Dione",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "1.3.1-1.3.5"
+          },
+          {
+            "claimValue": "child of Dione",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "5.334-5.380"
+          },
+          {
+            "claimValue": "child of Zeus",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "1.3.1-1.3.5"
+          },
+          {
+            "claimValue": "child of Zeus",
+            "sourceAuthor": "Anonymous (\"Homeric\")",
+            "sourceWork": "Homeric Hymns",
+            "passageRef": "3.182-3.238"
+          },
+          {
+            "claimValue": "child of Zeus",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "3.340-3.380"
+          },
+          {
+            "claimValue": "child of Zeus",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Odyssey",
+            "passageRef": "8.256-8.294"
+          },
+          {
+            "claimValue": "child of Zeus",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "14.566-14.608"
+          },
+          {
+            "claimValue": "daughter of Dione",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "5.334-5.380"
+          },
+          {
+            "claimValue": "daughter of Zeus",
+            "sourceAuthor": "Anonymous (\"Homeric\")",
+            "sourceWork": "Homeric Hymns",
+            "passageRef": "3.182-3.238"
+          },
+          {
+            "claimValue": "daughter of Zeus",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "3.340-3.380"
+          },
+          {
+            "claimValue": "daughter of Zeus",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Odyssey",
+            "passageRef": "8.295-8.342"
+          },
+          {
+            "claimValue": "daughter of Zeus (the mighty son of Cronos)",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Odyssey",
+            "passageRef": "8.256-8.294"
+          }
+        ],
+        "sqlGenerated": "SELECT child.name AS child_name,\n       parent.name AS parent_name,\n       s.author AS author, s.work AS work, s.stance AS stance,\n       r.passage_ref AS passage_ref\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND child.name ILIKE 'Aphrodite'\nORDER BY parent.name",
+        "serviceError": false,
+        "conflictsInProse": true,
+        "debug": {
+          "probeSubject": "Aphrodite",
+          "probeClaimType": "parentage",
+          "claimRowCount": 13,
+          "firstAttemptSql": "SELECT child.name AS child_name,\n       parent.name AS parent_name,\n       s.author AS author, s.work AS work, s.stance AS stance,\n       r.passage_ref AS passage_ref\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND child.name ILIKE 'Aphrodite'\nORDER BY parent.name",
+          "sqlRows": [
+            {
+              "child_name": "Aphrodite",
+              "parent_name": "Dione",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "stance": "mythographic-handbook",
+              "passage_ref": "1.3.1-1.3.5"
+            },
+            {
+              "child_name": "Aphrodite",
+              "parent_name": "Dione",
+              "author": "Homer",
+              "work": "Iliad",
+              "stance": "poetic-myth",
+              "passage_ref": "5.334-5.380"
+            }
+          ],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "child_name=Aphrodite, parent_name=Dione, author=Apollodorus, work=Bibliotheca, stance=mythographic-handbook, passage_ref=1.3.1-1.3.5; child_name=Aphrodite, parent_name=Dione, author=Homer, work=Iliad, stance=poetic-myth, passage_ref=5.334-5.380"
+        }
+      },
+      {
+        "answer": "Io's father is identified differently across ancient sources. According to Apollodorus in the Bibliotheca, Io was the daughter of Iasus in the main narrative [1], though Apollodorus also notes that Castor and many tragedians called her the daughter of Inachus [2], while Hesiod and Acusilaus claimed she was the daughter of Piren [3]. Ovid, in the Metamorphoses, consistently identifies Io as the daughter of Inachus [4].",
+        "routeDecision": "SQL",
+        "citations": [
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3",
+            "stance": "daughter of Iasus, according to the main narrative"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3",
+            "stance": "daughter of Inachus, according to Castor and many tragedians"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3",
+            "stance": "daughter of Piren, according to Hesiod and Acusilaus"
+          },
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "1.622-1.667",
+            "stance": "Io is the daughter of Inachus"
+          }
+        ],
+        "conflicts": [
+          {
+            "claimValue": "Io is the daughter of Inachus",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "1.622-1.667"
+          },
+          {
+            "claimValue": "child of Iasus",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3"
+          },
+          {
+            "claimValue": "child of Inachus",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3"
+          },
+          {
+            "claimValue": "child of Inachus",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "1.567-1.600"
+          },
+          {
+            "claimValue": "child of Piren",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3"
+          },
+          {
+            "claimValue": "daughter of Iasus, according to the main narrative",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3"
+          },
+          {
+            "claimValue": "daughter of Inachus",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "1.567-1.600"
+          },
+          {
+            "claimValue": "daughter of Inachus, according to Castor and many tragedians",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3"
+          },
+          {
+            "claimValue": "daughter of Piren, according to Hesiod and Acusilaus",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "2.1.2-2.1.3"
+          }
+        ],
+        "sqlGenerated": "SELECT parent.name AS name,\n       s.author AS author, s.work AS work, r.passage_ref AS passage_ref, s.stance AS stance\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND child.name ILIKE 'Io'",
+        "serviceError": false,
+        "conflictsInProse": true,
+        "debug": {
+          "probeSubject": "Io",
+          "probeClaimType": "parentage",
+          "claimRowCount": 9,
+          "firstAttemptSql": "SELECT parent.name AS name,\n       s.author AS author, s.work AS work, r.passage_ref AS passage_ref, s.stance AS stance\nFROM relationships r\nJOIN entities parent ON parent.id = r.from_id\nJOIN entities child ON child.id = r.to_id\nJOIN sources s ON s.id = r.source_id\nWHERE r.relation = 'parent_of' AND child.name ILIKE 'Io'",
+          "sqlRows": [
+            {
+              "name": "Iasus",
+              "author": "Apollodorus",
+              "work": "Bibliotheca",
+              "passage_ref": "2.1.2-2.1.3",
+              "stance": "mythographic-handbook"
+            }
+          ],
+          "retrievedChunks": [],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "name=Iasus, author=Apollodorus, work=Bibliotheca, passage_ref=2.1.2-2.1.3, stance=mythographic-handbook"
+        }
+      },
+      {
+        "answer": "Achilles died by being shot with an arrow. According to Ovid, Paris shot the arrow that fatally struck Achilles, with Apollo guiding it at the request of Poseidon [1]. Homer's account foretells this fate, with the dying Hector prophesying that Achilles would be slain by Paris and Phoebus Apollo at the Scaean gate [2], and Thetis warning her son that he would perish beneath the wall of the Trojans by the swift missiles of Apollo [3]. Apollodorus notes that Achilles had been forewarned by his mother Thetis that he would die by the hand of Apollo if he killed Tenes, which he did anyway [4]. After his death, Achilles was buried with Patroclus in the White Isle [5].",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Ovid",
+            "work": "Metamorphoses",
+            "passageRef": "12.580-12.612",
+            "stance": "Killed by an arrow shot by Paris, guided by Apollo, at Apollo's and Neptune's instigation"
+          },
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "22.328-22.374",
+            "stance": "Foretold by dying Hector to be slain by Paris and Phoebus Apollo at the Scaean gate"
+          },
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "21.272-21.297",
+            "stance": "Thetis foretold he would perish beneath the wall of the Trojans by the swift missiles of Apollo"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "E.3.20-E.3.26",
+            "stance": "Thetis forewarned Achilles that he would die by the hand of Apollo if he slew Tenes"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "E.5.5",
+            "stance": "After his death, Achilles was buried with Patroclus in the White Isle"
+          }
+        ],
+        "conflicts": [
+          {
+            "claimValue": "Achilles was slain; Ajax carried his dead body from the battlefield",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "13.280-13.312"
+          },
+          {
+            "claimValue": "Achilles wished Hector had slain him instead of dying swept away by the river",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "21.272-21.297"
+          },
+          {
+            "claimValue": "Foretold by dying Hector to be slain by Paris and Phoebus Apollo at the Scaean gate",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "22.328-22.374"
+          },
+          {
+            "claimValue": "Killed by Paris and Apollo with arrows/shafts",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "13.481-13.507"
+          },
+          {
+            "claimValue": "Killed by an arrow shot by Paris, guided by Apollo, at Apollo's and Neptune's instigation - a divergence from the more common tradition of Achilles being wounded in the heel",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "12.580-12.612"
+          },
+          {
+            "claimValue": "Thetis foretells his death will follow soon after Hector's death",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "18.50-18.96"
+          },
+          {
+            "claimValue": "Thetis foretold he would perish beneath the wall of the Trojans by the swift missiles of Apollo",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "21.272-21.297"
+          },
+          {
+            "claimValue": "Thetis forewarned Achilles that he would die by the hand of Apollo if he slew Tenes",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "E.3.20-E.3.26"
+          },
+          {
+            "claimValue": "denied by unjust fate to both the Greeks and Ulysses, implying his death before the contest for his arms",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "13.128-13.161"
+          },
+          {
+            "claimValue": "destined to meet his death and fate at some future point",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "20.292-20.339"
+          },
+          {
+            "claimValue": "destined to perish in deep-soiled Troy, far from his native land",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "24.77-24.119"
+          },
+          {
+            "claimValue": "doomed to a speedy death, brief span of life",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "1.386-1.427"
+          },
+          {
+            "claimValue": "doomed to be brought low beneath the wall of the wealthy Trojans",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "23.54-23.98"
+          },
+          {
+            "claimValue": "fated to be slain in fight by a god and a mortal, far from his father and mother",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "19.392-20.11"
+          },
+          {
+            "claimValue": "foretold that he will die in battle, smitten by a spear cast or an arrow from the string",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "21.97-21.135"
+          },
+          {
+            "claimValue": "killed by Alexander",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "E.4.6-E.5.4"
+          },
+          {
+            "claimValue": "killed by Apollo",
+            "sourceAuthor": "Apollodorus",
+            "sourceWork": "Bibliotheca",
+            "passageRef": "E.3.20-E.3.26"
+          },
+          {
+            "claimValue": "killed by Apollo",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Iliad",
+            "passageRef": "19.392-20.11"
+          },
+          {
+            "claimValue": "killed by Apollo",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "13.481-13.507"
+          },
+          {
+            "claimValue": "killed by Paris",
+            "sourceAuthor": "Ovid",
+            "sourceWork": "Metamorphoses",
+            "passageRef": "12.580-12.612"
+          },
+          {
+            "claimValue": "slain at Troy",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Odyssey",
+            "passageRef": "3.102-3.154"
+          },
+          {
+            "claimValue": "slain in the land of Troy, far from Argos",
+            "sourceAuthor": "Homer",
+            "sourceWork": "Odyssey",
+            "passageRef": "24.35-24.84"
+          }
+        ],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": true,
+        "debug": {
+          "probeSubject": "Achilles",
+          "probeClaimType": "death",
+          "claimRowCount": 22,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 316,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.3.26",
+              "score": 0.5715282560085242
+            },
+            {
+              "id": 1688,
+              "sourceId": "homer-iliad",
+              "passageRef": "21.161-21.181",
+              "score": 0.5629194030068349
+            },
+            {
+              "id": 337,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.5.5",
+              "score": 0.5623853101522521
+            },
+            {
+              "id": 322,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.3.32",
+              "score": 0.5582064361392999
+            },
+            {
+              "id": 3359,
+              "sourceId": "ovid-metamorphoses",
+              "passageRef": "12.580-12.611",
+              "score": 0.549749758464632
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "According to the provided texts, Achilles died by being shot with an arrow. Ovid's account describes how Apollo, at the request of Poseidon, guided Paris's arrow to strike Achilles fatally while he was fighting Trojan warriors. Apollodorus notes that Achilles had been forewarned by his mother Thetis that he would die by the hand of Apollo if he killed Tenes, which he did anyway. After his death, Achilles was buried with Patroclus in the White Isle."
+        }
+      },
+      {
+        "answer": "Achilles withdrew from the fighting after his quarrel with Agamemnon because Agamemnon took his prize, Briseis [1]. According to Homer's account, Achilles was angry that Agamemnon threatened to seize his prize despite Achilles bearing the brunt of the furious battle [1]. Achilles declared he would return home to Phthia rather than remain dishonored while enriching Agamemnon [1]. Apollodorus similarly reports that Achilles did not go forth to war because he was angry on account of Briseis, the daughter of Chryses the priest [2].",
+        "routeDecision": "RAG",
+        "citations": [
+          {
+            "author": "Homer",
+            "work": "Iliad",
+            "passageRef": "1.147-1.171",
+            "stance": "Achilles withdrew from fighting because Agamemnon took his prize Briseis; Achilles was angry that Agamemnon threatened to seize his prize despite Achilles bearing the brunt of battle; Achilles declared he would return home to Phthia rather than remain dishonored while enriching Agamemnon"
+          },
+          {
+            "author": "Apollodorus",
+            "work": "Bibliotheca",
+            "passageRef": "E.4.1",
+            "stance": "Achilles did not go forth to war because he was angry on account of Briseis, the daughter of Chryses the priest"
+          }
+        ],
+        "conflicts": [],
+        "sqlGenerated": null,
+        "serviceError": false,
+        "conflictsInProse": false,
+        "debug": {
+          "probeSubject": "Achilles",
+          "probeClaimType": "none",
+          "claimRowCount": 0,
+          "firstAttemptSql": null,
+          "sqlRows": [],
+          "retrievedChunks": [
+            {
+              "id": 326,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.4.1",
+              "score": 0.6098289659482597
+            },
+            {
+              "id": 705,
+              "sourceId": "homer-iliad",
+              "passageRef": "1.147-1.171",
+              "score": 0.5614167823546421
+            },
+            {
+              "id": 707,
+              "sourceId": "homer-iliad",
+              "passageRef": "1.187-1.205",
+              "score": 0.5509915285345309
+            },
+            {
+              "id": 332,
+              "sourceId": "apollodorus-bibliotheca",
+              "passageRef": "E.4.7",
+              "score": 0.5386142172118439
+            },
+            {
+              "id": 1618,
+              "sourceId": "homer-iliad",
+              "passageRef": "19.54-19.73",
+              "score": 0.5374548377610425
+            }
+          ],
+          "fallbackFromSqlToRag": false,
+          "composerSucceeded": true,
+          "draftAnswer": "Achilles withdrew from the fighting because Agamemnon took his prize, Briseis, as recompense. According to Homer's account, Achilles was angry that Agamemnon threatened to seize his prize despite Achilles bearing the brunt of the furious battle. Achilles declared he would return home to Phthia rather than remain dishonored while enriching Agamemnon. According to Apollodorus, Achilles did not go forth to war because he was angry on account of Briseis, the daughter of Chryses the priest."
+        }
+      }
+    ]
+  ]
+}
