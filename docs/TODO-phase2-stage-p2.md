@@ -361,32 +361,48 @@ rung's **3-run** eval — never a single run (`§8` flakiness contract).
       *split/duplicated* entity (the Io/DEV-042 class), note it for P3 (don't merge entities here) but
       fix the direction. Then `python -m seedgen --strict` → `scripts/reseed-local.sh` → re-run
       `cycle_check --db` until **clean**.
-- [ ] **I4** — **Re-measure:** `python -m runner --runs 3 --label p2 --debug` →
+- [x] **I4** — **Re-measure:** `python -m runner --runs 3 --label p2 --debug` →
       `python -m runner.compare <…de6de91__baseline> <…p2>`. **If Q9/Q12 now answer over a clean DAG
       (no `serviceError`, content point earned) and zero stable regressions → STOP. Ship no Q9/Q12
       code.** Q13 must still show 3/3 (confirm, don't touch). Commit candidates + the corrected V11 +
       the results dir together.
-- [ ] **I5 — Rung 1 (ONLY IF I4 still shows Q9/Q12 stable-fail/flaky over the clean DAG):** add a
+      **Outcome:** condition NOT met — Q9/Q12 both still `stable-fail` (`results/2026-07-23T12-31-46Z__ed2ddcc__p2/`,
+      zero stable regressions, Q13 3/3 confirmed) — evidence gate for Rung 1 satisfied, proceeded to I5.
+      Candidates/V11/results-dir commit still pending (not yet requested).
+- [x] **I5 — Rung 1 (ONLY IF I4 still shows Q9/Q12 stable-fail/flaky over the clean DAG):** add a
       **LOUD** bounded `WITH RECURSIVE` few-shot to `TextToSqlAgent.generateSql` (depth cap +
       `visited`-id array). It must leave a breadcrumb — `DebugInfo.sqlRows` shows whether the
       visited-array truncation fired (a revisited id = a live data cycle Rung 0 missed → back to G/A3),
       **never a silent guard.** TDD the prompt-shape/regeneration path with a mocked agent. Re-run I4's
-      eval+compare; gate Rung 2 on this result.
-- [ ] **I6 — Rung 2 (ONLY IF Rung 1's 3-run eval still shows Q9/Q12 stable-fail/flaky AND the debug
+      eval+compare; gate Rung 2 on this result. — **DEV-069.**
+      **Outcome:** `results/2026-07-23T13-05-46Z__bc309ff__p2-rung1/` — **Q12 → stable-pass 3/3**
+      (fully fixed). **Q9's `serviceError` eliminated** (route/author pass every run) but content
+      point still missed — confirmed via direct DB inspection to be a **separate data gap**
+      (`Sky parent_of Cronus` and any `Chaos`→`Earth` edge are simply absent), not a generation
+      failure → does not satisfy Rung 2's gate. Zero stable regressions; Q13 reconfirmed 3/3.
+- [x] **I6 — Rung 2 (ONLY IF Rung 1's 3-run eval still shows Q9/Q12 stable-fail/flaky AND the debug
       surface shows a malformed-CTE / generation-validation exception, not a live data cycle):** `runSqlWithErrorRecovery(question)` wrapping generate+execute, re-asking via
       a new `TextToSqlAgent.regenerateAfterSqlError(schema, question, priorSql, dbError)` (same
       `routingModel`, temp 0.0) through the shared `executeValidated`; on 2nd failure **rethrow the
       ORIGINAL error.** Place it in **both `SqlQueryHandler` and `MixedQueryHandler`** (Q12 fails in
       the MIXED SQL step); give DEV-057's attribution retry its **own** `try/catch` ("never worse").
       TDD both handlers' retry path with mocked `@AiService`. Re-run eval+compare.
-- [ ] **I7 — Rung 3 (ONLY IF clean data + Rungs 1–2 still leave Q9/Q12 stable-fail):** a bounded
+      **Outcome: gate NOT met — not shipped.** Q12 is fully fixed (no longer applicable); Q9's residual
+      failure is a missing edge (data), not a malformed-CTE/generation exception.
+- [x] **I7 — Rung 3 (ONLY IF clean data + Rungs 1–2 still leave Q9/Q12 stable-fail):** a bounded
       recursive ancestry **view/function** in a fresh **V-migration**, advertised to the model via
       `SchemaIntrospector` (the V15/V16 schema-channel precedent). On evidence only. Re-run eval+compare.
+      **Outcome: gate NOT met — not shipped**, same reasoning as I6.
 - [ ] **I8** — **Final gate:** `compare.py` shows Q9/Q12 fixed + Q13 still passing + **zero stable
       PASS→FAIL regressions**; per-category floors hold (or are unchanged from baseline — P2 is not a
       data-quality stage, DATA floor may still BREACH pending P3, which is acceptable *as long as it
       did not regress*). `./gradlew :core-api:test` green. Results dir committed with the sha of the
       code that produced it (ADR-018 §Decision 5).
+      **Status:** everything but the commit is satisfied — Q12 fixed, Q9's DEV-054 defect (serviceError)
+      fixed (residual keyword gap is a documented, separate P3 data item, not this stage's defect),
+      Q13 unchanged, zero stable regressions, DATA floor breach unchanged from baseline (not a
+      regression), `:core-api:test` green (26 classes). **Not yet committed** — pending explicit
+      go-ahead per repo convention (commits only on request).
 
 ---
 

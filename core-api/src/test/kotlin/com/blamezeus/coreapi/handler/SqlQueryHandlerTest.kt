@@ -306,6 +306,38 @@ class SqlQueryHandlerTest {
     }
 
     @Test
+    fun `a bounded recursive lineage query (Rung 1 shape) flows through unchanged, no handler special-casing needed`() {
+        val recursiveSql = """
+            WITH RECURSIVE lineage AS (
+                SELECT e.id, e.name, NULL::text AS source_id, NULL::text AS passage_ref, 1 AS depth, ARRAY[e.id] AS visited
+                FROM entities e WHERE e.name ILIKE 'Zeus'
+                UNION ALL
+                SELECT parent.id, parent.name, r.source_id, r.passage_ref, lineage.depth + 1, lineage.visited || parent.id
+                FROM lineage
+                JOIN relationships r ON r.to_id = lineage.id AND r.relation = 'parent_of'
+                JOIN entities parent ON parent.id = r.from_id
+                WHERE NOT parent.id = ANY(lineage.visited) AND lineage.depth < 20
+            )
+            SELECT lineage.name AS name, s.author AS author, s.work AS work, lineage.passage_ref AS passage_ref, s.stance AS stance
+            FROM lineage JOIN sources s ON s.id = lineage.source_id WHERE lineage.source_id IS NOT NULL
+        """.trimIndent()
+        every { schemaIntrospector.get() } returns "schema"
+        every { textToSqlAgent.generateSql(any(), any()) } returns recursiveSql
+        every { validator.validate(recursiveSql) } returns Unit
+        every { jdbcTemplate.queryForList(recursiveSql) } returns listOf(
+            mapOf("name" to "Cronus", "author" to "Hesiod", "work" to "Theogony", "passage_ref" to "453-506", "stance" to "cosmological"),
+        )
+
+        val response = handler.handle("Trace Zeus's lineage back to Chaos.")
+
+        assertThat(response.sqlGenerated).isEqualTo(recursiveSql)
+        assertThat(response.citations).containsExactly(
+            Citation(author = "Hesiod", work = "Theogony", passageRef = "453-506", stance = "cosmological")
+        )
+        assertThat(debugCapture.snapshot().firstAttemptSql).isEqualTo(recursiveSql)
+    }
+
+    @Test
     fun `a genuine single non-zero-value row is not treated as empty`() {
         every { schemaIntrospector.get() } returns "schema"
         every { textToSqlAgent.generateSql(any(), any()) } returns "SELECT COUNT(*) AS count FROM entities WHERE type = 'olympian'"

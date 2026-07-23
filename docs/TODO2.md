@@ -71,7 +71,7 @@ fixes and **zero stable regressions**.
 - [ ] Q13: **verify passing at baseline, do not re-implement** — DEV-056 composer + DEV-057's
       already-mandated `r.passage_ref AS passage_ref` are expected to cover it; only tweak if the
       baseline still shows the dump/empty passageRef
-- [ ] Q9/Q12 = **Stage 8.5 gap (ii) — root cause first, code fix only if still needed** (gate each
+- [x] Q9/Q12 = **Stage 8.5 gap (ii) — root cause first, code fix only if still needed** (gate each
       rung on the previous rung's eval):
   - [x] **Rung 0 (always):** cycle-detection check over `relationships` **authored now in P2** (→
         audit A3), run **before any SQL/prompt change**; fix reversed edges in candidate JSON →
@@ -79,13 +79,19 @@ fixes and **zero stable regressions**.
         Checker built + live-verified (DEV-066, found 4 live cycles). The one genuine reversed edge
         (`Laertes`⇄`Odysseus`, 17 wrong-direction candidate rows) fixed, regenerated, reseeded —
         DEV-067; `cycle_check --db` now shows 3 (entity-conflation, flagged for P3 — DEV-068, not
-        reversed edges, out of Rung 0's scope). Re-measure eval is **I4**, tracked below.
-  - [ ] **Rung 1 (only if clean DAG still fails/flakes):** LOUD bounded `WITH RECURSIVE` few-shot
-        (depth cap + `visited`-id array) in `TextToSqlAgent`, breadcrumb via `sqlRows`
-  - [ ] **Rung 2 (only if failure is malformed CTE, not data):** `runSqlWithErrorRecovery` +
-        `regenerateAfterSqlError` in **both** `SqlQueryHandler` **and** `MixedQueryHandler`, rethrow
-        ORIGINAL error on 2nd failure, DEV-057 attribution retry gets its own `try/catch`
-  - [ ] **Rung 3 (only on evidence):** `V-migration` ancestry helper via `SchemaIntrospector`
+        reversed edges, out of Rung 0's scope). **I4 re-measure: Q9/Q12 still stable-fail** (evidence
+        gate for Rung 1 satisfied).
+  - [x] **Rung 1 (only if clean DAG still fails/flakes):** LOUD bounded `WITH RECURSIVE` few-shot
+        (depth cap + `visited`-id array) in `TextToSqlAgent`, breadcrumb via `sqlRows` — DEV-069.
+        **Live 3-run re-eval: Q12 → stable-pass 3/3 (fully fixed). Q9's `serviceError` eliminated**
+        (route/author pass every run) **but content point still missed — confirmed a separate data
+        gap** (`Sky`/`Ouranos` has no `parent_of Cronus` edge; `Chaos` has no edge to `Earth` at all),
+        **not a Rung 2/3 trigger** — flagged for P3 instead (see the Stage P3 backlog line below).
+        Zero stable regressions; Q13 reconfirmed stable-pass 3/3.
+  - [x] **Rung 2/3 — not shipped.** Evidence doesn't support them: Q9's remaining gap is a missing
+        edge (data), not a generation/execution failure, so Rung 2's gate ("malformed-CTE, not data
+        cycle") isn't met, and Rung 3 is gated on Rungs 1–2 still leaving a stable-fail on the
+        service-error dimension, which is no longer the case. **Staircase stops at Rung 1, per plan.**
 - [x] Decision recorded: **skip `query_history`** for the PoC (eval artifacts + `DebugInfo` cover it)
       — DEV-064; revisit noted on the `TODO.md` P5 line
 - [ ] TDD: retry path, cycle-detection check (pure Python over a fixture graph), and DebugCapture
@@ -116,6 +122,15 @@ stable regressions.
         the same pattern (Athenian myth has two Cecrops/two Pandions) but is not yet source-verified.
         `Astyoche ⇄ Tros ⇄ Ilus ⇄ Laomedon` not yet traced at all. Re-run `cycle_check --db` after each
         fix to confirm.
+  - [ ] **Backlog from P2 Track I5 (DEV-069):** Q9 ("Trace Zeus's lineage back to Chaos") no longer
+        `serviceError`s (Rung 1 fixed the recursion bug) but still misses `Ouranos`/`Chaos` in its
+        answer — confirmed a genuine data gap, not a query bug: `Sky` (Ouranos) carries only
+        `married_to Earth`, no `parent_of Cronus` edge (a real second-parent fact likely lost a
+        contested-group resolution the current single-canonical-parent-per-child `relationships`
+        design can't avoid); `Chaos` has no edge to `Earth`/`Sky` at all. Needs either a schema/model
+        change (allow >1 canonical parent per child) or restoring the lost `Sky parent_of Cronus`
+        edge as a second row, plus deciding how (or whether) `Chaos → Earth`'s cosmogonic
+        (non-parentage) relationship should be modeled.
 - [ ] `relation_aliases(alias PK, canonical, inverse BOOLEAN)` migration (new Phase-2 V-number);
       wire into `seedgen/relationships_gen.py` (apply map at generation; swap from/to on inverse)
 - [ ] Triage backlogs: 29 fuzzy-dup pairs (merge + alias, DEV-043 pattern); 203 flagged relationships

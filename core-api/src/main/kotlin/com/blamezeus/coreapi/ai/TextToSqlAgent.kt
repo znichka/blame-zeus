@@ -11,8 +11,12 @@ import dev.langchain4j.service.spring.AiServiceWiringMode.EXPLICIT
 @AiService(wiringMode = EXPLICIT, chatModel = "routingModel")
 interface TextToSqlAgent {
 
-    @SystemMessage(
-        """
+    companion object {
+        // Stage P2 Track I5 (Rung 1) [DEVIATED - see DEVIATIONS.md #DEV-069]: extracted to a
+        // top-level constant (rather than inlined in the annotation) purely so
+        // TextToSqlAgentPromptTest can assert on its content without a live LLM call — the actual
+        // generation behavior this steers is only verifiable live (evaluation/runner).
+        const val GENERATE_SQL_SYSTEM_MESSAGE = """
         You translate a question about Greek mythology into a single read-only PostgreSQL query.
 
         Schema:
@@ -26,7 +30,20 @@ interface TextToSqlAgent {
           use the exact lowercase values shown in the schema's "values:" lines — never guess casing
           (write type = 'olympian', not 'Olympian').
         - Use WITH RECURSIVE for lineage/ancestor/descendant questions that require walking the
-          relationships table more than one hop.
+          relationships table more than one hop. ALWAYS bound it with BOTH of the following — a
+          genealogy should be a DAG, but the seed data may still contain an undetected cycle, and an
+          unbounded recursive query hangs until the 3-second statement timeout kills it:
+            1. A `visited` id array column, seeded with the anchor row's own id (`ARRAY[e.id]`) and
+               extended each recursive step (`visited || next.id`); the recursive branch's WHERE
+               clause must exclude any id already in that array
+               (`NOT next.id = ANY(current.visited)`), so a revisited id stops that branch instead
+               of looping.
+            2. A `depth` integer column, seeded at 1 and incremented each step, capped in the
+               recursive branch's WHERE clause (e.g. `depth < 20`) as a second, independent bound.
+          Follow only ONE relation direction per traversal (e.g. `r.relation = 'parent_of'`, walking
+          `r.to_id = current.id` to reach the parent at `r.from_id`) — never combine `parent_of` with
+          its inverse label (`child_of`) in the same join condition; they are opposite directions,
+          and mixing them without inverting the join produces a wrong or falsely-cyclic traversal.
         - [DEVIATED - see DEVIATIONS.md #DEV-057] ATTRIBUTION IS MANDATORY for any query that reads
           from relationships or variant_claims: you MUST both JOIN sources (via source_id) AND
           project these four columns in the SELECT list using EXACTLY these aliases:
@@ -57,8 +74,35 @@ interface TextToSqlAgent {
         JOIN entities child  ON child.id  = r.to_id
         JOIN sources s ON s.id = r.source_id
         WHERE r.relation = 'parent_of' AND parent.name ILIKE 'Cronus' AND child.type = 'olympian'
+
+        Worked example — "Trace Zeus's lineage back to Chaos." (bounded recursive ancestor walk: a
+        `visited` array AND a `depth` cap, both independent bounds; a SINGLE relation direction
+        (`parent_of` only, never mixed with `child_of`); mandatory attribution still applies):
+        WITH RECURSIVE lineage AS (
+            SELECT e.id, e.name, NULL::text AS source_id, NULL::text AS passage_ref,
+                   1 AS depth, ARRAY[e.id] AS visited
+            FROM entities e
+            WHERE e.name ILIKE 'Zeus'
+
+            UNION ALL
+
+            SELECT parent.id, parent.name, r.source_id, r.passage_ref,
+                   lineage.depth + 1, lineage.visited || parent.id
+            FROM lineage
+            JOIN relationships r ON r.to_id = lineage.id AND r.relation = 'parent_of'
+            JOIN entities parent ON parent.id = r.from_id
+            WHERE NOT parent.id = ANY(lineage.visited) AND lineage.depth < 20
+        )
+        SELECT lineage.name AS name,
+               s.author AS author, s.work AS work, lineage.passage_ref AS passage_ref, s.stance AS stance
+        FROM lineage
+        JOIN sources s ON s.id = lineage.source_id
+        WHERE lineage.source_id IS NOT NULL
+        ORDER BY lineage.depth ASC, lineage.name ASC
         """
-    )
+    }
+
+    @SystemMessage(GENERATE_SQL_SYSTEM_MESSAGE)
     @UserMessage("Question: {{question}}")
     fun generateSql(@V("schema") schema: String, @V("question") question: String): String
 
