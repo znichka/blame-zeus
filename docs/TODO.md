@@ -385,8 +385,10 @@ regressions.
 > stage roadmap + "Done when" gates in `TODO2.md`. Activates **ADR-010** (Accepted now) and, at P5a,
 > **ADR-009**. Documentation landed as **DEV-059**. Not part of `IMPLEMENTATION_PLAN.md §9`.
 
-- [ ] Stage P1 — Evaluation harness + committed baseline (ADR-018; ADR-010 accepted)
-- [ ] Stage P2 — Debuggability (`DebugInfo`, DEBUG logging, `reseed-local.sh`) + DEV-053/DEV-054 fixes
+- [x] Stage P1 — Evaluation harness + committed baseline (ADR-018; ADR-010 accepted) — DEV-060/061/062/063
+- [x] Stage P2 — Debuggability (`DebugInfo`, DEBUG logging, `reseed-local.sh`) + DEV-053/DEV-054 fixes —
+      DEV-064 through DEV-069; Q12 fully fixed, Q9's `serviceError` fixed (residual data gap flagged
+      for P3)
 - [ ] Stage P3 — Data audit & fixing (`ingestion/audit/`, `relation_aliases`, backlogs) — priority
 - [ ] Stage P4 — Iterative conflict-depth loop; gold set grows in lockstep (ADR-010 questions)
 - [ ] Stage P5 — New data types (P5a numeric/ADR-009, P5b myths, P5c geography/epithets) + gap

@@ -68,9 +68,10 @@ fixes and **zero stable regressions**.
       `TRUNCATE` the other V10–V13 tables `CASCADE` → `DELETE FROM flyway_schema_history WHERE version
       IN ('10'…'16')` (**must include V15/V16** or Flyway skips the re-apply) → restart; **never**
       `down -v`; guard against a shared env (Flyway checksum trap) — DEV-065
-- [ ] Q13: **verify passing at baseline, do not re-implement** — DEV-056 composer + DEV-057's
+- [x] Q13: **verify passing at baseline, do not re-implement** — DEV-056 composer + DEV-057's
       already-mandated `r.passage_ref AS passage_ref` are expected to cover it; only tweak if the
-      baseline still shows the dump/empty passageRef
+      baseline still shows the dump/empty passageRef. Confirmed stable-pass 3/3 at P1 baseline and
+      reconfirmed stable-pass 3/3 in both P2 re-eval runs (I4, I5) — never touched.
 - [x] Q9/Q12 = **Stage 8.5 gap (ii) — root cause first, code fix only if still needed** (gate each
       rung on the previous rung's eval):
   - [x] **Rung 0 (always):** cycle-detection check over `relationships` **authored now in P2** (→
@@ -94,9 +95,10 @@ fixes and **zero stable regressions**.
         service-error dimension, which is no longer the case. **Staircase stops at Rung 1, per plan.**
 - [x] Decision recorded: **skip `query_history`** for the PoC (eval artifacts + `DebugInfo` cover it)
       — DEV-064; revisit noted on the `TODO.md` P5 line
-- [ ] TDD: retry path, cycle-detection check (pure Python over a fixture graph), and DebugCapture
+- [x] TDD: retry path, cycle-detection check (pure Python over a fixture graph), and DebugCapture
       unit-tested, `@AiService` mocked; `:core-api:test` green — cycle-detection check (9 tests) and
-      DebugCapture done; retry path is Track I's conditional Rung 2, not yet needed/shipped
+      DebugCapture done; Rung 2's retry path evaluated on evidence and correctly **not** shipped (its
+      gate wasn't met — see the Rung 2/3 line above), so there is no retry-path code to test
 
 → Detailed checklist: `TODO-phase2-stage-p2.md` (created at implementation)
 

@@ -175,8 +175,9 @@ flag: zero behavior change when `debug=false`.**
       returns them; a second `reset()` clears prior state (no bleed across simulated requests on the
       same thread); a `snapshot()` with nothing set returns an all-empty/defaults `DebugInfo` (never
       throws). Pure JVM, no Spring context, no DB.
-- [ ] **A6** — commit A as one unit; note B/C/D may now branch. _(commit only on request per repo
-      convention.)_
+- [x] **A6** — commit A as one unit; note B/C/D may now branch. _(commit only on request per repo
+      convention.)_ Committed as part of larger batched commits, not an isolated unit-of-one — the
+      substance (A landed, B–D branched off it) holds regardless.
 
 ---
 
@@ -393,45 +394,50 @@ rung's **3-run** eval — never a single run (`§8` flakiness contract).
       recursive ancestry **view/function** in a fresh **V-migration**, advertised to the model via
       `SchemaIntrospector` (the V15/V16 schema-channel precedent). On evidence only. Re-run eval+compare.
       **Outcome: gate NOT met — not shipped**, same reasoning as I6.
-- [ ] **I8** — **Final gate:** `compare.py` shows Q9/Q12 fixed + Q13 still passing + **zero stable
+- [x] **I8** — **Final gate:** `compare.py` shows Q9/Q12 fixed + Q13 still passing + **zero stable
       PASS→FAIL regressions**; per-category floors hold (or are unchanged from baseline — P2 is not a
       data-quality stage, DATA floor may still BREACH pending P3, which is acceptable *as long as it
       did not regress*). `./gradlew :core-api:test` green. Results dir committed with the sha of the
       code that produced it (ADR-018 §Decision 5).
-      **Status:** everything but the commit is satisfied — Q12 fixed, Q9's DEV-054 defect (serviceError)
-      fixed (residual keyword gap is a documented, separate P3 data item, not this stage's defect),
-      Q13 unchanged, zero stable regressions, DATA floor breach unchanged from baseline (not a
-      regression), `:core-api:test` green (26 classes). **Not yet committed** — pending explicit
-      go-ahead per repo convention (commits only on request).
+      **Status:** Q12 fixed (stable-pass 3/3); Q9's DEV-054 defect (serviceError) fixed (residual
+      keyword gap is a documented, separate P3 data item, not this stage's defect); Q13 unchanged;
+      zero stable regressions; DATA floor breach unchanged from baseline (not a regression);
+      `:core-api:test` green (26 classes). Committed at `4e7212a` (2026-07-23).
 
 ---
 
 ## Definition-of-done checklist (mirror of TODO2.md Stage P2)
 
-- [ ] `logging.level.com.blamezeus.coreapi: DEBUG` present (yml or `debug` profile); DEBUG lines
+- [x] `logging.level.com.blamezeus.coreapi: DEBUG` present (yml or `debug` profile); DEBUG lines
       confirmed live.
-- [ ] `QueryRequest.debug` + `QueryResponse.debug: DebugInfo?` (`@JsonInclude(NON_NULL)`) via a
+- [x] `QueryRequest.debug` + `QueryResponse.debug: DebugInfo?` (`@JsonInclude(NON_NULL)`) via a
       **ThreadLocal singleton `DebugCapture`** (plain bean, not `@Scope("request")`), appended to by
       `SqlQueryHandler`, `MixedQueryHandler`, `NarrativeChunkContentRetriever`, and `QueryService`;
       attached at one `finalize()` funnel, reset in `finally`. **Contract byte-identical when
       `debug=false`.**
-- [ ] `scripts/reseed-local.sh` — `DROP TABLE entity_aliases` + `TRUNCATE` V10–V13 tables `CASCADE` +
+- [x] `scripts/reseed-local.sh` — `DROP TABLE entity_aliases` + `TRUNCATE` V10–V13 tables `CASCADE` +
       `DELETE FROM flyway_schema_history WHERE version IN ('10'…'16')` (incl. V15/V16) → restart;
       **never** `down -v`; shared-env guard (checksum trap). Embeddings preserved (verified by
       `narrative_chunks` row count surviving a reseed).
-- [ ] Q13 **verified passing at baseline** — not re-implemented (DEV-056/057 cover it).
-- [ ] Q9/Q12: **Rung 0 (cycle detection + data fix) always done**; the graph reported clean (or
-      reversed edges listed + fixed at candidate-JSON layer); Rungs 1→3 shipped **only** on the prior
-      rung's 3-run eval evidence. Q9/Q12 no longer `serviceError`; content point earned over a genuine
-      DAG.
-- [ ] `query_history` **skip** decision recorded (eval artifacts + `DebugInfo` cover the forensic need).
-- [ ] Cycle-detection check authored (`ingestion/audit/cycle_check.py`, pure over a fixture graph,
+- [x] Q13 **verified passing at baseline** — not re-implemented (DEV-056/057 cover it).
+- [x] Q9/Q12: **Rung 0 (cycle detection + data fix) always done**; the graph reported clean of
+      reversed edges (3 remaining cycles are entity-conflation, flagged for P3, not reversed edges);
+      Rung 1 shipped on I4's evidence (Rungs 2/3 gates not met, not shipped). **Q12 no longer
+      `serviceError`, content point earned (stable-pass 3/3). Q9 no longer `serviceError`** (route +
+      author pass every run) **but its content point is not earned** — confirmed a separate,
+      unrelated data-completeness gap (`Sky`/`Chaos` missing edges), not a DAG/query defect; flagged
+      for P3 (DEV-069's backlog note).
+- [x] `query_history` **skip** decision recorded (eval artifacts + `DebugInfo` cover the forensic need).
+- [x] Cycle-detection check authored (`ingestion/audit/cycle_check.py`, pure over a fixture graph,
       TDD) → becomes audit **A3** in P3.
-- [ ] `./gradlew :core-api:test` green (DebugCapture, finalize funnel, producer captures, and any
+- [x] `./gradlew :core-api:test` green (DebugCapture, finalize funnel, producer captures, and any
       shipped retry path unit-tested; `@AiService` mocked, TDD). `pytest ingestion/audit/tests/` green.
-- [ ] `python -m runner --runs 3 --label p2 --debug` + `compare.py <baseline> <p2>` → Q9/Q12/Q13
-      fixes visible, **zero stable regressions**; results dir committed; `raw_responses.json` now
-      carries probe output, retrieved chunk refs, SQL rows, first-attempt SQL.
-- [ ] DEV entries logged (DEV-064 debug surface, DEV-065 reseed script, DEV-066 cycle check, DEV-067+
+- [x] `python -m runner --runs 3 --label p2 --debug` + `compare.py <baseline> <p2>` → Q12 fix visible
+      (stable-pass), Q9's `serviceError` eliminated (residual gap is a documented data issue, not this
+      stage's defect), Q13 unchanged, **zero stable regressions**; results dir committed;
+      `raw_responses.json` now carries probe output, retrieved chunk refs, SQL rows, first-attempt SQL.
+- [x] DEV entries logged (DEV-064 debug surface, DEV-065 reseed script, DEV-066 cycle check, DEV-067+
       per data fix / shipped rung); banners added; `IMPLEMENTATION_PLAN_PHASE2.md` left unedited.
+      DEV-064 through DEV-069 all logged; `[DEVIATED - see DEVIATIONS.md #DEV-064]` banner in
+      `IMPLEMENTATION_PLAN.md`; `IMPLEMENTATION_PLAN_PHASE2.md` confirmed unedited.
 ```
