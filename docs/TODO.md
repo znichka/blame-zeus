@@ -389,6 +389,8 @@ regressions.
 - [ ] Stage P2 — Debuggability (`DebugInfo`, DEBUG logging, `reseed-local.sh`) + DEV-053/DEV-054 fixes
 - [ ] Stage P3 — Data audit & fixing (`ingestion/audit/`, `relation_aliases`, backlogs) — priority
 - [ ] Stage P4 — Iterative conflict-depth loop; gold set grows in lockstep (ADR-010 questions)
-- [ ] Stage P5 — New data types (P5a numeric/ADR-009, P5b myths, P5c geography/epithets) + gap discovery
+- [ ] Stage P5 — New data types (P5a numeric/ADR-009, P5b myths, P5c geography/epithets) + gap
+      discovery. Revisit the P2-deferred `query_history` skip here if real web usage has appeared
+      by then (`IMPLEMENTATION_PLAN_PHASE2.md §3.5`, `DEVIATIONS.md` DEV-064).
 
 → [Phase-2 roadmap](TODO2.md) · [Phase-2 design](IMPLEMENTATION_PLAN_PHASE2.md)

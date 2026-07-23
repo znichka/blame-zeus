@@ -57,17 +57,17 @@ reversed edges); a `debug:true` request returns a populated `DebugInfo`; Q9/Q12 
 without dropping embeddings; `:core-api:test` green; eval `--runs 3 --debug` vs baseline shows those
 fixes and **zero stable regressions**.
 
-- [ ] `logging.level.com.blamezeus.coreapi: DEBUG` in `application.yml` (or `debug` profile)
-- [ ] `QueryRequest.debug` + `QueryResponse.debug: DebugInfo?` (`@JsonInclude(NON_NULL)`) via a
+- [x] `logging.level.com.blamezeus.coreapi: DEBUG` in `application.yml` (or `debug` profile)
+- [x] `QueryRequest.debug` + `QueryResponse.debug: DebugInfo?` (`@JsonInclude(NON_NULL)`) via a
       **`ThreadLocal` singleton `DebugCapture`** (plain bean w/ constructor default, **not**
       `@Scope("request")` — keeps handler/retriever unit tests constructible), appended to by
       `SqlQueryHandler`, **`MixedQueryHandler`**, the chunk retriever, and `QueryService` (probe
       subject/claimType, claim count, first-attempt SQL, capped SQL rows, retrieved chunk refs,
-      fallback/composer flags, draft answer)
-- [ ] `scripts/reseed-local.sh` — **`DROP TABLE entity_aliases`** (V14 is a bare `CREATE TABLE`) +
+      fallback/composer flags, draft answer) — DEV-064
+- [x] `scripts/reseed-local.sh` — **`DROP TABLE entity_aliases`** (V14 is a bare `CREATE TABLE`) +
       `TRUNCATE` the other V10–V13 tables `CASCADE` → `DELETE FROM flyway_schema_history WHERE version
       IN ('10'…'16')` (**must include V15/V16** or Flyway skips the re-apply) → restart; **never**
-      `down -v`; guard against a shared env (Flyway checksum trap)
+      `down -v`; guard against a shared env (Flyway checksum trap) — DEV-065
 - [ ] Q13: **verify passing at baseline, do not re-implement** — DEV-056 composer + DEV-057's
       already-mandated `r.passage_ref AS passage_ref` are expected to cover it; only tweak if the
       baseline still shows the dump/empty passageRef
@@ -76,15 +76,19 @@ fixes and **zero stable regressions**.
   - [ ] **Rung 0 (always):** cycle-detection check over `relationships` **authored now in P2** (→
         audit A3), run **before any SQL/prompt change**; fix reversed edges in candidate JSON →
         reseed → re-run eval. If Q9/Q12 pass over the clean DAG, **stop — ship no code.**
+        Checker itself built + live-verified — DEV-066 (found 4 live cycles incl. a near-certain
+        `Laertes`⇄`Odysseus` reversed edge). Fix + reseed + re-verify still pending (Track I).
   - [ ] **Rung 1 (only if clean DAG still fails/flakes):** LOUD bounded `WITH RECURSIVE` few-shot
         (depth cap + `visited`-id array) in `TextToSqlAgent`, breadcrumb via `sqlRows`
   - [ ] **Rung 2 (only if failure is malformed CTE, not data):** `runSqlWithErrorRecovery` +
         `regenerateAfterSqlError` in **both** `SqlQueryHandler` **and** `MixedQueryHandler`, rethrow
         ORIGINAL error on 2nd failure, DEV-057 attribution retry gets its own `try/catch`
   - [ ] **Rung 3 (only on evidence):** `V-migration` ancestry helper via `SchemaIntrospector`
-- [ ] Decision recorded: **skip `query_history`** for the PoC (eval artifacts + `DebugInfo` cover it)
+- [x] Decision recorded: **skip `query_history`** for the PoC (eval artifacts + `DebugInfo` cover it)
+      — DEV-064; revisit noted on the `TODO.md` P5 line
 - [ ] TDD: retry path, cycle-detection check (pure Python over a fixture graph), and DebugCapture
-      unit-tested, `@AiService` mocked; `:core-api:test` green
+      unit-tested, `@AiService` mocked; `:core-api:test` green — cycle-detection check (9 tests) and
+      DebugCapture done; retry path is Track I's conditional Rung 2, not yet needed/shipped
 
 → Detailed checklist: `TODO-phase2-stage-p2.md` (created at implementation)
 

@@ -803,6 +803,13 @@ class SqlQueryHandler(
 
 **`MixedQueryHandler`:** `TextToSqlAgent.generateSql()` → execute → inject SQL results as context into `ragAgent.answer(augmentedQuestion)`.
 
+> ⚠️ Amended by Phase 2 Stage P2 — see `IMPLEMENTATION_PLAN_PHASE2.md §3.2` and `DEVIATIONS.md`
+> [DEVIATED - see DEVIATIONS.md #DEV-064]. `QueryService.handle` gained a trailing `debug: Boolean =
+> false` parameter and a single `finalize()` funnel (all exit paths route through it, resetting a
+> `ThreadLocal` `DebugCapture` bean in a `finally`) so the `QueryResponse` below can carry an opt-in
+> `debug: DebugInfo?` field, `@JsonInclude(NON_NULL)` so the wire contract is unchanged when absent.
+> The `handle()` snippet and `QueryResponse` shape below predate this and are retained for context only.
+
 ### QueryService
 
 Central orchestrator. Two nested try-catches: the outer catches router failures (degrades to RAG); the inner catches handler failures (returns a `serviceError` response rather than propagating an exception). If the LLM API is down, both the router and the RAG fallback will fail — the inner catch prevents an unhandled exception and gives the user a clear message:

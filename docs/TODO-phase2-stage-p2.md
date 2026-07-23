@@ -325,18 +325,18 @@ parent_of A`), or **longer** — is a near-certain reversed-direction edge, sinc
 
 ## Track H — Docs / decisions (§3.5 + protocol; no code — do anytime)
 
-- [ ] **H1** — record the **`query_history` skip** decision (§3.5) in `docs/DEVIATIONS.md`: not built
+- [x] **H1** — record the **`query_history` skip** decision (§3.5) in `docs/DEVIATIONS.md`: not built
       for the PoC because (a) the eval runner persists full responses incl. `DebugInfo`, (b) `zeus_app`
       is read-only by guardrail (a write would need a grant change), (c) no organic traffic yet;
       revisit in P5 if real web usage appears. Cross-link from the P5 TODO line.
-- [ ] **H2** — log **DEV-064** (debug surface + `DebugCapture` ThreadLocal — the plan's chosen shape
+- [x] **H2** — log **DEV-064** (debug surface + `DebugCapture` ThreadLocal — the plan's chosen shape
       over a `@Scope("request")` proxy, with the LangChain4j-retriever-boundary rationale) and add the
       `[DEVIATED - see DEVIATIONS.md #DEV-064]` banner where `IMPLEMENTATION_PLAN.md` describes the
       response DTO / QueryService, plus the `IMPLEMENTATION_PLAN_PHASE2.md §3.2` note.
-- [ ] **H3** — log **DEV-065** (`reseed-local.sh`) and **DEV-066** (cycle-detection check authored in
+- [x] **H3** — log **DEV-065** (`reseed-local.sh`) and **DEV-066** (cycle-detection check authored in
       P2, located at `ingestion/audit/cycle_check.py`, becomes A3 in P3). Any reversed-edge data fix
       from Track I → its own **DEV-067+** (edge, both directions' sources, the tie-break rule applied).
-- [ ] **H4** — mirror the completed items back into `TODO2.md` Stage P2 checkboxes and this file; keep
+- [x] **H4** — mirror the completed items back into `TODO2.md` Stage P2 checkboxes and this file; keep
       `IMPLEMENTATION_PLAN_PHASE2.md` **unedited** (authoritative plan — deviations recorded separately).
 
 ---
