@@ -43,7 +43,15 @@ FROM (VALUES
     ('Phoebus',  'Apollo'),
     ('Aias',     'Ajax'),
     ('Athene',   'Athena'),
-    ('Ocean',    'Oceanus')
+    ('Ocean',    'Oceanus'),
+    -- J1 fuzzy-duplicate merges (Stage P3 Track J1, DEV-084)
+    ('Ilithyia', 'Eileithyia'),
+    ('Alcmene',  'Alcmena'),
+    ('Atropus',  'Atropos'),
+    ('Euneos',   'Euneus'),
+    ('Cebrenus', 'Cebren'),
+    ('Perimela', 'Perimele'),
+    ('Lampetia', 'Lampetie')
 ) AS v(alias, entity_name)
 JOIN entities e ON e.name = v.entity_name
 ON CONFLICT (alias) DO NOTHING;

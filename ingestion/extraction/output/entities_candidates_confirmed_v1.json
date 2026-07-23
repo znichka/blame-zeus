@@ -861,13 +861,6 @@
     "subtype": null
   },
   {
-    "name": "Alcmene",
-    "type": "mortal",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
     "name": "Alcmenor",
     "type": "mortal",
     "generation": null,
@@ -2184,13 +2177,6 @@
     "subtype": null
   },
   {
-    "name": "Atropus",
-    "type": "other_god",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
     "name": "Atthis",
     "type": "mortal",
     "generation": null,
@@ -2881,13 +2867,6 @@
     "type": "other_god",
     "generation": null,
     "domain": "river",
-    "subtype": null
-  },
-  {
-    "name": "Cebrenus",
-    "type": "other_god",
-    "generation": null,
-    "domain": null,
     "subtype": null
   },
   {
@@ -5040,13 +5019,6 @@
     "subtype": null
   },
   {
-    "name": "Epicaste",
-    "type": "mortal",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
     "name": "Epicles",
     "type": "mortal",
     "generation": null,
@@ -5447,13 +5419,6 @@
   },
   {
     "name": "Eumon",
-    "type": "hero",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
-    "name": "Euneos",
     "type": "hero",
     "generation": null,
     "domain": null,
@@ -7112,13 +7077,6 @@
     "subtype": null
   },
   {
-    "name": "Ilithyia",
-    "type": "other_god",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
     "name": "Illyrius",
     "type": "mortal",
     "generation": null,
@@ -7562,13 +7520,6 @@
   {
     "name": "Lamas",
     "type": "mortal",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
-    "name": "Lampetia",
-    "type": "nymph",
     "generation": null,
     "domain": null,
     "subtype": null
@@ -10487,13 +10438,6 @@
   },
   {
     "name": "Perimede",
-    "type": "mortal",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
-    "name": "Perimela",
     "type": "mortal",
     "generation": null,
     "domain": null,
@@ -13861,6 +13805,20 @@
   },
   {
     "name": "Helle",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Epicaste (daughter of Calydon)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Epicaste (daughter of Augeas)",
     "type": "mortal",
     "generation": null,
     "domain": null,

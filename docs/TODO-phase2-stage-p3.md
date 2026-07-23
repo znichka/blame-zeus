@@ -440,13 +440,31 @@ that can land anytime.
 ## Track J — Backlog triage (data edits fan out; each batch serializes through Track I)
 
 ### J1 — 29 fuzzy-duplicate entity pairs (`entities_fuzzy_duplicates_flagged_for_review.json`)
-- [ ] **J1a** — for each of the 29 pairs, decide **merge** (same entity, translit variant — DEV-043
+- [x] **J1a** [DEVIATED - see DEVIATIONS.md #DEV-084] — for each of the 29 pairs, decide **merge** (same entity, translit variant — DEV-043
       pattern: pick the canonical name, rewrite the loser's occurrences at the candidate layer, add an
-      `entity_aliases` row) or **reject** (genuinely distinct — record the reason in the file).
-- [ ] **J1b** — apply merges in `entities_candidates_confirmed_v1.json` **and** propagate the renamed
+      `entity_aliases` row) or **reject** (genuinely distinct — record the reason in the file). **All
+      48 live pairs triaged** (A1's live count grew from 29 to 45 to 48 as Track J3's entity splits
+      added incidental leads): **8 merged** (`Ilithyia`→`Eileithyia`, `Alcmene`→`Alcmena`,
+      `Atropus`→`Atropos`, `Euneos`→`Euneus`, `Cebrenus`→`Cebren`, `Perimela`→`Perimele`,
+      `Lampetia`→`Lampetie`, `Epicaste`→`Epicasta` for its Jocasta portion only), **40 rejected**
+      with specific recorded reasons. `Epicaste` turned out to be a **third** multi-way name
+      conflation (Jocasta + Calydon's daughter + Augeas's daughter) — split, not merged wholesale,
+      matching the `Menoeceus`/`Astyoche` precedent; got **no** blanket `entity_aliases` row for
+      that reason (ambiguous in the source itself). One pair (`Coeranos`/`Coeranus`) was downgraded
+      from a tentative merge to reject after finding `Coeranus` itself likely already covers two
+      different Iliad casualties — flagged as a new, deeper lead, not fixed here.
+- [x] **J1b** [DEVIATED - see DEVIATIONS.md #DEV-084] — apply merges in `entities_candidates_confirmed_v1.json` **and** propagate the renamed
       name through `relationships_candidates_cleaned.json` + `variant_claims_candidates.json` (name-based
-      references — the entity-merge-fallout guard; `seedgen --strict` + A5 catch stragglers).
-- [ ] **J1c** — run the batch through Track I (audit A1 should now report those pairs resolved).
+      references — the entity-merge-fallout guard; `seedgen --strict` + A5 catch stragglers). No
+      `variant_claims_candidates.json` rows referenced any losing name (checked, confirmed empty).
+      `V14__create_entity_aliases.sql` and `known_aliases.json` both updated with the 7 genuine 1:1
+      aliases (mirroring the DEV-043 dual-file convention).
+- [ ] **J1c** — run the batch through Track I (audit A1 should now report those pairs resolved). **Not
+      yet run** — the J1a/b edits are sitting in the candidate JSON; `python -m audit.duplicate_entities`
+      already confirms candidates-mode count dropped 48 → 40 (the 8 merges), but this hasn't gone
+      through `seedgen --strict` → `reseed-local.sh` → eval yet. New lead from J1a's triage, not yet
+      its own checklist item: `Coeranos`/`Coeranus` needs untangling (likely 2+ Iliad casualties
+      sharing the `Coeranus` name) before any merge decision is safe.
 
 ### J2 — 203 flagged relationships (`relationships_flagged_for_review.json`)
 - [ ] **J2a** — triage each of the 203 rows: **promote-with-fix** (correct direction/relation/entity,

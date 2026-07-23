@@ -1530,7 +1530,7 @@
   {
     "from_name": "Zeus",
     "relation": "parent_of",
-    "to_name": "Ilithyia",
+    "to_name": "Eileithyia",
     "is_contested": false,
     "passage_ref": "1.3.1-1.3.5",
     "source_id": "apollodorus-bibliotheca"
@@ -1602,7 +1602,7 @@
   {
     "from_name": "Zeus",
     "relation": "parent_of",
-    "to_name": "Atropus",
+    "to_name": "Atropos",
     "is_contested": false,
     "passage_ref": "1.3.1-1.3.5",
     "source_id": "apollodorus-bibliotheca"
@@ -1626,7 +1626,7 @@
   {
     "from_name": "Themis",
     "relation": "parent_of",
-    "to_name": "Atropus",
+    "to_name": "Atropos",
     "is_contested": false,
     "passage_ref": "1.3.1-1.3.5",
     "source_id": "apollodorus-bibliotheca"
@@ -3250,7 +3250,7 @@
   {
     "from_name": "Calydon",
     "relation": "parent_of",
-    "to_name": "Epicaste",
+    "to_name": "Epicaste (daughter of Calydon)",
     "is_contested": false,
     "passage_ref": "1.7.4-1.7.8",
     "source_id": "apollodorus-bibliotheca"
@@ -3266,7 +3266,7 @@
   {
     "from_name": "Aetolia",
     "relation": "parent_of",
-    "to_name": "Epicaste",
+    "to_name": "Epicaste (daughter of Calydon)",
     "is_contested": false,
     "passage_ref": "1.7.4-1.7.8",
     "source_id": "apollodorus-bibliotheca"
@@ -3298,7 +3298,7 @@
   {
     "from_name": "Agenor",
     "relation": "married_to",
-    "to_name": "Epicaste",
+    "to_name": "Epicaste (daughter of Calydon)",
     "is_contested": false,
     "passage_ref": "1.7.4-1.7.8",
     "source_id": "apollodorus-bibliotheca"
@@ -3320,7 +3320,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Epicaste",
+    "from_name": "Epicaste (daughter of Calydon)",
     "relation": "parent_of",
     "to_name": "Porthaon",
     "is_contested": false,
@@ -3328,7 +3328,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Epicaste",
+    "from_name": "Epicaste (daughter of Calydon)",
     "relation": "parent_of",
     "to_name": "Demonice",
     "is_contested": false,
@@ -11504,7 +11504,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Epicaste",
+    "from_name": "Epicaste (daughter of Augeas)",
     "relation": "parent_of",
     "to_name": "Thettalus",
     "is_contested": false,
@@ -11514,7 +11514,7 @@
   {
     "from_name": "Augeas",
     "relation": "parent_of",
-    "to_name": "Epicaste",
+    "to_name": "Epicaste (daughter of Augeas)",
     "is_contested": false,
     "passage_ref": "2.7.8-2.8.1",
     "source_id": "apollodorus-bibliotheca"
@@ -24520,7 +24520,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Alcmene",
+    "from_name": "Alcmena",
     "relation": "parent_of",
     "to_name": "Heracles",
     "is_contested": false,
@@ -31920,7 +31920,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Alcmene",
+    "from_name": "Alcmena",
     "relation": "parent_of",
     "to_name": "Heracles",
     "is_contested": false,
@@ -33912,7 +33912,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Alcmene",
+    "from_name": "Alcmena",
     "relation": "parent_of",
     "to_name": "Heracles",
     "is_contested": false,
@@ -35506,7 +35506,7 @@
   {
     "from_name": "Jason",
     "relation": "parent_of",
-    "to_name": "Euneos",
+    "to_name": "Euneus",
     "is_contested": false,
     "passage_ref": "23.708-23.752",
     "source_id": "homer-iliad"
@@ -38040,7 +38040,7 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Alcmene",
+    "from_name": "Alcmena",
     "relation": "married_to",
     "to_name": "Amphictyon",
     "is_contested": false,
@@ -38048,7 +38048,7 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Alcmene",
+    "from_name": "Alcmena",
     "relation": "parent_of",
     "to_name": "Heracles",
     "is_contested": false,
@@ -38072,7 +38072,7 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Epicaste",
+    "from_name": "Epicasta",
     "relation": "parent_of",
     "to_name": "Oedipodes",
     "is_contested": false,
@@ -38080,7 +38080,7 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Epicaste",
+    "from_name": "Epicasta",
     "relation": "married_to",
     "to_name": "Oedipodes",
     "is_contested": false,
@@ -40642,7 +40642,7 @@
   {
     "from_name": "Sun",
     "relation": "parent_of",
-    "to_name": "Lampetia",
+    "to_name": "Lampetie",
     "is_contested": false,
     "passage_ref": "2.319-2.366",
     "source_id": "ovid-metamorphoses"
@@ -44472,7 +44472,7 @@
     "source_id": "ovid-metamorphoses"
   },
   {
-    "from_name": "Alcmene",
+    "from_name": "Alcmena",
     "relation": "parent_of",
     "to_name": "Heracles",
     "is_contested": false,
@@ -45824,7 +45824,7 @@
     "source_id": "ovid-metamorphoses"
   },
   {
-    "from_name": "Cebrenus",
+    "from_name": "Cebren",
     "relation": "parent_of",
     "to_name": "Hesperia",
     "is_contested": false,

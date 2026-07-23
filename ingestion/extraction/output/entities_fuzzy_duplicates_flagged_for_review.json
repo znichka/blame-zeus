@@ -1,408 +1,255 @@
-[
-  {
-    "fuzzy_score": 94.11764705882352,
-    "name_a": "Anthippe",
-    "type_a": "mortal",
-    "rel_refs_a": 1,
-    "claim_refs_a": 0,
-    "name_b": "Xanthippe",
-    "type_b": "mortal",
-    "rel_refs_b": 5,
-    "claim_refs_b": 0,
-    "same_type": true,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 93.33333333333333,
-    "name_a": "Eriopis",
-    "type_a": "mortal",
-    "rel_refs_a": 2,
-    "claim_refs_a": 0,
-    "name_b": "Periopis",
-    "type_b": "mortal",
-    "rel_refs_b": 2,
-    "claim_refs_b": 0,
-    "same_type": true,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 93.33333333333333,
-    "name_a": "Deioneus",
-    "type_a": "mortal",
-    "rel_refs_a": 1,
-    "claim_refs_a": 0,
-    "name_b": "Eioneus",
-    "type_b": "mortal",
-    "rel_refs_b": 1,
-    "claim_refs_b": 0,
-    "same_type": true,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 92.3076923076923,
-    "name_a": "Atreus",
-    "type_a": "mortal",
-    "rel_refs_a": 28,
-    "claim_refs_a": 28,
-    "name_b": "Catreus",
-    "type_b": "mortal",
-    "rel_refs_b": 11,
-    "claim_refs_b": 0,
-    "same_type": true,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 92.3076923076923,
-    "name_a": "Aepytus",
-    "type_a": "mortal",
-    "rel_refs_a": 3,
-    "claim_refs_a": 0,
-    "name_b": "Epytus",
-    "type_b": "mortal",
-    "rel_refs_b": 2,
-    "claim_refs_b": 0,
-    "same_type": true,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 90.9090909090909,
-    "name_a": "Molus",
-    "type_a": "mortal",
-    "rel_refs_a": 3,
-    "claim_refs_a": 5,
-    "name_b": "Tmolus",
-    "type_b": "mortal",
-    "rel_refs_b": 1,
-    "claim_refs_b": 0,
-    "same_type": true,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 90.9090909090909,
-    "name_a": "Enops",
-    "type_a": "mortal",
-    "rel_refs_a": 3,
-    "claim_refs_a": 0,
-    "name_b": "Oenops",
-    "type_b": "mortal",
-    "rel_refs_b": 2,
-    "claim_refs_b": 0,
-    "same_type": true,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 89.65517241379311,
-    "name_a": "Antiope (daughter of Thespius)",
-    "type_a": "mortal",
-    "rel_refs_a": 1,
-    "claim_refs_a": 0,
-    "name_b": "Erato (daughter of Thespius)",
-    "type_b": "mortal",
-    "rel_refs_b": 1,
-    "claim_refs_b": 0,
-    "same_type": true,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 88.88888888888889,
-    "name_a": "Idas",
-    "type_a": "mortal",
-    "rel_refs_a": 15,
-    "claim_refs_a": 14,
-    "name_b": "Midas",
-    "type_b": "mortal",
-    "rel_refs_b": 5,
-    "claim_refs_b": 0,
-    "same_type": true,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 88.88888888888889,
-    "name_a": "Eione",
-    "type_a": "other_god",
-    "rel_refs_a": 4,
-    "claim_refs_a": 3,
-    "name_b": "Ione",
-    "type_b": "other_god",
-    "rel_refs_b": 1,
-    "claim_refs_b": 0,
-    "same_type": true,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 88.88888888888889,
-    "name_a": "Eileithyia",
-    "type_a": "other_god",
-    "rel_refs_a": 3,
-    "claim_refs_a": 0,
-    "name_b": "Ilithyia",
-    "type_b": "other_god",
-    "rel_refs_b": 1,
-    "claim_refs_b": 0,
-    "same_type": true,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 88.88888888888889,
-    "name_a": "Dorus",
-    "type_a": "mortal",
-    "rel_refs_a": 2,
-    "claim_refs_a": 0,
-    "name_b": "Orus",
-    "type_b": "mortal",
-    "rel_refs_b": 3,
-    "claim_refs_b": 4,
-    "same_type": true,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 88.46153846153845,
-    "name_a": "Laomedon (son of Hercules)",
-    "type_a": "mortal",
-    "rel_refs_a": 2,
-    "claim_refs_a": 0,
-    "name_b": "Palaemon (son of Hercules)",
-    "type_b": "mortal",
-    "rel_refs_b": 2,
-    "claim_refs_b": 0,
-    "same_type": true,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 92.3076923076923,
-    "name_a": "Pteleon",
-    "type_a": "mortal",
-    "rel_refs_a": 0,
-    "claim_refs_a": 0,
-    "name_b": "Teleon",
-    "type_b": "mortal",
-    "rel_refs_b": 1,
-    "claim_refs_b": 0,
-    "same_type": true,
-    "both_referenced": false,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 92.3076923076923,
-    "name_a": "Amulius",
-    "type_a": "mortal",
-    "rel_refs_a": 0,
-    "claim_refs_a": 0,
-    "name_b": "Mulius",
-    "type_b": "mortal",
-    "rel_refs_b": 4,
-    "claim_refs_b": 0,
-    "same_type": true,
-    "both_referenced": false,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 90.9090909090909,
-    "name_a": "Hylas",
-    "type_a": "mortal",
-    "rel_refs_a": 0,
-    "claim_refs_a": 0,
-    "name_b": "Phylas",
-    "type_b": "mortal",
-    "rel_refs_b": 6,
-    "claim_refs_b": 0,
-    "same_type": true,
-    "both_referenced": false,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 90.9090909090909,
-    "name_a": "Hyale",
-    "type_a": "nymph",
-    "rel_refs_a": 0,
-    "claim_refs_a": 0,
-    "name_b": "Phyale",
-    "type_b": "nymph",
-    "rel_refs_b": 0,
-    "claim_refs_b": 0,
-    "same_type": true,
-    "both_referenced": false,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 93.33333333333333,
-    "name_a": "Morpheus",
-    "type_a": "other_god",
-    "rel_refs_a": 1,
-    "claim_refs_a": 0,
-    "name_b": "Orpheus",
-    "type_b": "hero",
-    "rel_refs_b": 18,
-    "claim_refs_b": 18,
-    "same_type": false,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 92.3076923076923,
-    "name_a": "Hyleus",
-    "type_a": "hero",
-    "rel_refs_a": 2,
-    "claim_refs_a": 0,
-    "name_b": "Phyleus",
-    "type_b": "mortal",
-    "rel_refs_b": 5,
-    "claim_refs_b": 6,
-    "same_type": false,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 90.9090909090909,
-    "name_a": "Ammon",
-    "type_a": "other_god",
-    "rel_refs_a": 1,
-    "claim_refs_a": 0,
-    "name_b": "Pammon",
-    "type_b": "mortal",
-    "rel_refs_b": 3,
-    "claim_refs_b": 3,
-    "same_type": false,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 88.88888888888889,
-    "name_a": "Notus",
-    "type_a": "other_god",
-    "rel_refs_a": 3,
-    "claim_refs_a": 0,
-    "name_b": "Otus",
-    "type_b": "mortal",
-    "rel_refs_b": 8,
-    "claim_refs_b": 10,
-    "same_type": false,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 88.88888888888889,
-    "name_a": "Ilus",
-    "type_a": "hero",
-    "rel_refs_a": 10,
-    "claim_refs_a": 6,
-    "name_b": "Nilus",
-    "type_b": "other_god",
-    "rel_refs_b": 3,
-    "claim_refs_b": 5,
-    "same_type": false,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 88.88888888888889,
-    "name_a": "Horus",
-    "type_a": "hero",
-    "rel_refs_a": 2,
-    "claim_refs_a": 0,
-    "name_b": "Orus",
-    "type_b": "mortal",
-    "rel_refs_b": 3,
-    "claim_refs_b": 4,
-    "same_type": false,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 88.88888888888889,
-    "name_a": "Hephaestus",
-    "type_a": "olympian",
-    "rel_refs_a": 17,
-    "claim_refs_a": 34,
-    "name_b": "Phaestus",
-    "type_b": "hero",
-    "rel_refs_b": 2,
-    "claim_refs_b": 0,
-    "same_type": false,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 88.88888888888889,
-    "name_a": "Dius",
-    "type_a": "mortal",
-    "rel_refs_a": 1,
-    "claim_refs_a": 0,
-    "name_b": "Odius",
-    "type_b": "hero",
-    "rel_refs_b": 2,
-    "claim_refs_b": 0,
-    "same_type": false,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 88.88888888888889,
-    "name_a": "Dione",
-    "type_a": "titan",
-    "rel_refs_a": 8,
-    "claim_refs_a": 5,
-    "name_b": "Ione",
-    "type_b": "other_god",
-    "rel_refs_b": 1,
-    "claim_refs_b": 0,
-    "same_type": false,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 88.88888888888889,
-    "name_a": "Borus",
-    "type_a": "hero",
-    "rel_refs_a": 3,
-    "claim_refs_a": 2,
-    "name_b": "Orus",
-    "type_b": "mortal",
-    "rel_refs_b": 3,
-    "claim_refs_b": 4,
-    "same_type": false,
-    "both_referenced": true,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 88.88888888888889,
-    "name_a": "Azeus",
-    "type_a": "mortal",
-    "rel_refs_a": 0,
-    "claim_refs_a": 0,
-    "name_b": "Zeus",
-    "type_b": "olympian",
-    "rel_refs_b": 456,
-    "claim_refs_b": 267,
-    "same_type": false,
-    "both_referenced": false,
-    "status": "unreviewed"
-  },
-  {
-    "fuzzy_score": 88.88888888888889,
-    "name_a": "Ares",
-    "type_a": "olympian",
-    "rel_refs_a": 0,
-    "claim_refs_a": 0,
-    "name_b": "Dares",
-    "type_b": "mortal",
-    "rel_refs_b": 2,
-    "claim_refs_b": 0,
-    "same_type": false,
-    "both_referenced": false,
-    "status": "unreviewed"
-  }
-]
+{
+  "note": "Stage P3 Track J1 triage (DEV-084) -- supersedes the 29-entry 2026-07-15 (DEV-044) snapshot; A1's live scan now finds 48 pairs (45 original-scope plus a few incidental new leads from the Track J3 entity splits). Every pair below reflects the actual decision applied to the candidate JSON, not a proposal.",
+  "merged": [
+    {
+      "loser": "Eileithyia",
+      "canonical": "Ilithyia",
+      "alias_row_added": true,
+      "reason": "Both are the childbirth goddess, child of Zeus and Hera (Hesiod Theogony 869-923, Iliad 11.248) vs child of Zeus alone (Apollodorus 1.3.1-1.3.5, an abbreviated parentage) -- the same well-known goddess under two spellings, already flagged in DEV-044 as the one high-confidence duplicate in the original 29-pair scan."
+    },
+    {
+      "loser": "Alcmene",
+      "canonical": "Alcmena",
+      "alias_row_added": true,
+      "reason": "Both are Heracles's mother, Zeus's mortal consort, attested consistently across hesiod-theogony, homer-iliad, homer-odyssey, ovid-metamorphoses, hesiod-homeric-hymns, and apollodorus-bibliotheca -- an unambiguous cross-source spelling variant (-a/-e feminine ending, the Athena/Athene pattern)."
+    },
+    {
+      "loser": "Atropus",
+      "canonical": "Atropos",
+      "alias_row_added": true,
+      "reason": "Both are one of the three Fates (Moirai): child of Night (Hesiod Theogony 176-232, 869-923) vs child of Zeus and Themis (Apollodorus 1.3.1-1.3.5, an alternate but equally standard genealogical tradition for the same group of goddesses). Same figure, -os/-us spelling variant plus a contested-parentage claim preserved on the merged entity."
+    },
+    {
+      "loser": "Euneos",
+      "canonical": "Euneus",
+      "alias_row_added": true,
+      "reason": "Both are Jason and Hypsipyle's son: even the same source (homer-iliad) spells him 'Euneus' at 7.442-7.464 and 'Euneos' at 23.708-23.752. Same figure, cross-passage spelling inconsistency."
+    },
+    {
+      "loser": "Cebrenus",
+      "canonical": "Cebren",
+      "alias_row_added": true,
+      "reason": "Both are the river-god father of a nymph daughter (Oenone per Apollodorus 3.12.5, matching the earlier-verified Paris/Oenone passage; Hesperia per Ovid 11.749-11.782) -- same river-god role, -us/bare-stem spelling variant across sources."
+    },
+    {
+      "loser": "Perimela",
+      "canonical": "Perimele",
+      "alias_row_added": true,
+      "reason": "Perimela has zero extracted relationships or claims; Perimele is the well-attested Ovid figure (Achelous's beloved, turned into an island, 8.590-8.625). No data loss in merging the empty stub into the documented entity."
+    },
+    {
+      "loser": "Lampetia",
+      "canonical": "Lampetie",
+      "alias_row_added": true,
+      "reason": "Both are daughters of the Sun/Helios, sisters of Phaethusa: Homer's Odyssey (12.127-12.164, 'fair-tressed nymphs, Phaethusa and Lampetie') and Ovid's Metamorphoses (2.319-2.366, 'the eldest, Phaethusa... Lampetia... her sister') name the identical sister pair. Same figure, -a/-e spelling variant across sources."
+    },
+    {
+      "loser": "Epicaste",
+      "canonical": "Epicasta",
+      "alias_row_added": true,
+      "reason": "Epicaste itself conflated THREE different women -- resolved via a 3-way split (DEV-084), not a simple merge: the Jocasta/Oedipus's-mother portion (Homer Odyssey 11.271-11.320, 'the mother of Oedipodes, fair Epicaste') merges into Epicasta (Apollodorus's spelling for the same figure, already used for her married_to Laius / parent_of-by-Menoeceus rows); the other two meanings (Calydon's daughter; Augeas's daughter) were split into their own new, disambiguated entities and are NOT part of this merge."
+    }
+  ],
+  "rejected": [
+    {
+      "name_a": "Anthippe",
+      "name_b": "Xanthippe",
+      "reason": "Different Thespius-daughter mothers of different sons by Heracles: Anthippe->Hippodromus vs Xanthippe (Dorus's daughter, Pleuron's wife, Agenor's mother) -- distinct passages, distinct roles."
+    },
+    {
+      "name_a": "Deioneus",
+      "name_b": "Eioneus",
+      "reason": "Deioneus is Aeolus's son, Cephalus's father; Eioneus is an unrelated Trojan casualty killed by Hector (Iliad). No overlap."
+    },
+    {
+      "name_a": "Eriopis",
+      "name_b": "Periopis",
+      "reason": "Eriopis is Oileus's wife (Ajax the Lesser's mother, Iliad); Periopis is Pheres's daughter, Patroclus's mother (Apollodorus). Different mothers of different heroes."
+    },
+    {
+      "name_a": "Morpheus",
+      "name_b": "Orpheus",
+      "reason": "Morpheus (god of dreams) and Orpheus (the legendary musician) are well-known, unrelated figures; coincidental spelling similarity only."
+    },
+    {
+      "name_a": "Persaeus",
+      "name_b": "Perseus",
+      "reason": "Persaeus is a minor Titan (other_god); Perseus is Danae's son, the hero. Type mismatch confirms distinct figures."
+    },
+    {
+      "name_a": "Aeolus",
+      "name_b": "Aetolus",
+      "reason": "Already source-verified and split in DEV-078 (Track J3a): Aeolus is Hellen's son; Aetolus is Endymion's son, four generations later. Confirmed genuinely distinct."
+    },
+    {
+      "name_a": "Aepytus",
+      "name_b": "Epytus",
+      "reason": "Aepytus is a Messenian king (Cresphontes's son, killed Polyphontes); Epytus is an Alban king in Ovid's Roman-founding king-list. Different narrative traditions."
+    },
+    {
+      "name_a": "Amulius",
+      "name_b": "Mulius",
+      "reason": "Amulius has zero extracted relationships (likely the Roman legendary usurper-king, uncle of Romulus/Remus, mentioned only in passing); Mulius is a Trojan-war casualty in the Iliad. No overlap."
+    },
+    {
+      "name_a": "Atreus",
+      "name_b": "Catreus",
+      "reason": "Atreus (Pelops's son, king of Mycenae, father of Agamemnon/Menelaus) and Catreus (Minos's son, king of Crete) are well-established distinct figures despite similar spelling -- the exact ambiguous case DEV-044 flagged, now resolved as distinct on priors (no evidence of conflation in the extracted data)."
+    },
+    {
+      "name_a": "Hyleus",
+      "name_b": "Phyleus",
+      "reason": "Hyleus is a Calydonian-boar-hunt casualty; Phyleus is Augeas's son, associated with Heracles's labors and later Iliad references. Different figures."
+    },
+    {
+      "name_a": "Pereus",
+      "name_b": "Perseus",
+      "reason": "Pereus is a minor genealogical figure (Neaera's husband, Cepheus's father per the Agenor/Porthaon line); Perseus is the hero. Different contexts, no overlap."
+    },
+    {
+      "name_a": "Perses",
+      "name_b": "Perseus",
+      "reason": "Perses is a Titan (Crius's son, 78 relationships/48 claims -- a major distinct figure); Perseus is the hero. Type mismatch, clearly different."
+    },
+    {
+      "name_a": "Pteleon",
+      "name_b": "Teleon",
+      "reason": "Pteleon has zero extracted relationships (likely a place-name stub -- there is a real town Pteleon in Thessaly per the Iliad Catalogue of Ships); Teleon is Butes's father. Insufficient evidence to merge."
+    },
+    {
+      "name_a": "Ammon",
+      "name_b": "Pammon",
+      "reason": "Ammon is a minor casualty in Ovid's Perseus/Phineus wedding-battle scene; Pammon is one of Priam's sons (Iliad/Apollodorus). Different contexts."
+    },
+    {
+      "name_a": "Enops",
+      "name_b": "Oenops",
+      "reason": "Both names attach to multiple different minor Iliad/Odyssey casualties across different passages (a common Homeric pattern of reusing minor names) -- no specific evidence links Enops and Oenops as the same individual."
+    },
+    {
+      "name_a": "Helen",
+      "name_b": "Hellen",
+      "reason": "Already source-verified and split in DEV-082 (Track J3f): Helen of Troy vs Hellen, Deucalion's son (eponym of the Greeks). Confirmed genuinely distinct."
+    },
+    {
+      "name_a": "Helle",
+      "name_b": "Hellen",
+      "reason": "Already source-verified and split in DEV-082 (Track J3f): Helle, Athamas's daughter, vs Hellen, Deucalion's son. Confirmed genuinely distinct."
+    },
+    {
+      "name_a": "Hyale",
+      "name_b": "Phyale",
+      "reason": "Both are zero-data stub entities (nymph type, no extracted relationships or claims) -- insufficient evidence either to confirm or refute identity; default to distinct per this project's standing caution against merging without positive evidence."
+    },
+    {
+      "name_a": "Hylas",
+      "name_b": "Phylas",
+      "reason": "Hylas is Heracles's companion/beloved (Argonaut myth); Phylas is a king, Astyoche's father (already handled in DEV-081's Menoeceus investigation). Well-known distinct figures."
+    },
+    {
+      "name_a": "Medus",
+      "name_b": "Medusa",
+      "reason": "Medus is Medea's son; Medusa is the Gorgon. Type mismatch (mortal vs monster), unrelated figures."
+    },
+    {
+      "name_a": "Molus",
+      "name_b": "Tmolus",
+      "reason": "Molus is a son of Arges/Demonice or Deucalion (genealogical figure); Tmolus is a mountain-god, Omphale's husband. Different contexts, no overlap."
+    },
+    {
+      "name_a": "Antiope (daughter of Thespius)",
+      "name_b": "Erato (daughter of Thespius)",
+      "reason": "False positive from the shared '(daughter of Thespius)' descriptor suffix -- both names are already correctly disambiguated as distinct daughters of Thespius, each mothering a different son by Heracles."
+    },
+    {
+      "name_a": "Ares",
+      "name_b": "Dares",
+      "reason": "Ares is the Olympian war god; Dares is a Trojan priest of Hephaestus (Iliad). Type mismatch, unrelated figures."
+    },
+    {
+      "name_a": "Azeus",
+      "name_b": "Zeus",
+      "reason": "Azeus has zero extracted relationships; Zeus is the central Olympian figure (456 relationships). No plausible connection -- likely a coincidental fuzzy match on an unrelated minor/stub name."
+    },
+    {
+      "name_a": "Borus",
+      "name_b": "Orus",
+      "reason": "Borus is Polydora's husband, Menesthius's father (Iliad); Orus attaches to minor, likely-multiple casualty figures across Iliad/Ovid. Different figures."
+    },
+    {
+      "name_a": "Dione",
+      "name_b": "Ione",
+      "reason": "Dione is a Titan (Aphrodite's mother in some traditions); Ione is a Nereid from Hesiod's catalogue. Type mismatch, different generation and role."
+    },
+    {
+      "name_a": "Dius",
+      "name_b": "Odius",
+      "reason": "Dius is one of Priam's sons; Odius is a Halizonian leader killed by Agamemnon (Iliad). Different figures."
+    },
+    {
+      "name_a": "Dorus",
+      "name_b": "Orus",
+      "reason": "Dorus is Hellen's son, eponym of the Dorians (well-established); Orus attaches to minor casualty figures. Clearly distinct."
+    },
+    {
+      "name_a": "Eione",
+      "name_b": "Ione",
+      "reason": "Both are Nereids (daughters of Nereus/Doris) from the same enumeration passages (Apollodorus 1.2.1-1.2.7, Hesiod Theogony 233-269) -- adjacent, similarly-sounding names in an intentional catalogue of ~50 distinctly-named sisters, not a duplication bug."
+    },
+    {
+      "name_a": "Hephaestus",
+      "name_b": "Phaestus",
+      "reason": "Hephaestus is the Olympian smith-god; Phaestus is a hero/place-name figure, Borus's father (Iliad). Type mismatch, unrelated."
+    },
+    {
+      "name_a": "Horus",
+      "name_b": "Orus",
+      "reason": "Horus is Lycaon's son (turned-to-wolf myth, Apollodorus); Orus attaches to minor casualty figures. Different contexts -- the name coincidentally matches the Egyptian god Horus but is unrelated to it in this corpus."
+    },
+    {
+      "name_a": "Idas",
+      "name_b": "Midas",
+      "reason": "Idas is an Argonaut hero, Marpessa's husband; Midas is the golden-touch king. Well-known distinct figures."
+    },
+    {
+      "name_a": "Ilus",
+      "name_b": "Nilus",
+      "reason": "Ilus is the Trojan figure already extensively disambiguated in DEV-080 (Track J3c); Nilus is a river-god personification of the Nile. Type mismatch, unrelated."
+    },
+    {
+      "name_a": "Notus",
+      "name_b": "Otus",
+      "reason": "Notus is the South Wind god; Otus is one of the Aloadae giants. Type mismatch, unrelated figures."
+    },
+    {
+      "name_a": "Laomedon (son of Hercules)",
+      "name_b": "Palaemon (son of Hercules)",
+      "reason": "False positive from the shared '(son of Hercules)' descriptor suffix -- both are named, distinct sons of Hercules by different Thespian daughters per the source list ('by Meline he had Laomedon'; 'by Autonoe, daughter of Pireus, he had Palaemon')."
+    },
+    {
+      "name_a": "Coeranos",
+      "name_b": "Coeranus",
+      "reason": "Both plausibly attach to Iliad/Ovid minor-casualty figures (both 'killed_by' claims), but 'Coeranus' itself shows internal signs of covering more than one Iliad casualty (killed by both Odysseus [5.655] and Hector [17.582] in different passages) -- insufficient confidence to merge without first untangling that internal ambiguity. Flagged as a new, deeper lead, not fixed here."
+    },
+    {
+      "name_a": "Plexaura",
+      "name_b": "Plexaure",
+      "reason": "From different catalogues: Plexaura is an Oceanid (Hesiod Theogony 346-403, daughter of Oceanus/Tethys); Plexaure is a Nereid (Apollodorus 1.2.1-1.2.7, daughter of Nereus/Doris). Different categories of sea-nymph, each independently attested by name in their own enumeration."
+    },
+    {
+      "name_a": "Epytos",
+      "name_b": "Epytus",
+      "reason": "Epytos is a minor Iliad figure (Periphas's father); Epytus is Ovid's Alban king. Distinct from each other and from Aepytus (the Messenian king) -- three separate 'Ep(y)t(o/u)s'-pattern figures across three different traditions."
+    },
+    {
+      "name_a": "Europa",
+      "name_b": "Europe",
+      "reason": "Europa (Agenor's daughter, Zeus's abduction victim, Minos's mother) is the famous figure; Europe is one of Danaus's wives, mother of several of his daughters, per the unrelated Danaid myth (Apollodorus 2.1.5). Different women despite near-identical spelling, confirmed via distinct passage context."
+    },
+    {
+      "name_a": "Nice",
+      "name_b": "Nike",
+      "reason": "Nice is a mortal Thespius daughter (mother of Nicodromus by Heracles); Nike is the primordial goddess of Victory, Styx's daughter (Hesiod Theogony). Type mismatch confirms genuinely distinct figures."
+    }
+  ]
+}
