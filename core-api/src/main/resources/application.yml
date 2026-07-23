@@ -14,6 +14,14 @@ spring:
     hibernate:
       ddl-auto: validate
 
+# Stage P2 Track E1: surfaces the DEBUG lines already present in SqlQueryHandler,
+# QueryService.fetchClaims, and NarrativeChunkContentRetriever (generated SQL, probe/lookup,
+# retrieval). No separate `debug` Spring profile — this is a single-deployment PoC (no prod/dev
+# split yet), so a flat always-on level is simpler than a profile no one would remember to enable.
+logging:
+  level:
+    com.blamezeus.coreapi: DEBUG
+
 app:
   llm:
     chat-api-key: ${LLM_API_KEY}                # Anthropic key since ADR-008 (chat = Claude Haiku 4.5)

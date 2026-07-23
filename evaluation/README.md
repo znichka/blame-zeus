@@ -39,7 +39,11 @@ cd evaluation
 - `--runs N` runs the whole set N times; each question is classified **stable-pass** /
   **flaky** / **stable-fail**, and the reported aggregate is the **worst run** (pessimistic).
 - `--label` names the results dir. Other flags: `--ids 9,10,14` (subset), `--base-url`,
-  `--questions`, `--config`, `--debug` (no-op until P2).
+  `--questions`, `--config`, `--debug` (sets `debug:true` on every request; the server's
+  `DebugInfo` — probe subject/claimType, first-attempt SQL, retrieved chunk refs, fallback/composer
+  flags — lands in `raw_responses.json`, Stage P2 Track A-D). The server itself always logs at
+  `DEBUG` for `com.blamezeus.coreapi` (`application.yml`, Track E1) regardless of this flag — check
+  `core-api`'s own console/log output for generated SQL, probe/lookup, and retrieval lines.
 
 The runner **preflights** `GET /api/v1/sources` and aborts (exit 2) if the server is down or
 unseeded — it never scores against a dead server.

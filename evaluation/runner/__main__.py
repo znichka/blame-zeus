@@ -181,7 +181,10 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--questions", default=str(DEFAULT_GOLD_PATH), help="path to gold-questions.json")
     p.add_argument("--config", default=str(DEFAULT_CONFIG_PATH), help="path to eval-config.json")
     p.add_argument("--ids", default=None, help="comma-separated question ids to run a subset (e.g. 9,10,14)")
-    p.add_argument("--debug", action="store_true", help="set debug:true in the request body (no-op until P2)")
+    p.add_argument(
+        "--debug", action="store_true",
+        help="set debug:true in the request body -- server populates DebugInfo in raw_responses.json (Stage P2 Track A-D)",
+    )
     return p
 
 

@@ -254,10 +254,10 @@ correctness-critical wiring** — a leaked ThreadLocal across pooled request thr
 
 ## Track E — DEBUG logging (§3.1; no code — do anytime)
 
-- [ ] **E1** — `application.yml`: add `logging.level.com.blamezeus.coreapi: DEBUG` (or a `debug`
+- [x] **E1** — `application.yml`: add `logging.level.com.blamezeus.coreapi: DEBUG` (or a `debug`
       Spring profile carrying it, if you want production quiet by default — pick one; the DEBUG lines
       already exist in `SqlQueryHandler`, `QueryService.fetchClaims`, the retriever). Zero code change.
-- [ ] **E2** — sanity: start the stack, fire one SQL and one RAG question, confirm generated-SQL,
+- [x] **E2** — sanity: start the stack, fire one SQL and one RAG question, confirm generated-SQL,
       probe/lookup, and retrieval DEBUG lines appear. Note the profile/flag in `evaluation/README.md`
       or a one-liner so operators know how to turn it on for a `--debug` eval run.
 
