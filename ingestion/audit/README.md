@@ -12,9 +12,9 @@ Every check in this package **reports only** — none of them mutate any file or
 `__main__.py` walks the package for any sibling module exposing the contract in `contract.py`
 (module-level `NAME: str` + `run(candidates_dir, db_conn) -> CheckResult`) — a module needs no
 separate registration call, just those two names, to be picked up. Today that's
-**`cycle_check.py` (check `A3`)** and **`relation_taxonomy.py` (check `A4`)**; **A1/A2/A5**
-(duplicate-entity detection, candidate-drop accounting, alias/participant integrity) are Phase 3
-Tracks B/C/E, not yet built.
+**`duplicate_entities.py` (check `A1`)**, **`cycle_check.py` (check `A3`)**, and
+**`relation_taxonomy.py` (check `A4`)**; **A2/A5** (candidate-drop accounting, alias/participant
+integrity) are Phase 3 Tracks C/E, not yet built.
 
 ```
 python -m audit                    # both sources (default): candidate JSON + a live DB connection
@@ -45,6 +45,39 @@ raises if one is missing. A waived finding still appears in the report/findings 
 `waived: true` with its reason) but does not fail the run's exit code — this is exactly the "clean
 or waived with a note" mechanism the P3 exit criteria call for (e.g. DEV-069's Q9 Chaos/Ouranos gap,
 if deferred to P5b, gets a waiver entry here rather than a silently-ignored finding).
+
+## `duplicate_entities.py` — the A1 fuzzy-duplicate scan
+
+Formalizes DEV-044's one-off `rapidfuzz` triage scan (same threshold, 88, on lowercased names —
+matching `extraction/entity_resolver.py`'s extraction-time dedup) into a reusable, tested,
+runner-registered check over the confirmed ~2,000-entity set, plus a transliteration-normalized
+second pass for DEV-043's spelling-variant bug class (`Cronos`/`Cronus`, `Athene`/`Athena`,
+`Ocean`/`Oceanus`).
+
+**A note on the transliteration heuristic's shape**, since a naive reading of "normalize K↔C,
+`-os`↔`-us`, `-e`↔`-a`, `Ou`↔`U`" is a trap: collapsing masculine (`-os`/`-us`) and feminine
+(`-e`/`-a`) endings into one shared bucket looks right for the three real DEV-043 pairs, but Greek
+mythology routinely reuses a stem across a masculine/feminine pair that are genuinely **different
+people** (e.g. a mother and son sharing a name root) — a first pass that merged the two buckets
+flagged 150 mostly-false extra pairs on the live data. The buckets stay disjoint (feminine keys
+carry an `@f` marker) and a hit requires the normalized keys to be **exactly** equal, not merely
+fuzzy-similar — both changes were needed, verified by rerunning the scan against the real
+1,969-entity set after each iteration, not just synthetic test fixtures.
+
+A pair is suppressed (never a finding) when it's already documented as one entity under two
+names — `known_aliases.json` (always) and, when a DB connection is available, the live
+`entity_aliases` table too (both layers only exclude a pair when **both** names are actually
+present as entities — e.g. `Jupiter`→`Zeus` never suppresses anything, since `Jupiter` itself was
+never extracted as an entity).
+
+```
+python -m audit.duplicate_entities --candidates   # full pair list + fuzzy_score + matched_by
+python -m audit.duplicate_entities --db           # same, over the live seeded entities table
+```
+
+Findings are triage leads for **Track J1** (the 29+ pair backlog in
+`entities_fuzzy_duplicates_flagged_for_review.json`) — merge-and-alias or reject-with-a-note, same
+as DEV-043's precedent, never decided automatically here.
 
 ## `cycle_check.py` — the DAG invariant
 

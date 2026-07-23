@@ -189,18 +189,21 @@ candidate JSON + live DB; **no check mutates any file or table** (the README inv
 
 ## Track B — A1 duplicate-entity check (needs A; `rapidfuzz` + transliteration)
 
-- [ ] **B1** — `ingestion/audit/duplicate_entities.py`: pure core `find_duplicate_pairs(names,
+> ⚠️ [DEVIATED - see DEVIATIONS.md #DEV-073] — implemented; details below. Reproduces **45** pairs
+> over the live candidate set (not exactly ~29 — expected per B5's own note; see the entry for why).
+
+- [x] **B1** [DEVIATED - see DEVIATIONS.md #DEV-073] — `ingestion/audit/duplicate_entities.py`: pure core `find_duplicate_pairs(names,
       known_aliases) -> list[Pair]`. `rapidfuzz` full-pairs over the V10 entity names (from
       `entities_candidates_confirmed_v1.json`), scored above a threshold. No I/O in the core.
-- [ ] **B2** — **transliteration heuristics** for the known bug class (DEV-043): normalize K↔C,
+- [x] **B2** [DEVIATED - see DEVIATIONS.md #DEV-073] — **transliteration heuristics** for the known bug class (DEV-043): normalize K↔C,
       `-os`↔`-us`, `-e`↔`-a`, `Ou`↔`U` before/alongside fuzzy scoring (the Cronos/Cronus,
       Athene/Athena, Ocean/Oceanus pattern) so those pairs surface even when raw edit-distance is high.
-- [ ] **B3** — **cross-check against known aliases**: subtract pairs already covered by
+- [x] **B3** [DEVIATED - see DEVIATIONS.md #DEV-073] — **cross-check against known aliases**: subtract pairs already covered by
       `entity_aliases` (V14, read from live DB) **and** `ingestion/extraction/known_aliases.json`.
       Only **unaliased** candidate pairs become findings → triage (Track J1).
-- [ ] **B4** — register into the runner (Track A2r contract); each finding's `suggested_fix` names the
+- [x] **B4** [DEVIATED - see DEVIATIONS.md #DEV-073] — register into the runner (Track A2r contract); each finding's `suggested_fix` names the
       merge-target + the `entity_aliases` row to add (DEV-043 pattern).
-- [ ] **B5** — **TDD**: `tests/test_duplicate_entities.py` — a fixture name list containing a
+- [x] **B5** [DEVIATED - see DEVIATIONS.md #DEV-073] — **TDD**: `tests/test_duplicate_entities.py` — a fixture name list containing a
       Cronos/Cronus-style pair and an already-aliased pair → the former is a finding, the latter is
       suppressed; a genuinely distinct pair is not flagged. Assert the ~29-pair count is reproduced
       when run over the real fixture (sanity, not exact if the heuristic legitimately finds more/fewer —
