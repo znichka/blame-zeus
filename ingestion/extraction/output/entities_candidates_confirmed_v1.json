@@ -13781,5 +13781,19 @@
     "generation": null,
     "domain": "strife/discord",
     "subtype": null
+  },
+  {
+    "name": "Aetolus",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Protogenia (daughter of Calydon)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
   }
 ]

@@ -449,10 +449,16 @@ that can land anytime.
       unknown-name/collapse drops.
 
 ### J3 — DEV-068: 3 entity-conflation `parent_of` cycles (entity SPLIT, not merge)
-- [ ] **J3a** — `Aeolus ⇄ … ⇄ Endymion` (source-verified): **split** Aeolus from descendant Aetolus
+- [x] **J3a** [DEVIATED - see DEVIATIONS.md #DEV-078] — `Aeolus ⇄ … ⇄ Endymion` (source-verified): **split** Aeolus from descendant Aetolus
       and Calydon from Calyce in `entities_candidates_confirmed_v1.json`; repoint the offending
       `parent_of` edges to the correct split entity in `relationships_candidates_cleaned.json`. Cite
-      `apollodorus_bibliotheca_frazer1921.txt [1.7.1]–[1.8.1]`.
+      `apollodorus_bibliotheca_frazer1921.txt [1.7.1]–[1.8.1]`. **Correction on re-verification**:
+      `Calydon`/`Calyce` were already two separate entities (no split needed there); the real gap was
+      `Aetolus` (missing entirely) and a **second, previously-unflagged conflation** — `Protogenia`
+      also refers to two different people (Deucalion's daughter vs. Calydon's daughter) — both now
+      split. Cycle confirmed gone via `cycle_check` (candidates mode). **Batched, not yet reseeded**:
+      sits alongside DEV-077's `Agastrophus` fix for one future Track I pass (user's explicit
+      cost-minimization call — Track I runs once per batch, not once per edit).
 - [ ] **J3b** — `Cecrops ⇄ Pandion ⇄ Erechtheus`: **source-verify first** (two Cecrops / two Pandions
       hypothesis) against the corpus; if confirmed, split analogously; if not, defer with a note.
 - [ ] **J3c** — `Astyoche ⇄ Tros ⇄ Ilus ⇄ Laomedon`: **trace it** (not yet traced) — identify whether

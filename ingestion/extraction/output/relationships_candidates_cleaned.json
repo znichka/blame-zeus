@@ -3122,7 +3122,7 @@
   {
     "from_name": "Endymion",
     "relation": "parent_of",
-    "to_name": "Aeolus",
+    "to_name": "Aetolus",
     "is_contested": false,
     "passage_ref": "1.7.4-1.7.8",
     "source_id": "apollodorus-bibliotheca"
@@ -3130,13 +3130,13 @@
   {
     "from_name": "Iphianassa",
     "relation": "parent_of",
-    "to_name": "Aeolus",
+    "to_name": "Aetolus",
     "is_contested": true,
     "passage_ref": "1.7.4-1.7.8",
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Aeolus",
+    "from_name": "Aetolus",
     "relation": "parent_of",
     "to_name": "Pleuron",
     "is_contested": false,
@@ -3144,7 +3144,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Aeolus",
+    "from_name": "Aetolus",
     "relation": "parent_of",
     "to_name": "Calydon",
     "is_contested": false,
@@ -3258,7 +3258,7 @@
   {
     "from_name": "Calydon",
     "relation": "parent_of",
-    "to_name": "Protogenia",
+    "to_name": "Protogenia (daughter of Calydon)",
     "is_contested": false,
     "passage_ref": "1.7.4-1.7.8",
     "source_id": "apollodorus-bibliotheca"
@@ -3274,7 +3274,7 @@
   {
     "from_name": "Aetolia",
     "relation": "parent_of",
-    "to_name": "Protogenia",
+    "to_name": "Protogenia (daughter of Calydon)",
     "is_contested": false,
     "passage_ref": "1.7.4-1.7.8",
     "source_id": "apollodorus-bibliotheca"
@@ -3288,7 +3288,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Protogenia",
+    "from_name": "Protogenia (daughter of Calydon)",
     "relation": "parent_of",
     "to_name": "Oxylus",
     "is_contested": false,
