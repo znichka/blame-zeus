@@ -11,10 +11,10 @@ Every check in this package **reports only** — none of them mutate any file or
 
 `__main__.py` walks the package for any sibling module exposing the contract in `contract.py`
 (module-level `NAME: str` + `run(candidates_dir, db_conn) -> CheckResult`) — a module needs no
-separate registration call, just those two names, to be picked up. Today that's just
-**`cycle_check.py` (check `A3`)**, via the thin `NAME`/`run` adapter added around its unedited
-`find_cycles` core; **A1/A2/A4/A5** (duplicate-entity detection, candidate-drop accounting,
-relation-label taxonomy, alias/participant integrity) are Phase 3 Tracks B–E, not yet built.
+separate registration call, just those two names, to be picked up. Today that's
+**`cycle_check.py` (check `A3`)** and **`relation_taxonomy.py` (check `A4`)**; **A1/A2/A5**
+(duplicate-entity detection, candidate-drop accounting, alias/participant integrity) are Phase 3
+Tracks B/C/E, not yet built.
 
 ```
 python -m audit                    # both sources (default): candidate JSON + a live DB connection
@@ -67,6 +67,32 @@ or the model declines to emit unbounded recursion.
 3. `python -m seedgen --strict` to regenerate `V11__seed_relationships.sql`.
 4. `scripts/reseed-local.sh --local-only` to re-apply it (see the checksum-trap note below).
 5. `python -m audit.cycle_check --db` again — repeat until clean.
+
+## `relation_taxonomy.py` — the A4 label-canonicalization proposal
+
+`relationships.relation` is 177 distinct free-text strings today: a steep head (`parent_of`,
+`killed_by`, `married_to`, `sibling_of`) plus a long tail mixing genuine synonyms/inverses of that
+head (`son_of`, `child_of`, `killed`, `father_of`, ...) with real, low-frequency mythological
+semantics (`gave_scepter_to`, `abductor_of`, `companion_of`). `classify_relations` buckets every
+observed label into **canonical** / **synonym** (same direction, different word) / **inverse**
+(same edge, `from`/`to` swapped) / **legit-long-tail** (left untouched, ADR-019 Decision 4).
+
+This is a **reporting** check, not a defect check (`docs/TODO-phase2-stage-p3.md` D4) — its
+findings are *proposed* `relation_aliases` rows awaiting human review and Track F's V17 promotion,
+not bugs. It deliberately does **not** guess at ambiguous cases: `SYNONYM_ALIASES` only covers
+ADR-019's own named examples plus gendered/same-direction variants actually observed in the data.
+Different-generation labels (`grandfather_of`, `descendant_of`, `ancestor_of`, ...) are **never**
+folded into `parent_of`/`sibling_of` — that would be the same entity-conflation mistake DEV-068
+logged, applied to relations instead of entities.
+
+```
+python -m audit.relation_taxonomy --candidates   # full per-label table + proposed seed-row SQL
+python -m audit.relation_taxonomy --db           # same, over the live seeded vocabulary
+```
+
+`to_seed_rows` / `format_seed_rows_sql` extract just the synonym/inverse-bucket labels as
+`(alias, canonical, inverse)` tuples, formatted as a pasteable `INSERT INTO relation_aliases ...`
+block — Track F's V17 migration ingests this output directly (D3).
 
 ## The Flyway checksum trap (shared with Track F)
 

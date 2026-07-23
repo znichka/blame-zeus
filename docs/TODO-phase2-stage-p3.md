@@ -231,20 +231,24 @@ candidate JSON + live DB; **no check mutates any file or table** (the README inv
 
 ## Track D — A4 relation-label taxonomy → initial `relation_aliases` map (needs A; **emits Track F's seed rows**)
 
-- [ ] **D1** — `ingestion/audit/relation_taxonomy.py`: frequency-classify **all 131 distinct
+> ⚠️ [DEVIATED - see DEVIATIONS.md #DEV-071] — implemented; details below. Live candidate-JSON count
+> is now **177** distinct labels (not the 131 this checklist was authored against — the corpus has
+> grown since); the mechanism and buckets are unaffected, only the raw count differs.
+
+- [x] **D1** [DEVIATED - see DEVIATIONS.md #DEV-071] — `ingestion/audit/relation_taxonomy.py`: frequency-classify **all 131 distinct
       `relation` strings** (from `relationships_candidates_cleaned.json` / live V11) into four buckets:
       **canonical** (`parent_of`, `killed_by`, `married_to`, `sibling_of`, …), **synonym** (`son_of` /
       `child_of` / `daughter_of` → `parent_of`; `wife_of` / `wedded` → `marriage`), **inverse** (same
       edge, from/to swapped — `killed` vs `killed_by`, `child_of` vs `parent_of`), **legit-long-tail**
       (`gave_scepter_to`, `abductor_of`, `companion_of` — preserved as-is, ADR-019 Decision 4).
-- [ ] **D2** — emit the classification as a **report table** (frequency + proposed bucket + proposed
+- [x] **D2** [DEVIATED - see DEVIATIONS.md #DEV-071] — emit the classification as a **report table** (frequency + proposed bucket + proposed
       canonical + `inverse` flag per label) for human review — the taxonomy is **review-gated**, a
       human confirms the synonym/inverse assignments before they become alias rows.
-- [ ] **D3** — emit the **initial `relation_aliases` seed rows** as data (`(alias, canonical, inverse)`
+- [x] **D3** [DEVIATED - see DEVIATIONS.md #DEV-071] — emit the **initial `relation_aliases` seed rows** as data (`(alias, canonical, inverse)`
       tuples) that Track F's V17 migration ingests. Format so F can paste/generate the INSERT directly.
       Legit-long-tail labels get **no row** (`normalize_relation` returns them unchanged — ADR-019
       Decision 4).
-- [ ] **D4** — register into the runner as a **reporting** check (it produces the map; it "passes"
+- [x] **D4** [DEVIATED - see DEVIATIONS.md #DEV-071] — register into the runner as a **reporting** check (it produces the map; it "passes"
       once a human has reviewed and the rows are promoted). **TDD** `tests/test_relation_taxonomy.py`:
       a fixture label set → `son_of`/`child_of` classified inverse-of-`parent_of`, `killed`
       inverse-of-`killed_by`, `gave_scepter_to` left as legit-long-tail (no alias row).
