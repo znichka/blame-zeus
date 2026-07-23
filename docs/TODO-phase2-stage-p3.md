@@ -270,14 +270,20 @@ candidate JSON + live DB; **no check mutates any file or table** (the README inv
 
 ## Track E — A5 alias/participant integrity (needs A)
 
-- [ ] **E1** — `ingestion/audit/integrity.py`: pure checks — **(a)** every `entity_aliases.alias`
+> ⚠️ [DEVIATED - see DEVIATIONS.md #DEV-075] — implemented; details below. "Subtype invariants"
+> (E2) was ambiguous in this checklist — no earlier DEV entry defines a concrete subtype-specific
+> rule beyond the `entities.type` CHECK enum, so E2 re-verifies that enum (defensively — it's
+> already DB-enforced) alongside DEV-040's three documented direction invariants. All checks PASS
+> clean against the live DB today (0 findings).
+
+- [x] **E1** [DEVIATED - see DEVIATIONS.md #DEV-075] — `ingestion/audit/integrity.py`: pure checks — **(a)** every `entity_aliases.alias`
       target `entity_id` exists in `entities`; **(b)** no alias string equals a canonical `entities.name`
       (a self-alias); **(c)** every `myth_participants` entity reference resolves to a real `entities`
       row. Read-only over the live DB.
-- [ ] **E2** — **re-run DEV-040's invariants** here as part of A5 (the plan folds "DEV-040's invariants
+- [x] **E2** [DEVIATED - see DEVIATIONS.md #DEV-075] — **re-run DEV-040's invariants** here as part of A5 (the plan folds "DEV-040's invariants
       re-run after every fix batch" into the integrity surface) — confirm the P2/DEV-040 direction and
       subtype invariants still hold post-fix.
-- [ ] **E3** — register into the runner; **TDD** `tests/test_integrity.py`: a dangling alias, a
+- [x] **E3** [DEVIATED - see DEVIATIONS.md #DEV-075] — register into the runner; **TDD** `tests/test_integrity.py`: a dangling alias, a
       self-alias, and an orphan participant each surface as a finding; a clean fixture passes.
 
 ---
@@ -437,9 +443,12 @@ that can land anytime.
 
 ## Definition-of-done checklist (mirror of TODO2.md Stage P3)
 
-- [ ] `python -m audit` runs end-to-end (A1–A5 registered, A3 = existing `cycle_check`), emits
-      `reports/<date>.md` + findings JSON, exits non-zero on un-waived findings.
-- [ ] All five checks **clean or explicitly waived with a written note**.
+- [x] `python -m audit` runs end-to-end (A1–A5 registered, A3 = existing `cycle_check`), emits
+      `reports/<date>.md` + findings JSON, exits non-zero on un-waived findings. [DEVIATED - see
+      DEVIATIONS.md #DEV-070, #DEV-071, #DEV-072, #DEV-073, #DEV-074, #DEV-075]
+- [ ] All five checks **clean or explicitly waived with a written note**. Currently: A5 clean; A1
+      (45 pairs), A2 (367 unknown names + others), A3 (3 live cycles), A4 (9 proposed aliases) all
+      have real, un-triaged findings — Track J's job, not yet started.
 - [ ] 29 fuzzy-dup pairs triaged (merge+alias or reject-with-note); 203 flagged relationships triaged
       (promote-with-fix or reject-recorded).
 - [ ] DEV-068's 3 conflation cycles resolved (entity split) or waived; **A3 `parent_of` graph clean**.

@@ -11,10 +11,9 @@ Every check in this package **reports only** — none of them mutate any file or
 
 `__main__.py` walks the package for any sibling module exposing the contract in `contract.py`
 (module-level `NAME: str` + `run(candidates_dir, db_conn) -> CheckResult`) — a module needs no
-separate registration call, just those two names, to be picked up. Today that's
-**`duplicate_entities.py` (check `A1`)**, **`drop_accounting.py` (check `A2`)**,
-**`cycle_check.py` (check `A3`)**, and **`relation_taxonomy.py` (check `A4`)**; **A5**
-(alias/participant integrity) is Phase 3 Track E, not yet built.
+separate registration call, just those two names, to be picked up. All **five** checks are live:
+**`duplicate_entities.py` (`A1`)**, **`drop_accounting.py` (`A2`)**, **`cycle_check.py` (`A3`)**,
+**`relation_taxonomy.py` (`A4`)**, **`integrity.py` (`A5`)**.
 
 ```
 python -m audit                    # both sources (default): candidate JSON + a live DB connection
@@ -158,6 +157,29 @@ python -m audit.relation_taxonomy --db           # same, over the live seeded vo
 `to_seed_rows` / `format_seed_rows_sql` extract just the synonym/inverse-bucket labels as
 `(alias, canonical, inverse)` tuples, formatted as a pasteable `INSERT INTO relation_aliases ...`
 block — Track F's V17 migration ingests this output directly (D3).
+
+## `integrity.py` — the A5 alias/participant/direction integrity gate
+
+**DB-only** — unlike A1/A3/A4, `entity_aliases`, `myth_participants`, and the direction invariants
+below have no candidate-JSON equivalent to check against, so a `--candidates`-only run reports a
+no-op ("no db connection given"), not a failure.
+
+Two groups of checks, both cheap to run on every batch:
+
+- **Referential integrity (E1)**: a dangling `entity_aliases.entity_id`, an alias string that
+  shadows an existing canonical `entities.name`, an orphan `myth_participants.entity_id`. All three
+  are already enforced by FK/schema constraints — implemented anyway as a defensive standing
+  safety net (a future schema change or a superuser bypass would otherwise go unnoticed), the same
+  posture A1/A3 already take elsewhere in this package.
+- **DEV-040's direction invariants, re-run (E2)**: zero children with >1 distinct `parent_of`
+  parent, zero spouses with >1 distinct `married_to` partner, zero victims with >1 distinct
+  `killed_by` killer (together: no `WITH RECURSIVE` branching risk — DEV-054's root cause class),
+  plus a defensive re-check that every `entities.type` is still one of the 8 `chk_entities_type`
+  values. Reuses `cycle_check`'s own `Edge`/`_query_edges` directly rather than re-querying the
+  relationships table a second way.
+
+Today: **clean** — 0 findings against the live DB (27 `entity_aliases`, 22 `myth_participants`,
+2,494 `relationships`, all passing every check).
 
 ## The Flyway checksum trap (shared with Track F)
 
