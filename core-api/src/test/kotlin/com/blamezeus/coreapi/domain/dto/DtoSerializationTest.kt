@@ -106,6 +106,45 @@ class DtoSerializationTest {
     fun `QueryRequest deserializes from a bare question field`() {
         val parsed: QueryRequest = mapper.readValue("""{"question": "Who is Zeus?"}""")
         assertThat(parsed.question).isEqualTo("Who is Zeus?")
+        assertThat(parsed.debug).isFalse()
+    }
+
+    @Test
+    fun `QueryRequest with debug true deserializes correctly`() {
+        val parsed: QueryRequest = mapper.readValue("""{"question": "Who is Zeus?", "debug": true}""")
+        assertThat(parsed.debug).isTrue()
+    }
+
+    @Test
+    fun `QueryResponse with debug null omits the debug key entirely (Stage P2 Track A3, DEV-064)`() {
+        val response = QueryResponse(
+            answer = "Zeus is king of the gods.",
+            routeDecision = RouteDecision.RAG,
+            citations = emptyList(),
+            conflicts = emptyList(),
+            sqlGenerated = null,
+        )
+
+        val json = mapper.readTree(mapper.writeValueAsString(response))
+
+        assertThat(json.has("debug")).isFalse()
+    }
+
+    @Test
+    fun `QueryResponse with a populated DebugInfo serializes the debug key`() {
+        val response = QueryResponse(
+            answer = "Zeus is king of the gods.",
+            routeDecision = RouteDecision.RAG,
+            citations = emptyList(),
+            conflicts = emptyList(),
+            sqlGenerated = null,
+            debug = DebugInfo(probeSubject = "Zeus", probeClaimType = "parentage", claimRowCount = 1),
+        )
+
+        val json = mapper.readTree(mapper.writeValueAsString(response))
+
+        assertThat(json["debug"]["probeSubject"].asText()).isEqualTo("Zeus")
+        assertThat(json["debug"]["claimRowCount"].asInt()).isEqualTo(1)
     }
 
     @Test

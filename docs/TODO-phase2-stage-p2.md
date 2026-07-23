@@ -142,7 +142,7 @@ its conditional rungs are the *only* place Q9/Q12 code may ship, and each is evi
 Pins the interfaces B/C/D code against. Small; merge before B–D start in earnest. **Ships behind a
 flag: zero behavior change when `debug=false`.**
 
-- [ ] **A1** — `domain/dto/DebugInfo.kt`: data class per §7 sketch —
+- [x] **A1** — `domain/dto/DebugInfo.kt`: data class per §7 sketch —
       `probeSubject: String?`, `probeClaimType: String?`, `claimRowCount: Int`,
       `firstAttemptSql: String?`, `sqlRows: List<Map<String, Any?>>`,
       `retrievedChunks: List<ChunkRef>`, `fallbackFromSqlToRag: Boolean`,
@@ -152,15 +152,15 @@ flag: zero behavior change when `debug=false`.**
       `Row` mapper) in Track B, or make `ChunkRef.id` nullable and leave it `null`; pick one and state
       it in both A1 and B3 identically.) All fields defaulted where sane
       so a partially-filled capture serializes cleanly.
-- [ ] **A2** — `QueryRequest.debug`: add `val debug: Boolean = false` (trailing). Confirm the
+- [x] **A2** — `QueryRequest.debug`: add `val debug: Boolean = false` (trailing). Confirm the
       `@RequestBody` still deserializes a body with **no** `debug` key to `false` (Jackson/Kotlin
       default — add a controller/DTO test asserting it).
-- [ ] **A3** — `QueryResponse.debug`: add `val debug: DebugInfo? = null` (trailing) with
+- [x] **A3** — `QueryResponse.debug`: add `val debug: DebugInfo? = null` (trailing) with
       `@field:JsonInclude(JsonInclude.Include.NON_NULL)`. **Contract-invariance test:** serialize a
       response with `debug = null` and assert the JSON has **no** `debug` key (byte-for-byte prior
       shape). Grep for any test asserting full-constructor equality / field count and update only if
       it exists.
-- [ ] **A4** — `service/DebugCapture.kt`: a **plain `@Component` bean** (constructor default
+- [x] **A4** — `service/DebugCapture.kt`: a **plain `@Component` bean** (constructor default
       `= DebugCapture()`, **NOT** `@Scope("request")`) wrapping a `ThreadLocal<MutableState>`. API:
       `reset()` (clear the thread-local at request entry), `snapshot(): DebugInfo` (build the DTO from
       accumulated state), and typed setters/appenders the producers call —
@@ -171,7 +171,7 @@ flag: zero behavior change when `debug=false`.**
       NPE (initialize the ThreadLocal via `withInitial`). Document that the pipeline is fully
       synchronous on the request thread, so a ThreadLocal is sufficient and keeps producer unit tests
       constructible without a web/proxy context.
-- [ ] **A5** — **TDD** `service/DebugCaptureTest.kt`: `reset()` then set each field → `snapshot()`
+- [x] **A5** — **TDD** `service/DebugCaptureTest.kt`: `reset()` then set each field → `snapshot()`
       returns them; a second `reset()` clears prior state (no bleed across simulated requests on the
       same thread); a `snapshot()` with nothing set returns an all-empty/defaults `DebugInfo` (never
       throws). Pure JVM, no Spring context, no DB.
