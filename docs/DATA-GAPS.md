@@ -10,25 +10,35 @@ gap deferred to Phase 5b.
 
 ## GAP-001 — Q9 "Trace Zeus's lineage back to Chaos" cannot reach `Ouranos`/`Chaos`
 
-**Status:** Open — decided but not landed. Nothing in this gap has shipped: root cause 1 is decided
-(ADR-020) with implementation pending, root cause 2 is undecided, root cause 3 is decided in part and
-unscoped in part. Q9 still fails on content today and is expected to keep failing after J4a lands
-(see *J4c*). Re-read the per-cause status below before quoting this entry as progress.
+**Status:** Root cause 1 landed 2026-07-26 (DEV-090); root cause 2 still undecided; root cause 3
+partly landed (the detection half, with J4a) and partly unscoped (the promotion half, still no
+owner). Q9 still fails on content — this landing was never expected to fix it (see *J4c*): both
+required keywords (`Ouranos`, `Chaos`) remain unreachable for reasons outside J4a's scope. Re-read
+the per-cause status below before quoting this entry as progress.
 - **Root cause 1 (J4a — joint parentage): DECIDED 2026-07-23, discriminator AMENDED 2026-07-26,
-  implementation pending — see ADR-020 (`docs/adr/adr-020-joint-parentage-multi-edge.md`) and
-  DEV-088.** Fix: a four-part discriminator in `resolve_canonical_edges()` — contested-aware,
-  winner-anchored, corroboration-ranked, deny-listed (see the decision block under Root cause 1).
-  The originally-decided bare co-mention count did not survive measurement. Not yet landed through
-  the Track I gate.
+  IMPLEMENTED AND LANDED 2026-07-26 — see ADR-020 (`docs/adr/adr-020-joint-parentage-multi-edge.md`),
+  DEV-088 (the amendment) and DEV-090 (the landing).** The four-part discriminator in
+  `resolve_canonical_edges()` — contested-aware, winner-anchored, corroboration-ranked, deny-listed
+  — is live in the seeded DB. Re-measured against the real code, every headline simulated figure
+  matched exactly: **472 children** regain a co-parent, max 2 parents per child (no exceptions),
+  **612** distinct rival parents remain dropped. Landed through one Track I pass with **zero stable
+  eval regressions** and A3 clean-or-waived (the predicted new cycle was found and fixed as an entity
+  split — `Deimachus` conflated two different people — before it ever reached the live DB). A
+  same-day regression (an LLM per-request token-limit failure on a real gold question, caused by
+  legitimate branching finally exposing a pre-existing uncapped-row gap in two handlers) was found
+  and fixed in the same pass — see DEV-090 for the full account. **Not yet committed to git.**
 - **Root cause 2 (J4b — Chaos cosmogony): still Open — needs a decision** (Stage P3 Track J4,
   DEV-069). Not a P3 hard-gate (DEV-069's own note flags it as possibly exceeding P3's
   relational-fix scope); permitted to ship P3 with an explicit waiver.
-- **Root cause 3 (dropped rival parents are recorded nowhere): Open, discovered 2026-07-26.**
-  Broader than Q9 — it is the second half of the same data loss. **Only partly folded into J4a:** the
-  dropped-parent record and the same-source detector condition land with J4a and reach **145** of the
-  **612** surviving rivals; the other **467** are already-detected candidates blocked at ADR-004
-  review, and that promotion half (option a′) has **no owner and no scope** — it will outlive the J4a
-  landing.
+- **Root cause 3 (dropped rival parents are recorded nowhere): detection half landed with J4a
+  (DEV-090); promotion half still open.** Broader than Q9 — it is the second half of the same data
+  loss. The per-row dropped-parent record (new audit check **A6**, `ingestion/audit/dropped_parents.py`)
+  and the same-source detector condition (`conflict_detector.detect_conflicts`, scoped to
+  `parentage`) are both live and reach **145** of the **612** surviving rivals; the other **467** are
+  already-detected candidates blocked at ADR-004 review, and that promotion half (option a′) still
+  has **no owner and no scope** — it outlives the J4a landing exactly as predicted. A6's live count on
+  the real, post-split candidate data: **697** dropped rows (**612** distinct child+parent pairs),
+  **694** with no existing promoted `variant_claims` coverage.
 - **Standing blocker, independent of all three:** `Sky`, `Heaven` and `Uranus` exist as three
   separate confirmed entities (`Heaven` even carries `Earth` as its own parent). Even a fully-fixed
   J4a attaches Cronus's restored co-parent to `Sky`, so Q9's literal `Ouranos` keyword still cannot
@@ -308,33 +318,40 @@ reads the same resolver pass); the promotion half is **not** code work and is sc
 
 ### J4c — contingent follow-up
 
-If J4a and/or J4b get a real fix: run through Track I (reseed + 3-run eval) and record Q9's live
-output. **Q9 will still fail on content after J4a alone** — `Ouranos` needs the `Sky`/`Heaven`/
-`Uranus` merge (J1-shaped) and `Chaos` needs J4b, which is deferred. Both keywords are *correct*; the
-data is missing. So the DEV-048/DEV-050 "logged eval-bug fix" precedent does **not** apply here —
-it licenses editing a keyword that is wrong, not one the corpus cannot yet satisfy. Record the
-remainder in the run notes and leave `gold-questions.json` alone; revisit only if the merge and J4b
-both land and a keyword is then still unreachable. If deferred instead: log the waiver in the
-relevant `results/` run notes and keep this entry current (update **Status** above) — this file *is*
-that waiver record for P5.
+**J4a landed 2026-07-26 (DEV-090); Q9's live output confirms the predicted outcome exactly.** Route
+✓, author ✓, content ✗ (`evaluation/results/2026-07-26T15-03-32Z__b26e69b__p3-j4a-joint-parentage-fixed/`,
+2/3 stable-fail). The traversal now reaches `Cronus` and `Earth` (the winning half of the restored
+Sky/Earth couple) and the composed answer even narrates on to `Chaos` via RAG's conflict-aware
+backstop — but the required `Ouranos` keyword never appears, exactly as predicted: `Sky`, `Heaven`
+and `Uranus` are still three separate entities, and the literal string "Ouranos" isn't attached to
+any of them. **`Ouranos` needs the `Sky`/`Heaven`/`Uranus` merge (J1-shaped, tracked as Track J5 in
+`docs/TODO-phase2-stage-p3.md`)** — not yet done. `Chaos` needs J4b, still deferred/undecided. Both
+keywords are *correct*; the data is missing. So the DEV-048/DEV-050 "logged eval-bug fix" precedent
+does **not** apply here — it licenses editing a keyword that is wrong, not one the corpus cannot yet
+satisfy. `gold-questions.json` was left alone, as instructed. Revisit only if J5 and J4b both land
+and a keyword is then still unreachable.
 
 ### Recommendation
 
-- **J4a + Root cause 3: fix in P3 proper** (decided 2026-07-23, amended 2026-07-26). Both are genuine,
-  recurring data-loss bugs, not one-offs, and both are offline seedgen/extraction work: bounded, no
-  DDL, no runtime code — but **not "resolver-only"**, as an earlier draft said. The landing touches
+- **J4a + Root cause 3's detection half: LANDED 2026-07-26 (DEV-090).** Both were genuine, recurring
+  data-loss bugs, not one-offs, and both were offline seedgen/extraction work: bounded, no DDL, no
+  runtime-code *design* change — though landing surfaced one real runtime-code fix on evidence (a
+  token-budget regression in `MixedQueryHandler`/`SqlQueryHandler`, unrelated to the discriminator
+  design itself, see DEV-090). Confirmed **not** "resolver-only": the landing touched
   `canonical_edge.py` (the four-part rule), `relationships_gen.py` (pre-dedup pair plumbing),
-  `conflict_detector.py` (same-source parentage condition) and `drop_accounting.py`/A2r (the dropped-
-  parent record). They land together through one Track I gate.
-- **Root cause 3's promotion half (a′): unscoped.** The detector change reaches 145 of 612 rivals; the
-  other 467 are already-emitted candidates waiting on human review. J4a landing clean does **not**
-  make parentage conflicts visible to users, and the run notes must say so.
+  `conflict_detector.py` (same-source parentage condition) and the new `dropped_parents.py`/A6 check.
+  Landed through one Track I gate with zero stable eval regressions and A3 clean-or-waived.
+- **Root cause 3's promotion half (a′): still unscoped — unchanged by the landing.** The detector
+  change reaches 145 of 612 rivals; the other 467 are already-emitted candidates waiting on human
+  review. **J4a's landing does not make parentage conflicts visible to users** — this was the
+  predicted outcome, not a surprise, and it holds exactly as GAP-001 said it would.
 - **J4b: defer to P5b.** Correctly modeling cosmogony-vs-genealogy semantics is a bigger design
   question than this stage's scope, and Q9 can likely be answered adequately via RAG/narrative
   coverage even without a `parent_of`-shaped edge to `Chaos`.
-- **`Sky`/`Heaven`/`Uranus` merge: J1-shaped entity work**, not part of J4a. Q9's `Ouranos` keyword
-  stays failing until it lands — record that as the known remainder in the landing run notes rather
-  than editing the keyword list.
+- **`Sky`/`Heaven`/`Uranus` merge: J1-shaped entity work (tracked as Track J5)**, not part of J4a and
+  still not done. Q9's `Ouranos` keyword confirmed still failing post-landing — recorded in the
+  landing run notes (`evaluation/results/2026-07-26T15-03-32Z__b26e69b__p3-j4a-joint-parentage-fixed/`)
+  rather than editing the keyword list.
 
 **References:** `ingestion/seedgen/canonical_edge.py` (`resolve_canonical_edges`, `SPINE_PRIORITY`,
 `_pick_winner`); `ingestion/seedgen/relationships_gen.py` (`_filter_and_dedup`, the pre-dedup

@@ -4123,13 +4123,6 @@
     "subtype": null
   },
   {
-    "name": "Deimachus",
-    "type": "mortal",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
     "name": "Deion",
     "type": "mortal",
     "generation": null,
@@ -13868,6 +13861,20 @@
   },
   {
     "name": "Megara",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Deimachus (father of Enarete)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Deimachus (son of Neleus)",
     "type": "mortal",
     "generation": null,
     "domain": null,

@@ -94,6 +94,23 @@ class SqlQueryHandlerTest {
     }
 
     @Test
+    fun `caps the row set fed into formatAnswer at SQL_ROWS_CAP -- DEV-090, ADR-020's branching lineage regression`() {
+        // Mirrors MixedQueryHandler's identical fix: formatAnswer's output becomes AnswerComposer's
+        // `material` (an LLM prompt), so an uncapped row set risks the same token-budget blowup
+        // ADR-020's now-legitimately-branching WITH RECURSIVE queries can trigger.
+        val manyRows = (1..(DebugCapture.SQL_ROWS_CAP + 10)).map { mapOf("name" to "Entity$it") }
+        every { schemaIntrospector.get() } returns "schema"
+        every { textToSqlAgent.generateSql(any(), any()) } returns "SELECT name FROM entities"
+        every { validator.validate(any()) } returns Unit
+        every { jdbcTemplate.queryForList("SELECT name FROM entities") } returns manyRows
+
+        val response = handler.handle("question")
+
+        assertThat(response.answer.split("; ")).hasSize(DebugCapture.SQL_ROWS_CAP)
+        assertThat(debugCapture.snapshot().sqlRows).hasSize(DebugCapture.SQL_ROWS_CAP)
+    }
+
+    @Test
     fun `formatAnswer emits column-named pairs, not a bare value join (ADR-015 Track C)`() {
         every { schemaIntrospector.get() } returns "schema"
         every { textToSqlAgent.generateSql(any(), any()) } returns "SELECT name, type, generation FROM entities"

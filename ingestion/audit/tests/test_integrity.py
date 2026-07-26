@@ -41,12 +41,23 @@ def test_clean_fixture_produces_no_findings():
     assert find_orphan_participants([(1, 10)], entity_ids={10}) == []
 
 
-def test_multi_parent_violation_is_flagged():
-    edges = [_edge("Cronus", "Zeus"), _edge("Rhea", "Zeus"), _edge("Cronus", "Hera")]
+def test_more_than_two_parents_is_flagged():
+    # ADR-020 (DEV-088/DEV-090): the threshold is >2, not >1 -- exactly 2 is now
+    # the valid co-parent-couple outcome. 3 distinct parents violates the
+    # four-part discriminator's own winner-anchoring guarantee.
+    edges = [_edge("Cronus", "Zeus"), _edge("Rhea", "Zeus"), _edge("Metis", "Zeus"), _edge("Cronus", "Hera")]
 
     violations = find_multi_parent_violations(edges)
 
-    assert violations == {"Zeus": {"Cronus", "Rhea"}}
+    assert violations == {"Zeus": {"Cronus", "Rhea", "Metis"}}
+
+
+def test_exactly_two_parents_is_not_flagged():
+    # ADR-020's intended couple outcome (e.g. Sky + Earth parenting Cronus) --
+    # must NOT be reported as a violation.
+    edges = [_edge("Sky", "Cronus"), _edge("Earth", "Cronus")]
+
+    assert find_multi_parent_violations(edges) == {}
 
 
 def test_single_parent_is_not_flagged():
@@ -172,14 +183,18 @@ def test_run_end_to_end_surfaces_every_violation_class():
             "relationships": [
                 ("Cronus", "parent_of", "Zeus", "s", "1"),
                 ("Rhea", "parent_of", "Zeus", "s", "1"),
+                ("Metis", "parent_of", "Zeus", "s", "1"),
             ],
             "entities_types": [("Zeus", "olympian"), ("Ghost", "spirit")],
         }
     )
-    # _query_edges expects the raw cursor row shape (from_name, relation, to_name, source_id, passage_ref)
+    # _query_edges expects the raw cursor row shape (from_name, relation, to_name, source_id, passage_ref).
+    # 3 distinct parents (not 2 -- ADR-020 made exactly 2 valid) so this still exercises the
+    # multi-parent violation path end-to-end.
     conn._table_rows["relationships"] = [
         ("Cronus", "parent_of", "Zeus", "s", "1"),
         ("Rhea", "parent_of", "Zeus", "s", "1"),
+        ("Metis", "parent_of", "Zeus", "s", "1"),
     ]
 
     result = run(None, conn)

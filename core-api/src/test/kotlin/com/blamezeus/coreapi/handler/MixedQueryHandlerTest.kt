@@ -138,6 +138,30 @@ class MixedQueryHandlerTest {
     }
 
     @Test
+    fun `caps the row set fed to RagAgent's prompt at SQL_ROWS_CAP -- DEV-090, ADR-020's branching lineage regression`() {
+        // ADR-020's joint-parentage carve-out lets WITH RECURSIVE lineage legitimately branch,
+        // so a bounded-depth traversal can return far more rows than before -- unbounded here
+        // blew a real gold question (Q12) past the LLM's per-request token limit. Only the row
+        // COUNT fed to RagAgent matters for this regression, not which specific rows survive the
+        // truncation, so this pins the cap rather than a particular row's presence/absence.
+        val manyRows = (1..(DebugCapture.SQL_ROWS_CAP + 10)).map { mapOf("name" to "Entity$it") }
+        every { schemaIntrospector.get() } returns "schema"
+        every { textToSqlAgent.generateSql(any(), any()) } returns "SELECT name FROM entities"
+        every { validator.validate(any()) } returns Unit
+        every { jdbcTemplate.queryForList(any<String>()) } returns manyRows
+        every { ragAgent.answer(any()) } returns RagResponse(answer = "answer", citations = emptyList())
+
+        handler.handle("question")
+
+        verify {
+            ragAgent.answer(match { augmented ->
+                augmented.lines().count { it.startsWith("- Entity") } == DebugCapture.SQL_ROWS_CAP
+            })
+        }
+        assertThat(debugCapture.snapshot().sqlRows).hasSize(DebugCapture.SQL_ROWS_CAP)
+    }
+
+    @Test
     fun `a SqlSafetyValidator rejection propagates and RagAgent is never called`() {
         every { schemaIntrospector.get() } returns "schema"
         every { textToSqlAgent.generateSql(any(), any()) } returns "DROP TABLE entities"

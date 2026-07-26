@@ -15,13 +15,21 @@ posture as (a)).
 
 **E2** -- re-runs DEV-040's own live-verified invariants (`docs/DEVIATIONS.md`
 #DEV-040's Impact line) as a standing regression gate, run after every Track J fix
-batch: zero children with >1 distinct `parent_of` parent, zero spouses with >1
-distinct `married_to` partner, zero victims with >1 distinct `killed_by` killer
-(together: no `WITH RECURSIVE` branching risk, DEV-054's root cause class) --
-plus a defensive re-check that every `entities.type` is still one of the CHECK
-constraint's 8 values (again schema-enforced already, but cheap to reconfirm
-after any entity split/merge Track J lands, per the checklist's own "subtype
-invariants" framing -- see `ingestion/audit/README.md` for the reasoning).
+batch: zero spouses with >1 distinct `married_to` partner, zero victims with >1
+distinct `killed_by` killer (together with the parent invariant below: bounded
+`WITH RECURSIVE` branching, DEV-054's root cause class) -- plus a defensive
+re-check that every `entities.type` is still one of the CHECK constraint's 8
+values (again schema-enforced already, but cheap to reconfirm after any entity
+split/merge Track J lands, per the checklist's own "subtype invariants" framing
+-- see `ingestion/audit/README.md` for the reasoning).
+
+The `parent_of` invariant itself was **raised from >1 to >2 by ADR-020
+(DEV-088/DEV-090)**: a child with exactly 2 distinct parents is now valid (the
+co-parent-couple carve-out to `canonical_edge.py`'s contested-collapse) --
+`married_to`/`killed_by` are explicitly unaffected by ADR-020 and keep the
+original >1 threshold. >2 `parent_of` parents is still a bug: the four-part
+discriminator's winner-anchoring rule (rule 2) guarantees every child ends with
+at most 2.
 """
 
 from __future__ import annotations
@@ -58,30 +66,36 @@ def find_orphan_participants(
 
 def find_multi_parent_violations(edges: list[Edge]) -> dict[str, set[str]]:
     """E2: `parent_of`'s subject is the child (`to_name`, per
-    `canonical_edge.py`'s documented convention) -- a child with >1 distinct
-    parent after seeding is exactly the `WITH RECURSIVE` branching risk DEV-040
-    verified was zero and DEV-054's Q9/Q12 failures trace back to."""
-    return _multi_value_groups(edges, relation="parent_of", subject_attr="to_name", other_attr="from_name")
+    `canonical_edge.py`'s documented convention). ADR-020 (DEV-088/DEV-090)
+    raised the threshold from >1 to >2: a child with exactly 2 distinct parents
+    is the intended co-parent-couple outcome, not a bug. >2 remains a real
+    violation of the four-part discriminator's own winner-anchoring guarantee
+    (every child ends with at most 2) -- the `WITH RECURSIVE` branching risk
+    DEV-040 verified was bounded and DEV-054's Q9/Q12 failures trace back to."""
+    return _multi_value_groups(edges, relation="parent_of", subject_attr="to_name", other_attr="from_name", max_allowed=2)
 
 
 def find_multi_spouse_violations(edges: list[Edge]) -> dict[str, set[str]]:
-    """`married_to` keys on `from_name` (canonical_edge.py's convention)."""
+    """`married_to` keys on `from_name` (canonical_edge.py's convention). ADR-020
+    leaves married_to resolution unchanged -- threshold stays >1."""
     return _multi_value_groups(edges, relation="married_to", subject_attr="from_name", other_attr="to_name")
 
 
 def find_multi_killer_violations(edges: list[Edge]) -> dict[str, set[str]]:
-    """`killed_by` keys on `from_name` (the victim; canonical_edge.py's convention)."""
+    """`killed_by` keys on `from_name` (the victim; canonical_edge.py's
+    convention). ADR-020 leaves killed_by resolution unchanged -- threshold
+    stays >1."""
     return _multi_value_groups(edges, relation="killed_by", subject_attr="from_name", other_attr="to_name")
 
 
 def _multi_value_groups(
-    edges: list[Edge], relation: str, subject_attr: str, other_attr: str
+    edges: list[Edge], relation: str, subject_attr: str, other_attr: str, max_allowed: int = 1
 ) -> dict[str, set[str]]:
     groups: dict[str, set[str]] = defaultdict(set)
     for e in edges:
         if e.relation == relation:
             groups[getattr(e, subject_attr)].add(getattr(e, other_attr))
-    return {subject: others for subject, others in groups.items() if len(others) > 1}
+    return {subject: others for subject, others in groups.items() if len(others) > max_allowed}
 
 
 def find_invalid_entity_types(entity_type_rows: list[tuple[str, str]]) -> list[tuple[str, str]]:
@@ -174,7 +188,10 @@ def run(candidates_dir, db_conn: object | None) -> CheckResult:
                 severity="error",
                 subject=f"multi-parent: {child}",
                 detail=f"{child} has {len(parents)} distinct parent_of parents: {', '.join(sorted(parents))}",
-                suggested_fix="canonical_edge.py's contested-collapse should guarantee <=1 -- investigate why this group wasn't collapsed",
+                suggested_fix=(
+                    "canonical_edge.py's winner-anchoring rule (ADR-020) should guarantee <=2 -- investigate"
+                    " why this group has more than a couple"
+                ),
             )
         )
 

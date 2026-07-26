@@ -36,9 +36,17 @@ class MixedQueryHandler(
         }
         // Q12's SQL step (Stage P2 Track B2) — the origin of its serviceError when it fails.
         debugCapture.setFirstAttemptSql(sql)
-        debugCapture.setSqlRows(rows.take(DebugCapture.SQL_ROWS_CAP))
+        // [DEVIATED - see DEVIATIONS.md #DEV-090] ADR-020's joint-parentage carve-out lets
+        // `WITH RECURSIVE` lineage legitimately branch (2 parents/generation), so a bounded-depth
+        // traversal can return far more rows than before — a real gold-question regression (Q12,
+        // "Achilles's divine lineage to Zeus") blew past the LLM's 300k-token request limit because
+        // the FULL row set was being dumped into buildAugmentedQuestion's prompt text; only the
+        // DebugCapture view was ever capped. Capping the actual prompt input to the same
+        // SQL_ROWS_CAP the debug view already uses fixes both at once.
+        val cappedRows = rows.take(DebugCapture.SQL_ROWS_CAP)
+        debugCapture.setSqlRows(cappedRows)
 
-        val augmentedQuestion = buildAugmentedQuestion(question, rows)
+        val augmentedQuestion = buildAugmentedQuestion(question, cappedRows)
         val ragResponse = ragAgent.answer(augmentedQuestion)
 
         return QueryResponse(

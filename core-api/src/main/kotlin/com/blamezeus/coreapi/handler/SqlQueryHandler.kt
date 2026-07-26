@@ -65,9 +65,16 @@ class SqlQueryHandler(
         // `sql` (not `finalSql`) is captured here: the DEV-057 retry never reassigns `sql`, so it
         // is still the immutable first attempt at this point — this is `firstAttemptSql`.
         debugCapture.setFirstAttemptSql(sql)
-        debugCapture.setSqlRows(finalRows.take(DebugCapture.SQL_ROWS_CAP))
+        // [DEVIATED - see DEVIATIONS.md #DEV-090] same fix as MixedQueryHandler: formatAnswer's
+        // output becomes AnswerComposer's `material` (an LLM prompt), so an uncapped row set risks
+        // the same token-budget blowup ADR-020's now-legitimately-branching WITH RECURSIVE queries
+        // can trigger — not yet reproduced on a gold question here, but it's the identical pattern
+        // (this handler's own header comment already notes its SQL-execution path is intentionally
+        // duplicated from MixedQueryHandler's), so it's fixed alongside rather than left latent.
+        val cappedRows = finalRows.take(DebugCapture.SQL_ROWS_CAP)
+        debugCapture.setSqlRows(cappedRows)
         return QueryResponse(
-            answer = formatAnswer(finalRows),
+            answer = formatAnswer(cappedRows),
             routeDecision = RouteDecision.SQL,
             citations = citations,
             conflicts = emptyList(),

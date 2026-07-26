@@ -267,14 +267,10 @@ candidate JSON + live DB; **no check mutates any file or table** (the README inv
 - [x] **C4** [DEVIATED - see DEVIATIONS.md #DEV-074] — register into the runner; **TDD** `tests/test_drop_accounting.py`: a small raw set with
       one of each drop reason → each bucket counted correctly and the arithmetic reconciles to zero
       residual.
-- [ ] **C5 — per-row dropped-parent record (owned by J4a, listed here so Track C isn't read as
-      finished).** C1's **contested-edge collapse** bucket is an aggregate count, which is exactly
-      GAP-001 Root cause 3's third finding: a reviewer has no per-row list to promote from. J4a adds a
-      sibling check — conforming to the **check contract defined in Track A item A2r** (this is what
-      ADR-020/DATA-GAPS mean by "the A2r contract"; it is *not* a revision of the A2 check) — emitting
-      one row per dropped parent value: child, dropped value, source, passage, and whether the subject
-      already has a `variant_claims` parentage row. Covers all **612** surviving rivals; do not
-      implement it here, implement it with J4a so it lands in one Track I pass.
+- [x] **C5 — per-row dropped-parent record** [DEVIATED - see DEVIATIONS.md #DEV-090] — landed with
+      J4a as audit check **A6** (`ingestion/audit/dropped_parents.py`). Live on the real, post-split
+      candidate data: 697 dropped rows / 612 distinct child+parent pairs, 694 without existing
+      promoted `variant_claims` coverage.
 
 ---
 
@@ -633,8 +629,9 @@ that can land anytime.
 
 ### J4 — DEV-069: Q9 Zeus→Chaos lineage gap (J4a decided for P3 as ADR-020/DEV-088; only J4b may defer)
 > Full technical write-up (root causes, live-verified evidence, decision options): `docs/DATA-GAPS.md` GAP-001.
-- [ ] **J4a** — **DECIDED 2026-07-23; discriminator AMENDED 2026-07-26 (ADR-020 /
-      `docs/DATA-GAPS.md` GAP-001), implementation pending as DEV-088.** Chose option (a): allow >1
+- [x] **J4a** [DEVIATED - see DEVIATIONS.md #DEV-090] — **DECIDED 2026-07-23; discriminator AMENDED
+      2026-07-26 (ADR-020 / `docs/DATA-GAPS.md` GAP-001), IMPLEMENTED AND LANDED 2026-07-26 as
+      DEV-090.** Chose option (a): allow >1
       canonical `parent_of` edge per child for genuine joint parentage. The discriminator in
       `resolve_canonical_edges()` is **four-part, all four required**, over **co-mention pairs** —
       two distinct parents of one child sharing a `(source_id, passage_ref)`, every unordered pair
@@ -656,7 +653,8 @@ that can land anytime.
       `conflict_detector.py` and `drop_accounting.py`/A2r. Measured by simulation:
       the live graph has **0** children with two parents; **472** regain a co-parent (the earlier
       "442" used unrecorded co-mention semantics — **re-measure against the real code and record
-      what it produces**). Option (b) (defer to P5b) rejected.
+      what it produces**). Option (b) (defer to P5b) rejected. **Re-measured against the real code
+      (DEV-090): 472 exactly — matches the simulation.**
       **Landing scope also covers GAP-001 Root cause 3** (the other half of the loss): a per-row
       dropped-parent audit check (A2r contract, alongside `drop_accounting.py`) + a same-source
       qualifying condition in `conflict_detector.detect_conflicts` for `parentage`. ⚠️ **Scope
@@ -664,66 +662,99 @@ that can land anytime.
       reaches only the **145** in single-source groups; the other **467** are in groups that already
       clear the ≥2-source gate — candidates are emitted for them *today* and they stall at ADR-004
       review. The promotion gate is unchanged and unowned, so **J4a landing does not make parentage
-      conflicts user-visible** — say so in the run notes, don't claim the feature works.
-      Expect A3 to report **1 new cycle** (`Salmoneus → … → Enarete → Salmoneus`, a latent reversed
-      edge the restored co-parent exposes) — budget a fix pass, don't waive it silently. Measured at
-      the **post-resolver `parent_of`** layer: baseline **1** (`Eurymachus ↔ Polybus`) → **2**. Quote
-      the layer whenever citing A3 here; the candidate-layer counts (62 raw, 96 via
-      `audit --candidates` per DEV-087) and the "0 live cycles" exit criterion measure different
-      graphs and are not comparable to these.
-      Checkbox stays open until the `canonical_edge.py` change + tests land through a Track I pass
-      (seedgen → reseed → **A3 clean or explicitly waived in the run notes** → 3-run eval → compare);
-      that pass is DEV-088. "Clean" is not achievable as stated while the reversed-edge residue
-      exists, which is why ADR-020 and DEV-088 both set the gate at clean-**or**-waived.
+      conflicts user-visible** — confirmed in the DEV-090 landing notes, exactly as predicted.
+      Expected A3 to report **1 new cycle** (`Salmoneus → … → Enarete → Salmoneus`, a latent reversed
+      edge the restored co-parent exposes) — this cycle **was found (simulated) and fixed before the
+      first reseed** (J4a-8, an entity split not a reversal), so the **live** A3 count never actually
+      reached 2; it stayed at the pre-existing, already-waived baseline of **1**
+      (`Eurymachus ↔ Polybus`). Measured at the **post-resolver `parent_of`** layer throughout. Quote
+      the layer whenever citing A3 here; the candidate-layer counts (62 raw, 93 post-split via
+      `audit --candidates`) and the "0 live cycles" exit criterion measure different graphs and are
+      not comparable to these.
+      **Landed through a Track I pass (DEV-090):** `seedgen --strict` → `reseed-local.sh` → `python -m
+      audit --db` (A1 39 pre-existing/unrelated, A3 clean-or-waived at 1, A4 116 unchanged, A5 clean
+      — see the note below on A5's own pre-ADR-020 invariant needing a fix, A6 candidates-only 697
+      rows/612 pairs) → `runner --runs 3` → `compare.py` vs `p3-j1j2j3fgh-batch` → **zero stable
+      regressions**, MIXED actually improved 50%→100% once a same-day regression (below) was fixed.
+      ⚠️ **A5 needed its own fix, discovered live, not anticipated by ADR-020 or this checklist:**
+      `ingestion/audit/integrity.py`'s E2 check asserted "zero children with >1 `parent_of` parent" —
+      a pre-ADR-020 invariant, now structurally false by design for every couple. Post-reseed `--db`
+      showed exactly **472** A5 findings (one per couple) before raising the threshold to >2 (leaving
+      `married_to`/`killed_by` at >1, unaffected by ADR-020); 0 after. **A regression also needed
+      fixing before landing could be called clean:** the first eval pass showed a real, gate-blocking
+      stable regression on Q12 (MIXED) — an LLM per-request token-limit failure, root-caused to
+      `MixedQueryHandler`/`SqlQueryHandler` feeding the *entire*, uncapped SQL row set into their
+      LLM-facing prompts (only the `DebugCapture` display copy was ever row-capped). ADR-020's
+      legitimate branching was the first thing to push a real query's row count high enough to
+      matter. Both handlers now cap at `DebugCapture.SQL_ROWS_CAP` before building their prompts, not
+      only before the debug-capture copy — `:core-api:test` 178/178 green. Full account: DEVIATIONS.md
+      #DEV-090. **Not yet committed to git.**
 
-  **J4a work items** (ADR-020 *Traceability* names each of these; none is optional):
-  - [ ] **J4a-1** — `canonical_edge.py`: the four-part rule in `resolve_canonical_edges()`; `RelRow`
+  **J4a work items** (ADR-020 *Traceability* names each of these; none is optional) — **all landed
+  2026-07-26, DEV-090**:
+  - [x] **J4a-1** — `canonical_edge.py`: the four-part rule in `resolve_canonical_edges()`; `RelRow`
         gains `is_contested`; `_pick_winner` **stays unmodified** (rules 1×2 depend on it not
         consulting the flag).
-  - [ ] **J4a-2** — `relationships_gen.py`: pre-dedup co-mention plumbing (pairs formed on the
-        entity-filtered but **pre-dedup** rows). **Do not widen `_filter_and_dedup`'s key** — that
-        would shift V11's row count and A2's drop accounting for unrelated reasons.
-  - [ ] **J4a-3** — the **deny-list**: decide where it lives and pin the shape (child + parent pair +
-        written reason), seeded with **Io**. Per ADR-020 it follows the ADR-004 review-gated data
-        convention — a reviewable data file, **not** one-off exceptions in code.
-  - [ ] **J4a-4** — `conflict_detector.detect_conflicts`: same-source qualifying condition for
+  - [x] **J4a-2** — `relationships_gen.py`: pre-dedup co-mention plumbing (pairs formed on the
+        entity-filtered but **pre-dedup** rows, via a new `_filter_by_entities`/`_dedup` split;
+        `_filter_and_dedup` kept as a back-compat wrapper). **Did not widen the dedup key** — `A2`'s
+        drop accounting was instead updated to build pairs the same pre-dedup way, so it stays
+        accurate rather than silently drifting.
+  - [x] **J4a-3** — the **deny-list**: lives at `ingestion/extraction/parentage_deny_list.json`
+        (mirrors `known_aliases.json`'s convention), loaded via `canonical_edge.load_deny_list()`,
+        seeded with **Io**.
+  - [x] **J4a-4** — `conflict_detector.detect_conflicts`: same-source qualifying condition for
         `parentage` (reaches the **145** single-source rivals; emits `trust_tier=3` candidates only —
         the ADR-004 promotion gate is unchanged).
-  - [ ] **J4a-5** — the per-row dropped-parent check (**C5** above), landing in this same pass.
-  - [ ] **J4a-6 — TDD, and one existing test must be *rewritten, not deleted*:**
-        `ingestion/tests/test_canonical_edge.py::test_gyes_shape_same_source_multi_value_ties_break_alphabetically`
-        asserts the **old** single-winner behaviour for exactly the Sky/Earth couple this change
-        reverses. New tests must pin, at minimum: `Cronus → Sky + Earth`, `Hellen → Deucalion +
-        Pyrrha` (rule 1), `Helen → Leda alone` (the rules-1×2 corollary — the subtlest outcome and
-        the easiest to regress), `Heracles → Alcmena + Zeus` (rule 3), `Io → one father` (rule 4),
-        and **max 2 parents per child** as an invariant.
-  - [ ] **J4a-7** — fix `canonical_edge.py`'s module docstring: it cites **Gyes** as its motivating
-        *contested* example, when Gyes is in fact a couple.
-  - [ ] **J4a-8** — reversed-edge fix pass at the candidate-JSON layer for the cycle the restored
-        co-parent exposes (`Salmoneus → Tyro → Neleus → Deimachus → Enarete → Salmoneus`). Budgeted,
-        not waived silently — the restored `Enarete parent_of Salmoneus` edge is mythologically
-        *correct*; the latent error is the reversed hop it runs into.
-  - [ ] **J4a-9** — re-measure and record: co-parent count from the **real** code (not the simulated
-        472), children with two parents, max parents per child, and the post-resolver `parent_of`
-        cycle count — with the layer stated. Put these in the DEV-088 implementation entry.
+  - [x] **J4a-5** — the per-row dropped-parent check landed as new audit check **A6**
+        (`ingestion/audit/dropped_parents.py`), auto-discovered by `python -m audit`. Live count on
+        the real, post-split data: 697 dropped rows / 612 distinct child+parent pairs, 694 without
+        existing promoted `variant_claims` coverage.
+  - [x] **J4a-6 — TDD, and the one existing test was *rewritten, not deleted*:**
+        `test_gyes_shape_same_source_multi_value_ties_break_alphabetically` renamed to
+        `test_gyes_shape_same_source_couple_kept_both_parents` and now asserts the couple outcome.
+        New tests pin: `Cronus`/Gyes-shape → couple kept, couple capped at 2 with an unrelated third
+        candidate present, `Hellen → Deucalion + Pyrrha` (rule 1), `Helen → Leda alone` (the
+        rules-1×2 corollary), `Heracles → Alcmena + Zeus` (rule 3, corroboration ranking), `Io → one
+        father` via both a synthetic and the real deny-list file (rule 4), and `married_to` staying
+        unaffected — plus integration-level tests in `test_relationships_gen.py` (including the
+        literal pre-dedup "34 children" scenario) and `test_conflict_detector.py` (the Io
+        "not detected" test rewritten to assert it now *is*, scoped to `parentage` only).
+        273/273 ingestion tests green.
+  - [x] **J4a-7** — `canonical_edge.py`'s module docstring rewritten: no longer cites Gyes as a
+        *contested* example (it documents the couple case and the four-part rule instead).
+  - [x] **J4a-8** — traced the predicted cycle in the corpus before touching anything: every edge is
+        independently well-attested; the cycle is an **entity conflation, not a reversed edge**
+        (DEV-068's *other* known A3 shape) — `Deimachus` conflated Neleus's son (Pylian generation)
+        with Enarete's father (Aeolid generation, `apollodorus_bibliotheca_frazer1921.txt [1.7.3]`
+        vs `[1.9.9]`). Split into `Deimachus (son of Neleus)` / `Deimachus (father of Enarete)`,
+        repointed all 3 referencing relationship rows. Fixed **before** the first reseed, so the
+        predicted A3 1→2 never happened live — it stayed at 1 (the pre-existing, unrelated,
+        already-waived `Eurymachus⇄Polybus`).
+  - [x] **J4a-9** — re-measured against the **real** code: **472** children regain a co-parent (exact
+        match to the simulation), max 2 parents per child (no exceptions), post-resolver cycle count
+        1→2 in simulation (confirmed by directly re-running `find_cycles` over the resolved graph,
+        naming the exact predicted cycle) but **1** live post-reseed (J4a-8 fixed it first). Recorded
+        in `docs/DEVIATIONS.md` #DEV-090, not #DEV-088 (DEV-088 remains the pre-implementation
+        amendment record).
 - [ ] **J4b** — decide whether `Chaos → Earth`'s **cosmogonic (non-parentage)** relation is modeled at
       all in P3, or deferred. **GAP-001 and `TODO2.md` both name P5b as the recommended deferral
       target** (the earlier "P5c/geography" reading here was inconsistent with them — P5c is
       geography/epithets, this is cosmogony semantics). Record the decision either way (don't
       silently drop it); a deferral needs a written waiver in the run notes **and** a GAP-001 status
       update.
-- [ ] **J4c** — if fixed in P3: run through Track I and record Q9's live output. **Q9 will still fail
-      on content, and that is the expected result — do not treat it as the success condition.** Both
-      required keywords stay unreachable after J4a: `Ouranos` because `Sky`, `Heaven` and `Uranus` are
-      three separate confirmed entities (`Heaven` even carries `Earth` as its own parent) and the
-      restored co-parent edge attaches to `Sky` — a J1-shaped merge + `entity_aliases` row, not J4a;
-      and `Chaos` because J4b is deferred (no `Chaos → Earth` edge exists or should). What J4a *is*
-      accountable for: Q9's traversal reaches the co-parent generation instead of dead-ending at
-      Cronus, Q9 stays inside the 3 s `statement_timeout` now that lineage branches binary, and
-      DATA/MIXED show **zero stable regressions**. Record `Ouranos`/`Chaos` as the known remainder in
-      the run notes — **do not edit the keyword list** (a keyword edit is only an eval-bug fix under
-      DEV-050 when the keyword is *wrong*; here it is right and the data is missing). If deferred
-      instead: log the waiver in the results/DEV note and in `docs/DATA-GAPS.md` (P5's backlog).
+- [x] **J4c** [DEVIATED - see DEVIATIONS.md #DEV-090] — ran through Track I and recorded Q9's live
+      output (`evaluation/results/2026-07-26T15-03-32Z__b26e69b__p3-j4a-joint-parentage-fixed/`).
+      **Q9 failed on content, exactly as predicted — not treated as a success condition.** Route ✓,
+      author ✓, content ✗ (2/3, stable-fail). The traversal reaches `Cronus` and `Earth` (the winning
+      half of the restored Sky/Earth couple) instead of dead-ending at Cronus, and the composed answer
+      even narrates on to `Chaos` via RAG's conflict-aware backstop — but the required `Ouranos`
+      keyword never appears: `Sky`, `Heaven` and `Uranus` are still three separate confirmed entities
+      (`Heaven` still carries `Earth` as its own parent) and the restored co-parent edge attaches to
+      `Sky` — needs Track J5, not J4a. `Chaos` needs J4b, still deferred. DATA/MIXED showed **zero
+      stable regressions** (MIXED actually improved). **Did not edit the keyword list** (a keyword
+      edit is only an eval-bug fix under DEV-050 when the keyword is *wrong*; here it is right and
+      the data is missing).
 
 ### J5 — `Sky` / `Heaven` / `Uranus` duplicate-entity merge (GAP-001 standing blocker; previously unowned)
 > Split out of J4c because it is J1-shaped work that **J1 did not cover and A1 cannot find** — it had
@@ -748,19 +779,23 @@ that can land anytime.
 
 ## Definition-of-done checklist (mirror of TODO2.md Stage P3)
 
-- [x] `python -m audit` runs end-to-end (A1–A5 registered, A3 = existing `cycle_check`), emits
-      `reports/<date>.md` + findings JSON, exits non-zero on un-waived findings. [DEVIATED - see
-      DEVIATIONS.md #DEV-070, #DEV-071, #DEV-072, #DEV-073, #DEV-074, #DEV-075]
-- [ ] All five checks **clean or explicitly waived with a written note**. [DEVIATED - see
-      DEVIATIONS.md #DEV-089] Currently (post-J1/J2/J3f/J3g/J3h landing, live `--db`, 2026-07-26):
-      **A3 clean-or-waived** (1 finding — `Eurymachus⇄Polybus`, pre-existing/unrelated to this batch,
-      waived per `ingestion/audit/audit-waivers.json` pending J4a-8's reversed-edge pass), **A5
-      clean**, **A4 clean** (116 db relations, unchanged — Track F territory); **A1 39 pairs**
+- [x] `python -m audit` runs end-to-end (A1–A5 registered, A3 = existing `cycle_check`; **A6 added by
+      J4a/DEV-090**, the per-row dropped-parent check), emits `reports/<date>.md` + findings JSON,
+      exits non-zero on un-waived findings. [DEVIATED - see DEVIATIONS.md #DEV-070, #DEV-071,
+      #DEV-072, #DEV-073, #DEV-074, #DEV-075, #DEV-090]
+- [ ] All five (now six) checks **clean or explicitly waived with a written note**. [DEVIATED - see
+      DEVIATIONS.md #DEV-089, #DEV-090] Currently (post-J4a landing, live `--db`, 2026-07-26):
+      **A3 clean-or-waived** (1 finding — `Eurymachus⇄Polybus`, pre-existing/unrelated to any Track J
+      batch, waived per `ingestion/audit/audit-waivers.json`; the J4a-8 reversed-edge/conflation pass
+      is **done**, so no second cycle ever reached the live DB), **A5 clean** (needed its own fix —
+      its pre-ADR-020 ">1 parent" invariant was raised to ">2", see DEV-090 — 472 findings before the
+      fix, 0 after), **A4 clean** (116 db relations, unchanged — Track F territory); **A1 39 pairs**
       still un-triaged (permanent long-tail — A1 only suppresses documented aliases, never
       "reject, distinct" outcomes, so this will never reach literal zero without per-pair waivers);
-      **A2** not re-run in `--db` mode this pass (needs `--candidates`; its pre-batch snapshot
-      already reflected the promoted rows). Box stays open on A1's un-waived residue and pending
-      J4a/J4b/J5.
+      **A2** not re-run in `--db` mode this pass; **A6** (new) candidates-only, 697 real findings (612
+      distinct dropped-parent pairs) — by design (GAP-001 Root cause 3's promotion half is unowned,
+      P4 work), not something this box expects to reach zero. Box stays open on A1's and A6's
+      un-waived residue and pending J4b/J5.
 - [x] 29 (grown to 48 live) fuzzy-dup pairs triaged (merge+alias or reject-with-note) — J1, DEV-084.
       [x] 203 flagged relationships triaged (promote-with-fix or reject-recorded) — J2, DEV-085.
 - [x] DEV-068's 3 conflation cycles resolved (entity split) or waived; **A3 `parent_of` graph clean**.
@@ -768,21 +803,27 @@ that can land anytime.
       all 3 resolved by split (plus 2 more discovered along the way: `Agastrophus`/`Paeëon` a
       reversed edge, `Hellen`/`Helen`/`Helle` a 3-way conflation); **A3 confirmed 0 live cycles**
       after the second Track I pass.
-- [ ] **J4a / ADR-020 joint parentage landed** (DEV-088): four-part rule + pre-dedup pairs +
-      deny-list + same-source detector condition + per-row dropped-parent record, through one Track I
-      pass with **A3 clean or explicitly waived**, counts re-measured against the real code, and the
-      run notes stating plainly that **parentage conflicts are still not user-visible** (the 467
-      already-emitted candidates stall at the unowned ADR-004 promotion gate — GAP-001 option a′,
-      carried to P4).
+- [x] **J4a / ADR-020 joint parentage landed** [DEVIATED - see DEVIATIONS.md #DEV-090]: four-part rule
+      + pre-dedup pairs + deny-list + same-source detector condition + per-row dropped-parent record
+      (new check A6), through one Track I pass with **A3 clean or waived** (live count stayed at the
+      pre-existing baseline of 1 — the predicted new cycle was fixed as an entity split, J4a-8, before
+      the first reseed), counts re-measured against the real code (472 children, exact match to the
+      simulation), zero stable eval regressions (a same-day token-budget regression on Q12 was found
+      and fixed in the same pass — DEV-090), and the run notes stating plainly that **parentage
+      conflicts are still not user-visible** (the 467 already-emitted candidates stall at the unowned
+      ADR-004 promotion gate — GAP-001 option a′, carried to P4). **Not yet committed to git.**
 - [ ] **J4b** decided: `Chaos → Earth` cosmogonic relation modeled in P3 **or** explicitly deferred to
-      P5b with a written waiver + a GAP-001 status update.
+      P5b with a written waiver + a GAP-001 status update. **Still open** — unaffected by the J4a
+      landing.
 - [ ] **J5** `Sky`/`Heaven`/`Uranus` merged + `entity_aliases` row, **or** explicitly deferred with a
-      note (A1 will never raise it, so an un-noted deferral loses it).
-- [ ] DEV-069's Q9 itself: **not a pass/fail gate.** After J4a it is *expected* to still fail on
-      content — `Ouranos` needs J5, `Chaos` needs J4b. This box is ticked when Q9's live output is
-      **recorded** (traversal reaches the co-parent generation, stays inside the 3 s
-      `statement_timeout`, zero stable DATA/MIXED regressions) and the remainder is written down —
-      **not** when Q9 goes green, and never by editing its keywords.
+      note (A1 will never raise it, so an un-noted deferral loses it). **Still open** — unaffected by
+      the J4a landing; this is what Q9's `Ouranos` keyword is still waiting on.
+- [x] DEV-069's Q9 itself: **confirmed not a pass/fail gate, and it stayed failing exactly as
+      predicted.** Q9's live output is recorded (route ✓, author ✓, content ✗ — traversal reaches the
+      co-parent generation [`Cronus`, `Earth`] instead of dead-ending at Cronus, no `statement_timeout`
+      hit, zero stable DATA/MIXED regressions) and the remainder (`Ouranos` needs J5, `Chaos` needs
+      J4b) is written down in `docs/DATA-GAPS.md` GAP-001 — Q9 did not go green, and its keywords were
+      not edited.
 - [x] `relation_aliases` **V17** live; `relation_normalizer.py` mirrors `claim_type_normalizer.py`;
       `relationships_gen.py` normalizes + swaps `from`/`to` on `inverse` (TDD green). [DEVIATED - see
       DEVIATIONS.md #DEV-072, #DEV-076]
@@ -791,16 +832,21 @@ that can land anytime.
 - [ ] Full fix-loop pass: `seedgen --strict` → `reseed-local.sh` → `audit` **clean or explicitly
       waived** → `runner --runs 3`
       → `compare.py` vs P2-accepted → **DATA/MIXED ≥ baseline, zero stable regressions**; results dir +
-      candidates + migrations committed together. [DEVIATED - see DEVIATIONS.md #DEV-089]
-      **Mechanism proven three times now** (DEV-076, DEV-083, DEV-089 — all zero stable
-      regressions), but stays unchecked: "audit clean" here means *all five* checks clean-or-waived
-      together in one pass, and **A1 still carries 39 real, permanently-un-triaged findings**
-      (see above); **no Track I pass has run I7 yet** — candidates/edits are committed per-backlog
-      as they're triaged, but the regenerated V10-V12 migrations + results dirs + waiver file from
-      each Track I pass (including this third one) remain uncommitted pending an explicit decision.
+      candidates + migrations committed together. [DEVIATED - see DEVIATIONS.md #DEV-089, #DEV-090]
+      **Mechanism proven four times now** (DEV-076, DEV-083, DEV-089, DEV-090 — all zero stable
+      regressions; DEV-090 additionally proved the loop catches a *real* regression, not just data
+      edits — a token-budget bug in application code, found via the eval and fixed before landing),
+      but stays unchecked: "audit clean" here means *all six* checks (A6 now exists) clean-or-waived
+      together in one pass, and **A1/A6 both carry real, by-design-unresolved findings** (see above,
+      permanent long-tail for A1, unowned P4 promotion backlog for A6); **no Track I pass has run I7
+      yet** — candidates/edits are committed per-backlog as they're triaged, but the regenerated
+      V10-V12 migrations + results dirs + waiver file + (as of DEV-090) core-api source changes from
+      each Track I pass remain uncommitted pending an explicit decision.
 - [x] DEV-070..DEV-076+ logged in `DEVIATIONS.md`; `TODO2.md` + `IMPLEMENTATION_PLAN_PHASE2.md` P3
-      annotated per protocol; ADR-019 follow-up DEV-number reconciled. Logged through **DEV-083** as
+      annotated per protocol; ADR-019 follow-up DEV-number reconciled. Logged through **DEV-090** as
       of this check.
 - [x] `./gradlew :core-api:test` green (no Kotlin change expected — SchemaIntrospector verification
       only; run it to prove no regression from the reseeded vocabulary). Re-verified against the
-      *current* (twice-regenerated) `V10`/`V11` migrations — `BUILD SUCCESSFUL`.
+      *current* (twice-regenerated) `V10`/`V11` migrations — `BUILD SUCCESSFUL`. **Re-verified again
+      after DEV-090**, which — unlike prior passes — *did* need real Kotlin changes
+      (`MixedQueryHandler.kt`/`SqlQueryHandler.kt`'s row-cap fix): 178/178 tests green.

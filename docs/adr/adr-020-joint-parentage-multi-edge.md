@@ -3,7 +3,7 @@
 | Field        | Value       |
 |--------------|-------------|
 | **Date**     | 2026-07-23 (amended 2026-07-26) |
-| **Status**   | Accepted (amended 2026-07-26; implementation pending — see DEV-088 / `docs/DATA-GAPS.md` GAP-001) |
+| **Status**   | Accepted (amended 2026-07-26; **implemented and landed 2026-07-26 — see DEV-090** / `docs/DATA-GAPS.md` GAP-001. DEV-088 recorded the pre-implementation amendment; DEV-090 is the actual landing, including a Deimachus entity split done as J4a-8 and a token-budget regression found and fixed in the same pass. Not yet committed to git.) |
 | **Amends**   | ADR-007 §6 (single-canonical-edge rule — narrows it with a co-parent carve-out) |
 | **Amended by** | —         |
 | **Supersedes** | —         |
@@ -53,6 +53,19 @@ first drafted here) — the entire Titan/Cyclops generation and far beyond.
 > 480), so the earlier figure is treated as measured under a variant that no longer matches the
 > written rule. **The implementer must re-measure once `canonical_edge.py` is changed** and record the
 > figure the real code produces; every count in this ADR is a simulation, not a landed result.
+>
+> **Landed 2026-07-26 (DEV-090) — re-measured against the real code, not this simulation.** Every
+> headline figure above matched exactly: **472 children** regain a co-parent, max 2 parents per
+> child holds with no exceptions, and **612** distinct rival parents remain dropped (GAP-001 Root
+> cause 3's own figure, also confirmed exactly). The predicted `Salmoneus`/`Enarete` A3 cycle (1→2)
+> was found in simulation before the first reseed and fixed in the same landing pass as a genuine
+> entity conflation (`Deimachus` names two different people — see DEV-090), not a reversed edge, so
+> the live post-reseed A3 count never actually reached 2. One consequence this ADR did not
+> anticipate: legitimate branching pushed a real `WITH RECURSIVE` lineage query's row count high
+> enough to blow an LLM per-request token limit in `MixedQueryHandler` (a pre-existing gap — only
+> the debug-capture view was ever row-capped, not the actual prompt input) — found via a real gold-
+> question regression during landing eval and fixed at that layer (see DEV-090), not by constraining
+> the branching itself.
 
 The loss is total, not partial: the live graph currently holds **2,492 canonical edges over 1,145
 children with a parent, and 0 children with two**. It is why lineage queries (gold Q9, "trace Zeus's

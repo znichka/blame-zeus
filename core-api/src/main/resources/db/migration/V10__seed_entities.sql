@@ -605,7 +605,8 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Deianira', 'mortal', NULL, NULL, NULL),
     ('Deicoon', 'mortal', NULL, NULL, NULL),
     ('Deidamia', 'mortal', NULL, NULL, NULL),
-    ('Deimachus', 'mortal', NULL, NULL, NULL),
+    ('Deimachus (father of Enarete)', 'mortal', NULL, NULL, NULL),
+    ('Deimachus (son of Neleus)', 'mortal', NULL, NULL, NULL),
     ('Deion', 'mortal', NULL, NULL, NULL),
     ('Deioneus', 'mortal', NULL, NULL, NULL),
     ('Deiopites', 'mortal', NULL, NULL, NULL),
@@ -1002,11 +1003,11 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Hypseus', 'mortal', NULL, NULL, NULL),
     ('Hypsipyle', 'mortal', NULL, NULL, NULL),
     ('Hyrie', 'nymph', NULL, NULL, NULL),
-    ('Hyrieus', 'mortal', NULL, NULL, NULL),
-    ('Hyrnetho', 'mortal', NULL, NULL, NULL)
+    ('Hyrieus', 'mortal', NULL, NULL, NULL)
 ON CONFLICT (name) DO NOTHING;
 
 INSERT INTO entities (name, type, generation, domain, subtype) VALUES
+    ('Hyrnetho', 'mortal', NULL, NULL, NULL),
     ('Hyrtacus', 'mortal', NULL, NULL, NULL),
     ('Hyrtius', 'mortal', NULL, NULL, 'warrior'),
     ('Iache', 'nymph', NULL, NULL, NULL),
@@ -1505,11 +1506,11 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Pelias', 'mortal', NULL, NULL, NULL),
     ('Pellas', 'mortal', NULL, NULL, NULL),
     ('Pelopia', 'mortal', NULL, NULL, NULL),
-    ('Pelops', 'mortal', NULL, NULL, NULL),
-    ('Pelorus', 'mortal', NULL, NULL, NULL)
+    ('Pelops', 'mortal', NULL, NULL, NULL)
 ON CONFLICT (name) DO NOTHING;
 
 INSERT INTO entities (name, type, generation, domain, subtype) VALUES
+    ('Pelorus', 'mortal', NULL, NULL, NULL),
     ('Peneleos', 'hero', NULL, NULL, NULL),
     ('Penelope', 'mortal', NULL, NULL, NULL),
     ('Pentheus', 'mortal', NULL, NULL, NULL),
