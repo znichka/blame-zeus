@@ -24,8 +24,8 @@ from pathlib import Path
 
 from extraction.claim_type_normalizer import load_alias_map
 from extraction.relation_normalizer import load_relation_alias_map
-from seedgen.canonical_edge import resolve_canonical_edges
-from seedgen.relationships_gen import _apply_relation_aliases, _filter_and_dedup
+from seedgen.canonical_edge import build_comention_pairs, load_deny_list, resolve_canonical_edges
+from seedgen.relationships_gen import _apply_relation_aliases, _dedup, _filter_by_entities
 
 from audit.contract import CheckResult, Finding
 
@@ -57,6 +57,7 @@ def compute_drop_accounting(
     entity_names: set[str],
     claim_type_alias_map: dict[str, str] | None = None,
     relation_alias_map: dict[str, tuple[str, bool]] | None = None,
+    deny_list: frozenset[tuple[str, frozenset[str]]] | None = None,
 ) -> DropAccounting:
     """Pure core -- no I/O. `claim_type_alias_map` is accepted for parity with
     `resolve_canonical_edges`'s real signature, but its *content* never changes
@@ -73,8 +74,18 @@ def compute_drop_accounting(
     `relation_aliases` (V17) is live. Pass `{}` (the default) to approximate "no
     Track F normalization" -- e.g. when no DB connection is available to load the
     live map (candidates-only mode has no static-file source of truth for
-    `relation_aliases`, mirroring `claim_type_aliases`' own DB-only nature)."""
+    `relation_aliases`, mirroring `claim_type_aliases`' own DB-only nature).
+
+    `deny_list` (ADR-020/DEV-088) defaults to the real, hand-maintained
+    `extraction/parentage_deny_list.json` via `canonical_edge.load_deny_list()` --
+    unlike the two alias maps above, it's a static file, not DB-sourced, so there's
+    no "no DB connection" reason to default it away. Co-mention pairs are built on
+    the entity-filtered but pre-dedup rows, exactly mirroring
+    `build_relationship_rows`'s own order, so `contested_collapse_count` reflects
+    ADR-020's couple carve-out (fewer rows dropped) rather than the pre-ADR-020
+    always-single-winner count."""
     claim_type_alias_map = claim_type_alias_map or {}
+    deny_list = deny_list if deny_list is not None else load_deny_list()
     relationships = _apply_relation_aliases(relationships, relation_alias_map or {})
     total = len(relationships)
 
@@ -88,10 +99,12 @@ def compute_drop_accounting(
         if r["to_name"] not in entity_names:
             name_counts[r["to_name"]] += 1
 
-    filtered = _filter_and_dedup(relationships, entity_names)
+    entity_filtered = _filter_by_entities(relationships, entity_names)
+    comention_pairs = build_comention_pairs(entity_filtered)
+    filtered = _dedup(entity_filtered)
     exact_dup_count = (total - len(unknown_name_rows)) - len(filtered)
 
-    resolved = resolve_canonical_edges(filtered, claim_type_alias_map)
+    resolved = resolve_canonical_edges(filtered, claim_type_alias_map, comention_pairs, deny_list)
     contested_collapse_count = len(filtered) - len(resolved)
 
     residual = total - len(unknown_name_rows) - exact_dup_count - contested_collapse_count - len(resolved)

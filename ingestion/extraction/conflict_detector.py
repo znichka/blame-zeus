@@ -5,9 +5,14 @@ candidate wherever >= 2 distinct sources disagree (ADR-007 §1).
 This >=2-distinct-sources rule is the OFFLINE DETECTION heuristic only: it decides
 which conflicts this pipeline surfaces as *candidates*. It is not the runtime
 surfacing rule (`ConflictLookup` applies no source-count gate) — see CLAUDE.md's
-variant_claims note. A same-source disagreement (e.g. Apollodorus naming both of Io's
-parents in one passage) is structurally invisible to this GROUP BY and must be
-hand-added (TODO-stage4 B6/B7).
+variant_claims note. A same-source disagreement (e.g. Apollodorus naming rival
+fathers for Io in one passage) is structurally invisible to this GROUP BY in
+general and must be hand-added (TODO-stage4 B6/B7) — except for `parentage`
+specifically, where GAP-001 Root cause 3 / ADR-020 (DEV-088) adds a same-source
+qualifying condition below: a single source naming >=2 distinct parent values for
+one child is exactly the "608 same-source contested children" population the plain
+>=2-distinct-sources gate can never see. Scoped to `parentage` only — the other
+claim types (marriage, death, ...) keep the original, narrower rule.
 """
 
 from collections import defaultdict
@@ -78,7 +83,15 @@ def detect_conflicts(candidates: list[ClaimCandidate]) -> list[ClaimCandidate]:
         groups[(c.subject_name.strip().lower(), c.claim_type)].append(c)
 
     detected: list[ClaimCandidate] = []
-    for group in groups.values():
+    for (_subject, claim_type), group in groups.items():
         if len({c.source_id for c in group}) >= 2:
+            detected.extend(group)
+            continue
+        # ADR-020 / GAP-001 Root cause 3: a single source can still name >=2 rival
+        # values for `parentage` (Apollodorus enumerating "Inachus, or Iasus, or of
+        # Piren" for Io) -- the >=2-distinct-sources gate above is structurally
+        # blind to that. Scoped to `parentage` per the GAP-001 decision; every
+        # other claim type keeps the original, source-count-only rule.
+        if claim_type == "parentage" and len({c.claim_value.strip().lower() for c in group}) >= 2:
             detected.extend(group)
     return detected

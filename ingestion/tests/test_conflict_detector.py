@@ -85,14 +85,33 @@ def test_subject_match_is_case_insensitive():
     assert detect_conflicts(candidates) == candidates
 
 
-def test_single_source_naming_both_variants_is_not_detected():
-    # The Io case (ADR-007/TODO-stage4 B7): both variants attributed to the same
-    # source_id are structurally invisible to the >=2-distinct-sources heuristic and
-    # must be hand-added instead.
+def test_single_source_naming_two_parentage_values_is_now_detected():
+    # ADR-020 / GAP-001 Root cause 3 (DEV-088): same-source rival PARENTAGE values
+    # used to be structurally invisible to the >=2-distinct-sources heuristic (this
+    # test used to assert `== []`, citing the Io case). A same-source qualifying
+    # condition, scoped to `parentage` only, now catches them.
     candidates = [
         ClaimCandidate("Io", "parentage", "daughter of Inachus", "apollodorus-bibliotheca", "2.1.3"),
         ClaimCandidate("Io", "parentage", "daughter of Piren", "apollodorus-bibliotheca", "2.1.3"),
     ]
+    assert detect_conflicts(candidates) == candidates
+
+
+def test_single_source_naming_two_values_outside_parentage_is_still_not_detected():
+    # The same-source qualifying condition is scoped to `parentage` only (ADR-020) --
+    # a same-source marriage/death disagreement stays invisible to this detector,
+    # exactly as the original >=2-distinct-sources rule intended.
+    candidates = [
+        ClaimCandidate("Zeus", "marriage", "married to Hera", "apollodorus-bibliotheca", "1.3.1"),
+        ClaimCandidate("Zeus", "marriage", "married to Metis", "apollodorus-bibliotheca", "1.3.1"),
+    ]
+    assert detect_conflicts(candidates) == []
+
+
+def test_single_source_single_parentage_value_is_still_not_a_conflict():
+    # The same-source condition requires >=2 distinct VALUES, not just >=1 row --
+    # a lone parentage claim from one source is not a conflict.
+    candidates = [ClaimCandidate("Ares", "parentage", "child of Zeus and Hera", "hesiod-theogony", "922")]
     assert detect_conflicts(candidates) == []
 
 
