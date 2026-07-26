@@ -1,0 +1,7 @@
+[
+  {
+    "check": "A3",
+    "subject": "db: Eurymachus -> Polybus -> Eurymachus",
+    "reason": "Pre-existing 2-node cycle (homer-odyssey 15.493-15.544 vs 2.177-2.223), unrelated to the J1/J2/J3f-h batch that surfaced it -- masked pre-reseed by DFS iteration order (same pattern as J3e/J3g), not fixed by this batch's edits. Already documented by name as the measured post-resolver baseline in docs/adr/adr-020-joint-parentage-multi-edge.md and docs/DATA-GAPS.md GAP-001 (\"baseline 1, unrelated to this change\" -- J4a/DEV-088 is expected to take it 1->2 when the co-parent carve-out lands, and budgets a reversed-edge fix pass, J4a-8 in docs/TODO-phase2-stage-p3.md). Deferred to that pass rather than fixed unbudgeted here."
+  }
+]

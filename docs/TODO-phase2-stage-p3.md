@@ -495,11 +495,12 @@ that can land anytime.
       `variant_claims_candidates.json` rows referenced any losing name (checked, confirmed empty).
       `V14__create_entity_aliases.sql` and `known_aliases.json` both updated with the 7 genuine 1:1
       aliases (mirroring the DEV-043 dual-file convention).
-- [ ] **J1c** — run the batch through Track I (audit A1 should now report those pairs resolved). **Not
-      yet run** — the J1a/b edits are sitting in the candidate JSON; `python -m audit.duplicate_entities`
-      already confirms candidates-mode count dropped 48 → 40 (the 8 merges), but this hasn't gone
-      through `seedgen --strict` → `reseed-local.sh` → eval yet. `Coeranos`/`Coeranus` (flagged here
-      as a new lead) untangled in J3h (DEV-087) — turned out to be 3 distinct figures, not 2.
+- [x] **J1c** [DEVIATED - see DEVIATIONS.md #DEV-089] — run the batch through Track I. **Landed
+      2026-07-26**, bundled with J2/J3f/J3g/J3h in one pass: `seedgen --strict` → `reseed-local.sh`
+      → `python -m audit --db` (A1 39 pairs, matching candidates-mode exactly — the 8 merges took;
+      A3 1 finding, waived — see J3h's note below, unrelated to J1) → `runner --runs 3` vs
+      `p3-j3-batch` → **no stable regressions** (identical 11/16). `Coeranos`/`Coeranus` (flagged
+      here as a new lead) untangled in J3h (DEV-087) — turned out to be 3 distinct figures, not 2.
 
 ### J2 — 203 flagged relationships (`relationships_flagged_for_review.json`)
 - [x] **J2a** [DEVIATED - see DEVIATIONS.md #DEV-085] — triage each of the 203 rows: **promote-with-fix**
@@ -516,8 +517,12 @@ that can land anytime.
       **All 203 processed and written as one batch** (not sliced further — the 3-tier method made
       per-entry review tractable in one pass); sits with J1 for one future Track I pass, matching the
       cost-minimization convention established for J3.
-- [ ] **J2c** — after promotion, re-run A2 drop-accounting: promoted rows should no longer appear as
-      unknown-name/collapse drops. **Not yet run through Track I** — pending, alongside J1c.
+- [x] **J2c** [DEVIATED - see DEVIATIONS.md #DEV-089] — after promotion, re-run A2 drop-accounting.
+      **Landed 2026-07-26** in the same Track I pass as J1c (see there for the full
+      seedgen/reseed/audit/eval sequence). Note: A2's read is `--candidates`-only (it needs the
+      candidate JSON to diff raw→seeded), so it wasn't re-run post-reseed in `--db` mode — the
+      pre-batch `--candidates` snapshot already reflected the promoted 895 rows correctly (matches
+      seedgen's own V11 count of 2,492).
 
 ### J3 — DEV-068: 3 entity-conflation `parent_of` cycles (entity SPLIT, not merge)
 - [x] **J3a** [DEVIATED - see DEVIATIONS.md #DEV-078] — `Aeolus ⇄ … ⇄ Endymion` (source-verified): **split** Aeolus from descendant Aetolus
@@ -586,8 +591,9 @@ that can land anytime.
       (bucketed by passage-ref, verified against source, asserted exact bucket sizes 5/3/52 before
       writing). Simulated post-Track-F resolved graph now has **zero** `parent_of` cycles (was 1);
       `--candidates` cycle count dropped 100 → 89 (11 fewer, not 1 — `Hellen`'s conflated edges were
-      threading through several already-observed tangled chains too). **Batched, not yet reseeded**
-      — sits with DEV-077/078/079/080/081, closing out the currently-known live-cycle backlog.
+      threading through several already-observed tangled chains too). [DEVIATED - see
+      DEVIATIONS.md #DEV-089] **Landed 2026-07-26**, bundled with J1/J2/J3g/J3h in one Track I pass
+      — see J1c for the sequence.
 
 ### J3g — new lead (DEV-085/086): 8 pre-existing majority/minority reversed-direction pairs surfaced by J2
 - [x] **J3g** [DEVIATED - see DEVIATIONS.md #DEV-086] — promoting J2's 895 rows unexpectedly raised A3's
@@ -600,8 +606,11 @@ that can land anytime.
       adding 895 new edges changed DFS iteration order enough to surface these specific back-edges
       directly. Reversed the 45 minority-direction rows across the 8 pairs to match the (mythologically
       standard) majority direction, keeping original `source_id`/`passage_ref` citations. A3 dropped
-      127 → 99 with 0 remaining 2-node cycles. **Batched, not yet reseeded** — sits with J1/J2 for a
-      future Track I pass. Remaining 99 cycles are longer chains, a separate not-yet-triaged backlog.
+      127 → 99 with 0 remaining 2-node cycles. [DEVIATED - see DEVIATIONS.md #DEV-089] **Landed
+      2026-07-26**, bundled with J1/J2/J3f/J3h in one Track I pass — see J1c for the sequence.
+      Remaining 99 (candidates-mode)/96 (post-J3h) cycles are longer chains, a separate
+      not-yet-triaged backlog; the live `--db` graph post-landing shows exactly **1** cycle
+      (`Eurymachus⇄Polybus`, unrelated to J3g, waived — see DEV-089).
 
 ### J3h — loose-lead cleanup (DEV-087): `Coeranos`/`Coeranus`, `Astyoche`'s remaining 2 meanings, `Aeneas`/`Iulus`, `Megaera`/`Megara`
 - [x] **J3h** [DEVIATED - see DEVIATIONS.md #DEV-087] — closed out four leads that had been noted in
@@ -615,9 +624,12 @@ that can land anytime.
       actually cite passages naming **Iulus** (Ascanius), not the unrelated Trojan `Ilus` — renamed to
       the already-existing `Ascanius` entity. `Megaera`/`Megara`: confirmed the real Fury `Megaera`
       (`Sky parent_of Megaera`) is untouched; the 8 rows for Heracles's wife (every citing passage
-      spells her "Megara") were retitled to a new `Megara` entity. **Batched, not yet reseeded** —
-      sits with J1/J2/J3g for a future Track I pass. `python -m audit --candidates`: A1 40→39, A3
-      99→96.
+      spells her "Megara") were retitled to a new `Megara` entity. `python -m audit --candidates`:
+      A1 40→39, A3 99→96. [DEVIATED - see DEVIATIONS.md #DEV-089] **Landed 2026-07-26**, bundled
+      with J1/J2/J3f/J3g in one Track I pass — see J1c for the full sequence (seedgen → reseed →
+      audit → eval, zero stable regressions vs `p3-j3-batch`). Post-reseed `--db` audit: A1 39
+      (matches candidates-mode), A3 1 finding (`Eurymachus⇄Polybus`, pre-existing and unrelated to
+      any J1/J2/J3f/J3g/J3h edit — waived per DEV-089 with the fix deferred to J4a-8).
 
 ### J4 — DEV-069: Q9 Zeus→Chaos lineage gap (J4a decided for P3 as ADR-020/DEV-088; only J4b may defer)
 > Full technical write-up (root causes, live-verified evidence, decision options): `docs/DATA-GAPS.md` GAP-001.
@@ -739,12 +751,16 @@ that can land anytime.
 - [x] `python -m audit` runs end-to-end (A1–A5 registered, A3 = existing `cycle_check`), emits
       `reports/<date>.md` + findings JSON, exits non-zero on un-waived findings. [DEVIATED - see
       DEVIATIONS.md #DEV-070, #DEV-071, #DEV-072, #DEV-073, #DEV-074, #DEV-075]
-- [ ] All five checks **clean or explicitly waived with a written note**. Currently (post-J2/J3g,
-      DEV-085/086, candidates-mode, not yet reseeded): **A3 99 cycles** (down from 127, which was
-      itself a temporary post-J2 spike off a pre-batch 89 — the 8 near-certain 2-cycles are gone,
-      remaining 99 are longer chains, not yet triaged), **A5 clean**; A1 (40 pairs, post-J1),
-      A2 (367 unknown names + others), A4 (9 candidates-mode proposals, 0 db-mode) still have real,
-      un-triaged findings.
+- [ ] All five checks **clean or explicitly waived with a written note**. [DEVIATED - see
+      DEVIATIONS.md #DEV-089] Currently (post-J1/J2/J3f/J3g/J3h landing, live `--db`, 2026-07-26):
+      **A3 clean-or-waived** (1 finding — `Eurymachus⇄Polybus`, pre-existing/unrelated to this batch,
+      waived per `ingestion/audit/audit-waivers.json` pending J4a-8's reversed-edge pass), **A5
+      clean**, **A4 clean** (116 db relations, unchanged — Track F territory); **A1 39 pairs**
+      still un-triaged (permanent long-tail — A1 only suppresses documented aliases, never
+      "reject, distinct" outcomes, so this will never reach literal zero without per-pair waivers);
+      **A2** not re-run in `--db` mode this pass (needs `--candidates`; its pre-batch snapshot
+      already reflected the promoted rows). Box stays open on A1's un-waived residue and pending
+      J4a/J4b/J5.
 - [x] 29 (grown to 48 live) fuzzy-dup pairs triaged (merge+alias or reject-with-note) — J1, DEV-084.
       [x] 203 flagged relationships triaged (promote-with-fix or reject-recorded) — J2, DEV-085.
 - [x] DEV-068's 3 conflation cycles resolved (entity split) or waived; **A3 `parent_of` graph clean**.
@@ -775,9 +791,13 @@ that can land anytime.
 - [ ] Full fix-loop pass: `seedgen --strict` → `reseed-local.sh` → `audit` **clean or explicitly
       waived** → `runner --runs 3`
       → `compare.py` vs P2-accepted → **DATA/MIXED ≥ baseline, zero stable regressions**; results dir +
-      candidates + migrations committed together. **Mechanism proven twice** (DEV-076, DEV-083 —
-      both zero stable regressions), but stays unchecked: "audit clean" here means *all five*
-      checks, and A1/A2/A4 still carry real findings (see above); nothing has been committed yet.
+      candidates + migrations committed together. [DEVIATED - see DEVIATIONS.md #DEV-089]
+      **Mechanism proven three times now** (DEV-076, DEV-083, DEV-089 — all zero stable
+      regressions), but stays unchecked: "audit clean" here means *all five* checks clean-or-waived
+      together in one pass, and **A1 still carries 39 real, permanently-un-triaged findings**
+      (see above); **no Track I pass has run I7 yet** — candidates/edits are committed per-backlog
+      as they're triaged, but the regenerated V10-V12 migrations + results dirs + waiver file from
+      each Track I pass (including this third one) remain uncommitted pending an explicit decision.
 - [x] DEV-070..DEV-076+ logged in `DEVIATIONS.md`; `TODO2.md` + `IMPLEMENTATION_PLAN_PHASE2.md` P3
       annotated per protocol; ADR-019 follow-up DEV-number reconciled. Logged through **DEV-083** as
       of this check.
