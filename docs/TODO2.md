@@ -2,7 +2,8 @@
 
 Phase-2 stages track `IMPLEMENTATION_PLAN_PHASE2.md`. Each stage's **"Done when"** is the gate for
 starting the next. This roadmap implements **ADR-017** (direction), **ADR-018** (evaluation
-harness), and **ADR-019** (relation canonicalization), and is tracked under `TODO.md` →
+harness), **ADR-019** (relation canonicalization), and **ADR-020** (joint parentage — the
+co-parent carve-out narrowing ADR-007 §6, landing in P3), and is tracked under `TODO.md` →
 *Post-MVP Enhancements* (named by ADR, not a numbered `IMPLEMENTATION_PLAN.md §9` stage, so §9
 history stays untouched).
 
@@ -21,7 +22,9 @@ carry-overs: **DEV-059** records this program's documentation-first landing; **D
 DEV-056/DEV-057 — **confirmed** at baseline, fixed further only on evidence) are the two known
 runtime defects addressed in P2;
 **DEV-041** (schema-vocabulary → SQL quality) motivates ADR-019; **DEV-055** (tests mock
-`@AiService`) bounds where the harness may live.
+`@AiService`) bounds where the harness may live; **DEV-088** (ADR-020's discriminator replaced
+after measurement, scope widened to the dropped rival parents — *documentation only, implementation
+pending*) is P3's largest open data change, see `docs/DATA-GAPS.md` GAP-001.
 
 ---
 
@@ -104,17 +107,25 @@ fixes and **zero stable regressions**.
 
 ---
 
-## Stage P3 — Data audit & error fixing  (ADR-019; priority per ADR-017)
+## Stage P3 — Data audit & error fixing  (ADR-019 + ADR-020; priority per ADR-017)
 **Done when:** `python -m audit` is clean (or every finding explicitly waived with a note); the 29
-fuzzy-duplicate pairs and 203 `relationships_flagged_for_review.json` rows are triaged;
-`relation_aliases` is live and applied by seedgen; eval (3-run) shows DATA/MIXED ≥ baseline and zero
-stable regressions.
+(grown to 48 live, DEV-084) fuzzy-duplicate pairs and 203 `relationships_flagged_for_review.json`
+rows are triaged; `relation_aliases` is live and applied by seedgen; **ADR-020's joint-parentage
+carve-out has landed through a Track I pass (DEV-088), with the co-parent count re-measured against
+the real `canonical_edge.py` change** and A3 clean-or-explicitly-waived; eval (3-run) shows
+DATA/MIXED ≥ baseline and zero stable regressions.
 
 - [ ] `ingestion/audit/` package (`python -m audit`, read-only): A1 duplicate entities
       (rapidfuzz + transliteration heuristics), A2 candidate-drop accounting, **A3
       direction/integrity — cycle detection (self-loop / 2-cycle / longer) as first-class invariant,
       authored in P2, run every batch** + symmetric duplicates + DEV-040 invariants, A4 relation-label
       taxonomy → initial `relation_aliases` map, A5 alias/participant integrity
+  - [ ] **Per-row dropped-parent record** (GAP-001 Root cause 3, lands with J4a): a check conforming
+        to the Track-A check contract, alongside `drop_accounting.py`, listing every parent value the
+        contested collapse discards (child, value, source, passage, whether the subject already has a
+        `variant_claims` parentage row). A2 reports contested-collapse as an aggregate only, so no
+        reviewer has a per-row list to promote from — this is the artifact for all **612** surviving
+        rivals
   - [ ] **Backlog from P2 Track I (DEV-068):** 3 `parent_of` cycles left unfixed in P2 because they're
         entity-conflation, not reversed edges — findings committed at
         `ingestion/audit/findings-db.json`. `Aeolus ⇄ ... ⇄ Endymion` is source-verified
@@ -124,20 +135,43 @@ stable regressions.
         the same pattern (Athenian myth has two Cecrops/two Pandions) but is not yet source-verified.
         `Astyoche ⇄ Tros ⇄ Ilus ⇄ Laomedon` not yet traced at all. Re-run `cycle_check --db` after each
         fix to confirm.
-  - [ ] **Backlog from P2 Track I5 (DEV-069):** Q9 ("Trace Zeus's lineage back to Chaos") no longer
-        `serviceError`s (Rung 1 fixed the recursion bug) but still misses `Ouranos`/`Chaos` in its
-        answer — confirmed a genuine data gap, not a query bug: `Sky` (Ouranos) carries only
-        `married_to Earth`, no `parent_of Cronus` edge (a real second-parent fact likely lost a
-        contested-group resolution the current single-canonical-parent-per-child `relationships`
-        design can't avoid); `Chaos` has no edge to `Earth`/`Sky` at all. Needs either a schema/model
-        change (allow >1 canonical parent per child) or restoring the lost `Sky parent_of Cronus`
-        edge as a second row, plus deciding how (or whether) `Chaos → Earth`'s cosmogonic
-        (non-parentage) relationship should be modeled.
+  - [ ] **Backlog from P2 Track I5 (DEV-069) — now four items, two of them decided:** Q9 ("Trace Zeus's
+        lineage back to Chaos") no longer `serviceError`s (Rung 1 fixed the recursion bug) but still
+        misses `Ouranos`/`Chaos` — a genuine data gap, not a query bug. Full write-up:
+        `docs/DATA-GAPS.md` GAP-001; detailed checklist: `TODO-phase2-stage-p3.md` Track J4.
+    - [ ] **J4a — DECIDED (ADR-020, 2026-07-23; discriminator amended 2026-07-26; implementation
+          pending as DEV-088).** Allow >1 canonical `parent_of` edge per child for genuine **joint
+          parentage** only, told apart from a contest in `resolve_canonical_edges()` by a four-part
+          rule (contested-aware · winner-anchored · corroboration-ranked · deny-listed) over
+          co-mention pairs formed **pre-dedup**. The bare co-mention count first accepted is
+          superseded — measured, it gave children up to 6 parents and mis-coupled Io. Offline-only
+          (no DDL, no runtime code) but **not resolver-only**: `canonical_edge.py`,
+          `relationships_gen.py`, `conflict_detector.py`, `drop_accounting.py`/the new A2-contract
+          check, plus tests. Simulated blast radius **472** children regain a co-parent (0 have two
+          today) — **re-measure against the real code**.
+    - [ ] **Root cause 3 (lands with J4a):** the contested collapse discards **1,084** distinct
+          parent values; ADR-020 recovers 472, leaving **612** rivals recorded nowhere. Scope here =
+          the per-row dropped-parent record + a same-source qualifying condition in
+          `detect_conflicts` for `parentage`, which reaches only the **145** in single-source groups.
+          The other **467** already clear the ≥2-source gate and stall at ADR-004 review → that
+          promotion half is P4 work (see below), *not* code. **J4a landing does not make parentage
+          conflicts user-visible** — don't record it as such.
+    - [ ] **J4b (Chaos cosmogony): still open, no decision.** No `parent_of` edge between `Chaos`
+          and `Earth`/`Sky` exists or should — Hesiod has them arise independently. Decide whether an
+          honestly-named non-parentage cosmogonic relation is modeled, or defer to **P5b** with a
+          written waiver (permitted; not a P3 hard gate).
+    - [ ] **Standing blocker, unowned until scheduled:** `Sky`, `Heaven` and `Uranus` are three
+          separate confirmed entities (`Heaven` even carries `Earth` as its own parent) and the
+          restored co-parent attaches to `Sky`, so Q9's literal `Ouranos` keyword stays unreachable.
+          J1-shaped merge + `entity_aliases` row — and **A1 does not flag it** (the names aren't
+          fuzzy-similar), so it needs an explicit item, not a re-run.
 - [ ] `relation_aliases(alias PK, canonical, inverse BOOLEAN)` migration (new Phase-2 V-number);
       wire into `seedgen/relationships_gen.py` (apply map at generation; swap from/to on inverse)
-- [ ] Triage backlogs: 29 fuzzy-dup pairs (merge + alias, DEV-043 pattern); 203 flagged relationships
-- [ ] Fix loop each batch: edit candidate JSON → `seedgen --strict` → `reseed-local.sh` → `audit`
-      clean → eval `--runs 3` → `compare.py` → commit (candidates + migrations + results) or revert
+- [ ] Triage backlogs: 29 (grown to 48 live) fuzzy-dup pairs (merge + alias, DEV-043 pattern); 203
+      flagged relationships
+- [ ] Fix loop each batch: edit candidate JSON **(or, for J4a, the seedgen/extraction code)** →
+      `seedgen --strict` → `reseed-local.sh` → `audit` **clean or explicitly waived with a note** →
+      eval `--runs 3` → `compare.py` → commit (candidates + migrations + results) or revert
 - [ ] Confirm `SchemaIntrospector` reflects the shrunk relation vocabulary
 - [ ] Log DEV entries for any deviation from plan
 
@@ -151,7 +185,17 @@ all top-20-prominence subjects; the gold set is ≈25 questions with per-categor
 overall ≥75% sustained across a 3-run eval. *(The loop continues past this gate.)*
 
 - [ ] Per batch (~25–50 groups): rank the 838 unreviewed groups by subject prominence; prioritize
-      new claim_types beyond parentage/death (marriage, killer/slaying, birthplace, transformation)
+      new claim_types beyond parentage/death (marriage, killer/slaying, birthplace, transformation).
+      **Count is stale after P3** — J4a's same-source detector condition adds ~145 `parentage`
+      candidates on top
+- [ ] **Own GAP-001 Root cause 3's promotion half (option a′) — carried in from P3, currently
+      unscoped.** ~**467** parentage rivals already sit as emitted candidates that clear the
+      ≥2-source gate and stall at the ADR-004 review gate; no detector change touches them. This is
+      the **binding constraint on ADR-007 §6's promise**, and it means "prioritize claim_types
+      *beyond* parentage" above no longer holds unqualified — parentage is the largest unworked
+      dimension. Decide the policy in the first batch: a bounded first tranche (gold-question
+      subjects + the Olympian/Titan spine), a sampling rule, or an explicit P5b deferral with a
+      written waiver. Input artifact = P3's per-row dropped-parent record (all 612 rivals)
 - [ ] Review & promote in `notebooks/02_verify_conflicts.ipynb` (trust_tier 3→1, ADR-004 gate); new
       surface variants → `claim_type_aliases` follow-up migration (V9_2 precedent), never code
 - [ ] Regenerate → reseed → audit → eval → compare → commit-or-revert (the P3 fix loop)
@@ -174,7 +218,9 @@ floors hold across a 3-run eval; the relevant ADR/DEV entries are logged.
       gold questions incl. one `ship_count` conflict
 - [ ] **P5b** — myths & participants: grow beyond 5 myths (Trojan cycle — "died at Troy" has no
       structured backing, DEV-054 Q11); MIXED over-constraint prompt fix (SQL encodes only structured
-      predicates), verified by Q11
+      predicates), verified by Q11. **Also lands here if deferred from P3** (GAP-001): **J4b**, the
+      `Chaos → Earth` cosmogonic (non-parentage) relation — recommended deferral target; and any
+      un-worked residue of Root cause 3's promotion half (a′)
 - [ ] **P5c** — geography/epithets: places as attributes or a small table; epithets → `entity_aliases`
 - [ ] Schema-prompt co-evolution each sub-stage: schema comments + `SchemaIntrospector` vocabulary
       (frequency-ordered, DEV-041); a new gold question verifies the model uses each new table
@@ -195,6 +241,9 @@ floors hold across a 3-run eval; the relevant ADR/DEV entries are logged.
   A workaround (prompt rule, query-time bound, retry, migration) ships only on *evidence* that the
   cause-level fix left the question failing — never pre-emptively stacked on an unreproduced defect.
 - **Never act on a single-run delta** — the 3-run stable/flaky classification is the contract.
+- **Always state the layer when quoting an A3 cycle count** (ADR-020): post-resolver `parent_of`,
+  pre-collapse candidates, `audit --candidates`, and the live seeded DB measure different graphs and
+  are not comparable to each other.
 - **Keyword edits are logged eval-bug fixes** (live-verified, DEV-048/050), never silent tuning.
 - **Embedding preservation:** never `down -v`; `reseed-local.sh` is the only sanctioned reseed path.
 - **Deviation protocol (CLAUDE.md):** log DEV entries; annotate with banners; ADR status flips

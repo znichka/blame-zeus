@@ -5,7 +5,7 @@
 | **Date**     | 2026-07-10  |
 | **Status**   | Accepted    |
 | **Amends**   | ADR-004 (seed-data extraction), ADR-005 (schema-boundary routing) |
-| **Amended by** | ADR-015 (§5 — presentation only; data model unchanged) |
+| **Amended by** | ADR-015 (§5 — presentation only; data model unchanged); ADR-020 (§6 — co-parent-couple carve-out to the single-canonical-edge rule) |
 
 ---
 
@@ -225,6 +225,29 @@ comes back thin or empty, so the conflict block naturally *becomes* the visible 
 `CONFLICT` route required to trigger it.
 
 ### 6. Contested relationships: one canonical edge in the graph; the contradiction in `variant_claims`
+
+> **⚠️ Amended by ADR-020 (2026-07-23; discriminator amended 2026-07-26) — co-parent-couple
+> carve-out.** The rule below applies to genuine *contests* (sources disagree about who the one
+> parent is). It does **not** apply to genuine *joint parentage* — one source naming two co-parents
+> (a mother **and** a father) of the same child. Collapsing those to one edge dropped a real parent
+> for **472 children** (measured post-entity-filter; the "~665" figure recorded in ADR-020 as accepted
+> was a raw-candidate count, and its first correction to "442" used co-mention semantics that were
+> never written down — both are superseded). ADR-020 narrows this section: a contested `parent_of`
+> group keeps **both** edges when a co-mention pair — two parents sharing one
+> `(source_id, passage_ref)` — is *unflagged* by the extractor's `is_contested`, *contains the
+> canonical winner*, and survives a corroboration-ranked tie-break and a hand-maintained not-a-couple
+> deny-list. Everything else — cross-source disagreements, flagged alternatives, and pairs not
+> anchored to the winner — still collapses per this section. Every child ends with at most two
+> parents. See `docs/adr/adr-020-joint-parentage-multi-edge.md`.
+>
+> **⚠️ Known non-compliance with this section's promise** (`docs/DATA-GAPS.md` GAP-001 Root cause 3):
+> for `parentage`, "the contradiction lives in `variant_claims`" is currently *not* true. 1,084
+> distinct parent values are dropped by the collapse; after ADR-020 **612** remain dropped, and V12
+> holds parentage rows for exactly two subjects (Aphrodite, Io — the ADR-004 floor). Two distinct
+> blockers, not one: **145** of the 612 sit in single-source groups that §1's ≥2-distinct-sources rule
+> cannot see, while **467** are in groups that already clear that gate — candidates *are* emitted for
+> them and they stall at ADR-004 review. DEV-088 closes the detection half; the promotion half has no
+> owner yet, so this non-compliance will **survive** the ADR-020 landing in reduced form.
 
 Relationships are a **typed, traversable graph** (`relationships(from_id, relation, to_id,
 source_id)`) supporting enumeration and recursive lineage (`WITH RECURSIVE`, `CONCEPT.md §13`).

@@ -1,0 +1,347 @@
+# Data Gaps
+
+Documented, deliberately-unfixed gaps in the relational data model or extracted corpus data —
+things that are **known and understood**, not silent failures. Each entry records the symptom, the
+root cause(s), why it wasn't fixed in the stage that found it, and the decision still needed.
+Referenced from `docs/TODO-phase2-stage-p3.md` (Stage P3, Track J4) as the landing place for any
+gap deferred to Phase 5b.
+
+---
+
+## GAP-001 — Q9 "Trace Zeus's lineage back to Chaos" cannot reach `Ouranos`/`Chaos`
+
+**Status:** Open — decided but not landed. Nothing in this gap has shipped: root cause 1 is decided
+(ADR-020) with implementation pending, root cause 2 is undecided, root cause 3 is decided in part and
+unscoped in part. Q9 still fails on content today and is expected to keep failing after J4a lands
+(see *J4c*). Re-read the per-cause status below before quoting this entry as progress.
+- **Root cause 1 (J4a — joint parentage): DECIDED 2026-07-23, discriminator AMENDED 2026-07-26,
+  implementation pending — see ADR-020 (`docs/adr/adr-020-joint-parentage-multi-edge.md`) and
+  DEV-088.** Fix: a four-part discriminator in `resolve_canonical_edges()` — contested-aware,
+  winner-anchored, corroboration-ranked, deny-listed (see the decision block under Root cause 1).
+  The originally-decided bare co-mention count did not survive measurement. Not yet landed through
+  the Track I gate.
+- **Root cause 2 (J4b — Chaos cosmogony): still Open — needs a decision** (Stage P3 Track J4,
+  DEV-069). Not a P3 hard-gate (DEV-069's own note flags it as possibly exceeding P3's
+  relational-fix scope); permitted to ship P3 with an explicit waiver.
+- **Root cause 3 (dropped rival parents are recorded nowhere): Open, discovered 2026-07-26.**
+  Broader than Q9 — it is the second half of the same data loss. **Only partly folded into J4a:** the
+  dropped-parent record and the same-source detector condition land with J4a and reach **145** of the
+  **612** surviving rivals; the other **467** are already-detected candidates blocked at ADR-004
+  review, and that promotion half (option a′) has **no owner and no scope** — it will outlive the J4a
+  landing.
+- **Standing blocker, independent of all three:** `Sky`, `Heaven` and `Uranus` exist as three
+  separate confirmed entities (`Heaven` even carries `Earth` as its own parent). Even a fully-fixed
+  J4a attaches Cronus's restored co-parent to `Sky`, so Q9's literal `Ouranos` keyword still cannot
+  surface until that duplicate is merged and an `entity_aliases` row added. Track J1-shaped work.
+
+### Symptom
+
+Gold question **Q9** (`evaluation/gold-questions.json`, DATA category):
+
+```json
+{
+  "id": 9,
+  "category": "DATA",
+  "question": "Trace Zeus's lineage back to Chaos.",
+  "expected_route": "SQL",
+  "required_keywords": ["Cronus", "Ouranos", "Chaos"],
+  "sql_must_contain": ["WITH RECURSIVE"]
+}
+```
+
+`TextToSqlAgent` generates a correctly-bounded `WITH RECURSIVE` query (DEV-069's Rung 1 fix
+resolved the earlier `serviceError`/timeout — see `docs/DEVIATIONS.md` #DEV-069). The query itself
+is no longer broken. But the traversal dead-ends at `Cronus`: it can never reach `Ouranos` or
+`Chaos`, because those edges don't exist in the live `relationships` graph. Route ✓, author ✓,
+content ✗ — 2/3 eval dimensions pass, the third fails on missing data, not a code defect.
+
+There are **two separate, unrelated root causes** behind Q9 specifically, both confirmed by direct
+inspection (not assumption) — this is why the fix splits into two independent decisions (J4a, J4b)
+rather than one. A **third root cause**, broader than Q9, was found while measuring the first: the
+rival parents discarded by every contested collapse are recorded nowhere. It is documented below
+because it is the other half of the same data loss, and it lands with J4a.
+
+### Root cause 1 (J4a) — single-canonical-parent design silently drops genuine joint parentage
+
+`ingestion/extraction/output/relationships_candidates_cleaned.json` (the candidate layer, before
+seeding) genuinely contains **both**:
+
+```
+Sky    parent_of Cronus   [apollodorus-bibliotheca, 1.1.1-1.1.7]
+Earth  parent_of Cronus   [apollodorus-bibliotheca, 1.1.1-1.1.7]   -- same passage
+Earth  parent_of Cronus   [hesiod-theogony,         104-146]
+Heaven parent_of Cronus   [hesiod-theogony,         104-146]       -- same couple, `Heaven` duplicate
+```
+
+(Four rows, not two — Hesiod states the same couple using `Heaven` rather than `Sky`. That second
+pair loses the rule-3 tie-break on spine rank, which is the only reason the restored co-parent is
+`Sky`. It is also the `Sky`/`Heaven`/`Uranus` duplicate showing up inside this gap's own headline
+case.)
+
+Apollodorus's own sentence (`[1.1.1]`) describes Sky (Uranus) and Earth (Gaia) as a married pair
+who *jointly* produced the Titans, Cyclopes, and Hundred-Handers — this is one source stating one
+fact with two true parents, not two sources disagreeing about who the parent is.
+
+`ingestion/seedgen/canonical_edge.py`'s `resolve_canonical_edges()` collapses every "contested"
+group (≥2 distinct values for the same subject) down to a single canonical edge, so
+`WITH RECURSIVE` never has to branch at query time (ADR-007 §6). Its grouping key can't distinguish
+"multiple sources disagree" from "one source names two co-parents" — both look identical
+structurally (≥2 distinct `from_name` values for the same `to_name`). It always picks exactly one
+winner via `SPINE_PRIORITY = ("apollodorus-bibliotheca", "hesiod-theogony", "homer-iliad")`, then
+alphabetically among same-source rows.
+
+Directly verified by running the resolver against the current candidate data:
+
+```python
+>>> resolve_canonical_edges(rows, alias_map)
+Cronus parent_of winners: [('Earth', 'apollodorus-bibliotheca'), ('Earth', 'hesiod-theogony')]
+```
+
+`Earth` wins (alphabetically first of the two apollodorus-sourced rows); `Sky`'s edge is dropped
+from every seeded/live graph. **This is not unique to Cronus** — the module's own docstring already
+names the identical pattern for `Gyes` ("has parent_of candidates from Sky, Earth... and Cronos"),
+and by construction it affects **every child of Sky+Earth** — the entire Titan/Cyclops/Hecatoncheir
+generation loses one of its two true parents in the queryable graph, not just this one case.
+
+**Decision (made 2026-07-23 — ADR-020; discriminator amended 2026-07-26; implementation pending as
+DEV-088):** option (a). Allow >1 canonical `parent_of` edge per child **only** for genuine joint
+parentage, told apart from a contest in `resolve_canonical_edges()` by a four-part rule, all four
+parts required:
+
+A **co-mention pair** is two distinct parents of the same child whose candidate rows share one
+`(source_id, passage_ref)`; where a passage co-names 3+ parents, every unordered pair among them is a
+candidate pair (the superseded rule's "3+ ⇒ alternatives" clause does not carry over — rules 1–4 do
+that job, and this is what rescues `Hellen`). Pairs are formed pre-dedup. Then:
+
+1. **Contested-aware** — rows flagged `is_contested = true` by the extractor are excluded from couple
+   candidacy (that flag is the source naming mutually-exclusive alternatives). Already present on
+   every candidate row; previously unused by the resolver. Evaluated **per row, not per parent** — a
+   parent flagged in one passage can still couple from an unflagged row elsewhere.
+2. **Winner-anchored** — the canonical winner is picked exactly as today by the unmodified
+   `_pick_winner` (first spine source that backs any value, alphabetically within it; no spine source
+   ⇒ most distinct corroborating sources, then alphabetical); a couple is kept only if the co-mention
+   pair *contains* that winner. Caps every child at 2 parents.
+3. **Corroboration-ranked** — among qualifying pairs, keep the one attested by the most distinct
+   sources, then spine rank, then alphabetical.
+4. **Deny-listed** — a hand-maintained not-a-couple list (child, pair, written reason) suppresses the
+   known false-couple residue. Seeded with **Io**.
+
+**Rules 1 × 2 interact, deliberately.** `_pick_winner` does not consult `is_contested`, so the winner
+may be a parent named only in flagged rows; rule 1 then removes it from every pair and rule 2 makes a
+couple impossible, collapsing the child to that lone winner *even when other unflagged parents were
+co-named*. That — not an absence of unflagged candidates — is what produces `Helen → Leda only`.
+
+- **No schema/DDL change** — `relationships` (V4) already permits multiple `parent_of` rows per
+  child; single-canonical was enforced only in the resolver.
+- **Pairs must be formed pre-dedup.** `relationships_gen._filter_and_dedup` keys on
+  `(from, relation, to, source_id)` and keeps only the **first** row per key, discarding later
+  passages of that source with their `passage_ref`. A co-mention survives only if the passage naming
+  both parents is the first one retained for *each* of them; where it isn't, the pair vanishes —
+  **34 children** (Agamemnon, Ajax, Antiope, Auge, …). Do not widen the dedup key — that shifts V11's
+  row count and A2 drop accounting for unrelated reasons.
+- Verified outcomes: Cronus → Earth+Sky · Zeus → Cronus+Rhea · Aphrodite → Dione+Zeus (foam-birth
+  stays a `variant_claims` conflict) · Achilles → Peleus+Thetis · Heracles → Alcmena+Zeus ·
+  Hellen → Deucalion+Pyrrha · Endymion → Aethlius+Calyce · Helen → Leda only · Hephaestus → Hera only ·
+  Io → one father (via deny-list).
+
+**Why the originally-decided bare co-mention count was replaced (measured, not argued).** Simulating
+"exactly 2 co-named ⇒ couple, 3+ ⇒ collapse" against the live candidate data:
+- gives children up to **6** parents (`antiphus`: Hecuba, Heracles, Laothoe, Myrmidon, Pisidice,
+  Priam) — it keeps every 2-pair from every passage, unanchored to the canonical resolution;
+- injects false parents (`Athena parent_of Zeus`, Iliad 5.864 — an extraction error);
+- introduces **6 new `parent_of` cycles** (vs 1 under the adopted rule);
+- still drops a true parent on couple-plus-rival groups: Hellen (Deucalion, Pyrrha + flagged rival
+  Zeus) and Endymion (Aethlius, Calyce + flagged rival Zeus) both count 3 and collapse to one;
+- and **mis-couples Io — ADR-020's own worked example.** `Piren` is not in the confirmed entity set,
+  so `_filter_and_dedup` reduces Io to *exactly two* rival fathers (Iasus, Inachus) before the
+  resolver ever counts them. Io is one of the three ADR-004 floor conflicts.
+
+**Other rejected alternatives:** `married_to` link — semantically wrong, most Greek co-parents were
+never married; sexed labels `father_of`/`mother_of` — absent in the data (9 rows vs ~4,475
+`parent_of`); "same source + same passage" alone — fails on Io; a new `entities.sex` column —
+deferred (needs up-front gender curation; the adopted rule needs no new data). Full rationale in
+ADR-020.
+
+**Blast radius (re-measured 2026-07-26, second pass).** The live graph holds **2,492 canonical edges
+over 1,145 children with a parent and 0 children with two** — the loss is total, not partial.
+**472 children** regain a co-parent under the adopted rule (487 under the naive count), measured by
+replaying the real pipeline (relation aliases → `_filter_and_dedup` → `resolve_canonical_edges`). Two
+earlier figures are superseded: "~665" was counted over the *raw* candidates before the entity filter
+`seedgen` applies; **"442" came from a simulation whose co-mention semantics were never written down**
+— re-simulating under the explicit definition above gives 472, reproduces every baseline number here
+and all ten worked outcomes, and no other reading of the rule returns 442 (460 / 465 / 467 / 480 were
+tried). All of these are simulations: **the implementer re-measures against the real
+`canonical_edge.py` change and records what the code produces.**
+
+**Landing note:** A3 `cycle_check` will report one new cycle —
+`Salmoneus → Tyro → Neleus → Deimachus → Enarete → Salmoneus`, closed by the restored and
+mythologically *correct* `Enarete parent_of Salmoneus` edge running into a pre-existing reversed hop.
+Restoring co-parents exposes latent direction errors; budget a reversed-edge fix pass at the
+candidate-JSON layer. The gate is a **clean-or-explicitly-waived A3**, not a clean one.
+
+Measured at the **post-resolver `parent_of`** layer (what V11 seeds from today's candidates): baseline
+**1** cycle (`Eurymachus ↔ Polybus`, unrelated), going to **2** under the adopted rule. Three other A3
+numbers are on record and none is comparable to these: **62** cycles at the pre-collapse candidate
+layer, **96** from DEV-087's `python -m audit --candidates`, and "**0** live cycles" in the P3 exit
+criteria — the last referring to the currently seeded DB, which predates the J1/J2/J3g candidate
+edits. Always state the layer when quoting an A3 count.
+
+Option (b) (defer to P5b with a waiver) was **not** taken — the loss was too broad and the fix is
+offline-only (seedgen + extraction; no DDL, no runtime code), bounded, and safe.
+
+### Root cause 2 (J4b) — Chaos is not Earth's parent in the source material
+
+Independent of J4a: even a fully-restored `Sky parent_of Cronus` edge still can't reach `Chaos`,
+because **no `parent_of` edge between `Chaos` and `Earth`/`Sky` should exist** — this isn't a
+missing extraction, it's what Hesiod's *Theogony* actually says.
+
+Direct corpus check, `ingestion/corpus/hesiod_theogony_evelynwhite1914.txt`, the cosmogony passage
+(`[116]`–`[121]`):
+
+> "Verily at the first Chaos came to be, but next wide-bosomed Earth... From Chaos came forth
+> Erebus and black Night... And Earth first bare starry Heaven, equal to herself, to cover her on
+> every side..."
+
+Chaos and Earth arise **independently, in sequence** — Chaos does not beget Earth; they are
+separate primordial entities that both "come to be" at (or near) the beginning. Chaos's actual
+offspring are Erebus and Night, and those edges are already correctly present:
+
+```
+Chaos parent_of Erebus  [hesiod-theogony, 104-146]
+Chaos parent_of Night   [hesiod-theogony, 104-146]
+```
+
+Confirmed via the resolver that, correctly, **no edge connects `Chaos` to `Earth`/`Sky` at all** —
+resolving the candidates produces only the two edges above for `Chaos`, nothing else. Inventing a
+`Chaos parent_of Earth` (or similar) edge to make Q9's traversal succeed would misrepresent the
+source — exactly the kind of "patch data to pass one query" fix this project's conventions forbid
+(`CLAUDE.md`'s review-gated `variant_claims` principle extends the same spirit here: don't assert a
+claim the corpus doesn't make).
+
+**Decision needed:**
+- **(a)** Model an honestly-named, non-`parent_of` relation for "arose before/alongside" (e.g.
+  `precedes_in_cosmogony`) so a graph traversal *can* connect the primordial generation to Chaos
+  without asserting a false parent-child claim.
+- **(b)** Accept that Q9's literal "trace lineage back to Chaos" premise doesn't hold as a strict
+  genealogical chain in this mythology, and that a full answer belongs to RAG/narrative synthesis
+  (which can correctly explain Chaos and Gaia as co-primordial) rather than the relational/SQL
+  model. Defer to P5b, waived, rather than force a same-shape edge that doesn't reflect the myth.
+
+### Root cause 3 — every *contested* collapse also loses its rivals, with no record anywhere
+
+Discovered 2026-07-26 while measuring Root cause 1. Independent of Q9, and broader than it: this is
+the second half of the same data loss, and it is what stops the project from holding "a full family
+tree, including contested claims."
+
+Measured over the entity-filtered candidates:
+
+| Quantity | Count |
+|---|---|
+| Distinct `parent_of` values dropped by the collapse today | **1,084** |
+| Recovered by ADR-020's co-parent carve-out | 472 |
+| Still collapsed, i.e. genuine rival parents | **612** |
+| …of those, in groups citing **one** source — detector blind | **145** |
+| …of those, in groups citing **≥2** sources — detector already fires | **467** |
+| Children with ≥2 candidate parents | 641 |
+| …all rows from a single source | 338 |
+| …citing ≥2 sources (detector gate passes) | 303 |
+| …where *some one source* names ≥2 parents (the "608") | 608 — of which **270 clear the gate** |
+| Subjects with any `parentage` row in V12 | **2** (Aphrodite, Io) |
+
+ADR-007 §6's promise is that a collapsed contest is not lost, because "the contradiction lives in
+`variant_claims`." For parentage that promise is currently not kept — but **for two different reasons
+that split the residue unevenly**, and conflating them was the original error in this entry:
+
+1. **Detection cannot see same-source contests — 145 of the 612.**
+   `extraction/conflict_detector.py::detect_conflicts` emits a candidate wherever a
+   `(subject, claim_type)` group has **≥2 distinct `source_id`s** (`conflict_detector.py:82`). Where
+   every row in a child's group comes from one source (338 children), the gate never fires and the
+   rivals are structurally invisible. The module docstring already names this blind spot and defers it
+   to "must be hand-added (TODO-stage4 B6/B7)".
+
+   ⚠️ Note the gate counts distinct sources **across the whole group** — not within the disagreeing
+   pair, and it does not require ≥2 distinct *values* at all. So the frequently-quoted "608 of 641 are
+   contested within a single source" does **not** imply 608 undetected children: that figure counts
+   children where *some one source* names ≥2 parents, and **270 of those 608 also cite a second
+   source**, which clears the gate. `parent_of` maps into this group via
+   `claim_type_aliases('parent_of' → 'parentage')` (V8_2), so these are all one `parentage` group per
+   child.
+2. **Detected candidates are never promoted — 467 of the 612.** For 303 children the gate already
+   passes and candidates *are* emitted today; they stop at the ADR-004 human review gate, which no one
+   has run over parentage beyond the hand-curated floor. This is a **review-throughput** problem and
+   **no detector change touches it.**
+3. **Nothing surfaces the dropped values for review — all 612.** The resolver discards them silently;
+   audit check A2 (`drop_accounting.py`) reports contested-collapse as an aggregate count, not per
+   dropped parent value, so a reviewer has no per-row list to promote from. This is the one gap common
+   to both buckets, and the highest-leverage of the three.
+
+Consequently the only parentage conflicts a user can ever see are the two hand-curated floor subjects.
+A concrete instance: `Hellen` has `Zeus` named as a rival father by Apollodorus alongside the
+Deucalion + Pyrrha couple, and that rival is dropped at seed time and recorded nowhere.
+
+> **Not** an instance: an earlier draft of this entry used "who was Perseus's father?" as the example.
+> That is wrong and points at a *fourth*, separate gap — `relationships_candidates_cleaned.json`
+> contains **zero** `parent_of` rows into `Perseus`. The only Perseus rows are `Nestor` and
+> `Anaxibia` → *"Perseus son of Nestor"*, a different figure. Nothing was dropped for the hero
+> Perseus; his parentage was never extracted. Extraction-coverage gaps of that shape are not covered
+> by GAP-001 and have no tracking entry yet.
+
+**Decision needed** — the record-every-dropped-parent half is folded into J4a's landing scope (it
+reads the same resolver pass); the promotion half is **not** code work and is scoped separately:
+- **(a)** Emit a generated per-row record of every dropped parent (child, dropped value, source,
+  passage, plus whether the subject already has a `variant_claims` parentage row) as a new
+  A2r-contract audit check, **and** add a same-source qualifying condition to `detect_conflicts` for
+  `parentage` so those rivals become `trust_tier=3` candidates. The ADR-004 human promotion gate to
+  V12 stays exactly as-is — no unreviewed row reaches runtime. *(Recommended; chosen 2026-07-26.)*
+
+  **Scope truth-in-advertising:** this closes the **145** detector-blind rivals and gives a reviewable
+  artifact for all **612**. It does **not** by itself put a single new row in V12 — every candidate
+  still waits on human promotion, and for the **467** rivals already detected today the detector
+  change is a no-op. Do not record J4a's landing as "conflict surfacing now works for parentage."
+- **(a′)** *(still open, not part of J4a)* Decide how the ~612-row review artifact actually gets
+  worked: a bounded first tranche (e.g. the gold-question subjects plus the Olympian/Titan spine), a
+  sampling policy, or an explicit P5b deferral. Without this, (a) produces a backlog and no
+  user-visible change. **This is the binding constraint on the promise in ADR-007 §6, not the
+  detector.**
+- **(b)** Record the loss here and defer to P5b. Rejected: it leaves the product's defining feature
+  (conflict surfacing) structurally unable to fire on the single most common conflict dimension.
+
+### J4c — contingent follow-up
+
+If J4a and/or J4b get a real fix: run through Track I (reseed + 3-run eval) and record Q9's live
+output. **Q9 will still fail on content after J4a alone** — `Ouranos` needs the `Sky`/`Heaven`/
+`Uranus` merge (J1-shaped) and `Chaos` needs J4b, which is deferred. Both keywords are *correct*; the
+data is missing. So the DEV-048/DEV-050 "logged eval-bug fix" precedent does **not** apply here —
+it licenses editing a keyword that is wrong, not one the corpus cannot yet satisfy. Record the
+remainder in the run notes and leave `gold-questions.json` alone; revisit only if the merge and J4b
+both land and a keyword is then still unreachable. If deferred instead: log the waiver in the
+relevant `results/` run notes and keep this entry current (update **Status** above) — this file *is*
+that waiver record for P5.
+
+### Recommendation
+
+- **J4a + Root cause 3: fix in P3 proper** (decided 2026-07-23, amended 2026-07-26). Both are genuine,
+  recurring data-loss bugs, not one-offs, and both are offline seedgen/extraction work: bounded, no
+  DDL, no runtime code — but **not "resolver-only"**, as an earlier draft said. The landing touches
+  `canonical_edge.py` (the four-part rule), `relationships_gen.py` (pre-dedup pair plumbing),
+  `conflict_detector.py` (same-source parentage condition) and `drop_accounting.py`/A2r (the dropped-
+  parent record). They land together through one Track I gate.
+- **Root cause 3's promotion half (a′): unscoped.** The detector change reaches 145 of 612 rivals; the
+  other 467 are already-emitted candidates waiting on human review. J4a landing clean does **not**
+  make parentage conflicts visible to users, and the run notes must say so.
+- **J4b: defer to P5b.** Correctly modeling cosmogony-vs-genealogy semantics is a bigger design
+  question than this stage's scope, and Q9 can likely be answered adequately via RAG/narrative
+  coverage even without a `parent_of`-shaped edge to `Chaos`.
+- **`Sky`/`Heaven`/`Uranus` merge: J1-shaped entity work**, not part of J4a. Q9's `Ouranos` keyword
+  stays failing until it lands — record that as the known remainder in the landing run notes rather
+  than editing the keyword list.
+
+**References:** `ingestion/seedgen/canonical_edge.py` (`resolve_canonical_edges`, `SPINE_PRIORITY`,
+`_pick_winner`); `ingestion/seedgen/relationships_gen.py` (`_filter_and_dedup`, the pre-dedup
+constraint); `ingestion/extraction/conflict_detector.py` (`detect_conflicts`, the ≥2-distinct-sources
+gate); `ingestion/audit/drop_accounting.py` (A2, aggregate-only today);
+`ingestion/extraction/output/relationships_candidates_cleaned.json` (`Sky`/`Earth` → `Cronus`,
+`Chaos` → `Erebus`/`Night` rows, and the `is_contested` field the fix keys on);
+`ingestion/corpus/hesiod_theogony_evelynwhite1914.txt` lines ~16–30 (`[104]`–`[163]`);
+`evaluation/gold-questions.json` (Q9); `docs/DEVIATIONS.md` #DEV-069 (original discovery), #DEV-088
+(this fix); `docs/adr/adr-020-joint-parentage-multi-edge.md`; `docs/TODO-phase2-stage-p3.md` Track J4.
