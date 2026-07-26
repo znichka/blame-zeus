@@ -151,12 +151,13 @@ Track J  backlog triage (data edits, fan-out then serialize at the gate):
   └─ J1  29 fuzzy-dup pairs      \  edit candidate JSON in parallel;
   └─ J2  203 flagged rels         }  each merges/reseeds/re-audits through
   └─ J3  DEV-068 3 conflation cycles (entity split)   Track I's SERIAL gate.
-  └─ J4  DEV-069 Q9 lineage gap — NOT JSON triage, this one is CODE (ADR-020 / DEV-088):
-         J4a  canonical_edge.py (4-part rule) + relationships_gen.py (pre-dedup pairs)
+  └─ J4  DEV-069 Q9 lineage gap — NOT JSON triage, this one is CODE (ADR-020 / DEV-090, landed):
+         J4a  DONE — canonical_edge.py (4-part rule) + relationships_gen.py (pre-dedup pairs)
               + conflict_detector.py (same-source parentage) + new dropped-parent check
-              + test rewrites   ──── needs Track A's check contract; touches Track C's module
-         J4b  Chaos cosmogony — decision only (may defer→P5b, waived)
-  └─ J5  Sky/Heaven/Uranus merge (J1-shaped, but A1 does NOT flag it) ── candidate JSON + alias
+              + test rewrites, landed through Track I with zero stable regressions
+         J4b  DONE — Chaos cosmogony decided: deferred to P5b, waived (DEV-091)
+  └─ J5  Sky/Heaven/Uranus merge (J1-shaped, but A1 does NOT flag it) ── candidate JSON + alias — the
+         only Track J item still open
 ```
 
 **Rule of thumb:** A is the only hard blocker for the audit side (B/C/D/E register into it; A3 already
@@ -627,7 +628,7 @@ that can land anytime.
       (matches candidates-mode), A3 1 finding (`Eurymachus⇄Polybus`, pre-existing and unrelated to
       any J1/J2/J3f/J3g/J3h edit — waived per DEV-089 with the fix deferred to J4a-8).
 
-### J4 — DEV-069: Q9 Zeus→Chaos lineage gap (J4a decided for P3 as ADR-020/DEV-088; only J4b may defer)
+### J4 — DEV-069: Q9 Zeus→Chaos lineage gap (both J4a and J4b done: J4a landed 2026-07-26/DEV-090; J4b decided 2026-07-26/DEV-091, deferred to P5b)
 > Full technical write-up (root causes, live-verified evidence, decision options): `docs/DATA-GAPS.md` GAP-001.
 - [x] **J4a** [DEVIATED - see DEVIATIONS.md #DEV-090] — **DECIDED 2026-07-23; discriminator AMENDED
       2026-07-26 (ADR-020 / `docs/DATA-GAPS.md` GAP-001), IMPLEMENTED AND LANDED 2026-07-26 as
@@ -737,12 +738,17 @@ that can land anytime.
         naming the exact predicted cycle) but **1** live post-reseed (J4a-8 fixed it first). Recorded
         in `docs/DEVIATIONS.md` #DEV-090, not #DEV-088 (DEV-088 remains the pre-implementation
         amendment record).
-- [ ] **J4b** — decide whether `Chaos → Earth`'s **cosmogonic (non-parentage)** relation is modeled at
-      all in P3, or deferred. **GAP-001 and `TODO2.md` both name P5b as the recommended deferral
-      target** (the earlier "P5c/geography" reading here was inconsistent with them — P5c is
-      geography/epithets, this is cosmogony semantics). Record the decision either way (don't
-      silently drop it); a deferral needs a written waiver in the run notes **and** a GAP-001 status
-      update.
+- [x] **J4b** [DEVIATED - see DEVIATIONS.md #DEV-091] — decided whether `Chaos → Earth`'s
+      **cosmogonic (non-parentage)** relation is modeled at all in P3. **Deferred to P5b, waived.**
+      Re-verified the corpus directly (`hesiod_theogony_evelynwhite1914.txt [104]-[121]`) before
+      deciding, not just against GAP-001's prior quote of it: Chaos and Earth arise independently
+      ("came to be... next... came to be"), not as parent and child — no `parent_of` edge should
+      exist here, so option (a) ("model a new relation") is the only live path, and it's genuinely
+      new schema/prompt-modeling work (deciding how many other Theogony entities get it, a
+      `SchemaIntrospector`/`TextToSqlAgent` few-shot update, a two-relation-type `WITH RECURSIVE`
+      union) — scoping that down to make only Q9 pass would be the "patch data to pass one query"
+      anti-pattern this project's conventions forbid. GAP-001 status + Recommendation + the decision
+      block under Root cause 2 all updated to record this.
 - [x] **J4c** [DEVIATED - see DEVIATIONS.md #DEV-090] — ran through Track I and recorded Q9's live
       output (`evaluation/results/2026-07-26T15-03-32Z__b26e69b__p3-j4a-joint-parentage-fixed/`).
       **Q9 failed on content, exactly as predicted — not treated as a success condition.** Route ✓,
@@ -812,9 +818,8 @@ that can land anytime.
       and fixed in the same pass — DEV-090), and the run notes stating plainly that **parentage
       conflicts are still not user-visible** (the 467 already-emitted candidates stall at the unowned
       ADR-004 promotion gate — GAP-001 option a′, carried to P4). **Not yet committed to git.**
-- [ ] **J4b** decided: `Chaos → Earth` cosmogonic relation modeled in P3 **or** explicitly deferred to
-      P5b with a written waiver + a GAP-001 status update. **Still open** — unaffected by the J4a
-      landing.
+- [x] **J4b** decided [DEVIATED - see DEVIATIONS.md #DEV-091]: deferred to P5b, with a written waiver
+      + GAP-001 status update (both in `docs/DATA-GAPS.md` Root cause 2).
 - [ ] **J5** `Sky`/`Heaven`/`Uranus` merged + `entity_aliases` row, **or** explicitly deferred with a
       note (A1 will never raise it, so an un-noted deferral loses it). **Still open** — unaffected by
       the J4a landing; this is what Q9's `Ouranos` keyword is still waiting on.

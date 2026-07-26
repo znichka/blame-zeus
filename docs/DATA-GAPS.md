@@ -10,11 +10,12 @@ gap deferred to Phase 5b.
 
 ## GAP-001 — Q9 "Trace Zeus's lineage back to Chaos" cannot reach `Ouranos`/`Chaos`
 
-**Status:** Root cause 1 landed 2026-07-26 (DEV-090); root cause 2 still undecided; root cause 3
-partly landed (the detection half, with J4a) and partly unscoped (the promotion half, still no
-owner). Q9 still fails on content — this landing was never expected to fix it (see *J4c*): both
-required keywords (`Ouranos`, `Chaos`) remain unreachable for reasons outside J4a's scope. Re-read
-the per-cause status below before quoting this entry as progress.
+**Status:** Root cause 1 landed 2026-07-26 (DEV-090); root cause 2 decided 2026-07-26 — deferred to
+P5b, waived (DEV-091); root cause 3 partly landed (the detection half, with J4a) and partly unscoped
+(the promotion half, still no owner). Q9 still fails on content and, per root cause 2's decision, will
+keep failing on the `Chaos` keyword through the end of P3 by design, not by accident — both required
+keywords (`Ouranos`, `Chaos`) remain unreachable for reasons outside J4a's scope. Re-read the
+per-cause status below before quoting this entry as progress.
 - **Root cause 1 (J4a — joint parentage): DECIDED 2026-07-23, discriminator AMENDED 2026-07-26,
   IMPLEMENTED AND LANDED 2026-07-26 — see ADR-020 (`docs/adr/adr-020-joint-parentage-multi-edge.md`),
   DEV-088 (the amendment) and DEV-090 (the landing).** The four-part discriminator in
@@ -27,9 +28,12 @@ the per-cause status below before quoting this entry as progress.
   same-day regression (an LLM per-request token-limit failure on a real gold question, caused by
   legitimate branching finally exposing a pre-existing uncapped-row gap in two handlers) was found
   and fixed in the same pass — see DEV-090 for the full account. **Not yet committed to git.**
-- **Root cause 2 (J4b — Chaos cosmogony): still Open — needs a decision** (Stage P3 Track J4,
-  DEV-069). Not a P3 hard-gate (DEV-069's own note flags it as possibly exceeding P3's
-  relational-fix scope); permitted to ship P3 with an explicit waiver.
+- **Root cause 2 (J4b — Chaos cosmogony): DECIDED 2026-07-26 — deferred to P5b, waived (DEV-091).**
+  No new relation is modeled in P3; a `Chaos → Earth`/`Sky` cosmogonic edge would misrepresent the
+  source (Hesiod states they arise independently, not as parent and child) and the alternative —
+  an honestly-named non-`parent_of` relation — is scoped as new schema/prompt-modeling work, which
+  belongs after P3 per ADR-017 §Decision 4, not as a one-question patch. See the decision block
+  under Root cause 2 for the full reasoning.
 - **Root cause 3 (dropped rival parents are recorded nowhere): detection half landed with J4a
   (DEV-090); promotion half still open.** Broader than Q9 — it is the second half of the same data
   loss. The per-row dropped-parent record (new audit check **A6**, `ingestion/audit/dropped_parents.py`)
@@ -201,6 +205,10 @@ offline-only (seedgen + extraction; no DDL, no runtime code), bounded, and safe.
 
 ### Root cause 2 (J4b) — Chaos is not Earth's parent in the source material
 
+**Decided 2026-07-26 (DEV-091): option (b) — defer to P5b, waived.** No cosmogonic relation is
+modeled in P3. See *Decision* below for the two options and the reasoning; re-verified directly
+against the corpus text before deciding, not just against this entry's prior quote of it.
+
 Independent of J4a: even a fully-restored `Sky parent_of Cronus` edge still can't reach `Chaos`,
 because **no `parent_of` edge between `Chaos` and `Earth`/`Sky` should exist** — this isn't a
 missing extraction, it's what Hesiod's *Theogony* actually says.
@@ -228,14 +236,29 @@ source — exactly the kind of "patch data to pass one query" fix this project's
 (`CLAUDE.md`'s review-gated `variant_claims` principle extends the same spirit here: don't assert a
 claim the corpus doesn't make).
 
-**Decision needed:**
+**Decision:**
 - **(a)** Model an honestly-named, non-`parent_of` relation for "arose before/alongside" (e.g.
   `precedes_in_cosmogony`) so a graph traversal *can* connect the primordial generation to Chaos
   without asserting a false parent-child claim.
-- **(b)** Accept that Q9's literal "trace lineage back to Chaos" premise doesn't hold as a strict
-  genealogical chain in this mythology, and that a full answer belongs to RAG/narrative synthesis
-  (which can correctly explain Chaos and Gaia as co-primordial) rather than the relational/SQL
-  model. Defer to P5b, waived, rather than force a same-shape edge that doesn't reflect the myth.
+- **(b)** *(chosen)* Accept that Q9's literal "trace lineage back to Chaos" premise doesn't hold as a
+  strict genealogical chain in this mythology, and that a full answer belongs to RAG/narrative
+  synthesis (which can correctly explain Chaos and Gaia as co-primordial) rather than the
+  relational/SQL model. Defer to P5b, waived, rather than force a same-shape edge that doesn't
+  reflect the myth.
+
+**Reasoning (DEV-091):** (a) is more than a data fix — it is new schema/prompt-modeling work, which
+ADR-017 §Decision 4 places after P3 (data-quality/relational-fix) and before P5 (new data types),
+exactly where this belongs. Concretely, (a) would need: deciding how many other Theogony entities
+get the same relation (Tartarus, Eros, Pontus, and Night's children all "come to be" in the same
+`[104]-[121]` passage without `parent_of` edges — this is not a one-off, Chaos is just the one Q9
+happens to ask about), a `SchemaIntrospector`/`TextToSqlAgent` few-shot update teaching the model
+when "lineage" should traverse a cosmogony edge and when it shouldn't, and a `WITH RECURSIVE` UNION
+across two differently-typed relations for one query. Doing that scoped narrowly enough to make only
+Q9 pass, without the broader design work, is exactly the "patch data to pass one query" anti-pattern
+this project's conventions forbid — the same principle CLAUDE.md states for `variant_claims` extends
+here. (b) is not a concession: Hesiod's own text already gives RAG everything it needs to answer this
+correctly in prose (Chaos and Earth as co-primordial, arising in sequence, not parent and child) —
+the relational model doesn't need to fake a shape the mythology doesn't have.
 
 ### Root cause 3 — every *contested* collapse also loses its rivals, with no record anywhere
 
@@ -345,9 +368,9 @@ and a keyword is then still unreachable.
   change reaches 145 of 612 rivals; the other 467 are already-emitted candidates waiting on human
   review. **J4a's landing does not make parentage conflicts visible to users** — this was the
   predicted outcome, not a surprise, and it holds exactly as GAP-001 said it would.
-- **J4b: defer to P5b.** Correctly modeling cosmogony-vs-genealogy semantics is a bigger design
-  question than this stage's scope, and Q9 can likely be answered adequately via RAG/narrative
-  coverage even without a `parent_of`-shaped edge to `Chaos`.
+- **J4b: DECIDED 2026-07-26 (DEV-091) — deferred to P5b.** Correctly modeling cosmogony-vs-genealogy
+  semantics is a bigger design question than this stage's scope, and Q9 can likely be answered
+  adequately via RAG/narrative coverage even without a `parent_of`-shaped edge to `Chaos`.
 - **`Sky`/`Heaven`/`Uranus` merge: J1-shaped entity work (tracked as Track J5)**, not part of J4a and
   still not done. Q9's `Ouranos` keyword confirmed still failing post-landing — recorded in the
   landing run notes (`evaluation/results/2026-07-26T15-03-32Z__b26e69b__p3-j4a-joint-parentage-fixed/`)
