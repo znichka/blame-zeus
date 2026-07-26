@@ -3,7 +3,7 @@
 | Field        | Value       |
 |--------------|-------------|
 | **Date**     | 2026-07-23 (amended 2026-07-26) |
-| **Status**   | Accepted (amended 2026-07-26; **implemented and landed 2026-07-26 — see DEV-090** / `docs/DATA-GAPS.md` GAP-001. DEV-088 recorded the pre-implementation amendment; DEV-090 is the actual landing, including a Deimachus entity split done as J4a-8 and a token-budget regression found and fixed in the same pass. Not yet committed to git.) |
+| **Status**   | Accepted (amended 2026-07-26; **implemented and landed 2026-07-26 — see DEV-090** / `docs/DATA-GAPS.md` GAP-001. DEV-088 recorded the pre-implementation amendment; DEV-090 is the actual landing, including a Deimachus entity split done as J4a-8 and a token-budget regression found and fixed in the same pass. Committed as `201eac8` (plus initial code in `b26e69b`). Landed further by DEV-092 (`35fb379`), which merged `Sky`/`Heaven`/`Uranus` into canonical `Ouranos` and fixed a second row-cap defect — Q9 now stable-passes fully.) |
 | **Amends**   | ADR-007 §6 (single-canonical-edge rule — narrows it with a co-parent carve-out) |
 | **Amended by** | —         |
 | **Supersedes** | —         |

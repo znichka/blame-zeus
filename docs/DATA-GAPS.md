@@ -29,7 +29,7 @@ progress — Q9 passing doesn't mean every root cause here is closed.
   split — `Deimachus` conflated two different people — before it ever reached the live DB). A
   same-day regression (an LLM per-request token-limit failure on a real gold question, caused by
   legitimate branching finally exposing a pre-existing uncapped-row gap in two handlers) was found
-  and fixed in the same pass — see DEV-090 for the full account. **Not yet committed to git.**
+  and fixed in the same pass — see DEV-090 for the full account. **Committed** (`b26e69b`, `201eac8`).
 - **Root cause 2 (J4b — Chaos cosmogony): DECIDED 2026-07-26 — deferred to P5b, waived (DEV-091).**
   No new relation is modeled in P3; a `Chaos → Earth`/`Sky` cosmogonic edge would misrepresent the
   source (Hesiod states they arise independently, not as parent and child) and the alternative —

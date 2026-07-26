@@ -414,8 +414,9 @@ hardcoded in code/JSON). Build the code against a **stub map** immediately; fill
 ## Track I — Fix-loop integration gate (SERIAL — needs A–F merged + live stack)
 
 > ⚠️ [DEVIATED - see DEVIATIONS.md #DEV-076] — first pass (F/relation_aliases landing) complete:
-> I1–I6 done; I7 (commit) deliberately not run by the assistant — pending an explicit decision,
-> per this project's standing "never commit without being asked" convention. Along the way: fixed
+> I1–I6 done; I7 (commit) initially withheld pending an explicit decision, per this project's
+> standing "never commit without being asked" convention — **later committed** as `64fe772` +
+> `962c521`. Along the way: fixed
 > a Flyway out-of-order bug in `scripts/reseed-local.sh` (it predated V17 and only knew about
 > V10–V16), and a staleness bug in A2 (`drop_accounting.py` had hardcoded "no relation_alias
 > normalization", now stale since V17 is genuinely live). **A live cycle count really did go 3→4**
@@ -430,7 +431,7 @@ hardcoded in code/JSON). Build the code against a **stub map** immediately; fill
 > `relation_aliases` already live), `python -m audit --db` now reports **A3: 0 `parent_of`
 > cycles** — the graph is fully clean for the first time. Eval: zero stable regressions, identical
 > profile to the first pass (none of the 16 gold questions touch the entities this batch fixed).
-> I7 (commit) again deliberately not run — pending an explicit decision.
+> I7 (commit) initially withheld again — **later committed** as `43d951f`.
 
 The standing per-batch loop. **No candidate edit reaches a commit except through this cycle.** Run it
 once for the F/relation_aliases landing, then once per J backlog batch. **G and H are not preconditions
@@ -464,8 +465,11 @@ that can land anytime.
       <p3-batch>`. Require **DATA/MIXED ≥ baseline and zero stable PASS→FAIL** (`§8`
       flakiness-vs-regression: never act on a single-run delta). A regression → triage
       **data-gap / pipeline-bug / eval-bug**, fix or **revert the batch**.
-- [ ] **I7** — green → **commit candidates + migrations + results dir together** (one atomic batch, the
+- [x] **I7** — green → **commit candidates + migrations + results dir together** (one atomic batch, the
       `§8`/critical-files convention). Red and un-fixable in-batch → revert, log why, re-slice.
+      This F/relation_aliases pass's own commit predates this session (folded into the git history
+      already in place when Track J work began); every subsequent Track I pass through DEV-092 has
+      also since been committed (`dc22459`, `b26e69b`, `201eac8`, `5eed421`, `35fb379`).
 
 ---
 
@@ -687,8 +691,8 @@ that can land anytime.
       LLM-facing prompts (only the `DebugCapture` display copy was ever row-capped). ADR-020's
       legitimate branching was the first thing to push a real query's row count high enough to
       matter. Both handlers now cap at `DebugCapture.SQL_ROWS_CAP` before building their prompts, not
-      only before the debug-capture copy — `:core-api:test` 178/178 green. Full account: DEVIATIONS.md
-      #DEV-090. **Not yet committed to git.**
+      only before the debug-capture copy — `:core-api:test` 178/178 green (later 180/180 after
+      DEV-092 added 2 more). Full account: DEVIATIONS.md #DEV-090. **Committed** (`b26e69b`, `201eac8`).
 
   **J4a work items** (ADR-020 *Traceability* names each of these; none is optional) — **all landed
   2026-07-26, DEV-090**:
@@ -818,8 +822,9 @@ that can land anytime.
       flagged Sky/Heaven/Uranus either, per J5a); **A2** not re-run in `--db` mode this pass; **A6**
       candidates-only, 684 real findings (612 distinct dropped-parent pairs, unchanged by the merge)
       — by design (GAP-001 Root cause 3's promotion half is unowned, P4 work), not something this box
-      expects to reach zero. **Track J itself is now fully closed for P3** (J4a/J4b/J5 all landed or
-      decided) — box stays open only on A1's and A6's permanent-by-design residue and I7 (commit).
+      expects to reach zero. **Track J itself is now fully closed for P3** (J4a/J4b/J5 all landed and
+      committed) — box stays open permanently by design on A1's and A6's residue alone; I7 (commit)
+      is no longer a blocker, everything through DEV-092 is committed.
 - [x] 29 (grown to 48 live) fuzzy-dup pairs triaged (merge+alias or reject-with-note) — J1, DEV-084.
       [x] 203 flagged relationships triaged (promote-with-fix or reject-recorded) — J2, DEV-085.
 - [x] DEV-068's 3 conflation cycles resolved (entity split) or waived; **A3 `parent_of` graph clean**.
@@ -835,7 +840,7 @@ that can land anytime.
       simulation), zero stable eval regressions (a same-day token-budget regression on Q12 was found
       and fixed in the same pass — DEV-090), and the run notes stating plainly that **parentage
       conflicts are still not user-visible** (the 467 already-emitted candidates stall at the unowned
-      ADR-004 promotion gate — GAP-001 option a′, carried to P4). **Not yet committed to git.**
+      ADR-004 promotion gate — GAP-001 option a′, carried to P4). **Committed** (`b26e69b`, `201eac8`).
 - [x] **J4b** decided [DEVIATED - see DEVIATIONS.md #DEV-091]: deferred to P5b, with a written waiver
       + GAP-001 status update (both in `docs/DATA-GAPS.md` Root cause 2).
 - [x] **J5** [DEVIATED - see DEVIATIONS.md #DEV-092] `Sky`/`Heaven`/`Uranus` merged into canonical
@@ -858,13 +863,14 @@ that can land anytime.
       all zero stable regressions; DEV-090/DEV-092 additionally proved the loop catches *real*
       regressions, not just data edits — two separate application-code row-cap defects, both found
       via the eval and fixed before landing). **Overall eval reached 12/16 = 75%, the P1 target, for
-      the first time**, in the DEV-092 landing pass. Stays unchecked: "audit clean" here means *all
-      six* checks clean-or-waived together in one pass, and **A1/A6 both carry real,
-      by-design-unresolved findings** (see above, permanent long-tail for A1, unowned P4 promotion
-      backlog for A6); **no Track I pass has run I7 yet** — candidates/edits are committed
-      per-backlog as they're triaged, but the regenerated V10-V12 migrations + results dirs + waiver
-      file + core-api source changes from each Track I pass remain uncommitted pending an explicit
-      decision.
+      the first time**, in the DEV-092 landing pass. **The commit half of this line is now done** —
+      every Track I pass through DEV-092 is committed (`dc22459`, `b26e69b`, `201eac8`, `5eed421`,
+      `35fb379`), migrations/results dirs/waiver file/core-api changes included. Stays unchecked
+      purely because "audit clean" here means *all six* checks clean-or-waived **together**, and
+      **A1/A6 both carry real, permanent-by-design findings** (long-tail fuzzy-dups for A1, unowned
+      P4 promotion backlog for A6) that will never literally reach zero — this box cannot be ticked
+      as worded without either a policy change (accept a standing category-level waiver for A1/A6)
+      or working through A6's backlog in P4.
 - [x] DEV-070..DEV-076+ logged in `DEVIATIONS.md`; `TODO2.md` + `IMPLEMENTATION_PLAN_PHASE2.md` P3
       annotated per protocol; ADR-019 follow-up DEV-number reconciled. Logged through **DEV-092** as
       of this check.

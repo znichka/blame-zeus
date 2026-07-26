@@ -113,10 +113,11 @@ fixes and **zero stable regressions**.
 rows are triaged; `relation_aliases` is live and applied by seedgen; **ADR-020's joint-parentage
 carve-out has landed through a Track I pass (DEV-088), with the co-parent count re-measured against
 the real `canonical_edge.py` change** and A3 clean-or-explicitly-waived; eval (3-run) shows
-DATA/MIXED ≥ baseline and zero stable regressions. **Landed 2026-07-26** (DEV-090 the discriminator,
-DEV-091 the Chaos decision, DEV-092 the Sky/Heaven/Uranus merge) — Track J is fully closed for P3;
-remaining open items are A1's permanent long-tail residue, A6's by-design P4 promotion backlog, and
-committing the work (I7). Not yet committed to git.
+DATA/MIXED ≥ baseline and zero stable regressions. **Landed and committed 2026-07-26** (DEV-090 the
+discriminator, DEV-091 the Chaos decision, DEV-092 the Sky/Heaven/Uranus merge — `b26e69b`,
+`201eac8`, `5eed421`, `35fb379`) — Track J is fully closed for P3. Overall eval reached 12/16 = 75%,
+the P1 target, for the first time. Remaining open items are permanent-by-design: A1's fuzzy-duplicate
+long-tail and A6's unowned P4 promotion backlog — neither is expected to ever reach literal zero.
 
 - [ ] `ingestion/audit/` package (`python -m audit`, read-only): A1 duplicate entities
       (rapidfuzz + transliteration heuristics), A2 candidate-drop accounting, **A3
