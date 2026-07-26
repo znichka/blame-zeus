@@ -19,7 +19,6 @@
   "Ulysses": "Odysseus",
   "Herakles": "Heracles",
   "Kronos": "Cronus",
-  "Ouranos": "Uranus",
   "Phoebus": "Apollo",
   "Aurora": "Eos",
   "Aias": "Ajax",
@@ -33,5 +32,8 @@
   "Cebrenus": "Cebren",
   "Perimela": "Perimele",
   "Lampetia": "Lampetie",
-  "Coeranos": "Coeranus (Lycian warrior)"
+  "Coeranos": "Coeranus (Lycian warrior)",
+  "Uranus": "Ouranos",
+  "Sky": "Ouranos",
+  "Heaven": "Ouranos"
 }

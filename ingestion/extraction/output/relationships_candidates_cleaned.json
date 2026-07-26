@@ -1,6 +1,6 @@
 [
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "married_to",
     "to_name": "Earth",
     "is_contested": false,
@@ -8,7 +8,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Briareus",
     "is_contested": false,
@@ -16,7 +16,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Gyes",
     "is_contested": false,
@@ -24,7 +24,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Cottus",
     "is_contested": false,
@@ -48,7 +48,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Arges",
     "is_contested": false,
@@ -56,7 +56,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Steropes",
     "is_contested": false,
@@ -64,7 +64,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Brontes",
     "is_contested": false,
@@ -96,7 +96,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Oceanus",
     "is_contested": false,
@@ -104,7 +104,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Coeus",
     "is_contested": false,
@@ -112,7 +112,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Hyperion",
     "is_contested": false,
@@ -120,7 +120,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Crius",
     "is_contested": false,
@@ -128,7 +128,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Iapetus",
     "is_contested": false,
@@ -136,7 +136,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Cronus",
     "is_contested": false,
@@ -192,7 +192,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Tethys",
     "is_contested": false,
@@ -200,7 +200,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Rhea",
     "is_contested": false,
@@ -208,7 +208,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Themis",
     "is_contested": false,
@@ -216,7 +216,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Mnemosyne",
     "is_contested": false,
@@ -224,7 +224,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Phoebe",
     "is_contested": false,
@@ -232,7 +232,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Dione",
     "is_contested": false,
@@ -240,7 +240,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Thia",
     "is_contested": false,
@@ -304,7 +304,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Alecto",
     "is_contested": false,
@@ -312,7 +312,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Tisiphone",
     "is_contested": false,
@@ -320,7 +320,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Megaera",
     "is_contested": false,
@@ -2304,7 +2304,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sky",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Giants",
     "is_contested": false,
@@ -20832,15 +20832,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Uranus",
-    "relation": "parent_of",
-    "to_name": "Pontus",
-    "is_contested": false,
-    "passage_ref": "Hesiod, Theogony",
-    "source_id": "hesiod-theogony"
-  },
-  {
-    "from_name": "Heaven",
+    "from_name": "Ouranos",
     "relation": "married_to",
     "to_name": "Earth",
     "is_contested": false,
@@ -21010,7 +21002,7 @@
   {
     "from_name": "Earth",
     "relation": "parent_of",
-    "to_name": "Heaven",
+    "to_name": "Ouranos",
     "is_contested": false,
     "passage_ref": "104-146",
     "source_id": "hesiod-theogony"
@@ -21082,7 +21074,7 @@
   {
     "from_name": "Earth",
     "relation": "married_to",
-    "to_name": "Heaven",
+    "to_name": "Ouranos",
     "is_contested": false,
     "passage_ref": "104-146",
     "source_id": "hesiod-theogony"
@@ -21096,7 +21088,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Heaven",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Oceanus",
     "is_contested": false,
@@ -21112,7 +21104,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Heaven",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Coeus",
     "is_contested": false,
@@ -21128,7 +21120,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Heaven",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Crius",
     "is_contested": false,
@@ -21144,7 +21136,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Heaven",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Hyperion",
     "is_contested": false,
@@ -21160,7 +21152,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Heaven",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Iapetus",
     "is_contested": false,
@@ -21176,7 +21168,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Heaven",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Thia",
     "is_contested": false,
@@ -21192,7 +21184,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Heaven",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Rhea",
     "is_contested": false,
@@ -21208,7 +21200,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Heaven",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Themis",
     "is_contested": false,
@@ -21224,7 +21216,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Heaven",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Mnemosyne",
     "is_contested": false,
@@ -21240,7 +21232,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Heaven",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Phoebe",
     "is_contested": false,
@@ -21256,7 +21248,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Heaven",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Tethys",
     "is_contested": false,
@@ -21272,7 +21264,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Heaven",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Cronus",
     "is_contested": false,
@@ -21288,7 +21280,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Heaven",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Brontes",
     "is_contested": false,
@@ -21304,7 +21296,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Heaven",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Steropes",
     "is_contested": false,
@@ -21320,7 +21312,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Heaven",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Arges",
     "is_contested": false,
@@ -21338,7 +21330,7 @@
   {
     "from_name": "Cottus",
     "relation": "child_of",
-    "to_name": "Heaven",
+    "to_name": "Ouranos",
     "is_contested": false,
     "passage_ref": "147-175",
     "source_id": "hesiod-theogony"
@@ -21354,7 +21346,7 @@
   {
     "from_name": "Briareos",
     "relation": "child_of",
-    "to_name": "Heaven",
+    "to_name": "Ouranos",
     "is_contested": false,
     "passage_ref": "147-175",
     "source_id": "hesiod-theogony"
@@ -21370,7 +21362,7 @@
   {
     "from_name": "Gyes",
     "relation": "child_of",
-    "to_name": "Heaven",
+    "to_name": "Ouranos",
     "is_contested": false,
     "passage_ref": "147-175",
     "source_id": "hesiod-theogony"
@@ -21386,7 +21378,7 @@
   {
     "from_name": "Cronus",
     "relation": "child_of",
-    "to_name": "Heaven",
+    "to_name": "Ouranos",
     "is_contested": false,
     "passage_ref": "147-175",
     "source_id": "hesiod-theogony"
@@ -21394,7 +21386,7 @@
   {
     "from_name": "Earth",
     "relation": "married_to",
-    "to_name": "Heaven",
+    "to_name": "Ouranos",
     "is_contested": false,
     "passage_ref": "147-175",
     "source_id": "hesiod-theogony"
@@ -21402,7 +21394,7 @@
   {
     "from_name": "Cronus",
     "relation": "child_of",
-    "to_name": "Heaven",
+    "to_name": "Ouranos",
     "is_contested": false,
     "passage_ref": "176-232",
     "source_id": "hesiod-theogony"
@@ -21442,13 +21434,13 @@
   {
     "from_name": "Aphrodite",
     "relation": "born_from",
-    "to_name": "Heaven",
+    "to_name": "Ouranos",
     "is_contested": false,
     "passage_ref": "176-232",
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Heaven",
+    "from_name": "Ouranos",
     "relation": "married_to",
     "to_name": "Earth",
     "is_contested": false,
@@ -21698,7 +21690,7 @@
   {
     "from_name": "Cronus",
     "relation": "killed_by",
-    "to_name": "Heaven",
+    "to_name": "Ouranos",
     "is_contested": false,
     "passage_ref": "176-232",
     "source_id": "hesiod-theogony"
@@ -24416,7 +24408,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Heaven",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Rhea",
     "is_contested": false,
@@ -26608,7 +26600,7 @@
     "source_id": "hesiod-homeric-hymns"
   },
   {
-    "from_name": "Heaven",
+    "from_name": "Ouranos",
     "relation": "married_to",
     "to_name": "Earth",
     "is_contested": false,
@@ -26688,7 +26680,7 @@
     "source_id": "hesiod-homeric-hymns"
   },
   {
-    "from_name": "Heaven",
+    "from_name": "Ouranos",
     "relation": "parent_of",
     "to_name": "Hyperion",
     "is_contested": false,

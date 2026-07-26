@@ -162,6 +162,29 @@ class MixedQueryHandlerTest {
     }
 
     @Test
+    fun `deduplicates by name before capping so a late distinct entity is not crowded out by earlier repeats -- DEV-092`() {
+        // WITH RECURSIVE lineage rows carry one row PER (ancestor, corroborating citation) --
+        // e.g. Cronus alone can appear 5 times, once per source. A flat row-count cap can
+        // therefore exhaust its budget on redundant repeats of one name before ever reaching a
+        // later-sorted, still-uncited distinct entity. Live-verified on the real Q9 query after
+        // the Sky/Heaven/Uranus->Ouranos merge (Track J5): `ORDER BY name ASC` put >25 rows of
+        // Zeus/Cronus/Rhea/Earth ahead of Ouranos, silently dropping it from the prompt.
+        val repeatedRows = (1..(DebugCapture.SQL_ROWS_CAP + 5)).map { mapOf("name" to "Earth") }
+        val rows = repeatedRows + mapOf("name" to "Ouranos")
+        every { schemaIntrospector.get() } returns "schema"
+        every { textToSqlAgent.generateSql(any(), any()) } returns "SELECT name FROM entities"
+        every { validator.validate(any()) } returns Unit
+        every { jdbcTemplate.queryForList(any<String>()) } returns rows
+        every { ragAgent.answer(any()) } returns RagResponse(answer = "answer", citations = emptyList())
+
+        handler.handle("question")
+
+        verify {
+            ragAgent.answer(match { augmented -> augmented.contains("Ouranos") })
+        }
+    }
+
+    @Test
     fun `a SqlSafetyValidator rejection propagates and RagAgent is never called`() {
         every { schemaIntrospector.get() } returns "schema"
         every { textToSqlAgent.generateSql(any(), any()) } returns "DROP TABLE entities"

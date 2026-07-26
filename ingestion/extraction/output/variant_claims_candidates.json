@@ -2,7 +2,7 @@
   {
     "subject_name": "Gyes",
     "claim_type": "parentage",
-    "claim_value": "child of Sky",
+    "claim_value": "child of Ouranos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.1.1-1.1.7",
     "trust_tier": 3
@@ -26,7 +26,7 @@
   {
     "subject_name": "Gyes",
     "claim_type": "parentage",
-    "claim_value": "Son of Earth and Heaven",
+    "claim_value": "Son of Earth and Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "147-175",
     "trust_tier": 3
@@ -34,7 +34,7 @@
   {
     "subject_name": "Gyes",
     "claim_type": "parentage",
-    "claim_value": "child of Cronos and Earth/Heaven (bound by his father)",
+    "claim_value": "child of Cronos and Earth/Ouranos (bound by his father)",
     "source_id": "hesiod-theogony",
     "passage_ref": "613-663",
     "trust_tier": 3
@@ -42,7 +42,7 @@
   {
     "subject_name": "Cottus",
     "claim_type": "parentage",
-    "claim_value": "child of Sky",
+    "claim_value": "child of Ouranos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.1.1-1.1.7",
     "trust_tier": 3
@@ -66,7 +66,7 @@
   {
     "subject_name": "Cottus",
     "claim_type": "parentage",
-    "claim_value": "Son of Earth and Heaven",
+    "claim_value": "Son of Earth and Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "147-175",
     "trust_tier": 3
@@ -74,7 +74,7 @@
   {
     "subject_name": "Cottus",
     "claim_type": "parentage",
-    "claim_value": "child of Cronos and Earth/Heaven (bound by his father)",
+    "claim_value": "child of Cronos and Earth/Ouranos (bound by his father)",
     "source_id": "hesiod-theogony",
     "passage_ref": "613-663",
     "trust_tier": 3
@@ -82,7 +82,7 @@
   {
     "subject_name": "Arges",
     "claim_type": "parentage",
-    "claim_value": "child of Sky",
+    "claim_value": "child of Ouranos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.1.1-1.1.7",
     "trust_tier": 3
@@ -138,7 +138,7 @@
   {
     "subject_name": "Arges",
     "claim_type": "parentage",
-    "claim_value": "child of Heaven",
+    "claim_value": "child of Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "104-146",
     "trust_tier": 3
@@ -242,7 +242,7 @@
   {
     "subject_name": "Steropes",
     "claim_type": "parentage",
-    "claim_value": "child of Sky",
+    "claim_value": "child of Ouranos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.1.1-1.1.7",
     "trust_tier": 3
@@ -330,7 +330,7 @@
   {
     "subject_name": "Steropes",
     "claim_type": "parentage",
-    "claim_value": "child of Heaven",
+    "claim_value": "child of Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "104-146",
     "trust_tier": 3
@@ -338,7 +338,7 @@
   {
     "subject_name": "Brontes",
     "claim_type": "parentage",
-    "claim_value": "child of Sky",
+    "claim_value": "child of Ouranos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.1.1-1.1.7",
     "trust_tier": 3
@@ -362,7 +362,7 @@
   {
     "subject_name": "Brontes",
     "claim_type": "parentage",
-    "claim_value": "child of Heaven",
+    "claim_value": "child of Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "104-146",
     "trust_tier": 3
@@ -370,7 +370,7 @@
   {
     "subject_name": "Oceanus",
     "claim_type": "parentage",
-    "claim_value": "child of Sky",
+    "claim_value": "child of Ouranos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.1.1-1.1.7",
     "trust_tier": 3
@@ -394,7 +394,7 @@
   {
     "subject_name": "Coeus",
     "claim_type": "parentage",
-    "claim_value": "child of Sky",
+    "claim_value": "child of Ouranos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.1.1-1.1.7",
     "trust_tier": 3
@@ -418,7 +418,7 @@
   {
     "subject_name": "Coeus",
     "claim_type": "parentage",
-    "claim_value": "child of Heaven",
+    "claim_value": "child of Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "104-146",
     "trust_tier": 3
@@ -426,7 +426,7 @@
   {
     "subject_name": "Hyperion",
     "claim_type": "parentage",
-    "claim_value": "child of Sky",
+    "claim_value": "child of Ouranos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.1.1-1.1.7",
     "trust_tier": 3
@@ -458,7 +458,7 @@
   {
     "subject_name": "Hyperion",
     "claim_type": "parentage",
-    "claim_value": "child of Heaven",
+    "claim_value": "child of Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "104-146",
     "trust_tier": 3
@@ -474,7 +474,7 @@
   {
     "subject_name": "Hyperion",
     "claim_type": "parentage",
-    "claim_value": "child of Heaven",
+    "claim_value": "child of Ouranos",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "31.1-32.1",
     "trust_tier": 3
@@ -482,7 +482,7 @@
   {
     "subject_name": "Hyperion",
     "claim_type": "parentage",
-    "claim_value": "Son of Earth and Heaven",
+    "claim_value": "Son of Earth and Ouranos",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "31.1-32.1",
     "trust_tier": 3
@@ -490,7 +490,7 @@
   {
     "subject_name": "Crius",
     "claim_type": "parentage",
-    "claim_value": "child of Sky",
+    "claim_value": "child of Ouranos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.1.1-1.1.7",
     "trust_tier": 3
@@ -514,7 +514,7 @@
   {
     "subject_name": "Crius",
     "claim_type": "parentage",
-    "claim_value": "child of Heaven",
+    "claim_value": "child of Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "104-146",
     "trust_tier": 3
@@ -522,7 +522,7 @@
   {
     "subject_name": "Iapetus",
     "claim_type": "parentage",
-    "claim_value": "child of Sky",
+    "claim_value": "child of Ouranos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.1.1-1.1.7",
     "trust_tier": 3
@@ -546,7 +546,7 @@
   {
     "subject_name": "Iapetus",
     "claim_type": "parentage",
-    "claim_value": "child of Heaven",
+    "claim_value": "child of Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "104-146",
     "trust_tier": 3
@@ -562,7 +562,7 @@
   {
     "subject_name": "Cronus",
     "claim_type": "parentage",
-    "claim_value": "child of Sky",
+    "claim_value": "child of Ouranos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.1.1-1.1.7",
     "trust_tier": 3
@@ -594,7 +594,7 @@
   {
     "subject_name": "Tethys",
     "claim_type": "parentage",
-    "claim_value": "child of Sky",
+    "claim_value": "child of Ouranos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.1.1-1.1.7",
     "trust_tier": 3
@@ -618,7 +618,7 @@
   {
     "subject_name": "Tethys",
     "claim_type": "parentage",
-    "claim_value": "child of Heaven",
+    "claim_value": "child of Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "104-146",
     "trust_tier": 3
@@ -626,7 +626,7 @@
   {
     "subject_name": "Rhea",
     "claim_type": "parentage",
-    "claim_value": "child of Sky",
+    "claim_value": "child of Ouranos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.1.1-1.1.7",
     "trust_tier": 3
@@ -650,7 +650,7 @@
   {
     "subject_name": "Rhea",
     "claim_type": "parentage",
-    "claim_value": "child of Heaven",
+    "claim_value": "child of Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "104-146",
     "trust_tier": 3
@@ -666,7 +666,7 @@
   {
     "subject_name": "Rhea",
     "claim_type": "parentage",
-    "claim_value": "child of Heaven",
+    "claim_value": "child of Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "453-506",
     "trust_tier": 3
@@ -690,7 +690,7 @@
   {
     "subject_name": "Rhea",
     "claim_type": "parentage",
-    "claim_value": "daughter of Earth and Heaven",
+    "claim_value": "daughter of Earth and Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "453-506",
     "trust_tier": 3
@@ -698,7 +698,7 @@
   {
     "subject_name": "Themis",
     "claim_type": "parentage",
-    "claim_value": "child of Sky",
+    "claim_value": "child of Ouranos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.1.1-1.1.7",
     "trust_tier": 3
@@ -722,7 +722,7 @@
   {
     "subject_name": "Themis",
     "claim_type": "parentage",
-    "claim_value": "child of Heaven",
+    "claim_value": "child of Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "104-146",
     "trust_tier": 3
@@ -730,7 +730,7 @@
   {
     "subject_name": "Mnemosyne",
     "claim_type": "parentage",
-    "claim_value": "child of Sky",
+    "claim_value": "child of Ouranos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.1.1-1.1.7",
     "trust_tier": 3
@@ -754,7 +754,7 @@
   {
     "subject_name": "Mnemosyne",
     "claim_type": "parentage",
-    "claim_value": "child of Heaven",
+    "claim_value": "child of Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "104-146",
     "trust_tier": 3
@@ -770,7 +770,7 @@
   {
     "subject_name": "Phoebe",
     "claim_type": "parentage",
-    "claim_value": "child of Sky",
+    "claim_value": "child of Ouranos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.1.1-1.1.7",
     "trust_tier": 3
@@ -802,7 +802,7 @@
   {
     "subject_name": "Phoebe",
     "claim_type": "parentage",
-    "claim_value": "child of Heaven",
+    "claim_value": "child of Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "104-146",
     "trust_tier": 3
@@ -810,7 +810,7 @@
   {
     "subject_name": "Dione",
     "claim_type": "parentage",
-    "claim_value": "child of Sky",
+    "claim_value": "child of Ouranos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.1.1-1.1.7",
     "trust_tier": 3
@@ -850,7 +850,7 @@
   {
     "subject_name": "Thia",
     "claim_type": "parentage",
-    "claim_value": "child of Sky",
+    "claim_value": "child of Ouranos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.1.1-1.1.7",
     "trust_tier": 3
@@ -874,7 +874,7 @@
   {
     "subject_name": "Thia",
     "claim_type": "parentage",
-    "claim_value": "child of Heaven",
+    "claim_value": "child of Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "104-146",
     "trust_tier": 3
@@ -890,7 +890,7 @@
   {
     "subject_name": "Cronus",
     "claim_type": "death",
-    "claim_value": "killed by Heaven",
+    "claim_value": "killed by Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "176-232",
     "trust_tier": 3
@@ -898,7 +898,7 @@
   {
     "subject_name": "Megaera",
     "claim_type": "parentage",
-    "claim_value": "child of Sky",
+    "claim_value": "child of Ouranos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.1.1-1.1.7",
     "trust_tier": 3
@@ -9306,7 +9306,7 @@
   {
     "subject_name": "Giants",
     "claim_type": "parentage",
-    "claim_value": "child of Sky",
+    "claim_value": "child of Ouranos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.5.3-1.6.2",
     "trust_tier": 3
@@ -49320,7 +49320,7 @@
     "trust_tier": 3
   },
   {
-    "subject_name": "Heaven",
+    "subject_name": "Ouranos",
     "claim_type": "marriage",
     "claim_value": "married to Earth",
     "source_id": "hesiod-theogony",
@@ -49328,7 +49328,7 @@
     "trust_tier": 3
   },
   {
-    "subject_name": "Heaven",
+    "subject_name": "Ouranos",
     "claim_type": "marriage",
     "claim_value": "married to Earth",
     "source_id": "hesiod-theogony",
@@ -49336,7 +49336,7 @@
     "trust_tier": 3
   },
   {
-    "subject_name": "Heaven",
+    "subject_name": "Ouranos",
     "claim_type": "marriage",
     "claim_value": "married to Earth",
     "source_id": "hesiod-homeric-hymns",
@@ -49370,7 +49370,7 @@
   {
     "subject_name": "Earth",
     "claim_type": "marriage",
-    "claim_value": "married to Heaven",
+    "claim_value": "married to Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "104-146",
     "trust_tier": 3
@@ -49378,7 +49378,7 @@
   {
     "subject_name": "Earth",
     "claim_type": "marriage",
-    "claim_value": "married to Heaven",
+    "claim_value": "married to Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "147-175",
     "trust_tier": 3
@@ -49386,7 +49386,7 @@
   {
     "subject_name": "Earth",
     "claim_type": "marriage",
-    "claim_value": "Wife of starry Heaven",
+    "claim_value": "Wife of starry Ouranos",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "28.1-30.1",
     "trust_tier": 3
@@ -49402,7 +49402,7 @@
   {
     "subject_name": "Cronus",
     "claim_type": "parentage",
-    "claim_value": "child of Heaven",
+    "claim_value": "child of Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "104-146",
     "trust_tier": 3
@@ -49538,7 +49538,7 @@
   {
     "subject_name": "Cronus",
     "claim_type": "parentage",
-    "claim_value": "Son of Earth and Heaven",
+    "claim_value": "Son of Earth and Ouranos",
     "source_id": "hesiod-theogony",
     "passage_ref": "147-175",
     "trust_tier": 3

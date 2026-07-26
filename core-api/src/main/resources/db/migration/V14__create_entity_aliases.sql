@@ -39,7 +39,6 @@ FROM (VALUES
     ('Herakles', 'Heracles'),
     ('Kronos',   'Cronus'),
     ('Cronos',   'Cronus'),
-    ('Ouranos',  'Uranus'),
     ('Phoebus',  'Apollo'),
     ('Aias',     'Ajax'),
     ('Athene',   'Athena'),
@@ -53,7 +52,15 @@ FROM (VALUES
     ('Perimela', 'Perimele'),
     ('Lampetia', 'Lampetie'),
     -- J-lead follow-up (Coeranos/Coeranus untangling, DEV-087)
-    ('Coeranos', 'Coeranus (Lycian warrior)')
+    ('Coeranos', 'Coeranus (Lycian warrior)'),
+    -- Track J5 (Sky/Heaven/Uranus duplicate-entity merge, DEV-092): canonical is now
+    -- 'Ouranos' (the Greek transliteration, matching the Heracles/Oceanus/Athena
+    -- Greek-canonical convention above) -- flips the prior ('Ouranos', 'Uranus') row,
+    -- which pointed the other way, and adds the two translators' English renderings
+    -- (Frazer's Apollodorus uses 'Sky', Evelyn-White's Hesiod uses 'Heaven') as aliases.
+    ('Uranus',   'Ouranos'),
+    ('Sky',      'Ouranos'),
+    ('Heaven',   'Ouranos')
 ) AS v(alias, entity_name)
 JOIN entities e ON e.name = v.entity_name
 ON CONFLICT (alias) DO NOTHING;

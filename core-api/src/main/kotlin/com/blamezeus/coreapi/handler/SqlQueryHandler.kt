@@ -71,7 +71,13 @@ class SqlQueryHandler(
         // can trigger — not yet reproduced on a gold question here, but it's the identical pattern
         // (this handler's own header comment already notes its SQL-execution path is intentionally
         // duplicated from MixedQueryHandler's), so it's fixed alongside rather than left latent.
-        val cappedRows = finalRows.take(DebugCapture.SQL_ROWS_CAP)
+        // [DEVIATED - see DEVIATIONS.md #DEV-092] same second fix as MixedQueryHandler: a
+        // lineage traversal returns one row PER (ancestor, corroborating citation) pair, so the
+        // row-count cap alone can exhaust its budget on repeats of one heavily-cited ancestor
+        // before a later-sorted, still-uncited entity is ever reached. Deduplicating by `name`
+        // first fixes it — `citations` above is intentionally computed from the full, undeduped
+        // row set, so no citation is lost by this.
+        val cappedRows = dedupeByName(finalRows).take(DebugCapture.SQL_ROWS_CAP)
         debugCapture.setSqlRows(cappedRows)
         return QueryResponse(
             answer = formatAnswer(cappedRows),
@@ -118,6 +124,18 @@ class SqlQueryHandler(
         rows.joinToString("; ") { row ->
             row.entries.joinToString(", ") { (key, value) -> "$key=${value?.toString() ?: "unknown"}" }
         }
+
+    // [DEVIATED - see DEVIATIONS.md #DEV-092] mirrors MixedQueryHandler's identical helper — keeps
+    // the FIRST row for each distinct `name` value, dropping later rows that only differ by
+    // citation (source/passage). `citations` is extracted separately, from the full row set,
+    // before this ever runs, so no citation is lost.
+    private fun dedupeByName(rows: List<Map<String, Any?>>): List<Map<String, Any?>> {
+        val seenNames = mutableSetOf<Any?>()
+        return rows.filter { row ->
+            val name = row.entries.firstOrNull { it.key.equals("name", ignoreCase = true) }?.value
+            name == null || seenNames.add(name)
+        }
+    }
 
     private fun extractCitations(rows: List<Map<String, Any?>>): List<Citation> =
         rows.mapNotNull { row ->

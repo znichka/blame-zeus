@@ -12,10 +12,12 @@ gap deferred to Phase 5b.
 
 **Status:** Root cause 1 landed 2026-07-26 (DEV-090); root cause 2 decided 2026-07-26 — deferred to
 P5b, waived (DEV-091); root cause 3 partly landed (the detection half, with J4a) and partly unscoped
-(the promotion half, still no owner). Q9 still fails on content and, per root cause 2's decision, will
-keep failing on the `Chaos` keyword through the end of P3 by design, not by accident — both required
-keywords (`Ouranos`, `Chaos`) remain unreachable for reasons outside J4a's scope. Re-read the
-per-cause status below before quoting this entry as progress.
+(the promotion half, still no owner); the standing `Sky`/`Heaven`/`Uranus` blocker landed 2026-07-26
+as Track J5 (DEV-092). **Q9 now stable-passes** (route ✓, author ✓, content ✓ — confirmed live,
+`evaluation/results/2026-07-26T17-49-26Z__5eed421__p3-j5-ouranos-merge-fixed/`): `Ouranos` is
+reachable now that the merge landed; `Chaos` was never expected to be, since root cause 2 was
+deferred by design, not by accident. Re-read the per-cause status below before quoting this entry as
+progress — Q9 passing doesn't mean every root cause here is closed.
 - **Root cause 1 (J4a — joint parentage): DECIDED 2026-07-23, discriminator AMENDED 2026-07-26,
   IMPLEMENTED AND LANDED 2026-07-26 — see ADR-020 (`docs/adr/adr-020-joint-parentage-multi-edge.md`),
   DEV-088 (the amendment) and DEV-090 (the landing).** The four-part discriminator in
@@ -43,10 +45,15 @@ per-cause status below before quoting this entry as progress.
   has **no owner and no scope** — it outlives the J4a landing exactly as predicted. A6's live count on
   the real, post-split candidate data: **697** dropped rows (**612** distinct child+parent pairs),
   **694** with no existing promoted `variant_claims` coverage.
-- **Standing blocker, independent of all three:** `Sky`, `Heaven` and `Uranus` exist as three
-  separate confirmed entities (`Heaven` even carries `Earth` as its own parent). Even a fully-fixed
-  J4a attaches Cronus's restored co-parent to `Sky`, so Q9's literal `Ouranos` keyword still cannot
-  surface until that duplicate is merged and an `entity_aliases` row added. Track J1-shaped work.
+- **Standing blocker (`Sky`/`Heaven`/`Uranus` duplicate entities): LANDED 2026-07-26 as Track J5
+  (DEV-092).** Merged into one canonical `Ouranos` entity (chosen over `Uranus` specifically so the
+  literal keyword is achievable — see DEV-092 for the full reasoning, including reversing a
+  pre-existing but wrongly-directed `Ouranos→Uranus` alias). Fixing this exposed a second,
+  previously-unnoticed defect: DEV-090's flat row-count cap could still silently drop `Ouranos` from
+  a lineage answer, because a `WITH RECURSIVE` traversal returns one row per *citation*, not per
+  entity, and heavily-corroborated ancestors (`Earth`, `Cronus`) could exhaust the cap before a
+  less-corroborated one was ever reached. Fixed in the same pass (`dedupeByName` in both handlers).
+  **Q9 now stable-passes fully** — confirmed live, not assumed.
 
 ### Symptom
 
@@ -341,18 +348,16 @@ reads the same resolver pass); the promotion half is **not** code work and is sc
 
 ### J4c — contingent follow-up
 
-**J4a landed 2026-07-26 (DEV-090); Q9's live output confirms the predicted outcome exactly.** Route
-✓, author ✓, content ✗ (`evaluation/results/2026-07-26T15-03-32Z__b26e69b__p3-j4a-joint-parentage-fixed/`,
-2/3 stable-fail). The traversal now reaches `Cronus` and `Earth` (the winning half of the restored
-Sky/Earth couple) and the composed answer even narrates on to `Chaos` via RAG's conflict-aware
-backstop — but the required `Ouranos` keyword never appears, exactly as predicted: `Sky`, `Heaven`
-and `Uranus` are still three separate entities, and the literal string "Ouranos" isn't attached to
-any of them. **`Ouranos` needs the `Sky`/`Heaven`/`Uranus` merge (J1-shaped, tracked as Track J5 in
-`docs/TODO-phase2-stage-p3.md`)** — not yet done. `Chaos` needs J4b, still deferred/undecided. Both
-keywords are *correct*; the data is missing. So the DEV-048/DEV-050 "logged eval-bug fix" precedent
-does **not** apply here — it licenses editing a keyword that is wrong, not one the corpus cannot yet
-satisfy. `gold-questions.json` was left alone, as instructed. Revisit only if J5 and J4b both land
-and a keyword is then still unreachable.
+**Superseded by Track J5 landing (DEV-092) — Q9 now fully passes.** J4a alone (DEV-090) left Q9 at
+route ✓, author ✓, content ✗, exactly as predicted: the traversal reached `Cronus`/`Earth` but the
+required `Ouranos` keyword never appeared, since `Sky`/`Heaven`/`Uranus` were still three separate
+entities. Track J5 (2026-07-26, DEV-092) merged them into canonical `Ouranos` specifically so that
+keyword becomes reachable — confirmed live: Q9 is now **stable-pass 3/3**
+(`evaluation/results/2026-07-26T17-49-26Z__5eed421__p3-j5-ouranos-merge-fixed/`), both `Ouranos` and
+`Chaos` genuinely appear in the composed answer (`Chaos` via RAG's retrieved cosmogony context, not
+a fabricated edge — J4b's deferral decision was never revisited or reversed). `gold-questions.json`
+was never edited — the keywords were always correct; the data (and, as DEV-092 found, a row-cap
+defect hiding it) was the gap, exactly as the DEV-048/DEV-050 precedent anticipates.
 
 ### Recommendation
 
@@ -371,10 +376,11 @@ and a keyword is then still unreachable.
 - **J4b: DECIDED 2026-07-26 (DEV-091) — deferred to P5b.** Correctly modeling cosmogony-vs-genealogy
   semantics is a bigger design question than this stage's scope, and Q9 can likely be answered
   adequately via RAG/narrative coverage even without a `parent_of`-shaped edge to `Chaos`.
-- **`Sky`/`Heaven`/`Uranus` merge: J1-shaped entity work (tracked as Track J5)**, not part of J4a and
-  still not done. Q9's `Ouranos` keyword confirmed still failing post-landing — recorded in the
-  landing run notes (`evaluation/results/2026-07-26T15-03-32Z__b26e69b__p3-j4a-joint-parentage-fixed/`)
-  rather than editing the keyword list.
+- **`Sky`/`Heaven`/`Uranus` merge: LANDED 2026-07-26 (DEV-092).** Merged into canonical `Ouranos`;
+  Q9's `Ouranos` keyword confirmed passing live
+  (`evaluation/results/2026-07-26T17-49-26Z__5eed421__p3-j5-ouranos-merge-fixed/`) after also fixing
+  a row-cap defect the merge exposed. GAP-001 is now closed for everything P3 was ever going to fix
+  — the only remaining open item is Root cause 3's promotion half (a′), carried to P4.
 
 **References:** `ingestion/seedgen/canonical_edge.py` (`resolve_canonical_edges`, `SPINE_PRIORITY`,
 `_pick_winner`); `ingestion/seedgen/relationships_gen.py` (`_filter_and_dedup`, the pre-dedup

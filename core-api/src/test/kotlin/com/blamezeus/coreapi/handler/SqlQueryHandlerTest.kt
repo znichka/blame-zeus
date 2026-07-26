@@ -111,6 +111,26 @@ class SqlQueryHandlerTest {
     }
 
     @Test
+    fun `deduplicates by name before capping so a late distinct entity is not crowded out by earlier repeats -- DEV-092`() {
+        // Mirrors MixedQueryHandler's identical fix. WITH RECURSIVE lineage rows carry one row
+        // PER (ancestor, corroborating citation) -- a flat row-count cap can exhaust its budget
+        // on redundant repeats of one name before reaching a later-sorted, still-uncited distinct
+        // entity. Live-verified on the real Q9 query after the Sky/Heaven/Uranus->Ouranos merge
+        // (Track J5): `ORDER BY name ASC` put >25 rows of Zeus/Cronus/Rhea/Earth ahead of
+        // Ouranos, silently dropping it from the composed answer.
+        val repeatedRows = (1..(DebugCapture.SQL_ROWS_CAP + 5)).map { mapOf("name" to "Earth") }
+        val rows = repeatedRows + mapOf("name" to "Ouranos")
+        every { schemaIntrospector.get() } returns "schema"
+        every { textToSqlAgent.generateSql(any(), any()) } returns "SELECT name FROM entities"
+        every { validator.validate(any()) } returns Unit
+        every { jdbcTemplate.queryForList("SELECT name FROM entities") } returns rows
+
+        val response = handler.handle("question")
+
+        assertThat(response.answer).contains("Ouranos")
+    }
+
+    @Test
     fun `formatAnswer emits column-named pairs, not a bare value join (ADR-015 Track C)`() {
         every { schemaIntrospector.get() } returns "schema"
         every { textToSqlAgent.generateSql(any(), any()) } returns "SELECT name, type, generation FROM entities"

@@ -43,7 +43,13 @@ class MixedQueryHandler(
         // the FULL row set was being dumped into buildAugmentedQuestion's prompt text; only the
         // DebugCapture view was ever capped. Capping the actual prompt input to the same
         // SQL_ROWS_CAP the debug view already uses fixes both at once.
-        val cappedRows = rows.take(DebugCapture.SQL_ROWS_CAP)
+        // [DEVIATED - see DEVIATIONS.md #DEV-092] a flat row-count cap alone isn't enough: a
+        // lineage traversal returns one row PER (ancestor, corroborating citation) pair, so a
+        // heavily-corroborated ancestor (e.g. Cronus, cited by 5 sources) can exhaust the cap
+        // before a later-sorted, still-uncited entity (e.g. Ouranos, alphabetically after Earth)
+        // is ever reached — live-verified on Q9 after Track J5's entity merge. Deduplicating by
+        // `name` first (no other field is used to build the prose material) fixes it.
+        val cappedRows = dedupeByName(rows).take(DebugCapture.SQL_ROWS_CAP)
         debugCapture.setSqlRows(cappedRows)
 
         val augmentedQuestion = buildAugmentedQuestion(question, cappedRows)
@@ -69,6 +75,18 @@ class MixedQueryHandler(
             .removePrefix("```")
             .removeSuffix("```")
             .trim()
+    }
+
+    // [DEVIATED - see DEVIATIONS.md #DEV-092] keeps the FIRST row for each distinct `name` value,
+    // dropping later rows that only differ by citation (source/passage) — those citations still
+    // reach the user via RagAgent's own retrieval, not through this row set. A row without a
+    // `name` column (case-insensitive) is never deduplicated against anything.
+    private fun dedupeByName(rows: List<Map<String, Any?>>): List<Map<String, Any?>> {
+        val seenNames = mutableSetOf<Any?>()
+        return rows.filter { row ->
+            val name = row.entries.firstOrNull { it.key.equals("name", ignoreCase = true) }?.value
+            name == null || seenNames.add(name)
+        }
     }
 
     private fun buildAugmentedQuestion(question: String, rows: List<Map<String, Any?>>): String {

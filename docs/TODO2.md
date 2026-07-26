@@ -113,7 +113,10 @@ fixes and **zero stable regressions**.
 rows are triaged; `relation_aliases` is live and applied by seedgen; **ADR-020's joint-parentage
 carve-out has landed through a Track I pass (DEV-088), with the co-parent count re-measured against
 the real `canonical_edge.py` change** and A3 clean-or-explicitly-waived; eval (3-run) shows
-DATA/MIXED ≥ baseline and zero stable regressions.
+DATA/MIXED ≥ baseline and zero stable regressions. **Landed 2026-07-26** (DEV-090 the discriminator,
+DEV-091 the Chaos decision, DEV-092 the Sky/Heaven/Uranus merge) — Track J is fully closed for P3;
+remaining open items are A1's permanent long-tail residue, A6's by-design P4 promotion backlog, and
+committing the work (I7). Not yet committed to git.
 
 - [ ] `ingestion/audit/` package (`python -m audit`, read-only): A1 duplicate entities
       (rapidfuzz + transliteration heuristics), A2 candidate-drop accounting, **A3
@@ -135,36 +138,31 @@ DATA/MIXED ≥ baseline and zero stable regressions.
         the same pattern (Athenian myth has two Cecrops/two Pandions) but is not yet source-verified.
         `Astyoche ⇄ Tros ⇄ Ilus ⇄ Laomedon` not yet traced at all. Re-run `cycle_check --db` after each
         fix to confirm.
-  - [ ] **Backlog from P2 Track I5 (DEV-069) — now four items, two of them decided:** Q9 ("Trace Zeus's
-        lineage back to Chaos") no longer `serviceError`s (Rung 1 fixed the recursion bug) but still
-        misses `Ouranos`/`Chaos` — a genuine data gap, not a query bug. Full write-up:
-        `docs/DATA-GAPS.md` GAP-001; detailed checklist: `TODO-phase2-stage-p3.md` Track J4.
-    - [ ] **J4a — DECIDED (ADR-020, 2026-07-23; discriminator amended 2026-07-26; implementation
-          pending as DEV-088).** Allow >1 canonical `parent_of` edge per child for genuine **joint
-          parentage** only, told apart from a contest in `resolve_canonical_edges()` by a four-part
-          rule (contested-aware · winner-anchored · corroboration-ranked · deny-listed) over
-          co-mention pairs formed **pre-dedup**. The bare co-mention count first accepted is
-          superseded — measured, it gave children up to 6 parents and mis-coupled Io. Offline-only
-          (no DDL, no runtime code) but **not resolver-only**: `canonical_edge.py`,
-          `relationships_gen.py`, `conflict_detector.py`, `drop_accounting.py`/the new A2-contract
-          check, plus tests. Simulated blast radius **472** children regain a co-parent (0 have two
-          today) — **re-measure against the real code**.
-    - [ ] **Root cause 3 (lands with J4a):** the contested collapse discards **1,084** distinct
-          parent values; ADR-020 recovers 472, leaving **612** rivals recorded nowhere. Scope here =
-          the per-row dropped-parent record + a same-source qualifying condition in
-          `detect_conflicts` for `parentage`, which reaches only the **145** in single-source groups.
-          The other **467** already clear the ≥2-source gate and stall at ADR-004 review → that
-          promotion half is P4 work (see below), *not* code. **J4a landing does not make parentage
-          conflicts user-visible** — don't record it as such.
-    - [ ] **J4b (Chaos cosmogony): still open, no decision.** No `parent_of` edge between `Chaos`
-          and `Earth`/`Sky` exists or should — Hesiod has them arise independently. Decide whether an
-          honestly-named non-parentage cosmogonic relation is modeled, or defer to **P5b** with a
-          written waiver (permitted; not a P3 hard gate).
-    - [ ] **Standing blocker, unowned until scheduled:** `Sky`, `Heaven` and `Uranus` are three
-          separate confirmed entities (`Heaven` even carries `Earth` as its own parent) and the
-          restored co-parent attaches to `Sky`, so Q9's literal `Ouranos` keyword stays unreachable.
-          J1-shaped merge + `entity_aliases` row — and **A1 does not flag it** (the names aren't
-          fuzzy-similar), so it needs an explicit item, not a re-run.
+  - [x] **Backlog from P2 Track I5 (DEV-069) — all four items now landed or decided (2026-07-26).**
+        Q9 ("Trace Zeus's lineage back to Chaos") **now stable-passes fully** (route ✓, author ✓,
+        content ✓ — `Ouranos` and `Chaos` both genuinely present in the composed answer). Full
+        write-up: `docs/DATA-GAPS.md` GAP-001; detailed checklist: `TODO-phase2-stage-p3.md` Track J4/J5.
+    - [x] **J4a — LANDED 2026-07-26 (DEV-090).** The four-part discriminator (contested-aware ·
+          winner-anchored · corroboration-ranked · deny-listed) is live in the seeded DB. Re-measured
+          against the real code: **472 children** regain a co-parent — exact match to the simulation
+          — max 2 parents per child holds with no exceptions. Landed with zero stable eval
+          regressions; a same-day token-budget regression (Q12) was found and fixed in the same pass.
+    - [x] **Root cause 3's detection half — landed with J4a.** The per-row dropped-parent record (new
+          audit check **A6**) and the same-source `detect_conflicts` condition for `parentage` are
+          both live, reaching **145** of the **612** surviving rivals. **The other 467 still stall at
+          ADR-004 review — J4a landing did NOT make parentage conflicts user-visible**, exactly as
+          predicted; that promotion half (option a′) remains unowned P4 work (see below).
+    - [x] **J4b (Chaos cosmogony) — DECIDED 2026-07-26 (DEV-091): deferred to P5b, waived.** No
+          `parent_of`-shaped edge between `Chaos` and `Earth`/`Sky` was modeled — confirmed correct
+          against the corpus (Hesiod: they arise independently). RAG's retrieved cosmogony context
+          answers this in prose instead, without a fabricated edge.
+    - [x] **`Sky`/`Heaven`/`Uranus` merge — LANDED 2026-07-26 as Track J5 (DEV-092).** Merged into
+          canonical **`Ouranos`** (not `Uranus` — chosen so the literal gold-question keyword is
+          achievable; reversed a pre-existing but wrongly-directed `Ouranos→Uranus` alias). Exposed
+          and fixed a second row-cap defect (`WITH RECURSIVE` returns one row per citation, not per
+          entity, so a flat cap could still drop `Ouranos` behind heavily-cited `Earth`/`Cronus`
+          rows) via a new `dedupeByName` fix in both SQL-facing handlers. **Overall eval reached
+          12/16 = 75%, the P1 target, for the first time.**
 - [ ] `relation_aliases(alias PK, canonical, inverse BOOLEAN)` migration (new Phase-2 V-number);
       wire into `seedgen/relationships_gen.py` (apply map at generation; swap from/to on inverse)
 - [ ] Triage backlogs: 29 (grown to 48 live) fuzzy-dup pairs (merge + alias, DEV-043 pattern); 203

@@ -6244,13 +6244,6 @@
     "subtype": null
   },
   {
-    "name": "Heaven",
-    "type": "primordial",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
     "name": "Hebe",
     "type": "other_god",
     "generation": null,
@@ -12376,13 +12369,6 @@
     "subtype": null
   },
   {
-    "name": "Sky",
-    "type": "other_god",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
     "name": "Sleep",
     "type": "other_god",
     "generation": null,
@@ -13517,13 +13503,6 @@
     "subtype": null
   },
   {
-    "name": "Uranus",
-    "type": "primordial",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
     "name": "Venilia",
     "type": "other_god",
     "generation": null,
@@ -13876,6 +13855,13 @@
   {
     "name": "Deimachus (son of Neleus)",
     "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Ouranos",
+    "type": "primordial",
     "generation": null,
     "domain": null,
     "subtype": null

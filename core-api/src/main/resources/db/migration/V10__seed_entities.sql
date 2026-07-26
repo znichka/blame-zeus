@@ -913,7 +913,6 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Harpaleus', 'hero', NULL, NULL, NULL),
     ('Harpalion', 'hero', NULL, NULL, NULL),
     ('Harpalycus', 'hero', NULL, NULL, NULL),
-    ('Heaven', 'primordial', NULL, NULL, NULL),
     ('Hebe', 'other_god', NULL, NULL, NULL),
     ('Hecabe', 'mortal', NULL, NULL, NULL),
     ('Hecamede', 'mortal', NULL, NULL, NULL),
@@ -1003,11 +1002,11 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Hypseus', 'mortal', NULL, NULL, NULL),
     ('Hypsipyle', 'mortal', NULL, NULL, NULL),
     ('Hyrie', 'nymph', NULL, NULL, NULL),
-    ('Hyrieus', 'mortal', NULL, NULL, NULL)
+    ('Hyrieus', 'mortal', NULL, NULL, NULL),
+    ('Hyrnetho', 'mortal', NULL, NULL, NULL)
 ON CONFLICT (name) DO NOTHING;
 
 INSERT INTO entities (name, type, generation, domain, subtype) VALUES
-    ('Hyrnetho', 'mortal', NULL, NULL, NULL),
     ('Hyrtacus', 'mortal', NULL, NULL, NULL),
     ('Hyrtius', 'mortal', NULL, NULL, 'warrior'),
     ('Iache', 'nymph', NULL, NULL, NULL),
@@ -1448,6 +1447,7 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Otreus', 'mortal', NULL, NULL, 'king'),
     ('Otrynteus', 'mortal', NULL, NULL, NULL),
     ('Otus', 'mortal', NULL, NULL, NULL),
+    ('Ouranos', 'primordial', NULL, NULL, NULL),
     ('Oxylus', 'mortal', NULL, NULL, NULL),
     ('Oxyporus', 'mortal', NULL, NULL, NULL),
     ('Oïleus', 'mortal', NULL, NULL, NULL),
@@ -1806,7 +1806,6 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Sipylus', 'mortal', NULL, NULL, NULL),
     ('Sirens', 'monster', NULL, NULL, NULL),
     ('Sisyphus', 'mortal', NULL, NULL, NULL),
-    ('Sky', 'other_god', NULL, NULL, NULL),
     ('Sleep', 'other_god', NULL, NULL, NULL),
     ('Smilax', 'mortal', NULL, NULL, NULL),
     ('Smyrna', 'mortal', NULL, NULL, NULL),
@@ -1969,7 +1968,6 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Ucalegon', 'mortal', NULL, NULL, NULL),
     ('Udaeus', 'mortal', NULL, NULL, NULL),
     ('Urania', 'other_god', NULL, NULL, NULL),
-    ('Uranus', 'primordial', NULL, NULL, NULL),
     ('Venilia', 'other_god', NULL, NULL, NULL),
     ('Venulus', 'mortal', NULL, NULL, NULL),
     ('Vertumnus', 'other_god', NULL, NULL, NULL),

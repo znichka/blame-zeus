@@ -156,8 +156,7 @@ Track J  backlog triage (data edits, fan-out then serialize at the gate):
               + conflict_detector.py (same-source parentage) + new dropped-parent check
               + test rewrites, landed through Track I with zero stable regressions
          J4b  DONE — Chaos cosmogony decided: deferred to P5b, waived (DEV-091)
-  └─ J5  Sky/Heaven/Uranus merge (J1-shaped, but A1 does NOT flag it) ── candidate JSON + alias — the
-         only Track J item still open
+  └─ J5  DONE — Sky/Heaven/Uranus merged into canonical Ouranos, DEV-092; Track J fully closed for P3
 ```
 
 **Rule of thumb:** A is the only hard blocker for the audit side (B/C/D/E register into it; A3 already
@@ -762,24 +761,43 @@ that can land anytime.
       edit is only an eval-bug fix under DEV-050 when the keyword is *wrong*; here it is right and
       the data is missing).
 
-### J5 — `Sky` / `Heaven` / `Uranus` duplicate-entity merge (GAP-001 standing blocker; previously unowned)
+### J5 — `Sky` / `Heaven` / `Uranus` duplicate-entity merge (GAP-001 standing blocker; previously unowned) — LANDED 2026-07-26, DEV-092
 > Split out of J4c because it is J1-shaped work that **J1 did not cover and A1 cannot find** — it had
 > no checklist item in any TODO until now.
-- [ ] **J5a** — merge the three separate confirmed entities into one (`Sky`, `Heaven`, `Uranus`;
-      `Heaven` currently even carries `Earth` as its **own parent**, which is itself a data error to
-      resolve as part of the merge), following the DEV-043 merge-at-candidate-layer + `entity_aliases`
-      pattern. Add the alias row that lets the literal **`Ouranos`** keyword surface.
-      ⚠️ **A1 does not and will not flag this pair** — verified: `entities_fuzzy_duplicates_flagged_for_review.json`
-      and `audit/findings-candidates.json` contain zero `Uranus`/`Heaven`/`Sky` hits, because the
-      names aren't string-similar. Re-running A1 will not produce it; it needs this explicit item.
-- [ ] **J5b** — sequencing note: the merge interacts with J4a's headline case. Hesiod states the same
-      couple as `Earth` + **`Heaven`** while Apollodorus states `Earth` + **`Sky`**; today those are
-      two separate pairs and the restored co-parent wins only on a **spine-rank tie-break**. Merging
-      them first makes the pair 2-source-attested instead. Whichever order is chosen, re-run J4a's
-      measurements afterwards — the tie-break outcome is order-dependent.
-- [ ] **J5c** — after the merge, re-check Q9's `Ouranos` keyword live. This is the *only* one of Q9's
-      two failing keywords that P3 can close (`Chaos` needs J4b). Record the result; still **do not
-      edit the keyword list**.
+- [x] **J5a** [DEVIATED - see DEVIATIONS.md #DEV-092] — merged the three separate confirmed entities
+      into one canonical **`Ouranos`** (`type=primordial`, reconciling `Sky`'s inconsistent
+      `other_god`), following the DEV-043 merge-at-candidate-layer + `entity_aliases` pattern.
+      ⚠️ **Correction to this item's own premise**: "`Heaven` carries `Earth` as its own parent" is
+      **not a data error** — re-verified against `hesiod_theogony_evelynwhite1914.txt [104]-[121]`
+      ("And Earth first bare starry Heaven... to cover her on every side"): Earth parthenogenically
+      bearing Ouranos before later marrying him is the actual, correct cosmogony. Left untouched, only
+      renamed. **A genuine error was found and fixed instead**: `Uranus`'s only edge
+      (`Uranus parent_of Pontus`, malformed `passage_ref`) contradicted the corpus — Pontus is
+      Earth's parthenogenic child alone (`Earth parent_of Pontus` already correctly existed) —
+      dropped rather than carried forward. **Canonical-name decision** (a real judgment call, made
+      without asking first — see DEV-092's *Reason* for the full justification): `Ouranos`, not
+      `Uranus`, reversing a pre-existing but wrongly-directed `Ouranos→Uranus` alias row, because
+      neither spelling appears anywhere in the corpus (verified: 0 hits both, across all six `.txt`
+      files) and `Ouranos` is the only choice that makes the literal gold-question keyword
+      achievable at all, while also matching this project's existing Greek-canonical convention
+      (`Heracles`, `Odysseus`, `Athena`, `Oceanus`). ⚠️ **A1 confirmed it never flags this pair**, as
+      predicted — the merge needed this explicit item, not an audit re-run.
+- [x] **J5b** [DEVIATED - see DEVIATIONS.md #DEV-092] — re-ran J4a's measurements post-merge: **472
+      children with 2 parents, unchanged**; max-2 invariant holds; **1** post-resolver cycle,
+      unchanged. `Cronus`'s couple still resolves to `{Earth, Ouranos}`, exactly as predicted the
+      *mechanism* changed from a spine-rank tie-break (two separate 1-source pairs) to outright
+      corroboration-count (one pair now attested by 2 distinct sources) — same outcome, no code
+      change needed, `resolve_canonical_edges()` itself is untouched.
+- [x] **J5c** [DEVIATED - see DEVIATIONS.md #DEV-092] — re-checked Q9's `Ouranos` keyword live.
+      **First pass still failed** — traced to a second, previously-unnoticed row-cap defect
+      (DEV-090's flat row-count cap could exhaust its budget on repeated citations of
+      `Earth`/`Cronus` before ever reaching `Ouranos`, alphabetically later in `ORDER BY name ASC`);
+      fixed (`dedupeByName` in both `MixedQueryHandler`/`SqlQueryHandler`, TDD-first, `:core-api:test`
+      180/180 green) and re-verified: **Q9 now stable-pass 3/3** — route ✓, author ✓, content ✓,
+      both `Ouranos` and `Chaos` genuinely appear in the composed answer (`Chaos` via RAG's retrieved
+      cosmogony context, not a fabricated edge — J4b's deferral stands, untouched). Zero stable
+      regressions; **overall eval reached 12/16 = 75%, the P1 target, for the first time.**
+      `gold-questions.json` was never edited.
 
 ---
 
@@ -790,18 +808,18 @@ that can land anytime.
       exits non-zero on un-waived findings. [DEVIATED - see DEVIATIONS.md #DEV-070, #DEV-071,
       #DEV-072, #DEV-073, #DEV-074, #DEV-075, #DEV-090]
 - [ ] All five (now six) checks **clean or explicitly waived with a written note**. [DEVIATED - see
-      DEVIATIONS.md #DEV-089, #DEV-090] Currently (post-J4a landing, live `--db`, 2026-07-26):
-      **A3 clean-or-waived** (1 finding — `Eurymachus⇄Polybus`, pre-existing/unrelated to any Track J
-      batch, waived per `ingestion/audit/audit-waivers.json`; the J4a-8 reversed-edge/conflation pass
-      is **done**, so no second cycle ever reached the live DB), **A5 clean** (needed its own fix —
-      its pre-ADR-020 ">1 parent" invariant was raised to ">2", see DEV-090 — 472 findings before the
-      fix, 0 after), **A4 clean** (116 db relations, unchanged — Track F territory); **A1 39 pairs**
-      still un-triaged (permanent long-tail — A1 only suppresses documented aliases, never
-      "reject, distinct" outcomes, so this will never reach literal zero without per-pair waivers);
-      **A2** not re-run in `--db` mode this pass; **A6** (new) candidates-only, 697 real findings (612
-      distinct dropped-parent pairs) — by design (GAP-001 Root cause 3's promotion half is unowned,
-      P4 work), not something this box expects to reach zero. Box stays open on A1's and A6's
-      un-waived residue and pending J4b/J5.
+      DEVIATIONS.md #DEV-089, #DEV-090, #DEV-092] Currently (post-J5 landing, live `--db`,
+      2026-07-26): **A3 clean-or-waived** (1 finding — `Eurymachus⇄Polybus`, pre-existing/unrelated to
+      any Track J batch, waived per `ingestion/audit/audit-waivers.json`; unaffected by the
+      Sky/Heaven/Uranus merge), **A5 clean** (472 findings before its DEV-090 threshold fix, 0 since,
+      still 0 after J5), **A4 clean** (116 db relations, unchanged); **A1 39 pairs** still un-triaged
+      (permanent long-tail — A1 only suppresses documented aliases, never "reject, distinct"
+      outcomes, so this will never reach literal zero without per-pair waivers; confirmed it never
+      flagged Sky/Heaven/Uranus either, per J5a); **A2** not re-run in `--db` mode this pass; **A6**
+      candidates-only, 684 real findings (612 distinct dropped-parent pairs, unchanged by the merge)
+      — by design (GAP-001 Root cause 3's promotion half is unowned, P4 work), not something this box
+      expects to reach zero. **Track J itself is now fully closed for P3** (J4a/J4b/J5 all landed or
+      decided) — box stays open only on A1's and A6's permanent-by-design residue and I7 (commit).
 - [x] 29 (grown to 48 live) fuzzy-dup pairs triaged (merge+alias or reject-with-note) — J1, DEV-084.
       [x] 203 flagged relationships triaged (promote-with-fix or reject-recorded) — J2, DEV-085.
 - [x] DEV-068's 3 conflation cycles resolved (entity split) or waived; **A3 `parent_of` graph clean**.
@@ -820,15 +838,13 @@ that can land anytime.
       ADR-004 promotion gate — GAP-001 option a′, carried to P4). **Not yet committed to git.**
 - [x] **J4b** decided [DEVIATED - see DEVIATIONS.md #DEV-091]: deferred to P5b, with a written waiver
       + GAP-001 status update (both in `docs/DATA-GAPS.md` Root cause 2).
-- [ ] **J5** `Sky`/`Heaven`/`Uranus` merged + `entity_aliases` row, **or** explicitly deferred with a
-      note (A1 will never raise it, so an un-noted deferral loses it). **Still open** — unaffected by
-      the J4a landing; this is what Q9's `Ouranos` keyword is still waiting on.
-- [x] DEV-069's Q9 itself: **confirmed not a pass/fail gate, and it stayed failing exactly as
-      predicted.** Q9's live output is recorded (route ✓, author ✓, content ✗ — traversal reaches the
-      co-parent generation [`Cronus`, `Earth`] instead of dead-ending at Cronus, no `statement_timeout`
-      hit, zero stable DATA/MIXED regressions) and the remainder (`Ouranos` needs J5, `Chaos` needs
-      J4b) is written down in `docs/DATA-GAPS.md` GAP-001 — Q9 did not go green, and its keywords were
-      not edited.
+- [x] **J5** [DEVIATED - see DEVIATIONS.md #DEV-092] `Sky`/`Heaven`/`Uranus` merged into canonical
+      `Ouranos` + `entity_aliases` rows added. Also fixed a second row-cap defect the merge exposed
+      (`dedupeByName` in both SQL-facing handlers) — see J5c above for the full account.
+- [x] DEV-069's Q9 itself: **went green after J5 landed — recorded as a genuine pass, not treated as
+      the original pass/fail-gate exemption anymore.** Q9's live output is recorded (route ✓, author
+      ✓, content ✓ — stable-pass 3/3, both `Ouranos` and `Chaos` genuinely present in the composed
+      answer) in `docs/DATA-GAPS.md` GAP-001. Its keywords were never edited at any point.
 - [x] `relation_aliases` **V17** live; `relation_normalizer.py` mirrors `claim_type_normalizer.py`;
       `relationships_gen.py` normalizes + swaps `from`/`to` on `inverse` (TDD green). [DEVIATED - see
       DEVIATIONS.md #DEV-072, #DEV-076]
@@ -837,21 +853,23 @@ that can land anytime.
 - [ ] Full fix-loop pass: `seedgen --strict` → `reseed-local.sh` → `audit` **clean or explicitly
       waived** → `runner --runs 3`
       → `compare.py` vs P2-accepted → **DATA/MIXED ≥ baseline, zero stable regressions**; results dir +
-      candidates + migrations committed together. [DEVIATED - see DEVIATIONS.md #DEV-089, #DEV-090]
-      **Mechanism proven four times now** (DEV-076, DEV-083, DEV-089, DEV-090 — all zero stable
-      regressions; DEV-090 additionally proved the loop catches a *real* regression, not just data
-      edits — a token-budget bug in application code, found via the eval and fixed before landing),
-      but stays unchecked: "audit clean" here means *all six* checks (A6 now exists) clean-or-waived
-      together in one pass, and **A1/A6 both carry real, by-design-unresolved findings** (see above,
-      permanent long-tail for A1, unowned P4 promotion backlog for A6); **no Track I pass has run I7
-      yet** — candidates/edits are committed per-backlog as they're triaged, but the regenerated
-      V10-V12 migrations + results dirs + waiver file + (as of DEV-090) core-api source changes from
-      each Track I pass remain uncommitted pending an explicit decision.
+      candidates + migrations committed together. [DEVIATED - see DEVIATIONS.md #DEV-089, #DEV-090,
+      #DEV-092] **Mechanism proven five times now** (DEV-076, DEV-083, DEV-089, DEV-090, DEV-092 —
+      all zero stable regressions; DEV-090/DEV-092 additionally proved the loop catches *real*
+      regressions, not just data edits — two separate application-code row-cap defects, both found
+      via the eval and fixed before landing). **Overall eval reached 12/16 = 75%, the P1 target, for
+      the first time**, in the DEV-092 landing pass. Stays unchecked: "audit clean" here means *all
+      six* checks clean-or-waived together in one pass, and **A1/A6 both carry real,
+      by-design-unresolved findings** (see above, permanent long-tail for A1, unowned P4 promotion
+      backlog for A6); **no Track I pass has run I7 yet** — candidates/edits are committed
+      per-backlog as they're triaged, but the regenerated V10-V12 migrations + results dirs + waiver
+      file + core-api source changes from each Track I pass remain uncommitted pending an explicit
+      decision.
 - [x] DEV-070..DEV-076+ logged in `DEVIATIONS.md`; `TODO2.md` + `IMPLEMENTATION_PLAN_PHASE2.md` P3
-      annotated per protocol; ADR-019 follow-up DEV-number reconciled. Logged through **DEV-090** as
+      annotated per protocol; ADR-019 follow-up DEV-number reconciled. Logged through **DEV-092** as
       of this check.
 - [x] `./gradlew :core-api:test` green (no Kotlin change expected — SchemaIntrospector verification
       only; run it to prove no regression from the reseeded vocabulary). Re-verified against the
-      *current* (twice-regenerated) `V10`/`V11` migrations — `BUILD SUCCESSFUL`. **Re-verified again
-      after DEV-090**, which — unlike prior passes — *did* need real Kotlin changes
-      (`MixedQueryHandler.kt`/`SqlQueryHandler.kt`'s row-cap fix): 178/178 tests green.
+      *current* (three-times-regenerated) `V10`/`V11` migrations — `BUILD SUCCESSFUL`. **Re-verified
+      again after DEV-090 and DEV-092**, both of which — unlike prior passes — needed real Kotlin
+      changes: 180/180 tests green (178 + DEV-092's 2 new `dedupeByName` tests).
