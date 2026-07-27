@@ -1,0 +1,415 @@
+{
+  "generatedAt": "2026-07-27T18:07:43.108737+00:00",
+  "checks": [
+    {
+      "name": "A1",
+      "summary": "db: 41 candidate pair(s) (of 1994 entities)",
+      "findings": [
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Anthippe / Xanthippe",
+          "detail": "fuzzy_score=94.1, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Deioneus / Eioneus",
+          "detail": "fuzzy_score=93.3, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Eriopis / Periopis",
+          "detail": "fuzzy_score=93.3, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Morpheus / Orpheus",
+          "detail": "fuzzy_score=93.3, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Persaeus / Perseus",
+          "detail": "fuzzy_score=93.3, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Aeolus / Aetolus",
+          "detail": "fuzzy_score=92.3, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Aepytus / Epytus",
+          "detail": "fuzzy_score=92.3, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Amulius / Mulius",
+          "detail": "fuzzy_score=92.3, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Atreus / Catreus",
+          "detail": "fuzzy_score=92.3, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Hyleus / Phyleus",
+          "detail": "fuzzy_score=92.3, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Pereus / Perseus",
+          "detail": "fuzzy_score=92.3, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Perses / Perseus",
+          "detail": "fuzzy_score=92.3, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Pteleon / Teleon",
+          "detail": "fuzzy_score=92.3, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Ammon / Pammon",
+          "detail": "fuzzy_score=90.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Enops / Oenops",
+          "detail": "fuzzy_score=90.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Helen / Hellen",
+          "detail": "fuzzy_score=90.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Helle / Hellen",
+          "detail": "fuzzy_score=90.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Hyale / Phyale",
+          "detail": "fuzzy_score=90.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Hylas / Phylas",
+          "detail": "fuzzy_score=90.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Medus / Medusa",
+          "detail": "fuzzy_score=90.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Molus / Tmolus",
+          "detail": "fuzzy_score=90.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Antiope (daughter of Thespius) / Erato (daughter of Thespius)",
+          "detail": "fuzzy_score=89.7, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Ares / Arges",
+          "detail": "fuzzy_score=88.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Ares / Dares",
+          "detail": "fuzzy_score=88.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Azeus / Zeus",
+          "detail": "fuzzy_score=88.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Borus / Orus",
+          "detail": "fuzzy_score=88.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Dione / Ione",
+          "detail": "fuzzy_score=88.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Dius / Odius",
+          "detail": "fuzzy_score=88.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Dorus / Orus",
+          "detail": "fuzzy_score=88.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Eione / Ione",
+          "detail": "fuzzy_score=88.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Hephaestus / Phaestus",
+          "detail": "fuzzy_score=88.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Horus / Orus",
+          "detail": "fuzzy_score=88.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Idas / Midas",
+          "detail": "fuzzy_score=88.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Ilus / Nilus",
+          "detail": "fuzzy_score=88.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Notus / Otus",
+          "detail": "fuzzy_score=88.9, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Laomedon (son of Hercules) / Palaemon (son of Hercules)",
+          "detail": "fuzzy_score=88.5, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Sterope (daughter of Pleuron) / Sterope (daughter of Porthaon)",
+          "detail": "fuzzy_score=88.1, matched_by=name",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Plexaura / Plexaure",
+          "detail": "fuzzy_score=87.5, matched_by=transliteration",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Epytos / Epytus",
+          "detail": "fuzzy_score=83.3, matched_by=transliteration",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Europa / Europe",
+          "detail": "fuzzy_score=83.3, matched_by=transliteration",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        },
+        {
+          "check": "A1",
+          "severity": "warning",
+          "subject": "db: Nice / Nike",
+          "detail": "fuzzy_score=75.0, matched_by=transliteration",
+          "suggestedFix": "if a real duplicate: pick the canonical spelling, merge at the candidate-JSON layer (DEV-043 pattern) and add an entity_aliases row; if genuinely distinct: reject with a note in entities_fuzzy_duplicates_flagged_for_review.json (Track J1)",
+          "waived": false,
+          "waiverReason": null
+        }
+      ]
+    },
+    {
+      "name": "A2",
+      "summary": "no candidates source given -- A2 needs candidate JSON to compute the drop accounting",
+      "findings": []
+    },
+    {
+      "name": "A3",
+      "summary": "db: 1 parent_of cycle(s)",
+      "findings": [
+        {
+          "check": "A3",
+          "severity": "error",
+          "subject": "db: Eurymachus -> Polybus -> Eurymachus",
+          "detail": "Eurymachus parent_of Polybus [homer-odyssey, 15.493-15.544]; Polybus parent_of Eurymachus [homer-odyssey, 2.177-2.223]",
+          "suggestedFix": "reverse or drop the offending edge in relationships_candidates_cleaned.json (tie-break by source_id / canonical_edge.py spine priority), then reseed",
+          "waived": true,
+          "waiverReason": "Pre-existing 2-node cycle (homer-odyssey 15.493-15.544 vs 2.177-2.223), unrelated to the J1/J2/J3f-h batch that surfaced it -- masked pre-reseed by DFS iteration order (same pattern as J3e/J3g), not fixed by this batch's edits. Already documented by name as the measured post-resolver baseline in docs/adr/adr-020-joint-parentage-multi-edge.md and docs/DATA-GAPS.md GAP-001 (\"baseline 1, unrelated to this change\" -- J4a/DEV-088 is expected to take it 1->2 when the co-parent carve-out lands, and budgets a reversed-edge fix pass, J4a-8 in docs/TODO-phase2-stage-p3.md). Deferred to that pass rather than fixed unbudgeted here."
+        }
+      ]
+    },
+    {
+      "name": "A4",
+      "summary": "db: 119 distinct relation(s): 4 canonical, 0 synonym/inverse candidate(s), 115 legit-long-tail",
+      "findings": []
+    },
+    {
+      "name": "A5",
+      "summary": "db: 37 entity_aliases, 22 myth_participants, 3293 relationships checked -- 0 finding(s)",
+      "findings": []
+    },
+    {
+      "name": "A6",
+      "summary": "no candidates source given -- A6 needs candidate JSON to find dropped parents",
+      "findings": []
+    }
+  ]
+}

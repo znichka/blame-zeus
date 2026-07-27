@@ -232,6 +232,12 @@ Track B/C are half-landed.
 > **15/16 (94%)**, zero stable regressions — the stage's own floor-met bar was cleared and then some.
 > **GAP-003 is fully resolved.** Only **Track D** (GAP-002's broader 367-name backlog) remains open,
 > and it was never gate-blocking — see `docs/DATA-GAPS.md` GAP-002. Results not yet committed.
+>
+> **Track D's `Arges`/`Steropes` follow-up landed 2026-07-27** `[DEVIATED - see DEVIATIONS.md
+> #DEV-098]` — the highest-value data fix of the stage despite touching no gold question:
+> **`Ares` had zero relationships in the seeded graph** and now has 33. Overall eval 15/16 → 14/16
+> (88%, still above target, all floors met); the one delta is Q8 flipping to flaky on a transient
+> malformed-SQL generation, unrelated to the change (runs 1 and 3 both answered correctly).
 
 - [x] **Track A — Q6 entity typing — LANDED 2026-07-27** `[DEVIATED - see DEVIATIONS.md #DEV-094]`. Verified against the corpus
       rather than assuming a bare "Twelve Olympians" list: Hesiod's *Theogony* [869] states plainly
@@ -276,11 +282,24 @@ Track B/C are half-landed.
       (DEV-095 found he's a mortal, not a monster) but remains a genuine GAP-002 name. A2's
       unknown-name count: 367 → 362. Long tail (incl. `Phineus`, `Arges`/`Steropes`'s genuine 2 rows
       each) carries to P4.
-      > **New lead, not yet DEV-numbered:** the `Ares`→`Arges` corruption (~69 candidate rows) and
-      > `Sterope`/`Steropes` conflation (~12 rows, likely 2+ distinct `Sterope`s) — see
-      > `docs/DATA-GAPS.md` GAP-002. Silently corrupts data for an *existing* major Olympian
-      > (`Ares`), not just a missing entity — worth prioritizing over the remaining unknown-name long
-      > tail.
+      > **New lead — WORKED 2026-07-27** `[DEVIATED - see DEVIATIONS.md #DEV-098]`. The corruption
+      > was **total, not partial**: `Arges` appears in exactly 2 places in the whole corpus (both the
+      > Cyclopes list), the extractor emitted 71 `Arges` rows and **0 `Ares` rows**, and `Ares` — a
+      > confirmed `olympian` since V10 — therefore had **zero relationships in the seeded graph**.
+      > All 85 rows triaged against their cited passages: 37 renamed to `Ares`, 5 reversed, 25
+      > dropped as unsupported (epithets like "scion of Ares", metonymy like "all them hath Ares
+      > slain"), 4+4 kept as the genuine Cyclopes, 2 correctly-referenced parentage rows added.
+      > `Steropes` was a **five-way `Sterope` split**, not a rename. 8 new entities (`Arges`,
+      > `Brontes`, `Steropes` + 5 `Sterope`s). **`Ares`: 0 → 33 seeded relationships.** Eval 14/16
+      > (88%), zero stable regressions, all floors met.
+
+- [ ] **Follow-up from DEV-098 — the extraction failure mode has no detector.** The `Ares` erasure
+      was invisible to all six audit checks: A1 compares *confirmed* entities to each other, but this
+      corruption lives in the *candidate* data where the correct name is simply **absent**. Nothing
+      stops the next extraction run from reintroducing it, and other near-miss corruptions of major
+      names may still be undetected. Proposed **A7**: *confirmed entity with high corpus frequency
+      but zero candidate relationship rows* — would have flagged `Ares` (153 corpus mentions, 0 rows)
+      on day one. Carries to P4.
 - [ ] **Fix loop** (unchanged from P3): edit candidate JSON → `seedgen --strict` →
       `reseed-local.sh` → `audit` clean-or-waived → `runner --runs 3` → `compare.py` → commit or
       revert. Expect A3 to surface new cycles as the graph grows — that is the loop working.

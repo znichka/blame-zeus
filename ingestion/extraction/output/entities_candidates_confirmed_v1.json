@@ -13900,5 +13900,61 @@
     "generation": null,
     "domain": null,
     "subtype": null
+  },
+  {
+    "name": "Arges",
+    "type": "other_god",
+    "generation": null,
+    "domain": null,
+    "subtype": "Cyclops"
+  },
+  {
+    "name": "Brontes",
+    "type": "other_god",
+    "generation": null,
+    "domain": null,
+    "subtype": "Cyclops"
+  },
+  {
+    "name": "Steropes",
+    "type": "other_god",
+    "generation": null,
+    "domain": null,
+    "subtype": "Cyclops"
+  },
+  {
+    "name": "Sterope (daughter of Pleuron)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Sterope (daughter of Porthaon)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Sterope (daughter of Cepheus)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Sterope (daughter of Acastus)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Sterope (Pleiad)",
+    "type": "nymph",
+    "generation": null,
+    "domain": null,
+    "subtype": "Pleiad"
   }
 ]

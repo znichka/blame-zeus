@@ -3194,7 +3194,7 @@
   {
     "from_name": "Pleuron",
     "relation": "parent_of",
-    "to_name": "Steropes",
+    "to_name": "Sterope (daughter of Pleuron)",
     "is_contested": false,
     "passage_ref": "1.7.4-1.7.8",
     "source_id": "apollodorus-bibliotheca"
@@ -3218,7 +3218,7 @@
   {
     "from_name": "Xanthippe",
     "relation": "parent_of",
-    "to_name": "Steropes",
+    "to_name": "Sterope (daughter of Pleuron)",
     "is_contested": false,
     "passage_ref": "1.7.4-1.7.8",
     "source_id": "apollodorus-bibliotheca"
@@ -3280,7 +3280,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Oxylus",
     "is_contested": false,
@@ -3336,7 +3336,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Evenus",
     "is_contested": false,
@@ -3344,7 +3344,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Molus",
     "is_contested": false,
@@ -3352,7 +3352,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Pylus",
     "is_contested": false,
@@ -3360,7 +3360,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Thestius",
     "is_contested": false,
@@ -3586,7 +3586,7 @@
   {
     "from_name": "Porthaon",
     "relation": "parent_of",
-    "to_name": "Steropes",
+    "to_name": "Sterope (daughter of Porthaon)",
     "is_contested": false,
     "passage_ref": "1.7.9-1.8.1",
     "source_id": "apollodorus-bibliotheca"
@@ -3634,7 +3634,7 @@
   {
     "from_name": "Euryte",
     "relation": "parent_of",
-    "to_name": "Steropes",
+    "to_name": "Sterope (daughter of Porthaon)",
     "is_contested": false,
     "passage_ref": "1.7.9-1.8.1",
     "source_id": "apollodorus-bibliotheca"
@@ -3648,7 +3648,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Steropes",
+    "from_name": "Sterope (daughter of Porthaon)",
     "relation": "parent_of",
     "to_name": "Sirens",
     "is_contested": false,
@@ -3776,7 +3776,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Meleager",
     "is_contested": true,
@@ -3792,7 +3792,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Dryas",
     "is_contested": false,
@@ -9480,7 +9480,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Diomedes of Thrace",
     "is_contested": false,
@@ -10266,7 +10266,7 @@
   {
     "from_name": "Cepheus",
     "relation": "parent_of",
-    "to_name": "Steropes",
+    "to_name": "Sterope (daughter of Cepheus)",
     "is_contested": false,
     "passage_ref": "2.7.2-2.7.3",
     "source_id": "apollodorus-bibliotheca"
@@ -10384,7 +10384,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Cycnus",
     "is_contested": false,
@@ -12528,7 +12528,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Harmonia",
     "is_contested": false,
@@ -12808,7 +12808,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Phlegyas",
     "is_contested": false,
@@ -14960,7 +14960,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Parthenopaeus",
     "is_contested": true,
@@ -15002,7 +15002,7 @@
   {
     "from_name": "Atlas",
     "relation": "parent_of",
-    "to_name": "Steropes",
+    "to_name": "Sterope (Pleiad)",
     "is_contested": false,
     "passage_ref": "3.9.2-3.10.1",
     "source_id": "apollodorus-bibliotheca"
@@ -15058,7 +15058,7 @@
   {
     "from_name": "Pleione",
     "relation": "parent_of",
-    "to_name": "Steropes",
+    "to_name": "Sterope (Pleiad)",
     "is_contested": false,
     "passage_ref": "3.9.2-3.10.1",
     "source_id": "apollodorus-bibliotheca"
@@ -15080,7 +15080,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Steropes",
+    "from_name": "Sterope (Pleiad)",
     "relation": "married_to",
     "to_name": "Oenomaus",
     "is_contested": false,
@@ -17538,7 +17538,7 @@
   {
     "from_name": "Acastus",
     "relation": "parent_of",
-    "to_name": "Steropes",
+    "to_name": "Sterope (daughter of Acastus)",
     "is_contested": false,
     "passage_ref": "3.12.7-3.13.4",
     "source_id": "apollodorus-bibliotheca"
@@ -17752,7 +17752,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Alcippe",
     "is_contested": false,
@@ -17784,9 +17784,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Halirrhothius",
     "relation": "killed_by",
-    "to_name": "Halirrhothius",
+    "to_name": "Ares",
     "is_contested": false,
     "passage_ref": "3.13.8-3.14.2",
     "source_id": "apollodorus-bibliotheca"
@@ -18168,9 +18168,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Tereus",
+    "from_name": "Ares",
     "relation": "parent_of",
-    "to_name": "Arges",
+    "to_name": "Tereus",
     "is_contested": false,
     "passage_ref": "3.14.8-3.15.2",
     "source_id": "apollodorus-bibliotheca"
@@ -19896,9 +19896,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Penthesilia",
+    "from_name": "Ares",
     "relation": "parent_of",
-    "to_name": "Arges",
+    "to_name": "Penthesilia",
     "is_contested": false,
     "passage_ref": "E.4.6-E.5.4",
     "source_id": "apollodorus-bibliotheca"
@@ -25064,7 +25064,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "child_of",
     "to_name": "Zeus",
     "is_contested": false,
@@ -25072,7 +25072,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "child_of",
     "to_name": "Hera",
     "is_contested": false,
@@ -25152,7 +25152,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Panic",
     "is_contested": false,
@@ -25168,17 +25168,9 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Fear",
-    "is_contested": false,
-    "passage_ref": "924-955",
-    "source_id": "hesiod-theogony"
-  },
-  {
-    "from_name": "Aphrodite",
-    "relation": "married_to",
-    "to_name": "Arges",
     "is_contested": false,
     "passage_ref": "924-955",
     "source_id": "hesiod-theogony"
@@ -25192,7 +25184,7 @@
     "source_id": "hesiod-theogony"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Harmonia",
     "is_contested": false,
@@ -26400,17 +26392,9 @@
     "source_id": "hesiod-homeric-hymns"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Victory",
-    "is_contested": false,
-    "passage_ref": "7.32-8.1",
-    "source_id": "hesiod-homeric-hymns"
-  },
-  {
-    "from_name": "Arges",
-    "relation": "married_to",
-    "to_name": "Themis",
     "is_contested": false,
     "passage_ref": "7.32-8.1",
     "source_id": "hesiod-homeric-hymns"
@@ -27240,14 +27224,6 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Arges",
-    "relation": "parent_of",
-    "to_name": "Elephenor",
-    "is_contested": false,
-    "passage_ref": "2.536-2.580",
-    "source_id": "homer-iliad"
-  },
-  {
     "from_name": "Athena",
     "relation": "parent_of",
     "to_name": "Erechtheus",
@@ -27432,14 +27408,6 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Arges",
-    "relation": "parent_of",
-    "to_name": "Podarces",
-    "is_contested": false,
-    "passage_ref": "2.681-2.728",
-    "source_id": "homer-iliad"
-  },
-  {
     "from_name": "Admetus",
     "relation": "parent_of",
     "to_name": "Eumelus",
@@ -27605,14 +27573,6 @@
     "to_name": "Achilles",
     "is_contested": false,
     "passage_ref": "2.866-3.37",
-    "source_id": "homer-iliad"
-  },
-  {
-    "from_name": "Menelaus",
-    "relation": "beloved_of",
-    "to_name": "Arges",
-    "is_contested": false,
-    "passage_ref": "3.38-3.83",
     "source_id": "homer-iliad"
   },
   {
@@ -28016,7 +27976,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "sibling_of",
     "to_name": "Discord",
     "is_contested": false,
@@ -28384,14 +28344,6 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Arges",
-    "relation": "married_to",
-    "to_name": "Aphrodite",
-    "is_contested": false,
-    "passage_ref": "5.334-5.380",
-    "source_id": "homer-iliad"
-  },
-  {
     "from_name": "Otus",
     "relation": "parent_of",
     "to_name": "Aloeus",
@@ -28434,7 +28386,7 @@
   {
     "from_name": "Apollo",
     "relation": "commands",
-    "to_name": "Arges",
+    "to_name": "Ares",
     "is_contested": false,
     "passage_ref": "5.470-5.518",
     "source_id": "homer-iliad"
@@ -28704,9 +28656,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Periphas",
     "relation": "killed_by",
-    "to_name": "Periphas",
+    "to_name": "Ares",
     "is_contested": false,
     "passage_ref": "5.825-5.863",
     "source_id": "homer-iliad"
@@ -28715,14 +28667,6 @@
     "from_name": "Cronus",
     "relation": "parent_of",
     "to_name": "Zeus",
-    "is_contested": false,
-    "passage_ref": "5.864-5.907",
-    "source_id": "homer-iliad"
-  },
-  {
-    "from_name": "Arges",
-    "relation": "parent_of",
-    "to_name": "Hera",
     "is_contested": false,
     "passage_ref": "5.864-5.907",
     "source_id": "homer-iliad"
@@ -29050,7 +28994,7 @@
   {
     "from_name": "Isander",
     "relation": "killed_by",
-    "to_name": "Arges",
+    "to_name": "Ares",
     "is_contested": false,
     "passage_ref": "6.191-6.236",
     "source_id": "homer-iliad"
@@ -29461,22 +29405,6 @@
     "to_name": "Jason",
     "is_contested": false,
     "passage_ref": "7.442-7.464",
-    "source_id": "homer-iliad"
-  },
-  {
-    "from_name": "Arges",
-    "relation": "master_of",
-    "to_name": "Ajax son of Telamon",
-    "is_contested": false,
-    "passage_ref": "8.78-8.111",
-    "source_id": "homer-iliad"
-  },
-  {
-    "from_name": "Arges",
-    "relation": "master_of",
-    "to_name": "Ajax son of Oileus",
-    "is_contested": false,
-    "passage_ref": "8.78-8.111",
     "source_id": "homer-iliad"
   },
   {
@@ -31368,9 +31296,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Rout",
+    "from_name": "Ares",
     "relation": "parent_of",
-    "to_name": "Arges",
+    "to_name": "Rout",
     "is_contested": false,
     "passage_ref": "13.295-13.329",
     "source_id": "homer-iliad"
@@ -32160,22 +32088,6 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Arges",
-    "relation": "child_of",
-    "to_name": "Zeus",
-    "is_contested": false,
-    "passage_ref": "15.119-15.167",
-    "source_id": "homer-iliad"
-  },
-  {
-    "from_name": "Arges",
-    "relation": "child_of",
-    "to_name": "Hera",
-    "is_contested": false,
-    "passage_ref": "15.119-15.167",
-    "source_id": "homer-iliad"
-  },
-  {
     "from_name": "Hera",
     "relation": "married_to",
     "to_name": "Zeus",
@@ -32880,14 +32792,6 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Polymelus",
-    "relation": "parent_of",
-    "to_name": "Arges",
-    "is_contested": false,
-    "passage_ref": "16.394-16.438",
-    "source_id": "homer-iliad"
-  },
-  {
     "from_name": "Zeus",
     "relation": "married_to",
     "to_name": "Hera",
@@ -33021,14 +32925,6 @@
     "to_name": "Sarpedon",
     "is_contested": false,
     "passage_ref": "16.439-16.476",
-    "source_id": "homer-iliad"
-  },
-  {
-    "from_name": "Sarpedon",
-    "relation": "killed_by",
-    "to_name": "Arges",
-    "is_contested": false,
-    "passage_ref": "16.508-16.547",
     "source_id": "homer-iliad"
   },
   {
@@ -34288,14 +34184,6 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Arges",
-    "relation": "parent_of",
-    "to_name": "Hicetaon",
-    "is_contested": false,
-    "passage_ref": "20.213-20.257",
-    "source_id": "homer-iliad"
-  },
-  {
     "from_name": "Assaracus",
     "relation": "parent_of",
     "to_name": "Capys",
@@ -34800,17 +34688,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Arges",
-    "relation": "killed_by",
-    "to_name": "Athena",
-    "is_contested": false,
-    "passage_ref": "21.382-21.422",
-    "source_id": "homer-iliad"
-  },
-  {
     "from_name": "Aphrodite",
     "relation": "aided",
-    "to_name": "Arges",
+    "to_name": "Ares",
     "is_contested": false,
     "passage_ref": "21.423-21.467",
     "source_id": "homer-iliad"
@@ -35736,30 +35616,6 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Hector",
-    "relation": "killed_by",
-    "to_name": "Arges",
-    "is_contested": false,
-    "passage_ref": "24.247-24.280",
-    "source_id": "homer-iliad"
-  },
-  {
-    "from_name": "Nestor",
-    "relation": "killed_by",
-    "to_name": "Arges",
-    "is_contested": false,
-    "passage_ref": "24.247-24.280",
-    "source_id": "homer-iliad"
-  },
-  {
-    "from_name": "Troilus",
-    "relation": "killed_by",
-    "to_name": "Arges",
-    "is_contested": false,
-    "passage_ref": "24.247-24.280",
-    "source_id": "homer-iliad"
-  },
-  {
     "from_name": "Priam",
     "relation": "married_to",
     "to_name": "Hecabe",
@@ -35827,14 +35683,6 @@
     "from_name": "Peleus",
     "relation": "parent_of",
     "to_name": "Achilles",
-    "is_contested": false,
-    "passage_ref": "24.440-24.484",
-    "source_id": "homer-iliad"
-  },
-  {
-    "from_name": "Alcimus",
-    "relation": "parent_of",
-    "to_name": "Arges",
     "is_contested": false,
     "passage_ref": "24.440-24.484",
     "source_id": "homer-iliad"
@@ -37440,7 +37288,7 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "lover_of",
     "to_name": "Aphrodite",
     "is_contested": false,
@@ -41018,7 +40866,7 @@
   {
     "from_name": "Dragon of Mars",
     "relation": "sacred_to",
-    "to_name": "Arges",
+    "to_name": "Ares",
     "is_contested": false,
     "passage_ref": "3.26-3.49",
     "source_id": "ovid-metamorphoses"
@@ -41064,7 +40912,7 @@
     "source_id": "ovid-metamorphoses"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Harmonia",
     "is_contested": false,
@@ -41484,14 +41332,6 @@
     "relation": "parent_of",
     "to_name": "<UNKNOWN>",
     "is_contested": false,
-    "passage_ref": "4.167-4.189",
-    "source_id": "ovid-metamorphoses"
-  },
-  {
-    "from_name": "Arges",
-    "relation": "married_to",
-    "to_name": "Aphrodite",
-    "is_contested": true,
     "passage_ref": "4.167-4.189",
     "source_id": "ovid-metamorphoses"
   },
@@ -43130,7 +42970,7 @@
   {
     "from_name": "Tereus",
     "relation": "child_of",
-    "to_name": "Arges",
+    "to_name": "Ares",
     "is_contested": false,
     "passage_ref": "6.401-6.437",
     "source_id": "ovid-metamorphoses"
@@ -47704,7 +47544,7 @@
     "source_id": "ovid-metamorphoses"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Romulus",
     "is_contested": false,
@@ -47715,14 +47555,6 @@
     "from_name": "Ilia",
     "relation": "parent_of",
     "to_name": "Romulus",
-    "is_contested": false,
-    "passage_ref": "14.785-14.828",
-    "source_id": "ovid-metamorphoses"
-  },
-  {
-    "from_name": "Arges",
-    "relation": "father_in_law_of",
-    "to_name": "Tatius",
     "is_contested": false,
     "passage_ref": "14.785-14.828",
     "source_id": "ovid-metamorphoses"
@@ -48170,26 +48002,10 @@
   {
     "from_name": "Zeus",
     "relation": "parent_of",
-    "to_name": "Arges",
+    "to_name": "Ares",
     "is_contested": false,
     "passage_ref": "1.3.1-1.3.5",
     "source_id": "apollodorus-bibliotheca"
-  },
-  {
-    "from_name": "Zeus",
-    "relation": "parent_of",
-    "to_name": "Arges",
-    "is_contested": false,
-    "passage_ref": "5.733-5.777",
-    "source_id": "homer-iliad"
-  },
-  {
-    "from_name": "Zeus",
-    "relation": "parent_of",
-    "to_name": "Arges",
-    "is_contested": false,
-    "passage_ref": "17.209-17.255",
-    "source_id": "homer-iliad"
   },
   {
     "from_name": "Zeus",
@@ -50272,7 +50088,7 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Ascalaphus",
     "is_contested": false,
@@ -50280,7 +50096,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Ascalaphus",
     "is_contested": false,
@@ -50288,7 +50104,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Ascalaphus",
     "is_contested": false,
@@ -50296,7 +50112,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Ascalaphus",
     "is_contested": false,
@@ -50304,7 +50120,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Ascalaphus",
     "is_contested": false,
@@ -50312,7 +50128,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Ialmenus",
     "is_contested": false,
@@ -50320,7 +50136,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Ialmenus",
     "is_contested": false,
@@ -50328,7 +50144,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Arges",
+    "from_name": "Ares",
     "relation": "parent_of",
     "to_name": "Ialmenus",
     "is_contested": false,
@@ -54592,22 +54408,6 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Leonteus",
-    "relation": "parent_of",
-    "to_name": "Arges",
-    "is_contested": false,
-    "passage_ref": "2.729-2.779",
-    "source_id": "homer-iliad"
-  },
-  {
-    "from_name": "Leonteus",
-    "relation": "parent_of",
-    "to_name": "Arges",
-    "is_contested": false,
-    "passage_ref": "12.153-12.194",
-    "source_id": "homer-iliad"
-  },
-  {
     "from_name": "Lethus",
     "relation": "parent_of",
     "to_name": "Hippothous",
@@ -55238,5 +55038,21 @@
     "is_contested": false,
     "passage_ref": "2.4.2",
     "source_id": "apollodorus-bibliotheca"
+  },
+  {
+    "from_name": "Ares",
+    "relation": "child_of",
+    "to_name": "Zeus",
+    "is_contested": false,
+    "passage_ref": "5.864-5.907",
+    "source_id": "homer-iliad"
+  },
+  {
+    "from_name": "Ares",
+    "relation": "child_of",
+    "to_name": "Hera",
+    "is_contested": false,
+    "passage_ref": "5.864-5.907",
+    "source_id": "homer-iliad"
   }
 ]
