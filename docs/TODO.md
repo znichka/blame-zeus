@@ -109,8 +109,8 @@ and the `text_cleaner` all-caps stripping that would silently delete Homer/Ovid 
 - [x] Extraction-quality metric (diagnostic, non-blocking): before any hand-add, log how many cross-source floor conflicts the raw candidates contain unaided (`N/2` — Aphrodite, Achilles; Io is single-source, structurally excluded) `[DEVIATED - see DEVIATIONS.md DEV-019]`
 - [x] Flyway V9 — seed sources (6 slugs with `year_published`, `role`) — hand-curated; Homeric Hymns `author` is `Anonymous ("Homeric")`, not Hesiod `[DEVIATED - see DEVIATIONS.md DEV-018]`
 - [x] Flyway V10 — seed entities (~60–100) — merge spot-checked candidates from `entities_candidates.json`
-- [ ] Flyway V11 — seed relationships (parent_of, married_to, killed_by with source attribution + `passage_ref` per DEV-021) — merge spot-checked candidates from `relationships_candidates.json`; a contested relationship keeps exactly **one** canonical spine-preferred edge — the contradiction is recorded in V12 instead `[DEVIATED - see DEVIATIONS.md DEV-014, DEV-021]` — _generated & applied (2,496 rows, verified in Track H); unchecked pending B4's spot-check of the 203 held-out ambiguous-direction rows (see TODO-stage4.md C3/B4)._
-- [ ] Flyway V12 — seed variant_claims — review candidates in `ingestion/notebooks/02_verify_conflicts.ipynb`, promote approved rows to `trust_tier=1` **writing the normalized canonical `claim_type`** (per the `claim_type_aliases` table, DEV-022) and carrying each row's `passage_ref` (DEV-021) at insert; floor conflicts (Aphrodite parentage, Io parentage, Achilles death) are extraction-preferred — hand-add only the ones extraction missed, recording which path each took; Achilles death seeds under canonical `death`, never `slaying` `[DEVIATED - see DEVIATIONS.md DEV-018, DEV-019, DEV-020, DEV-021, DEV-022]` — _generated & applied (44 rows: all 3 floor conflicts, verified in Track H); unchecked pending B5's full review of the remaining ~838 groups (see TODO-stage4.md C4/B5)._
+- [ ] Flyway V11 — seed relationships (parent_of, married_to, killed_by with source attribution + `passage_ref` per DEV-021) — merge spot-checked candidates from `relationships_candidates.json`; a contested relationship keeps exactly **one** canonical spine-preferred edge — the contradiction is recorded in V12 instead `[DEVIATED - see DEVIATIONS.md DEV-014, DEV-021]` — _generated & applied (2,496 rows, verified in Track H); B4's 203 held-out ambiguous-direction rows were fully triaged in Phase-2 P3 Track J2 — 202 resolved (895 rows promoted), 1 rejected (`Eumelus`/`Pheres`, no valid claim either direction) — see DEV-085. V11 has since been regenerated three times and stands at 3,127 rows_ `[DEVIATED - see DEVIATIONS.md #DEV-085, #DEV-093]`
+- [ ] Flyway V12 — seed variant_claims — review candidates in `ingestion/notebooks/02_verify_conflicts.ipynb`, promote approved rows to `trust_tier=1` **writing the normalized canonical `claim_type`** (per the `claim_type_aliases` table, DEV-022) and carrying each row's `passage_ref` (DEV-021) at insert; floor conflicts (Aphrodite parentage, Io parentage, Achilles death) are extraction-preferred — hand-add only the ones extraction missed, recording which path each took; Achilles death seeds under canonical `death`, never `slaying` `[DEVIATED - see DEVIATIONS.md DEV-018, DEV-019, DEV-020, DEV-021, DEV-022]` — _generated & applied (44 rows: all 3 floor conflicts, verified in Track H); unchecked pending B5's full review of the remaining ~838 groups (see TODO-stage4.md C4/B5). That review is Phase-2 **Stage P4**, which also inherits ~145 new `parentage` candidates from ADR-020's landing (DEV-090) and GAP-001's 467-rival promotion backlog — `docs/TODO2.md` Stage P4._
 - [x] Flyway V13 — seed myths + myth_participants — hand-curated, unaffected
 - [x] Flyway V14 — create + seed entity_aliases (~20 cross-cultural aliases) — hand-curated, unaffected; may reuse `known_aliases.json` as a source list
 - [x] JPA `@Entity` classes: `Source`, `EntityRecord`, `Relationship`, `Myth`, `MythParticipant`, `VariantClaim`, `NarrativeChunk`, `EntityAlias`
@@ -217,8 +217,23 @@ hit no `forbidden_patterns`; `RagQueryHandlerTest` and the full suite pass.
 
 ---
 
-## Stage 8.5 — Debug SQL-Generation Errors (deferred)
+## Stage 8.5 — Debug SQL-Generation Errors (deferred → **superseded by Phase 2**)
 **Done when:** DATA **Q9**, MIXED **Q11**, and MIXED **Q12** answer end-to-end via `POST /api/v1/query` with `serviceError: false` and their `required_keywords` present; no regression on the rest of the gold set (full-set route match stays ≥ current 15/16, no new `serviceError`s).
+
+> ⚠️ **Superseded — do not work this stage as written** `[DEVIATED - see DEVIATIONS.md #DEV-093]`.
+> Phase 2 absorbed all four items; the boxes are left unticked only because this stage's own
+> `Done when` was never formally run. Current disposition:
+> - **Gap (ii)** — fixed in P2 as DEV-069's bounded `WITH RECURSIVE` few-shot (Rung 1). Q12 is
+>   `stable-pass`; Q9's `serviceError` is gone and Q9 went fully green at DEV-092.
+> - **Gap (i)** — re-homed to **P5b** (`TODO2.md`), where the MIXED over-constraint prompt fix lands
+>   with the myths/participants data that Q11 actually needs.
+> - **Watch (Q14)** — decided in P1: the route is authoritatively `SQL`, gold relabeled as a logged
+>   eval-bug (DEV-063). DEV-053's raw-row-dump half was closed separately by ADR-015/DEV-056.
+> - **Re-run the gold set** — superseded by the P1 evaluation harness (DEV-060), which runs it 3× on
+>   every batch. Latest: `evaluation/results/2026-07-26T17-49-26Z__5eed421__p3-j5-ouranos-merge-fixed/`.
+>
+> The one live failure this stage was never about is the **DATA floor** (Q6/Q7/Q8) — see
+> `docs/DATA-GAPS.md` GAP-003 and `TODO2.md` Stage P3b.
 
 > ⚠️ **Not part of `IMPLEMENTATION_PLAN.md §9`** — a developer-added remediation stage tracking live bugs
 > found while landing Stage 8 (all detailed in **DEVIATIONS.md #DEV-054**, gaps (i)/(ii)).
@@ -285,8 +300,21 @@ two `serviceError`s — Q9 and Q12 — plus Q11's empty-filter fallback. Details
 
 ---
 
-## Stage 10 — Evaluation
+## Stage 10 — Evaluation — **superseded by Phase 2 Stage P1**
 **Done when:** `EvaluationRunner` reports ≥75% on all 17 gold questions (≥13/17 at full score).
+
+> ⚠️ **Superseded — do not build the Kotlin `EvaluationRunner`** `[DEVIATED - see DEVIATIONS.md #DEV-093]`.
+> ADR-018 moved the harness offline and Phase-2 Stage P1 built it as the Python package
+> `evaluation/runner/` instead (**DEV-060**): the §7 rubric verbatim in `scoring.py`, ADR-010's
+> per-category floors, 3-run stable/flaky/stable-fail classification, the Q10 `min_row_count` SQL
+> re-executor, `refusal_criteria` scoring implemented ahead of its questions, and `compare.py` for
+> batch-over-batch diffs. Every box below except two is satisfied by that package.
+>
+> Genuinely still open, and homed elsewhere: **REFUSAL Q16/Q17** are authored in **P4** (ADR-010's
+> expansion half — its scoring half already shipped in P1), and the **`minScore` tuning** line was
+> resolved on evidence in Stage 6 (DEV-050, `0.65` → lowered after live top-1 scores as low as
+> `0.605`). The `≥75%` target itself was first met on 2026-07-26 (12/16, DEV-092) — with the DATA
+> floor still breached; see `docs/DATA-GAPS.md` GAP-003.
 
 - [ ] Complete `evaluation/gold-questions.json` — all 17 questions with `required_keywords`, `required_authors`, `forbidden_patterns`, REFUSAL `refusal_criteria`. Re-point conflict questions Q13–15 `expected_route` (parentage → SQL, death → RAG); **no question uses `CONFLICT` as an `expected_route`** (it survives only as a `category`) `[DEVIATED - see DEVIATIONS.md DEV-014]`
 - [ ] `EvaluationRunner` (standalone `fun main()` or JUnit integration test)
@@ -389,10 +417,13 @@ regressions.
 - [x] Stage P2 — Debuggability (`DebugInfo`, DEBUG logging, `reseed-local.sh`) + DEV-053/DEV-054 fixes —
       DEV-064 through DEV-069; Q12 fully fixed, Q9's `serviceError` fixed (residual data gap flagged
       for P3)
-- [ ] Stage P3 — Data audit & fixing (`ingestion/audit/`, `relation_aliases`, backlogs) — priority
-- [ ] Stage P4 — Iterative conflict-depth loop; gold set grows in lockstep (ADR-010 questions)
+- [x] Stage P3 — Data audit & fixing (`ingestion/audit/`, `relation_aliases`, backlogs) — priority — landed & committed 2026-07-26 (DEV-070…DEV-092); overall eval first reached 75%. Two findings stay open **by design**: A1's fuzzy-duplicate long-tail and A6's promotion backlog
+- [ ] **Stage P3b — DATA floor closure** (`docs/DATA-GAPS.md` GAP-002 + GAP-003) — **priority; the only failing eval gate.** Q6/Q7/Q8 stable-fail (DATA 2/5 vs a 50% floor); triaged to P3 in P1 but never listed there `[DEVIATED - see DEVIATIONS.md #DEV-093]`
+- [ ] Stage P4 — Iterative conflict-depth loop; gold set grows in lockstep (ADR-010 questions). Owns GAP-001's promotion half (a′) and two prerequisites with no prior home: DEV-038 (`write_output` clobbers promotions) and DEV-049 (zero-retrieval → `serviceError`, which REFUSAL Q16/Q17 will hit)
 - [ ] Stage P5 — New data types (P5a numeric/ADR-009, P5b myths, P5c geography/epithets) + gap
       discovery. Revisit the P2-deferred `query_history` skip here if real web usage has appeared
-      by then (`IMPLEMENTATION_PLAN_PHASE2.md §3.5`, `DEVIATIONS.md` DEV-064).
+      by then (`IMPLEMENTATION_PLAN_PHASE2.md §3.5`, `DEVIATIONS.md` DEV-064). Also carries DEV-066
+      (cycle detection is one-per-SCC, not exhaustive — deferred to a "Phase 3" that does not exist
+      in this roadmap) `[DEVIATED - see DEVIATIONS.md #DEV-093]`.
 
 → [Phase-2 roadmap](TODO2.md) · [Phase-2 design](IMPLEMENTATION_PLAN_PHASE2.md)

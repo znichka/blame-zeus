@@ -357,7 +357,10 @@ hardcoded in code/JSON). Build the code against a **stub map** immediately; fill
       not a standalone reseed) and eyeball a spot sample of former-synonym rows landing canonical.
       Done during Track I's first pass; re-run again during the second (J3 batch) pass. Confirmed
       zero occurrences of any of the 9 synonym/inverse labels in the regenerated file both times.
-      **Not yet done — deferred to Track I**, per this bullet's own instruction.
+      *(A stale "Not yet done — deferred to Track I" sentence followed here, contradicting the two
+      lines above it and this box's own `[x]`. It was written while F was in flight, before Track I
+      ran, and never removed — deleted 2026-07-27 `[DEVIATED - see DEVIATIONS.md #DEV-093]`. F6 is
+      done; the deferral it described is what DEV-076 discharged.)*
 
 ---
 

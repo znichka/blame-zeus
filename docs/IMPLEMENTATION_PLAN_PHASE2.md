@@ -254,7 +254,50 @@ triaged; `relation_aliases` live and applied; DATA/MIXED ≥ baseline, zero stab
 
 ---
 
+## 4b. DATA floor closure (P3b) — added post-P3
+
+> ⚠️ Deviations occurred in this stage. See DEVIATIONS.md for details (**DEV-093**).
+
+Not in the original Phase-2 outline. A 2026-07-27 reconciliation of `DEVIATIONS.md` against the TODO
+files found that P1's triage routed gold **Q6/Q7/Q8** to P3, and P3 closed without listing them —
+leaving the program's **only failing evaluation gate** (DATA **2/5 = 40%** against a 50% floor)
+unowned, in a program whose whole operating model is evaluation-gated. Placed before P4 for the same
+ADR-017 §Decision 4 reason P3 precedes P4: fix existing relational data before adding conflict depth,
+and don't start the P4 loop against a knowingly-breached floor.
+
+Scope is two `docs/DATA-GAPS.md` entries opened by the same audit:
+- **GAP-003** — the three failures, three unrelated root causes: `Hades`/`Hestia` typed `other_god`
+  so Q6's correct SQL filters them out; the hero `Perseus` has **zero** extracted relationships, so
+  Q7 misses a keyword and Q8 falls back from SQL to RAG (0/3); and Q8's `Cetus` keyword is
+  unattested in the corpus (only inside `Anicetus`/`Lycetus`), a DEV-048/DEV-050 brittle-keyword
+  eval-bug to fix *after* the data.
+- **GAP-002** — A2's **367** candidate-referenced names absent from the confirmed entity set
+  (DEV-074, reported unchanged through DEV-083, never given a batch). Scoped subset only: bucket-1
+  unambiguous figures plus whatever Track B needs. Bulk-adding would re-create the name-conflation
+  class Track J spent DEV-078…DEV-082 removing.
+
+Uses §4.3's fix loop unchanged.
+
+**Exit (P3b):** DATA ≥ 3/5 across a 3-run eval with zero stable regressions, results committed;
+every added entity source-verified, never fabricated (the DEV-047 constraint); GAP-002/GAP-003
+statuses updated.
+
+---
+
 ## 5. Iterative improvement loop (P4) — conflict depth
+
+> ⚠️ Deviations occurred in this stage. See DEVIATIONS.md for details (**DEV-093** — two
+> prerequisites added).
+
+**Prerequisites, before the first batch.** Both were documented as found-but-not-fixed with no plan
+home until the 2026-07-27 reconciliation, and both bite specifically here:
+- **DEV-038** — `write_output` blind-overwrites `variant_claims_candidates.json`, so a regenerate
+  after step 2's promotions destroys them. This loop runs review-then-regenerate every batch, so the
+  hazard is structural, not incidental. Fix (merge-on-write, or refuse to overwrite promoted rows)
+  or waive in writing with a documented backup step.
+- **DEV-049** — a zero-retrieval question returns non-JSON prose and surfaces as `serviceError`.
+  ADR-010's REFUSAL Q16/Q17, authored in step 4, *are* the zero-retrieval case, so without this fix
+  they score a `serviceError` fail rather than testing the refusal they were written for.
 
 Repeatable batch (~25–50 conflict groups each) over the 838 unreviewed groups:
 
@@ -305,6 +348,14 @@ Independently shippable sub-stages, each with its own gold questions and schema-
   `docs/DATA-GAPS.md` backlog fed by triage, which selects the next sub-stage. Only here, if real web
   usage exists, reconsider a minimal `query_log` table (weigh the write-grant exception vs the
   guardrail; eval artifacts may still suffice).
+- **Cross-cutting — A3 cycle detection is non-exhaustive (DEV-066)** `[DEVIATED - see DEVIATIONS.md
+  #DEV-093]`. `cycle_check.py` reports one representative cycle per strongly-connected component via
+  a single DFS back-edge, not full elementary-cycle enumeration (Johnson's). DEV-066 deferred this
+  "to Phase 3 if it turns out to matter" — **no Phase 3 exists in this program**, which ends at P5c,
+  and DEV-086 showed it already mattered: the unexplained A3 89→127 jump was this limitation, not a
+  regression, and took a full investigation to establish. P5's new data types grow the graph, so
+  decide here — implement exhaustive enumeration, or surface the non-exhaustiveness in A3's own
+  output so the next count jump explains itself.
 
 **Exit (per sub-stage):** its new gold questions pass, all sentinels stay green, per-category floors
 hold across a 3-run eval; ADRs/DEV entries logged per the deviation protocol.

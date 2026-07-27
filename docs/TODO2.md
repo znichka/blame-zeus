@@ -23,8 +23,17 @@ DEV-056/DEV-057 — **confirmed** at baseline, fixed further only on evidence) a
 runtime defects addressed in P2;
 **DEV-041** (schema-vocabulary → SQL quality) motivates ADR-019; **DEV-055** (tests mock
 `@AiService`) bounds where the harness may live; **DEV-088** (ADR-020's discriminator replaced
-after measurement, scope widened to the dropped rival parents — *documentation only, implementation
-pending*) is P3's largest open data change, see `docs/DATA-GAPS.md` GAP-001.
+after measurement, scope widened to the dropped rival parents — landed as DEV-090) was P3's largest
+open data change, see `docs/DATA-GAPS.md` GAP-001.
+
+> **2026-07-27 reconciliation audit** `[DEVIATED - see DEVIATIONS.md #DEV-093]` — a sweep of
+> `DEVIATIONS.md` DEV-001…DEV-092 against these TODO files found several documented-but-unfixed
+> items with no home in any plan. They now have one: **Stage P3b** (new, below) owns
+> `docs/DATA-GAPS.md` **GAP-003** (the Q6/Q7/Q8 DATA floor breach, mis-routed to P3 by P1's triage
+> and never listed there) and **GAP-002** (DEV-074's 367 missing entities); **P4** owns DEV-038 and
+> DEV-049 as prerequisites; **P5** owns DEV-066. Everything else deferred in `DEVIATIONS.md` was
+> confirmed to have a real destination already — see DEV-093 for the full inventory, including the
+> items that are open **by design** (A1's fuzzy-duplicate long-tail, A6's promotion backlog).
 
 ---
 
@@ -32,22 +41,32 @@ pending*) is P3's largest open data change, see `docs/DATA-GAPS.md` GAP-001.
 **Done when:** `python -m runner --runs 3 --label baseline` completes against a running, seeded
 server and writes a **committed** `evaluation/results/<UTC>__<sha>__baseline/`; every failing gold
 question is triaged in `report.md` as pipeline-bug / data-gap / corpus-gap / eval-bug.
+**Landed and committed 2026-07-22** (DEV-060 the harness, DEV-061/062/063 the three eval-bug fixes)
+— baseline `evaluation/results/2026-07-22T19-02-10Z__de6de91__baseline/`, 10/16 (62%).
 
-- [ ] `evaluation/runner/` package: `__main__.py` (CLI: `--runs`, `--label`, `--base-url`,
+> Boxes below were ticked 2026-07-27 from `TODO-phase2-stage-p1.md`, whose Definition-of-done mirror
+> was already fully complete; this outline file had simply never been reconciled
+> `[DEVIATED - see DEVIATIONS.md #DEV-093]`.
+
+- [x] `evaluation/runner/` package: `__main__.py` (CLI: `--runs`, `--label`, `--base-url`,
       `--questions`, `--ids`, `--debug`), `scoring.py` (§7 rubric verbatim + ADR-010 per-category
       floors), `report.py` (results dir: `raw_responses.json` / `scores.json` / `report.md`),
-      `compare.py` (baseline vs candidate → `diff.md`)
-- [ ] `evaluation/eval-config.json` — per-category floors, overall ≥75% target, base-url default
-- [ ] 3-run stable / flaky / stable-fail classification; `serviceError:true` scored as fail (no
+      `compare.py` (baseline vs candidate → `diff.md`) — DEV-060
+- [x] `evaluation/eval-config.json` — per-category floors, overall ≥75% target, base-url default
+- [x] 3-run stable / flaky / stable-fail classification; `serviceError:true` scored as fail (no
       retry); transport errors retry once
-- [ ] Q10 `min_row_count` re-executes generated SQL via read-only `zeus_app` psycopg2 + statement timeout
-- [ ] Implement `refusal_criteria` (phrase-list + empty-`citations[]`) **now**, so P4's REFUSAL
-      Q16/Q17 need no scorer change
-- [ ] Flip **ADR-010** → Accepted (done at documentation time); defer authoring its ~8 new questions
+- [x] Q10 `min_row_count` re-executes generated SQL via read-only `zeus_app` psycopg2 + statement timeout
+- [x] Implement `refusal_criteria` (phrase-list + empty-`citations[]`) **now**, so P4's REFUSAL
+      Q16/Q17 need no scorer change — scorer half done; `SOURCE_SILENCE_PHRASES` extendable in P4
+- [x] Flip **ADR-010** → Accepted (done at documentation time); defer authoring its ~8 new questions
       to P4 (don't change yardstick and data at once)
-- [ ] Commit baseline results dir; triage every failure in `report.md`
-- [ ] Triage decides the **Q14 route-label** question (RAG-via-empty-SQL vs SQL-returns-rows, DEV-054);
-      record as an eval-bug fix if the gold label changes
+- [x] Commit baseline results dir; triage every failure in `report.md`
+- [x] Triage decides the **Q14 route-label** question (RAG-via-empty-SQL vs SQL-returns-rows, DEV-054);
+      record as an eval-bug fix if the gold label changes — decided **SQL**, gold relabeled (DEV-063)
+
+> ⚠️ **P1's H3 triage routed Q6/Q7/Q8 to "→ P3" and P3 never listed them.** See **Stage P3b** below
+> and `docs/DATA-GAPS.md` GAP-003. One half of that triage is also stale: Q7's `Zeus→Heracles` edge
+> was restored by DEV-090.
 
 → Detailed checklist: `TODO-phase2-stage-p1.md` (created at implementation)
 
@@ -119,18 +138,26 @@ discriminator, DEV-091 the Chaos decision, DEV-092 the Sky/Heaven/Uranus merge �
 the P1 target, for the first time. Remaining open items are permanent-by-design: A1's fuzzy-duplicate
 long-tail and A6's unowned P4 promotion backlog — neither is expected to ever reach literal zero.
 
-- [ ] `ingestion/audit/` package (`python -m audit`, read-only): A1 duplicate entities
+> Boxes below were ticked 2026-07-27 against `TODO-phase2-stage-p3.md`, the granular checklist that
+> supersedes this outline; the outline had never been reconciled line-by-line
+> `[DEVIATED - see DEVIATIONS.md #DEV-093]`.
+
+- [x] `ingestion/audit/` package (`python -m audit`, read-only): A1 duplicate entities
       (rapidfuzz + transliteration heuristics), A2 candidate-drop accounting, **A3
       direction/integrity — cycle detection (self-loop / 2-cycle / longer) as first-class invariant,
       authored in P2, run every batch** + symmetric duplicates + DEV-040 invariants, A4 relation-label
       taxonomy → initial `relation_aliases` map, A5 alias/participant integrity
-  - [ ] **Per-row dropped-parent record** (GAP-001 Root cause 3, lands with J4a): a check conforming
+  - [x] **Per-row dropped-parent record** (GAP-001 Root cause 3, lands with J4a): a check conforming
         to the Track-A check contract, alongside `drop_accounting.py`, listing every parent value the
         contested collapse discards (child, value, source, passage, whether the subject already has a
         `variant_claims` parentage row). A2 reports contested-collapse as an aggregate only, so no
         reviewer has a per-row list to promote from — this is the artifact for all **612** surviving
         rivals
-  - [ ] **Backlog from P2 Track I (DEV-068):** 3 `parent_of` cycles left unfixed in P2 because they're
+  - [x] **Backlog from P2 Track I (DEV-068) — all 3 closed by entity splits** (DEV-078 `Aeolus`/
+        `Aetolus`, DEV-079 `Cecrops`/`Pandion` — *three* Pandions, not two, DEV-080 `Astyoche`), plus
+        2 more found along the way (DEV-077, DEV-082); A3 reached **0 live cycles** at DEV-083. The
+        original per-cycle notes are kept below for the source-verification record.
+        3 `parent_of` cycles left unfixed in P2 because they're
         entity-conflation, not reversed edges — findings committed at
         `ingestion/audit/findings-db.json`. `Aeolus ⇄ ... ⇄ Endymion` is source-verified
         (`apollodorus_bibliotheca_frazer1921.txt` `[1.7.1]`–`[1.8.1]`): "Aeolus" is conflated with his
@@ -164,17 +191,74 @@ long-tail and A6's unowned P4 promotion backlog — neither is expected to ever 
           entity, so a flat cap could still drop `Ouranos` behind heavily-cited `Earth`/`Cronus`
           rows) via a new `dedupeByName` fix in both SQL-facing handlers. **Overall eval reached
           12/16 = 75%, the P1 target, for the first time.**
-- [ ] `relation_aliases(alias PK, canonical, inverse BOOLEAN)` migration (new Phase-2 V-number);
+- [x] `relation_aliases(alias PK, canonical, inverse BOOLEAN)` migration (new Phase-2 V-number);
       wire into `seedgen/relationships_gen.py` (apply map at generation; swap from/to on inverse)
-- [ ] Triage backlogs: 29 (grown to 48 live) fuzzy-dup pairs (merge + alias, DEV-043 pattern); 203
-      flagged relationships
-- [ ] Fix loop each batch: edit candidate JSON **(or, for J4a, the seedgen/extraction code)** →
+      — live as **V17** (DEV-072), regenerated against it in DEV-076
+- [x] Triage backlogs: 29 (grown to 48 live) fuzzy-dup pairs (merge + alias, DEV-043 pattern); 203
+      flagged relationships — DEV-084 (8 merged / 40 rejected), DEV-085 (202 resolved, 895 rows
+      promoted, 1 rejected). A1's residual 39 pairs are permanent long-tail, per the header above
+- [x] Fix loop each batch: edit candidate JSON **(or, for J4a, the seedgen/extraction code)** →
       `seedgen --strict` → `reseed-local.sh` → `audit` **clean or explicitly waived with a note** →
       eval `--runs 3` → `compare.py` → commit (candidates + migrations + results) or revert
-- [ ] Confirm `SchemaIntrospector` reflects the shrunk relation vocabulary
-- [ ] Log DEV entries for any deviation from plan
+      — mechanism proven five times (DEV-076/083/089/090/092), all committed
+- [x] Confirm `SchemaIntrospector` reflects the shrunk relation vocabulary — 124 → 116 (DEV-076)
+- [x] Log DEV entries for any deviation from plan — DEV-070 through DEV-092
+
+> **Not carried by P3, despite P1 triage saying so:** gold **Q6/Q7/Q8** (the DATA floor breach).
+> They are `docs/DATA-GAPS.md` **GAP-003** and Stage **P3b** below. Likewise **GAP-002** — A2's 367
+> unknown names (DEV-074), reported unchanged through DEV-083 and never given a Track J batch.
 
 → Detailed checklist: `TODO-phase2-stage-p3.md` (created at implementation)
+
+---
+
+## Stage P3b — DATA floor closure  (GAP-002 + GAP-003; added 2026-07-27, DEV-093)
+
+> ⚠️ Added after P3 closed. `[DEVIATED - see DEVIATIONS.md #DEV-093]` — this stage is not in the
+> original Phase-2 outline. It exists because P1's Track H3 triage routed Q6/Q7/Q8 to "→ P3" and P3
+> landed without ever listing them, leaving the **only failing evaluation gate** with no owner.
+> Sequenced before P4 for the same reason ADR-017 §Decision 4 puts P3 before P4: fix existing
+> relational data before adding conflict depth.
+
+**Done when:** a 3-run eval shows **DATA ≥ 3/5 (floor met)** with zero stable regressions and the
+results dir committed; every entity added went through source verification, not fabrication; GAP-002
+and GAP-003 statuses updated in `docs/DATA-GAPS.md`.
+
+Sizing note: the floor needs 3/5 and Q9/Q10 already pass, so **Track A alone plus either B or C
+clears the gate** — the rest is genuine data quality, not gate-chasing. Do not stop at the gate if
+Track B/C are half-landed.
+
+- [ ] **Track A — Q6 entity typing (smallest, self-contained).** `Hades` and `Hestia` are
+      `type='other_god'` in `entities_candidates_confirmed_v1.json`, so `child.type = 'olympian'`
+      excludes them and Q6 returns 4 of its 6 required keywords. Decide and **record** the typing
+      (retype to `olympian`, or keep `other_god` + set `subtype` per DEV-040) — it is a real
+      editorial question in the tradition, not just a bug. If the decision goes the other way, Q6's
+      keyword list changes instead, as a logged eval-bug (DEV-048/050). Regenerate `V10`; no DDL.
+- [ ] **Track B — Q7/Q8 Perseus extraction gap.** `relationships_candidates_cleaned.json` has
+      **zero** rows touching the hero `Perseus` — never extracted, not dropped. Run a bounded,
+      source-verified extraction pass over the Perseus material (Zeus + Danae → Perseus; Perseus →
+      Medusa / the Gorgons / the Andromeda sea monster / Phineus), reusing the existing
+      `instructor` + checkpoint tooling and `ref_ranges.py`. **No hand-written rows without source
+      attribution** — the constraint DEV-047 cited when it declined to patch these same questions in
+      Stage 5. Q8 also needs its route to return to `SQL`, which follows automatically once Perseus
+      has relationships.
+- [ ] **Track C — Q8's `Cetus` keyword is unattested.** `Cetus` never appears as a word anywhere in
+      `ingestion/corpus/` — only inside `Anicetus` and `Lycetus`, two unrelated men. Replace it with a
+      corpus-attested keyword **after** Track B lands (so the choice is made against the real answer,
+      not a RAG fallback), live-verified across 3 runs, logged as an eval-bug per DEV-048/DEV-050.
+      Never silent tuning.
+- [ ] **Track D — GAP-002's 367 unknown names, scoped subset.** Work bucket 1 (unambiguous missing
+      figures: `Nereus` 110 refs, `Doris` 64, `Arges` 71, `Steropes` 14, `Styx` 17, `Ceto` 16,
+      `Thaumas` 15) plus anything load-bearing for Track B (`Phineus`, 17 refs). **Do not bulk-add**:
+      `Electra`, `Eurytus`, `Phineus`, `Thoas` are multi-person names in this corpus, and adding a
+      bare name re-creates exactly the conflation defect DEV-078…DEV-082 spent Track J removing.
+      `<UNKNOWN>` (133 rows) is an extraction sentinel, not an entity. Long tail carries to P4.
+- [ ] **Fix loop** (unchanged from P3): edit candidate JSON → `seedgen --strict` →
+      `reseed-local.sh` → `audit` clean-or-waived → `runner --runs 3` → `compare.py` → commit or
+      revert. Expect A3 to surface new cycles as the graph grows — that is the loop working.
+- [ ] Update GAP-002/GAP-003 status in `docs/DATA-GAPS.md`; log DEV entries per protocol.
+
+→ Detailed checklist: `TODO-phase2-stage-p3b.md` (created at implementation)
 
 ---
 
@@ -182,6 +266,24 @@ long-tail and A6's unowned P4 promotion backlog — neither is expected to ever 
 **Done when:** the loop has run ≥3 batches end-to-end; `variant_claims` covers ≥4 claim_types and
 all top-20-prominence subjects; the gold set is ≈25 questions with per-category floors enforced;
 overall ≥75% sustained across a 3-run eval. *(The loop continues past this gate.)*
+
+**Prerequisites — two long-standing DEVIATIONS-only hazards that this stage is the first to trip.**
+Both were documented as found-but-not-fixed and had no TODO home until 2026-07-27
+`[DEVIATED - see DEVIATIONS.md #DEV-093]`. Do these **before** the first promotion batch:
+
+- [ ] **DEV-038 — `write_output` clobbers promotion decisions.** `write_output` blind-overwrites
+      `variant_claims_candidates.json` on every extraction run, so any re-run after a review pass
+      destroys the `trust_tier=1` promotions it made. DEV-038 recorded this as a "known unaddressed
+      risk", mitigated only by operator discipline. P4 is *the* promotion-heavy stage and runs
+      review-then-regenerate repeatedly, so the risk becomes structural here. Fix (merge-on-write
+      preserving promoted rows, or a hard refuse-to-overwrite guard) or accept it with a written
+      waiver and a documented backup step — but decide explicitly, do not inherit it silently.
+- [ ] **DEV-049 — zero-retrieval questions can return non-JSON prose.** When retrieval yields no
+      chunks, LangChain4j's `DefaultContentInjector` short-circuits to the bare question, the model
+      answers in prose, structured-output parsing fails, and the request surfaces as `serviceError`.
+      DEV-049 flagged this "secondary, not fixed". ADR-010's **REFUSAL Q16/Q17 are by construction
+      the zero-retrieval case**, so authoring them without fixing this scores a `serviceError` fail
+      rather than the refusal the questions are meant to test. Fix before authoring, not after.
 
 - [ ] Per batch (~25–50 groups): rank the 838 unreviewed groups by subject prominence; prioritize
       new claim_types beyond parentage/death (marriage, killer/slaying, birthplace, transformation).
@@ -225,6 +327,15 @@ floors hold across a 3-run eval; the relevant ADR/DEV entries are logged.
       (frequency-ordered, DEV-041); a new gold question verifies the model uses each new table
 - [ ] Maintain `docs/DATA-GAPS.md` (triage-fed backlog) — it selects the next sub-stage; reconsider a
       minimal `query_log` only if real web traffic exists (weigh the write-grant exception)
+- [ ] **DEV-066 — cycle detection is non-exhaustive.** `cycle_check.py` reports one representative
+      cycle per strongly-connected component via a single DFS back-edge, not full elementary-cycle
+      enumeration (Johnson's algorithm). DEV-066 deferred this "to Phase 3 if it turns out to
+      matter" — **there is no Phase 3 in this roadmap**, which stops at P5c, so it had no home until
+      2026-07-27 `[DEVIATED - see DEVIATIONS.md #DEV-093]`. It already mattered once: DEV-086's
+      unexplained A3 jump (89 → 127) was this limitation, not a regression, and cost a full
+      investigation to establish. P5's new data types grow the graph, so decide here — implement
+      exhaustive enumeration, or document the non-exhaustiveness in A3's own output so the next count
+      jump is self-explaining.
 
 → Detailed checklist: `TODO-phase2-stage-p5.md` (created at implementation)
 

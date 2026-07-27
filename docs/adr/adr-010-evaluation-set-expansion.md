@@ -98,8 +98,21 @@ not a statistical benchmark. The fix is *targeted coverage*, not bulk size.
 
 ## Action Items
 
-- [ ] Author the ~8 new gold questions above in `evaluation/gold-questions.json`.
-- [ ] Update `IMPLEMENTATION_PLAN.md §7` + `EvaluationRunner`: per-category pass rates, floors on
-      CONFLICT/REFUSAL, conflict questions scored on `conflicts[]` not route match.
-- [ ] Confirm the numeric questions are added only if ADR-009 is accepted.
-- [ ] Log **DEV-017**; add `> ⚠️ Amended by ADR-010` to `IMPLEMENTATION_PLAN.md §7`.
+> Reconciled 2026-07-27 against what actually shipped `[DEVIATED - see DEVIATIONS.md #DEV-093]` —
+> the P1 implementation note above already said the scoring half was done, but these boxes were
+> never flipped.
+
+- [ ] Author the ~8 new gold questions above in `evaluation/gold-questions.json`. — **still open;
+      P4** (`docs/TODO2.md`). Note **DEV-049** must be fixed first: the REFUSAL pair is by
+      construction the zero-retrieval case, which currently returns non-JSON prose and scores as a
+      `serviceError` fail rather than a refusal.
+- [x] Update `IMPLEMENTATION_PLAN.md §7` + `EvaluationRunner`: per-category pass rates, floors on
+      CONFLICT/REFUSAL, conflict questions scored on `conflicts[]` not route match. — **done in P1
+      (DEV-060)**, as `evaluation/runner/scoring.py` + `eval-config.json`, not the Kotlin
+      `EvaluationRunner` of §7 (ADR-018 moved the harness offline). The REFUSAL floor stays
+      `null`/absent until its questions exist.
+- [ ] Confirm the numeric questions are added only if ADR-009 is accepted. — **still open**; ADR-009
+      remains *Proposed* and flips to *Accepted* at **P5a** (ADR-017 §Decision 5).
+- [x] Log **DEV-017**; add `> ⚠️ Amended by ADR-010` to `IMPLEMENTATION_PLAN.md §7`. — the DEV-number
+      instruction is **superseded**: this ADR landed under **DEV-059** (Phase-2 direction) and its
+      scoring half under **DEV-060**. DEV-017 was already taken by an unrelated Stage-4 entry.

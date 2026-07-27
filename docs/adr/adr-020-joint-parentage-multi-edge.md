@@ -245,14 +245,21 @@ Worked outcomes (all verified by simulation against the live candidate data):
   both buckets — and (b) a same-source qualifying condition in the detector, which addresses the 145.
   The ~467 already-detected rivals need a review-throughput answer, not code. Tracked in
   `docs/DATA-GAPS.md` GAP-001 Root cause 3 and folded into J4a's landing scope.
-- Two other blockers to a full Q9 pass remain open (see `docs/DATA-GAPS.md` GAP-001): the
-  **`Chaos → Earth` cosmogonic (non-parent) relation** (J4b), and the **`Sky` / `Heaven` / `Uranus`
-  duplicate-entity split** — all three exist as separate confirmed entities, `Heaven` even carries
-  `Earth` as its own parent, and the restored edge attaches to `Sky`; surfacing the literal "Ouranos"
-  keyword needs that duplicate resolved and an `entity_aliases` row.
-- Implementation lands through the Stage P3 Track I fix-loop gate (seedgen → reseed → audit → 3-run
-  eval → compare), recorded as **DEV-088**. Design reference:
-  `docs/TODO-phase2-stage-p3.md` Track J4a and the approved plan for this change.
+- Two other blockers to a full Q9 pass remained open when this section was written; **both are now
+  resolved** `[DEVIATED - see DEVIATIONS.md #DEV-093]` — the text below is kept as the pre-landing
+  record. (1) The **`Sky` / `Heaven` / `Uranus` duplicate-entity split** was closed by Track J5
+  (**DEV-092**), merging all three into canonical `Ouranos` plus `entity_aliases` rows, and fixing a
+  second row-cap defect the merge exposed. (2) The **`Chaos → Earth` cosmogonic (non-parent)
+  relation** (J4b) was decided in **DEV-091**: deferred to P5b, waived — Hesiod has them arise
+  independently, so no `parent_of`-shaped edge is correct, and RAG answers it in prose instead. **Q9
+  now stable-passes 3/3.** Original text: *"…the `Chaos → Earth` cosmogonic (non-parent) relation
+  (J4b), and the `Sky` / `Heaven` / `Uranus` duplicate-entity split — all three exist as separate
+  confirmed entities, `Heaven` even carries `Earth` as its own parent, and the restored edge attaches
+  to `Sky`; surfacing the literal "Ouranos" keyword needs that duplicate resolved and an
+  `entity_aliases` row."*
+- Implementation landed through the Stage P3 Track I fix-loop gate (seedgen → reseed → audit → 3-run
+  eval → compare) as **DEV-090** — **DEV-088** recorded only the pre-implementation amendment. Design
+  reference: `docs/TODO-phase2-stage-p3.md` Track J4a and the approved plan for this change.
 
 ## Traceability
 
@@ -261,8 +268,10 @@ Worked outcomes (all verified by simulation against the live candidate data):
   unrecorded dropped rivals).
 - Backlog item: **`docs/TODO-phase2-stage-p3.md` Track J4a**.
 - Deviation: **`docs/DEVIATIONS.md` DEV-088** — records this 2026-07-26 amendment and the added
-  lossless-drop scope; implementation still pending.
-- Code touch-points when implemented: `ingestion/seedgen/canonical_edge.py`
+  lossless-drop scope. **Implementation landed the same day as DEV-090** (plus DEV-092 for the
+  `Ouranos` merge); this line previously read "implementation still pending", which contradicted the
+  Status header above `[DEVIATED - see DEVIATIONS.md #DEV-093]`.
+- Code touch-points, as landed: `ingestion/seedgen/canonical_edge.py`
   (`resolve_canonical_edges`, `_pick_winner`, `RelRow` gains `is_contested`);
   `ingestion/seedgen/relationships_gen.py` (pre-dedup co-mention plumbing);
   `ingestion/extraction/conflict_detector.py` (same-source parentage detection);

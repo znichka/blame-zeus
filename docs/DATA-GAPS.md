@@ -6,6 +6,12 @@ root cause(s), why it wasn't fixed in the stage that found it, and the decision 
 Referenced from `docs/TODO-phase2-stage-p3.md` (Stage P3, Track J4) as the landing place for any
 gap deferred to Phase 5b.
 
+| Gap | Summary | Status | Home |
+|---|---|---|---|
+| **GAP-001** | Q9 cannot reach `Ouranos`/`Chaos` | Closed for everything P3 owned; root cause 3's promotion half (a′) open | P4 (a′), P5b (J4b, waived) |
+| **GAP-002** | 367 entities referenced by candidate relationships but absent from the confirmed set | **Open, un-triaged** | Stage P3b |
+| **GAP-003** | DATA floor breach — Q6/Q7/Q8 all stable-fail | **Open** — the only failing eval gate | Stage P3b |
+
 ---
 
 ## GAP-001 — Q9 "Trace Zeus's lineage back to Chaos" cannot reach `Ouranos`/`Chaos`
@@ -324,7 +330,8 @@ Deucalion + Pyrrha couple, and that rival is dropped at seed time and recorded n
 > contains **zero** `parent_of` rows into `Perseus`. The only Perseus rows are `Nestor` and
 > `Anaxibia` → *"Perseus son of Nestor"*, a different figure. Nothing was dropped for the hero
 > Perseus; his parentage was never extracted. Extraction-coverage gaps of that shape are not covered
-> by GAP-001 and have no tracking entry yet.
+> by GAP-001 — they are **GAP-003** as of 2026-07-27 (`[DEVIATED - see DEVIATIONS.md #DEV-093]`);
+> this exact Perseus case is GAP-003's root cause 3 and the reason gold Q8 stable-fails.
 
 **Decision needed** — the record-every-dropped-parent half is folded into J4a's landing scope (it
 reads the same resolver pass); the promotion half is **not** code work and is scoped separately:
@@ -381,6 +388,9 @@ defect hiding it) was the gap, exactly as the DEV-048/DEV-050 precedent anticipa
   (`evaluation/results/2026-07-26T17-49-26Z__5eed421__p3-j5-ouranos-merge-fixed/`) after also fixing
   a row-cap defect the merge exposed. GAP-001 is now closed for everything P3 was ever going to fix
   — the only remaining open item is Root cause 3's promotion half (a′), carried to P4.
+- **Q9 passing does not clear the DATA floor.** Read this entry's closure narrowly: DATA is still
+  **2/5 (40%) against a 50% floor** in the same run that proves Q9 green. The remaining three DATA
+  failures (Q6/Q7/Q8) are **not** GAP-001 root causes and were never in P3's scope — see **GAP-003**.
 
 **References:** `ingestion/seedgen/canonical_edge.py` (`resolve_canonical_edges`, `SPINE_PRIORITY`,
 `_pick_winner`); `ingestion/seedgen/relationships_gen.py` (`_filter_and_dedup`, the pre-dedup
@@ -391,3 +401,191 @@ gate); `ingestion/audit/drop_accounting.py` (A2, aggregate-only today);
 `ingestion/corpus/hesiod_theogony_evelynwhite1914.txt` lines ~16–30 (`[104]`–`[163]`);
 `evaluation/gold-questions.json` (Q9); `docs/DEVIATIONS.md` #DEV-069 (original discovery), #DEV-088
 (this fix); `docs/adr/adr-020-joint-parentage-multi-edge.md`; `docs/TODO-phase2-stage-p3.md` Track J4.
+
+---
+
+## GAP-002 — 367 entities are referenced by candidate relationships but absent from the confirmed set
+
+**Status:** OPEN, un-triaged. Discovered 2026-07-23 by audit check A2 (DEV-074), re-confirmed
+unchanged at DEV-076 and DEV-083, and **re-verified live 2026-07-27** (`python -m audit
+--candidates`: `367 distinct unknown name(s)`). DEV-074 filed it as "a new, large triage backlog for
+Track J"; Track J closed for P3 (J4a/J4b/J5 all landed) without touching it, and no TODO file ever
+listed it. Given a home 2026-07-27 as Stage **P3b** `[DEVIATED - see DEVIATIONS.md #DEV-093]`.
+
+### Symptom
+
+`ingestion/seedgen/relationships_gen.py` drops any candidate relationship row whose `from_name` or
+`to_name` does not resolve to a confirmed entity. A2 (`drop_accounting.py`) accounts for that bucket
+and, in its unknown-name drilldown, names the missing entities. The drop is silent at seed time —
+nothing in `V11` records that the row existed.
+
+### Evidence (live, 2026-07-27, `python -m audit --candidates`)
+
+```
+A2: 6902 raw -> 3243 seeded (unknown_name=1246, exact_dup=1448, contested_collapse=965, residual=0)
+    367 distinct unknown name(s)
+```
+
+Top of the ranked drilldown, by number of candidate rows referencing the name:
+
+| references | name | note |
+|---:|---|---|
+| 133 | `<UNKNOWN>` | **not** a missing entity — an unresolved extraction sentinel; A2's own `suggestedFix` says to investigate the extraction pass, not Track J |
+| 110 | `Nereus` | major, unambiguous sea god |
+| 71 | `Arges` | Cyclops |
+| 64 | `Doris` | Oceanid, Nereus's consort |
+| 26 | `Alcinous` | Phaeacian king (Odyssey) |
+| 23 | `Electra` | |
+| 17 | `Styx` / `Phineus` | `Phineus` is directly load-bearing for gold **Q8** (GAP-003) |
+| 16 | `Ceto` | |
+| 15 | `Thaumas` | |
+| 14 | `Steropes` / `Eurytus` | |
+| 13 | `Thoas`, `Pegasus`, `Eurynome`, `Ascalaphus` | |
+
+366 real names (excluding the sentinel) across **1,253** dropped rows. DEV-074 confirmed by direct
+lookup that these are **not** typos or spelling variants — zero fuzzy overlap with the confirmed set,
+so audit check A1 will never surface them and the DEV-042 `Io` fix pattern does not apply.
+
+### Root cause
+
+The confirmed entity set (`entities_candidates_confirmed_v1.json`, 1,981 rows) was built by a
+review pass over *extracted entity candidates*, independently of the *relationship* candidates. Any
+figure the entity extraction pass missed — or that a reviewer did not confirm — silently invalidates
+every relationship row mentioning it. Nothing reconciles the two candidate files against each other;
+A2 is the first check that ever compared them, which is why this sat undetected from Stage 4 to P3.
+
+### Scope note — this is a triage backlog, not a bulk-add
+
+The 367 are **leads**, not a work list. Three buckets, and only the first is a clear add:
+1. Genuine, unambiguous figures that belong in the graph (`Nereus`, `Doris`, `Ceto`, `Thaumas`,
+   `Styx`, `Arges`, `Steropes`) — add to the confirmed set, regenerate `V10`/`V11`.
+2. Namesake collisions and conflations of the class DEV-078…DEV-082 spent all of Track J untangling
+   (`Electra`, `Eurytus`, `Phineus`, `Thoas` are all multi-person names in this corpus) — adding a
+   bare name here would *create* the exact defect Track J just removed.
+3. Extraction noise and the `<UNKNOWN>` sentinel — no entity to add; a signal about the extraction
+   pass instead.
+
+Adding bucket 1 grows the graph and can surface new A3 cycles, so it goes through the standard Track
+I fix loop like any other data change.
+
+### Decision needed
+
+- **(a)** *(Recommended, scoped as P3b)* Work only the subset that unblocks GAP-003 — the names on
+  the Perseus/Danae/Gorgon lines and anything else gold-question-load-bearing — plus bucket 1's
+  unambiguous top names. Carry the long tail to P4 alongside the other review-throughput backlogs.
+- **(b)** Work all 367 as one batch. Rejected: it is the same undifferentiated-bulk-triage shape that
+  made DEV-084's 48-pair pass slow, and buckets 2/3 need per-name source verification anyway.
+- **(c)** Waive as permanent long-tail, like A1's 39 pairs. Rejected: unlike A1's residue, these are
+  **not** duplicates of rows already present — each one is a real, absent piece of the graph, and at
+  least one (`Phineus`) blocks a gold question today.
+
+**References:** `ingestion/audit/drop_accounting.py` (A2, unknown-name drilldown);
+`ingestion/seedgen/relationships_gen.py` (`_filter_and_dedup`);
+`ingestion/extraction/output/entities_candidates_confirmed_v1.json`;
+`docs/DEVIATIONS.md` #DEV-074 (discovery), #DEV-076/#DEV-083 (re-confirmed unchanged), #DEV-093
+(homed); `docs/TODO2.md` Stage P3b.
+
+---
+
+## GAP-003 — DATA category floor breach: Q6, Q7, Q8 all stable-fail
+
+**Status:** OPEN. Triaged in Stage P1 Track H3 (`docs/TODO-phase2-stage-p1.md`) as three data-gaps
+routed "**→ P3**"; P3 landed and committed (`35fb379`) without any of the three ever appearing in
+`TODO-phase2-stage-p3.md` or `TODO2.md`. Given a home 2026-07-27 as Stage **P3b**
+`[DEVIATED - see DEVIATIONS.md #DEV-093]`. **This is the project's only failing evaluation gate.**
+
+### Symptom
+
+`evaluation/results/2026-07-26T17-49-26Z__5eed421__p3-j5-ouranos-merge-fixed/report.md` — the same
+run in which overall eval first reached the 75% target and GAP-001's Q9 went green:
+
+```
+Overall (pessimistic / worst-run): 12/16 = 75% (target 75%) — PASS
+  FACT     5/5 (100%) — floor n/a
+  DATA     2/5  (40%) — floor 50% BREACH
+  MIXED    1/2  (50%) — floor n/a
+  CONFLICT 4/4 (100%) — floor 50% PASS
+```
+
+Q9 and Q10 pass. **Q6 2/3, Q7 2/3, Q8 0/3 — all `stable-fail`.** Three unrelated root causes.
+
+### Root cause 1 (Q6) — `Hades` and `Hestia` are typed `other_god`, not `olympian`
+
+Gold Q6 "Which Olympians are children of Cronus?" requires
+`["Zeus","Hera","Poseidon","Demeter","Hestia","Hades"]`. The generated SQL is **correct**:
+
+```sql
+WHERE r.relation = 'parent_of' AND parent.name ILIKE 'Cronus' AND child.type = 'olympian'
+```
+
+and the answer is correct *for the data*: "Zeus, Hera, Poseidon, and Demeter". Verified in
+`entities_candidates_confirmed_v1.json`: `Zeus`/`Hera`/`Poseidon`/`Demeter` are `type='olympian'`;
+`Hades` and `Hestia` are `type='other_god'`. Route ✓, author ✓, content ✗ — a typing decision, not a
+retrieval or generation defect, and the smallest of the three fixes.
+
+Note this is a genuine editorial question, not just a mistake: whether Hades and Hestia count as
+Olympians is contested in the tradition itself. The fix must therefore be a recorded decision (retype
+to `olympian`, or keep `other_god` and use `subtype` per DEV-040), not a silent edit — and if the
+decision goes the other way, Q6's keyword list is what changes, as a logged eval-bug per the
+DEV-048/DEV-050 precedent.
+
+### Root cause 2 (Q7, Q8) — the hero Perseus has no extracted relationships at all
+
+`relationships_candidates_cleaned.json` contains **zero** rows with `Perseus` as either `from_name`
+or `to_name` (verified live 2026-07-27, 6,902 rows). Not dropped — never extracted. The only
+Perseus-adjacent rows are `Nestor`/`Anaxibia` → *"Perseus son of Nestor"*, a different figure. This
+is the "fourth, separate gap" flagged as untracked under GAP-001 Root cause 3; it lives here now.
+
+Consequences, both live-verified:
+- **Q7** ("Which heroes are children of Zeus?", requires `["Heracles","Perseus"]`) — the SQL is
+  correct and now returns `Heracles`, `Castor`, `Pollux`, `Arcas`, `Iasion`, `Zethus`, `Ajax`,
+  `Arcesilaus`. `Perseus` is absent because no edge exists.
+- **Q8** ("List all monsters Perseus encountered.", `expected_route: SQL`) — SQL over an entity with
+  no relationships returns nothing, so the handler falls back to RAG. Route ✗, author ✗, content ✗ =
+  **0/3**, the only zero in the set. The RAG answer is factually good (Medusa, the Gorgon, the sea
+  monster, Phineus) — the failure is structural, not a retrieval failure.
+
+> **Stale triage correction.** P1's H3 note reads "Q7 → data-gap (Zeus→Heracles/Perseus edges
+> missing)". The `Heracles` half is **no longer true**: `Zeus parent_of Heracles` is present in the
+> live `V11` (104 `Zeus parent_of` rows total), restored as a side effect of ADR-020's joint-parentage
+> landing (DEV-090) — before that, the contested collapse kept only `Alcmena`. Only the `Perseus`
+> half survives, which collapses Q7's root cause into Q8's.
+
+This overlaps GAP-002: `Phineus` — whom Perseus turns to stone, and a plausible Q8 answer — is one of
+GAP-002's 367 missing entities (17 references). Fix the two together.
+
+### Root cause 3 (Q8) — the `Cetus` keyword is unattested in the corpus
+
+Independent of the data gap, Q8 requires `["Medusa","Gorgon","Cetus"]`. Grepped live over
+`ingestion/corpus/`: **`Cetus` never appears as a word.** Its only occurrences are inside
+`Anicetus` (Apollodorus) and `Lycetus` (Ovid) — two unrelated men. Frazer and More render the
+Andromeda sea monster descriptively ("a sea monster"), never by that name.
+
+So Q8 cannot score its content point even after root cause 2 is fixed. This is precisely the
+brittle-keyword class DEV-048 (`Eris` → `Strife`) and DEV-050 established, and it must be handled the
+same way: a **logged eval-bug fix**, live-verified against the corpus, never silent tuning. Note that
+`Cetus` is also absent from the confirmed entity set, so no SQL answer could produce it either.
+
+### Decision needed
+
+- **Q6** — decide the Hades/Hestia typing and record it. Regenerate `V10`; no schema change.
+- **Q7/Q8** — a bounded, source-verified extraction pass for the Perseus line (Zeus + Danae →
+  Perseus; Perseus → Medusa/Gorgon/sea monster/Phineus), reusing the existing
+  `instructor`/checkpoint tooling and `ref_ranges.py`. Coordinate with GAP-002 bucket 1 so `Phineus`
+  and friends land once. **Do not hand-write rows without source attribution** — the constraint
+  DEV-047 cited when it declined to patch exactly these questions in Stage 5.
+- **Q8's `Cetus`** — replace with a corpus-attested keyword after the data fix lands, live-verified
+  across 3 runs, logged as an eval-bug (DEV-048/DEV-050 precedent). Sequence it **after** root cause
+  2, so the keyword is chosen against the real post-fix answer rather than against a RAG fallback.
+
+Expected outcome: Q6 and Q7 recoverable to 3/3, Q8 to 3/3 only if all of root causes 2 and 3 land.
+DATA reaches the 50% floor at 3/5 — so **Q6 plus either Q7 or Q8 is sufficient** to clear the gate.
+
+**References:** `evaluation/gold-questions.json` (Q6, Q7, Q8);
+`evaluation/results/2026-07-26T17-49-26Z__5eed421__p3-j5-ouranos-merge-fixed/`;
+`ingestion/extraction/output/entities_candidates_confirmed_v1.json` (`Hades`/`Hestia` typing);
+`ingestion/extraction/output/relationships_candidates_cleaned.json` (no `Perseus` rows);
+`core-api/src/main/resources/db/migration/V11__seed_relationships.sql` (`Zeus parent_of Heracles`
+present); `docs/TODO-phase2-stage-p1.md` H3 (the original triage); `docs/DEVIATIONS.md` #DEV-047
+(first sighting, Stage 5), #DEV-048/#DEV-050 (the keyword-fix precedent), #DEV-090 (fixed Q7's
+`Heracles` half), #DEV-093 (homed); `docs/TODO2.md` Stage P3b; **GAP-002** (shares root cause 2).
