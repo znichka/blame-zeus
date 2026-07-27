@@ -293,13 +293,24 @@ Track B/C are half-landed.
       > `Brontes`, `Steropes` + 5 `Sterope`s). **`Ares`: 0 → 33 seeded relationships.** Eval 14/16
       > (88%), zero stable regressions, all floors met.
 
-- [ ] **Follow-up from DEV-098 — the extraction failure mode has no detector.** The `Ares` erasure
-      was invisible to all six audit checks: A1 compares *confirmed* entities to each other, but this
-      corruption lives in the *candidate* data where the correct name is simply **absent**. Nothing
-      stops the next extraction run from reintroducing it, and other near-miss corruptions of major
-      names may still be undetected. Proposed **A7**: *confirmed entity with high corpus frequency
-      but zero candidate relationship rows* — would have flagged `Ares` (153 corpus mentions, 0 rows)
-      on day one. Carries to P4.
+- [x] **Follow-up from DEV-098 — the extraction failure mode now has a detector. LANDED 2026-07-27**
+      `[DEVIATED - see DEVIATIONS.md #DEV-099]`. **A7** (`ingestion/audit/name_coverage.py`):
+      *confirmed entity named often by the corpus but referenced by zero candidate relationship
+      rows*, plus **corruption-partner identification** — the unconfirmed names that do carry rows,
+      ranked by `rapidfuzz` against A1's 88 threshold, so the check names the culprit and not just
+      the victim. Validated against `fbf47bf`'s pre-fix data: top hit
+      `208 mentions / 0 rows  Ares <- likely 'Arges' (71 rows, 88.9)`, 8× ahead of the next entry.
+      Auto-discovered by `python -m audit` (now A1–A7) and part of the standing pre-seedgen gate.
+      14 tests, headline test mutation-verified; `audit/tests/` green at 102.
+
+- [ ] **Triage A7's 6 live findings — a data batch, not yet worked.** Three are defect classes no
+      existing check can reach: `Argeiphontes` (26 mentions, 0 rows) is a standing **epithet of
+      Hermes**, who is separately confirmed — belongs in `entity_aliases`, and A1 can't see it
+      (fuzzy 33.3); `Acusilaus` (10) is an **ancient author Apollodorus cites**, not a mythological
+      figure, so it should not be an entity at all; `Diomed` (10) is a **spelling variant of
+      `Diomedes`** that A1 structurally misses at **85.7**, just under the shared 88 threshold. The
+      other three (`Charybdis`, `Demodocus`, `Thisbe`) look like genuine extraction misses. Runs
+      through the standard fix loop.
 - [ ] **Fix loop** (unchanged from P3): edit candidate JSON → `seedgen --strict` →
       `reseed-local.sh` → `audit` clean-or-waived → `runner --runs 3` → `compare.py` → commit or
       revert. Expect A3 to surface new cycles as the graph grows — that is the loop working.

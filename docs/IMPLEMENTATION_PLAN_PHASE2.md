@@ -257,7 +257,7 @@ triaged; `relation_aliases` live and applied; DATA/MIXED ≥ baseline, zero stab
 ## 4b. DATA floor closure (P3b) — added post-P3
 
 > ⚠️ Deviations occurred in this stage. See DEVIATIONS.md for details
-> `[DEVIATED - see DEVIATIONS.md #DEV-093, #DEV-094, #DEV-095, #DEV-096, #DEV-098]`.
+> `[DEVIATED - see DEVIATIONS.md #DEV-093, #DEV-094, #DEV-095, #DEV-096, #DEV-098, #DEV-099]`.
 
 Not in the original Phase-2 outline. A 2026-07-27 reconciliation of `DEVIATIONS.md` against the TODO
 files found that P1's triage routed gold **Q6/Q7/Q8** to P3, and P3 closed without listing them —
@@ -287,8 +287,9 @@ Scope is two `docs/DATA-GAPS.md` entries opened by the same audit:
   since V10, had **no relationships at all** in the seeded graph. All 85 rows triaged against their
   cited passages (37 renamed, 5 reversed, 25 dropped as unsupported, 8 kept as the genuine Cyclopes,
   2 added); `Steropes` proved to be a five-way `Sterope` split. **`Ares`: 0 → 33 relationships.**
-  The *failure mode* stays open — no audit check can see corruption that lives in the candidate
-  layer, where the correct name is simply absent (proposed check **A7**, carried to P4).
+  The *failure mode* is now detected by audit check **A7** (`ingestion/audit/name_coverage.py`)
+  `[DEVIATED - see DEVIATIONS.md #DEV-099]`, which reproduces the missed `Ares` lead on pre-fix data
+  and joins the standing pre-seedgen gate; its own 6 findings are a data batch carried to P4.
 
 Uses §4.3's fix loop unchanged.
 

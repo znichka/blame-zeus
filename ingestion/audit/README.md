@@ -11,9 +11,10 @@ Every check in this package **reports only** — none of them mutate any file or
 
 `__main__.py` walks the package for any sibling module exposing the contract in `contract.py`
 (module-level `NAME: str` + `run(candidates_dir, db_conn) -> CheckResult`) — a module needs no
-separate registration call, just those two names, to be picked up. All **five** checks are live:
+separate registration call, just those two names, to be picked up. All **seven** checks are live:
 **`duplicate_entities.py` (`A1`)**, **`drop_accounting.py` (`A2`)**, **`cycle_check.py` (`A3`)**,
-**`relation_taxonomy.py` (`A4`)**, **`integrity.py` (`A5`)**.
+**`relation_taxonomy.py` (`A4`)**, **`integrity.py` (`A5`)**, **`dropped_parents.py` (`A6`)**,
+**`name_coverage.py` (`A7`)**.
 
 ```
 python -m audit                    # both sources (default): candidate JSON + a live DB connection
@@ -180,6 +181,45 @@ Two groups of checks, both cheap to run on every batch:
 
 Today: **clean** — 0 findings against the live DB (27 `entity_aliases`, 22 `myth_participants`,
 2,494 `relationships`, all passing every check).
+
+## `name_coverage.py` — the A7 corpus-vs-candidates coverage check
+
+**Candidates-only, and needs the corpus.** Added after DEV-098, which found that the extraction
+model wrote every `Ares`/`Mars` as **`Arges`** — so the candidate rows held 71 `Arges` and **zero**
+`Ares`, and `Ares`, a confirmed `olympian` since V10, was seeded with **no relationships at all**.
+
+The point of this check is that **A1–A6 structurally could not see that**:
+
+| check | why it missed the `Ares` erasure |
+|---|---|
+| A1 | compares *confirmed* names to each other; `Arges` was never a confirmed entity |
+| A2 | *did* list `Arges` — but as a **missing entity to add**, the opposite of the truth |
+| A3/A5 | reason over edges that exist; an entity with no edges is invisible |
+| A4/A6 | operate on relation labels and dropped parents — neither is name-coverage |
+
+The signal none of them look at is the **corpus itself**: an entity the sources name constantly that
+no candidate row references. For each hit the check also names the likely **corruption partner** — an
+unconfirmed name that carries rows and is fuzzy-similar (`rapidfuzz`, A1's 88 threshold). Run against
+the pre-DEV-098 data it produces exactly the lead that was missed:
+
+```
+208 mentions / 0 rows  Ares <- likely 'Arges' (71 rows, 88.9)
+```
+
+Scope limits, all deliberate: the **corpus is not committed**, so a run without it reports "not
+evaluated" rather than guessing; **split siblings are grouped by base name** (`Sterope (Pleiad)` →
+`Sterope`) and their rows pooled, so a five-way split isn't flagged because one sibling got no rows;
+**multi-word names are skipped**, not flagged (`Diomedes of Thrace` never appears verbatim in a
+translation); and a **translation-name mismatch is a known false-negative** (Ovid says `Mars`), which
+is the safe direction — it under-counts mentions and so under-flags.
+
+Today: **6 findings**, and they are three distinct defect classes, none of which A1 can reach —
+`Argeiphontes` (26 mentions) is a standing **epithet of Hermes**, who is separately confirmed, so it
+belongs in `entity_aliases`, not `entities` (fuzzy score to `Hermes`: 33.3); `Acusilaus` (10) is an
+**ancient author Apollodorus cites**, not a mythological figure at all; `Diomed` (10) is a **spelling
+variant of `Diomedes`** that A1 misses because it scores **85.7**, just under the 88 threshold. The
+rest (`Charybdis`, `Demodocus`, `Thisbe`) look like genuine extraction misses. Triage is a data
+batch, not part of this check.
 
 ## The Flyway checksum trap (shared with Track F)
 

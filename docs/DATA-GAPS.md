@@ -9,7 +9,7 @@ gap deferred to Phase 5b.
 | Gap | Summary | Status | Home |
 |---|---|---|---|
 | **GAP-001** | Q9 cannot reach `Ouranos`/`Chaos` | Closed for everything P3 owned; root cause 3's promotion half (a′) open | P4 (a′), P5b (J4b, waived) |
-| **GAP-002** | 367 entities referenced by candidate relationships but absent from the confirmed set | **Partially resolved** — 5 of 7 bucket-1 landed (DEV-096); `Arges`/`Steropes` corruption triaged and `Ares` recovered from 0 relationships (DEV-098); long tail + the undetected failure mode still open | Stage P3b (partial), P4 (long tail, proposed check A7) |
+| **GAP-002** | 367 entities referenced by candidate relationships but absent from the confirmed set | **Partially resolved** — 5 of 7 bucket-1 landed (DEV-096); `Arges`/`Steropes` corruption triaged and `Ares` recovered from 0 relationships (DEV-098); failure mode now detected by audit check **A7** (DEV-099), whose own 6 findings + the unknown-name long tail are open | Stage P3b (partial), P4 (long tail + A7 findings) |
 | **GAP-003** | DATA floor breach — Q6/Q7/Q8 all stable-fail | **Resolved** — all 3 root causes landed (DEV-094, DEV-095); DATA 100%, overall 94% | Stage P3b |
 
 ---
@@ -509,13 +509,22 @@ in the 6,905-row candidate set undetected.
   refs containing no such statement), 2 correctly-referenced parentage rows added, 8 new entities
   (`Arges`, `Brontes`, `Steropes` + the five `Sterope`s). **`Ares`: 0 → 33 seeded relationships.**
 
-**Still open — the failure mode itself.** Nothing prevents the next extraction run from
-reintroducing this, and no audit check is shaped to detect it: A1 compares *confirmed* entities,
-while this corruption lives in the *candidate* data where the correct name is simply **absent**. A
-candidate-layer check would have caught it on day one — *"confirmed entity with high corpus
-frequency but zero candidate relationship rows"* would have flagged `Ares` (153 corpus mentions, 0
-rows) immediately. Worth adding as A7; carried to P4. The broader suspicion stands: other near-miss
-corruptions of major names may still be undetected in the candidate set.
+**The failure mode now has a detector (DEV-099).** Audit check **A7**
+(`ingestion/audit/name_coverage.py`) implements the rule proposed here — *confirmed entity named
+often by the corpus but referenced by zero candidate relationship rows* — plus corruption-partner
+identification, so it names the culprit and not just the victim. Validated against `fbf47bf`'s
+pre-fix data, its top hit is `208 mentions / 0 rows  Ares <- likely 'Arges' (71 rows, 88.9)`, 8×
+ahead of the next entry. (208, not the 153 quoted above — that figure was the *Iliad* alone.) A7 is
+part of the standing pre-seedgen gate, so a future extraction run that reintroduces this class fails
+the gate instead of seeding silently.
+
+**Still open — A7's own findings.** The sweep confirmed the broader suspicion: **6 live findings**,
+three of them defect classes no existing check can reach — `Argeiphontes` (26 mentions, an **epithet
+of Hermes**, who is separately confirmed; belongs in `entity_aliases`, and A1 scores the pair 33.3),
+`Acusilaus` (10, an **ancient author Apollodorus cites**, not a mythological figure — it should not
+be an entity at all), and `Diomed` (10, a **spelling variant of `Diomedes`** that A1 structurally
+misses at **85.7**, just under its 88 threshold), plus `Charybdis`/`Demodocus`/`Thisbe` as likely
+genuine extraction misses. Triaging these is a data batch, carried to P4.
 
 ### Root cause
 
@@ -537,9 +546,9 @@ The 367 (now 362) are **leads**, not a work list. Four buckets now, not three:
    pass instead. **Still open** (133 rows).
 4. *(New, DEV-096)* **Extraction corruption of an existing name** — `Arges` (→ **entirely** `Ares`)
    and `Steropes` (→ mostly five distinct `Sterope`s) were originally filed in bucket 1 but turned
-   out to belong here instead. **These two names RESOLVED 2026-07-27 (DEV-098)**; the *failure mode*
-   remains open, with no detector and nothing stopping the next extraction run from reintroducing
-   it (see Resolution above — proposed audit check A7).
+   out to belong here instead. **These two names RESOLVED 2026-07-27 (DEV-098)**, and the *failure
+   mode* now has a detector — **audit check A7** (DEV-099), which reproduces the missed `Ares` lead
+   on pre-fix data and found 6 more entities of the same shape (see Resolution above).
 
 Adding bucket 1 grows the graph and can surface new A3 cycles, so it goes through the standard Track
 I fix loop like any other data change — confirmed clean for the 5 names added (A3 unchanged at 1
@@ -560,8 +569,9 @@ waived cycle, A5 clean, no new A1 fuzzy-dup pairs).
   lead. **Done 2026-07-27 (DEV-098)** for those two names — corruption was total, `Ares` recovered
   from 0 to 33 relationships. The **generalization is still open**: whether the same near-miss
   extraction confusion recurs for other major names in the candidate set. Cheapest next step is the
-  proposed **A7** check (confirmed entity, high corpus frequency, zero candidate rows), which turns
-  this from a manual hunt into a mechanical sweep.
+  **A7** check (confirmed entity, high corpus frequency, zero candidate rows), which turned this
+  from a manual hunt into a mechanical sweep. **Built 2026-07-27 (DEV-099)**; its 6 findings are the
+  next data batch.
 
 **References:** `ingestion/audit/drop_accounting.py` (A2, unknown-name drilldown);
 `ingestion/seedgen/relationships_gen.py` (`_filter_and_dedup`);

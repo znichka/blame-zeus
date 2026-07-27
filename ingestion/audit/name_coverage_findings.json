@@ -1,0 +1,61 @@
+{
+  "minMentions": 10,
+  "maxRows": 0,
+  "skippedMultiWord": 66,
+  "uncovered": [
+    {
+      "baseName": "Argeiphontes",
+      "entityNames": [
+        "Argeiphontes"
+      ],
+      "corpusMentions": 26,
+      "candidateRows": 0,
+      "similarUnconfirmed": []
+    },
+    {
+      "baseName": "Charybdis",
+      "entityNames": [
+        "Charybdis"
+      ],
+      "corpusMentions": 17,
+      "candidateRows": 0,
+      "similarUnconfirmed": []
+    },
+    {
+      "baseName": "Demodocus",
+      "entityNames": [
+        "Demodocus"
+      ],
+      "corpusMentions": 11,
+      "candidateRows": 0,
+      "similarUnconfirmed": []
+    },
+    {
+      "baseName": "Acusilaus",
+      "entityNames": [
+        "Acusilaus"
+      ],
+      "corpusMentions": 10,
+      "candidateRows": 0,
+      "similarUnconfirmed": []
+    },
+    {
+      "baseName": "Diomed",
+      "entityNames": [
+        "Diomed"
+      ],
+      "corpusMentions": 10,
+      "candidateRows": 0,
+      "similarUnconfirmed": []
+    },
+    {
+      "baseName": "Thisbe",
+      "entityNames": [
+        "Thisbe"
+      ],
+      "corpusMentions": 10,
+      "candidateRows": 0,
+      "similarUnconfirmed": []
+    }
+  ]
+}
