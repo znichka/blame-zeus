@@ -228,12 +228,18 @@ Sizing note: the floor needs 3/5 and Q9/Q10 already pass, so **Track A alone plu
 clears the gate** — the rest is genuine data quality, not gate-chasing. Do not stop at the gate if
 Track B/C are half-landed.
 
-- [ ] **Track A — Q6 entity typing (smallest, self-contained).** `Hades` and `Hestia` are
-      `type='other_god'` in `entities_candidates_confirmed_v1.json`, so `child.type = 'olympian'`
-      excludes them and Q6 returns 4 of its 6 required keywords. Decide and **record** the typing
-      (retype to `olympian`, or keep `other_god` + set `subtype` per DEV-040) — it is a real
-      editorial question in the tradition, not just a bug. If the decision goes the other way, Q6's
-      keyword list changes instead, as a logged eval-bug (DEV-048/050). Regenerate `V10`; no DDL.
+- [x] **Track A — Q6 entity typing — LANDED 2026-07-27 (DEV-094).** Verified against the corpus
+      rather than assuming a bare "Twelve Olympians" list: Hesiod's *Theogony* [869] states plainly
+      that Hades "rules over the dead below," structurally apart from "THE OLYMPIAN GODS" section
+      [886]; the Homeric Hymn to Aphrodite [7] gives Hestia full standing "in all the temples of the
+      gods." Decision: **retyped `Hestia` `other_god` → `olympian`**; **left `Hades` `other_god`**,
+      matching the corpus's own placement of him. Corrected Q6's `required_keywords` to drop `Hades`
+      (5 names, not 6) as a logged eval-bug, not a silent tune. `V10` regenerated (1-row diff),
+      reseeded, `audit --db` unchanged (A1 39, A3 waived-1, A4 116, A5 clean). **Eval:**
+      `evaluation/results/2026-07-27T09-13-55Z__e861a17__p3b-track-a-hestia-olympian/` — **DATA
+      40% → 60%, floor now PASS, zero floor breaches remain**; Q6 stable-fail → stable-pass;
+      `compare.py` confirms zero stable regressions vs the last accepted baseline. Q10's
+      `min_row_count: 12` still holds (13 olympian-typed now). Not yet committed.
 - [ ] **Track B — Q7/Q8 Perseus extraction gap.** `relationships_candidates_cleaned.json` has
       **zero** rows touching the hero `Perseus` — never extracted, not dropped. Run a bounded,
       source-verified extraction pass over the Perseus material (Zeus + Danae → Perseus; Perseus →

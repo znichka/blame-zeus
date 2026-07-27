@@ -418,7 +418,7 @@ regressions.
       DEV-064 through DEV-069; Q12 fully fixed, Q9's `serviceError` fixed (residual data gap flagged
       for P3)
 - [x] Stage P3 — Data audit & fixing (`ingestion/audit/`, `relation_aliases`, backlogs) — priority — landed & committed 2026-07-26 (DEV-070…DEV-092); overall eval first reached 75%. Two findings stay open **by design**: A1's fuzzy-duplicate long-tail and A6's promotion backlog
-- [ ] **Stage P3b — DATA floor closure** (`docs/DATA-GAPS.md` GAP-002 + GAP-003) — **priority; the only failing eval gate.** Q6/Q7/Q8 stable-fail (DATA 2/5 vs a 50% floor); triaged to P3 in P1 but never listed there `[DEVIATED - see DEVIATIONS.md #DEV-093]`
+- [ ] **Stage P3b — DATA floor closure** (`docs/DATA-GAPS.md` GAP-002 + GAP-003) — Q6/Q7/Q8 stable-fail (DATA 2/5 vs a 50% floor); triaged to P3 in P1 but never listed there `[DEVIATED - see DEVIATIONS.md #DEV-093]`. **Track A (Q6) landed 2026-07-27, DEV-094 — DATA floor now PASSES (60%).** Q7/Q8 (GAP-002/GAP-003 root causes 2/3) still open, worth finishing on their own merits, no longer gate-blocking.
 - [ ] Stage P4 — Iterative conflict-depth loop; gold set grows in lockstep (ADR-010 questions). Owns GAP-001's promotion half (a′) and two prerequisites with no prior home: DEV-038 (`write_output` clobbers promotions) and DEV-049 (zero-retrieval → `serviceError`, which REFUSAL Q16/Q17 will hit)
 - [ ] Stage P5 — New data types (P5a numeric/ADR-009, P5b myths, P5c geography/epithets) + gap
       discovery. Revisit the P2-deferred `query_history` skip here if real web usage has appeared

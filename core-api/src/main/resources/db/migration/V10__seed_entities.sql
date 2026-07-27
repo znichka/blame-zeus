@@ -944,7 +944,7 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Hesione', 'mortal', NULL, NULL, NULL),
     ('Hesperia', 'nymph', NULL, NULL, NULL),
     ('Hesperus', 'other_god', NULL, NULL, NULL),
-    ('Hestia', 'other_god', NULL, NULL, NULL),
+    ('Hestia', 'olympian', NULL, NULL, NULL),
     ('Hesychia', 'mortal', NULL, NULL, NULL),
     ('Hicetaon', 'mortal', NULL, NULL, NULL),
     ('Hierax', 'mortal', NULL, NULL, NULL),

@@ -10,7 +10,7 @@ gap deferred to Phase 5b.
 |---|---|---|---|
 | **GAP-001** | Q9 cannot reach `Ouranos`/`Chaos` | Closed for everything P3 owned; root cause 3's promotion half (a′) open | P4 (a′), P5b (J4b, waived) |
 | **GAP-002** | 367 entities referenced by candidate relationships but absent from the confirmed set | **Open, un-triaged** | Stage P3b |
-| **GAP-003** | DATA floor breach — Q6/Q7/Q8 all stable-fail | **Open** — the only failing eval gate | Stage P3b |
+| **GAP-003** | DATA floor breach — Q6/Q7/Q8 all stable-fail | **Partially resolved** — Q6/root cause 1 landed (DEV-094), floor now passes; Q7/Q8 still open | Stage P3b |
 
 ---
 
@@ -489,10 +489,14 @@ I fix loop like any other data change.
 
 ## GAP-003 — DATA category floor breach: Q6, Q7, Q8 all stable-fail
 
-**Status:** OPEN. Triaged in Stage P1 Track H3 (`docs/TODO-phase2-stage-p1.md`) as three data-gaps
-routed "**→ P3**"; P3 landed and committed (`35fb379`) without any of the three ever appearing in
-`TODO-phase2-stage-p3.md` or `TODO2.md`. Given a home 2026-07-27 as Stage **P3b**
-`[DEVIATED - see DEVIATIONS.md #DEV-093]`. **This is the project's only failing evaluation gate.**
+**Status:** PARTIALLY RESOLVED. Root cause 1 (Q6) **landed 2026-07-27 (DEV-094)** — DATA floor now
+**passes** (40% → 60%, floor 50%). Root causes 2 and 3 (Q7/Q8, the Perseus extraction gap and the
+unattested `Cetus` keyword) are **still open**. Triaged in Stage P1 Track H3
+(`docs/TODO-phase2-stage-p1.md`) as three data-gaps routed "**→ P3**"; P3 landed and committed
+(`35fb379`) without any of the three ever appearing in `TODO-phase2-stage-p3.md` or `TODO2.md`.
+Given a home 2026-07-27 as Stage **P3b** `[DEVIATED - see DEVIATIONS.md #DEV-093]`.
+**Was the project's only failing evaluation gate — the gate itself is now clear**, but read that
+narrowly: Q7/Q8 still fail individually, they just no longer breach the floor with Q6 fixed.
 
 ### Symptom
 
@@ -509,25 +513,33 @@ Overall (pessimistic / worst-run): 12/16 = 75% (target 75%) — PASS
 
 Q9 and Q10 pass. **Q6 2/3, Q7 2/3, Q8 0/3 — all `stable-fail`.** Three unrelated root causes.
 
-### Root cause 1 (Q6) — `Hades` and `Hestia` are typed `other_god`, not `olympian`
+### Root cause 1 (Q6) — `Hades` and `Hestia` are typed `other_god`, not `olympian` — **RESOLVED 2026-07-27 (DEV-094)**
 
-Gold Q6 "Which Olympians are children of Cronus?" requires
-`["Zeus","Hera","Poseidon","Demeter","Hestia","Hades"]`. The generated SQL is **correct**:
+Gold Q6 "Which Olympians are children of Cronus?" required
+`["Zeus","Hera","Poseidon","Demeter","Hestia","Hades"]`. The generated SQL was already **correct**:
 
 ```sql
 WHERE r.relation = 'parent_of' AND parent.name ILIKE 'Cronus' AND child.type = 'olympian'
 ```
 
-and the answer is correct *for the data*: "Zeus, Hera, Poseidon, and Demeter". Verified in
+and the answer was correct *for the data*: "Zeus, Hera, Poseidon, and Demeter". Verified in
 `entities_candidates_confirmed_v1.json`: `Zeus`/`Hera`/`Poseidon`/`Demeter` are `type='olympian'`;
-`Hades` and `Hestia` are `type='other_god'`. Route ✓, author ✓, content ✗ — a typing decision, not a
-retrieval or generation defect, and the smallest of the three fixes.
+`Hades` and `Hestia` were both `type='other_god'`. Route ✓, author ✓, content ✗ — a typing decision,
+not a retrieval or generation defect, and the smallest of the three fixes.
 
-Note this is a genuine editorial question, not just a mistake: whether Hades and Hestia count as
-Olympians is contested in the tradition itself. The fix must therefore be a recorded decision (retype
-to `olympian`, or keep `other_god` and use `subtype` per DEV-040), not a silent edit — and if the
-decision goes the other way, Q6's keyword list is what changes, as a logged eval-bug per the
-DEV-048/DEV-050 precedent.
+This was a genuine editorial question, not just a mistake: whether Hades and Hestia count as
+Olympians is contested in the tradition itself, so the fix needed a recorded decision, not a silent
+edit. **Resolved by checking the corpus directly** rather than assuming a bare "Twelve Olympians"
+list: Hesiod's *Theogony* [869] states plainly that "**Hades trembled where he rules over the dead
+below**," placed structurally apart from "**THE OLYMPIAN GODS**" section header [886]; the Homeric
+Hymn to Aphrodite [7], by contrast, gives Hestia full divine standing — "**in all the temples of the
+gods she has a share of honour... she is chief of the goddesses**." **Decision: retyped `Hestia`
+`other_god` → `olympian`; left `Hades` `other_god`**, matching the corpus's own placement of him.
+Corrected Q6's `required_keywords` to drop `Hades` (5 names, not 6) as a logged eval-bug per the
+DEV-048/DEV-050 precedent, not a silent tune. `V10` regenerated, reseeded, `audit --db` unchanged.
+**Eval confirms:** `evaluation/results/2026-07-27T09-13-55Z__e861a17__p3b-track-a-hestia-olympian/`
+— Q6 stable-fail → stable-pass, DATA 40% → 60% (floor now met), zero stable regressions vs the last
+accepted baseline. Q10's `min_row_count: 12` still holds (13 `olympian`-typed entities now).
 
 ### Root cause 2 (Q7, Q8) — the hero Perseus has no extracted relationships at all
 
@@ -568,24 +580,30 @@ same way: a **logged eval-bug fix**, live-verified against the corpus, never sil
 
 ### Decision needed
 
-- **Q6** — decide the Hades/Hestia typing and record it. Regenerate `V10`; no schema change.
-- **Q7/Q8** — a bounded, source-verified extraction pass for the Perseus line (Zeus + Danae →
-  Perseus; Perseus → Medusa/Gorgon/sea monster/Phineus), reusing the existing
+- **Q6** — ~~decide the Hades/Hestia typing and record it. Regenerate `V10`; no schema change.~~
+  **Done 2026-07-27 (DEV-094).**
+- **Q7/Q8** — *(still open)* a bounded, source-verified extraction pass for the Perseus line (Zeus +
+  Danae → Perseus; Perseus → Medusa/Gorgon/sea monster/Phineus), reusing the existing
   `instructor`/checkpoint tooling and `ref_ranges.py`. Coordinate with GAP-002 bucket 1 so `Phineus`
   and friends land once. **Do not hand-write rows without source attribution** — the constraint
   DEV-047 cited when it declined to patch exactly these questions in Stage 5.
-- **Q8's `Cetus`** — replace with a corpus-attested keyword after the data fix lands, live-verified
-  across 3 runs, logged as an eval-bug (DEV-048/DEV-050 precedent). Sequence it **after** root cause
-  2, so the keyword is chosen against the real post-fix answer rather than against a RAG fallback.
+- **Q8's `Cetus`** — *(still open)* replace with a corpus-attested keyword after the data fix lands,
+  live-verified across 3 runs, logged as an eval-bug (DEV-048/DEV-050 precedent). Sequence it
+  **after** root cause 2, so the keyword is chosen against the real post-fix answer rather than
+  against a RAG fallback.
 
-Expected outcome: Q6 and Q7 recoverable to 3/3, Q8 to 3/3 only if all of root causes 2 and 3 land.
-DATA reaches the 50% floor at 3/5 — so **Q6 plus either Q7 or Q8 is sufficient** to clear the gate.
+**Outcome so far:** Q6 recovered to 3/3 (DEV-094); Q7/Q8 remain `stable-fail`/`0-fail` pending root
+causes 2 and 3. DATA needed 3/5 to clear the 50% floor and **Q6 alone was sufficient** — confirmed
+live at 60% (`evaluation/results/2026-07-27T09-13-55Z__e861a17__p3b-track-a-hestia-olympian/`).
+Q7/Q8 remain worth fixing for their own sake (genuine data/eval gaps), not to hit the gate again.
 
 **References:** `evaluation/gold-questions.json` (Q6, Q7, Q8);
-`evaluation/results/2026-07-26T17-49-26Z__5eed421__p3-j5-ouranos-merge-fixed/`;
+`evaluation/results/2026-07-26T17-49-26Z__5eed421__p3-j5-ouranos-merge-fixed/` (pre-fix baseline),
+`evaluation/results/2026-07-27T09-13-55Z__e861a17__p3b-track-a-hestia-olympian/` (post-fix);
 `ingestion/extraction/output/entities_candidates_confirmed_v1.json` (`Hades`/`Hestia` typing);
 `ingestion/extraction/output/relationships_candidates_cleaned.json` (no `Perseus` rows);
 `core-api/src/main/resources/db/migration/V11__seed_relationships.sql` (`Zeus parent_of Heracles`
 present); `docs/TODO-phase2-stage-p1.md` H3 (the original triage); `docs/DEVIATIONS.md` #DEV-047
 (first sighting, Stage 5), #DEV-048/#DEV-050 (the keyword-fix precedent), #DEV-090 (fixed Q7's
-`Heracles` half), #DEV-093 (homed); `docs/TODO2.md` Stage P3b; **GAP-002** (shares root cause 2).
+`Heracles` half), #DEV-093 (homed), #DEV-094 (Q6 fixed); `docs/TODO2.md` Stage P3b; **GAP-002**
+(shares root cause 2).
