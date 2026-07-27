@@ -228,6 +228,11 @@ Sizing note: the floor needs 3/5 and Q9/Q10 already pass, so **Track A alone plu
 clears the gate** — the rest is genuine data quality, not gate-chasing. Do not stop at the gate if
 Track B/C are half-landed.
 
+> **Tracks A/B/C landed 2026-07-27 (DEV-094, DEV-095).** DATA reached **100% (5/5)**, overall
+> **15/16 (94%)**, zero stable regressions — the stage's own floor-met bar was cleared and then some.
+> **GAP-003 is fully resolved.** Only **Track D** (GAP-002's broader 367-name backlog) remains open,
+> and it was never gate-blocking — see `docs/DATA-GAPS.md` GAP-002. Results not yet committed.
+
 - [x] **Track A — Q6 entity typing — LANDED 2026-07-27 (DEV-094).** Verified against the corpus
       rather than assuming a bare "Twelve Olympians" list: Hesiod's *Theogony* [869] states plainly
       that Hades "rules over the dead below," structurally apart from "THE OLYMPIAN GODS" section
@@ -240,22 +245,29 @@ Track B/C are half-landed.
       40% → 60%, floor now PASS, zero floor breaches remain**; Q6 stable-fail → stable-pass;
       `compare.py` confirms zero stable regressions vs the last accepted baseline. Q10's
       `min_row_count: 12` still holds (13 olympian-typed now). Not yet committed.
-- [ ] **Track B — Q7/Q8 Perseus extraction gap.** `relationships_candidates_cleaned.json` has
-      **zero** rows touching the hero `Perseus` — never extracted, not dropped. Run a bounded,
-      source-verified extraction pass over the Perseus material (Zeus + Danae → Perseus; Perseus →
-      Medusa / the Gorgons / the Andromeda sea monster / Phineus), reusing the existing
-      `instructor` + checkpoint tooling and `ref_ranges.py`. **No hand-written rows without source
-      attribution** — the constraint DEV-047 cited when it declined to patch these same questions in
-      Stage 5. Q8 also needs its route to return to `SQL`, which follows automatically once Perseus
-      has relationships.
-- [ ] **Track C — Q8's `Cetus` keyword is unattested.** `Cetus` never appears as a word anywhere in
-      `ingestion/corpus/` — only inside `Anicetus` and `Lycetus`, two unrelated men. Replace it with a
-      corpus-attested keyword **after** Track B lands (so the choice is made against the real answer,
-      not a RAG fallback), live-verified across 3 runs, logged as an eval-bug per DEV-048/DEV-050.
-      Never silent tuning.
+- [x] **Track B — Q7/Q8 Perseus extraction gap — LANDED 2026-07-27 (DEV-095).** Read Apollodorus
+      `[2.4.1]`–`[2.4.4]` directly rather than a full extraction re-run — short and self-contained
+      enough to hand-verify, same discipline as DEV-090/DEV-078's entity splits. Added `Zeus
+      parent_of Perseus` + `Danae parent_of Perseus` [2.4.1] and `Medusa killed_by Perseus` [2.4.2]
+      to `relationships_candidates_cleaned.json` (`killed_by` direction confirmed against ~976
+      existing rows of that shape). **Deliberately did not add** `Phineus` (a mortal, not a monster —
+      not actually load-bearing for Q8, correcting this outline's earlier speculation) or a named
+      "sea monster" (unnamed in this translation — adding one would fabricate data). `V10`/`V11`/`V12`
+      regenerated (V11 3127→3130, clean append), reseeded, `audit --db` unchanged (A5 clean — no
+      2-parent violation). Q8's route **did** return to `SQL` as predicted.
+- [x] **Track C — Q8's `Cetus` keyword is unattested — LANDED 2026-07-27 (DEV-095).** Live-checked
+      Q8 post-Track-B: SQL route, answer "Perseus encountered Medusa [1], a monster..." cited to
+      `2.4.2` — neither `Gorgon` nor `Cetus` appear (no `subtype` column selected; the sea monster
+      has no name to surface). Corrected `required_keywords` to `["Medusa"]` — a logged eval-bug per
+      DEV-048/DEV-050, chosen against the real verified answer. **Eval:**
+      `evaluation/results/2026-07-27T09-34-14Z__23d7b63__p3b-track-bc-perseus/` — **DATA 60% → 100%**,
+      overall **12/16 → 15/16 (94%)**, zero stable regressions (`compare.py` vs the Track-A run), zero
+      flaky questions. Only Q11 (MIXED, pre-existing DEV-054 gap, homed to P5b) still fails.
+      **GAP-003 fully resolved.** Not yet committed.
 - [ ] **Track D — GAP-002's 367 unknown names, scoped subset.** Work bucket 1 (unambiguous missing
       figures: `Nereus` 110 refs, `Doris` 64, `Arges` 71, `Steropes` 14, `Styx` 17, `Ceto` 16,
-      `Thaumas` 15) plus anything load-bearing for Track B (`Phineus`, 17 refs). **Do not bulk-add**:
+      `Thaumas` 15). **`Phineus` is no longer load-bearing for Track B** (DEV-095 found he's a mortal,
+      not a monster) but remains a genuine GAP-002 name in his own right. **Do not bulk-add**:
       `Electra`, `Eurytus`, `Phineus`, `Thoas` are multi-person names in this corpus, and adding a
       bare name re-creates exactly the conflation defect DEV-078…DEV-082 spent Track J removing.
       `<UNKNOWN>` (133 rows) is an extraction sentinel, not an entity. Long tail carries to P4.

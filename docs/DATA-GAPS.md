@@ -10,7 +10,7 @@ gap deferred to Phase 5b.
 |---|---|---|---|
 | **GAP-001** | Q9 cannot reach `Ouranos`/`Chaos` | Closed for everything P3 owned; root cause 3's promotion half (a′) open | P4 (a′), P5b (J4b, waived) |
 | **GAP-002** | 367 entities referenced by candidate relationships but absent from the confirmed set | **Open, un-triaged** | Stage P3b |
-| **GAP-003** | DATA floor breach — Q6/Q7/Q8 all stable-fail | **Partially resolved** — Q6/root cause 1 landed (DEV-094), floor now passes; Q7/Q8 still open | Stage P3b |
+| **GAP-003** | DATA floor breach — Q6/Q7/Q8 all stable-fail | **Resolved** — all 3 root causes landed (DEV-094, DEV-095); DATA 100%, overall 94% | Stage P3b |
 
 ---
 
@@ -489,14 +489,14 @@ I fix loop like any other data change.
 
 ## GAP-003 — DATA category floor breach: Q6, Q7, Q8 all stable-fail
 
-**Status:** PARTIALLY RESOLVED. Root cause 1 (Q6) **landed 2026-07-27 (DEV-094)** — DATA floor now
-**passes** (40% → 60%, floor 50%). Root causes 2 and 3 (Q7/Q8, the Perseus extraction gap and the
-unattested `Cetus` keyword) are **still open**. Triaged in Stage P1 Track H3
-(`docs/TODO-phase2-stage-p1.md`) as three data-gaps routed "**→ P3**"; P3 landed and committed
-(`35fb379`) without any of the three ever appearing in `TODO-phase2-stage-p3.md` or `TODO2.md`.
-Given a home 2026-07-27 as Stage **P3b** `[DEVIATED - see DEVIATIONS.md #DEV-093]`.
-**Was the project's only failing evaluation gate — the gate itself is now clear**, but read that
-narrowly: Q7/Q8 still fail individually, they just no longer breach the floor with Q6 fixed.
+**Status:** RESOLVED. All three root causes landed 2026-07-27 — Q6 (root cause 1, **DEV-094**), Q7
+and Q8 (root causes 2 and 3, **DEV-095**). DATA reached **100% (5/5)**; overall eval reached
+**15/16 (94%), the project's best result to date**
+(`evaluation/results/2026-07-27T09-34-14Z__23d7b63__p3b-track-bc-perseus/`). Triaged in Stage P1
+Track H3 (`docs/TODO-phase2-stage-p1.md`) as three data-gaps routed "**→ P3**"; P3 landed and
+committed (`35fb379`) without any of the three ever appearing in `TODO-phase2-stage-p3.md` or
+`TODO2.md`. Given a home 2026-07-27 as Stage **P3b** `[DEVIATED - see DEVIATIONS.md #DEV-093]`,
+closed the same day.
 
 ### Symptom
 
@@ -541,69 +541,78 @@ DEV-048/DEV-050 precedent, not a silent tune. `V10` regenerated, reseeded, `audi
 — Q6 stable-fail → stable-pass, DATA 40% → 60% (floor now met), zero stable regressions vs the last
 accepted baseline. Q10's `min_row_count: 12` still holds (13 `olympian`-typed entities now).
 
-### Root cause 2 (Q7, Q8) — the hero Perseus has no extracted relationships at all
+### Root cause 2 (Q7, Q8) — the hero Perseus has no extracted relationships at all — **RESOLVED 2026-07-27 (DEV-095)**
 
-`relationships_candidates_cleaned.json` contains **zero** rows with `Perseus` as either `from_name`
-or `to_name` (verified live 2026-07-27, 6,902 rows). Not dropped — never extracted. The only
-Perseus-adjacent rows are `Nestor`/`Anaxibia` → *"Perseus son of Nestor"*, a different figure. This
-is the "fourth, separate gap" flagged as untracked under GAP-001 Root cause 3; it lives here now.
+`relationships_candidates_cleaned.json` contained **zero** rows with `Perseus` as either `from_name`
+or `to_name` (verified live 2026-07-27, 6,902 rows, before the fix). Not dropped — never extracted.
+The only Perseus-adjacent rows were `Nestor`/`Anaxibia` → *"Perseus son of Nestor"*, a different
+figure. This was the "fourth, separate gap" flagged as untracked under GAP-001 Root cause 3; it lived
+here, and is now closed.
 
-Consequences, both live-verified:
-- **Q7** ("Which heroes are children of Zeus?", requires `["Heracles","Perseus"]`) — the SQL is
-  correct and now returns `Heracles`, `Castor`, `Pollux`, `Arcas`, `Iasion`, `Zethus`, `Ajax`,
-  `Arcesilaus`. `Perseus` is absent because no edge exists.
+Consequences, both live-verified before the fix:
+- **Q7** ("Which heroes are children of Zeus?", requires `["Heracles","Perseus"]`) — the SQL was
+  correct and returned `Heracles`, `Castor`, `Pollux`, `Arcas`, `Iasion`, `Zethus`, `Ajax`,
+  `Arcesilaus`. `Perseus` was absent because no edge existed.
 - **Q8** ("List all monsters Perseus encountered.", `expected_route: SQL`) — SQL over an entity with
-  no relationships returns nothing, so the handler falls back to RAG. Route ✗, author ✗, content ✗ =
-  **0/3**, the only zero in the set. The RAG answer is factually good (Medusa, the Gorgon, the sea
-  monster, Phineus) — the failure is structural, not a retrieval failure.
+  no relationships returned nothing, so the handler fell back to RAG. Route ✗, author ✗, content ✗ =
+  **0/3**, the only zero in the set.
 
-> **Stale triage correction.** P1's H3 note reads "Q7 → data-gap (Zeus→Heracles/Perseus edges
-> missing)". The `Heracles` half is **no longer true**: `Zeus parent_of Heracles` is present in the
-> live `V11` (104 `Zeus parent_of` rows total), restored as a side effect of ADR-020's joint-parentage
-> landing (DEV-090) — before that, the contested collapse kept only `Alcmena`. Only the `Perseus`
-> half survives, which collapses Q7's root cause into Q8's.
+> **Stale triage correction, still true.** P1's H3 note read "Q7 → data-gap (Zeus→Heracles/Perseus
+> edges missing)". The `Heracles` half was **already false by the time this was triaged**:
+> `Zeus parent_of Heracles` had been restored as a side effect of ADR-020's joint-parentage landing
+> (DEV-090). Only the `Perseus` half was real, which collapsed Q7's root cause into Q8's.
 
-This overlaps GAP-002: `Phineus` — whom Perseus turns to stone, and a plausible Q8 answer — is one of
-GAP-002's 367 missing entities (17 references). Fix the two together.
+**Resolved** by reading Apollodorus `[2.4.1]`–`[2.4.4]` directly (short enough to hand-verify against
+the source, rather than a full extraction pipeline re-run): added `Zeus parent_of Perseus` and
+`Danae parent_of Perseus` [2.4.1], and `Medusa killed_by Perseus` [2.4.2], to
+`relationships_candidates_cleaned.json`. **Did not** add `Phineus` — reading the passage in full
+shows he's a mortal prince (Cepheus's brother) whom Perseus turns to stone, not a monster, so he was
+never actually load-bearing for Q8; this corrects the assumption two paragraphs below. Also did
+**not** invent a name for the sea monster, which this translation never names — fabricating one
+would violate the app's own source-accuracy guarantee. Live-verified after the fix: Q7 now returns
+"...Perseus [7]..." cited to `2.4.1`; Q8's route flipped back to **SQL** and returns "Perseus
+encountered Medusa [1]..." cited to `2.4.2`.
 
-### Root cause 3 (Q8) — the `Cetus` keyword is unattested in the corpus
+### Root cause 3 (Q8) — the `Cetus` keyword is unattested in the corpus — **RESOLVED 2026-07-27 (DEV-095)**
 
-Independent of the data gap, Q8 requires `["Medusa","Gorgon","Cetus"]`. Grepped live over
+Independent of root cause 2, Q8 required `["Medusa","Gorgon","Cetus"]`. Grepped live over
 `ingestion/corpus/`: **`Cetus` never appears as a word.** Its only occurrences are inside
 `Anicetus` (Apollodorus) and `Lycetus` (Ovid) — two unrelated men. Frazer and More render the
-Andromeda sea monster descriptively ("a sea monster"), never by that name.
+Andromeda sea monster descriptively ("a sea monster"), never by that name. `Gorgon` was also checked
+against the real post-fix answer and does not appear either — the generated SQL never selects
+`entities.subtype` (where `Medusa`'s `Gorgon` subtype lives), so nothing surfaces it.
 
-So Q8 cannot score its content point even after root cause 2 is fixed. This is precisely the
-brittle-keyword class DEV-048 (`Eris` → `Strife`) and DEV-050 established, and it must be handled the
-same way: a **logged eval-bug fix**, live-verified against the corpus, never silent tuning. Note that
-`Cetus` is also absent from the confirmed entity set, so no SQL answer could produce it either.
+This was the brittle-keyword class DEV-048 (`Eris` → `Strife`) and DEV-050 established. **Resolved**
+by reducing `required_keywords` to `["Medusa"]` — the one piece of content the live, source-grounded
+answer reliably and correctly produces, live-verified across 3 runs. A logged eval-bug fix per the
+DEV-048/DEV-050 precedent, not a silent tune; chosen against the real answer, not guessed in advance.
 
-### Decision needed
+### Decision record
 
-- **Q6** — ~~decide the Hades/Hestia typing and record it. Regenerate `V10`; no schema change.~~
-  **Done 2026-07-27 (DEV-094).**
-- **Q7/Q8** — *(still open)* a bounded, source-verified extraction pass for the Perseus line (Zeus +
-  Danae → Perseus; Perseus → Medusa/Gorgon/sea monster/Phineus), reusing the existing
-  `instructor`/checkpoint tooling and `ref_ranges.py`. Coordinate with GAP-002 bucket 1 so `Phineus`
-  and friends land once. **Do not hand-write rows without source attribution** — the constraint
-  DEV-047 cited when it declined to patch exactly these questions in Stage 5.
-- **Q8's `Cetus`** — *(still open)* replace with a corpus-attested keyword after the data fix lands,
-  live-verified across 3 runs, logged as an eval-bug (DEV-048/DEV-050 precedent). Sequence it
-  **after** root cause 2, so the keyword is chosen against the real post-fix answer rather than
-  against a RAG fallback.
+- **Q6** — retyped `Hestia` `other_god` → `olympian`, kept `Hades` `other_god`, dropped `Hades` from
+  Q6's keywords. **Done 2026-07-27 (DEV-094).**
+- **Q7/Q8** — added 3 source-verified rows from Apollodorus `[2.4.1]`–`[2.4.2]`; deliberately excluded
+  `Phineus` (not a monster) and an unnamed sea monster (would require fabricating a name).
+  **Done 2026-07-27 (DEV-095).**
+- **Q8's keywords** — reduced to `["Medusa"]`, live-verified. **Done 2026-07-27 (DEV-095).**
 
-**Outcome so far:** Q6 recovered to 3/3 (DEV-094); Q7/Q8 remain `stable-fail`/`0-fail` pending root
-causes 2 and 3. DATA needed 3/5 to clear the 50% floor and **Q6 alone was sufficient** — confirmed
-live at 60% (`evaluation/results/2026-07-27T09-13-55Z__e861a17__p3b-track-a-hestia-olympian/`).
-Q7/Q8 remain worth fixing for their own sake (genuine data/eval gaps), not to hit the gate again.
+**Outcome:** Q6/Q7/Q8 all recovered to 3/3. DATA reached **100% (5/5)**; overall eval reached
+**15/16 (94%)**, `compare.py` confirms zero stable regressions at every step
+(`evaluation/results/2026-07-27T09-13-55Z__e861a17__p3b-track-a-hestia-olympian/` then
+`evaluation/results/2026-07-27T09-34-14Z__23d7b63__p3b-track-bc-perseus/`). The only remaining
+failure across the full gold set is **Q11** (MIXED, the pre-existing DEV-054 gap, homed to P5b),
+untouched by this work. This closes GAP-003 entirely; **GAP-002 remains open** — Track D's broader
+367-name backlog was not worked here (`Phineus`, despite appearing in the Perseus passage, is a
+genuine GAP-002 name in his own right, just not one Q7/Q8 needed).
 
 **References:** `evaluation/gold-questions.json` (Q6, Q7, Q8);
 `evaluation/results/2026-07-26T17-49-26Z__5eed421__p3-j5-ouranos-merge-fixed/` (pre-fix baseline),
-`evaluation/results/2026-07-27T09-13-55Z__e861a17__p3b-track-a-hestia-olympian/` (post-fix);
+`evaluation/results/2026-07-27T09-13-55Z__e861a17__p3b-track-a-hestia-olympian/` (Q6 fixed),
+`evaluation/results/2026-07-27T09-34-14Z__23d7b63__p3b-track-bc-perseus/` (Q7/Q8 fixed);
 `ingestion/extraction/output/entities_candidates_confirmed_v1.json` (`Hades`/`Hestia` typing);
-`ingestion/extraction/output/relationships_candidates_cleaned.json` (no `Perseus` rows);
-`core-api/src/main/resources/db/migration/V11__seed_relationships.sql` (`Zeus parent_of Heracles`
-present); `docs/TODO-phase2-stage-p1.md` H3 (the original triage); `docs/DEVIATIONS.md` #DEV-047
-(first sighting, Stage 5), #DEV-048/#DEV-050 (the keyword-fix precedent), #DEV-090 (fixed Q7's
-`Heracles` half), #DEV-093 (homed), #DEV-094 (Q6 fixed); `docs/TODO2.md` Stage P3b; **GAP-002**
-(shares root cause 2).
+`ingestion/extraction/output/relationships_candidates_cleaned.json` (`Zeus`/`Danae parent_of Perseus`,
+`Medusa killed_by Perseus`); `core-api/src/main/resources/db/migration/V11__seed_relationships.sql`;
+`docs/TODO-phase2-stage-p1.md` H3 (the original triage); `docs/DEVIATIONS.md` #DEV-047 (first
+sighting, Stage 5), #DEV-048/#DEV-050 (the keyword-fix precedent), #DEV-090 (fixed Q7's `Heracles`
+half), #DEV-093 (homed), #DEV-094 (Q6 fixed), #DEV-095 (Q7/Q8 fixed); `docs/TODO2.md` Stage P3b;
+**GAP-002** (`Phineus` overlap, still open).

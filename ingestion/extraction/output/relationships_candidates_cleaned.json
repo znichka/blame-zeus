@@ -55214,5 +55214,29 @@
     "is_contested": false,
     "passage_ref": "15.843-15.871",
     "source_id": "ovid-metamorphoses"
+  },
+  {
+    "from_name": "Zeus",
+    "relation": "parent_of",
+    "to_name": "Perseus",
+    "is_contested": false,
+    "passage_ref": "2.4.1",
+    "source_id": "apollodorus-bibliotheca"
+  },
+  {
+    "from_name": "Danae",
+    "relation": "parent_of",
+    "to_name": "Perseus",
+    "is_contested": false,
+    "passage_ref": "2.4.1",
+    "source_id": "apollodorus-bibliotheca"
+  },
+  {
+    "from_name": "Medusa",
+    "relation": "killed_by",
+    "to_name": "Perseus",
+    "is_contested": false,
+    "passage_ref": "2.4.2",
+    "source_id": "apollodorus-bibliotheca"
   }
 ]
