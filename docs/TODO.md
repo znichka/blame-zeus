@@ -398,6 +398,29 @@ telegram doc references cleaned up.
 
 → [Detailed track-by-track checklist](TODO-adr-016.md)
 
+### ADR-021 — Anthropic Prompt Caching
+**Done when:** both chat model beans set `cacheSystemMessages` (gated by
+`app.llm.prompt-cache-enabled`); a `CacheTelemetryListener` reports `inputTokens` /
+`cacheCreationInputTokens` / `cacheReadInputTokens` per chat call to DEBUG logs and, accumulated per
+request, to the `?debug=true` surface; the schema prefix is provably byte-stable across restarts;
+`:core-api:test` green.
+
+> ⚠️ Implements `docs/adr/adr-021-prompt-caching.md`. Landed 2026-07-27
+> `[DEVIATED - see DEVIATIONS.md #DEV-097]`. **Records a negative result, deliberately:** Claude
+> Haiku 4.5 has the highest minimum cacheable prefix of any current model (4,096 tokens) and every
+> system prompt here is below it (largest: `TextToSqlAgent` + schema ≈ 3,350 tok), so the flag is a
+> silent no-op and **the cost saving today is zero**. Enabled anyway because it is free below the
+> minimum and self-activates once the prefix clears it. Behavior-neutral — `cache_control` changes
+> billing only, never model output.
+
+- [x] `cacheSystemMessages` on **both** `routingModel` and `synthesisModel` (independent instances — the flag does not carry across) + `app.llm.prompt-cache-enabled` / `LLM_PROMPT_CACHE_ENABLED`
+- [x] `config/CacheTelemetryListener.kt` (`ChatModelListener`) → DEBUG logs + `DebugCapture.addTokenUsage` → 3 new `DebugInfo` fields
+- [x] `SchemaIntrospector.vocabularies()` `ORDER BY count(*) DESC, <column> ASC` — caching is a byte-exact prefix match, so unordered ties were latent prompt drift
+- [x] Tests: `LangChain4jConfigTest` (both beans, listener attached, `cacheTools` off), `CacheTelemetryListenerTest`, `SchemaIntrospectorTest` determinism, `DebugCaptureTest` accumulation
+- [x] Traceability: ADR-021; `DEV-097`; `IMPLEMENTATION_PLAN.md §5` banner; `TECH_GUARDRAILS.md` row distinguishing prompt caching from the banned *response* cache
+- [ ] **Open:** run the ADR-017 3-run eval comparison (expected identical — this cannot alter model output)
+- [ ] **Open:** decide whether to switch `LLM_CHAT_MODEL` to Sonnet 5 (1,024-token minimum) so caching actually engages — see `TODO2.md` Cross-cutting rules
+
 ### Phase 2 — Data Quality & Evaluation Program (ADR-017 / ADR-018 / ADR-019)
 **Done when:** an offline evaluation harness produces a committed, per-category-scored baseline;
 wrong answers are diagnosable (DEBUG logging + a `debug` response surface); the two known runtime

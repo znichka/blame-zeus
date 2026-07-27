@@ -90,4 +90,15 @@ class SchemaIntrospectorTest : AbstractContainerTest() {
         assertThat(prompt).contains("stance values:")
         assertThat(prompt).contains("role values:")
     }
+
+    // ADR-021: Anthropic prompt caching matches the prefix byte-for-byte, so the schema block
+    // injected into TextToSqlAgent's system prompt must be identical across independently built
+    // instances. Two fresh introspectors over unchanged data must agree exactly — this pins the
+    // `count(*) DESC, <column> ASC` tiebreaker in vocabularies(), whose ties were previously
+    // unordered.
+    @Test
+    fun `prompt is byte-identical across independently built instances`() {
+        assertThat(SchemaIntrospector(jdbcTemplate).get())
+            .isEqualTo(SchemaIntrospector(jdbcTemplate).get())
+    }
 }

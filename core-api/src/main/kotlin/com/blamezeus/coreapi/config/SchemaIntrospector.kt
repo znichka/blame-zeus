@@ -107,9 +107,17 @@ class SchemaIntrospector(private val jdbcTemplate: JdbcTemplate) {
             // LIMIT can silently drop the load-bearing canonical values (parent_of,
             // married_to, killed_by) in favor of alphabetically-earlier noise. Frequency
             // ordering keeps the values the model actually needs within any limit.
+            //
+            // ADR-021: the ASC tiebreaker is load-bearing, not cosmetic. `count(*) DESC`
+            // alone leaves ties unordered, so equal-frequency values could come back in a
+            // different order per run and change the bytes of the text-to-SQL system
+            // prompt. Anthropic prompt caching is a byte-exact prefix match, so any such
+            // drift silently costs a cache write instead of a read on every restart.
             val values = jdbcTemplate.queryForList(
                 """SELECT ${vocab.column} FROM ${vocab.table}
-                   GROUP BY ${vocab.column} ORDER BY count(*) DESC LIMIT $VOCABULARY_LIMIT""",
+                   GROUP BY ${vocab.column}
+                   ORDER BY count(*) DESC, ${vocab.column} ASC
+                   LIMIT $VOCABULARY_LIMIT""",
                 String::class.java
             )
             if (values.isEmpty()) null else vocab.column to values

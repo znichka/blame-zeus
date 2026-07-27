@@ -27,6 +27,12 @@ app:
     chat-api-key: ${LLM_API_KEY}                # Anthropic key since ADR-008 (chat = Claude Haiku 4.5)
     embedding-api-key: ${OPENAI_API_KEY}         # always OpenAI — embeddings on text-embedding-3-large since ADR-013
     chat-model: ${LLM_CHAT_MODEL}
+    # ADR-021: attaches cache_control to the system block on both chat model beans. Default `true`
+    # because below Anthropic's model-specific minimum cacheable prefix (4,096 tokens on Claude
+    # Haiku 4.5 — above every system prompt we send) it is a costless no-op, and it starts paying
+    # automatically if that prefix ever clears the bar. Verify with CacheTelemetryListener's DEBUG
+    # lines or the `debug` block on /api/v1/query?debug=true — never assume it is saving anything.
+    prompt-cache-enabled: ${LLM_PROMPT_CACHE_ENABLED:true}
     embedding-model: ${EMBEDDING_MODEL:text-embedding-3-large}   # single source of truth (ADR-006); consumer wired in LangChain4jConfig (deferred)
   rag:
     max-results: ${RAG_MAX_RESULTS:5}

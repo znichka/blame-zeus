@@ -729,6 +729,11 @@ LangChain4j `@AiService` resolves `RagResponse` via JSON mode: the `@SystemMessa
 
 ### `LangChain4jConfig` Key Beans
 
+> ⚠️ Deviations occurred in this section. See DEVIATIONS.md #DEV-097: both chat beans now set
+> `cacheSystemMessages` (Anthropic prompt caching, ADR-021) and carry a `CacheTelemetryListener`.
+> Note the finding recorded there — on Claude Haiku 4.5 every system prompt is **below** the
+> 4,096-token minimum cacheable prefix, so the flag is currently a costless no-op, not a saving.
+>
 > ⚠️ Amended by ADR-008 — the chat beans use **`AnthropicChatModel`** (Claude Haiku 4.5,
 > `claude-haiku-4-5-20251001`), not `OpenAiChatModel`; add `langchain4j-anthropic-spring-boot-starter`
 > and keep `langchain4j-open-ai-spring-boot-starter` (the embedding bean still needs it). `LLM_API_KEY`

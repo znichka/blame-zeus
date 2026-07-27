@@ -25,6 +25,9 @@ class DebugCapture {
         var fallbackFromSqlToRag: Boolean = false
         var composerSucceeded: Boolean = false
         var draftAnswer: String? = null
+        var inputTokens: Int = 0
+        var cacheCreationTokens: Int = 0
+        var cacheReadTokens: Int = 0
     }
 
     private val state = ThreadLocal.withInitial { MutableState() }
@@ -45,6 +48,9 @@ class DebugCapture {
             fallbackFromSqlToRag = s.fallbackFromSqlToRag,
             composerSucceeded = s.composerSucceeded,
             draftAnswer = s.draftAnswer,
+            inputTokens = s.inputTokens,
+            cacheCreationTokens = s.cacheCreationTokens,
+            cacheReadTokens = s.cacheReadTokens,
         )
     }
 
@@ -82,6 +88,18 @@ class DebugCapture {
 
     fun setDraftAnswer(answer: String?) {
         state.get().draftAnswer = answer
+    }
+
+    // ADR-021: called once per chat call by CacheTelemetryListener, which runs on the request
+    // thread inside the model call — the same ThreadLocal reach-across DEV-064 established for
+    // NarrativeChunkContentRetriever. Accumulates rather than overwrites, because a single
+    // question makes 3-5 chat calls and the useful number is the per-request total.
+    fun addTokenUsage(inputTokens: Int, cacheCreationTokens: Int, cacheReadTokens: Int) {
+        state.get().apply {
+            this.inputTokens += inputTokens
+            this.cacheCreationTokens += cacheCreationTokens
+            this.cacheReadTokens += cacheReadTokens
+        }
     }
 
     companion object {

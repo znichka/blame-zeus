@@ -3,6 +3,9 @@ app:
     chat-api-key: test-key
     embedding-api-key: test-key
     chat-model: claude-haiku-4-5-20251001
+    # ADR-021: pinned rather than inherited so the context-load tests exercise the same wiring
+    # production uses. No live call is made either way (the models are never invoked in tests).
+    prompt-cache-enabled: true
     embedding-model: text-embedding-3-large
 
 spring:

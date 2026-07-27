@@ -386,3 +386,13 @@ floors hold across a 3-run eval; the relevant ADR/DEV entries are logged.
 - **Embedding preservation:** never `down -v`; `reseed-local.sh` is the only sanctioned reseed path.
 - **Deviation protocol (CLAUDE.md):** log DEV entries; annotate with banners; ADR status flips
   (ADR-009 at P5a) recorded properly.
+- **Any `LLM_CHAT_MODEL` change is eval-gated, and now also a cost decision.** Updated based on
+  DEV-097 (see DEVIATIONS.md). ADR-021 enabled Anthropic prompt caching on both chat beans but
+  measured that it saves **nothing** on Claude Haiku 4.5, whose 4,096-token minimum cacheable prefix
+  is the highest of any current model — every system prompt here is below it (largest:
+  `TextToSqlAgent` + injected schema ≈ 3,350 tok; then ≈2,200 / 520 / 330 / 310 / 250). Switching to
+  **Sonnet 5** (1,024-token minimum) would make both text-to-SQL prompts cache immediately on the
+  SQL and MIXED routes. **Open item, deliberately not bundled into ADR-021:** decide it on the
+  per-agent `inputTokens` the new `CacheTelemetryListener` reports against the seeded corpus, plus a
+  3-run eval comparison — a model swap changes answer quality, per-token price, and latency, so it
+  cannot ride along on a billing-only change.

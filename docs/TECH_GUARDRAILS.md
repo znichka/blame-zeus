@@ -27,6 +27,7 @@ Rules for keeping this PoC consistent, safe, and easy to reason about. These are
 | **Temperature discipline** | Routing and SQL generation: `0.0`. Synthesis (RAG, conflict): `0.3`. Use separate `@Qualifier` beans if you need both in the same app. |
 | **AI Service interfaces are mockable** | Interfaces only — no concrete classes. Mock with `mockk<T>()` in unit tests and `@MockkBean` (springmockk) in Spring-context tests. Never wire a real `ChatLanguageModel` in the test profile. |
 | **Log generated SQL** | Every SQL string produced by `TextToSqlAgent` must be logged at `DEBUG` level before execution. |
+| **Provider-side prompt caching only, configured in `LangChain4jConfig.kt`** | ADR-021. Anthropic prompt caching is enabled via the `cacheSystemMessages` builder flag on both chat beans, gated by `app.llm.prompt-cache-enabled`. **This is not the "Redis or any caching layer" on the Do-Not-Add list below** — that rule is about a *response* cache (storing answers and serving them without calling the model). This is a flag on an existing LangChain4j model: no new dependency, no new bean type, no stored responses, and no change to what the model returns. Do not hand-roll `cache_control` or add a response/answer cache. Note it currently saves nothing: every system prompt is below Claude Haiku 4.5's 4,096-token minimum cacheable prefix, so the flag is a silent no-op — verify with `CacheTelemetryListener`, never by assumption. |
 
 ---
 
@@ -108,7 +109,7 @@ These are explicitly out of scope. Adding them without a deliberate decision was
 | Do NOT add | Reason |
 |---|---|
 | Spring Security / auth | No users, no sessions needed for PoC. |
-| Redis or any caching layer | Response times are acceptable without it at demo scale. |
+| Redis or any *response* caching layer | Response times are acceptable without it at demo scale. Scope note (ADR-021): this bans caching *answers*. It does **not** ban Anthropic **prompt** caching, which is a `cacheSystemMessages` builder flag in `LangChain4jConfig.kt` — see the LLM & AI table above. |
 | Kafka, RabbitMQ, or any message queue | No async processing pipeline needed. |
 | Spring Cloud (Gateway, Config Server, Eureka) | Two services + a DB. No service mesh needed. |
 | Spring AI | Library decision was LangChain4j. Mixing both causes confusion and duplicate beans. |
@@ -146,6 +147,7 @@ These are explicitly out of scope. Adding them without a deliberate decision was
 OPENAI_API_KEY=sk-...                    # used by ingestion and by core-api embedding bean (app.llm.embedding-api-key)
 LLM_API_KEY=sk-ant-...                   # used by core-api chat model bean (app.llm.chat-api-key); Anthropic key since ADR-008 — a different key from OPENAI_API_KEY
 LLM_CHAT_MODEL=claude-haiku-4-5-20251001 # example value only — no default is set in application.yml; update LangChain4jConfig.kt beans when using a different chat provider
+LLM_PROMPT_CACHE_ENABLED=true            # ADR-021: cacheSystemMessages on both chat beans (app.llm.prompt-cache-enabled). Defaults true; a no-op while prompts sit below Haiku 4.5's 4,096-token minimum cacheable prefix
 EMBEDDING_MODEL=text-embedding-3-large   # single source of truth (ADR-006) shared by ingestion + core-api embedding bean; -large since ADR-013
 ANTHROPIC_API_KEY=sk-ant-...             # Stage 4 offline extraction only (ADR-008); may be the same key as LLM_API_KEY — separate var because the Anthropic Python SDK reads it by convention
 EXTRACTION_MODEL=claude-opus-4-8         # Stage 4 offline extraction model (ADR-008); never used at query time

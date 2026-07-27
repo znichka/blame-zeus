@@ -61,10 +61,24 @@ class DebugCaptureTest {
         assertThat(debugCapture.snapshot().retrievedChunks).containsExactly(first, second)
     }
 
+    // ADR-021: one question makes 3-5 chat calls, so the per-request figure the debug surface
+    // reports has to be the sum, not the last call's numbers.
+    @Test
+    fun `addTokenUsage accumulates across calls rather than overwriting`() {
+        debugCapture.addTokenUsage(inputTokens = 300, cacheCreationTokens = 3200, cacheReadTokens = 0)
+        debugCapture.addTokenUsage(inputTokens = 3350, cacheCreationTokens = 0, cacheReadTokens = 3200)
+
+        val snapshot = debugCapture.snapshot()
+        assertThat(snapshot.inputTokens).isEqualTo(3650)
+        assertThat(snapshot.cacheCreationTokens).isEqualTo(3200)
+        assertThat(snapshot.cacheReadTokens).isEqualTo(3200)
+    }
+
     @Test
     fun `a second reset clears prior state, no bleed across simulated requests on the same thread`() {
         debugCapture.setProbe("Aphrodite", "parentage", 2)
         debugCapture.setFirstAttemptSql("SELECT * FROM entities")
+        debugCapture.addTokenUsage(inputTokens = 3350, cacheCreationTokens = 0, cacheReadTokens = 3200)
 
         debugCapture.reset()
 
