@@ -9,7 +9,7 @@ gap deferred to Phase 5b.
 | Gap | Summary | Status | Home |
 |---|---|---|---|
 | **GAP-001** | Q9 cannot reach `Ouranos`/`Chaos` | Closed for everything P3 owned; root cause 3's promotion half (a′) open | P4 (a′), P5b (J4b, waived) |
-| **GAP-002** | 367 entities referenced by candidate relationships but absent from the confirmed set | **Open, un-triaged** | Stage P3b |
+| **GAP-002** | 367 entities referenced by candidate relationships but absent from the confirmed set | **Partially resolved** — 5 of 7 bucket-1 landed (DEV-096); `Arges`/`Steropes` found to be mostly `Ares`/`Sterope` corruption, new open lead | Stage P3b (partial), P4 (long tail) |
 | **GAP-003** | DATA floor breach — Q6/Q7/Q8 all stable-fail | **Resolved** — all 3 root causes landed (DEV-094, DEV-095); DATA 100%, overall 94% | Stage P3b |
 
 ---
@@ -406,11 +406,14 @@ gate); `ingestion/audit/drop_accounting.py` (A2, aggregate-only today);
 
 ## GAP-002 — 367 entities are referenced by candidate relationships but absent from the confirmed set
 
-**Status:** OPEN, un-triaged. Discovered 2026-07-23 by audit check A2 (DEV-074), re-confirmed
-unchanged at DEV-076 and DEV-083, and **re-verified live 2026-07-27** (`python -m audit
---candidates`: `367 distinct unknown name(s)`). DEV-074 filed it as "a new, large triage backlog for
-Track J"; Track J closed for P3 (J4a/J4b/J5 all landed) without touching it, and no TODO file ever
-listed it. Given a home 2026-07-27 as Stage **P3b** `[DEVIATED - see DEVIATIONS.md #DEV-093]`.
+**Status:** PARTIALLY RESOLVED. 5 of the 7 bucket-1 names landed 2026-07-27 (**DEV-096**):
+`Nereus`, `Doris`, `Ceto`, `Styx`, `Thaumas` — unknown-name count 367 → 362. **`Arges` and
+`Steropes` were investigated and deliberately NOT added** — they turned out to be majority
+extraction-corruption of `Ares` and `Sterope`, a new and larger finding, detailed below. Originally
+discovered 2026-07-23 by audit check A2 (DEV-074), re-confirmed unchanged at DEV-076 and DEV-083.
+DEV-074 filed it as "a new, large triage backlog for Track J"; Track J closed for P3 (J4a/J4b/J5 all
+landed) without touching it, and no TODO file ever listed it. Given a home 2026-07-27 as Stage
+**P3b** `[DEVIATED - see DEVIATIONS.md #DEV-093]`.
 
 ### Symptom
 
@@ -431,20 +434,59 @@ Top of the ranked drilldown, by number of candidate rows referencing the name:
 | references | name | note |
 |---:|---|---|
 | 133 | `<UNKNOWN>` | **not** a missing entity — an unresolved extraction sentinel; A2's own `suggestedFix` says to investigate the extraction pass, not Track J |
-| 110 | `Nereus` | major, unambiguous sea god |
-| 71 | `Arges` | Cyclops |
-| 64 | `Doris` | Oceanid, Nereus's consort |
+| 110 | `Nereus` | ✅ **added (DEV-096)** — major, unambiguous sea god |
+| 71 | `Arges` | ⚠️ **NOT added** — only 2 of 71 rows are the genuine Cyclops; 69 are `Ares` extraction corruption (see below) |
+| 64 | `Doris` | ✅ **added (DEV-096)** — Oceanid, Nereus's consort |
 | 26 | `Alcinous` | Phaeacian king (Odyssey) |
 | 23 | `Electra` | |
-| 17 | `Styx` / `Phineus` | `Phineus` is directly load-bearing for gold **Q8** (GAP-003) |
-| 16 | `Ceto` | |
-| 15 | `Thaumas` | |
-| 14 | `Steropes` / `Eurytus` | |
+| 17 | `Styx` / `Phineus` | `Styx` ✅ **added (DEV-096)**. `Phineus` is directly load-bearing for gold **Q8** — but DEV-095 found he's a mortal, not a monster, and Q8 was resolved without him; he remains a genuine GAP-002 name in his own right |
+| 16 | `Ceto` | ✅ **added (DEV-096)** |
+| 15 | `Thaumas` | ✅ **added (DEV-096)** |
+| 14 | `Steropes` / `Eurytus` | `Steropes` ⚠️ **NOT added** — only 2 of 14 rows are the genuine Cyclops; the rest trace to a `Sterope` (one letter different) in Apollodorus's Aetolian genealogy, likely 2+ distinct people |
 | 13 | `Thoas`, `Pegasus`, `Eurynome`, `Ascalaphus` | |
 
 366 real names (excluding the sentinel) across **1,253** dropped rows. DEV-074 confirmed by direct
-lookup that these are **not** typos or spelling variants — zero fuzzy overlap with the confirmed set,
-so audit check A1 will never surface them and the DEV-042 `Io` fix pattern does not apply.
+lookup that these are **not** typos or spelling variants of any *confirmed* entity — zero fuzzy
+overlap with the confirmed set, so audit check A1 will never surface them and the DEV-042 `Io` fix
+pattern does not apply. **DEV-096 found a related but distinct failure mode** (below): two of these
+366 names are themselves corruptions of an *existing* confirmed entity's name (`Ares`) or of another
+missing name (`Sterope`) — not spelling variants *within* the confirmed set, but corruption *inside
+the candidate data*, which is why A1 (which only ever compares confirmed-set names to each other)
+was never going to catch it either.
+
+### New finding (DEV-096) — `Arges` and `Steropes` are majority extraction corruption, not the Cyclopes
+
+Before adding `Arges`/`Steropes` as planned, their candidate rows were broken down by `passage_ref`
+— a check this entry's original bucket-1 framing never did, since a high reference count was read as
+evidence of a real missing entity rather than checked against the actual cited text.
+
+**`Arges` (71 candidate rows):** only **2** (`Ouranos parent_of Arges`, `Earth parent_of Arges`, both
+`apollodorus-bibliotheca 1.1.1-1.1.7`) are genuinely the Cyclops from Hesiod/Apollodorus's cosmogony.
+The other **69** are scattered across Homer's *Iliad*, Ovid's *Metamorphoses*, and unrelated
+Apollodorus books (e.g. `2.5.7-2.5.8`, `2.7.7`, `3.4.2-3.4.3`, `3.9.2-3.10.1`, `12.153-12.194`,
+`24.247-24.280`), and are **extraction corruption of `Ares`** — already a confirmed `olympian`
+entity. Spot-verified directly: a candidate row reads `"Arges master_of Ajax son of Telamon"` /
+`"Arges master_of Ajax son of Oileus"` citing `homer-iliad 8.78-8.111`; the actual text there
+(`[78]`) reads "nor yet the Aiantes twain, squires of **Ares**."
+
+**`Steropes` (14 candidate rows):** only **2** (`1.1.1-1.1.7`) are the genuine Cyclops. The rest
+(`1.7.4-1.7.8`, `1.7.9-1.8.1`, `2.7.2-2.7.3`, `3.12.7-3.13.4`, `3.9.2-3.10.1`) trace to Apollodorus's
+Aetolian royal genealogy, where the actual text names a daughter **`Sterope`** — "Pleuron wedded
+Xanthippe... and begat... daughters, **Sterope** and Stratonice and Laophonte" (`[1.7.7]`) — one
+letter different from the Cyclops's name, and the citation spread (three unrelated book-3 passages
+in addition to book 1) suggests this may itself be 2+ distinct people sharing the name `Sterope`,
+not one.
+
+**Why this matters more than a normal missing-entity gap:** adding `Arges`/`Steropes` as single
+entities without this check would have silently created ~69 and ~12 nonsensical relationship rows
+(a Cyclops "mastering" the sons of Telamon and Oileus, fathering a scattering of Aetolian nobles) —
+a worse defect than the one Track D set out to fix. And unlike a normal missing entity, this isn't
+caught by any existing audit check: A1 (fuzzy-dup) only compares *confirmed* entity names to each
+other, and `Arges`/`Ares`, `Steropes`/`Sterope` never coexist there — the corruption lives entirely
+inside the *candidate* extraction data. **This is a new failure-mode lead, not yet DEV-numbered as
+its own investigation**, and is plausibly recurring — if the extraction model confused `Ares` with
+`Arges` and `Sterope` with `Steropes`, other near-miss corruptions of major names may exist elsewhere
+in the 6,905-row candidate set undetected.
 
 ### Root cause
 
@@ -456,34 +498,44 @@ A2 is the first check that ever compared them, which is why this sat undetected 
 
 ### Scope note — this is a triage backlog, not a bulk-add
 
-The 367 are **leads**, not a work list. Three buckets, and only the first is a clear add:
-1. Genuine, unambiguous figures that belong in the graph (`Nereus`, `Doris`, `Ceto`, `Thaumas`,
-   `Styx`, `Arges`, `Steropes`) — add to the confirmed set, regenerate `V10`/`V11`.
+The 367 (now 362) are **leads**, not a work list. Four buckets now, not three:
+1. Genuine, unambiguous figures that belong in the graph — **`Nereus`, `Doris`, `Ceto`, `Thaumas`,
+   `Styx` added 2026-07-27 (DEV-096)**.
 2. Namesake collisions and conflations of the class DEV-078…DEV-082 spent all of Track J untangling
    (`Electra`, `Eurytus`, `Phineus`, `Thoas` are all multi-person names in this corpus) — adding a
-   bare name here would *create* the exact defect Track J just removed.
+   bare name here would *create* the exact defect Track J just removed. **Still open.**
 3. Extraction noise and the `<UNKNOWN>` sentinel — no entity to add; a signal about the extraction
-   pass instead.
+   pass instead. **Still open** (133 rows).
+4. *(New, DEV-096)* **Extraction corruption of an existing name** — `Arges` (→ mostly `Ares`) and
+   `Steropes` (→ mostly `Sterope`) were originally filed in bucket 1 but turned out to belong here
+   instead. **Still open**, and arguably higher-priority than buckets 2/3: it's actively wrong data
+   about an existing major entity (`Ares`), not just an absent one.
 
 Adding bucket 1 grows the graph and can surface new A3 cycles, so it goes through the standard Track
-I fix loop like any other data change.
+I fix loop like any other data change — confirmed clean for the 5 names added (A3 unchanged at 1
+waived cycle, A5 clean, no new A1 fuzzy-dup pairs).
 
 ### Decision needed
 
 - **(a)** *(Recommended, scoped as P3b)* Work only the subset that unblocks GAP-003 — the names on
   the Perseus/Danae/Gorgon lines and anything else gold-question-load-bearing — plus bucket 1's
   unambiguous top names. Carry the long tail to P4 alongside the other review-throughput backlogs.
+  **Done 2026-07-27 (DEV-095, DEV-096)** for the load-bearing names and 5 of 7 bucket-1 names.
 - **(b)** Work all 367 as one batch. Rejected: it is the same undifferentiated-bulk-triage shape that
   made DEV-084's 48-pair pass slow, and buckets 2/3 need per-name source verification anyway.
 - **(c)** Waive as permanent long-tail, like A1's 39 pairs. Rejected: unlike A1's residue, these are
-  **not** duplicates of rows already present — each one is a real, absent piece of the graph, and at
-  least one (`Phineus`) blocks a gold question today.
+  **not** duplicates of rows already present — each one is a real, absent piece of the graph (or, per
+  bucket 4, actively wrong data about an existing entity).
+- **(d)** *(New, not yet decided)* Investigate the `Ares`/`Arges` and `Sterope`/`Steropes` corruption
+  as its own lead — check whether the same near-miss-spelling extraction confusion recurs for other
+  major entity names in the 6,905-row candidate set. No DEV number assigned yet.
 
 **References:** `ingestion/audit/drop_accounting.py` (A2, unknown-name drilldown);
 `ingestion/seedgen/relationships_gen.py` (`_filter_and_dedup`);
 `ingestion/extraction/output/entities_candidates_confirmed_v1.json`;
-`docs/DEVIATIONS.md` #DEV-074 (discovery), #DEV-076/#DEV-083 (re-confirmed unchanged), #DEV-093
-(homed); `docs/TODO2.md` Stage P3b.
+`ingestion/extraction/output/relationships_candidates_cleaned.json` (the `Arges`/`Steropes` rows,
+un-added); `docs/DEVIATIONS.md` #DEV-074 (discovery), #DEV-076/#DEV-083 (re-confirmed unchanged),
+#DEV-093 (homed), #DEV-096 (5 names landed, `Arges`/`Steropes` finding); `docs/TODO2.md` Stage P3b.
 
 ---
 

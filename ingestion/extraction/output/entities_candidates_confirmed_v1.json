@@ -13865,5 +13865,40 @@
     "generation": null,
     "domain": null,
     "subtype": null
+  },
+  {
+    "name": "Nereus",
+    "type": "other_god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Doris",
+    "type": "other_god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Ceto",
+    "type": "other_god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Styx",
+    "type": "other_god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Thaumas",
+    "type": "other_god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
   }
 ]

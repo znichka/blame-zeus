@@ -256,7 +256,8 @@ triaged; `relation_aliases` live and applied; DATA/MIXED ≥ baseline, zero stab
 
 ## 4b. DATA floor closure (P3b) — added post-P3
 
-> ⚠️ Deviations occurred in this stage. See DEVIATIONS.md for details (**DEV-093**).
+> ⚠️ Deviations occurred in this stage. See DEVIATIONS.md for details
+> `[DEVIATED - see DEVIATIONS.md #DEV-093, #DEV-094, #DEV-095, #DEV-096]`.
 
 Not in the original Phase-2 outline. A 2026-07-27 reconciliation of `DEVIATIONS.md` against the TODO
 files found that P1's triage routed gold **Q6/Q7/Q8** to P3, and P3 closed without listing them —
@@ -270,17 +271,25 @@ Scope is two `docs/DATA-GAPS.md` entries opened by the same audit:
   so Q6's correct SQL filters them out; the hero `Perseus` has **zero** extracted relationships, so
   Q7 misses a keyword and Q8 falls back from SQL to RAG (0/3); and Q8's `Cetus` keyword is
   unattested in the corpus (only inside `Anicetus`/`Lycetus`), a DEV-048/DEV-050 brittle-keyword
-  eval-bug to fix *after* the data.
+  eval-bug to fix *after* the data. **RESOLVED 2026-07-27** — Q6 by `[DEVIATED - see DEVIATIONS.md
+  #DEV-094]` (retyped `Hestia`, dropped `Hades` from Q6's keywords), Q7/Q8 by
+  `[DEVIATED - see DEVIATIONS.md #DEV-095]` (added `Zeus`/`Danae parent_of Perseus`,
+  `Medusa killed_by Perseus` from Apollodorus `2.4.1-2.4.2`; reduced Q8's keywords to `["Medusa"]`).
 - **GAP-002** — A2's **367** candidate-referenced names absent from the confirmed entity set
   (DEV-074, reported unchanged through DEV-083, never given a batch). Scoped subset only: bucket-1
   unambiguous figures plus whatever Track B needs. Bulk-adding would re-create the name-conflation
-  class Track J spent DEV-078…DEV-082 removing.
+  class Track J spent DEV-078…DEV-082 removing. **PARTIALLY LANDED 2026-07-27**
+  `[DEVIATED - see DEVIATIONS.md #DEV-096]` — 5 of 7 bucket-1 names added (`Nereus`, `Doris`, `Ceto`,
+  `Styx`, `Thaumas`); `Arges`/`Steropes` deliberately withheld after their candidate rows turned out
+  to be majority extraction corruption of `Ares`/`Sterope`, a new open lead recorded in GAP-002.
 
 Uses §4.3's fix loop unchanged.
 
 **Exit (P3b):** DATA ≥ 3/5 across a 3-run eval with zero stable regressions, results committed;
 every added entity source-verified, never fabricated (the DEV-047 constraint); GAP-002/GAP-003
-statuses updated.
+statuses updated. **Met and exceeded 2026-07-27**: DATA reached 5/5 (100%), overall 15/16 (94%) —
+`evaluation/results/2026-07-27T09-59-02Z__435bea2__p3b-track-d-sea-gods/`. GAP-003 fully resolved;
+GAP-002 partially resolved, long tail (incl. the new `Ares`/`Sterope` corruption lead) carries to P4.
 
 ---
 

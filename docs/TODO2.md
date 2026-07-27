@@ -228,12 +228,12 @@ Sizing note: the floor needs 3/5 and Q9/Q10 already pass, so **Track A alone plu
 clears the gate** — the rest is genuine data quality, not gate-chasing. Do not stop at the gate if
 Track B/C are half-landed.
 
-> **Tracks A/B/C landed 2026-07-27 (DEV-094, DEV-095).** DATA reached **100% (5/5)**, overall
+> **Tracks A/B/C landed 2026-07-27** `[DEVIATED - see DEVIATIONS.md #DEV-094, #DEV-095]`. DATA reached **100% (5/5)**, overall
 > **15/16 (94%)**, zero stable regressions — the stage's own floor-met bar was cleared and then some.
 > **GAP-003 is fully resolved.** Only **Track D** (GAP-002's broader 367-name backlog) remains open,
 > and it was never gate-blocking — see `docs/DATA-GAPS.md` GAP-002. Results not yet committed.
 
-- [x] **Track A — Q6 entity typing — LANDED 2026-07-27 (DEV-094).** Verified against the corpus
+- [x] **Track A — Q6 entity typing — LANDED 2026-07-27** `[DEVIATED - see DEVIATIONS.md #DEV-094]`. Verified against the corpus
       rather than assuming a bare "Twelve Olympians" list: Hesiod's *Theogony* [869] states plainly
       that Hades "rules over the dead below," structurally apart from "THE OLYMPIAN GODS" section
       [886]; the Homeric Hymn to Aphrodite [7] gives Hestia full standing "in all the temples of the
@@ -245,7 +245,7 @@ Track B/C are half-landed.
       40% → 60%, floor now PASS, zero floor breaches remain**; Q6 stable-fail → stable-pass;
       `compare.py` confirms zero stable regressions vs the last accepted baseline. Q10's
       `min_row_count: 12` still holds (13 olympian-typed now). Not yet committed.
-- [x] **Track B — Q7/Q8 Perseus extraction gap — LANDED 2026-07-27 (DEV-095).** Read Apollodorus
+- [x] **Track B — Q7/Q8 Perseus extraction gap — LANDED 2026-07-27** `[DEVIATED - see DEVIATIONS.md #DEV-095]`. Read Apollodorus
       `[2.4.1]`–`[2.4.4]` directly rather than a full extraction re-run — short and self-contained
       enough to hand-verify, same discipline as DEV-090/DEV-078's entity splits. Added `Zeus
       parent_of Perseus` + `Danae parent_of Perseus` [2.4.1] and `Medusa killed_by Perseus` [2.4.2]
@@ -255,7 +255,7 @@ Track B/C are half-landed.
       "sea monster" (unnamed in this translation — adding one would fabricate data). `V10`/`V11`/`V12`
       regenerated (V11 3127→3130, clean append), reseeded, `audit --db` unchanged (A5 clean — no
       2-parent violation). Q8's route **did** return to `SQL` as predicted.
-- [x] **Track C — Q8's `Cetus` keyword is unattested — LANDED 2026-07-27 (DEV-095).** Live-checked
+- [x] **Track C — Q8's `Cetus` keyword is unattested — LANDED 2026-07-27** `[DEVIATED - see DEVIATIONS.md #DEV-095]`. Live-checked
       Q8 post-Track-B: SQL route, answer "Perseus encountered Medusa [1], a monster..." cited to
       `2.4.2` — neither `Gorgon` nor `Cetus` appear (no `subtype` column selected; the sea monster
       has no name to surface). Corrected `required_keywords` to `["Medusa"]` — a logged eval-bug per
@@ -264,13 +264,23 @@ Track B/C are half-landed.
       overall **12/16 → 15/16 (94%)**, zero stable regressions (`compare.py` vs the Track-A run), zero
       flaky questions. Only Q11 (MIXED, pre-existing DEV-054 gap, homed to P5b) still fails.
       **GAP-003 fully resolved.** Not yet committed.
-- [ ] **Track D — GAP-002's 367 unknown names, scoped subset.** Work bucket 1 (unambiguous missing
-      figures: `Nereus` 110 refs, `Doris` 64, `Arges` 71, `Steropes` 14, `Styx` 17, `Ceto` 16,
-      `Thaumas` 15). **`Phineus` is no longer load-bearing for Track B** (DEV-095 found he's a mortal,
-      not a monster) but remains a genuine GAP-002 name in his own right. **Do not bulk-add**:
-      `Electra`, `Eurytus`, `Phineus`, `Thoas` are multi-person names in this corpus, and adding a
-      bare name re-creates exactly the conflation defect DEV-078…DEV-082 spent Track J removing.
-      `<UNKNOWN>` (133 rows) is an extraction sentinel, not an entity. Long tail carries to P4.
+- [x] **Track D — GAP-002's 367 unknown names, scoped subset — PARTIALLY LANDED 2026-07-27**
+      `[DEVIATED - see DEVIATIONS.md #DEV-096]`. 5 of 7 bucket-1 names added: `Nereus`, `Doris`, `Ceto`, `Styx`, `Thaumas`
+      (all source-verified against Apollodorus `[1.2.1-1.2.7]` + Hesiod *Theogony*, `type='other_god'`).
+      **`Arges` and `Steropes` deliberately NOT added** — breaking their candidate rows down by
+      `passage_ref` (before adding, per this line's own "do not bulk-add" warning) found only 2 of 71
+      `Arges` rows and 2 of 14 `Steropes` rows are the genuine Cyclopes; the rest are **extraction
+      corruption of `Ares` and `Sterope`** scattered across Homer/Ovid/Apollodorus — a new, larger
+      finding than this track anticipated, flagged below rather than fixed here. `<UNKNOWN>` (133
+      rows) is an extraction sentinel, not an entity. `Phineus` is no longer load-bearing for Track B
+      (DEV-095 found he's a mortal, not a monster) but remains a genuine GAP-002 name. A2's
+      unknown-name count: 367 → 362. Long tail (incl. `Phineus`, `Arges`/`Steropes`'s genuine 2 rows
+      each) carries to P4.
+      > **New lead, not yet DEV-numbered:** the `Ares`→`Arges` corruption (~69 candidate rows) and
+      > `Sterope`/`Steropes` conflation (~12 rows, likely 2+ distinct `Sterope`s) — see
+      > `docs/DATA-GAPS.md` GAP-002. Silently corrupts data for an *existing* major Olympian
+      > (`Ares`), not just a missing entity — worth prioritizing over the remaining unknown-name long
+      > tail.
 - [ ] **Fix loop** (unchanged from P3): edit candidate JSON → `seedgen --strict` →
       `reseed-local.sh` → `audit` clean-or-waived → `runner --runs 3` → `compare.py` → commit or
       revert. Expect A3 to surface new cycles as the graph grows — that is the loop working.
