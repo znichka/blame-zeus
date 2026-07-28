@@ -1,0 +1,7525 @@
+{
+  "counts": {
+    "groupsTotal": 835,
+    "groupsWithPromotions": 3,
+    "zeroPromoted": 832
+  },
+  "trend": "zero_promoted 832 (-0 since last run, -0 since the 832-group starting baseline)",
+  "groups": [
+    {
+      "subject": "",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 571
+    },
+    {
+      "subject": "<UNKNOWN>",
+      "claimType": "parentage",
+      "candidateRowCount": 101,
+      "distinctSourceCount": 6,
+      "distinctClaimValueCount": 51,
+      "promotedRowCount": 0,
+      "subjectRank": 19
+    },
+    {
+      "subject": "<none>",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 650
+    },
+    {
+      "subject": "Abas",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 200
+    },
+    {
+      "subject": "Acamas",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 271
+    },
+    {
+      "subject": "Achelous",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 177
+    },
+    {
+      "subject": "Achilles",
+      "claimType": "burial",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 3
+    },
+    {
+      "subject": "Achilles",
+      "claimType": "death",
+      "candidateRowCount": 34,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 25,
+      "promotedRowCount": 27,
+      "subjectRank": 3
+    },
+    {
+      "subject": "Achilles",
+      "claimType": "epithet",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 3
+    },
+    {
+      "subject": "Achilles",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 3
+    },
+    {
+      "subject": "Achilles",
+      "claimType": "notable",
+      "candidateRowCount": 21,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 21,
+      "promotedRowCount": 0,
+      "subjectRank": 3
+    },
+    {
+      "subject": "Achilles",
+      "claimType": "notable act",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 3
+    },
+    {
+      "subject": "Achilles",
+      "claimType": "notable claim",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 3
+    },
+    {
+      "subject": "Achilles",
+      "claimType": "notable_claim",
+      "candidateRowCount": 11,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 11,
+      "promotedRowCount": 0,
+      "subjectRank": 3
+    },
+    {
+      "subject": "Achilles",
+      "claimType": "parentage",
+      "candidateRowCount": 254,
+      "distinctSourceCount": 5,
+      "distinctClaimValueCount": 39,
+      "promotedRowCount": 0,
+      "subjectRank": 3
+    },
+    {
+      "subject": "Acrisius",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 239
+    },
+    {
+      "subject": "Actaea",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 363
+    },
+    {
+      "subject": "Actaeon",
+      "claimType": "death",
+      "candidateRowCount": 11,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 11,
+      "promotedRowCount": 0,
+      "subjectRank": 100
+    },
+    {
+      "subject": "Actaeon",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 100
+    },
+    {
+      "subject": "Actor",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 178
+    },
+    {
+      "subject": "Adonis",
+      "claimType": "death",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 104
+    },
+    {
+      "subject": "Adonis",
+      "claimType": "parentage",
+      "candidateRowCount": 13,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 13,
+      "promotedRowCount": 0,
+      "subjectRank": 104
+    },
+    {
+      "subject": "Adrastus",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 145
+    },
+    {
+      "subject": "Aeacus",
+      "claimType": "parentage",
+      "candidateRowCount": 20,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 14,
+      "promotedRowCount": 0,
+      "subjectRank": 64
+    },
+    {
+      "subject": "Aeetes",
+      "claimType": "parentage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 114
+    },
+    {
+      "subject": "Aegeus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 272
+    },
+    {
+      "subject": "Aegialia",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 240
+    },
+    {
+      "subject": "Aegisthus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 179
+    },
+    {
+      "subject": "Aello",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 574
+    },
+    {
+      "subject": "Aeneas",
+      "claimType": "death",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 24
+    },
+    {
+      "subject": "Aeneas",
+      "claimType": "notable",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 24
+    },
+    {
+      "subject": "Aeneas",
+      "claimType": "notable_event",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 24
+    },
+    {
+      "subject": "Aeneas",
+      "claimType": "parentage",
+      "candidateRowCount": 45,
+      "distinctSourceCount": 5,
+      "distinctClaimValueCount": 13,
+      "promotedRowCount": 0,
+      "subjectRank": 24
+    },
+    {
+      "subject": "Aeolus",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 56
+    },
+    {
+      "subject": "Aeolus",
+      "claimType": "parentage",
+      "candidateRowCount": 13,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 10,
+      "promotedRowCount": 0,
+      "subjectRank": 56
+    },
+    {
+      "subject": "Aesculapius",
+      "claimType": "parentage",
+      "candidateRowCount": 15,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 9,
+      "promotedRowCount": 0,
+      "subjectRank": 180
+    },
+    {
+      "subject": "Aesepus",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 407
+    },
+    {
+      "subject": "Aeson",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 201
+    },
+    {
+      "subject": "Aethra",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 443
+    },
+    {
+      "subject": "Agamedes",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 515
+    },
+    {
+      "subject": "Agamemnon",
+      "claimType": "death",
+      "candidateRowCount": 37,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 23,
+      "promotedRowCount": 0,
+      "subjectRank": 6
+    },
+    {
+      "subject": "Agamemnon",
+      "claimType": "marriage",
+      "candidateRowCount": 18,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 6
+    },
+    {
+      "subject": "Agamemnon",
+      "claimType": "notable_claim",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 6
+    },
+    {
+      "subject": "Agamemnon",
+      "claimType": "parentage",
+      "candidateRowCount": 132,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 6
+    },
+    {
+      "subject": "Agapenor",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 516
+    },
+    {
+      "subject": "Agathon",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 576
+    },
+    {
+      "subject": "Agave",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 111
+    },
+    {
+      "subject": "Agelaus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 115
+    },
+    {
+      "subject": "Agelaus",
+      "claimType": "parentage",
+      "candidateRowCount": 10,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 115
+    },
+    {
+      "subject": "Agenor",
+      "claimType": "parentage",
+      "candidateRowCount": 13,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 10,
+      "promotedRowCount": 0,
+      "subjectRank": 85
+    },
+    {
+      "subject": "Agrius",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 445
+    },
+    {
+      "subject": "Ajax",
+      "claimType": "death",
+      "candidateRowCount": 17,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 15,
+      "promotedRowCount": 0,
+      "subjectRank": 21
+    },
+    {
+      "subject": "Ajax",
+      "claimType": "notable",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 21
+    },
+    {
+      "subject": "Ajax",
+      "claimType": "parentage",
+      "candidateRowCount": 47,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 10,
+      "promotedRowCount": 0,
+      "subjectRank": 21
+    },
+    {
+      "subject": "Ajax son of Telamon",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 578
+    },
+    {
+      "subject": "Alastor",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 364
+    },
+    {
+      "subject": "Alastor",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 364
+    },
+    {
+      "subject": "Alcathous",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 273
+    },
+    {
+      "subject": "Alcestis",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 302
+    },
+    {
+      "subject": "Alcinous",
+      "claimType": "marriage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 163
+    },
+    {
+      "subject": "Alcinous",
+      "claimType": "parentage",
+      "candidateRowCount": 11,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 163
+    },
+    {
+      "subject": "Alcmaeon",
+      "claimType": "death",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 76
+    },
+    {
+      "subject": "Alcmaeon",
+      "claimType": "marriage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 76
+    },
+    {
+      "subject": "Alcmaeon",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 76
+    },
+    {
+      "subject": "Alexander",
+      "claimType": "marriage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 146
+    },
+    {
+      "subject": "Alexander",
+      "claimType": "notable",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 146
+    },
+    {
+      "subject": "Aloeus",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 219
+    },
+    {
+      "subject": "Aloeus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 219
+    },
+    {
+      "subject": "Alpheus",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 663
+    },
+    {
+      "subject": "Althaea",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 77
+    },
+    {
+      "subject": "Althaea",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 77
+    },
+    {
+      "subject": "Amphiaraus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 125
+    },
+    {
+      "subject": "Amphiaraus",
+      "claimType": "marriage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 125
+    },
+    {
+      "subject": "Amphiaraus",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 125
+    },
+    {
+      "subject": "Amphictyon",
+      "claimType": "parentage",
+      "candidateRowCount": 13,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 12,
+      "promotedRowCount": 0,
+      "subjectRank": 112
+    },
+    {
+      "subject": "Amphilochus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 365
+    },
+    {
+      "subject": "Amphimachus",
+      "claimType": "parentage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 241
+    },
+    {
+      "subject": "Amphimedon",
+      "claimType": "death",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 331
+    },
+    {
+      "subject": "Amphion",
+      "claimType": "death",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 78
+    },
+    {
+      "subject": "Amphion",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 78
+    },
+    {
+      "subject": "Amphion",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 78
+    },
+    {
+      "subject": "Amphitrite",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 447
+    },
+    {
+      "subject": "Amphius",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 448
+    },
+    {
+      "subject": "Amycus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 220
+    },
+    {
+      "subject": "Amycus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 220
+    },
+    {
+      "subject": "Amythaon",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 242
+    },
+    {
+      "subject": "Ancaeus",
+      "claimType": "death",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 450
+    },
+    {
+      "subject": "Anchises",
+      "claimType": "parentage",
+      "candidateRowCount": 12,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 72
+    },
+    {
+      "subject": "Andraemon",
+      "claimType": "marriage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 243
+    },
+    {
+      "subject": "Andraemon",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 243
+    },
+    {
+      "subject": "Androgeus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 202
+    },
+    {
+      "subject": "Androgeus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 202
+    },
+    {
+      "subject": "Andromache",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 181
+    },
+    {
+      "subject": "Andromeda",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 147
+    },
+    {
+      "subject": "Anius",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 451
+    },
+    {
+      "subject": "Antaeus",
+      "claimType": "death",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 814
+    },
+    {
+      "subject": "Antenor",
+      "claimType": "parentage",
+      "candidateRowCount": 12,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 9,
+      "promotedRowCount": 0,
+      "subjectRank": 116
+    },
+    {
+      "subject": "Anticlia",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 304
+    },
+    {
+      "subject": "Antigone",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 305
+    },
+    {
+      "subject": "Antimachus",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 452
+    },
+    {
+      "subject": "Antiochus",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 39
+    },
+    {
+      "subject": "Antiochus",
+      "claimType": "parentage",
+      "candidateRowCount": 33,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 39
+    },
+    {
+      "subject": "Antiope",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 221
+    },
+    {
+      "subject": "Antiphus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 73
+    },
+    {
+      "subject": "Antiphus",
+      "claimType": "parentage",
+      "candidateRowCount": 19,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 15,
+      "promotedRowCount": 0,
+      "subjectRank": 73
+    },
+    {
+      "subject": "Aphareus",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 148
+    },
+    {
+      "subject": "Aphareus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 148
+    },
+    {
+      "subject": "Aphidas",
+      "claimType": "parentage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 9,
+      "promotedRowCount": 0,
+      "subjectRank": 222
+    },
+    {
+      "subject": "Aphrodite",
+      "claimType": "epithet",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 16
+    },
+    {
+      "subject": "Aphrodite",
+      "claimType": "marriage",
+      "candidateRowCount": 13,
+      "distinctSourceCount": 5,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 16
+    },
+    {
+      "subject": "Aphrodite",
+      "claimType": "notable",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 16
+    },
+    {
+      "subject": "Aphrodite",
+      "claimType": "notable_claim",
+      "candidateRowCount": 13,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 13,
+      "promotedRowCount": 0,
+      "subjectRank": 16
+    },
+    {
+      "subject": "Aphrodite",
+      "claimType": "parentage",
+      "candidateRowCount": 40,
+      "distinctSourceCount": 6,
+      "distinctClaimValueCount": 11,
+      "promotedRowCount": 34,
+      "subjectRank": 16
+    },
+    {
+      "subject": "Apollo",
+      "claimType": "death",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 9,
+      "promotedRowCount": 0,
+      "subjectRank": 7
+    },
+    {
+      "subject": "Apollo",
+      "claimType": "epithet",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 9,
+      "promotedRowCount": 0,
+      "subjectRank": 7
+    },
+    {
+      "subject": "Apollo",
+      "claimType": "notable",
+      "candidateRowCount": 10,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 10,
+      "promotedRowCount": 0,
+      "subjectRank": 7
+    },
+    {
+      "subject": "Apollo",
+      "claimType": "notable_act",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 7
+    },
+    {
+      "subject": "Apollo",
+      "claimType": "notable_claim",
+      "candidateRowCount": 17,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 17,
+      "promotedRowCount": 0,
+      "subjectRank": 7
+    },
+    {
+      "subject": "Apollo",
+      "claimType": "notable_deed",
+      "candidateRowCount": 35,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 35,
+      "promotedRowCount": 0,
+      "subjectRank": 7
+    },
+    {
+      "subject": "Apollo",
+      "claimType": "other",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 7
+    },
+    {
+      "subject": "Apollo",
+      "claimType": "parentage",
+      "candidateRowCount": 80,
+      "distinctSourceCount": 5,
+      "distinctClaimValueCount": 16,
+      "promotedRowCount": 0,
+      "subjectRank": 7
+    },
+    {
+      "subject": "Arcas",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 274
+    },
+    {
+      "subject": "Archelochus",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 332
+    },
+    {
+      "subject": "Aretus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 333
+    },
+    {
+      "subject": "Arges",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 51
+    },
+    {
+      "subject": "Arges",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 51
+    },
+    {
+      "subject": "Arges",
+      "claimType": "notable",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 51
+    },
+    {
+      "subject": "Arges",
+      "claimType": "notable_claim",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 51
+    },
+    {
+      "subject": "Arges",
+      "claimType": "parentage",
+      "candidateRowCount": 20,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 15,
+      "promotedRowCount": 0,
+      "subjectRank": 51
+    },
+    {
+      "subject": "Argus",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 275
+    },
+    {
+      "subject": "Ariadne",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 244
+    },
+    {
+      "subject": "Artemis",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 29
+    },
+    {
+      "subject": "Artemis",
+      "claimType": "notable",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 29
+    },
+    {
+      "subject": "Artemis",
+      "claimType": "notable_claim",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 29
+    },
+    {
+      "subject": "Artemis",
+      "claimType": "notable_deed",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 29
+    },
+    {
+      "subject": "Artemis",
+      "claimType": "parentage",
+      "candidateRowCount": 26,
+      "distinctSourceCount": 5,
+      "distinctClaimValueCount": 9,
+      "promotedRowCount": 0,
+      "subjectRank": 29
+    },
+    {
+      "subject": "Ascalaphus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 105
+    },
+    {
+      "subject": "Ascalaphus",
+      "claimType": "parentage",
+      "candidateRowCount": 16,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 9,
+      "promotedRowCount": 0,
+      "subjectRank": 105
+    },
+    {
+      "subject": "Ascalaphus",
+      "claimType": "transformation",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 105
+    },
+    {
+      "subject": "Ascanius",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 518
+    },
+    {
+      "subject": "Asclepius",
+      "claimType": "parentage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 276
+    },
+    {
+      "subject": "Asia",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 585
+    },
+    {
+      "subject": "Asius",
+      "claimType": "parentage",
+      "candidateRowCount": 10,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 182
+    },
+    {
+      "subject": "Assaracus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 306
+    },
+    {
+      "subject": "Asteria",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 203
+    },
+    {
+      "subject": "Asteropaeus",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 366
+    },
+    {
+      "subject": "Astraeus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 223
+    },
+    {
+      "subject": "Astyanax",
+      "claimType": "parentage",
+      "candidateRowCount": 12,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 204
+    },
+    {
+      "subject": "Astynous",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 454
+    },
+    {
+      "subject": "Atalanta",
+      "claimType": "notable_deed",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 126
+    },
+    {
+      "subject": "Atalanta",
+      "claimType": "parentage",
+      "candidateRowCount": 11,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 126
+    },
+    {
+      "subject": "Athamas",
+      "claimType": "marriage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 94
+    },
+    {
+      "subject": "Athena",
+      "claimType": "death",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 11
+    },
+    {
+      "subject": "Athena",
+      "claimType": "epithet",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 11
+    },
+    {
+      "subject": "Athena",
+      "claimType": "notable",
+      "candidateRowCount": 12,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 12,
+      "promotedRowCount": 0,
+      "subjectRank": 11
+    },
+    {
+      "subject": "Athena",
+      "claimType": "notable_act",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 11
+    },
+    {
+      "subject": "Athena",
+      "claimType": "notable_claim",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 11
+    },
+    {
+      "subject": "Athena",
+      "claimType": "notable_deed",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 11
+    },
+    {
+      "subject": "Athena",
+      "claimType": "parentage",
+      "candidateRowCount": 89,
+      "distinctSourceCount": 6,
+      "distinctClaimValueCount": 13,
+      "promotedRowCount": 0,
+      "subjectRank": 11
+    },
+    {
+      "subject": "Atlas",
+      "claimType": "parentage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 95
+    },
+    {
+      "subject": "Atreus",
+      "claimType": "death",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 49
+    },
+    {
+      "subject": "Atreus",
+      "claimType": "parentage",
+      "candidateRowCount": 26,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 49
+    },
+    {
+      "subject": "Atthis",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 412
+    },
+    {
+      "subject": "Atymnius",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 367
+    },
+    {
+      "subject": "Autolycus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 224
+    },
+    {
+      "subject": "Autonoe",
+      "claimType": "parentage",
+      "candidateRowCount": 11,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 101
+    },
+    {
+      "subject": "Bellerophon",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 149
+    },
+    {
+      "subject": "Bellerophon",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 149
+    },
+    {
+      "subject": "Bias",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 307
+    },
+    {
+      "subject": "Bienor",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 589
+    },
+    {
+      "subject": "Boreas",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 137
+    },
+    {
+      "subject": "Boreas",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 137
+    },
+    {
+      "subject": "Borus",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 520
+    },
+    {
+      "subject": "Briseis",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 413
+    },
+    {
+      "subject": "Bromius",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 591
+    },
+    {
+      "subject": "Brontes",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 368
+    },
+    {
+      "subject": "Bucolion",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 334
+    },
+    {
+      "subject": "Busiris",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 414
+    },
+    {
+      "subject": "Cadmus",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 41
+    },
+    {
+      "subject": "Cadmus",
+      "claimType": "marriage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 41
+    },
+    {
+      "subject": "Cadmus",
+      "claimType": "notable act",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 41
+    },
+    {
+      "subject": "Cadmus",
+      "claimType": "notable_act",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 41
+    },
+    {
+      "subject": "Cadmus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 41
+    },
+    {
+      "subject": "Cadmus",
+      "claimType": "transformation",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 41
+    },
+    {
+      "subject": "Caeneus",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 127
+    },
+    {
+      "subject": "Caeneus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 127
+    },
+    {
+      "subject": "Caeneus",
+      "claimType": "transformation",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 127
+    },
+    {
+      "subject": "Calais",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 225
+    },
+    {
+      "subject": "Calchas",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 676
+    },
+    {
+      "subject": "Callidice",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 415
+    },
+    {
+      "subject": "Calliope",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 335
+    },
+    {
+      "subject": "Callirrhoe",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 183
+    },
+    {
+      "subject": "Callisto",
+      "claimType": "parentage",
+      "candidateRowCount": 10,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 150
+    },
+    {
+      "subject": "Calydonian Boar",
+      "claimType": "death",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 245
+    },
+    {
+      "subject": "Calypso",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 117
+    },
+    {
+      "subject": "Calypso",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 117
+    },
+    {
+      "subject": "Capaneus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 416
+    },
+    {
+      "subject": "Capys",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 246
+    },
+    {
+      "subject": "Cassandra",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 151
+    },
+    {
+      "subject": "Castor",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 79
+    },
+    {
+      "subject": "Castor",
+      "claimType": "parentage",
+      "candidateRowCount": 15,
+      "distinctSourceCount": 5,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 79
+    },
+    {
+      "subject": "Cebriones",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 417
+    },
+    {
+      "subject": "Centaurus",
+      "claimType": "death",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 164
+    },
+    {
+      "subject": "Centaurus",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 164
+    },
+    {
+      "subject": "Cephalus",
+      "claimType": "marriage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 106
+    },
+    {
+      "subject": "Cephalus",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 106
+    },
+    {
+      "subject": "Cercyon",
+      "claimType": "death",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 458
+    },
+    {
+      "subject": "Ceto",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 247
+    },
+    {
+      "subject": "Ceyx",
+      "claimType": "marriage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 113
+    },
+    {
+      "subject": "Ceyx",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 113
+    },
+    {
+      "subject": "Charopus",
+      "claimType": "death",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 595
+    },
+    {
+      "subject": "Chersidamas",
+      "claimType": "death",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 682
+    },
+    {
+      "subject": "Chimera",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 152
+    },
+    {
+      "subject": "Chimera",
+      "claimType": "notable",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 152
+    },
+    {
+      "subject": "Chimera",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 152
+    },
+    {
+      "subject": "Chione",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 336
+    },
+    {
+      "subject": "Chiron",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 337
+    },
+    {
+      "subject": "Chiron",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 337
+    },
+    {
+      "subject": "Chloris",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 184
+    },
+    {
+      "subject": "Chromius",
+      "claimType": "death",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 153
+    },
+    {
+      "subject": "Chromius",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 153
+    },
+    {
+      "subject": "Chrysaor",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 522
+    },
+    {
+      "subject": "Chryses",
+      "claimType": "parentage",
+      "candidateRowCount": 15,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 118
+    },
+    {
+      "subject": "Chrysothemis",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 372
+    },
+    {
+      "subject": "Cinyras",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 185
+    },
+    {
+      "subject": "Circe",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 46
+    },
+    {
+      "subject": "Circe",
+      "claimType": "notable_act",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 46
+    },
+    {
+      "subject": "Circe",
+      "claimType": "parentage",
+      "candidateRowCount": 20,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 13,
+      "promotedRowCount": 0,
+      "subjectRank": 46
+    },
+    {
+      "subject": "Cleopatra",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 128
+    },
+    {
+      "subject": "Cleopatra",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 128
+    },
+    {
+      "subject": "Clio",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 373
+    },
+    {
+      "subject": "Clitus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 374
+    },
+    {
+      "subject": "Clymene",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 165
+    },
+    {
+      "subject": "Clytaemnestra",
+      "claimType": "marriage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 154
+    },
+    {
+      "subject": "Clytaemnestra",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 154
+    },
+    {
+      "subject": "Clytius",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 375
+    },
+    {
+      "subject": "Clytius",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 375
+    },
+    {
+      "subject": "Coeus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 186
+    },
+    {
+      "subject": "Coronis",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 338
+    },
+    {
+      "subject": "Coronis",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 338
+    },
+    {
+      "subject": "Coronis",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 338
+    },
+    {
+      "subject": "Cottus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 523
+    },
+    {
+      "subject": "Cretheus",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 205
+    },
+    {
+      "subject": "Crius",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 206
+    },
+    {
+      "subject": "Cronus",
+      "claimType": "death",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 34
+    },
+    {
+      "subject": "Cronus",
+      "claimType": "parentage",
+      "candidateRowCount": 24,
+      "distinctSourceCount": 5,
+      "distinctClaimValueCount": 9,
+      "promotedRowCount": 0,
+      "subjectRank": 34
+    },
+    {
+      "subject": "Cteatus",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 278
+    },
+    {
+      "subject": "Cycnus",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 248
+    },
+    {
+      "subject": "Cymo",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 459
+    },
+    {
+      "subject": "Cymothoe",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 376
+    },
+    {
+      "subject": "Damasichthon",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 418
+    },
+    {
+      "subject": "Damastor",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 696
+    },
+    {
+      "subject": "Dardanus",
+      "claimType": "parentage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 207
+    },
+    {
+      "subject": "Dawn",
+      "claimType": "marriage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 155
+    },
+    {
+      "subject": "Dawn",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 155
+    },
+    {
+      "subject": "Deianira",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 80
+    },
+    {
+      "subject": "Deianira",
+      "claimType": "notable_claim",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 80
+    },
+    {
+      "subject": "Deianira",
+      "claimType": "parentage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 80
+    },
+    {
+      "subject": "Deiphobus",
+      "claimType": "death",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 138
+    },
+    {
+      "subject": "Deiphobus",
+      "claimType": "parentage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 138
+    },
+    {
+      "subject": "Demeter",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 54
+    },
+    {
+      "subject": "Demeter",
+      "claimType": "notable_deed",
+      "candidateRowCount": 11,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 11,
+      "promotedRowCount": 0,
+      "subjectRank": 54
+    },
+    {
+      "subject": "Demeter",
+      "claimType": "parentage",
+      "candidateRowCount": 10,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 54
+    },
+    {
+      "subject": "Democoon",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 461
+    },
+    {
+      "subject": "Demoleon",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 462
+    },
+    {
+      "subject": "Demophon",
+      "claimType": "parentage",
+      "candidateRowCount": 10,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 187
+    },
+    {
+      "subject": "Deucalion",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 102
+    },
+    {
+      "subject": "Deucalion",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 102
+    },
+    {
+      "subject": "Diocles",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 339
+    },
+    {
+      "subject": "Diomedes",
+      "claimType": "death",
+      "candidateRowCount": 11,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 10,
+      "promotedRowCount": 0,
+      "subjectRank": 9
+    },
+    {
+      "subject": "Diomedes",
+      "claimType": "marriage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 9
+    },
+    {
+      "subject": "Diomedes",
+      "claimType": "notable",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 9
+    },
+    {
+      "subject": "Diomedes",
+      "claimType": "notable_claim",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 9
+    },
+    {
+      "subject": "Diomedes",
+      "claimType": "parentage",
+      "candidateRowCount": 91,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 9,
+      "promotedRowCount": 0,
+      "subjectRank": 9
+    },
+    {
+      "subject": "Dione",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 340
+    },
+    {
+      "subject": "Dionysus",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 27
+    },
+    {
+      "subject": "Dionysus",
+      "claimType": "notable",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 27
+    },
+    {
+      "subject": "Dionysus",
+      "claimType": "notable_act",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 27
+    },
+    {
+      "subject": "Dionysus",
+      "claimType": "parentage",
+      "candidateRowCount": 31,
+      "distinctSourceCount": 5,
+      "distinctClaimValueCount": 14,
+      "promotedRowCount": 0,
+      "subjectRank": 27
+    },
+    {
+      "subject": "Dionysus",
+      "claimType": "transformation",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 27
+    },
+    {
+      "subject": "Dolon",
+      "claimType": "death",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 308
+    },
+    {
+      "subject": "Dolon",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 308
+    },
+    {
+      "subject": "Doris",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 52
+    },
+    {
+      "subject": "Dorycleus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 464
+    },
+    {
+      "subject": "Doto",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 465
+    },
+    {
+      "subject": "Dryas",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 280
+    },
+    {
+      "subject": "Dryopes",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 907
+    },
+    {
+      "subject": "Dynamene",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 466
+    },
+    {
+      "subject": "Earth",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 35
+    },
+    {
+      "subject": "Echeclus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 526
+    },
+    {
+      "subject": "Echemmon",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 600
+    },
+    {
+      "subject": "Echephron",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 378
+    },
+    {
+      "subject": "Echidna",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 166
+    },
+    {
+      "subject": "Echion",
+      "claimType": "notable act",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 379
+    },
+    {
+      "subject": "Eione",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 420
+    },
+    {
+      "subject": "Elatus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 341
+    },
+    {
+      "subject": "Electra",
+      "claimType": "parentage",
+      "candidateRowCount": 11,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 9,
+      "promotedRowCount": 0,
+      "subjectRank": 281
+    },
+    {
+      "subject": "Elephenor",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 226
+    },
+    {
+      "subject": "Elephenor",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 226
+    },
+    {
+      "subject": "Emathion",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 208
+    },
+    {
+      "subject": "Emathion",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 208
+    },
+    {
+      "subject": "Ennomus",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 527
+    },
+    {
+      "subject": "Eos",
+      "claimType": "marriage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 96
+    },
+    {
+      "subject": "Eos",
+      "claimType": "parentage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 96
+    },
+    {
+      "subject": "Epaphus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 528
+    },
+    {
+      "subject": "Ephialtes",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 282
+    },
+    {
+      "subject": "Ephialtes",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 282
+    },
+    {
+      "subject": "Epimetheus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 309
+    },
+    {
+      "subject": "Epistrophus",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 310
+    },
+    {
+      "subject": "Erato",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 227
+    },
+    {
+      "subject": "Erechtheus",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 156
+    },
+    {
+      "subject": "Erichthonius",
+      "claimType": "parentage",
+      "candidateRowCount": 13,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 10,
+      "promotedRowCount": 0,
+      "subjectRank": 119
+    },
+    {
+      "subject": "Eriphyle",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 249
+    },
+    {
+      "subject": "Eros",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 605
+    },
+    {
+      "subject": "Eucrante",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 467
+    },
+    {
+      "subject": "Eulimene",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 468
+    },
+    {
+      "subject": "Eumelus",
+      "claimType": "parentage",
+      "candidateRowCount": 15,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 189
+    },
+    {
+      "subject": "Euneus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 342
+    },
+    {
+      "subject": "Eunice",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 469
+    },
+    {
+      "subject": "Euphemus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 531
+    },
+    {
+      "subject": "Euphorbus",
+      "claimType": "death",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 157
+    },
+    {
+      "subject": "Euphorbus",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 157
+    },
+    {
+      "subject": "Europa",
+      "claimType": "parentage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 139
+    },
+    {
+      "subject": "Euryalus",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 250
+    },
+    {
+      "subject": "Eurybia",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 210
+    },
+    {
+      "subject": "Eurydice",
+      "claimType": "death",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 97
+    },
+    {
+      "subject": "Eurydice",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 97
+    },
+    {
+      "subject": "Eurydice",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 97
+    },
+    {
+      "subject": "Eurylochus",
+      "claimType": "notable_act",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 533
+    },
+    {
+      "subject": "Eurymedon",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 283
+    },
+    {
+      "subject": "Eurymedon",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 283
+    },
+    {
+      "subject": "Eurynome",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 470
+    },
+    {
+      "subject": "Eurypylus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 68
+    },
+    {
+      "subject": "Eurypylus",
+      "claimType": "parentage",
+      "candidateRowCount": 20,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 13,
+      "promotedRowCount": 0,
+      "subjectRank": 68
+    },
+    {
+      "subject": "Eurystheus",
+      "claimType": "notable",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 190
+    },
+    {
+      "subject": "Eurystheus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 190
+    },
+    {
+      "subject": "Eurytion",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 421
+    },
+    {
+      "subject": "Eurytus",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 535
+    },
+    {
+      "subject": "Euterpe",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 380
+    },
+    {
+      "subject": "Evenus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 343
+    },
+    {
+      "subject": "Galatea",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 167
+    },
+    {
+      "subject": "Ganymede",
+      "claimType": "abduction",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 168
+    },
+    {
+      "subject": "Ganymede",
+      "claimType": "notable",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 168
+    },
+    {
+      "subject": "Ganymede",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 168
+    },
+    {
+      "subject": "Geryon",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 191
+    },
+    {
+      "subject": "Geryon",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 191
+    },
+    {
+      "subject": "Giants",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 716
+    },
+    {
+      "subject": "Glauce",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 381
+    },
+    {
+      "subject": "Glauconome",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 472
+    },
+    {
+      "subject": "Glaucus",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 62
+    },
+    {
+      "subject": "Glaucus",
+      "claimType": "notable act",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 62
+    },
+    {
+      "subject": "Glaucus",
+      "claimType": "parentage",
+      "candidateRowCount": 18,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 10,
+      "promotedRowCount": 0,
+      "subjectRank": 62
+    },
+    {
+      "subject": "Gorge",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 228
+    },
+    {
+      "subject": "Gorgons",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 607
+    },
+    {
+      "subject": "Gorgythion",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 383
+    },
+    {
+      "subject": "Gyes",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 536
+    },
+    {
+      "subject": "Hades",
+      "claimType": "marriage",
+      "candidateRowCount": 19,
+      "distinctSourceCount": 5,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 37
+    },
+    {
+      "subject": "Hades",
+      "claimType": "notable",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 37
+    },
+    {
+      "subject": "Hades",
+      "claimType": "notable_deed",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 37
+    },
+    {
+      "subject": "Hades",
+      "claimType": "parentage",
+      "candidateRowCount": 11,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 37
+    },
+    {
+      "subject": "Haemon",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 473
+    },
+    {
+      "subject": "Halie",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 474
+    },
+    {
+      "subject": "Halius",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 609
+    },
+    {
+      "subject": "Harmonia",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 81
+    },
+    {
+      "subject": "Hebe",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 129
+    },
+    {
+      "subject": "Hecate",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 251
+    },
+    {
+      "subject": "Hector",
+      "claimType": "death",
+      "candidateRowCount": 68,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 42,
+      "promotedRowCount": 0,
+      "subjectRank": 5
+    },
+    {
+      "subject": "Hector",
+      "claimType": "marriage",
+      "candidateRowCount": 16,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 5
+    },
+    {
+      "subject": "Hector",
+      "claimType": "notable",
+      "candidateRowCount": 18,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 18,
+      "promotedRowCount": 0,
+      "subjectRank": 5
+    },
+    {
+      "subject": "Hector",
+      "claimType": "parentage",
+      "candidateRowCount": 121,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 19,
+      "promotedRowCount": 0,
+      "subjectRank": 5
+    },
+    {
+      "subject": "Hecuba",
+      "claimType": "parentage",
+      "candidateRowCount": 10,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 9,
+      "promotedRowCount": 0,
+      "subjectRank": 91
+    },
+    {
+      "subject": "Heleus",
+      "claimType": "parentage",
+      "candidateRowCount": 18,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 107
+    },
+    {
+      "subject": "Helios",
+      "claimType": "epithet",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 311
+    },
+    {
+      "subject": "Helios",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 311
+    },
+    {
+      "subject": "Hellen",
+      "claimType": "abduction",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 28
+    },
+    {
+      "subject": "Hellen",
+      "claimType": "marriage",
+      "candidateRowCount": 23,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 13,
+      "promotedRowCount": 0,
+      "subjectRank": 28
+    },
+    {
+      "subject": "Hellen",
+      "claimType": "notable",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 28
+    },
+    {
+      "subject": "Hellen",
+      "claimType": "notable_claim",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 28
+    },
+    {
+      "subject": "Hellen",
+      "claimType": "parentage",
+      "candidateRowCount": 25,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 13,
+      "promotedRowCount": 0,
+      "subjectRank": 28
+    },
+    {
+      "subject": "Hephaestus",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 42
+    },
+    {
+      "subject": "Hephaestus",
+      "claimType": "notable",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 42
+    },
+    {
+      "subject": "Hephaestus",
+      "claimType": "notable_act",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 42
+    },
+    {
+      "subject": "Hephaestus",
+      "claimType": "notable_claim",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 42
+    },
+    {
+      "subject": "Hephaestus",
+      "claimType": "parentage",
+      "candidateRowCount": 20,
+      "distinctSourceCount": 5,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 42
+    },
+    {
+      "subject": "Hera",
+      "claimType": "epithet",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 18
+    },
+    {
+      "subject": "Hera",
+      "claimType": "marriage",
+      "candidateRowCount": 29,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 9,
+      "promotedRowCount": 0,
+      "subjectRank": 18
+    },
+    {
+      "subject": "Hera",
+      "claimType": "notable_act",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 18
+    },
+    {
+      "subject": "Hera",
+      "claimType": "notable_claim",
+      "candidateRowCount": 10,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 10,
+      "promotedRowCount": 0,
+      "subjectRank": 18
+    },
+    {
+      "subject": "Hera",
+      "claimType": "parentage",
+      "candidateRowCount": 30,
+      "distinctSourceCount": 5,
+      "distinctClaimValueCount": 16,
+      "promotedRowCount": 0,
+      "subjectRank": 18
+    },
+    {
+      "subject": "Heracles",
+      "claimType": "death",
+      "candidateRowCount": 21,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 21,
+      "promotedRowCount": 0,
+      "subjectRank": 4
+    },
+    {
+      "subject": "Heracles",
+      "claimType": "marriage",
+      "candidateRowCount": 14,
+      "distinctSourceCount": 5,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 4
+    },
+    {
+      "subject": "Heracles",
+      "claimType": "notable_claim",
+      "candidateRowCount": 26,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 26,
+      "promotedRowCount": 0,
+      "subjectRank": 4
+    },
+    {
+      "subject": "Heracles",
+      "claimType": "notable_deed",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 4
+    },
+    {
+      "subject": "Heracles",
+      "claimType": "notable_event",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 4
+    },
+    {
+      "subject": "Heracles",
+      "claimType": "parentage",
+      "candidateRowCount": 52,
+      "distinctSourceCount": 6,
+      "distinctClaimValueCount": 26,
+      "promotedRowCount": 0,
+      "subjectRank": 4
+    },
+    {
+      "subject": "Hermes",
+      "claimType": "epithet",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 14
+    },
+    {
+      "subject": "Hermes",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 14
+    },
+    {
+      "subject": "Hermes",
+      "claimType": "notable",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 14
+    },
+    {
+      "subject": "Hermes",
+      "claimType": "notable_act",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 14
+    },
+    {
+      "subject": "Hermes",
+      "claimType": "notable_claim",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 14
+    },
+    {
+      "subject": "Hermes",
+      "claimType": "parentage",
+      "candidateRowCount": 69,
+      "distinctSourceCount": 6,
+      "distinctClaimValueCount": 19,
+      "promotedRowCount": 0,
+      "subjectRank": 14
+    },
+    {
+      "subject": "Hermes",
+      "claimType": "role",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 14
+    },
+    {
+      "subject": "Hermione",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 284
+    },
+    {
+      "subject": "Hermus",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 538
+    },
+    {
+      "subject": "Herse",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 252
+    },
+    {
+      "subject": "Hesione",
+      "claimType": "marriage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 344
+    },
+    {
+      "subject": "Hestia",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 229
+    },
+    {
+      "subject": "Hicetaon",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 422
+    },
+    {
+      "subject": "Hippasus",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 476
+    },
+    {
+      "subject": "Hippodamas",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 169
+    },
+    {
+      "subject": "Hippolytus",
+      "claimType": "death",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 230
+    },
+    {
+      "subject": "Hippolytus",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 230
+    },
+    {
+      "subject": "Hipponoe",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 477
+    },
+    {
+      "subject": "Hippothoe",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 345
+    },
+    {
+      "subject": "Hippothous",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 286
+    },
+    {
+      "subject": "Hyacinth",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 287
+    },
+    {
+      "subject": "Hydra",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 253
+    },
+    {
+      "subject": "Hydra",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 253
+    },
+    {
+      "subject": "Hyperion",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 86
+    },
+    {
+      "subject": "Hyperion",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 86
+    },
+    {
+      "subject": "Hypirochus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 478
+    },
+    {
+      "subject": "Ialmenus",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 312
+    },
+    {
+      "subject": "Ianira",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 613
+    },
+    {
+      "subject": "Ianthe",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 424
+    },
+    {
+      "subject": "Iapetus",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 130
+    },
+    {
+      "subject": "Iapetus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 130
+    },
+    {
+      "subject": "Iasion",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 346
+    },
+    {
+      "subject": "Iasus",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 313
+    },
+    {
+      "subject": "Icarius",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 87
+    },
+    {
+      "subject": "Icarius",
+      "claimType": "parentage",
+      "candidateRowCount": 12,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 87
+    },
+    {
+      "subject": "Idas",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 120
+    },
+    {
+      "subject": "Idas",
+      "claimType": "parentage",
+      "candidateRowCount": 10,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 120
+    },
+    {
+      "subject": "Idomeneus",
+      "claimType": "parentage",
+      "candidateRowCount": 13,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 88
+    },
+    {
+      "subject": "Ilioneus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 288
+    },
+    {
+      "subject": "Ilioneus",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 288
+    },
+    {
+      "subject": "Ilus",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 314
+    },
+    {
+      "subject": "Imbrus",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 254
+    },
+    {
+      "subject": "Imbrus",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 254
+    },
+    {
+      "subject": "Imbrus",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 254
+    },
+    {
+      "subject": "Ino",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 58
+    },
+    {
+      "subject": "Ino",
+      "claimType": "parentage",
+      "candidateRowCount": 10,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 58
+    },
+    {
+      "subject": "Ino",
+      "claimType": "transformation",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 58
+    },
+    {
+      "subject": "Io",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 192
+    },
+    {
+      "subject": "Io",
+      "claimType": "parentage",
+      "candidateRowCount": 10,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 10,
+      "subjectRank": 192
+    },
+    {
+      "subject": "Iphianassa",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 384
+    },
+    {
+      "subject": "Iphiclus",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 255
+    },
+    {
+      "subject": "Iphigenia",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 256
+    },
+    {
+      "subject": "Iphigenia",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 256
+    },
+    {
+      "subject": "Iphinous",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 479
+    },
+    {
+      "subject": "Iphis",
+      "claimType": "notable",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 211
+    },
+    {
+      "subject": "Iphis",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 211
+    },
+    {
+      "subject": "Iphitus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 121
+    },
+    {
+      "subject": "Iphitus",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 121
+    },
+    {
+      "subject": "Iris",
+      "claimType": "parentage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 170
+    },
+    {
+      "subject": "Ismenus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 385
+    },
+    {
+      "subject": "Itys",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 108
+    },
+    {
+      "subject": "Itys",
+      "claimType": "parentage",
+      "candidateRowCount": 11,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 108
+    },
+    {
+      "subject": "Ixion",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 315
+    },
+    {
+      "subject": "Ixion",
+      "claimType": "punishment",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 315
+    },
+    {
+      "subject": "Jason",
+      "claimType": "marriage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 69
+    },
+    {
+      "subject": "Jason",
+      "claimType": "notable",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 69
+    },
+    {
+      "subject": "Jason",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 69
+    },
+    {
+      "subject": "Laertes",
+      "claimType": "parentage",
+      "candidateRowCount": 30,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 53
+    },
+    {
+      "subject": "Lampus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 480
+    },
+    {
+      "subject": "Laodamas",
+      "claimType": "death",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 289
+    },
+    {
+      "subject": "Laodamas",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 289
+    },
+    {
+      "subject": "Laodamia",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 316
+    },
+    {
+      "subject": "Laodamia",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 316
+    },
+    {
+      "subject": "Laodice",
+      "claimType": "parentage",
+      "candidateRowCount": 11,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 212
+    },
+    {
+      "subject": "Laodocus",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 729
+    },
+    {
+      "subject": "Laomedon",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 82
+    },
+    {
+      "subject": "Latinus",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 213
+    },
+    {
+      "subject": "Latona",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 231
+    },
+    {
+      "subject": "Learchus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 171
+    },
+    {
+      "subject": "Learchus",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 171
+    },
+    {
+      "subject": "Leitus",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 542
+    },
+    {
+      "subject": "Leonteus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 348
+    },
+    {
+      "subject": "Leto",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 317
+    },
+    {
+      "subject": "Leucus",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 425
+    },
+    {
+      "subject": "Liocritus",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 349
+    },
+    {
+      "subject": "Liocritus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 349
+    },
+    {
+      "subject": "Lycaon",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 26
+    },
+    {
+      "subject": "Lycaon",
+      "claimType": "parentage",
+      "candidateRowCount": 23,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 11,
+      "promotedRowCount": 0,
+      "subjectRank": 26
+    },
+    {
+      "subject": "Lycomedes",
+      "claimType": "death",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 544
+    },
+    {
+      "subject": "Lycurgus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 193
+    },
+    {
+      "subject": "Lycurgus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 193
+    },
+    {
+      "subject": "Lycus",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 318
+    },
+    {
+      "subject": "Lynceus",
+      "claimType": "parentage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 172
+    },
+    {
+      "subject": "Lysianassa",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 386
+    },
+    {
+      "subject": "Machaon",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 387
+    },
+    {
+      "subject": "Maia",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 194
+    },
+    {
+      "subject": "Manto",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 619
+    },
+    {
+      "subject": "Marpessa",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 547
+    },
+    {
+      "subject": "Marsyas",
+      "claimType": "death",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 1026
+    },
+    {
+      "subject": "Mecisteus",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 131
+    },
+    {
+      "subject": "Mecisteus",
+      "claimType": "parentage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 131
+    },
+    {
+      "subject": "Medea",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 32
+    },
+    {
+      "subject": "Medea",
+      "claimType": "marriage",
+      "candidateRowCount": 11,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 32
+    },
+    {
+      "subject": "Medea",
+      "claimType": "notable_act",
+      "candidateRowCount": 15,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 15,
+      "promotedRowCount": 0,
+      "subjectRank": 32
+    },
+    {
+      "subject": "Medea",
+      "claimType": "parentage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 32
+    },
+    {
+      "subject": "Medesicaste",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 481
+    },
+    {
+      "subject": "Medus",
+      "claimType": "death",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 92
+    },
+    {
+      "subject": "Medus",
+      "claimType": "parentage",
+      "candidateRowCount": 11,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 10,
+      "promotedRowCount": 0,
+      "subjectRank": 92
+    },
+    {
+      "subject": "Megaera",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 621
+    },
+    {
+      "subject": "Megapenthes",
+      "claimType": "parentage",
+      "candidateRowCount": 11,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 232
+    },
+    {
+      "subject": "Meges",
+      "claimType": "parentage",
+      "candidateRowCount": 10,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 233
+    },
+    {
+      "subject": "Melampus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 290
+    },
+    {
+      "subject": "Melanippus",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 257
+    },
+    {
+      "subject": "Melanippus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 257
+    },
+    {
+      "subject": "Melanthius",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 483
+    },
+    {
+      "subject": "Melas",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 258
+    },
+    {
+      "subject": "Meleager",
+      "claimType": "death",
+      "candidateRowCount": 13,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 10,
+      "promotedRowCount": 0,
+      "subjectRank": 38
+    },
+    {
+      "subject": "Meleager",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 38
+    },
+    {
+      "subject": "Meleager",
+      "claimType": "notable_deed",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 38
+    },
+    {
+      "subject": "Meleager",
+      "claimType": "parentage",
+      "candidateRowCount": 19,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 9,
+      "promotedRowCount": 0,
+      "subjectRank": 38
+    },
+    {
+      "subject": "Melite",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 484
+    },
+    {
+      "subject": "Melpomene",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 259
+    },
+    {
+      "subject": "Memnon",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 98
+    },
+    {
+      "subject": "Memnon",
+      "claimType": "parentage",
+      "candidateRowCount": 10,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 98
+    },
+    {
+      "subject": "Menelaus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 12
+    },
+    {
+      "subject": "Menelaus",
+      "claimType": "epithet",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 12
+    },
+    {
+      "subject": "Menelaus",
+      "claimType": "marriage",
+      "candidateRowCount": 27,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 9,
+      "promotedRowCount": 0,
+      "subjectRank": 12
+    },
+    {
+      "subject": "Menelaus",
+      "claimType": "notable",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 12
+    },
+    {
+      "subject": "Menelaus",
+      "claimType": "notable_claim",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 9,
+      "promotedRowCount": 0,
+      "subjectRank": 12
+    },
+    {
+      "subject": "Menelaus",
+      "claimType": "parentage",
+      "candidateRowCount": 57,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 12
+    },
+    {
+      "subject": "Menestheus",
+      "claimType": "parentage",
+      "candidateRowCount": 16,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 10,
+      "promotedRowCount": 0,
+      "subjectRank": 140
+    },
+    {
+      "subject": "Menoetius",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 89
+    },
+    {
+      "subject": "Menoetius",
+      "claimType": "parentage",
+      "candidateRowCount": 16,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 89
+    },
+    {
+      "subject": "Mentor",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 485
+    },
+    {
+      "subject": "Mermerus",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 291
+    },
+    {
+      "subject": "Mermerus",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 291
+    },
+    {
+      "subject": "Merops",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 486
+    },
+    {
+      "subject": "Mesthles",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 622
+    },
+    {
+      "subject": "Metis",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 320
+    },
+    {
+      "subject": "Miletus",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 350
+    },
+    {
+      "subject": "Minos",
+      "claimType": "notable_claim",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 36
+    },
+    {
+      "subject": "Minos",
+      "claimType": "parentage",
+      "candidateRowCount": 20,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 11,
+      "promotedRowCount": 0,
+      "subjectRank": 36
+    },
+    {
+      "subject": "Minotaur",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 487
+    },
+    {
+      "subject": "Mnemosyne",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 74
+    },
+    {
+      "subject": "Molus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 389
+    },
+    {
+      "subject": "Mopsus",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 292
+    },
+    {
+      "subject": "Muses",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 260
+    },
+    {
+      "subject": "Mygdon",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 351
+    },
+    {
+      "subject": "Mygdon",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 351
+    },
+    {
+      "subject": "Nastes",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 426
+    },
+    {
+      "subject": "Nausicaa",
+      "claimType": "parentage",
+      "candidateRowCount": 11,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 261
+    },
+    {
+      "subject": "Nausithous",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 352
+    },
+    {
+      "subject": "Neleus",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 50
+    },
+    {
+      "subject": "Neleus",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 50
+    },
+    {
+      "subject": "Neleus",
+      "claimType": "parentage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 50
+    },
+    {
+      "subject": "Nemean Lion",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 353
+    },
+    {
+      "subject": "Nemean Lion",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 353
+    },
+    {
+      "subject": "Neoptolemus",
+      "claimType": "death",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 109
+    },
+    {
+      "subject": "Neoptolemus",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 109
+    },
+    {
+      "subject": "Neoptolemus",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 109
+    },
+    {
+      "subject": "Nereus",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 25
+    },
+    {
+      "subject": "Nereus",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 25
+    },
+    {
+      "subject": "Nessus",
+      "claimType": "death",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 293
+    },
+    {
+      "subject": "Nessus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 293
+    },
+    {
+      "subject": "Nestor",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 20
+    },
+    {
+      "subject": "Nestor",
+      "claimType": "epithet",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 20
+    },
+    {
+      "subject": "Nestor",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 20
+    },
+    {
+      "subject": "Nestor",
+      "claimType": "parentage",
+      "candidateRowCount": 58,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 12,
+      "promotedRowCount": 0,
+      "subjectRank": 20
+    },
+    {
+      "subject": "Nilus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 427
+    },
+    {
+      "subject": "Niobe",
+      "claimType": "notable",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 59
+    },
+    {
+      "subject": "Niobe",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 59
+    },
+    {
+      "subject": "Nireus",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 354
+    },
+    {
+      "subject": "Nisus",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 262
+    },
+    {
+      "subject": "Nisus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 262
+    },
+    {
+      "subject": "Nymphs",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 549
+    },
+    {
+      "subject": "Oceanus",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 30
+    },
+    {
+      "subject": "Oceanus",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 30
+    },
+    {
+      "subject": "Ocypete",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 550
+    },
+    {
+      "subject": "Ocyrrhoe",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 489
+    },
+    {
+      "subject": "Odysseus",
+      "claimType": "death",
+      "candidateRowCount": 48,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 44,
+      "promotedRowCount": 0,
+      "subjectRank": 1
+    },
+    {
+      "subject": "Odysseus",
+      "claimType": "epithet",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 1
+    },
+    {
+      "subject": "Odysseus",
+      "claimType": "marriage",
+      "candidateRowCount": 80,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 14,
+      "promotedRowCount": 0,
+      "subjectRank": 1
+    },
+    {
+      "subject": "Odysseus",
+      "claimType": "notable",
+      "candidateRowCount": 51,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 51,
+      "promotedRowCount": 0,
+      "subjectRank": 1
+    },
+    {
+      "subject": "Odysseus",
+      "claimType": "notable claim",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 1
+    },
+    {
+      "subject": "Odysseus",
+      "claimType": "notable_act",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 1
+    },
+    {
+      "subject": "Odysseus",
+      "claimType": "notable_claim",
+      "candidateRowCount": 58,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 58,
+      "promotedRowCount": 0,
+      "subjectRank": 1
+    },
+    {
+      "subject": "Odysseus",
+      "claimType": "notable_deed",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 1
+    },
+    {
+      "subject": "Odysseus",
+      "claimType": "other",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 1
+    },
+    {
+      "subject": "Odysseus",
+      "claimType": "parentage",
+      "candidateRowCount": 165,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 29,
+      "promotedRowCount": 0,
+      "subjectRank": 1
+    },
+    {
+      "subject": "Oedipus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 355
+    },
+    {
+      "subject": "Oeneus",
+      "claimType": "marriage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 66
+    },
+    {
+      "subject": "Oeneus",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 66
+    },
+    {
+      "subject": "Oenomaus",
+      "claimType": "death",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 392
+    },
+    {
+      "subject": "Oicles",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 490
+    },
+    {
+      "subject": "Onetor",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 747
+    },
+    {
+      "subject": "Opheltes",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 428
+    },
+    {
+      "subject": "Orestes",
+      "claimType": "death",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 67
+    },
+    {
+      "subject": "Orestes",
+      "claimType": "parentage",
+      "candidateRowCount": 15,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 67
+    },
+    {
+      "subject": "Orion",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 321
+    },
+    {
+      "subject": "Orion",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 321
+    },
+    {
+      "subject": "Orithyia",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 173
+    },
+    {
+      "subject": "Orpheus",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 83
+    },
+    {
+      "subject": "Orpheus",
+      "claimType": "marriage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 83
+    },
+    {
+      "subject": "Orpheus",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 83
+    },
+    {
+      "subject": "Orsilochus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 195
+    },
+    {
+      "subject": "Orsilochus",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 195
+    },
+    {
+      "subject": "Orthus",
+      "claimType": "death",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 263
+    },
+    {
+      "subject": "Orthus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 263
+    },
+    {
+      "subject": "Orus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 551
+    },
+    {
+      "subject": "Otus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 196
+    },
+    {
+      "subject": "Otus",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 196
+    },
+    {
+      "subject": "Ouranos",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 45
+    },
+    {
+      "subject": "Palaemon",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 491
+    },
+    {
+      "subject": "Palamedes",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 174
+    },
+    {
+      "subject": "Palamedes",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 174
+    },
+    {
+      "subject": "Pallas",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 122
+    },
+    {
+      "subject": "Pallas",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 122
+    },
+    {
+      "subject": "Pammon",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 492
+    },
+    {
+      "subject": "Pan",
+      "claimType": "parentage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 234
+    },
+    {
+      "subject": "Pandarus",
+      "claimType": "notable",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 214
+    },
+    {
+      "subject": "Pandarus",
+      "claimType": "parentage",
+      "candidateRowCount": 10,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 214
+    },
+    {
+      "subject": "Pandion",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 235
+    },
+    {
+      "subject": "Pandrosus",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 429
+    },
+    {
+      "subject": "Panope",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 430
+    },
+    {
+      "subject": "Paris",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 47
+    },
+    {
+      "subject": "Paris",
+      "claimType": "marriage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 47
+    },
+    {
+      "subject": "Paris",
+      "claimType": "notable",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 47
+    },
+    {
+      "subject": "Paris",
+      "claimType": "parentage",
+      "candidateRowCount": 13,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 47
+    },
+    {
+      "subject": "Pasiphae",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 431
+    },
+    {
+      "subject": "Patroclus",
+      "claimType": "death",
+      "candidateRowCount": 57,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 37,
+      "promotedRowCount": 0,
+      "subjectRank": 10
+    },
+    {
+      "subject": "Patroclus",
+      "claimType": "parentage",
+      "candidateRowCount": 66,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 12,
+      "promotedRowCount": 0,
+      "subjectRank": 10
+    },
+    {
+      "subject": "Pegasus",
+      "claimType": "parentage",
+      "candidateRowCount": 10,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 322
+    },
+    {
+      "subject": "Peiraeus",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 753
+    },
+    {
+      "subject": "Pelegon",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 630
+    },
+    {
+      "subject": "Peleus",
+      "claimType": "death",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 23
+    },
+    {
+      "subject": "Peleus",
+      "claimType": "marriage",
+      "candidateRowCount": 18,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 23
+    },
+    {
+      "subject": "Peleus",
+      "claimType": "notable_claim",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 23
+    },
+    {
+      "subject": "Peleus",
+      "claimType": "notable_deed",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 23
+    },
+    {
+      "subject": "Peleus",
+      "claimType": "parentage",
+      "candidateRowCount": 34,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 23
+    },
+    {
+      "subject": "Pelias",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 103
+    },
+    {
+      "subject": "Pelias",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 103
+    },
+    {
+      "subject": "Pelops",
+      "claimType": "notable",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 236
+    },
+    {
+      "subject": "Penelope",
+      "claimType": "marriage",
+      "candidateRowCount": 83,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 17,
+      "promotedRowCount": 0,
+      "subjectRank": 13
+    },
+    {
+      "subject": "Penelope",
+      "claimType": "notable_claim",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 13
+    },
+    {
+      "subject": "Penelope",
+      "claimType": "parentage",
+      "candidateRowCount": 34,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 13
+    },
+    {
+      "subject": "Pentheus",
+      "claimType": "death",
+      "candidateRowCount": 11,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 9,
+      "promotedRowCount": 0,
+      "subjectRank": 93
+    },
+    {
+      "subject": "Pentheus",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 93
+    },
+    {
+      "subject": "Periboea",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 356
+    },
+    {
+      "subject": "Periclymenus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 132
+    },
+    {
+      "subject": "Periclymenus",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 132
+    },
+    {
+      "subject": "Perieres",
+      "claimType": "parentage",
+      "candidateRowCount": 13,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 12,
+      "promotedRowCount": 0,
+      "subjectRank": 110
+    },
+    {
+      "subject": "Perimede",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 357
+    },
+    {
+      "subject": "Periphas",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 323
+    },
+    {
+      "subject": "Periphetes",
+      "claimType": "death",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 175
+    },
+    {
+      "subject": "Periphetes",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 175
+    },
+    {
+      "subject": "Pero",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 324
+    },
+    {
+      "subject": "Persephone",
+      "claimType": "abduction",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 44
+    },
+    {
+      "subject": "Persephone",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 44
+    },
+    {
+      "subject": "Persephone",
+      "claimType": "parentage",
+      "candidateRowCount": 23,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 44
+    },
+    {
+      "subject": "Perses",
+      "claimType": "death",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 22
+    },
+    {
+      "subject": "Perses",
+      "claimType": "marriage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 22
+    },
+    {
+      "subject": "Perses",
+      "claimType": "notable",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 22
+    },
+    {
+      "subject": "Perses",
+      "claimType": "parentage",
+      "candidateRowCount": 29,
+      "distinctSourceCount": 5,
+      "distinctClaimValueCount": 19,
+      "promotedRowCount": 0,
+      "subjectRank": 22
+    },
+    {
+      "subject": "Phaedimus",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 432
+    },
+    {
+      "subject": "Phaedra",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 554
+    },
+    {
+      "subject": "Phaethon",
+      "claimType": "parentage",
+      "candidateRowCount": 23,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 17,
+      "promotedRowCount": 0,
+      "subjectRank": 84
+    },
+    {
+      "subject": "Phaethusa",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 555
+    },
+    {
+      "subject": "Phegeus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 358
+    },
+    {
+      "subject": "Pheneus",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 556
+    },
+    {
+      "subject": "Pheres",
+      "claimType": "parentage",
+      "candidateRowCount": 10,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 141
+    },
+    {
+      "subject": "Pherusa",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 493
+    },
+    {
+      "subject": "Phidippus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 494
+    },
+    {
+      "subject": "Philammon",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 495
+    },
+    {
+      "subject": "Philoctetes",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 393
+    },
+    {
+      "subject": "Philomela",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 394
+    },
+    {
+      "subject": "Phineus",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 433
+    },
+    {
+      "subject": "Phineus",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 433
+    },
+    {
+      "subject": "Phoebe",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 142
+    },
+    {
+      "subject": "Phoenix",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 434
+    },
+    {
+      "subject": "Phorcus",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 264
+    },
+    {
+      "subject": "Phorcus",
+      "claimType": "parentage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 264
+    },
+    {
+      "subject": "Phorcys",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 294
+    },
+    {
+      "subject": "Phrontis",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 558
+    },
+    {
+      "subject": "Phyleus",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 325
+    },
+    {
+      "subject": "Pirithous",
+      "claimType": "marriage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 99
+    },
+    {
+      "subject": "Pirithous",
+      "claimType": "parentage",
+      "candidateRowCount": 13,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 99
+    },
+    {
+      "subject": "Pisander",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 295
+    },
+    {
+      "subject": "Pisander",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 295
+    },
+    {
+      "subject": "Pisenor",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 633
+    },
+    {
+      "subject": "Pisistratus",
+      "claimType": "parentage",
+      "candidateRowCount": 18,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 133
+    },
+    {
+      "subject": "Plexippus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 396
+    },
+    {
+      "subject": "Podalirius",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 765
+    },
+    {
+      "subject": "Podarces",
+      "claimType": "parentage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 296
+    },
+    {
+      "subject": "Polites",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 359
+    },
+    {
+      "subject": "Pollux",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 265
+    },
+    {
+      "subject": "Polybus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 397
+    },
+    {
+      "subject": "Polycaste",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 560
+    },
+    {
+      "subject": "Polyctor",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 634
+    },
+    {
+      "subject": "Polydamas",
+      "claimType": "notable_claim",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 561
+    },
+    {
+      "subject": "Polydectes",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 134
+    },
+    {
+      "subject": "Polydectes",
+      "claimType": "parentage",
+      "candidateRowCount": 10,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 134
+    },
+    {
+      "subject": "Polydora",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 266
+    },
+    {
+      "subject": "Polydorus",
+      "claimType": "death",
+      "candidateRowCount": 11,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 9,
+      "promotedRowCount": 0,
+      "subjectRank": 60
+    },
+    {
+      "subject": "Polydorus",
+      "claimType": "parentage",
+      "candidateRowCount": 16,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 9,
+      "promotedRowCount": 0,
+      "subjectRank": 60
+    },
+    {
+      "subject": "Polyidus",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 498
+    },
+    {
+      "subject": "Polymnia",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 398
+    },
+    {
+      "subject": "Polynome",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 499
+    },
+    {
+      "subject": "Polyphemus",
+      "claimType": "notable_claim",
+      "candidateRowCount": 11,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 10,
+      "promotedRowCount": 0,
+      "subjectRank": 57
+    },
+    {
+      "subject": "Polyphemus",
+      "claimType": "parentage",
+      "candidateRowCount": 19,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 57
+    },
+    {
+      "subject": "Polyphontes",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 435
+    },
+    {
+      "subject": "Polypoetes",
+      "claimType": "parentage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 215
+    },
+    {
+      "subject": "Polyxena",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 237
+    },
+    {
+      "subject": "Polyxenus",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 563
+    },
+    {
+      "subject": "Poseidon",
+      "claimType": "epithet",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 15
+    },
+    {
+      "subject": "Poseidon",
+      "claimType": "marriage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 15
+    },
+    {
+      "subject": "Poseidon",
+      "claimType": "notable",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 15
+    },
+    {
+      "subject": "Poseidon",
+      "claimType": "notable_claim",
+      "candidateRowCount": 20,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 20,
+      "promotedRowCount": 0,
+      "subjectRank": 15
+    },
+    {
+      "subject": "Poseidon",
+      "claimType": "notable_deed",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 15
+    },
+    {
+      "subject": "Poseidon",
+      "claimType": "parentage",
+      "candidateRowCount": 16,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 12,
+      "promotedRowCount": 0,
+      "subjectRank": 15
+    },
+    {
+      "subject": "Priam",
+      "claimType": "death",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 17
+    },
+    {
+      "subject": "Priam",
+      "claimType": "marriage",
+      "candidateRowCount": 14,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 17
+    },
+    {
+      "subject": "Priam",
+      "claimType": "notable_claim",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 17
+    },
+    {
+      "subject": "Priam",
+      "claimType": "parentage",
+      "candidateRowCount": 37,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 21,
+      "promotedRowCount": 0,
+      "subjectRank": 17
+    },
+    {
+      "subject": "Procne",
+      "claimType": "marriage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 123
+    },
+    {
+      "subject": "Procne",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 123
+    },
+    {
+      "subject": "Procris",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 124
+    },
+    {
+      "subject": "Procris",
+      "claimType": "marriage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 124
+    },
+    {
+      "subject": "Procris",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 124
+    },
+    {
+      "subject": "Promachus",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 501
+    },
+    {
+      "subject": "Prometheus",
+      "claimType": "notable",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 197
+    },
+    {
+      "subject": "Prometheus",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 197
+    },
+    {
+      "subject": "Pronous",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 502
+    },
+    {
+      "subject": "Protesilaus",
+      "claimType": "death",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 198
+    },
+    {
+      "subject": "Protesilaus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 198
+    },
+    {
+      "subject": "Proteus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 360
+    },
+    {
+      "subject": "Prothous",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 436
+    },
+    {
+      "subject": "Protho\u00ebnor",
+      "claimType": "death",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 638
+    },
+    {
+      "subject": "Proto",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 503
+    },
+    {
+      "subject": "Prytanis",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 639
+    },
+    {
+      "subject": "Psamathe",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 326
+    },
+    {
+      "subject": "Pylaon",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 564
+    },
+    {
+      "subject": "Pyrrha",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 267
+    },
+    {
+      "subject": "Pyrrhus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 437
+    },
+    {
+      "subject": "Python",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 401
+    },
+    {
+      "subject": "Rhadamanthys",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 438
+    },
+    {
+      "subject": "Rhea",
+      "claimType": "parentage",
+      "candidateRowCount": 9,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 65
+    },
+    {
+      "subject": "Rhesus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 159
+    },
+    {
+      "subject": "Rhesus",
+      "claimType": "notable",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 159
+    },
+    {
+      "subject": "Rhesus",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 159
+    },
+    {
+      "subject": "Rhode",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 505
+    },
+    {
+      "subject": "Sao",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 506
+    },
+    {
+      "subject": "Sarpedon",
+      "claimType": "death",
+      "candidateRowCount": 18,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 14,
+      "promotedRowCount": 0,
+      "subjectRank": 40
+    },
+    {
+      "subject": "Sarpedon",
+      "claimType": "parentage",
+      "candidateRowCount": 28,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 12,
+      "promotedRowCount": 0,
+      "subjectRank": 40
+    },
+    {
+      "subject": "Schedius",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 361
+    },
+    {
+      "subject": "Scylla",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 63
+    },
+    {
+      "subject": "Scylla",
+      "claimType": "notable_claim",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 63
+    },
+    {
+      "subject": "Scylla",
+      "claimType": "parentage",
+      "candidateRowCount": 15,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 11,
+      "promotedRowCount": 0,
+      "subjectRank": 63
+    },
+    {
+      "subject": "Selene",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 327
+    },
+    {
+      "subject": "Semele",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 75
+    },
+    {
+      "subject": "Semele",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 75
+    },
+    {
+      "subject": "Sinis",
+      "claimType": "death",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 507
+    },
+    {
+      "subject": "Sipylus",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 566
+    },
+    {
+      "subject": "Sirens",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 402
+    },
+    {
+      "subject": "Sisyphus",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 297
+    },
+    {
+      "subject": "Sperchius",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 1142
+    },
+    {
+      "subject": "Sphinx",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 298
+    },
+    {
+      "subject": "Sphinx",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 298
+    },
+    {
+      "subject": "Steropes",
+      "claimType": "parentage",
+      "candidateRowCount": 12,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 10,
+      "promotedRowCount": 0,
+      "subjectRank": 176
+    },
+    {
+      "subject": "Sthenelaus",
+      "claimType": "parentage",
+      "candidateRowCount": 21,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 14,
+      "promotedRowCount": 0,
+      "subjectRank": 90
+    },
+    {
+      "subject": "Stratichus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 439
+    },
+    {
+      "subject": "Strymon",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 641
+    },
+    {
+      "subject": "Styx",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 160
+    },
+    {
+      "subject": "Sun",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 362
+    },
+    {
+      "subject": "Talaus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 299
+    },
+    {
+      "subject": "Tantalus",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 268
+    },
+    {
+      "subject": "Tantalus",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 268
+    },
+    {
+      "subject": "Tecton",
+      "claimType": "parentage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 643
+    },
+    {
+      "subject": "Telamon",
+      "claimType": "parentage",
+      "candidateRowCount": 19,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 55
+    },
+    {
+      "subject": "Teleboans",
+      "claimType": "death",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 1152
+    },
+    {
+      "subject": "Telegonus",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 216
+    },
+    {
+      "subject": "Telemachus",
+      "claimType": "parentage",
+      "candidateRowCount": 154,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 23,
+      "promotedRowCount": 0,
+      "subjectRank": 8
+    },
+    {
+      "subject": "Telemus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 510
+    },
+    {
+      "subject": "Telephus",
+      "claimType": "notable_claim",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 440
+    },
+    {
+      "subject": "Tereus",
+      "claimType": "marriage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 300
+    },
+    {
+      "subject": "Terpsichore",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 403
+    },
+    {
+      "subject": "Tethys",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 31
+    },
+    {
+      "subject": "Tethys",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 31
+    },
+    {
+      "subject": "Teucer",
+      "claimType": "notable_claim",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 70
+    },
+    {
+      "subject": "Teucer",
+      "claimType": "parentage",
+      "candidateRowCount": 12,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 70
+    },
+    {
+      "subject": "Thalia",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 404
+    },
+    {
+      "subject": "Thalpius",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 644
+    },
+    {
+      "subject": "Thaumas",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 269
+    },
+    {
+      "subject": "Thaumas",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 269
+    },
+    {
+      "subject": "Theano",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 405
+    },
+    {
+      "subject": "Themis",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 143
+    },
+    {
+      "subject": "Themisto",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 406
+    },
+    {
+      "subject": "Theseus",
+      "claimType": "death",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 33
+    },
+    {
+      "subject": "Theseus",
+      "claimType": "marriage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 33
+    },
+    {
+      "subject": "Theseus",
+      "claimType": "parentage",
+      "candidateRowCount": 22,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 10,
+      "promotedRowCount": 0,
+      "subjectRank": 33
+    },
+    {
+      "subject": "Thessalus",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 511
+    },
+    {
+      "subject": "Thetis",
+      "claimType": "marriage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 48
+    },
+    {
+      "subject": "Thetis",
+      "claimType": "notable_claim",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 48
+    },
+    {
+      "subject": "Thetis",
+      "claimType": "parentage",
+      "candidateRowCount": 14,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 48
+    },
+    {
+      "subject": "Thia",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 161
+    },
+    {
+      "subject": "Thoas",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 199
+    },
+    {
+      "subject": "Thoas",
+      "claimType": "parentage",
+      "candidateRowCount": 11,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 199
+    },
+    {
+      "subject": "Thrasymedes",
+      "claimType": "parentage",
+      "candidateRowCount": 12,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 162
+    },
+    {
+      "subject": "Tiresias",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 568
+    },
+    {
+      "subject": "Tiresias",
+      "claimType": "transformation",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 568
+    },
+    {
+      "subject": "Titans",
+      "claimType": "death",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 569
+    },
+    {
+      "subject": "Tithonus",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 217
+    },
+    {
+      "subject": "Tityus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 646
+    },
+    {
+      "subject": "Tlepolemus",
+      "claimType": "death",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 5,
+      "promotedRowCount": 0,
+      "subjectRank": 71
+    },
+    {
+      "subject": "Tlepolemus",
+      "claimType": "parentage",
+      "candidateRowCount": 14,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 71
+    },
+    {
+      "subject": "Toxeus",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 328
+    },
+    {
+      "subject": "Toxeus",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 328
+    },
+    {
+      "subject": "Triton",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 512
+    },
+    {
+      "subject": "Troilus",
+      "claimType": "death",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 301
+    },
+    {
+      "subject": "Troilus",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 301
+    },
+    {
+      "subject": "Tros",
+      "claimType": "parentage",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 144
+    },
+    {
+      "subject": "Tydeus",
+      "claimType": "death",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 43
+    },
+    {
+      "subject": "Tydeus",
+      "claimType": "marriage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 43
+    },
+    {
+      "subject": "Tydeus",
+      "claimType": "parentage",
+      "candidateRowCount": 32,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 43
+    },
+    {
+      "subject": "Tyndareus",
+      "claimType": "marriage",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 1,
+      "promotedRowCount": 0,
+      "subjectRank": 329
+    },
+    {
+      "subject": "Typhon",
+      "claimType": "death",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 135
+    },
+    {
+      "subject": "Typhon",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 6,
+      "promotedRowCount": 0,
+      "subjectRank": 135
+    },
+    {
+      "subject": "Tyro",
+      "claimType": "parentage",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 136
+    },
+    {
+      "subject": "Urania",
+      "claimType": "parentage",
+      "candidateRowCount": 6,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 330
+    },
+    {
+      "subject": "Victory",
+      "claimType": "parentage",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 782
+    },
+    {
+      "subject": "Zetes",
+      "claimType": "parentage",
+      "candidateRowCount": 8,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 4,
+      "promotedRowCount": 0,
+      "subjectRank": 238
+    },
+    {
+      "subject": "Zethus",
+      "claimType": "parentage",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 270
+    },
+    {
+      "subject": "Zeus",
+      "claimType": "death",
+      "candidateRowCount": 10,
+      "distinctSourceCount": 5,
+      "distinctClaimValueCount": 8,
+      "promotedRowCount": 0,
+      "subjectRank": 2
+    },
+    {
+      "subject": "Zeus",
+      "claimType": "epithet",
+      "candidateRowCount": 23,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 12,
+      "promotedRowCount": 0,
+      "subjectRank": 2
+    },
+    {
+      "subject": "Zeus",
+      "claimType": "marriage",
+      "candidateRowCount": 52,
+      "distinctSourceCount": 6,
+      "distinctClaimValueCount": 15,
+      "promotedRowCount": 0,
+      "subjectRank": 2
+    },
+    {
+      "subject": "Zeus",
+      "claimType": "notable",
+      "candidateRowCount": 15,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 15,
+      "promotedRowCount": 0,
+      "subjectRank": 2
+    },
+    {
+      "subject": "Zeus",
+      "claimType": "notable claim",
+      "candidateRowCount": 3,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 3,
+      "promotedRowCount": 0,
+      "subjectRank": 2
+    },
+    {
+      "subject": "Zeus",
+      "claimType": "notable_act",
+      "candidateRowCount": 7,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 7,
+      "promotedRowCount": 0,
+      "subjectRank": 2
+    },
+    {
+      "subject": "Zeus",
+      "claimType": "notable_claim",
+      "candidateRowCount": 26,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 26,
+      "promotedRowCount": 0,
+      "subjectRank": 2
+    },
+    {
+      "subject": "Zeus",
+      "claimType": "other",
+      "candidateRowCount": 2,
+      "distinctSourceCount": 2,
+      "distinctClaimValueCount": 2,
+      "promotedRowCount": 0,
+      "subjectRank": 2
+    },
+    {
+      "subject": "Zeus",
+      "claimType": "parentage",
+      "candidateRowCount": 129,
+      "distinctSourceCount": 6,
+      "distinctClaimValueCount": 27,
+      "promotedRowCount": 0,
+      "subjectRank": 2
+    }
+  ]
+}

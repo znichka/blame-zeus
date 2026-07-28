@@ -446,6 +446,13 @@ code, or the standing pre-seedgen gate breaks on every batch.
 
 ## Track C — keyed promotion: `02_verify_conflicts.ipynb` (Python; gates F)
 
+> ⚠️ **Deviations occurred in this track.** See `DEVIATIONS.md` **#DEV-104**. C1's hazard was
+> proven live (73/73 historical indices resolved to unrelated claims after a reorder), and C3's
+> migration found the drift was **already real, not hypothetical**: only 71 of the 3 historical
+> cells' 73 indices currently resolve to a promoted row. The 3 stale cells were replaced with one
+> keyed cell listing the live file's actual 71 promoted keys, not the (partly stale) index-derived
+> content — see the migration markdown cell in the notebook itself for the full accounting.
+
 **A silent-corruption fix, not a convenience.** The notebook promotes by position
 (`candidates[i]["trust_tier"] = 1`); DEV-101's merge rewrites the file in extraction order. P4 is the
 first stage that runs review → regenerate → review repeatedly, so an `approved_indices` list carried
@@ -453,28 +460,35 @@ across a re-extraction promotes **whichever rows now occupy those positions**. T
 warning, and the result is hand-reviewed provenance attached to unreviewed claims — the exact thing
 ADR-004's gate exists to prevent.
 
-- [ ] **C1** — **Prove the hazard before changing anything.** Take the committed
+- [x] **C1** — **Prove the hazard before changing anything.** Take the committed
       `approved_indices` cells, re-run the extraction merge path against a *copy* of the live file
       (never the real one), and show that at least one index now points at a different claim than it
       did. If positions turn out to be stable in practice, record that finding and downgrade this
       track to the C2 guard alone — evidence first, same as Track A.
-- [ ] **C2** — Re-key promotion to the **same 5-tuple** DEV-101 uses:
+      **Result: reproduces decisively** — 73/73 historical indices pointed at a different,
+      unrelated claim after a reorder (e.g. Aphrodite/parentage → Agamemnon/death). Full detail
+      in `DEVIATIONS.md` #DEV-104.
+- [x] **C2** — Re-key promotion to the **same 5-tuple** DEV-101 uses:
       `(subject_name, claim_type, claim_value, source_id, passage_ref)`. Import
       `_CLAIM_IDENTITY`/`_claim_key` from `extraction.run_extraction` rather than redefining them —
       one definition, the DEV-022 discipline applied to code. `review_group(...)` prints the key
       alongside the `[i]` it already prints, and the paste-ready line it emits becomes a list of keys.
-- [ ] **C3** — **Migrate the existing 71 promotions**: before switching, assert that the 4 promoted
+- [x] **C3** — **Migrate the existing 71 promotions**: before switching, assert that the 4 promoted
       groups (`Aphrodite/parentage`, `Aphrodite/birth`, `Achilles/death`, `Io/parentage`) resolve to
       the *same* 71 rows under both the positional and keyed schemes. A mismatch means the file
       already drifted — stop and triage, do not proceed.
-- [ ] **C4** — **A key that matches no row is an error, not a no-op.** Print the unmatched keys and
+      **Mismatch found**: only 71/73 historical indices currently resolve to a promoted row, and
+      one promoted row (`Aphrodite/birth`) is covered by none of them. Per this box's own
+      instruction, the stale indices were **not** used as the migration source — the notebook now
+      lists the live file's actual 71 promoted keys directly.
+- [x] **C4** — **A key that matches no row is an error, not a no-op.** Print the unmatched keys and
       refuse to write. Silent skipping is how a review pass ends up believing it promoted rows it
       did not.
-- [ ] **C5** — **Per-batch promotion log**: each promotion pass appends
+- [x] **C5** — **Per-batch promotion log**: each promotion pass appends
       `{batch_label, date, keys[], group_count}` to a committed JSON file, so a batch's promotions can
       be identified and reverted as a unit when `compare.py` comes back red — F's commit-or-revert
       step needs this to be able to revert *the batch* rather than the whole file.
-- [ ] **C6** — Surface Track B's A8 ranking and A10 inventory in the group-listing cell (replacing the
+- [x] **C6** — Surface Track B's A8 ranking and A10 inventory in the group-listing cell (replacing the
       flat `for (subject, claim_type), idxs in sorted(groups.items())` dump), so a tranche is picked
       in-tool from prominence + claim_type + source count rather than alphabetically. **This is the
       one item in Track C that is not concurrent with Track B — it consumes B7's JSON artifact, which
