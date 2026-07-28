@@ -582,28 +582,43 @@ taken; 16/17 are reserved for the REFUSAL pair and must use those numbers).
 
 ## Track G — V18 `claim_type_aliases`: collapse the `notable*` family (seed rows ← B6)
 
+> ⚠️ **Deviations occurred in this track.** See `DEVIATIONS.md` **#DEV-107**. G1's review found
+> **no claim/deed split in the actual data** — every one of the 7 surface forms mixes active
+> deeds, passive events, and asserted claims within itself. One canonical, `notable_claim` (the
+> plurality surface form, 268/648 rows), chosen by the same majority-frequency rule A9 already
+> uses for its own duplicate proposals.
+
 `§7`: new `claim_type` values are **data + alias rows, never schema changes**, and new migrations
 always take a fresh V-number. The V9_2 `birth`→`parentage` migration is the precedent to copy.
 
-- [ ] **G1** — From B5/B6's normalized distribution, decide the canonical form for the **7-member
+- [x] **G1** — From B5/B6's normalized distribution, decide the canonical form for the **7-member
       `notable*` family** (`notable_claim` 268, `notable` 218, `notable_deed` 75, `notable_act` 56,
       `notable claim` 14, `notable act` 9, `notable_event` 8 — **648 rows**). Decide whether they are
       one canonical type or genuinely two (a *claim about* a figure vs a *deed done by* one) —
       **review-gated**, the ADR-019 Track D discipline: a human confirms before rows are written.
       Whichever way it goes, the singular/plural and space/underscore spellings collapse.
-- [ ] **G2** — `core-api/src/main/resources/db/migration/V18__add_claim_type_aliases_notable.sql`:
+      **Result: one canonical (`notable_claim`)** — read real subject/claim_value samples from
+      all 7 labels; the claim/deed split does not exist in the data, so inventing it would be
+      exactly the guessing this box warns against.
+- [x] **G2** — `core-api/src/main/resources/db/migration/V18__add_claim_type_aliases_notable.sql`:
       `INSERT INTO claim_type_aliases (alias, canonical) VALUES …` in the V8_2/V9_2 style, keys
       **lower-cased and trimmed** (`normalize(x) = alias_map.get(x.strip().lower(), x)`), plus a
       schema comment naming this checklist and the DEV number. Confirm
       `afterMigrate__grant_app_user.sql` covers it (it grants schema-wide — verify, don't assume).
-- [ ] **G3** — Confirm the effect where it matters: `variant_claims_gen.py` already calls
+      Syntax/semantics-verified via a rolled-back transaction (V17 precedent — not yet applied
+      anywhere) and independently via `./gradlew :core-api:test`'s fresh Testcontainers apply of
+      V1–V18 (189 tests green).
+- [x] **G3** — Confirm the effect where it matters: `variant_claims_gen.py` already calls
       `normalize(alias_map, x)`, and V12 writes the **normalized canonical** `claim_type`, so runtime
       `ConflictLookup` matches by exact equality. **No Kotlin change, no code change at all** — if
       one seems necessary, the alias mechanism is being bypassed somewhere and that is the bug.
+      **Confirmed by grep**: `seedgen/variant_claims_gen.py:39` already calls `normalize(...)` at
+      promotion time. No code touched.
 - [ ] **G4** — Verify through F1's reseed: the regenerated `V12__seed_variant_claims.sql` contains
       **zero** occurrences of any collapsed surface form, and a spot sample of former-`notable act`
       rows lands canonical. This is F's loop, not a standalone reseed (the P3 F6 precedent).
-      Log **DEV-107**.
+      Log **DEV-107**. **G4 itself stays open until Track F1 actually reseeds** — by design, not
+      an oversight (this box says so explicitly).
 
 ---
 
