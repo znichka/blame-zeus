@@ -95,6 +95,58 @@ def test_raw_responses_preserved_verbatim(tmp_path):
     assert raw["responses_by_run"][0][0]["conflicts"] == [{"claimValue": "x"}, {"claimValue": "y"}]
 
 
+# --------------------------------------------------------------------------- #
+# Track D3/D5 (DEV-105) — transport/latency signal in report.md + scores.json
+# --------------------------------------------------------------------------- #
+def test_clean_run_has_no_banner_and_populates_latency_column(tmp_path):
+    results = _build_results()
+    # Give every raw response a distinct, clean elapsed time (D1's field) with no
+    # `_runnerNote` anywhere -- the "nothing went wrong" case.
+    for run in results.raw_by_run:
+        for i, raw in enumerate(run):
+            raw["_elapsedSeconds"] = 2.5 + i
+
+    out = report.write(results, CFG, results_root=tmp_path, git_sha="clean1")
+    md = (out / "report.md").read_text()
+    scores = json.loads((out / "scores.json").read_text())
+
+    assert "invalid as evidence" not in md
+    assert "⚠️" not in md
+    assert "latency" in md  # column header present
+    assert "2.5s" in md or "3.5s" in md  # a latency cell rendered
+    assert "Slowest request" in md
+
+    q1 = next(q for q in scores["questions"] if q["id"] == 1)
+    assert q1["per_run"][0]["elapsed_seconds"] == 2.5
+    assert q1["per_run"][0]["runner_note"] is None
+
+
+def test_transport_error_run_gets_top_line_banner_above_everything_else(tmp_path):
+    results = _build_results()
+    # Q13 run 1 (the flaky run) carries a transport error, matching DEV-100's shape.
+    results.raw_by_run[1][1]["_runnerNote"] = "transport error: timed out"
+    results.raw_by_run[1][1]["_elapsedSeconds"] = 63.4
+
+    out = report.write(results, CFG, results_root=tmp_path, git_sha="dirty1")
+    md = (out / "report.md").read_text()
+    scores = json.loads((out / "scores.json").read_text())
+
+    assert "⚠️ **1 request(s) failed on transport; this run is invalid as evidence (DEV-100).**" in md
+    assert "Q13, run 1: transport error: timed out" in md
+    # the banner is the very first content after the title -- above the "Overall" summary line.
+    banner_pos = md.index("invalid as evidence")
+    overall_pos = md.index("Overall (pessimistic")
+    assert banner_pos < overall_pos
+    assert "Slowest request: Q13, run 1 — 63.4s" in md
+
+    q13 = next(q for q in scores["questions"] if q["id"] == 13)
+    assert q13["per_run"][1]["runner_note"] == "transport error: timed out"
+    assert q13["per_run"][1]["elapsed_seconds"] == 63.4
+    # the OTHER question's runs are untouched -- carrying no note.
+    q1 = next(q for q in scores["questions"] if q["id"] == 1)
+    assert all(r["runner_note"] is None for r in q1["per_run"])
+
+
 def test_report_md_has_header_rows_and_triage_column(tmp_path):
     results = _build_results()
     out = report.write(results, CFG, results_root=tmp_path, git_sha="abc1234")

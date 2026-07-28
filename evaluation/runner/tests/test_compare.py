@@ -10,15 +10,15 @@ from __future__ import annotations
 import json
 
 from runner import compare
-from runner.compare import compute_diff, main, render_diff_md
+from runner.compare import compute_diff, main, render_diff_md, transport_error_notes
 
 
-def q(qid, classification, route="RAG", conflicts=0, category="FACT"):
+def q(qid, classification, route="RAG", conflicts=0, category="FACT", runner_note=None):
     return {
         "id": qid,
         "category": category,
         "classification": classification,
-        "per_run": [{"actual_route": route, "conflicts_count": conflicts}],
+        "per_run": [{"actual_route": route, "conflicts_count": conflicts, "run": 0, "runner_note": runner_note}],
     }
 
 
@@ -140,3 +140,40 @@ def test_main_zero_exit_on_improvement(tmp_path):
     base = _write_run(tmp_path, "baseline", [q(1, "stable-fail")])
     cand = _write_run(tmp_path, "candidate", [q(1, "stable-pass")])
     assert main([str(base), str(cand)]) == 0
+
+
+# --------------------------------------------------------------------------- #
+# Track D4/D5 (DEV-105) — refuse a transport-dirty baseline/candidate
+# --------------------------------------------------------------------------- #
+def test_transport_error_notes_empty_for_clean_run():
+    assert transport_error_notes(scores([q(1, "stable-pass")])) == []
+
+
+def test_transport_error_notes_lists_every_note():
+    dirty = scores([q(1, "stable-pass", runner_note="transport error: timed out")])
+    assert transport_error_notes(dirty) == ["Q1 run 0: transport error: timed out"]
+
+
+def test_main_refuses_dirty_baseline_without_override(tmp_path, capsys):
+    base = _write_run(tmp_path, "baseline", [q(1, "stable-pass", runner_note="transport error: timed out")])
+    cand = _write_run(tmp_path, "candidate", [q(1, "stable-pass")])
+    code = main([str(base), str(cand)])
+    assert code == 2
+    assert not (cand / "diff.md").is_file()
+    err = capsys.readouterr().err
+    assert "transport error" in err and "baseline" in err
+
+
+def test_main_refuses_dirty_candidate_without_override(tmp_path):
+    base = _write_run(tmp_path, "baseline", [q(1, "stable-pass")])
+    cand = _write_run(tmp_path, "candidate", [q(1, "stable-fail", runner_note="transport error: timed out")])
+    assert main([str(base), str(cand)]) == 2
+    assert not (cand / "diff.md").is_file()
+
+
+def test_allow_transport_errors_flag_bypasses_the_refusal(tmp_path):
+    base = _write_run(tmp_path, "baseline", [q(1, "stable-pass", runner_note="transport error: timed out")])
+    cand = _write_run(tmp_path, "candidate", [q(1, "stable-pass")])
+    code = main([str(base), str(cand), "--allow-transport-errors"])
+    assert code == 0
+    assert (cand / "diff.md").is_file()

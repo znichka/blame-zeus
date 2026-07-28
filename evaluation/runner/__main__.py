@@ -15,6 +15,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -94,11 +95,18 @@ def query_once(
     fail. Returns (raw_json_for_artifacts, parsed_response). On exhausted retries a
     synthetic serviceError raw + parsed is returned so the run continues and the
     question scores 0 (never a crash).
+
+    Track D1 (DEV-105): `raw["_elapsedSeconds"]` records the total wall time for
+    this call, including any retries — a timer around the existing logic, not a
+    redesign. This is what lets `report.py` show a per-question latency column and
+    the single slowest-request figure, and is what would have made DEV-100's API
+    slow episode visible as latency instead of only as a mystery score drop.
     """
     url = cfg.query_url()
     body = {"question": question, "debug": debug}
     last_note = "unknown transport failure"
     attempt = 0
+    start = time.monotonic()
     while attempt <= retries:
         try:
             status, parsed = transport("POST", url, body, cfg.timeout_seconds)
@@ -112,10 +120,15 @@ def query_once(
             continue  # retry server errors
         if status != 200:
             # 4xx — client error, not retried; scored as a serviceError fail.
-            return _synthetic_error(f"HTTP {status}")
+            return _with_elapsed(start, *_synthetic_error(f"HTTP {status}"))
         raw = parsed if isinstance(parsed, dict) else {}
-        return raw, ParsedResponse.from_json(raw)
-    return _synthetic_error(last_note)
+        return _with_elapsed(start, raw, ParsedResponse.from_json(raw))
+    return _with_elapsed(start, *_synthetic_error(last_note))
+
+
+def _with_elapsed(start: float, raw: dict, parsed: ParsedResponse) -> tuple[dict, ParsedResponse]:
+    raw["_elapsedSeconds"] = round(time.monotonic() - start, 3)
+    return raw, parsed
 
 
 def _synthetic_error(note: str) -> tuple[dict, ParsedResponse]:

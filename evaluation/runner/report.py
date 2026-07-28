@@ -91,6 +91,11 @@ def _per_run_entry(run_index: int, score: QuestionScore, raw: dict) -> dict:
         "service_error": score.service_error,
         "conflicts_count": _conflicts_count(raw),
         "notes": list(score.notes),
+        # Track D2 (DEV-105): carried from the raw response so scores.json — the
+        # machine-diffable artifact compare.py reads — can act on a transport
+        # failure too, not just report.md.
+        "runner_note": raw.get("_runnerNote"),
+        "elapsed_seconds": raw.get("_elapsedSeconds"),
     }
 
 
@@ -141,12 +146,71 @@ def _floor_note(cr) -> str:
     return f"floor {_pct(cr.floor)} {'PASS' if cr.floor_met else 'BREACH'}"
 
 
+# --------------------------------------------------------------------------- #
+# Track D3 (DEV-105): transport/latency signal — a DEV-100-style API slow
+# episode must be visible in report.md itself, not only discoverable by grepping
+# raw_responses.json after the fact.
+# --------------------------------------------------------------------------- #
+def _transport_error_entries(results: RunResults) -> list[tuple[int, int, str]]:
+    """(question_id, run_index, note) for every raw response carrying `_runnerNote`."""
+    entries = []
+    for run_idx in range(results.runs):
+        for q_idx, q in enumerate(results.questions):
+            note = results.raw_by_run[run_idx][q_idx].get("_runnerNote")
+            if note:
+                entries.append((q.id, run_idx, note))
+    return entries
+
+
+def _max_latency_by_question(results: RunResults) -> dict[int, float | None]:
+    """Worst-observed elapsed seconds per question, across all runs -- the outlier
+    that matters may not fall in the score-worst run picked for the table's point
+    cells, so this is computed independently of `worst_run_index`."""
+    latencies: dict[int, float | None] = {}
+    for q_idx, q in enumerate(results.questions):
+        values = [
+            results.raw_by_run[run_idx][q_idx].get("_elapsedSeconds") for run_idx in range(results.runs)
+        ]
+        numeric = [v for v in values if isinstance(v, (int, float))]
+        latencies[q.id] = max(numeric) if numeric else None
+    return latencies
+
+
+def _slowest_request(results: RunResults) -> tuple[int, int, float] | None:
+    """(question_id, run_index, seconds) for the single slowest request in this run."""
+    slowest: tuple[int, int, float] | None = None
+    for run_idx in range(results.runs):
+        for q_idx, q in enumerate(results.questions):
+            elapsed = results.raw_by_run[run_idx][q_idx].get("_elapsedSeconds")
+            if isinstance(elapsed, (int, float)) and (slowest is None or elapsed > slowest[2]):
+                slowest = (q.id, run_idx, elapsed)
+    return slowest
+
+
+def _latency_cell(seconds: float | None) -> str:
+    return "—" if seconds is None else f"{seconds:.1f}s"
+
+
 def _render_md(results: RunResults, stamp: str, sha: str) -> str:
     agg = results.aggregate
     worst = results.worst_run_index
     lines: list[str] = []
     lines.append(f"# Evaluation Report — {results.label}")
     lines.append("")
+
+    # D3: the banner goes ABOVE everything else, including the aggregate summary --
+    # nobody should read a transport-dirty run's headline number before knowing it's
+    # not evidence (DEV-100).
+    transport_errors = _transport_error_entries(results)
+    if transport_errors:
+        lines.append(
+            f"⚠️ **{len(transport_errors)} request(s) failed on transport; this run is invalid "
+            "as evidence (DEV-100).**"
+        )
+        for qid, run_idx, note in transport_errors:
+            lines.append(f"  - Q{qid}, run {run_idx}: {note}")
+        lines.append("")
+
     lines.append(f"- Run: `{stamp}` | sha: `{sha}` | label: `{results.label}` | runs: {results.runs}")
     lines.append(f"- Base URL: {results.base_url}")
     lines.append(
@@ -159,6 +223,10 @@ def _render_md(results: RunResults, stamp: str, sha: str) -> str:
         lines.append(f"  - {cr.category}: {cr.passed}/{cr.total} ({_pct(cr.rate)}) — {_floor_note(cr)}")
     lines.append(f"- Floor breaches: {', '.join(agg.floor_breaches) if agg.floor_breaches else 'none'}")
     lines.append(f"- Flaky questions: {results.flaky_ids if results.flaky_ids else 'none'}")
+    slowest = _slowest_request(results)
+    if slowest is not None:
+        sq_id, sq_run, sq_seconds = slowest
+        lines.append(f"- Slowest request: Q{sq_id}, run {sq_run} — {sq_seconds:.1f}s")
     lines.append("")
     lines.append(
         "Point cells and actual-route below are from the **worst run**; `class` is across all runs. "
@@ -166,11 +234,12 @@ def _render_md(results: RunResults, stamp: str, sha: str) -> str:
         "`pipeline-bug` / `data-gap` / `corpus-gap` / `eval-bug`."
     )
     lines.append("")
-    lines.append("| id | category | route exp | route act | route | author | content | total | class | triage |")
-    lines.append("|---:|----------|-----------|-----------|:-----:|:------:|:-------:|:-----:|-------|--------|")
+    lines.append("| id | category | route exp | route act | route | author | content | total | latency | class | triage |")
+    lines.append("|---:|----------|-----------|-----------|:-----:|:------:|:-------:|:-----:|--------:|-------|--------|")
 
     classifications = {c.id: c for c in results.classifications}
     worst_scores = results.scores_by_run[worst]
+    max_latency = _max_latency_by_question(results)
     for q_idx, q in enumerate(results.questions):
         s = worst_scores[q_idx]
         cls = classifications.get(q.id)
@@ -178,7 +247,7 @@ def _render_md(results: RunResults, stamp: str, sha: str) -> str:
         lines.append(
             f"| {q.id} | {q.category} | {q.expected_route or '—'} | {s.actual_route or '—'} | "
             f"{_cell(s.route_point)} | {_cell(s.author_point)} | {_cell(s.content_point)} | "
-            f"{s.total}/3 | {label} | |"
+            f"{s.total}/3 | {_latency_cell(max_latency.get(q.id))} | {label} | |"
         )
     lines.append("")
     return "\n".join(lines)

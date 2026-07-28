@@ -38,6 +38,25 @@ def _questions_by_id(scores: dict) -> dict[int, dict]:
     return {q["id"]: q for q in scores.get("questions", [])}
 
 
+# --------------------------------------------------------------------------- #
+# Track D4 (DEV-105): a run containing a transport error is invalid as evidence
+# (DEV-100) -- a false PASS→FAIL from a slow API episode is exactly what this
+# gate must never produce. Reads scores.json's `runner_note` field (Track D2's
+# propagation of raw_responses.json's `_runnerNote`), so this needs no access to
+# raw_responses.json itself.
+# --------------------------------------------------------------------------- #
+def transport_error_notes(scores: dict) -> list[str]:
+    """Human-readable `Q<id> run <n>: <note>` lines for every per-run entry that
+    carries a `runner_note` -- empty if the run is transport-clean."""
+    notes: list[str] = []
+    for q in scores.get("questions", []):
+        for entry in q.get("per_run", []):
+            note = entry.get("runner_note")
+            if note:
+                notes.append(f"Q{q['id']} run {entry.get('run')}: {note}")
+    return notes
+
+
 def _worst_entry(scores: dict, q: dict) -> dict:
     """The worst run's per-question per_run entry (the pessimistic representative)."""
     idx = scores.get("aggregate", {}).get("worst_run_index", 0)
@@ -203,6 +222,13 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("baseline", help="baseline results dir (or its scores.json)")
     p.add_argument("candidate", help="candidate results dir (or its scores.json)")
     p.add_argument("--out", default=None, help="path to write diff.md (default: <candidate>/diff.md)")
+    p.add_argument(
+        "--allow-transport-errors",
+        action="store_true",
+        help="proceed even if baseline/candidate scores.json shows a transport error (DEV-100) -- "
+        "default is to refuse, since a slow-API episode silently converts passing questions into "
+        "false failures",
+    )
     return p
 
 
@@ -210,6 +236,22 @@ def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     baseline = load_scores(args.baseline)
     candidate = load_scores(args.candidate)
+
+    if not args.allow_transport_errors:
+        for role, scores in (("baseline", baseline), ("candidate", candidate)):
+            notes = transport_error_notes(scores)
+            if notes:
+                print(
+                    f"ERROR: {role} run '{scores.get('label')}' contains {len(notes)} transport "
+                    "error(s) -- refusing to use it as a baseline or candidate (DEV-100). A slow-API "
+                    "episode silently converts passing questions into false failures; re-run instead "
+                    "of triaging, or pass --allow-transport-errors to override.",
+                    file=sys.stderr,
+                )
+                for n in notes:
+                    print(f"  {n}", file=sys.stderr)
+                return 2
+
     diff = compute_diff(baseline, candidate)
     md = render_diff_md(diff, baseline, candidate)
 

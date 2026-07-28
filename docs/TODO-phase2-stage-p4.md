@@ -500,26 +500,32 @@ ADR-004's gate exists to prevent.
 
 ## Track D — transport/latency signal in `report.md` (Python; makes F's gate trustworthy)
 
+> ⚠️ **Deviations occurred in this track.** See `DEVIATIONS.md` **#DEV-105**. D4's refusal logic
+> was retroactively verified against the *real* DEV-100 incident (not only synthetic fixtures): the
+> P3b close's own `raw_responses.json` `_runnerNote` entries, paired onto its `scores.json` shape
+> in memory, correctly produce all 3 real transport-error notes (`Q13 run 2`, `Q15 run 0/1`) — the
+> committed results directory on disk was **not** mutated, only used as a read-only fixture.
+
 `TODO2.md:455-464`'s open item, and P4 is the loop that leans on these numbers. Today
 `runner/__main__.py` writes `_runnerNote: "transport error: …"` into the raw response and
 `report.py` never reads it, so a DEV-100-style API slow episode is indistinguishable from a quality
 regression — it cost 7 points of false failure and a full investigation once already.
 
-- [ ] **D1** — Record **per-request elapsed seconds** for every question × repetition in
+- [x] **D1** — Record **per-request elapsed seconds** for every question × repetition in
       `raw_responses.json` (the runner already owns the request; this is a timer, not a redesign).
-- [ ] **D2** — Propagate `_runnerNote` into `scores.json` per question/run, so the machine-readable
+- [x] **D2** — Propagate `_runnerNote` into `scores.json` per question/run, so the machine-readable
       artifact carries it and `compare.py` can act on it too.
-- [ ] **D3** — `report.md` gains: a **top-line banner** when any repetition carried a transport error
+- [x] **D3** — `report.md` gains: a **top-line banner** when any repetition carried a transport error
       — *"⚠️ N request(s) failed on transport; this run is invalid as evidence (DEV-100)"* — a
       per-question latency column, and the slowest-request figure. The banner goes **above** the score
       table; the point is that nobody reads the aggregate first.
-- [ ] **D4** — `compare.py` refuses to treat a run containing transport errors as an accepted
+- [x] **D4** — `compare.py` refuses to treat a run containing transport errors as an accepted
       baseline or candidate without an explicit override flag, and says why. A false PASS→FAIL is
       exactly what this stage's gate must not produce. **The P3b close
       (`2026-07-27T21-21-29Z__3a3f894__p3b-a7-findings-triage`, 3 transport errors) is the live
       example this must refuse** — use it as D5's realistic fixture, and note that F0d exists because
       of it.
-- [ ] **D5** — **TDD** in `evaluation/runner/tests/`: a fixture run with one `_runnerNote` transport
+- [x] **D5** — **TDD** in `evaluation/runner/tests/`: a fixture run with one `_runnerNote` transport
       error → banner present, run flagged invalid, `compare.py` refuses without the override and
       proceeds with it; a clean fixture → no banner, latency column populated, byte-identical
       behaviour otherwise. Log **DEV-105**.
