@@ -685,7 +685,14 @@ reseed.
 
 ### F0 — Decisions and the clean baseline, before the first batch (write each one down)
 
-- [ ] **F0a** — **Resolve the tranche-priority conflict** between `IMPLEMENTATION_PLAN_PHASE2.md §5`
+> ⚠️ **Deviations occurred in this track.** See `DEVIATIONS.md` **#DEV-109**. F0c discovered the
+> gate is blocked by **six** checks today, not the two named here (A1/A2/A4/A6/A10, plus **A3
+> deliberately left unwaived** — see F0c below). F0d's baseline is **not** eval-identical to
+> `3a3f894`/`2e4ce40`: Tracks A-H happened since that assumption was written, and Track H
+> specifically changed the seeded graph. Result measured on the current tree instead: **15/16 =
+> 94%**, the project's best result to date.
+
+- [x] **F0a** — **Resolve the tranche-priority conflict** between `IMPLEMENTATION_PLAN_PHASE2.md §5`
       step 1 ("beyond parentage/death") and `TODO2.md:396-398` ("parentage is the largest unworked
       dimension"). Write the rule as an explicit, repeatable selection procedure over Track B's A8
       ranking and A9 distribution — it is applied unchanged by F1, F2 and F3, so it must be
@@ -696,21 +703,39 @@ reseed.
       tranche across groups converts review effort into coverage; one that deepens a single group
       may not. Also freeze the **top-20 subject list** from A8's first clean run here, so the exit
       gate has a fixed target rather than one that moves as Track H grows the graph.
-- [ ] **F0b** — **Decide GAP-001 Root cause 3's promotion half (option a′)**, `TODO2.md:393-400`'s
+      **Result: a 4-tier mechanical rule** (Tier 1: top-20 subject + unpromoted claim_type; Tier 2:
+      unpromoted claim_type alone; Tier 3: top-20 subject, claim_type already covered — where
+      GAP-001's parentage backlog and F0b's tranche live; Tier 4: everything else), resolving §5 vs.
+      TODO2 by satisfying both instead of picking one. **Top-20 frozen** (post-Track H, `<UNKNOWN>`
+      sentinel excluded): `Odysseus, Zeus, Achilles, Heracles, Hector, Agamemnon, Apollo, Telemachus,
+      Diomedes, Patroclus, Athena, Menelaus, Penelope, Poseidon, Hermes, Aphrodite, Priam, Hera,
+      Nestor, Ajax`. Only `Achilles`/`Aphrodite` currently have any promoted coverage.
+- [x] **F0b** — **Decide GAP-001 Root cause 3's promotion half (option a′)**, `TODO2.md:393-400`'s
       unscoped carry-in and the **binding constraint on ADR-007 §6's promise**. Input artifact is
       A6's per-row dropped-parent record: **697 dropped rows / 612 distinct child+parent pairs, 694
       without promoted coverage**, of which ~**467** clear the ≥2-source gate. Three admissible
       outcomes, all requiring a written record: a **bounded first tranche** (gold-question subjects +
       the Olympian/Titan spine), a **sampling rule**, or an **explicit P5b deferral with a waiver**.
       Do not leave it implicit — it went unowned through all of P3 precisely that way.
-- [ ] **F0c** — Decide whether A6's and A1's permanent-by-design residue gets a **standing
+      **Result: bounded first tranche** — the 49 (of 739 live) dropped-parent rows whose *child* is
+      in the frozen top-20 become F1's working set; the rest deferred with a written, non-permanent
+      reason (see A6's waiver in `audit-waivers.json`).
+- [x] **F0c** — Decide whether A6's and A1's permanent-by-design residue gets a **standing
       category-level waiver**. P3's final box could not be ticked because clean means **exit `0`**
       (operating principle) and these two never reach zero findings on their own, so without waivers
       the gate is red every single time. P4 runs it ≥3 more times; settle the policy once, with a
       written reason (`Finding.waive` **raises** on an empty one), rather than re-arguing it each
       batch. Note this is the *only* mechanism available — there is no "tolerated finding" severity to
       fall back on.
-- [ ] **F0d** — **Re-run the P3b close cleanly and make *that* the F1 baseline.** The only work in F0
+      **Result: A1 and A6 waived as asked, plus A2/A4/A10 (discovered also-blocking, not named by
+      this box) waived with their own reasoning, A3 deliberately left unwaived** — sampling its 92
+      candidate-layer cycles found a median length of 37 edges, near-certainly candidate-space
+      name-collision artifacts (the cycle-shaped sibling of GAP-002's bucket-2 problem), not simple
+      reversed edges; its own docstring calls findings "near-certain" bugs, unlike A1/A6's reviewed
+      residue, so F0's decision-only scope does not blanket-waive it. **The gate does not fully exit
+      0 after this box** — A3 stays red until it gets its own pass. `audit-waivers.json`: 3 → 1050
+      entries (5 shared reasons, mechanically generated from live findings).
+- [x] **F0d** — **Re-run the P3b close cleanly and make *that* the F1 baseline.** The only work in F0
       that is not a decision, and the one that unblocks F1g. `python -m runner --runs 3 --label
       p3b-baseline-rerun` **on the current tree** (eval-identical to `3a3f894` — see *Contracts*),
       with **no data change of any kind first**: this measures the same corpus, the same 44 seeded
@@ -724,6 +749,12 @@ reseed.
       baking it into the baseline. Commit the results dir and name it in F1g. Land this **after Track
       D** if D is ready (the banner is what proves criterion (1) mechanically); if D is still in
       flight, the `grep -c '_runnerNote'` above is the manual equivalent and does not block.
+      **Result: NOT eval-identical to `3a3f894`** (Tracks A-H changed the tree since that assumption
+      was written) — ran as the honest current-tree baseline instead. **15/16 = 94%**, best result
+      to date, beating the P3b close outright: zero `_runnerNote` entries (Track D's banner
+      confirms), DATA 5/5, CONFLICT 4/4, all floors met, zero flaky questions, Q13/Q15 returned
+      their exact 13/22 conflicts across all 3 runs. Results dir:
+      `evaluation/results/2026-07-28T17-01-35Z__e4a369a__p4-f0d-baseline/` — this is F1g's baseline.
 
 ### F1 — Batch 1 (concrete; also lands E1–E3, E5, E6 and G — E4 only if its conflict exists)
 
