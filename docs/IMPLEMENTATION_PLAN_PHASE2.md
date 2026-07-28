@@ -306,7 +306,10 @@ the undetected extraction failure mode carry to P4.
 ## 5. Iterative improvement loop (P4) — conflict depth
 
 > ⚠️ Deviations occurred in this stage. See DEVIATIONS.md for details (**DEV-093** — two
-> prerequisites added).
+> prerequisites added; **DEV-101** — the first of them, DEV-038, fixed 2026-07-28 by merge-on-write
+> in `write_output`, verified to preserve all 71 live `trust_tier=1` promotions where a re-extraction
+> previously destroyed every one. **DEV-049 remains open**, so ADR-010's REFUSAL Q16/Q17 still
+> cannot be authored).
 
 **Prerequisites, before the first batch.** Both were documented as found-but-not-fixed with no plan
 home until the 2026-07-27 reconciliation, and both bite specifically here:

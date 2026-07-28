@@ -224,6 +224,20 @@ long-tail and A6's unowned P4 promotion backlog — neither is expected to ever 
 results dir committed; every entity added went through source verification, not fabrication; GAP-002
 and GAP-003 statuses updated in `docs/DATA-GAPS.md`.
 
+> ✅ **STAGE CLOSED 2026-07-28.** All three "Done when" conditions met: the final 3-run eval
+> (`2026-07-27T21-21-29Z__3a3f894__p3b-a7-findings-triage`) shows **DATA 4/5 = 80%** against a 50%
+> floor with **zero stable regressions**, and all five of this stage's results dirs are committed;
+> every entity added was verified against the cited passage (and several *candidate* names were
+> rejected or removed precisely because verification failed — DEV-096's `Arges`/`Steropes`,
+> DEV-100's `Argeiphontes`/`Acusilaus`/`Diomed`); GAP-002 and GAP-003 are both updated.
+> Logged: **DEV-094 … DEV-100**.
+>
+> Stage total: DATA 40% → 80% (peaked at 100%), overall 12/16 → 13/16 (peaked at 15/16 = 94%).
+> The dip in the last two runs is **not a quality regression** — see the cross-cutting rule on
+> transport timeouts below, and DEV-100's Eval field.
+>
+> **Next: Stage P4**, starting with its two prerequisites (DEV-038, DEV-049).
+
 Sizing note: the floor needs 3/5 and Q9/Q10 already pass, so **Track A alone plus either B or C
 clears the gate** — the rest is genuine data quality, not gate-chasing. Do not stop at the gate if
 Track B/C are half-landed.
@@ -231,7 +245,7 @@ Track B/C are half-landed.
 > **Tracks A/B/C landed 2026-07-27** `[DEVIATED - see DEVIATIONS.md #DEV-094, #DEV-095]`. DATA reached **100% (5/5)**, overall
 > **15/16 (94%)**, zero stable regressions — the stage's own floor-met bar was cleared and then some.
 > **GAP-003 is fully resolved.** Only **Track D** (GAP-002's broader 367-name backlog) remains open,
-> and it was never gate-blocking — see `docs/DATA-GAPS.md` GAP-002. Results not yet committed.
+> and it was never gate-blocking — see `docs/DATA-GAPS.md` GAP-002.
 >
 > **Track D's `Arges`/`Steropes` follow-up landed 2026-07-27** `[DEVIATED - see DEVIATIONS.md
 > #DEV-098]` — the highest-value data fix of the stage despite touching no gold question:
@@ -329,10 +343,15 @@ Track B/C are half-landed.
       (which inserts into the `entity_aliases` table the script drops) would have been silently
       skipped on every reseed and the aliases would have vanished with no error — `'14.1'` added,
       with a warning comment for future migrations of the same shape.
-- [ ] **Fix loop** (unchanged from P3): edit candidate JSON → `seedgen --strict` →
+- [x] **Fix loop** (unchanged from P3): edit candidate JSON → `seedgen --strict` →
       `reseed-local.sh` → `audit` clean-or-waived → `runner --runs 3` → `compare.py` → commit or
       revert. Expect A3 to surface new cycles as the graph grows — that is the loop working.
-- [ ] Update GAP-002/GAP-003 status in `docs/DATA-GAPS.md`; log DEV entries per protocol.
+      **Exercised five times in this stage** (Tracks A, B/C, D, the `Arges` triage, the A7 triage),
+      each with a committed results dir. A3 held at 1 waived cycle throughout; A1 moved 39 → 41 with
+      both new pairs explained (DEV-098).
+- [x] Update GAP-002/GAP-003 status in `docs/DATA-GAPS.md`; log DEV entries per protocol.
+      **Done** — GAP-003 resolved, GAP-002 partially resolved with a per-finding verdict table;
+      DEV-094 … DEV-100 logged, banners added to `IMPLEMENTATION_PLAN_PHASE2.md` §4b.
 
 → Detailed checklist: `TODO-phase2-stage-p3b.md` (created at implementation)
 
@@ -347,13 +366,19 @@ overall ≥75% sustained across a 3-run eval. *(The loop continues past this gat
 Both were documented as found-but-not-fixed and had no TODO home until 2026-07-27
 `[DEVIATED - see DEVIATIONS.md #DEV-093]`. Do these **before** the first promotion batch:
 
-- [ ] **DEV-038 — `write_output` clobbers promotion decisions.** `write_output` blind-overwrites
-      `variant_claims_candidates.json` on every extraction run, so any re-run after a review pass
-      destroys the `trust_tier=1` promotions it made. DEV-038 recorded this as a "known unaddressed
-      risk", mitigated only by operator discipline. P4 is *the* promotion-heavy stage and runs
-      review-then-regenerate repeatedly, so the risk becomes structural here. Fix (merge-on-write
-      preserving promoted rows, or a hard refuse-to-overwrite guard) or accept it with a written
-      waiver and a documented backup step — but decide explicitly, do not inherit it silently.
+- [x] **DEV-038 — `write_output` clobbers promotion decisions — FIXED 2026-07-28**
+      `[DEVIATED - see DEVIATIONS.md #DEV-101]`. Chose **merge-on-write** over the refuse-to-overwrite
+      guard (a guard would make P4's own loop fail on every re-extraction — converting silent data
+      loss into a workflow blocker rather than removing it). The hazard was quantified first: the
+      live file holds **7,429 rows, 71 of them `trust_tier=1`** — the hand-reviewed promotions behind
+      V12's 44 claims — and one re-extraction destroyed all 71 silently. Now
+      `_write_claims_preserving_review()` carries review decisions across, keyed on the claim's
+      5-tuple identity with `trust_tier` excluded as the mutable verdict.
+      **The merge is one-directional — extraction owns which claims exist, review owns their tier**:
+      a promoted row the extraction no longer produces is *not* resurrected (that would reinstate a
+      claim no source supports), but the drop is reported by name, never silent. Corrupt file →
+      `SystemExit`, never an overwrite. **Verified against the live file**: 71 promotions survive
+      where 0 did before. 13 tests, mutation-verified; ingestion suite green at 294.
 - [ ] **DEV-049 — zero-retrieval questions can return non-JSON prose.** When retrieval yields no
       chunks, LangChain4j's `DefaultContentInjector` short-circuits to the bare question, the model
       answers in prose, structured-output parsing fails, and the request surfaces as `serviceError`.

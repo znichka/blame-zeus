@@ -1,11 +1,15 @@
 import json
 import os
+
+import pytest
+from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
 
 os.environ.setdefault("ANTHROPIC_API_KEY", "test-key")
 os.environ.setdefault("EXTRACTION_MODEL", "claude-opus-4-8")
 
 from extraction.run_extraction import build_candidates, write_output
+from extraction.conflict_detector import ClaimCandidate
 from extraction.schema import ExtractedEntity, ExtractedFacts, ExtractedRelationship, ExtractedVariantClaim
 from loader.source_registry import SourceConfig
 
@@ -199,3 +203,106 @@ def test_running_sources_one_at_a_time_accumulates_rather_than_overwrites(tmp_pa
     assert {r.source_id for r in second.relationships} == {"source-a", "source-b"}
     aphrodite_conflicts = [c for c in second.conflicts if c.subject_name == "Aphrodite"]
     assert {c.source_id for c in aphrodite_conflicts} == {"source-a", "source-b"}
+
+
+# --- DEV-038: write_output must not destroy review decisions -------------------------
+
+
+def _candidate(subject="Aphrodite", value="child of Zeus", source="source-a", tier=3):
+    return ClaimCandidate(subject, "parentage", value, source, "1.1", tier)
+
+
+def _result(conflicts):
+    return SimpleNamespace(
+        entities=[], relationships=[], conflicts=conflicts, fuzzy_merges=[], failed_segments=[]
+    )
+
+
+def _claim(subject="Aphrodite", value="child of Zeus", source="source-a", tier=3):
+    return {
+        "subject_name": subject,
+        "claim_type": "parentage",
+        "claim_value": value,
+        "source_id": source,
+        "passage_ref": "1.1",
+        "trust_tier": tier,
+    }
+
+
+def test_write_output_preserves_an_existing_promotion(tmp_path):
+    """The DEV-038 hazard: a re-run used to blind-overwrite variant_claims_candidates.json,
+    silently discarding every trust_tier=1 row a review pass had promoted."""
+    path = tmp_path / "variant_claims_candidates.json"
+    path.write_text(json.dumps([_claim(tier=1)]), encoding="utf-8")
+
+    result = _result([_candidate()])
+    write_output(result, output_dir=tmp_path)
+
+    rows = json.loads(path.read_text())
+    assert len(rows) == 1
+    assert rows[0]["trust_tier"] == 1, "the reviewed promotion must survive a re-extraction"
+
+
+def test_write_output_keeps_newly_extracted_rows_at_tier_3(tmp_path):
+    path = tmp_path / "variant_claims_candidates.json"
+    path.write_text(json.dumps([_claim(value="child of Zeus", tier=1)]), encoding="utf-8")
+
+    result = _result([_candidate(value="child of Zeus"), _candidate(value="child of Ouranos")])
+    write_output(result, output_dir=tmp_path)
+
+    rows = {r["claim_value"]: r["trust_tier"] for r in json.loads(path.read_text())}
+    assert rows == {"child of Zeus": 1, "child of Ouranos": 3}
+
+
+def test_write_output_drops_a_promoted_row_the_extraction_no_longer_produces(tmp_path):
+    """A promotion is preserved only where the claim still exists. If re-extraction no
+    longer yields it, keeping it would resurrect a claim no source supports -- the file
+    must track the extraction, with review decisions layered on top."""
+    path = tmp_path / "variant_claims_candidates.json"
+    path.write_text(json.dumps([_claim(value="child of Nobody", tier=1)]), encoding="utf-8")
+
+    result = _result([_candidate(value="child of Zeus")])
+    write_output(result, output_dir=tmp_path)
+
+    rows = json.loads(path.read_text())
+    assert [r["claim_value"] for r in rows] == ["child of Zeus"]
+
+
+def test_write_output_reports_how_many_promotions_it_carried_over(tmp_path, capsys):
+    path = tmp_path / "variant_claims_candidates.json"
+    path.write_text(json.dumps([_claim(tier=1)]), encoding="utf-8")
+
+    result = _result([_candidate()])
+    write_output(result, output_dir=tmp_path)
+
+    assert "1 reviewed promotion" in capsys.readouterr().out
+
+
+def test_write_output_on_a_fresh_dir_needs_no_existing_file(tmp_path):
+    result = _result([_candidate()])
+    write_output(result, output_dir=tmp_path / "new")
+
+    rows = json.loads((tmp_path / "new" / "variant_claims_candidates.json").read_text())
+    assert rows[0]["trust_tier"] == 3
+
+
+def test_write_output_warns_loudly_about_a_dropped_promotion(tmp_path, capsys):
+    path = tmp_path / "variant_claims_candidates.json"
+    path.write_text(json.dumps([_claim(value="child of Nobody", tier=1)]), encoding="utf-8")
+
+    write_output(_result([_candidate(value="child of Zeus")]), output_dir=tmp_path)
+
+    out = capsys.readouterr().out
+    assert "WARNING" in out and "child of Nobody" in out
+
+
+def test_write_output_refuses_to_overwrite_an_unreadable_claims_file(tmp_path):
+    """A corrupt/partial file may still hold promotions -- clobbering it is the exact
+    data loss this guard exists to prevent, so fail loudly instead."""
+    path = tmp_path / "variant_claims_candidates.json"
+    path.write_text("{not json", encoding="utf-8")
+
+    with pytest.raises(SystemExit, match="refusing to overwrite"):
+        write_output(_result([_candidate()]), output_dir=tmp_path)
+
+    assert path.read_text(encoding="utf-8") == "{not json"

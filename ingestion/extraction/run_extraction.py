@@ -147,7 +147,9 @@ def write_output(result: ExtractionResult, output_dir: Path = OUTPUT_DIR) -> Non
     _write_json(
         output_dir / "relationships_candidates.json", [r.model_dump() for r in result.relationships]
     )
-    _write_json(output_dir / "variant_claims_candidates.json", [asdict(c) for c in result.conflicts])
+    _write_claims_preserving_review(
+        output_dir / "variant_claims_candidates.json", [asdict(c) for c in result.conflicts]
+    )
     if result.fuzzy_merges:
         print(f"{len(result.fuzzy_merges)} fuzzy entity merges — review during B3 spot-check:", flush=True)
         for m in result.fuzzy_merges:
@@ -165,6 +167,78 @@ def write_output(result: ExtractionResult, output_dir: Path = OUTPUT_DIR) -> Non
 def _write_json(path: Path, rows: list) -> None:
     path.write_text(json.dumps(rows, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"Wrote {len(rows)} rows to {path}", flush=True)
+
+
+# ADR-004 stages every extracted candidate at trust_tier=3; a human review pass promotes
+# rows to 1. Any tier other than the default is therefore a *review decision*, not
+# extraction output -- including a future "rejected" tier, which this deliberately covers
+# without needing another change here.
+DEFAULT_TRUST_TIER = 3
+
+# Everything that identifies the claim itself. `trust_tier` is excluded on purpose: it is
+# the mutable review verdict layered on top of that identity, and is what we carry over.
+_CLAIM_IDENTITY = ("subject_name", "claim_type", "claim_value", "source_id", "passage_ref")
+
+
+def _claim_key(row: dict) -> tuple:
+    return tuple(row.get(field) for field in _CLAIM_IDENTITY)
+
+
+def _write_claims_preserving_review(path: Path, rows: list[dict]) -> None:
+    """[DEVIATED - see DEVIATIONS.md #DEV-101] Merge-on-write for the one output file that
+    is also a *review* artifact.
+
+    `variant_claims_candidates.json` is both this script's output and the file the ADR-004
+    promotion pass edits in place, so the previous blind `_write_json` meant a single
+    re-extraction silently destroyed every promotion ever made -- 71 hand-reviewed rows at
+    the time this was fixed. DEV-038 recorded that as a known risk mitigated only by
+    operator discipline; P4 is promotion-heavy and re-runs this loop repeatedly, so the
+    risk becomes structural there.
+
+    The merge is deliberately one-directional: **the extraction owns which claims exist,
+    review owns their trust_tier.** A promoted row whose claim the extraction no longer
+    produces is *not* resurrected -- keeping it would reinstate a claim no source supports,
+    which is a worse failure than losing the review. Such drops are reported, not silent.
+
+    The other two files this script writes (`entities_candidates.json`,
+    `relationships_candidates.json`) need no equivalent: they are not the curated artifacts
+    seedgen reads (`entities_candidates_confirmed_v1.json`,
+    `relationships_candidates_cleaned.json`), so a re-run cannot clobber review there.
+    """
+    reviewed: dict[tuple, int] = {}
+    if path.exists():
+        try:
+            existing = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:  # corrupt/partial file: refuse to silently drop review
+            raise SystemExit(
+                f"{path} exists but is not valid JSON -- refusing to overwrite it, since it may "
+                "hold trust_tier promotions. Inspect or move it, then re-run."
+            )
+        reviewed = {
+            _claim_key(r): r["trust_tier"]
+            for r in existing
+            if r.get("trust_tier", DEFAULT_TRUST_TIER) != DEFAULT_TRUST_TIER
+        }
+
+    carried = 0
+    for row in rows:
+        tier = reviewed.get(_claim_key(row))
+        if tier is not None:
+            row["trust_tier"] = tier
+            carried += 1
+
+    _write_json(path, rows)
+    if reviewed:
+        print(f"  carried over {carried} reviewed promotion(s)", flush=True)
+    dropped = len(reviewed) - carried
+    if dropped:
+        print(
+            f"  WARNING: {dropped} reviewed row(s) are no longer produced by extraction and were "
+            "NOT carried over -- re-review if this is unexpected:",
+            flush=True,
+        )
+        for key in (k for k in reviewed if k not in {_claim_key(r) for r in rows}):
+            print(f"    - {key[0]} / {key[1]} / {key[2]} [{key[3]} {key[4]}]", flush=True)
 
 
 def main() -> None:
