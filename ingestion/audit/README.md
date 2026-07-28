@@ -11,10 +11,26 @@ Every check in this package **reports only** — none of them mutate any file or
 
 `__main__.py` walks the package for any sibling module exposing the contract in `contract.py`
 (module-level `NAME: str` + `run(candidates_dir, db_conn) -> CheckResult`) — a module needs no
-separate registration call, just those two names, to be picked up. All **seven** checks are live:
+separate registration call, just those two names, to be picked up. All **ten** checks are live:
 **`duplicate_entities.py` (`A1`)**, **`drop_accounting.py` (`A2`)**, **`cycle_check.py` (`A3`)**,
 **`relation_taxonomy.py` (`A4`)**, **`integrity.py` (`A5`)**, **`dropped_parents.py` (`A6`)**,
-**`name_coverage.py` (`A7`)**.
+**`name_coverage.py` (`A7`)**, **`prominence.py` (`A8`)**, **`claim_type_distribution.py` (`A9`)**,
+**`group_inventory.py` (`A10`)**.
+
+**A note on what "reporting-only" has to mean for A8/A9/A10** (Stage P4 Track B9), because the
+obvious reading of `contract.py` is wrong: `AuditRun.exit_code` is `1 if any(not f.waived for f in
+self.all_findings) else 0` and **ignores `severity`**, so a check cannot emit
+`Finding(severity="warning")` and still exit `0` — there is no "tolerated finding" severity.
+"Reporting" therefore means these three checks return `CheckResult(findings=(), summary=…)` on
+their normal path, with their tables (the A8 ranking, the A9 distribution, the A10 inventory)
+going into `summary` and each module's own `--output` JSON artifact — **never** a `Finding`. The
+*only* things A8/A9/A10 ever raise as findings are genuine anomalies: A9's mechanically-detected
+unmapped formatting-duplicates (the `notable_claim`/`"notable claim"` class — never a semantic
+collapse guess, that stays human-reviewed in Track G) and A10's `(a)`/`(b)`/`(c)` invariant
+breaks (group-total drift, a broken arithmetic identity, or `zero_promoted` increasing — the
+DEV-101/Track C corruption signature). A10's per-group rows themselves — all 835 of them today —
+are never findings; only three prior checks (A2, A4, A6) emit one finding per row/label, which is
+why those three need standing waiver policies (F0c) to ever reach a clean exit.
 
 ```
 python -m audit                    # both sources (default): candidate JSON + a live DB connection
@@ -225,6 +241,71 @@ nothing to extract (a sea hazard and a court minstrel; no kinship, marriage or d
 either anywhere in the six sources, and no relation in the vocabulary honestly fits). That is the
 intended end state for this class: **waive with a written reason, don't invent a relation type to
 zero the count** — an audit check must not get to dictate the data model.
+
+## `prominence.py` — the A8 subject ranking (Stage P4 Track B1-B3)
+
+The tranche-selection instrument every P4 batch reads before picking which `(subject,
+claim_type)` groups to promote. `IMPLEMENTATION_PLAN_PHASE2.md §5` step 1 and `TODO2.md:389` both
+assumed the audit package already emitted a prominence ranking — it didn't (`grep -rn
+"prominence\|degree\|rank" ingestion/audit/*.py` returned nothing before this module).
+
+Composite score is deliberately simple: **relationship degree (in + out) + candidate mention
+count**, both reported alongside the composite so a reader can see why a subject ranked where it
+did — a subject with high degree and no claim candidates is a different signal from the reverse.
+Degree comes from the live `relationships` table when a `db_conn` is given, or from
+`relationships_candidates_cleaned.json` otherwise. Subject names are resolved through
+`known_aliases.json` (candidates-only) and the live `entity_aliases` table (when `db_conn` is
+given) before ranking — reusing `duplicate_entities.load_entity_aliases_from_db` rather than
+re-deriving alias resolution — so `Sky`/`Ouranos` (DEV-092) merge into one ranked row instead of
+splitting one figure's degree across two.
+
+Always reporting-only: `run()` never returns a `Finding`. `python -m audit.prominence` prints the
+top-N table and writes the full ranking to `prominence_ranking.json`.
+
+## `claim_type_distribution.py` — the A9 canonical claim_type breakdown (Stage P4 Track B5-B6)
+
+Runs every candidate `claim_type` surface form through `extraction.claim_type_normalizer.normalize`
+(reading the live `claim_type_aliases` table, never a hardcoded map — DEV-022's rule) and groups
+by canonical, so the **7-member `notable*` family** (`notable_claim`, `notable`, `notable_deed`,
+`notable_act`, `"notable claim"`, `"notable act"`, `notable_event` — 648 rows) shows up as one
+canonical entry with its surface-form breakdown intact, rather than seven unrelated distribution
+rows. This is how the "≥4 canonical claim_types" P4 exit-gate figure gets counted — canonical
+values, not raw spellings.
+
+The full raw→canonical→count table is reporting-only (`summary` + `--output` JSON). The **only**
+`Finding`s this check raises are a narrow, mechanically-certain class: two raw surface forms that
+fold to the same string once whitespace/underscore/case differences are removed
+(`"notable claim"` vs `notable_claim`) *and* have no `claim_type_aliases` row connecting them yet
+— a formatting variant, not a semantic judgment. Collapsing the full `notable*` family (is
+`notable` the same concept as `notable_deed`, or two things?) is deliberately left to a human,
+Track G's G1 — the same restraint `relation_taxonomy.py`'s docstring already documents for
+relation labels ("guessing here risks making the seed data worse, not better").
+
+## `group_inventory.py` — the A10 per-group inventory (Stage P4 Track B7)
+
+One row per `(resolved subject, canonical claim_type)` group: candidate row count, distinct
+`source_id` count, distinct `claim_value` count, promoted-row count, and the subject's A8 rank.
+Emitted as machine-readable JSON so Track C's review notebook (C6) can read it directly.
+
+**Reconciliation note on the group total**: the Contracts section's "839 groups" figure is
+measured by *raw* `claim_type` (no `normalize()`), grouped by lowercased subject name only. This
+module groups by *canonical* claim_type and alias-resolved subject, as B7 instructs, which is a
+materially different key — measured live, it comes in at **835**, not 839. All of the difference
+turns out to be claim_type normalization alone (exactly the 4 subjects — `Aphrodite`, `Athena`,
+`Dionysus`, `Adonis` — that carry both a `birth` and a `parentage` candidate row, which V9_2's
+alias merges into one canonical group each); no subject-alias merge changed the count at all,
+verified directly rather than assumed. Recorded here rather than silently coding against the
+stale 839 figure, per the Contracts section's own preamble.
+
+**Only three things are ever findings, never the 835 rows themselves**: (a) the group total
+drifting from this module's own **self-recorded baseline** (`group_inventory_baseline.json`,
+committed like `audit-waivers.json`, set on this check's first-ever run and never rewritten
+thereafter); (b) the arithmetic identity `groups_with_promotions + zero_promoted == groups_total`
+breaking, a pure counting-bug detector; (c) `zero_promoted` **increasing** since the last run —
+promotion is monotone, so growth means a promotion was lost, the DEV-101/Track C corruption
+signature. A normal **decrease** — what every successful P4 batch produces — is printed as a
+trend line against both the last run and the frozen starting baseline, never a finding: a check
+that fires on ordinary progress is worse than no check.
 
 ## The Flyway checksum trap (shared with Track F)
 

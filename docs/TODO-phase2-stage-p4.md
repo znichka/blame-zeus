@@ -359,6 +359,14 @@ is not a prompt-authoring task — the model never gets the chance to obey, beca
 
 ## Track B — audit emitters: prominence, normalized claim-type distribution, group inventory (Python; gates F and G)
 
+> ⚠️ **Deviations occurred in this track.** See `DEVIATIONS.md` **#DEV-103**. B7's group total
+> comes in at **835**, not the raw-839 figure — grouping by *canonical* claim_type (as B7
+> instructs) is a different key than the Contracts section's raw-claim_type measurement; the
+> 4-group reduction is entirely the `Aphrodite`/`Athena`/`Dionysus`/`Adonis` birth+parentage
+> merges, verified directly. `group_inventory.py`'s own baseline self-initializes from whatever
+> the live figure actually is rather than asserting 839, so this is not a bug, just a different
+> (and more correct, per B7's own literal instruction) grouping key than the headline number.
+
 §5 step 1 says "the audit package emits the ranking" and `TODO2.md:389` repeats it. **It does not** —
 `grep -rn "prominence\|degree\|rank" ingestion/audit/*.py` returns nothing. Three new sibling modules,
 each conforming to `audit/contract.py` (module-level `NAME` + `run(candidates_dir, db_conn)`) so
@@ -366,33 +374,36 @@ each conforming to `audit/contract.py` (module-level `NAME` + `run(candidates_di
 `relation_taxonomy` mould — they emit data for human selection and must **not** fail the runner's exit
 code, or the standing pre-seedgen gate breaks on every batch.
 
-- [ ] **B1** — `ingestion/audit/prominence.py`, check **A8**: pure core
+- [x] **B1** — `ingestion/audit/prominence.py`, check **A8**: pure core
       `rank_subjects(relationship_rows, candidate_rows) -> list[SubjectRank]` scoring each subject by
       **relationship degree** (in + out, over the live V11 `relationships` when `db_conn` is given,
       falling back to the generated set from candidates) **plus candidate mention count**. Report both
       components separately as well as the composite — a subject with high degree and no claim
       candidates is a different signal from the reverse. No I/O in the core.
-- [ ] **B2** — A8's report output: the **top 50** subjects with degree, mention count, composite rank,
+- [x] **B2** — A8's report output: the **top 50** subjects with degree, mention count, composite rank,
       the number of `(subject, claim_type)` groups they own, and how many of those already have a
       promoted row. This table **is** the tranche-selection instrument for every batch, and the
       "all top-20-prominence subjects" half of the exit gate is read directly off it.
-- [ ] **B3** — Resolve subject names through the same path the rest of the pipeline uses before
+- [x] **B3** — Resolve subject names through the same path the rest of the pipeline uses before
       ranking, so `Sky`/`Ouranos` (DEV-092) and the `entity_aliases` set do not split one figure's
       degree across two rows. Reuse the existing resolution rather than re-deriving it; if no reusable
       helper exists, say so in the module docstring and use `entity_aliases` from the live DB.
-- [ ] **B4** — **TDD** `ingestion/audit/tests/test_prominence.py`: a fixture graph where subject X has
+- [x] **B4** — **TDD** `ingestion/audit/tests/test_prominence.py`: a fixture graph where subject X has
       degree 5 / 2 mentions and subject Y degree 1 / 40 mentions → both appear with their components
       intact and the documented composite ordering; an aliased pair merges into one row; an empty
       graph returns an empty ranking without raising. Pure, no live DB.
-- [ ] **B5** — `ingestion/audit/claim_type_distribution.py`, check **A9**: the candidate `claim_type`
+- [x] **B5** — `ingestion/audit/claim_type_distribution.py`, check **A9**: the candidate `claim_type`
       distribution **after** `extraction/claim_type_normalizer.normalize`, using
       `load_alias_map(conn)` — never a hardcoded map (the DEV-022 rule). Report **raw surface form →
       canonical → count**, so the 7-member `notable*` family is visibly one canonical type and the
       "≥4 canonical claim_types" exit gate counts canonical values, not spellings.
-- [ ] **B6** — A9 additionally lists surface forms with **no alias row and no canonical match** —
+- [x] **B6** — A9 additionally lists surface forms with **no alias row and no canonical match** —
       those are exactly Track G's V18 input, and the mechanism by which each later batch's new
       claim_types get their alias rows without anyone maintaining a list by hand.
-- [ ] **B7** — `ingestion/audit/group_inventory.py`, check **A10**: one row per
+      **Implemented narrowly**: only mechanical whitespace/underscore/case-fold duplicates with no
+      existing alias row (`'notable claim'`→`'notable_claim'`, `'notable act'`→`'notable_act'`) —
+      the full 7-member semantic collapse stays a Track G human call (G1), never guessed here.
+- [x] **B7** — `ingestion/audit/group_inventory.py`, check **A10**: one row per
       `(subject, canonical claim_type)` group — candidate row count, distinct `source_id` count,
       distinct `claim_value` count, promoted-row count, and the subject's A8 rank. Emit as
       machine-readable JSON alongside the report table so Track C's notebook can read it directly.
@@ -410,7 +421,7 @@ code, or the standing pre-seedgen gate breaks on every batch.
       figure and the delta since the previous run, which is the coverage number F1i has to report
       anyway. Derive all four from the candidate file alone; **do not read C5's promotion log** — B7
       must not acquire a dependency on Track C, which already depends on B7 via C6.
-- [ ] **B8** — **TDD** `tests/test_claim_type_distribution.py` and `tests/test_group_inventory.py`:
+- [x] **B8** — **TDD** `tests/test_claim_type_distribution.py` and `tests/test_group_inventory.py`:
       a fixture where `notable_act` and `notable act` both alias to one canonical → the distribution
       shows one canonical row with the summed count and both surface forms; an unaliased novel type →
       appears in B6's unmapped list. For A10: a group with 2 sources and 1 promoted row → correct
@@ -420,7 +431,7 @@ code, or the standing pre-seedgen gate breaks on every batch.
       — a fixture where `zero_promoted` has **gone down** with the total unchanged → **no finding**,
       just the trend line (B7d). Assert the no-finding case explicitly; a check that fires on normal
       progress is worse than no check.
-- [ ] **B9** — Update `ingestion/audit/README.md`: A8/A9/A10 added to the check list and their
+- [x] **B9** — Update `ingestion/audit/README.md`: A8/A9/A10 added to the check list and their
       artifacts named. **Be precise about what "reporting-only" has to mean here**, because the
       obvious reading is wrong: `exit_code` is `1 if any(not f.waived ...)` and **ignores
       `severity`**, so a check cannot emit `Finding(severity="warning")` and still exit 0. "Reporting"
