@@ -379,12 +379,18 @@ Both were documented as found-but-not-fixed and had no TODO home until 2026-07-2
       claim no source supports), but the drop is reported by name, never silent. Corrupt file →
       `SystemExit`, never an overwrite. **Verified against the live file**: 71 promotions survive
       where 0 did before. 13 tests, mutation-verified; ingestion suite green at 294.
-- [ ] **DEV-049 — zero-retrieval questions can return non-JSON prose.** When retrieval yields no
+- [x] **DEV-049 — zero-retrieval questions can return non-JSON prose.** When retrieval yields no
       chunks, LangChain4j's `DefaultContentInjector` short-circuits to the bare question, the model
       answers in prose, structured-output parsing fails, and the request surfaces as `serviceError`.
       DEV-049 flagged this "secondary, not fixed". ADR-010's **REFUSAL Q16/Q17 are by construction
       the zero-retrieval case**, so authoring them without fixing this scores a `serviceError` fail
       rather than the refusal the questions are meant to test. Fix before authoring, not after.
+      **[DEVIATED - see DEVIATIONS.md #DEV-102]** — live reproduction against the P4 tree did not
+      reproduce this: the `@SystemMessage` reaches the model independently of `DefaultContentInjector`
+      (it augments only the `UserMessage`), and Claude Haiku 4.5 (ADR-008) reliably follows it even on
+      empty `contents`. 6/6 runs of the negative control parsed cleanly with `serviceError: false`.
+      Closed as a verification note, not a code fix — nothing in `RagConfig.kt`/`RagAgent.kt` changed.
+      Open carry-over for Track E: neither draft Q16 nor Q17 currently retrieves zero chunks.
 
 - [ ] Per batch (~25–50 groups): rank the 838 unreviewed groups by subject prominence; prioritize
       new claim_types beyond parentage/death (marriage, killer/slaying, birthplace, transformation).

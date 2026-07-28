@@ -263,6 +263,26 @@ def test_refusal_pass():
     assert s.content_point is True
 
 
+def test_refusal_pass_live_verified_wording_p4_track_a5f():
+    # P4 Track A5f (DEV-102): the actual Claude Haiku 4.5 zero-retrieval refusal wording,
+    # captured live against DEV-049's negative control — none of the pre-P4 phrases matched it.
+    q = gq(id=16, category="REFUSAL", expected_route="RAG",
+           refusal_criteria=REFUSAL_CRITERIA,
+           forbidden_patterns=["his hair was", "he had", "described as"])
+    r = resp(
+        route_decision="RAG",
+        answer=(
+            "I cannot answer this question based on the provided material. The context "
+            "passages are focused on Greek mythology and do not contain information about "
+            "the chemical formula for caffeine. This question falls outside the scope of "
+            "the available sources."
+        ),
+        citations=[],
+    )
+    s = score_question(q, r)
+    assert s.content_point is True
+
+
 def test_refusal_fail_fabricated_citation_and_no_source_limit():
     q = gq(id=16, category="REFUSAL", expected_route="RAG",
            refusal_criteria=REFUSAL_CRITERIA,

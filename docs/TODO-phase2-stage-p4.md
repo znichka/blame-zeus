@@ -280,6 +280,12 @@ or in P5.
 
 ## Track A — DEV-049: zero-retrieval returns a parsed refusal, not `serviceError` (Kotlin; blocks E1/E2)
 
+> ⚠️ **Deviations occurred in this track.** A1f's live reproduction did **not** reproduce the
+> `serviceError` bug — see `DEVIATIONS.md` **#DEV-102**. Re-scoped from a code fix (A2f–A4f) to a
+> verification note + a `SOURCE_SILENCE_PHRASES` extension (A5f). **Carry-over for Track E:** neither
+> draft Q16 nor Q17 retrieves zero chunks against the live corpus at `min-score=0.5` — both returned
+> substantive, correctly-cited answers, not refusals. E1/E2 must re-verify this before authoring.
+
 *IDs carry an `f` suffix (= fix) so they never read as the audit check names `A1`–`A7`, which are
 taken — the same collision-avoidance P3's Track A used with its `r` suffix.*
 
@@ -290,7 +296,7 @@ is not a prompt-authoring task — the model never gets the chance to obey, beca
 `DefaultContentInjector.inject()` discards the whole augmentation, system message included, when
 `contents.isEmpty()`. **Root cause first: reproduce before fixing.**
 
-- [ ] **A1f** — **Reproduce and record, before writing any code.** Start the stack
+- [x] **A1f** — **Reproduce and record, before writing any code.** Start the stack
       (`scripts/run-local.sh`), `POST /api/v1/query` with a question guaranteed to retrieve nothing at
       `app.rag.min-score=0.5` — DEV-049's own negative control, *"What is the chemical formula for the
       caffeine molecule?"*, returned zero chunks at 0.3 and 0.5 — plus draft Q16 and Q17. Capture the
@@ -303,7 +309,13 @@ is not a prompt-authoring task — the model never gets the chance to obey, beca
       above `min-score` and never touch this code path at all. Whichever of the two retrieves nothing
       is blocked on this fix; whichever retrieves is unblocked immediately and tests a different
       refusal path. Say which is which in the DEV entry so E1/E2 can start without re-measuring.
-- [ ] **A2f** — **The fix, in `core-api/src/main/kotlin/com/blamezeus/coreapi/config/RagConfig.kt`:**
+      **Result: does not reproduce.** 6/6 runs of the negative control returned `serviceError: false`
+      with a parsed JSON refusal (`debug.retrievedChunks: []` confirmed genuine zero-retrieval).
+      Neither draft Q16 nor Q17 retrieves zero chunks at the live corpus/`min-score=0.5` — both
+      answered substantively with real citations, so neither is currently a zero-retrieval case at
+      all. Full detail in `DEVIATIONS.md` **#DEV-102**. Re-scoped per this box's own instruction:
+      A2f–A4f skipped (nothing to fix), A5f–A7f still run as live verification.
+- [~] **A2f** *(skipped — no defect to fix, see A1f's result)* — **The fix, in `core-api/src/main/kotlin/com/blamezeus/coreapi/config/RagConfig.kt`:**
       a `ContentInjector` that delegates to the existing metadata-configured `DefaultContentInjector`
       when `contents` is non-empty, and on an **empty** `contents` injects an explicit
       "no passages were retrieved for this question" block into the user message instead of
@@ -312,27 +324,33 @@ is not a prompt-authoring task — the model never gets the chance to obey, beca
       citation fix must not regress. Wire it via `DefaultRetrievalAugmentor.builder().contentInjector(...)`;
       `RagAgent`'s `retrievalAugmentor = "retrievalAugmentor"` binding is unchanged (`AiServices`
       throws if both `contentRetriever` and `retrievalAugmentor` are set).
-- [ ] **A3f** — **`RagAgent.kt` `@SystemMessage`**, only if A1f's evidence shows the existing wording
+- [~] **A3f** *(skipped — no defect to fix)* — **`RagAgent.kt` `@SystemMessage`**, only if A1f's evidence shows the existing wording
       insufficient once the sentinel actually reaches the model: name the sentinel explicitly so the
       empty-citations branch is unambiguous. Prefer changing nothing — the existing paragraph already
       covers it, and an unnecessary prompt edit is a change to every RAG answer, not just refusals.
-- [ ] **A4f** — **TDD**: a unit test on the injector alone — it is a plain class, so this needs no
+- [~] **A4f** *(skipped — no injector built, see A2f)* — **TDD**: a unit test on the injector alone — it is a plain class, so this needs no
       chat model and does not touch the no-live-LLM guardrail. Empty `contents` → the returned
       `UserMessage` contains the sentinel and the original question; non-empty `contents` → output is
       identical to what the bare `DefaultContentInjector` produces for the same input (assert against
       the delegate, not against a hardcoded string, so the metadata format can evolve). A third case:
       a single content with all four metadata keys still renders them.
-- [ ] **A5f** — **Live-verify the refusal wording against the scorer.** Re-run A1f's three questions
+- [x] **A5f** — **Live-verify the refusal wording against the scorer.** Re-run A1f's three questions
       against the fixed build and check the answer text against
       `evaluation/runner/scoring.py::SOURCE_SILENCE_PHRASES`. If no phrase matches, **extend the
       tuple** with the phrasing the model actually produces — `TODO2.md:60` and
       `TODO-phase2-stage-p1.md:160-166` both sanction this explicitly, and it is *not* a scorer change
       (`score_refusal`'s logic stays untouched). Record the before/after phrasing in the DEV entry;
       this is the DEV-050 live-verification rule applied to refusals.
-- [ ] **A6f** — Confirm the end state on all three: `serviceError: false`, `citations: []`,
+      **Result:** none of the 6 live answers matched any existing phrase. Added `"do not contain"`
+      (6/6 runs) and `"outside the scope"` (2/6) to `SOURCE_SILENCE_PHRASES`, plus a regression test
+      pinned to the exact live wording (`evaluation/runner/tests/test_scoring.py`).
+- [x] **A6f** — Confirm the end state on all three: `serviceError: false`, `citations: []`,
       `routeDecision: RAG`, and an answer that acknowledges the texts are silent. Capture the raw
       responses into the DEV entry as evidence — the same standard DEV-049 itself set.
-- [ ] **A7f** — `./gradlew :core-api:test` green (180+ tests as of P3's close). Log **DEV-102**;
+      **Confirmed** for the negative control (the one genuine zero-retrieval case among the three),
+      stable across 6 runs. Q16/Q17 are not zero-retrieval cases at the live corpus, so this end
+      state doesn't apply to them as drafted — see A1f's result and Track E's carry-over note above.
+- [x] **A7f** — `./gradlew :core-api:test` green (180+ tests as of P3's close). Log **DEV-102**;
       tick the `TODO2.md:382-387` DEV-049 box and the matching line in
       `IMPLEMENTATION_PLAN_PHASE2.md §5`'s banner, which currently reads "**DEV-049 remains open**,
       so ADR-010's REFUSAL Q16/Q17 still cannot be authored".
@@ -732,8 +750,11 @@ pre-assigned: it depends on what F1's eval shows and on which claim_types F1's p
       [DEVIATED - see DEVIATIONS.md #DEV-101], merge-on-write keyed on the claim 5-tuple; verified
       against the live file (71 promotions survive where 0 did before); 13 tests, ingestion suite
       green at 294; committed as `2e4ce40`.
-- [ ] **DEV-049** — zero-retrieval returns a parsed refusal, not `serviceError`; live-verified against
-      `SOURCE_SILENCE_PHRASES`; `:core-api:test` green (Track A).
+- [x] **DEV-049** — zero-retrieval returns a parsed refusal, not `serviceError`; live-verified against
+      `SOURCE_SILENCE_PHRASES`; `:core-api:test` green (Track A). **Closed 2026-07-28 as DEV-102**:
+      does not reproduce on the live tree (root cause understood, not fixed — nothing to fix); see
+      `DEVIATIONS.md` #DEV-102. Track E carries forward the open question of whether Q16/Q17's fixed
+      text is still a valid zero-retrieval REFUSAL case.
 - [ ] **≥3 batches end-to-end**, each a complete `seedgen → reseed → audit → runner --runs 3 →
       compare.py → commit-or-revert` pass, results dirs committed with their candidates, migrations
       and gold-set changes (Track F).

@@ -49,6 +49,11 @@ SOURCE_SILENCE_PHRASES: tuple[str, ...] = (
     "the sources do not",
     "is not described",
     "are silent",
+    # P4 Track A5f (DEV-102): live-verified against the Claude Haiku 4.5 zero-retrieval
+    # refusal wording — "do not contain [information]" was the dominant phrase across 6
+    # repeated runs of DEV-049's negative control (6/6); none of the phrases above matched it.
+    "do not contain",
+    "outside the scope",
 )
 
 

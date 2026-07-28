@@ -308,8 +308,13 @@ the undetected extraction failure mode carry to P4.
 > ⚠️ Deviations occurred in this stage. See DEVIATIONS.md for details (**DEV-093** — two
 > prerequisites added; **DEV-101** — the first of them, DEV-038, fixed 2026-07-28 by merge-on-write
 > in `write_output`, verified to preserve all 71 live `trust_tier=1` promotions where a re-extraction
-> previously destroyed every one. **DEV-049 remains open**, so ADR-010's REFUSAL Q16/Q17 still
-> cannot be authored).
+> previously destroyed every one. **DEV-102** — the second, DEV-049, closed 2026-07-28: live
+> reproduction against the P4 tree did **not** reproduce the `serviceError` failure (root cause:
+> `@SystemMessage` reaches the model independently of `DefaultContentInjector`, and Claude Haiku 4.5
+> per ADR-008 follows it reliably even with no retrieved content) — closed as a verification note plus
+> a `SOURCE_SILENCE_PHRASES` extension, not a code fix. Open carry-over: neither draft Q16 nor Q17
+> currently retrieves zero chunks at the live corpus, so ADR-010's fixed question text needs
+> re-confirming before Track E authors them as REFUSAL cases).
 >
 > **Detailed checklist: `docs/TODO-phase2-stage-p4.md`** (2026-07-28). It records three things
 > measured against the live tree that this section assumes otherwise, and does **not** amend the body
