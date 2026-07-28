@@ -4,82 +4,170 @@
     "category": "FACT",
     "question": "Why did Athena turn Arachne into a spider?",
     "expected_route": "RAG",
-    "required_keywords": ["spider", "weaving", "Arachne"],
-    "required_authors": ["Ovid"],
-    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
+    "required_keywords": [
+      "spider",
+      "weaving",
+      "Arachne"
+    ],
+    "required_authors": [
+      "Ovid"
+    ],
+    "forbidden_patterns": [
+      "I don't know",
+      "not in my corpus",
+      "I cannot",
+      "I'm not sure"
+    ]
   },
   {
     "id": 2,
     "category": "FACT",
     "question": "What was Prometheus punished for?",
     "expected_route": "RAG",
-    "required_keywords": ["fire", "eagle", "liver"],
-    "required_authors": ["Hesiod"],
-    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
+    "required_keywords": [
+      "fire",
+      "eagle",
+      "liver"
+    ],
+    "required_authors": [
+      "Hesiod"
+    ],
+    "forbidden_patterns": [
+      "I don't know",
+      "not in my corpus",
+      "I cannot",
+      "I'm not sure"
+    ]
   },
   {
     "id": 3,
     "category": "FACT",
     "question": "How did Odysseus escape Polyphemus?",
     "expected_route": "RAG",
-    "required_keywords": ["blinded", "eye", "sheep"],
-    "required_authors": ["Homer"],
-    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
+    "required_keywords": [
+      "blinded",
+      "eye",
+      "sheep"
+    ],
+    "required_authors": [
+      "Homer"
+    ],
+    "forbidden_patterns": [
+      "I don't know",
+      "not in my corpus",
+      "I cannot",
+      "I'm not sure"
+    ]
   },
   {
     "id": 4,
     "category": "FACT",
     "question": "What happened at the wedding of Peleus and Thetis?",
     "expected_route": "RAG",
-    "required_keywords": ["Chiron", "spear", "horses"],
+    "required_keywords": [
+      "Chiron",
+      "spear",
+      "horses"
+    ],
     "required_authors": [],
-    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
+    "forbidden_patterns": [
+      "I don't know",
+      "not in my corpus",
+      "I cannot",
+      "I'm not sure"
+    ]
   },
   {
     "id": 5,
     "category": "FACT",
     "question": "Why did Demeter stop the crops from growing?",
     "expected_route": "RAG",
-    "required_keywords": ["fruit", "daughter", "crops"],
+    "required_keywords": [
+      "fruit",
+      "daughter",
+      "crops"
+    ],
     "required_authors": [],
-    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
+    "forbidden_patterns": [
+      "I don't know",
+      "not in my corpus",
+      "I cannot",
+      "I'm not sure"
+    ]
   },
   {
     "id": 6,
     "category": "DATA",
     "question": "Which Olympians are children of Cronus?",
     "expected_route": "SQL",
-    "required_keywords": ["Zeus", "Hera", "Poseidon", "Demeter", "Hestia"],
+    "required_keywords": [
+      "Zeus",
+      "Hera",
+      "Poseidon",
+      "Demeter",
+      "Hestia"
+    ],
     "required_authors": [],
-    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
+    "forbidden_patterns": [
+      "I don't know",
+      "not in my corpus",
+      "I cannot",
+      "I'm not sure"
+    ]
   },
   {
     "id": 7,
     "category": "DATA",
     "question": "Which heroes are children of Zeus?",
     "expected_route": "SQL",
-    "required_keywords": ["Heracles", "Perseus"],
+    "required_keywords": [
+      "Heracles",
+      "Perseus"
+    ],
     "required_authors": [],
-    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
+    "forbidden_patterns": [
+      "I don't know",
+      "not in my corpus",
+      "I cannot",
+      "I'm not sure"
+    ]
   },
   {
     "id": 8,
     "category": "DATA",
     "question": "List all monsters Perseus encountered.",
     "expected_route": "SQL",
-    "required_keywords": ["Medusa"],
+    "required_keywords": [
+      "Medusa"
+    ],
     "required_authors": [],
-    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
+    "forbidden_patterns": [
+      "I don't know",
+      "not in my corpus",
+      "I cannot",
+      "I'm not sure"
+    ]
   },
   {
     "id": 9,
     "category": "DATA",
     "question": "Trace Zeus's lineage back to Chaos.",
     "expected_route": "SQL",
-    "required_keywords": ["Cronus", "Ouranos", "Chaos"],
+    "required_keywords": [
+      "Cronus",
+      "Ouranos",
+      "Chaos"
+    ],
     "required_authors": [],
-    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"],
-    "sql_must_contain": ["WITH RECURSIVE"]
+    "forbidden_patterns": [
+      "I don't know",
+      "not in my corpus",
+      "I cannot",
+      "I'm not sure"
+    ],
+    "sql_must_contain": [
+      "WITH RECURSIVE"
+    ]
   },
   {
     "id": 10,
@@ -88,7 +176,12 @@
     "expected_route": "SQL",
     "required_keywords": [],
     "required_authors": [],
-    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"],
+    "forbidden_patterns": [
+      "I don't know",
+      "not in my corpus",
+      "I cannot",
+      "I'm not sure"
+    ],
     "min_row_count": 12
   },
   {
@@ -96,27 +189,60 @@
     "category": "MIXED",
     "question": "Which heroes had a divine parent and died at Troy?",
     "expected_route": "MIXED",
-    "required_keywords": ["Troy", "divine"],
-    "required_authors": ["Homer"],
-    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
+    "required_keywords": [
+      "Troy",
+      "divine"
+    ],
+    "required_authors": [
+      "Homer"
+    ],
+    "forbidden_patterns": [
+      "I don't know",
+      "not in my corpus",
+      "I cannot",
+      "I'm not sure"
+    ]
   },
   {
     "id": 12,
     "category": "MIXED",
     "question": "Explain the divine lineage that connects Achilles to Zeus, as the sources tell it.",
     "expected_route": "MIXED",
-    "required_keywords": ["Peleus", "Thetis", "Zeus"],
-    "required_authors": ["Apollodorus"],
-    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"]
+    "required_keywords": [
+      "Peleus",
+      "Thetis",
+      "Zeus"
+    ],
+    "required_authors": [
+      "Apollodorus"
+    ],
+    "forbidden_patterns": [
+      "I don't know",
+      "not in my corpus",
+      "I cannot",
+      "I'm not sure"
+    ]
   },
   {
     "id": 13,
     "category": "CONFLICT",
     "question": "Who were Aphrodite's parents?",
     "expected_route": "SQL",
-    "required_keywords": ["foam", "Zeus", "Dione"],
-    "required_authors": ["Hesiod", "Homer"],
-    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"],
+    "required_keywords": [
+      "foam",
+      "Zeus",
+      "Dione"
+    ],
+    "required_authors": [
+      "Hesiod",
+      "Homer"
+    ],
+    "forbidden_patterns": [
+      "I don't know",
+      "not in my corpus",
+      "I cannot",
+      "I'm not sure"
+    ],
     "conflicts_min_count": 2
   },
   {
@@ -124,9 +250,19 @@
     "category": "CONFLICT",
     "question": "Who was Io's father?",
     "expected_route": "SQL",
-    "required_keywords": ["Inachus", "Piren"],
-    "required_authors": ["Apollodorus"],
-    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"],
+    "required_keywords": [
+      "Inachus",
+      "Piren"
+    ],
+    "required_authors": [
+      "Apollodorus"
+    ],
+    "forbidden_patterns": [
+      "I don't know",
+      "not in my corpus",
+      "I cannot",
+      "I'm not sure"
+    ],
     "conflicts_min_count": 2
   },
   {
@@ -134,19 +270,107 @@
     "category": "CONFLICT",
     "question": "How did Achilles die?",
     "expected_route": "RAG",
-    "required_keywords": ["Paris", "arrow", "heel"],
+    "required_keywords": [
+      "Paris",
+      "arrow",
+      "heel"
+    ],
     "required_authors": [],
-    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"],
+    "forbidden_patterns": [
+      "I don't know",
+      "not in my corpus",
+      "I cannot",
+      "I'm not sure"
+    ],
     "conflicts_min_count": 2
+  },
+  {
+    "id": 16,
+    "category": "REFUSAL",
+    "question": "What color were Penelope's eyes?",
+    "expected_route": "RAG",
+    "refusal_criteria": {
+      "must_not_assert_answer": true,
+      "must_mention_source_limit": true,
+      "must_not_fabricate_citation": true
+    },
+    "forbidden_patterns": [
+      "her eyes were",
+      "eye color",
+      "she had"
+    ]
+  },
+  {
+    "id": 17,
+    "category": "REFUSAL",
+    "question": "What were Hermes' exact words as a newborn infant?",
+    "expected_route": "RAG",
+    "refusal_criteria": {
+      "must_not_assert_answer": true,
+      "must_mention_source_limit": true,
+      "must_not_fabricate_citation": true
+    },
+    "forbidden_patterns": [
+      "he said \"",
+      "his first words",
+      "exclaimed"
+    ]
   },
   {
     "id": 18,
     "category": "CONFLICT",
     "question": "Why did Achilles withdraw from the fighting after his quarrel with Agamemnon?",
     "expected_route": "RAG",
-    "required_keywords": ["Agamemnon"],
-    "required_authors": ["Homer"],
-    "forbidden_patterns": ["I don't know", "not in my corpus", "I cannot", "I'm not sure"],
+    "required_keywords": [
+      "Agamemnon"
+    ],
+    "required_authors": [
+      "Homer"
+    ],
+    "forbidden_patterns": [
+      "I don't know",
+      "not in my corpus",
+      "I cannot",
+      "I'm not sure"
+    ],
     "conflicts_min_count": 0
+  },
+  {
+    "id": 19,
+    "category": "CONFLICT",
+    "question": "Who did Zeus marry?",
+    "expected_route": "SQL",
+    "required_keywords": [
+      "Hera"
+    ],
+    "required_authors": [
+      "Homer",
+      "Hesiod"
+    ],
+    "forbidden_patterns": [
+      "I don't know",
+      "not in my corpus",
+      "I cannot",
+      "I'm not sure"
+    ],
+    "conflicts_min_count": 2
+  },
+  {
+    "id": 21,
+    "category": "REFUSAL",
+    "question": "Where is Achilles from?",
+    "expected_route": "SQL",
+    "refusal_criteria": {
+      "must_not_assert_answer": true,
+      "must_mention_source_limit": true,
+      "must_not_fabricate_citation": true
+    },
+    "forbidden_patterns": [
+      "he was from",
+      "his home was",
+      "hailed from",
+      "born in",
+      "Phthia"
+    ]
   }
 ]

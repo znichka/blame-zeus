@@ -1,10 +1,10 @@
 {
   "counts": {
-    "groupsTotal": 835,
+    "groupsTotal": 798,
     "groupsWithPromotions": 3,
-    "zeroPromoted": 832
+    "zeroPromoted": 795
   },
-  "trend": "zero_promoted 832 (-0 since last run, -0 since the 832-group starting baseline)",
+  "trend": "zero_promoted 795 (-0 since last run, -0 since the 795-group starting baseline)",
   "groups": [
     {
       "subject": "",
@@ -13,7 +13,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 571
+      "subjectRank": 572
     },
     {
       "subject": "<UNKNOWN>",
@@ -31,7 +31,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 650
+      "subjectRank": 651
     },
     {
       "subject": "Abas",
@@ -40,7 +40,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 200
+      "subjectRank": 205
     },
     {
       "subject": "Acamas",
@@ -49,7 +49,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 271
+      "subjectRank": 280
     },
     {
       "subject": "Achelous",
@@ -58,7 +58,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 177
+      "subjectRank": 184
     },
     {
       "subject": "Achilles",
@@ -98,37 +98,10 @@
     },
     {
       "subject": "Achilles",
-      "claimType": "notable",
-      "candidateRowCount": 21,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 21,
-      "promotedRowCount": 0,
-      "subjectRank": 3
-    },
-    {
-      "subject": "Achilles",
-      "claimType": "notable act",
-      "candidateRowCount": 2,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 2,
-      "promotedRowCount": 0,
-      "subjectRank": 3
-    },
-    {
-      "subject": "Achilles",
-      "claimType": "notable claim",
-      "candidateRowCount": 4,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 4,
-      "promotedRowCount": 0,
-      "subjectRank": 3
-    },
-    {
-      "subject": "Achilles",
       "claimType": "notable_claim",
-      "candidateRowCount": 11,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 11,
+      "candidateRowCount": 38,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 38,
       "promotedRowCount": 0,
       "subjectRank": 3
     },
@@ -148,7 +121,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 239
+      "subjectRank": 246
     },
     {
       "subject": "Actaea",
@@ -157,7 +130,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 363
+      "subjectRank": 365
     },
     {
       "subject": "Actaeon",
@@ -166,7 +139,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 11,
       "promotedRowCount": 0,
-      "subjectRank": 100
+      "subjectRank": 102
     },
     {
       "subject": "Actaeon",
@@ -175,7 +148,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 100
+      "subjectRank": 102
     },
     {
       "subject": "Actor",
@@ -184,7 +157,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 8,
       "promotedRowCount": 0,
-      "subjectRank": 178
+      "subjectRank": 185
     },
     {
       "subject": "Adonis",
@@ -193,7 +166,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 104
+      "subjectRank": 107
     },
     {
       "subject": "Adonis",
@@ -202,7 +175,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 13,
       "promotedRowCount": 0,
-      "subjectRank": 104
+      "subjectRank": 107
     },
     {
       "subject": "Adrastus",
@@ -211,7 +184,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 145
+      "subjectRank": 149
     },
     {
       "subject": "Aeacus",
@@ -229,7 +202,7 @@
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 114
+      "subjectRank": 117
     },
     {
       "subject": "Aegeus",
@@ -238,7 +211,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 272
+      "subjectRank": 281
     },
     {
       "subject": "Aegialia",
@@ -247,7 +220,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 240
+      "subjectRank": 247
     },
     {
       "subject": "Aegisthus",
@@ -256,7 +229,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 179
+      "subjectRank": 186
     },
     {
       "subject": "Aello",
@@ -265,7 +238,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 574
+      "subjectRank": 575
     },
     {
       "subject": "Aeneas",
@@ -278,19 +251,10 @@
     },
     {
       "subject": "Aeneas",
-      "claimType": "notable",
-      "candidateRowCount": 5,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 5,
-      "promotedRowCount": 0,
-      "subjectRank": 24
-    },
-    {
-      "subject": "Aeneas",
-      "claimType": "notable_event",
-      "candidateRowCount": 5,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 5,
+      "claimType": "notable_claim",
+      "candidateRowCount": 10,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 10,
       "promotedRowCount": 0,
       "subjectRank": 24
     },
@@ -328,7 +292,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 9,
       "promotedRowCount": 0,
-      "subjectRank": 180
+      "subjectRank": null
     },
     {
       "subject": "Aesepus",
@@ -337,7 +301,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 407
+      "subjectRank": 409
     },
     {
       "subject": "Aeson",
@@ -346,7 +310,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 201
+      "subjectRank": 206
     },
     {
       "subject": "Aethra",
@@ -355,7 +319,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 443
+      "subjectRank": 445
     },
     {
       "subject": "Agamedes",
@@ -418,7 +382,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 576
+      "subjectRank": 577
     },
     {
       "subject": "Agave",
@@ -427,7 +391,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 111
+      "subjectRank": 114
     },
     {
       "subject": "Agelaus",
@@ -436,7 +400,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 115
+      "subjectRank": 118
     },
     {
       "subject": "Agelaus",
@@ -445,7 +409,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 115
+      "subjectRank": 118
     },
     {
       "subject": "Agenor",
@@ -454,7 +418,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 10,
       "promotedRowCount": 0,
-      "subjectRank": 85
+      "subjectRank": 78
     },
     {
       "subject": "Agrius",
@@ -463,7 +427,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 445
+      "subjectRank": 447
     },
     {
       "subject": "Ajax",
@@ -476,7 +440,7 @@
     },
     {
       "subject": "Ajax",
-      "claimType": "notable",
+      "claimType": "notable_claim",
       "candidateRowCount": 4,
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
@@ -499,7 +463,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 578
+      "subjectRank": 579
     },
     {
       "subject": "Alastor",
@@ -508,7 +472,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 364
+      "subjectRank": 366
     },
     {
       "subject": "Alastor",
@@ -517,7 +481,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 364
+      "subjectRank": 366
     },
     {
       "subject": "Alcathous",
@@ -526,7 +490,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 273
+      "subjectRank": 282
     },
     {
       "subject": "Alcestis",
@@ -535,7 +499,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 302
+      "subjectRank": 308
     },
     {
       "subject": "Alcinous",
@@ -544,7 +508,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 163
+      "subjectRank": 79
     },
     {
       "subject": "Alcinous",
@@ -553,7 +517,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 163
+      "subjectRank": 79
     },
     {
       "subject": "Alcmaeon",
@@ -562,7 +526,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 76
+      "subjectRank": 73
     },
     {
       "subject": "Alcmaeon",
@@ -571,7 +535,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 76
+      "subjectRank": 73
     },
     {
       "subject": "Alcmaeon",
@@ -580,7 +544,7 @@
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 76
+      "subjectRank": 73
     },
     {
       "subject": "Alexander",
@@ -589,16 +553,16 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 146
+      "subjectRank": 150
     },
     {
       "subject": "Alexander",
-      "claimType": "notable",
+      "claimType": "notable_claim",
       "candidateRowCount": 2,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 146
+      "subjectRank": 150
     },
     {
       "subject": "Aloeus",
@@ -607,7 +571,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 219
+      "subjectRank": 225
     },
     {
       "subject": "Aloeus",
@@ -616,7 +580,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 219
+      "subjectRank": 225
     },
     {
       "subject": "Alpheus",
@@ -625,7 +589,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 663
+      "subjectRank": 664
     },
     {
       "subject": "Althaea",
@@ -634,7 +598,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 77
+      "subjectRank": 80
     },
     {
       "subject": "Althaea",
@@ -643,7 +607,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 77
+      "subjectRank": 80
     },
     {
       "subject": "Amphiaraus",
@@ -652,7 +616,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 125
+      "subjectRank": 128
     },
     {
       "subject": "Amphiaraus",
@@ -661,7 +625,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 125
+      "subjectRank": 128
     },
     {
       "subject": "Amphiaraus",
@@ -670,7 +634,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 125
+      "subjectRank": 128
     },
     {
       "subject": "Amphictyon",
@@ -679,7 +643,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 12,
       "promotedRowCount": 0,
-      "subjectRank": 112
+      "subjectRank": 115
     },
     {
       "subject": "Amphilochus",
@@ -688,7 +652,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 365
+      "subjectRank": 367
     },
     {
       "subject": "Amphimachus",
@@ -697,7 +661,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 241
+      "subjectRank": 248
     },
     {
       "subject": "Amphimedon",
@@ -706,7 +670,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 331
+      "subjectRank": 335
     },
     {
       "subject": "Amphion",
@@ -715,7 +679,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 78
+      "subjectRank": 81
     },
     {
       "subject": "Amphion",
@@ -724,7 +688,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 78
+      "subjectRank": 81
     },
     {
       "subject": "Amphion",
@@ -733,7 +697,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 78
+      "subjectRank": 81
     },
     {
       "subject": "Amphitrite",
@@ -742,7 +706,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 447
+      "subjectRank": 208
     },
     {
       "subject": "Amphius",
@@ -751,7 +715,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 448
+      "subjectRank": 449
     },
     {
       "subject": "Amycus",
@@ -760,7 +724,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 220
+      "subjectRank": 226
     },
     {
       "subject": "Amycus",
@@ -769,7 +733,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 220
+      "subjectRank": 226
     },
     {
       "subject": "Amythaon",
@@ -778,7 +742,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 242
+      "subjectRank": 249
     },
     {
       "subject": "Ancaeus",
@@ -787,7 +751,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 450
+      "subjectRank": 451
     },
     {
       "subject": "Anchises",
@@ -796,7 +760,7 @@
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 72
+      "subjectRank": 74
     },
     {
       "subject": "Andraemon",
@@ -805,7 +769,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 243
+      "subjectRank": 250
     },
     {
       "subject": "Andraemon",
@@ -814,7 +778,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 243
+      "subjectRank": 250
     },
     {
       "subject": "Androgeus",
@@ -823,7 +787,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 202
+      "subjectRank": 209
     },
     {
       "subject": "Androgeus",
@@ -832,7 +796,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 202
+      "subjectRank": 209
     },
     {
       "subject": "Andromache",
@@ -841,7 +805,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 181
+      "subjectRank": 187
     },
     {
       "subject": "Andromeda",
@@ -850,7 +814,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 147
+      "subjectRank": 151
     },
     {
       "subject": "Anius",
@@ -859,7 +823,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 451
+      "subjectRank": 452
     },
     {
       "subject": "Antaeus",
@@ -868,7 +832,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 814
+      "subjectRank": 817
     },
     {
       "subject": "Antenor",
@@ -877,7 +841,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 9,
       "promotedRowCount": 0,
-      "subjectRank": 116
+      "subjectRank": 119
     },
     {
       "subject": "Anticlia",
@@ -886,7 +850,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 304
+      "subjectRank": 310
     },
     {
       "subject": "Antigone",
@@ -895,7 +859,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 305
+      "subjectRank": 311
     },
     {
       "subject": "Antimachus",
@@ -904,7 +868,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 452
+      "subjectRank": 453
     },
     {
       "subject": "Antiochus",
@@ -931,7 +895,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 221
+      "subjectRank": 227
     },
     {
       "subject": "Antiphus",
@@ -940,7 +904,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 73
+      "subjectRank": 75
     },
     {
       "subject": "Antiphus",
@@ -949,7 +913,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 15,
       "promotedRowCount": 0,
-      "subjectRank": 73
+      "subjectRank": 75
     },
     {
       "subject": "Aphareus",
@@ -958,7 +922,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 148
+      "subjectRank": 152
     },
     {
       "subject": "Aphareus",
@@ -967,7 +931,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 148
+      "subjectRank": 152
     },
     {
       "subject": "Aphidas",
@@ -976,7 +940,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 9,
       "promotedRowCount": 0,
-      "subjectRank": 222
+      "subjectRank": 228
     },
     {
       "subject": "Aphrodite",
@@ -998,19 +962,10 @@
     },
     {
       "subject": "Aphrodite",
-      "claimType": "notable",
-      "candidateRowCount": 4,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 3,
-      "promotedRowCount": 0,
-      "subjectRank": 16
-    },
-    {
-      "subject": "Aphrodite",
       "claimType": "notable_claim",
-      "candidateRowCount": 13,
+      "candidateRowCount": 17,
       "distinctSourceCount": 3,
-      "distinctClaimValueCount": 13,
+      "distinctClaimValueCount": 16,
       "promotedRowCount": 0,
       "subjectRank": 16
     },
@@ -1043,37 +998,10 @@
     },
     {
       "subject": "Apollo",
-      "claimType": "notable",
-      "candidateRowCount": 10,
-      "distinctSourceCount": 4,
-      "distinctClaimValueCount": 10,
-      "promotedRowCount": 0,
-      "subjectRank": 7
-    },
-    {
-      "subject": "Apollo",
-      "claimType": "notable_act",
-      "candidateRowCount": 4,
-      "distinctSourceCount": 3,
-      "distinctClaimValueCount": 4,
-      "promotedRowCount": 0,
-      "subjectRank": 7
-    },
-    {
-      "subject": "Apollo",
       "claimType": "notable_claim",
-      "candidateRowCount": 17,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 17,
-      "promotedRowCount": 0,
-      "subjectRank": 7
-    },
-    {
-      "subject": "Apollo",
-      "claimType": "notable_deed",
-      "candidateRowCount": 35,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 35,
+      "candidateRowCount": 66,
+      "distinctSourceCount": 6,
+      "distinctClaimValueCount": 66,
       "promotedRowCount": 0,
       "subjectRank": 7
     },
@@ -1102,7 +1030,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 274
+      "subjectRank": 283
     },
     {
       "subject": "Archelochus",
@@ -1111,7 +1039,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 332
+      "subjectRank": 336
     },
     {
       "subject": "Aretus",
@@ -1120,7 +1048,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 333
+      "subjectRank": 337
     },
     {
       "subject": "Arges",
@@ -1142,19 +1070,10 @@
     },
     {
       "subject": "Arges",
-      "claimType": "notable",
-      "candidateRowCount": 5,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 5,
-      "promotedRowCount": 0,
-      "subjectRank": 51
-    },
-    {
-      "subject": "Arges",
       "claimType": "notable_claim",
-      "candidateRowCount": 4,
+      "candidateRowCount": 9,
       "distinctSourceCount": 3,
-      "distinctClaimValueCount": 4,
+      "distinctClaimValueCount": 9,
       "promotedRowCount": 0,
       "subjectRank": 51
     },
@@ -1174,7 +1093,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 275
+      "subjectRank": 284
     },
     {
       "subject": "Ariadne",
@@ -1183,7 +1102,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 244
+      "subjectRank": 251
     },
     {
       "subject": "Artemis",
@@ -1192,34 +1111,16 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 29
-    },
-    {
-      "subject": "Artemis",
-      "claimType": "notable",
-      "candidateRowCount": 2,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 2,
-      "promotedRowCount": 0,
-      "subjectRank": 29
+      "subjectRank": 30
     },
     {
       "subject": "Artemis",
       "claimType": "notable_claim",
-      "candidateRowCount": 2,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 2,
+      "candidateRowCount": 7,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 29
-    },
-    {
-      "subject": "Artemis",
-      "claimType": "notable_deed",
-      "candidateRowCount": 3,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 3,
-      "promotedRowCount": 0,
-      "subjectRank": 29
+      "subjectRank": 30
     },
     {
       "subject": "Artemis",
@@ -1228,7 +1129,7 @@
       "distinctSourceCount": 5,
       "distinctClaimValueCount": 9,
       "promotedRowCount": 0,
-      "subjectRank": 29
+      "subjectRank": 30
     },
     {
       "subject": "Ascalaphus",
@@ -1237,7 +1138,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 105
+      "subjectRank": 108
     },
     {
       "subject": "Ascalaphus",
@@ -1246,7 +1147,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 9,
       "promotedRowCount": 0,
-      "subjectRank": 105
+      "subjectRank": 108
     },
     {
       "subject": "Ascalaphus",
@@ -1255,7 +1156,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 105
+      "subjectRank": 108
     },
     {
       "subject": "Ascanius",
@@ -1264,7 +1165,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 518
+      "subjectRank": 519
     },
     {
       "subject": "Asclepius",
@@ -1273,7 +1174,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 276
+      "subjectRank": 88
     },
     {
       "subject": "Asia",
@@ -1282,7 +1183,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 585
+      "subjectRank": 586
     },
     {
       "subject": "Asius",
@@ -1291,7 +1192,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 182
+      "subjectRank": 188
     },
     {
       "subject": "Assaracus",
@@ -1300,7 +1201,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 306
+      "subjectRank": 312
     },
     {
       "subject": "Asteria",
@@ -1309,7 +1210,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 203
+      "subjectRank": 210
     },
     {
       "subject": "Asteropaeus",
@@ -1318,7 +1219,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 366
+      "subjectRank": 368
     },
     {
       "subject": "Astraeus",
@@ -1327,7 +1228,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 223
+      "subjectRank": 229
     },
     {
       "subject": "Astyanax",
@@ -1336,7 +1237,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 204
+      "subjectRank": 211
     },
     {
       "subject": "Astynous",
@@ -1345,16 +1246,16 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 454
+      "subjectRank": 455
     },
     {
       "subject": "Atalanta",
-      "claimType": "notable_deed",
+      "claimType": "notable_claim",
       "candidateRowCount": 3,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 126
+      "subjectRank": 129
     },
     {
       "subject": "Atalanta",
@@ -1363,7 +1264,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 8,
       "promotedRowCount": 0,
-      "subjectRank": 126
+      "subjectRank": 129
     },
     {
       "subject": "Athamas",
@@ -1394,37 +1295,10 @@
     },
     {
       "subject": "Athena",
-      "claimType": "notable",
-      "candidateRowCount": 12,
-      "distinctSourceCount": 3,
-      "distinctClaimValueCount": 12,
-      "promotedRowCount": 0,
-      "subjectRank": 11
-    },
-    {
-      "subject": "Athena",
-      "claimType": "notable_act",
-      "candidateRowCount": 3,
-      "distinctSourceCount": 3,
-      "distinctClaimValueCount": 3,
-      "promotedRowCount": 0,
-      "subjectRank": 11
-    },
-    {
-      "subject": "Athena",
       "claimType": "notable_claim",
-      "candidateRowCount": 4,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 4,
-      "promotedRowCount": 0,
-      "subjectRank": 11
-    },
-    {
-      "subject": "Athena",
-      "claimType": "notable_deed",
-      "candidateRowCount": 4,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 4,
+      "candidateRowCount": 23,
+      "distinctSourceCount": 5,
+      "distinctClaimValueCount": 23,
       "promotedRowCount": 0,
       "subjectRank": 11
     },
@@ -1444,7 +1318,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 95
+      "subjectRank": 97
     },
     {
       "subject": "Atreus",
@@ -1471,7 +1345,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 412
+      "subjectRank": 414
     },
     {
       "subject": "Atymnius",
@@ -1480,7 +1354,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 367
+      "subjectRank": 369
     },
     {
       "subject": "Autolycus",
@@ -1489,7 +1363,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 224
+      "subjectRank": 230
     },
     {
       "subject": "Autonoe",
@@ -1498,7 +1372,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 8,
       "promotedRowCount": 0,
-      "subjectRank": 101
+      "subjectRank": 103
     },
     {
       "subject": "Bellerophon",
@@ -1507,7 +1381,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 149
+      "subjectRank": 153
     },
     {
       "subject": "Bellerophon",
@@ -1516,7 +1390,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 149
+      "subjectRank": 153
     },
     {
       "subject": "Bias",
@@ -1525,7 +1399,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 307
+      "subjectRank": 313
     },
     {
       "subject": "Bienor",
@@ -1534,7 +1408,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 589
+      "subjectRank": 590
     },
     {
       "subject": "Boreas",
@@ -1543,7 +1417,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 137
+      "subjectRank": 142
     },
     {
       "subject": "Boreas",
@@ -1552,7 +1426,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 137
+      "subjectRank": 142
     },
     {
       "subject": "Borus",
@@ -1561,7 +1435,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 520
+      "subjectRank": 521
     },
     {
       "subject": "Briseis",
@@ -1570,7 +1444,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 413
+      "subjectRank": 415
     },
     {
       "subject": "Bromius",
@@ -1579,7 +1453,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 591
+      "subjectRank": 592
     },
     {
       "subject": "Brontes",
@@ -1588,7 +1462,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 368
+      "subjectRank": 370
     },
     {
       "subject": "Bucolion",
@@ -1597,7 +1471,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 334
+      "subjectRank": 338
     },
     {
       "subject": "Busiris",
@@ -1606,7 +1480,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 414
+      "subjectRank": 416
     },
     {
       "subject": "Cadmus",
@@ -1628,19 +1502,10 @@
     },
     {
       "subject": "Cadmus",
-      "claimType": "notable act",
-      "candidateRowCount": 2,
+      "claimType": "notable_claim",
+      "candidateRowCount": 5,
       "distinctSourceCount": 2,
-      "distinctClaimValueCount": 2,
-      "promotedRowCount": 0,
-      "subjectRank": 41
-    },
-    {
-      "subject": "Cadmus",
-      "claimType": "notable_act",
-      "candidateRowCount": 3,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 3,
+      "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
       "subjectRank": 41
     },
@@ -1669,7 +1534,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 127
+      "subjectRank": 130
     },
     {
       "subject": "Caeneus",
@@ -1678,7 +1543,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 127
+      "subjectRank": 130
     },
     {
       "subject": "Caeneus",
@@ -1687,7 +1552,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 127
+      "subjectRank": 130
     },
     {
       "subject": "Calais",
@@ -1696,7 +1561,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 225
+      "subjectRank": 231
     },
     {
       "subject": "Calchas",
@@ -1705,7 +1570,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 676
+      "subjectRank": 678
     },
     {
       "subject": "Callidice",
@@ -1714,7 +1579,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 415
+      "subjectRank": 417
     },
     {
       "subject": "Calliope",
@@ -1723,7 +1588,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 335
+      "subjectRank": 339
     },
     {
       "subject": "Callirrhoe",
@@ -1732,7 +1597,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 183
+      "subjectRank": 154
     },
     {
       "subject": "Callisto",
@@ -1741,7 +1606,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 8,
       "promotedRowCount": 0,
-      "subjectRank": 150
+      "subjectRank": 155
     },
     {
       "subject": "Calydonian Boar",
@@ -1750,7 +1615,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 245
+      "subjectRank": 252
     },
     {
       "subject": "Calypso",
@@ -1759,7 +1624,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 117
+      "subjectRank": 120
     },
     {
       "subject": "Calypso",
@@ -1768,7 +1633,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 117
+      "subjectRank": 120
     },
     {
       "subject": "Capaneus",
@@ -1777,7 +1642,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 416
+      "subjectRank": 418
     },
     {
       "subject": "Capys",
@@ -1786,7 +1651,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 246
+      "subjectRank": 253
     },
     {
       "subject": "Cassandra",
@@ -1795,7 +1660,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 151
+      "subjectRank": 156
     },
     {
       "subject": "Castor",
@@ -1804,7 +1669,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 79
+      "subjectRank": 82
     },
     {
       "subject": "Castor",
@@ -1813,7 +1678,7 @@
       "distinctSourceCount": 5,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 79
+      "subjectRank": 82
     },
     {
       "subject": "Cebriones",
@@ -1822,7 +1687,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 417
+      "subjectRank": 419
     },
     {
       "subject": "Centaurus",
@@ -1831,7 +1696,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 8,
       "promotedRowCount": 0,
-      "subjectRank": 164
+      "subjectRank": 171
     },
     {
       "subject": "Centaurus",
@@ -1840,7 +1705,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 164
+      "subjectRank": 171
     },
     {
       "subject": "Cephalus",
@@ -1849,7 +1714,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 106
+      "subjectRank": 109
     },
     {
       "subject": "Cephalus",
@@ -1858,7 +1723,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 106
+      "subjectRank": 109
     },
     {
       "subject": "Cercyon",
@@ -1867,7 +1732,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 458
+      "subjectRank": 459
     },
     {
       "subject": "Ceto",
@@ -1876,7 +1741,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 247
+      "subjectRank": 254
     },
     {
       "subject": "Ceyx",
@@ -1885,7 +1750,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 113
+      "subjectRank": 116
     },
     {
       "subject": "Ceyx",
@@ -1894,7 +1759,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 113
+      "subjectRank": 116
     },
     {
       "subject": "Charopus",
@@ -1903,7 +1768,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 595
+      "subjectRank": 596
     },
     {
       "subject": "Chersidamas",
@@ -1912,7 +1777,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 682
+      "subjectRank": 684
     },
     {
       "subject": "Chimera",
@@ -1921,16 +1786,16 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 152
+      "subjectRank": 157
     },
     {
       "subject": "Chimera",
-      "claimType": "notable",
+      "claimType": "notable_claim",
       "candidateRowCount": 2,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 152
+      "subjectRank": 157
     },
     {
       "subject": "Chimera",
@@ -1939,7 +1804,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 152
+      "subjectRank": 157
     },
     {
       "subject": "Chione",
@@ -1948,7 +1813,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 336
+      "subjectRank": 340
     },
     {
       "subject": "Chiron",
@@ -1957,7 +1822,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 337
+      "subjectRank": 172
     },
     {
       "subject": "Chiron",
@@ -1966,7 +1831,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 337
+      "subjectRank": 172
     },
     {
       "subject": "Chloris",
@@ -1975,7 +1840,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 184
+      "subjectRank": 189
     },
     {
       "subject": "Chromius",
@@ -1984,7 +1849,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 153
+      "subjectRank": 158
     },
     {
       "subject": "Chromius",
@@ -1993,7 +1858,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 153
+      "subjectRank": 158
     },
     {
       "subject": "Chrysaor",
@@ -2002,7 +1867,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 522
+      "subjectRank": 190
     },
     {
       "subject": "Chryses",
@@ -2011,7 +1876,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 118
+      "subjectRank": 121
     },
     {
       "subject": "Chrysothemis",
@@ -2020,7 +1885,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 372
+      "subjectRank": 374
     },
     {
       "subject": "Cinyras",
@@ -2029,7 +1894,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 185
+      "subjectRank": 191
     },
     {
       "subject": "Circe",
@@ -2042,7 +1907,7 @@
     },
     {
       "subject": "Circe",
-      "claimType": "notable_act",
+      "claimType": "notable_claim",
       "candidateRowCount": 5,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
@@ -2065,7 +1930,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 128
+      "subjectRank": 131
     },
     {
       "subject": "Cleopatra",
@@ -2074,7 +1939,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 128
+      "subjectRank": 131
     },
     {
       "subject": "Clio",
@@ -2083,7 +1948,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 373
+      "subjectRank": 375
     },
     {
       "subject": "Clitus",
@@ -2092,7 +1957,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 374
+      "subjectRank": 376
     },
     {
       "subject": "Clymene",
@@ -2101,7 +1966,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 165
+      "subjectRank": 173
     },
     {
       "subject": "Clytaemnestra",
@@ -2110,7 +1975,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 154
+      "subjectRank": 159
     },
     {
       "subject": "Clytaemnestra",
@@ -2119,7 +1984,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 154
+      "subjectRank": 159
     },
     {
       "subject": "Clytius",
@@ -2128,7 +1993,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 375
+      "subjectRank": 377
     },
     {
       "subject": "Clytius",
@@ -2137,7 +2002,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 375
+      "subjectRank": 377
     },
     {
       "subject": "Coeus",
@@ -2146,7 +2011,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 186
+      "subjectRank": 192
     },
     {
       "subject": "Coronis",
@@ -2155,7 +2020,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 338
+      "subjectRank": 341
     },
     {
       "subject": "Coronis",
@@ -2164,7 +2029,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 338
+      "subjectRank": 341
     },
     {
       "subject": "Coronis",
@@ -2173,7 +2038,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 338
+      "subjectRank": 341
     },
     {
       "subject": "Cottus",
@@ -2191,7 +2056,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 205
+      "subjectRank": 212
     },
     {
       "subject": "Crius",
@@ -2200,7 +2065,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 206
+      "subjectRank": 213
     },
     {
       "subject": "Cronus",
@@ -2227,7 +2092,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 278
+      "subjectRank": 286
     },
     {
       "subject": "Cycnus",
@@ -2236,7 +2101,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 248
+      "subjectRank": 255
     },
     {
       "subject": "Cymo",
@@ -2245,7 +2110,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 459
+      "subjectRank": 460
     },
     {
       "subject": "Cymothoe",
@@ -2254,7 +2119,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 376
+      "subjectRank": 378
     },
     {
       "subject": "Damasichthon",
@@ -2263,7 +2128,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 418
+      "subjectRank": 420
     },
     {
       "subject": "Damastor",
@@ -2272,7 +2137,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 696
+      "subjectRank": 698
     },
     {
       "subject": "Dardanus",
@@ -2281,7 +2146,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 207
+      "subjectRank": 214
     },
     {
       "subject": "Dawn",
@@ -2290,7 +2155,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 155
+      "subjectRank": 160
     },
     {
       "subject": "Dawn",
@@ -2299,7 +2164,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 155
+      "subjectRank": 160
     },
     {
       "subject": "Deianira",
@@ -2308,7 +2173,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 80
+      "subjectRank": 83
     },
     {
       "subject": "Deianira",
@@ -2317,7 +2182,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 80
+      "subjectRank": 83
     },
     {
       "subject": "Deianira",
@@ -2326,7 +2191,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 80
+      "subjectRank": 83
     },
     {
       "subject": "Deiphobus",
@@ -2335,7 +2200,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 138
+      "subjectRank": 143
     },
     {
       "subject": "Deiphobus",
@@ -2344,7 +2209,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 138
+      "subjectRank": 143
     },
     {
       "subject": "Demeter",
@@ -2353,16 +2218,16 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 54
+      "subjectRank": 53
     },
     {
       "subject": "Demeter",
-      "claimType": "notable_deed",
+      "claimType": "notable_claim",
       "candidateRowCount": 11,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 11,
       "promotedRowCount": 0,
-      "subjectRank": 54
+      "subjectRank": 53
     },
     {
       "subject": "Demeter",
@@ -2371,7 +2236,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 8,
       "promotedRowCount": 0,
-      "subjectRank": 54
+      "subjectRank": 53
     },
     {
       "subject": "Democoon",
@@ -2380,7 +2245,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 461
+      "subjectRank": 462
     },
     {
       "subject": "Demoleon",
@@ -2389,7 +2254,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 462
+      "subjectRank": 463
     },
     {
       "subject": "Demophon",
@@ -2398,7 +2263,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 187
+      "subjectRank": 193
     },
     {
       "subject": "Deucalion",
@@ -2407,7 +2272,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 102
+      "subjectRank": 104
     },
     {
       "subject": "Deucalion",
@@ -2416,7 +2281,7 @@
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 102
+      "subjectRank": 104
     },
     {
       "subject": "Diocles",
@@ -2425,7 +2290,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 339
+      "subjectRank": 342
     },
     {
       "subject": "Diomedes",
@@ -2447,19 +2312,10 @@
     },
     {
       "subject": "Diomedes",
-      "claimType": "notable",
-      "candidateRowCount": 4,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 4,
-      "promotedRowCount": 0,
-      "subjectRank": 9
-    },
-    {
-      "subject": "Diomedes",
       "claimType": "notable_claim",
-      "candidateRowCount": 5,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 5,
+      "candidateRowCount": 9,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 9,
       "promotedRowCount": 0,
       "subjectRank": 9
     },
@@ -2479,7 +2335,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 340
+      "subjectRank": 343
     },
     {
       "subject": "Dionysus",
@@ -2492,19 +2348,10 @@
     },
     {
       "subject": "Dionysus",
-      "claimType": "notable",
-      "candidateRowCount": 2,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 2,
-      "promotedRowCount": 0,
-      "subjectRank": 27
-    },
-    {
-      "subject": "Dionysus",
-      "claimType": "notable_act",
-      "candidateRowCount": 2,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 2,
+      "claimType": "notable_claim",
+      "candidateRowCount": 4,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
       "subjectRank": 27
     },
@@ -2533,7 +2380,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 308
+      "subjectRank": 314
     },
     {
       "subject": "Dolon",
@@ -2542,7 +2389,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 308
+      "subjectRank": 314
     },
     {
       "subject": "Doris",
@@ -2551,7 +2398,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 52
+      "subjectRank": 54
     },
     {
       "subject": "Dorycleus",
@@ -2560,7 +2407,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 464
+      "subjectRank": 465
     },
     {
       "subject": "Doto",
@@ -2569,7 +2416,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 465
+      "subjectRank": 466
     },
     {
       "subject": "Dryas",
@@ -2578,7 +2425,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 280
+      "subjectRank": 288
     },
     {
       "subject": "Dryopes",
@@ -2587,7 +2434,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 907
+      "subjectRank": 910
     },
     {
       "subject": "Dynamene",
@@ -2596,7 +2443,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 466
+      "subjectRank": 467
     },
     {
       "subject": "Earth",
@@ -2623,7 +2470,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 600
+      "subjectRank": 601
     },
     {
       "subject": "Echephron",
@@ -2632,7 +2479,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 378
+      "subjectRank": 380
     },
     {
       "subject": "Echidna",
@@ -2641,16 +2488,16 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 166
+      "subjectRank": 161
     },
     {
       "subject": "Echion",
-      "claimType": "notable act",
+      "claimType": "notable_claim",
       "candidateRowCount": 3,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 379
+      "subjectRank": 381
     },
     {
       "subject": "Eione",
@@ -2659,7 +2506,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 420
+      "subjectRank": 422
     },
     {
       "subject": "Elatus",
@@ -2668,7 +2515,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 341
+      "subjectRank": 344
     },
     {
       "subject": "Electra",
@@ -2677,7 +2524,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 9,
       "promotedRowCount": 0,
-      "subjectRank": 281
+      "subjectRank": 289
     },
     {
       "subject": "Elephenor",
@@ -2686,7 +2533,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 226
+      "subjectRank": 232
     },
     {
       "subject": "Elephenor",
@@ -2695,7 +2542,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 226
+      "subjectRank": 232
     },
     {
       "subject": "Emathion",
@@ -2704,7 +2551,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 208
+      "subjectRank": 215
     },
     {
       "subject": "Emathion",
@@ -2713,7 +2560,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 208
+      "subjectRank": 215
     },
     {
       "subject": "Ennomus",
@@ -2731,7 +2578,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 96
+      "subjectRank": 98
     },
     {
       "subject": "Eos",
@@ -2740,7 +2587,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 8,
       "promotedRowCount": 0,
-      "subjectRank": 96
+      "subjectRank": 98
     },
     {
       "subject": "Epaphus",
@@ -2749,7 +2596,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 528
+      "subjectRank": 256
     },
     {
       "subject": "Ephialtes",
@@ -2758,7 +2605,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 282
+      "subjectRank": 290
     },
     {
       "subject": "Ephialtes",
@@ -2767,7 +2614,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 282
+      "subjectRank": 290
     },
     {
       "subject": "Epimetheus",
@@ -2776,7 +2623,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 309
+      "subjectRank": 315
     },
     {
       "subject": "Epistrophus",
@@ -2785,7 +2632,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 310
+      "subjectRank": 316
     },
     {
       "subject": "Erato",
@@ -2794,7 +2641,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 227
+      "subjectRank": 233
     },
     {
       "subject": "Erechtheus",
@@ -2803,7 +2650,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 156
+      "subjectRank": 162
     },
     {
       "subject": "Erichthonius",
@@ -2812,7 +2659,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 10,
       "promotedRowCount": 0,
-      "subjectRank": 119
+      "subjectRank": 122
     },
     {
       "subject": "Eriphyle",
@@ -2821,7 +2668,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 249
+      "subjectRank": 257
     },
     {
       "subject": "Eros",
@@ -2830,7 +2677,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 605
+      "subjectRank": 606
     },
     {
       "subject": "Eucrante",
@@ -2839,7 +2686,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 467
+      "subjectRank": 468
     },
     {
       "subject": "Eulimene",
@@ -2848,7 +2695,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 468
+      "subjectRank": 469
     },
     {
       "subject": "Eumelus",
@@ -2857,7 +2704,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 189
+      "subjectRank": 195
     },
     {
       "subject": "Euneus",
@@ -2866,7 +2713,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 342
+      "subjectRank": 345
     },
     {
       "subject": "Eunice",
@@ -2875,7 +2722,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 469
+      "subjectRank": 470
     },
     {
       "subject": "Euphemus",
@@ -2884,7 +2731,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 531
+      "subjectRank": 530
     },
     {
       "subject": "Euphorbus",
@@ -2893,7 +2740,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 157
+      "subjectRank": 163
     },
     {
       "subject": "Euphorbus",
@@ -2902,7 +2749,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 157
+      "subjectRank": 163
     },
     {
       "subject": "Europa",
@@ -2911,7 +2758,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 139
+      "subjectRank": 132
     },
     {
       "subject": "Euryalus",
@@ -2920,7 +2767,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 250
+      "subjectRank": 258
     },
     {
       "subject": "Eurybia",
@@ -2929,7 +2776,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 210
+      "subjectRank": 217
     },
     {
       "subject": "Eurydice",
@@ -2938,7 +2785,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 97
+      "subjectRank": 99
     },
     {
       "subject": "Eurydice",
@@ -2947,7 +2794,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 97
+      "subjectRank": 99
     },
     {
       "subject": "Eurydice",
@@ -2956,16 +2803,16 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 97
+      "subjectRank": 99
     },
     {
       "subject": "Eurylochus",
-      "claimType": "notable_act",
+      "claimType": "notable_claim",
       "candidateRowCount": 2,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 533
+      "subjectRank": 532
     },
     {
       "subject": "Eurymedon",
@@ -2974,7 +2821,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 283
+      "subjectRank": 291
     },
     {
       "subject": "Eurymedon",
@@ -2983,7 +2830,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 283
+      "subjectRank": 291
     },
     {
       "subject": "Eurynome",
@@ -2992,7 +2839,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 470
+      "subjectRank": 471
     },
     {
       "subject": "Eurypylus",
@@ -3001,7 +2848,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 68
+      "subjectRank": 69
     },
     {
       "subject": "Eurypylus",
@@ -3010,16 +2857,16 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 13,
       "promotedRowCount": 0,
-      "subjectRank": 68
+      "subjectRank": 69
     },
     {
       "subject": "Eurystheus",
-      "claimType": "notable",
+      "claimType": "notable_claim",
       "candidateRowCount": 2,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 190
+      "subjectRank": 196
     },
     {
       "subject": "Eurystheus",
@@ -3028,7 +2875,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 190
+      "subjectRank": 196
     },
     {
       "subject": "Eurytion",
@@ -3037,7 +2884,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 421
+      "subjectRank": 423
     },
     {
       "subject": "Eurytus",
@@ -3046,7 +2893,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 535
+      "subjectRank": 534
     },
     {
       "subject": "Euterpe",
@@ -3055,7 +2902,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 380
+      "subjectRank": 382
     },
     {
       "subject": "Evenus",
@@ -3064,7 +2911,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 343
+      "subjectRank": 346
     },
     {
       "subject": "Galatea",
@@ -3073,7 +2920,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 167
+      "subjectRank": 174
     },
     {
       "subject": "Ganymede",
@@ -3082,16 +2929,16 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 168
+      "subjectRank": 175
     },
     {
       "subject": "Ganymede",
-      "claimType": "notable",
+      "claimType": "notable_claim",
       "candidateRowCount": 2,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 168
+      "subjectRank": 175
     },
     {
       "subject": "Ganymede",
@@ -3100,7 +2947,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 168
+      "subjectRank": 175
     },
     {
       "subject": "Geryon",
@@ -3109,7 +2956,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 191
+      "subjectRank": 164
     },
     {
       "subject": "Geryon",
@@ -3118,7 +2965,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 191
+      "subjectRank": 164
     },
     {
       "subject": "Giants",
@@ -3127,7 +2974,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 716
+      "subjectRank": 719
     },
     {
       "subject": "Glauce",
@@ -3136,7 +2983,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 381
+      "subjectRank": 383
     },
     {
       "subject": "Glauconome",
@@ -3145,7 +2992,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 472
+      "subjectRank": 473
     },
     {
       "subject": "Glaucus",
@@ -3158,7 +3005,7 @@
     },
     {
       "subject": "Glaucus",
-      "claimType": "notable act",
+      "claimType": "notable_claim",
       "candidateRowCount": 2,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
@@ -3181,7 +3028,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 228
+      "subjectRank": 234
     },
     {
       "subject": "Gorgons",
@@ -3190,7 +3037,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 607
+      "subjectRank": 608
     },
     {
       "subject": "Gorgythion",
@@ -3199,7 +3046,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 383
+      "subjectRank": 385
     },
     {
       "subject": "Gyes",
@@ -3208,7 +3055,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 536
+      "subjectRank": 535
     },
     {
       "subject": "Hades",
@@ -3221,19 +3068,10 @@
     },
     {
       "subject": "Hades",
-      "claimType": "notable",
-      "candidateRowCount": 2,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 2,
-      "promotedRowCount": 0,
-      "subjectRank": 37
-    },
-    {
-      "subject": "Hades",
-      "claimType": "notable_deed",
-      "candidateRowCount": 3,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 3,
+      "claimType": "notable_claim",
+      "candidateRowCount": 5,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
       "subjectRank": 37
     },
@@ -3253,7 +3091,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 473
+      "subjectRank": 474
     },
     {
       "subject": "Halie",
@@ -3262,7 +3100,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 474
+      "subjectRank": 475
     },
     {
       "subject": "Halius",
@@ -3271,7 +3109,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 609
+      "subjectRank": 536
     },
     {
       "subject": "Harmonia",
@@ -3280,7 +3118,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 81
+      "subjectRank": 84
     },
     {
       "subject": "Hebe",
@@ -3289,7 +3127,7 @@
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 129
+      "subjectRank": 133
     },
     {
       "subject": "Hecate",
@@ -3298,7 +3136,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 251
+      "subjectRank": 259
     },
     {
       "subject": "Hector",
@@ -3320,7 +3158,7 @@
     },
     {
       "subject": "Hector",
-      "claimType": "notable",
+      "claimType": "notable_claim",
       "candidateRowCount": 18,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 18,
@@ -3343,7 +3181,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 9,
       "promotedRowCount": 0,
-      "subjectRank": 91
+      "subjectRank": 95
     },
     {
       "subject": "Heleus",
@@ -3352,7 +3190,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 107
+      "subjectRank": 110
     },
     {
       "subject": "Helios",
@@ -3361,7 +3199,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 311
+      "subjectRank": null
     },
     {
       "subject": "Helios",
@@ -3370,7 +3208,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 311
+      "subjectRank": null
     },
     {
       "subject": "Hellen",
@@ -3392,19 +3230,10 @@
     },
     {
       "subject": "Hellen",
-      "claimType": "notable",
-      "candidateRowCount": 4,
-      "distinctSourceCount": 3,
-      "distinctClaimValueCount": 4,
-      "promotedRowCount": 0,
-      "subjectRank": 28
-    },
-    {
-      "subject": "Hellen",
       "claimType": "notable_claim",
-      "candidateRowCount": 3,
+      "candidateRowCount": 7,
       "distinctSourceCount": 3,
-      "distinctClaimValueCount": 3,
+      "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
       "subjectRank": 28
     },
@@ -3428,28 +3257,10 @@
     },
     {
       "subject": "Hephaestus",
-      "claimType": "notable",
-      "candidateRowCount": 5,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 5,
-      "promotedRowCount": 0,
-      "subjectRank": 42
-    },
-    {
-      "subject": "Hephaestus",
-      "claimType": "notable_act",
-      "candidateRowCount": 2,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 2,
-      "promotedRowCount": 0,
-      "subjectRank": 42
-    },
-    {
-      "subject": "Hephaestus",
       "claimType": "notable_claim",
-      "candidateRowCount": 5,
-      "distinctSourceCount": 3,
-      "distinctClaimValueCount": 5,
+      "candidateRowCount": 12,
+      "distinctSourceCount": 5,
+      "distinctClaimValueCount": 12,
       "promotedRowCount": 0,
       "subjectRank": 42
     },
@@ -3482,19 +3293,10 @@
     },
     {
       "subject": "Hera",
-      "claimType": "notable_act",
-      "candidateRowCount": 4,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 4,
-      "promotedRowCount": 0,
-      "subjectRank": 18
-    },
-    {
-      "subject": "Hera",
       "claimType": "notable_claim",
-      "candidateRowCount": 10,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 10,
+      "candidateRowCount": 14,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 14,
       "promotedRowCount": 0,
       "subjectRank": 18
     },
@@ -3528,27 +3330,9 @@
     {
       "subject": "Heracles",
       "claimType": "notable_claim",
-      "candidateRowCount": 26,
+      "candidateRowCount": 33,
       "distinctSourceCount": 4,
-      "distinctClaimValueCount": 26,
-      "promotedRowCount": 0,
-      "subjectRank": 4
-    },
-    {
-      "subject": "Heracles",
-      "claimType": "notable_deed",
-      "candidateRowCount": 4,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 4,
-      "promotedRowCount": 0,
-      "subjectRank": 4
-    },
-    {
-      "subject": "Heracles",
-      "claimType": "notable_event",
-      "candidateRowCount": 3,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 3,
+      "distinctClaimValueCount": 33,
       "promotedRowCount": 0,
       "subjectRank": 4
     },
@@ -3568,7 +3352,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 14
+      "subjectRank": 15
     },
     {
       "subject": "Hermes",
@@ -3577,34 +3361,16 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 14
-    },
-    {
-      "subject": "Hermes",
-      "claimType": "notable",
-      "candidateRowCount": 3,
-      "distinctSourceCount": 3,
-      "distinctClaimValueCount": 3,
-      "promotedRowCount": 0,
-      "subjectRank": 14
-    },
-    {
-      "subject": "Hermes",
-      "claimType": "notable_act",
-      "candidateRowCount": 6,
-      "distinctSourceCount": 3,
-      "distinctClaimValueCount": 6,
-      "promotedRowCount": 0,
-      "subjectRank": 14
+      "subjectRank": 15
     },
     {
       "subject": "Hermes",
       "claimType": "notable_claim",
-      "candidateRowCount": 4,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 4,
+      "candidateRowCount": 13,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 13,
       "promotedRowCount": 0,
-      "subjectRank": 14
+      "subjectRank": 15
     },
     {
       "subject": "Hermes",
@@ -3613,7 +3379,7 @@
       "distinctSourceCount": 6,
       "distinctClaimValueCount": 19,
       "promotedRowCount": 0,
-      "subjectRank": 14
+      "subjectRank": 15
     },
     {
       "subject": "Hermes",
@@ -3622,7 +3388,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 14
+      "subjectRank": 15
     },
     {
       "subject": "Hermione",
@@ -3631,7 +3397,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 284
+      "subjectRank": 292
     },
     {
       "subject": "Hermus",
@@ -3649,7 +3415,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 252
+      "subjectRank": 261
     },
     {
       "subject": "Hesione",
@@ -3658,7 +3424,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 344
+      "subjectRank": 347
     },
     {
       "subject": "Hestia",
@@ -3667,7 +3433,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 229
+      "subjectRank": 235
     },
     {
       "subject": "Hicetaon",
@@ -3676,7 +3442,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 422
+      "subjectRank": 424
     },
     {
       "subject": "Hippasus",
@@ -3685,7 +3451,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 476
+      "subjectRank": 477
     },
     {
       "subject": "Hippodamas",
@@ -3694,7 +3460,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 169
+      "subjectRank": 176
     },
     {
       "subject": "Hippolytus",
@@ -3703,7 +3469,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 230
+      "subjectRank": 236
     },
     {
       "subject": "Hippolytus",
@@ -3712,7 +3478,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 230
+      "subjectRank": 236
     },
     {
       "subject": "Hipponoe",
@@ -3721,7 +3487,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 477
+      "subjectRank": 478
     },
     {
       "subject": "Hippothoe",
@@ -3730,7 +3496,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 345
+      "subjectRank": 348
     },
     {
       "subject": "Hippothous",
@@ -3739,7 +3505,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 286
+      "subjectRank": 293
     },
     {
       "subject": "Hyacinth",
@@ -3748,7 +3514,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 287
+      "subjectRank": 294
     },
     {
       "subject": "Hydra",
@@ -3757,7 +3523,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 253
+      "subjectRank": 263
     },
     {
       "subject": "Hydra",
@@ -3766,7 +3532,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 253
+      "subjectRank": 263
     },
     {
       "subject": "Hyperion",
@@ -3775,7 +3541,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 86
+      "subjectRank": 89
     },
     {
       "subject": "Hyperion",
@@ -3784,7 +3550,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 86
+      "subjectRank": 89
     },
     {
       "subject": "Hypirochus",
@@ -3793,7 +3559,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 478
+      "subjectRank": 479
     },
     {
       "subject": "Ialmenus",
@@ -3802,7 +3568,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 312
+      "subjectRank": 317
     },
     {
       "subject": "Ianira",
@@ -3820,7 +3586,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 424
+      "subjectRank": 426
     },
     {
       "subject": "Iapetus",
@@ -3829,7 +3595,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 130
+      "subjectRank": 134
     },
     {
       "subject": "Iapetus",
@@ -3838,7 +3604,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 130
+      "subjectRank": 134
     },
     {
       "subject": "Iasion",
@@ -3847,7 +3613,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 346
+      "subjectRank": 349
     },
     {
       "subject": "Iasus",
@@ -3856,7 +3622,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 313
+      "subjectRank": 295
     },
     {
       "subject": "Icarius",
@@ -3865,7 +3631,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 87
+      "subjectRank": 90
     },
     {
       "subject": "Icarius",
@@ -3874,7 +3640,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 87
+      "subjectRank": 90
     },
     {
       "subject": "Idas",
@@ -3883,7 +3649,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 120
+      "subjectRank": 123
     },
     {
       "subject": "Idas",
@@ -3892,7 +3658,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 120
+      "subjectRank": 123
     },
     {
       "subject": "Idomeneus",
@@ -3901,7 +3667,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 88
+      "subjectRank": 91
     },
     {
       "subject": "Ilioneus",
@@ -3910,7 +3676,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 288
+      "subjectRank": 296
     },
     {
       "subject": "Ilioneus",
@@ -3919,7 +3685,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 288
+      "subjectRank": 296
     },
     {
       "subject": "Ilus",
@@ -3928,7 +3694,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 314
+      "subjectRank": 318
     },
     {
       "subject": "Imbrus",
@@ -3937,7 +3703,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 254
+      "subjectRank": 264
     },
     {
       "subject": "Imbrus",
@@ -3946,7 +3712,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 254
+      "subjectRank": 264
     },
     {
       "subject": "Imbrus",
@@ -3955,7 +3721,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 254
+      "subjectRank": 264
     },
     {
       "subject": "Ino",
@@ -3964,7 +3730,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 58
+      "subjectRank": 57
     },
     {
       "subject": "Ino",
@@ -3973,7 +3739,7 @@
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 58
+      "subjectRank": 57
     },
     {
       "subject": "Ino",
@@ -3982,7 +3748,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 58
+      "subjectRank": 57
     },
     {
       "subject": "Io",
@@ -3991,7 +3757,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 192
+      "subjectRank": 166
     },
     {
       "subject": "Io",
@@ -4000,7 +3766,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 8,
       "promotedRowCount": 10,
-      "subjectRank": 192
+      "subjectRank": 166
     },
     {
       "subject": "Iphianassa",
@@ -4009,7 +3775,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 384
+      "subjectRank": 386
     },
     {
       "subject": "Iphiclus",
@@ -4018,7 +3784,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 255
+      "subjectRank": 265
     },
     {
       "subject": "Iphigenia",
@@ -4027,7 +3793,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 256
+      "subjectRank": 266
     },
     {
       "subject": "Iphigenia",
@@ -4036,7 +3802,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 256
+      "subjectRank": 266
     },
     {
       "subject": "Iphinous",
@@ -4045,16 +3811,16 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 479
+      "subjectRank": 480
     },
     {
       "subject": "Iphis",
-      "claimType": "notable",
+      "claimType": "notable_claim",
       "candidateRowCount": 3,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 211
+      "subjectRank": 218
     },
     {
       "subject": "Iphis",
@@ -4063,7 +3829,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 211
+      "subjectRank": 218
     },
     {
       "subject": "Iphitus",
@@ -4072,7 +3838,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 121
+      "subjectRank": 124
     },
     {
       "subject": "Iphitus",
@@ -4081,7 +3847,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 121
+      "subjectRank": 124
     },
     {
       "subject": "Iris",
@@ -4090,7 +3856,7 @@
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 170
+      "subjectRank": 177
     },
     {
       "subject": "Ismenus",
@@ -4099,7 +3865,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 385
+      "subjectRank": 387
     },
     {
       "subject": "Itys",
@@ -4108,7 +3874,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 108
+      "subjectRank": 111
     },
     {
       "subject": "Itys",
@@ -4117,7 +3883,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 108
+      "subjectRank": 111
     },
     {
       "subject": "Ixion",
@@ -4126,7 +3892,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 315
+      "subjectRank": 319
     },
     {
       "subject": "Ixion",
@@ -4135,7 +3901,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 315
+      "subjectRank": 319
     },
     {
       "subject": "Jason",
@@ -4144,16 +3910,16 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 69
+      "subjectRank": 70
     },
     {
       "subject": "Jason",
-      "claimType": "notable",
+      "claimType": "notable_claim",
       "candidateRowCount": 4,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 69
+      "subjectRank": 70
     },
     {
       "subject": "Jason",
@@ -4162,7 +3928,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 69
+      "subjectRank": 70
     },
     {
       "subject": "Laertes",
@@ -4171,7 +3937,7 @@
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 53
+      "subjectRank": 52
     },
     {
       "subject": "Lampus",
@@ -4180,7 +3946,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 480
+      "subjectRank": 481
     },
     {
       "subject": "Laodamas",
@@ -4189,7 +3955,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 289
+      "subjectRank": 297
     },
     {
       "subject": "Laodamas",
@@ -4198,7 +3964,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 289
+      "subjectRank": 297
     },
     {
       "subject": "Laodamia",
@@ -4207,7 +3973,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 316
+      "subjectRank": 320
     },
     {
       "subject": "Laodamia",
@@ -4216,7 +3982,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 316
+      "subjectRank": 320
     },
     {
       "subject": "Laodice",
@@ -4225,7 +3991,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 212
+      "subjectRank": 219
     },
     {
       "subject": "Laodocus",
@@ -4234,7 +4000,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 729
+      "subjectRank": 732
     },
     {
       "subject": "Laomedon",
@@ -4243,7 +4009,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 82
+      "subjectRank": 85
     },
     {
       "subject": "Latinus",
@@ -4252,7 +4018,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 213
+      "subjectRank": 220
     },
     {
       "subject": "Latona",
@@ -4261,7 +4027,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 231
+      "subjectRank": 237
     },
     {
       "subject": "Learchus",
@@ -4270,7 +4036,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 171
+      "subjectRank": 178
     },
     {
       "subject": "Learchus",
@@ -4279,7 +4045,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 171
+      "subjectRank": 178
     },
     {
       "subject": "Leitus",
@@ -4297,7 +4063,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 348
+      "subjectRank": 351
     },
     {
       "subject": "Leto",
@@ -4306,7 +4072,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 317
+      "subjectRank": 321
     },
     {
       "subject": "Leucus",
@@ -4315,7 +4081,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 425
+      "subjectRank": 427
     },
     {
       "subject": "Liocritus",
@@ -4324,7 +4090,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 349
+      "subjectRank": 352
     },
     {
       "subject": "Liocritus",
@@ -4333,7 +4099,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 349
+      "subjectRank": 352
     },
     {
       "subject": "Lycaon",
@@ -4369,7 +4135,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 193
+      "subjectRank": 197
     },
     {
       "subject": "Lycurgus",
@@ -4378,7 +4144,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 193
+      "subjectRank": 197
     },
     {
       "subject": "Lycus",
@@ -4387,7 +4153,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 318
+      "subjectRank": 322
     },
     {
       "subject": "Lynceus",
@@ -4396,7 +4162,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 172
+      "subjectRank": 179
     },
     {
       "subject": "Lysianassa",
@@ -4405,7 +4171,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 386
+      "subjectRank": 482
     },
     {
       "subject": "Machaon",
@@ -4414,7 +4180,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 387
+      "subjectRank": 388
     },
     {
       "subject": "Maia",
@@ -4423,7 +4189,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 194
+      "subjectRank": 198
     },
     {
       "subject": "Manto",
@@ -4450,7 +4216,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 1026
+      "subjectRank": 1030
     },
     {
       "subject": "Mecisteus",
@@ -4459,7 +4225,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 131
+      "subjectRank": 135
     },
     {
       "subject": "Mecisteus",
@@ -4468,7 +4234,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 131
+      "subjectRank": 135
     },
     {
       "subject": "Medea",
@@ -4477,7 +4243,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 32
+      "subjectRank": 33
     },
     {
       "subject": "Medea",
@@ -4486,16 +4252,16 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 32
+      "subjectRank": 33
     },
     {
       "subject": "Medea",
-      "claimType": "notable_act",
+      "claimType": "notable_claim",
       "candidateRowCount": 15,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 15,
       "promotedRowCount": 0,
-      "subjectRank": 32
+      "subjectRank": 33
     },
     {
       "subject": "Medea",
@@ -4504,7 +4270,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 32
+      "subjectRank": 33
     },
     {
       "subject": "Medesicaste",
@@ -4513,7 +4279,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 481
+      "subjectRank": 483
     },
     {
       "subject": "Medus",
@@ -4522,7 +4288,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 92
+      "subjectRank": 65
     },
     {
       "subject": "Medus",
@@ -4531,7 +4297,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 10,
       "promotedRowCount": 0,
-      "subjectRank": 92
+      "subjectRank": 65
     },
     {
       "subject": "Megaera",
@@ -4549,7 +4315,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 8,
       "promotedRowCount": 0,
-      "subjectRank": 232
+      "subjectRank": 238
     },
     {
       "subject": "Meges",
@@ -4558,7 +4324,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 233
+      "subjectRank": 239
     },
     {
       "subject": "Melampus",
@@ -4567,7 +4333,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 290
+      "subjectRank": 298
     },
     {
       "subject": "Melanippus",
@@ -4576,7 +4342,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 257
+      "subjectRank": 267
     },
     {
       "subject": "Melanippus",
@@ -4585,7 +4351,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 257
+      "subjectRank": 267
     },
     {
       "subject": "Melanthius",
@@ -4594,7 +4360,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 483
+      "subjectRank": 485
     },
     {
       "subject": "Melas",
@@ -4603,7 +4369,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 258
+      "subjectRank": 268
     },
     {
       "subject": "Meleager",
@@ -4625,7 +4391,7 @@
     },
     {
       "subject": "Meleager",
-      "claimType": "notable_deed",
+      "claimType": "notable_claim",
       "candidateRowCount": 2,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
@@ -4648,7 +4414,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 484
+      "subjectRank": 486
     },
     {
       "subject": "Melpomene",
@@ -4657,7 +4423,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 259
+      "subjectRank": 269
     },
     {
       "subject": "Memnon",
@@ -4666,7 +4432,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 98
+      "subjectRank": 100
     },
     {
       "subject": "Memnon",
@@ -4675,7 +4441,7 @@
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 98
+      "subjectRank": 100
     },
     {
       "subject": "Menelaus",
@@ -4706,19 +4472,10 @@
     },
     {
       "subject": "Menelaus",
-      "claimType": "notable",
-      "candidateRowCount": 7,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 6,
-      "promotedRowCount": 0,
-      "subjectRank": 12
-    },
-    {
-      "subject": "Menelaus",
       "claimType": "notable_claim",
-      "candidateRowCount": 9,
+      "candidateRowCount": 16,
       "distinctSourceCount": 2,
-      "distinctClaimValueCount": 9,
+      "distinctClaimValueCount": 15,
       "promotedRowCount": 0,
       "subjectRank": 12
     },
@@ -4738,7 +4495,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 10,
       "promotedRowCount": 0,
-      "subjectRank": 140
+      "subjectRank": 144
     },
     {
       "subject": "Menoetius",
@@ -4747,7 +4504,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 89
+      "subjectRank": 92
     },
     {
       "subject": "Menoetius",
@@ -4756,7 +4513,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 89
+      "subjectRank": 92
     },
     {
       "subject": "Mentor",
@@ -4765,7 +4522,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 485
+      "subjectRank": 487
     },
     {
       "subject": "Mermerus",
@@ -4774,7 +4531,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 291
+      "subjectRank": 299
     },
     {
       "subject": "Mermerus",
@@ -4783,7 +4540,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 291
+      "subjectRank": 299
     },
     {
       "subject": "Merops",
@@ -4792,7 +4549,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 486
+      "subjectRank": 488
     },
     {
       "subject": "Mesthles",
@@ -4801,7 +4558,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 622
+      "subjectRank": 623
     },
     {
       "subject": "Metis",
@@ -4810,7 +4567,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 320
+      "subjectRank": 324
     },
     {
       "subject": "Miletus",
@@ -4819,7 +4576,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 350
+      "subjectRank": 353
     },
     {
       "subject": "Minos",
@@ -4846,7 +4603,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 487
+      "subjectRank": 489
     },
     {
       "subject": "Mnemosyne",
@@ -4855,7 +4612,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 74
+      "subjectRank": 76
     },
     {
       "subject": "Molus",
@@ -4864,7 +4621,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 389
+      "subjectRank": 390
     },
     {
       "subject": "Mopsus",
@@ -4873,7 +4630,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 292
+      "subjectRank": 300
     },
     {
       "subject": "Muses",
@@ -4882,7 +4639,7 @@
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 260
+      "subjectRank": 270
     },
     {
       "subject": "Mygdon",
@@ -4891,7 +4648,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 351
+      "subjectRank": 354
     },
     {
       "subject": "Mygdon",
@@ -4900,7 +4657,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 351
+      "subjectRank": 354
     },
     {
       "subject": "Nastes",
@@ -4909,7 +4666,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 426
+      "subjectRank": 428
     },
     {
       "subject": "Nausicaa",
@@ -4918,7 +4675,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 261
+      "subjectRank": 240
     },
     {
       "subject": "Nausithous",
@@ -4927,7 +4684,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 352
+      "subjectRank": 325
     },
     {
       "subject": "Neleus",
@@ -4963,7 +4720,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 353
+      "subjectRank": 355
     },
     {
       "subject": "Nemean Lion",
@@ -4972,7 +4729,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 353
+      "subjectRank": 355
     },
     {
       "subject": "Neoptolemus",
@@ -4981,7 +4738,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 109
+      "subjectRank": 112
     },
     {
       "subject": "Neoptolemus",
@@ -4990,7 +4747,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 109
+      "subjectRank": 112
     },
     {
       "subject": "Neoptolemus",
@@ -4999,7 +4756,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 109
+      "subjectRank": 112
     },
     {
       "subject": "Nereus",
@@ -5026,7 +4783,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 293
+      "subjectRank": 199
     },
     {
       "subject": "Nessus",
@@ -5035,7 +4792,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 293
+      "subjectRank": 199
     },
     {
       "subject": "Nestor",
@@ -5080,11 +4837,11 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 427
+      "subjectRank": 429
     },
     {
       "subject": "Niobe",
-      "claimType": "notable",
+      "claimType": "notable_claim",
       "candidateRowCount": 2,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
@@ -5107,7 +4864,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 354
+      "subjectRank": 356
     },
     {
       "subject": "Nisus",
@@ -5116,7 +4873,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 262
+      "subjectRank": 271
     },
     {
       "subject": "Nisus",
@@ -5125,7 +4882,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 262
+      "subjectRank": 271
     },
     {
       "subject": "Nymphs",
@@ -5143,7 +4900,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 30
+      "subjectRank": 29
     },
     {
       "subject": "Oceanus",
@@ -5152,7 +4909,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 30
+      "subjectRank": 29
     },
     {
       "subject": "Ocypete",
@@ -5170,7 +4927,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 489
+      "subjectRank": 491
     },
     {
       "subject": "Odysseus",
@@ -5201,46 +4958,10 @@
     },
     {
       "subject": "Odysseus",
-      "claimType": "notable",
-      "candidateRowCount": 51,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 51,
-      "promotedRowCount": 0,
-      "subjectRank": 1
-    },
-    {
-      "subject": "Odysseus",
-      "claimType": "notable claim",
-      "candidateRowCount": 7,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 7,
-      "promotedRowCount": 0,
-      "subjectRank": 1
-    },
-    {
-      "subject": "Odysseus",
-      "claimType": "notable_act",
-      "candidateRowCount": 3,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 3,
-      "promotedRowCount": 0,
-      "subjectRank": 1
-    },
-    {
-      "subject": "Odysseus",
       "claimType": "notable_claim",
-      "candidateRowCount": 58,
-      "distinctSourceCount": 3,
-      "distinctClaimValueCount": 58,
-      "promotedRowCount": 0,
-      "subjectRank": 1
-    },
-    {
-      "subject": "Odysseus",
-      "claimType": "notable_deed",
-      "candidateRowCount": 5,
-      "distinctSourceCount": 3,
-      "distinctClaimValueCount": 5,
+      "candidateRowCount": 124,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 124,
       "promotedRowCount": 0,
       "subjectRank": 1
     },
@@ -5269,7 +4990,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 355
+      "subjectRank": 357
     },
     {
       "subject": "Oeneus",
@@ -5278,7 +4999,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 66
+      "subjectRank": 67
     },
     {
       "subject": "Oeneus",
@@ -5287,7 +5008,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 8,
       "promotedRowCount": 0,
-      "subjectRank": 66
+      "subjectRank": 67
     },
     {
       "subject": "Oenomaus",
@@ -5296,7 +5017,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 8,
       "promotedRowCount": 0,
-      "subjectRank": 392
+      "subjectRank": 393
     },
     {
       "subject": "Oicles",
@@ -5305,7 +5026,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 490
+      "subjectRank": 492
     },
     {
       "subject": "Onetor",
@@ -5314,7 +5035,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 747
+      "subjectRank": 749
     },
     {
       "subject": "Opheltes",
@@ -5323,7 +5044,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 428
+      "subjectRank": 430
     },
     {
       "subject": "Orestes",
@@ -5332,7 +5053,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 67
+      "subjectRank": 68
     },
     {
       "subject": "Orestes",
@@ -5341,7 +5062,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 67
+      "subjectRank": 68
     },
     {
       "subject": "Orion",
@@ -5350,7 +5071,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 321
+      "subjectRank": 326
     },
     {
       "subject": "Orion",
@@ -5359,7 +5080,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 321
+      "subjectRank": 326
     },
     {
       "subject": "Orithyia",
@@ -5368,7 +5089,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 173
+      "subjectRank": 180
     },
     {
       "subject": "Orpheus",
@@ -5377,7 +5098,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 83
+      "subjectRank": 86
     },
     {
       "subject": "Orpheus",
@@ -5386,7 +5107,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 83
+      "subjectRank": 86
     },
     {
       "subject": "Orpheus",
@@ -5395,7 +5116,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 83
+      "subjectRank": 86
     },
     {
       "subject": "Orsilochus",
@@ -5404,7 +5125,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 195
+      "subjectRank": 200
     },
     {
       "subject": "Orsilochus",
@@ -5413,7 +5134,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 195
+      "subjectRank": 200
     },
     {
       "subject": "Orthus",
@@ -5422,7 +5143,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 263
+      "subjectRank": 272
     },
     {
       "subject": "Orthus",
@@ -5431,7 +5152,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 263
+      "subjectRank": 272
     },
     {
       "subject": "Orus",
@@ -5449,7 +5170,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 196
+      "subjectRank": 201
     },
     {
       "subject": "Otus",
@@ -5458,7 +5179,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 196
+      "subjectRank": 201
     },
     {
       "subject": "Ouranos",
@@ -5476,7 +5197,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 491
+      "subjectRank": 493
     },
     {
       "subject": "Palamedes",
@@ -5485,7 +5206,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 174
+      "subjectRank": 181
     },
     {
       "subject": "Palamedes",
@@ -5494,7 +5215,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 174
+      "subjectRank": 181
     },
     {
       "subject": "Pallas",
@@ -5503,7 +5224,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 122
+      "subjectRank": 125
     },
     {
       "subject": "Pallas",
@@ -5512,7 +5233,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 122
+      "subjectRank": 125
     },
     {
       "subject": "Pammon",
@@ -5521,7 +5242,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 492
+      "subjectRank": 494
     },
     {
       "subject": "Pan",
@@ -5530,16 +5251,16 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 234
+      "subjectRank": 241
     },
     {
       "subject": "Pandarus",
-      "claimType": "notable",
+      "claimType": "notable_claim",
       "candidateRowCount": 3,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 214
+      "subjectRank": 221
     },
     {
       "subject": "Pandarus",
@@ -5548,7 +5269,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 214
+      "subjectRank": 221
     },
     {
       "subject": "Pandion",
@@ -5557,7 +5278,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 235
+      "subjectRank": 242
     },
     {
       "subject": "Pandrosus",
@@ -5566,7 +5287,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 429
+      "subjectRank": 431
     },
     {
       "subject": "Panope",
@@ -5575,7 +5296,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 430
+      "subjectRank": 432
     },
     {
       "subject": "Paris",
@@ -5597,7 +5318,7 @@
     },
     {
       "subject": "Paris",
-      "claimType": "notable",
+      "claimType": "notable_claim",
       "candidateRowCount": 5,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
@@ -5620,7 +5341,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 431
+      "subjectRank": 433
     },
     {
       "subject": "Patroclus",
@@ -5647,7 +5368,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 322
+      "subjectRank": 136
     },
     {
       "subject": "Peiraeus",
@@ -5656,7 +5377,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 753
+      "subjectRank": 755
     },
     {
       "subject": "Pelegon",
@@ -5665,7 +5386,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 630
+      "subjectRank": 631
     },
     {
       "subject": "Peleus",
@@ -5688,18 +5409,9 @@
     {
       "subject": "Peleus",
       "claimType": "notable_claim",
-      "candidateRowCount": 3,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 3,
-      "promotedRowCount": 0,
-      "subjectRank": 23
-    },
-    {
-      "subject": "Peleus",
-      "claimType": "notable_deed",
-      "candidateRowCount": 3,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 3,
+      "candidateRowCount": 6,
+      "distinctSourceCount": 3,
+      "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
       "subjectRank": 23
     },
@@ -5719,7 +5431,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 103
+      "subjectRank": 105
     },
     {
       "subject": "Pelias",
@@ -5728,16 +5440,16 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 103
+      "subjectRank": 105
     },
     {
       "subject": "Pelops",
-      "claimType": "notable",
+      "claimType": "notable_claim",
       "candidateRowCount": 2,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 236
+      "subjectRank": 243
     },
     {
       "subject": "Penelope",
@@ -5773,7 +5485,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 9,
       "promotedRowCount": 0,
-      "subjectRank": 93
+      "subjectRank": 96
     },
     {
       "subject": "Pentheus",
@@ -5782,7 +5494,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 93
+      "subjectRank": 96
     },
     {
       "subject": "Periboea",
@@ -5791,7 +5503,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 356
+      "subjectRank": 358
     },
     {
       "subject": "Periclymenus",
@@ -5800,7 +5512,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 132
+      "subjectRank": 137
     },
     {
       "subject": "Periclymenus",
@@ -5809,7 +5521,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 132
+      "subjectRank": 137
     },
     {
       "subject": "Perieres",
@@ -5818,7 +5530,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 12,
       "promotedRowCount": 0,
-      "subjectRank": 110
+      "subjectRank": 113
     },
     {
       "subject": "Perimede",
@@ -5827,7 +5539,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 357
+      "subjectRank": 359
     },
     {
       "subject": "Periphas",
@@ -5836,7 +5548,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 323
+      "subjectRank": 327
     },
     {
       "subject": "Periphetes",
@@ -5845,7 +5557,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 175
+      "subjectRank": 182
     },
     {
       "subject": "Periphetes",
@@ -5854,7 +5566,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 175
+      "subjectRank": 182
     },
     {
       "subject": "Pero",
@@ -5863,7 +5575,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 324
+      "subjectRank": 328
     },
     {
       "subject": "Persephone",
@@ -5912,7 +5624,7 @@
     },
     {
       "subject": "Perses",
-      "claimType": "notable",
+      "claimType": "notable_claim",
       "candidateRowCount": 3,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
@@ -5935,7 +5647,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 432
+      "subjectRank": 434
     },
     {
       "subject": "Phaedra",
@@ -5953,7 +5665,7 @@
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 17,
       "promotedRowCount": 0,
-      "subjectRank": 84
+      "subjectRank": 87
     },
     {
       "subject": "Phaethusa",
@@ -5971,7 +5683,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 358
+      "subjectRank": 360
     },
     {
       "subject": "Pheneus",
@@ -5989,7 +5701,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 141
+      "subjectRank": 145
     },
     {
       "subject": "Pherusa",
@@ -5998,7 +5710,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 493
+      "subjectRank": 495
     },
     {
       "subject": "Phidippus",
@@ -6007,7 +5719,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 494
+      "subjectRank": 496
     },
     {
       "subject": "Philammon",
@@ -6016,7 +5728,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 495
+      "subjectRank": 497
     },
     {
       "subject": "Philoctetes",
@@ -6025,7 +5737,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 393
+      "subjectRank": 394
     },
     {
       "subject": "Philomela",
@@ -6034,7 +5746,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 394
+      "subjectRank": 395
     },
     {
       "subject": "Phineus",
@@ -6043,7 +5755,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 433
+      "subjectRank": 435
     },
     {
       "subject": "Phineus",
@@ -6052,7 +5764,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 433
+      "subjectRank": 435
     },
     {
       "subject": "Phoebe",
@@ -6061,7 +5773,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 142
+      "subjectRank": 146
     },
     {
       "subject": "Phoenix",
@@ -6070,7 +5782,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 434
+      "subjectRank": 436
     },
     {
       "subject": "Phorcus",
@@ -6079,7 +5791,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 264
+      "subjectRank": null
     },
     {
       "subject": "Phorcus",
@@ -6088,7 +5800,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 264
+      "subjectRank": null
     },
     {
       "subject": "Phorcys",
@@ -6097,7 +5809,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 294
+      "subjectRank": 106
     },
     {
       "subject": "Phrontis",
@@ -6115,7 +5827,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 325
+      "subjectRank": 329
     },
     {
       "subject": "Pirithous",
@@ -6124,7 +5836,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 99
+      "subjectRank": 101
     },
     {
       "subject": "Pirithous",
@@ -6133,7 +5845,7 @@
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 8,
       "promotedRowCount": 0,
-      "subjectRank": 99
+      "subjectRank": 101
     },
     {
       "subject": "Pisander",
@@ -6142,7 +5854,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 295
+      "subjectRank": 301
     },
     {
       "subject": "Pisander",
@@ -6151,7 +5863,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 295
+      "subjectRank": 301
     },
     {
       "subject": "Pisenor",
@@ -6160,7 +5872,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 633
+      "subjectRank": 634
     },
     {
       "subject": "Pisistratus",
@@ -6169,7 +5881,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 133
+      "subjectRank": 138
     },
     {
       "subject": "Plexippus",
@@ -6178,7 +5890,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 396
+      "subjectRank": 397
     },
     {
       "subject": "Podalirius",
@@ -6187,7 +5899,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 765
+      "subjectRank": 767
     },
     {
       "subject": "Podarces",
@@ -6196,7 +5908,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 296
+      "subjectRank": 302
     },
     {
       "subject": "Polites",
@@ -6205,7 +5917,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 359
+      "subjectRank": 361
     },
     {
       "subject": "Pollux",
@@ -6214,7 +5926,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 265
+      "subjectRank": 273
     },
     {
       "subject": "Polybus",
@@ -6223,7 +5935,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 397
+      "subjectRank": 398
     },
     {
       "subject": "Polycaste",
@@ -6241,7 +5953,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 634
+      "subjectRank": 635
     },
     {
       "subject": "Polydamas",
@@ -6259,7 +5971,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 134
+      "subjectRank": 139
     },
     {
       "subject": "Polydectes",
@@ -6268,7 +5980,7 @@
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 134
+      "subjectRank": 139
     },
     {
       "subject": "Polydora",
@@ -6277,7 +5989,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 266
+      "subjectRank": 274
     },
     {
       "subject": "Polydorus",
@@ -6304,7 +6016,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 498
+      "subjectRank": 500
     },
     {
       "subject": "Polymnia",
@@ -6313,7 +6025,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 398
+      "subjectRank": 399
     },
     {
       "subject": "Polynome",
@@ -6322,7 +6034,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 499
+      "subjectRank": 501
     },
     {
       "subject": "Polyphemus",
@@ -6331,7 +6043,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 10,
       "promotedRowCount": 0,
-      "subjectRank": 57
+      "subjectRank": 58
     },
     {
       "subject": "Polyphemus",
@@ -6340,7 +6052,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 57
+      "subjectRank": 58
     },
     {
       "subject": "Polyphontes",
@@ -6349,7 +6061,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 435
+      "subjectRank": 437
     },
     {
       "subject": "Polypoetes",
@@ -6358,7 +6070,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 215
+      "subjectRank": 222
     },
     {
       "subject": "Polyxena",
@@ -6367,7 +6079,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 237
+      "subjectRank": 244
     },
     {
       "subject": "Polyxenus",
@@ -6385,7 +6097,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 15
+      "subjectRank": 14
     },
     {
       "subject": "Poseidon",
@@ -6394,34 +6106,16 @@
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 15
-    },
-    {
-      "subject": "Poseidon",
-      "claimType": "notable",
-      "candidateRowCount": 8,
-      "distinctSourceCount": 3,
-      "distinctClaimValueCount": 8,
-      "promotedRowCount": 0,
-      "subjectRank": 15
+      "subjectRank": 14
     },
     {
       "subject": "Poseidon",
       "claimType": "notable_claim",
-      "candidateRowCount": 20,
-      "distinctSourceCount": 3,
-      "distinctClaimValueCount": 20,
+      "candidateRowCount": 30,
+      "distinctSourceCount": 4,
+      "distinctClaimValueCount": 30,
       "promotedRowCount": 0,
-      "subjectRank": 15
-    },
-    {
-      "subject": "Poseidon",
-      "claimType": "notable_deed",
-      "candidateRowCount": 2,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 2,
-      "promotedRowCount": 0,
-      "subjectRank": 15
+      "subjectRank": 14
     },
     {
       "subject": "Poseidon",
@@ -6430,7 +6124,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 12,
       "promotedRowCount": 0,
-      "subjectRank": 15
+      "subjectRank": 14
     },
     {
       "subject": "Priam",
@@ -6475,7 +6169,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 123
+      "subjectRank": 126
     },
     {
       "subject": "Procne",
@@ -6484,7 +6178,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 123
+      "subjectRank": 126
     },
     {
       "subject": "Procris",
@@ -6493,7 +6187,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 124
+      "subjectRank": 127
     },
     {
       "subject": "Procris",
@@ -6502,7 +6196,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 124
+      "subjectRank": 127
     },
     {
       "subject": "Procris",
@@ -6511,7 +6205,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 124
+      "subjectRank": 127
     },
     {
       "subject": "Promachus",
@@ -6520,16 +6214,16 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 501
+      "subjectRank": 503
     },
     {
       "subject": "Prometheus",
-      "claimType": "notable",
+      "claimType": "notable_claim",
       "candidateRowCount": 4,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 197
+      "subjectRank": 202
     },
     {
       "subject": "Prometheus",
@@ -6538,7 +6232,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 197
+      "subjectRank": 202
     },
     {
       "subject": "Pronous",
@@ -6547,7 +6241,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 502
+      "subjectRank": 504
     },
     {
       "subject": "Protesilaus",
@@ -6556,7 +6250,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 198
+      "subjectRank": 203
     },
     {
       "subject": "Protesilaus",
@@ -6565,7 +6259,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 198
+      "subjectRank": 203
     },
     {
       "subject": "Proteus",
@@ -6574,7 +6268,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 360
+      "subjectRank": 362
     },
     {
       "subject": "Prothous",
@@ -6583,7 +6277,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 436
+      "subjectRank": 438
     },
     {
       "subject": "Protho\u00ebnor",
@@ -6592,7 +6286,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 638
+      "subjectRank": 639
     },
     {
       "subject": "Proto",
@@ -6601,7 +6295,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 503
+      "subjectRank": 505
     },
     {
       "subject": "Prytanis",
@@ -6610,7 +6304,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 639
+      "subjectRank": 640
     },
     {
       "subject": "Psamathe",
@@ -6619,7 +6313,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 326
+      "subjectRank": 330
     },
     {
       "subject": "Pylaon",
@@ -6637,7 +6331,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 267
+      "subjectRank": 275
     },
     {
       "subject": "Pyrrhus",
@@ -6646,7 +6340,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 437
+      "subjectRank": 439
     },
     {
       "subject": "Python",
@@ -6655,7 +6349,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 401
+      "subjectRank": 402
     },
     {
       "subject": "Rhadamanthys",
@@ -6664,7 +6358,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 438
+      "subjectRank": 276
     },
     {
       "subject": "Rhea",
@@ -6673,7 +6367,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 65
+      "subjectRank": 66
     },
     {
       "subject": "Rhesus",
@@ -6682,16 +6376,16 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 159
+      "subjectRank": 167
     },
     {
       "subject": "Rhesus",
-      "claimType": "notable",
+      "claimType": "notable_claim",
       "candidateRowCount": 2,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 159
+      "subjectRank": 167
     },
     {
       "subject": "Rhesus",
@@ -6700,7 +6394,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 8,
       "promotedRowCount": 0,
-      "subjectRank": 159
+      "subjectRank": 167
     },
     {
       "subject": "Rhode",
@@ -6709,7 +6403,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 505
+      "subjectRank": 440
     },
     {
       "subject": "Sao",
@@ -6718,7 +6412,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 506
+      "subjectRank": 507
     },
     {
       "subject": "Sarpedon",
@@ -6745,7 +6439,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 361
+      "subjectRank": 363
     },
     {
       "subject": "Scylla",
@@ -6781,7 +6475,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 327
+      "subjectRank": 331
     },
     {
       "subject": "Semele",
@@ -6790,7 +6484,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 75
+      "subjectRank": 77
     },
     {
       "subject": "Semele",
@@ -6799,7 +6493,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 75
+      "subjectRank": 77
     },
     {
       "subject": "Sinis",
@@ -6808,7 +6502,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 507
+      "subjectRank": 508
     },
     {
       "subject": "Sipylus",
@@ -6826,7 +6520,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 402
+      "subjectRank": 403
     },
     {
       "subject": "Sisyphus",
@@ -6835,7 +6529,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 297
+      "subjectRank": 303
     },
     {
       "subject": "Sperchius",
@@ -6844,7 +6538,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 1142
+      "subjectRank": 1146
     },
     {
       "subject": "Sphinx",
@@ -6853,7 +6547,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 298
+      "subjectRank": 304
     },
     {
       "subject": "Sphinx",
@@ -6862,7 +6556,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 298
+      "subjectRank": 304
     },
     {
       "subject": "Steropes",
@@ -6871,7 +6565,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 10,
       "promotedRowCount": 0,
-      "subjectRank": 176
+      "subjectRank": 183
     },
     {
       "subject": "Sthenelaus",
@@ -6880,7 +6574,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 14,
       "promotedRowCount": 0,
-      "subjectRank": 90
+      "subjectRank": 93
     },
     {
       "subject": "Stratichus",
@@ -6889,7 +6583,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 439
+      "subjectRank": 441
     },
     {
       "subject": "Strymon",
@@ -6898,7 +6592,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 641
+      "subjectRank": 642
     },
     {
       "subject": "Styx",
@@ -6907,7 +6601,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 160
+      "subjectRank": 168
     },
     {
       "subject": "Sun",
@@ -6916,7 +6610,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 362
+      "subjectRank": 364
     },
     {
       "subject": "Talaus",
@@ -6925,7 +6619,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 299
+      "subjectRank": 305
     },
     {
       "subject": "Tantalus",
@@ -6934,7 +6628,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 268
+      "subjectRank": 277
     },
     {
       "subject": "Tantalus",
@@ -6943,7 +6637,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 268
+      "subjectRank": 277
     },
     {
       "subject": "Tecton",
@@ -6952,7 +6646,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 643
+      "subjectRank": 644
     },
     {
       "subject": "Telamon",
@@ -6970,7 +6664,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 1152
+      "subjectRank": 1156
     },
     {
       "subject": "Telegonus",
@@ -6979,7 +6673,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 216
+      "subjectRank": 223
     },
     {
       "subject": "Telemachus",
@@ -6997,7 +6691,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 510
+      "subjectRank": 511
     },
     {
       "subject": "Telephus",
@@ -7006,7 +6700,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 440
+      "subjectRank": 442
     },
     {
       "subject": "Tereus",
@@ -7015,7 +6709,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 300
+      "subjectRank": 306
     },
     {
       "subject": "Terpsichore",
@@ -7024,7 +6718,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 403
+      "subjectRank": 404
     },
     {
       "subject": "Tethys",
@@ -7051,7 +6745,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 70
+      "subjectRank": 71
     },
     {
       "subject": "Teucer",
@@ -7060,7 +6754,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 70
+      "subjectRank": 71
     },
     {
       "subject": "Thalia",
@@ -7069,7 +6763,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 404
+      "subjectRank": 405
     },
     {
       "subject": "Thalpius",
@@ -7078,7 +6772,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 644
+      "subjectRank": 645
     },
     {
       "subject": "Thaumas",
@@ -7087,7 +6781,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 269
+      "subjectRank": 278
     },
     {
       "subject": "Thaumas",
@@ -7096,7 +6790,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 269
+      "subjectRank": 278
     },
     {
       "subject": "Theano",
@@ -7105,7 +6799,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 405
+      "subjectRank": 406
     },
     {
       "subject": "Themis",
@@ -7114,7 +6808,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 143
+      "subjectRank": 147
     },
     {
       "subject": "Themisto",
@@ -7123,7 +6817,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 406
+      "subjectRank": 407
     },
     {
       "subject": "Theseus",
@@ -7132,7 +6826,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 8,
       "promotedRowCount": 0,
-      "subjectRank": 33
+      "subjectRank": 32
     },
     {
       "subject": "Theseus",
@@ -7141,7 +6835,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 33
+      "subjectRank": 32
     },
     {
       "subject": "Theseus",
@@ -7150,7 +6844,7 @@
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 10,
       "promotedRowCount": 0,
-      "subjectRank": 33
+      "subjectRank": 32
     },
     {
       "subject": "Thessalus",
@@ -7159,7 +6853,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 511
+      "subjectRank": 512
     },
     {
       "subject": "Thetis",
@@ -7195,7 +6889,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 161
+      "subjectRank": 169
     },
     {
       "subject": "Thoas",
@@ -7204,7 +6898,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 199
+      "subjectRank": 204
     },
     {
       "subject": "Thoas",
@@ -7213,7 +6907,7 @@
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 199
+      "subjectRank": 204
     },
     {
       "subject": "Thrasymedes",
@@ -7222,7 +6916,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 162
+      "subjectRank": 170
     },
     {
       "subject": "Tiresias",
@@ -7249,7 +6943,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 569
+      "subjectRank": 570
     },
     {
       "subject": "Tithonus",
@@ -7258,7 +6952,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 217
+      "subjectRank": 224
     },
     {
       "subject": "Tityus",
@@ -7267,7 +6961,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 646
+      "subjectRank": 647
     },
     {
       "subject": "Tlepolemus",
@@ -7276,7 +6970,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
       "promotedRowCount": 0,
-      "subjectRank": 71
+      "subjectRank": 72
     },
     {
       "subject": "Tlepolemus",
@@ -7285,7 +6979,7 @@
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 7,
       "promotedRowCount": 0,
-      "subjectRank": 71
+      "subjectRank": 72
     },
     {
       "subject": "Toxeus",
@@ -7294,7 +6988,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 328
+      "subjectRank": 332
     },
     {
       "subject": "Toxeus",
@@ -7303,7 +6997,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 328
+      "subjectRank": 332
     },
     {
       "subject": "Triton",
@@ -7312,7 +7006,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
       "promotedRowCount": 0,
-      "subjectRank": 512
+      "subjectRank": 408
     },
     {
       "subject": "Troilus",
@@ -7321,7 +7015,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 301
+      "subjectRank": 307
     },
     {
       "subject": "Troilus",
@@ -7330,7 +7024,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 301
+      "subjectRank": 307
     },
     {
       "subject": "Tros",
@@ -7339,7 +7033,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 144
+      "subjectRank": 148
     },
     {
       "subject": "Tydeus",
@@ -7375,7 +7069,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 1,
       "promotedRowCount": 0,
-      "subjectRank": 329
+      "subjectRank": 333
     },
     {
       "subject": "Typhon",
@@ -7384,7 +7078,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 135
+      "subjectRank": 140
     },
     {
       "subject": "Typhon",
@@ -7393,7 +7087,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 6,
       "promotedRowCount": 0,
-      "subjectRank": 135
+      "subjectRank": 140
     },
     {
       "subject": "Tyro",
@@ -7402,7 +7096,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 136
+      "subjectRank": 141
     },
     {
       "subject": "Urania",
@@ -7411,7 +7105,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 330
+      "subjectRank": 334
     },
     {
       "subject": "Victory",
@@ -7420,7 +7114,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 782
+      "subjectRank": 785
     },
     {
       "subject": "Zetes",
@@ -7429,7 +7123,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
       "promotedRowCount": 0,
-      "subjectRank": 238
+      "subjectRank": 245
     },
     {
       "subject": "Zethus",
@@ -7438,7 +7132,7 @@
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
       "promotedRowCount": 0,
-      "subjectRank": 270
+      "subjectRank": 279
     },
     {
       "subject": "Zeus",
@@ -7469,37 +7163,10 @@
     },
     {
       "subject": "Zeus",
-      "claimType": "notable",
-      "candidateRowCount": 15,
-      "distinctSourceCount": 3,
-      "distinctClaimValueCount": 15,
-      "promotedRowCount": 0,
-      "subjectRank": 2
-    },
-    {
-      "subject": "Zeus",
-      "claimType": "notable claim",
-      "candidateRowCount": 3,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 3,
-      "promotedRowCount": 0,
-      "subjectRank": 2
-    },
-    {
-      "subject": "Zeus",
-      "claimType": "notable_act",
-      "candidateRowCount": 7,
-      "distinctSourceCount": 2,
-      "distinctClaimValueCount": 7,
-      "promotedRowCount": 0,
-      "subjectRank": 2
-    },
-    {
-      "subject": "Zeus",
       "claimType": "notable_claim",
-      "candidateRowCount": 26,
-      "distinctSourceCount": 4,
-      "distinctClaimValueCount": 26,
+      "candidateRowCount": 51,
+      "distinctSourceCount": 5,
+      "distinctClaimValueCount": 51,
       "promotedRowCount": 0,
       "subjectRank": 2
     },

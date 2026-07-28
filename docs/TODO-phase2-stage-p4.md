@@ -758,35 +758,55 @@ reseed.
 
 ### F1 — Batch 1 (concrete; also lands E1–E3, E5, E6 and G — E4 only if its conflict exists)
 
-- [ ] **F1a** — **Pick the tranche** (~25–50 groups) by applying F0a's rule to A8/A9/A10. Record the
+> ⚠️ **Deviations occurred in this track.** See `DEVIATIONS.md` **#DEV-110**. Q16/Q17 could not use
+> ADR-010's literal text (DEV-102 found neither zero-retrieves) — replaced with live-verified
+> alternatives. Q21 uses ADR-010's literal text but `expected_route: SQL`, not `RAG` (live-verified).
+> A live eval run caught a second `SOURCE_SILENCE_PHRASES` gap (`"does not contain"`, the singular
+> form) — fixed and re-verified, same discipline as DEV-102. **Result: 18/20 = 90%, zero stable
+> regressions, ≥4 canonical claim_types gate met in this single batch.**
+
+- [x] **F1a** — **Pick the tranche** (~25–50 groups) by applying F0a's rule to A8/A9/A10. Record the
       exact group list in the batch's promotion log (C5) *before* review starts, so the batch's scope
       is fixed and its revert is well-defined.
-- [ ] **F1b** — **Review & promote** in `02_verify_conflicts.ipynb` using Track C's keyed workflow:
+      **Result: 26 groups** — every `marriage`/`epithet` group for the frozen top-20 (both types had
+      zero promoted coverage, satisfying the type-count gate in one move).
+- [x] **F1b** — **Review & promote** in `02_verify_conflicts.ipynb` using Track C's keyed workflow:
       each row checked against its source segment text, `trust_tier` 3→1 — the ADR-004 human gate,
       per row, no exceptions and no bulk promotion.
-- [ ] **F1c** — New claim-type surface variants discovered during review → **Track G's V18 alias
+      **95 rows promoted; 5 real extraction errors caught and NOT promoted** (Achilles/Peleus,
+      Aphrodite/Arges, Poseidon/"Medus"=Medusa, Menelaus/Hellen-typo, Zeus/Herse — see DEV-110).
+- [x] **F1c** — New claim-type surface variants discovered during review → **Track G's V18 alias
       rows**, never a code change (`§7`; the V9_2 precedent).
-- [ ] **F1d** — `python -m seedgen --strict` → inspect the regenerated `V12__seed_variant_claims.sql`
+      **None found** — `marriage`/`epithet` were already canonical.
+- [x] **F1d** — `python -m seedgen --strict` → inspect the regenerated `V12__seed_variant_claims.sql`
       diff before applying anything. Entity-merge fallout (`§8`) is caught here: V13's name-based
       subqueries and the candidate JSON reference names that a merge can move.
-- [ ] **F1e** — `scripts/reseed-local.sh` → `python -m audit`. **Clean = exit `0`**, which per the
+      **Clean, purely additive diff** — 95 new rows, zero deletions/modifications.
+- [x] **F1e** — `scripts/reseed-local.sh` → `python -m audit`. **Clean = exit `0`**, which per the
       operating principle means every finding is either absent or waived with a written reason.
       A8/A9/A10 should contribute their tables via `summary`/artifacts and **no** findings on the
       normal path (B9) — so if the exit code flips because of them, either a real anomaly fired
       (B6/B7a–c: triage it, do not waive reflexively) or B9's zero-finding rule was implemented as a
       `"warning"` severity, which does not do what it looks like it does.
-- [ ] **F1f** — **Author the ADR-010 backlog into the same commit**: E1 (Q16), E2 (Q17), E3 (Q19),
+      **Zero new unwaived findings anywhere** — A10 correctly reported the 26-group promotion as a
+      trend (-26), never a finding, exactly as designed.
+- [x] **F1f** — **Author the ADR-010 backlog into the same commit**: E1 (Q16), E2 (Q17), E3 (Q19),
       E5 (Q21), plus E6's floor flip. E4 (Q20) lands here only if F1's promotions created the death
       conflict it needs; otherwise it moves to F2.
-- [ ] **F1g** — `python -m runner --runs 3 --label p4-batch1` → `compare.py` vs **F0d's clean
+      **E1/E2/E3/E5/E6 landed** (Q16/Q17 replacement text, Q19, Q21, REFUSAL floor → 0.5). **E4
+      correctly deferred to F2** — this batch promoted marriage/epithet, not death.
+- [x] **F1g** — `python -m runner --runs 3 --label p4-batch1` → `compare.py` vs **F0d's clean
       re-run** (*not* `2026-07-27T21-21-29Z__3a3f894__p3b-a7-findings-triage`, which is DEV-100's own
       transport episode and which D4 refuses — see *Contracts*). **Read Track D's transport banner
       first** — a run with transport errors is invalid and must be re-run, not triaged.
-- [ ] **F1h** — **Decide.** Green (no stable regression, floors held, new questions pass) → commit
+      **First run**: 18/20, but Q21 stable-3/3-failed on an eval-bug (see banner above) — fixed and
+      **re-run clean**: 18/20 = 90%, zero `_runnerNote`, zero stable regressions vs. F0d.
+- [x] **F1h** — **Decide.** Green (no stable regression, floors held, new questions pass) → commit
       candidates + V18 + gold set + results dir **together**. Red → triage into the taxonomy
       (**data-gap / pipeline-bug / corpus-gap / eval-bug**) and either fix or revert the batch via
       C5's log. A single-run delta is never grounds for either.
-- [ ] **F1i** — Record in the DEV entry: groups promoted, rows promoted, canonical claim_types now
+      **Green — committed.**
+- [x] **F1i** — Record in the DEV entry: groups promoted, rows promoted, canonical claim_types now
       covered (target ≥4), top-20 subjects now covered, gold-set size, and the per-category rates.
       These five numbers are the exit gate, so every batch reports them. **Report the coverage numbers
       in both spaces** — promoted candidates *and* rows actually present in `variant_claims` after the
@@ -794,7 +814,12 @@ reseed.
       promotions into 44 rows (see *Contracts*). The gate is worded against the table, so the table
       figure is the one that counts; a batch where the two diverge sharply means the tranche was deep
       rather than broad, which is F0a's signal to correct.
-- [ ] **F1j** — Note any **flaky** CONFLICT question separately (E8) — do not react to it yet.
+      **26 groups, 95 candidate promotions → 95 table rows (zero dedup loss — this batch's breadth
+      selection avoided it entirely), claim_types 2→4 (gate met), top-20 subjects 3→17/20, gold set
+      16→20, overall 90%.**
+- [x] **F1j** — Note any **flaky** CONFLICT question separately (E8) — do not react to it yet.
+      **Q8 (DATA, unrelated subject — Perseus/monsters) flipped stable-pass→flaky** — pre-existing
+      router non-determinism, not caused by this batch; noted, not chased, per the stable-only rule.
 
 ### F2 / F3 — Batches 2 and 3 (template; tranche per F0a's rule)
 
@@ -857,25 +882,40 @@ pre-assigned: it depends on what F1's eval shows and on which claim_types F1's p
 - [ ] **≥3 batches end-to-end**, each a complete `seedgen → reseed → audit → runner --runs 3 →
       compare.py → commit-or-revert` pass, results dirs committed with their candidates, migrations
       and gold-set changes (Track F).
-- [ ] **`variant_claims` covers ≥4 canonical claim_types** — from **2** today (`parentage`, `death`).
+      **1 of ≥3 done (F1, DEV-110).** F2/F3 still needed.
+- [x] **`variant_claims` covers ≥4 canonical claim_types** — from **2** today (`parentage`, `death`).
       **Counted in the seeded table after a reseed, not in the candidate file** (they differ: 71
       promoted candidates → 44 rows; see *Contracts*).
+      **MET at F1 (DEV-110): parentage, death, marriage, epithet — 4/4.**
 - [ ] **`variant_claims` covers all top-20-prominence subjects** — from **3** today (Aphrodite,
       Achilles, Io), measured against Track B's A8 ranking, and again counted **in the seeded table**.
       Because the A8 ranking shifts as Track H adds entities, **freeze the top-20 list from A8's first
       clean run into F0's record** and gate against that snapshot; re-ranking every batch makes the
       gate unfalsifiable. Note any subject that enters or leaves the live top 20 afterwards rather
       than silently re-scoping the target.
+      **17/20 after F1** (missing `Telemachus`/`Patroclus`/`Ajax` — no `marriage`/`epithet`
+      candidates exist for them; a future batch needs a different claim_type for these three).
 - [ ] **Gold set ≈25 questions** — from **16** today; ADR-010's backlog (Q16, Q17, Q19, Q20, Q21)
       authored with live-verified keywords; every pre-existing question retained as a sentinel.
-- [ ] **Per-category floors enforced**, REFUSAL promoted off `null`, CONFLICT raised as the category
+      **20/~25 after F1** (Q16/Q17/Q19/Q21 landed with live-verified text/routes, some deviating
+      from ADR-010's literal wording per DEV-110; Q20/E4 deferred to F2 pending a new death conflict).
+- [x] **Per-category floors enforced**, REFUSAL promoted off `null`, CONFLICT raised as the category
       grows; no floor ever lowered to make a run pass.
-- [ ] **Overall ≥75% sustained across a 3-run eval** with **zero stable regressions**, on a run with
+      **REFUSAL floor set to 0.5 at F1 (DEV-110).** CONFLICT deliberately left at 0.5 (5 questions —
+      raising to 0.6 would be cosmetic at this count, revisit at 6+).
+- [x] **Overall ≥75% sustained across a 3-run eval** with **zero stable regressions**, on a run with
       no transport errors (Track D's banner clean).
+      **90% at F1 (DEV-110)**, zero transport errors, zero stable regressions vs. F0d. Must stay true
+      through F2/F3 too, not just this one batch.
 - [ ] **GAP-001 a′** worked or explicitly deferred with a written waiver (F0b); **GAP-002** long tail
       worked or explicitly deferred with its bucket and reason (H6); **F0c**'s standing-waiver policy
       for A1/A6 residue decided in writing.
+      **F0b/F0c/H6 all done** (DEV-108/DEV-109) — GAP-001 a′ bounded to the top-20-child tranche (49
+      rows), GAP-002 long tail bucketed with two flagged future leads, F0c's waiver policy covers
+      A1/A2/A4/A6/A10 in writing (A3 deliberately excluded, see F0c).
 - [ ] **One DEV entry per landed track** logged in `DEVIATIONS.md` (indicatively DEV-102…DEV-108+;
       claim the numbers actually free at the time — J1); `TODO2.md`, `IMPLEMENTATION_PLAN_PHASE2.md §5`
       and ADR-010's action items annotated per the deviation protocol; the stale 838-group count
       corrected by banner, never by overwriting the plan body.
+      **DEV-102 through DEV-110 logged** (one per track: A, B, C, D, G, H, F0, F1). `TODO2.md`/
+      `IMPLEMENTATION_PLAN_PHASE2.md §5`/ADR-010 action-item annotation still open (Track J).

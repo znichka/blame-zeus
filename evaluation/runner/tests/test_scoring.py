@@ -283,6 +283,26 @@ def test_refusal_pass_live_verified_wording_p4_track_a5f():
     assert s.content_point is True
 
 
+def test_refusal_pass_sql_route_singular_wording_p4_track_f1g():
+    # P4 Track F1g (DEV-110): Q21's real SQL-route refusal wording -- "does not contain",
+    # grammatically singular since it's about one queried entity, not "the sources" plural.
+    # Caught as a stable 3/3 fail in the real eval run, not a static guess.
+    q = gq(id=21, category="REFUSAL", expected_route="SQL",
+           refusal_criteria=REFUSAL_CRITERIA,
+           forbidden_patterns=["he was from", "his home was", "hailed from", "born in", "Phthia"])
+    r = resp(
+        route_decision="SQL",
+        answer=(
+            "The provided material does not contain sufficient information to answer where "
+            "Achilles is from. Only the entity name is given without any geographical or "
+            "biographical details."
+        ),
+        citations=[],
+    )
+    s = score_question(q, r)
+    assert s.content_point is True
+
+
 def test_refusal_fail_fabricated_citation_and_no_source_limit():
     q = gq(id=16, category="REFUSAL", expected_route="RAG",
            refusal_criteria=REFUSAL_CRITERIA,

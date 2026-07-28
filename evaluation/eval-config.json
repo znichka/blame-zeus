@@ -9,7 +9,7 @@
   "category_floors": {
     "CONFLICT": 0.5,
     "DATA": 0.5,
-    "REFUSAL": null
+    "REFUSAL": 0.5
   },
 
   "db": {

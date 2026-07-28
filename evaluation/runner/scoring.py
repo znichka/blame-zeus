@@ -54,6 +54,20 @@ SOURCE_SILENCE_PHRASES: tuple[str, ...] = (
     # repeated runs of DEV-049's negative control (6/6); none of the phrases above matched it.
     "do not contain",
     "outside the scope",
+    # P4 Track E1/E2 (DEV-111): live-verified against Q16/Q17's replacement questions (3 runs
+    # each) — "do not preserve" and "do not document" appeared in Q17's phrasing but neither
+    # matched any existing phrase ("not preserved" is the past-tense form only, a different
+    # substring from "do not preserve").
+    "do not preserve",
+    "do not document",
+    # P4 Track F1g/E5 (DEV-110): Q21's SQL-route refusal ("The provided material does not
+    # contain sufficient information...") is grammatically singular ("does" vs "do") since it's
+    # phrased around one queried entity, not "the sources" plural -- a genuinely distinct
+    # substring from "do not contain" above. Caught by a stable 3/3 fail in F1g's real eval run,
+    # not a static guess: this is DEV-048/050's live-verification rule applied to a route the
+    # earlier passes never exercised (SQL-route refusals, as opposed to RAG-route ones).
+    "does not contain",
+    "does not provide",
 )
 
 

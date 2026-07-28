@@ -5469,7 +5469,7 @@
     "claim_value": "married to Hera",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.3.1-1.3.5",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -5477,7 +5477,7 @@
     "claim_value": "married to Metis",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.3.6-1.4.2",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -5485,7 +5485,7 @@
     "claim_value": "married to Alcmena",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.7-2.4.8",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -5501,7 +5501,7 @@
     "claim_value": "married to Mnemosyne",
     "source_id": "hesiod-theogony",
     "passage_ref": "53-103",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -5517,7 +5517,7 @@
     "claim_value": "married to Themis",
     "source_id": "hesiod-theogony",
     "passage_ref": "869-923",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -5525,7 +5525,7 @@
     "claim_value": "married to Eurynome",
     "source_id": "hesiod-theogony",
     "passage_ref": "869-923",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -5549,7 +5549,7 @@
     "claim_value": "married to Leto",
     "source_id": "hesiod-theogony",
     "passage_ref": "869-923",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -5589,7 +5589,7 @@
     "claim_value": "married to Demeter",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "2.19-2.58",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -5621,7 +5621,7 @@
     "claim_value": "married to Maia",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "4.28-4.67",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -5645,7 +5645,7 @@
     "claim_value": "married to Leda",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "33.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -5709,7 +5709,7 @@
     "claim_value": "married to Hera",
     "source_id": "homer-iliad",
     "passage_ref": "14.312-14.360",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -8829,7 +8829,7 @@
     "claim_value": "married to Amphitrite",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.4.3-1.5.2",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Poseidon",
@@ -8837,7 +8837,7 @@
     "claim_value": "married to Amymone",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.4",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Poseidon",
@@ -8853,7 +8853,7 @@
     "claim_value": "married to Thoosa",
     "source_id": "homer-odyssey",
     "passage_ref": "1.44-1.95",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Poseidon",
@@ -15557,7 +15557,7 @@
     "claim_value": "married to Aegialia",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.8.6-1.9.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Diomedes",
@@ -15573,7 +15573,7 @@
     "claim_value": "married to Daunus' daughter",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "14.483-14.526",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Diomedes",
@@ -15581,7 +15581,7 @@
     "claim_value": "married to Aegialeia, daughter of Adrastus",
     "source_id": "homer-iliad",
     "passage_ref": "5.381-5.425",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Diomedes",
@@ -17509,7 +17509,7 @@
     "claim_value": "married to Anaxibia daughter of Cratieus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.9.8-1.9.11",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Nestor",
@@ -17517,7 +17517,7 @@
     "claim_value": "married to Eurydice",
     "source_id": "homer-odyssey",
     "passage_ref": "3.447-3.477",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Polycaste",
@@ -22477,7 +22477,7 @@
     "claim_value": "married to Megaera",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.11-2.4.12",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Heracles",
@@ -22493,7 +22493,7 @@
     "claim_value": "married to Deianira",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.7.4-2.7.6",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Heracles",
@@ -22501,7 +22501,7 @@
     "claim_value": "married to Hebe",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.7.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Heracles",
@@ -22525,7 +22525,7 @@
     "claim_value": "married to Hebe",
     "source_id": "homer-odyssey",
     "passage_ref": "11.582-11.626",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Heracles",
@@ -22541,7 +22541,7 @@
     "claim_value": "married to Deianira",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "9.172-9.210",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Heracles",
@@ -22557,7 +22557,7 @@
     "claim_value": "gave Megara to Iolaus and sought to wed Iole",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.5.12-2.6.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Heracles",
@@ -31749,7 +31749,7 @@
     "claim_value": "married to Odysseus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.4-3.10.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Penelope",
@@ -31829,7 +31829,7 @@
     "claim_value": "married to Odysseus",
     "source_id": "homer-odyssey",
     "passage_ref": "16.68-16.111",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Penelope",
@@ -35261,7 +35261,7 @@
     "claim_value": "married to Penelope",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.3.6-E.3.12",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",
@@ -35269,7 +35269,7 @@
     "claim_value": "married to Hecuba",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.5.22-E.6.4",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",
@@ -35277,7 +35277,7 @@
     "claim_value": "married to Circe",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.7.9-E.7.16",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",
@@ -35301,7 +35301,7 @@
     "claim_value": "married to Callidice",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.7.33-E.7.40",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",
@@ -35309,7 +35309,7 @@
     "claim_value": "married to Thoas' daughter",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.7.33-E.7.40",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",
@@ -35677,7 +35677,7 @@
     "claim_value": "husband of Penelope, who longs for his return",
     "source_id": "homer-odyssey",
     "passage_ref": "2.224-2.266",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",
@@ -35877,7 +35877,7 @@
     "claim_value": "married to Penelope, wife who wove and unraveled the shroud of Laertes to delay remarriage",
     "source_id": "homer-odyssey",
     "passage_ref": "24.120-24.169",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",
@@ -36061,7 +36061,7 @@
     "claim_value": "married to Helen, contested by Paris who took her",
     "source_id": "homer-iliad",
     "passage_ref": "3.245-3.291",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Menelaus",
@@ -36085,7 +36085,7 @@
     "claim_value": "married to Helen",
     "source_id": "homer-odyssey",
     "passage_ref": "4.265-4.314",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Menelaus",
@@ -36093,7 +36093,7 @@
     "claim_value": "has Helen to wife, husband of the daughter of Zeus",
     "source_id": "homer-odyssey",
     "passage_ref": "4.538-4.586",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Menelaus",
@@ -37269,7 +37269,7 @@
     "claim_value": "married to Arisbe",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.12.5",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Priam",
@@ -37277,7 +37277,7 @@
     "claim_value": "married to Hecuba",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.12.5",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Priam",
@@ -37285,7 +37285,7 @@
     "claim_value": "married to Castianeira",
     "source_id": "homer-iliad",
     "passage_ref": "8.292-8.334",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Priam",
@@ -37301,7 +37301,7 @@
     "claim_value": "married to Laothoe",
     "source_id": "homer-iliad",
     "passage_ref": "22.25-22.58",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Priam",
@@ -37365,7 +37365,7 @@
     "claim_value": "married to Hecuba",
     "source_id": "homer-iliad",
     "passage_ref": "24.200-24.246",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Priam",
@@ -39245,7 +39245,7 @@
     "claim_value": "married to Andromache",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.12.6",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hector",
@@ -39277,7 +39277,7 @@
     "claim_value": "married to Andromache",
     "source_id": "homer-iliad",
     "passage_ref": "6.466-6.502",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hector",
@@ -44469,7 +44469,7 @@
     "claim_value": "married to Clytaemnestra",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.2.15-E.3.5",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Agamemnon",
@@ -44485,7 +44485,7 @@
     "claim_value": "married to Cassandra",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.5.22-E.6.4",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Agamemnon",
@@ -44573,7 +44573,7 @@
     "claim_value": "wedded wife Clytemnestra",
     "source_id": "homer-iliad",
     "passage_ref": "1.101-1.146",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Agamemnon",
@@ -48237,7 +48237,7 @@
     "claim_value": "married to Medea",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.5.5-E.5.13",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Achilles",
@@ -50149,7 +50149,7 @@
     "claim_value": "married to Anchises",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "5.106-5.154",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Aphrodite",
@@ -50205,7 +50205,7 @@
     "claim_value": "married to Adonis",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "10.503-10.542",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Aphrodite",
@@ -50221,7 +50221,7 @@
     "claim_value": "married to Hephaestus",
     "source_id": "homer-odyssey",
     "passage_ref": "8.256-8.294",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Aphrodite",
@@ -50613,7 +50613,7 @@
     "claim_value": "married to Zeus",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "9.1-16.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hera",
@@ -50757,7 +50757,7 @@
     "claim_value": "married to Zeus",
     "source_id": "homer-iliad",
     "passage_ref": "14.153-14.196",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hera",
@@ -50773,7 +50773,7 @@
     "claim_value": "married to Zeus, first came together in love without their parents' knowledge",
     "source_id": "homer-iliad",
     "passage_ref": "14.277-14.311",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hera",
@@ -50821,7 +50821,7 @@
     "claim_value": "Juno married Jupiter (Jove), her brother",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "9.487-9.516",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "",
@@ -50957,7 +50957,7 @@
     "claim_value": "married to Daughter of Dryops",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "19.27-23.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hermes",
@@ -50965,7 +50965,7 @@
     "claim_value": "married to Polymele",
     "source_id": "homer-iliad",
     "passage_ref": "16.155-16.197",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hermes",
@@ -55445,7 +55445,7 @@
     "claim_value": "Called Aphrodite, foam-born goddess, rich-crowned Cytherea, Cyprogenes, and Philommedes",
     "source_id": "hesiod-theogony",
     "passage_ref": "176-232",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Aphrodite",
@@ -55453,7 +55453,7 @@
     "claim_value": "called the Cyprian and rich-crowned Cytherea",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "4.550-5.6",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Aphrodite",
@@ -55461,7 +55461,7 @@
     "claim_value": "Ruler of the walled cities of sea-set Cyprus, called Cytherea, gold-crowned and beautiful",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "6.1-7.31",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Aphrodite",
@@ -55469,7 +55469,7 @@
     "claim_value": "the Idalian, who hates cruel hearts",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "14.675-14.715",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Chimera",
@@ -55965,7 +55965,7 @@
     "claim_value": "dark-clouded Son of Cronos, far-seeing, loud-thunderer",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "2.434-2.482",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -55981,7 +55981,7 @@
     "claim_value": "son of Cronos",
     "source_id": "homer-iliad",
     "passage_ref": "4.240-4.271",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -56013,7 +56013,7 @@
     "claim_value": "father of men and gods",
     "source_id": "homer-iliad",
     "passage_ref": "8.41-8.77",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -56109,7 +56109,7 @@
     "claim_value": "who hurls the thunderbolt",
     "source_id": "homer-odyssey",
     "passage_ref": "14.235-14.284",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -56117,7 +56117,7 @@
     "claim_value": "the stranger's god",
     "source_id": "homer-odyssey",
     "passage_ref": "14.235-14.284",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -56149,7 +56149,7 @@
     "claim_value": "shoots afar; god before whom the gods tremble and rise",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "2.483-3.29",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Apollo",
@@ -56181,7 +56181,7 @@
     "claim_value": "Apollo Delphinius, named for his dolphin form",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "3.474-3.523",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Apollo",
@@ -56189,7 +56189,7 @@
     "claim_value": "Phoebus",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "4.68-4.114",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Apollo",
@@ -56197,7 +56197,7 @@
     "claim_value": "Far-shooter, Phoebus",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "4.387-4.432",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Apollo",
@@ -56205,7 +56205,7 @@
     "claim_value": "the god that smiteth afar",
     "source_id": "homer-iliad",
     "passage_ref": "7.54-7.102",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Apollo",
@@ -56213,7 +56213,7 @@
     "claim_value": "Phoebus Apollo of the golden sword",
     "source_id": "homer-iliad",
     "passage_ref": "15.246-15.280",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Apollo",
@@ -56501,7 +56501,7 @@
     "claim_value": "Slayer of Argus",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "4.68-4.114",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hermes",
@@ -56517,7 +56517,7 @@
     "claim_value": "called Argeiphontes",
     "source_id": "homer-iliad",
     "passage_ref": "24.77-24.119",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hermes",
@@ -56525,7 +56525,7 @@
     "claim_value": "Argeiphontes",
     "source_id": "homer-odyssey",
     "passage_ref": "10.274-10.320",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Poseidon",
@@ -56533,7 +56533,7 @@
     "claim_value": "loud-roaring Holder of the Earth, whose sacred grove is at Onchestus",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "4.162-4.211",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Poseidon",
@@ -56541,7 +56541,7 @@
     "claim_value": "Shaker of Earth",
     "source_id": "homer-iliad",
     "passage_ref": "8.425-8.468",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Poseidon",
@@ -56549,7 +56549,7 @@
     "claim_value": "dark-haired Earth-shaker, receiving sacrifice of black bulls at Pylos",
     "source_id": "homer-odyssey",
     "passage_ref": "2.405-3.20",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Poseidon",
@@ -56645,7 +56645,7 @@
     "claim_value": "guardian of the city, loves deeds of war with Ares",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "9.1-16.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Athena",
@@ -56653,7 +56653,7 @@
     "claim_value": "Tritogeneia",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "28.1-30.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Athena",
@@ -56661,7 +56661,7 @@
     "claim_value": "Alalcomenean Athene",
     "source_id": "homer-iliad",
     "passage_ref": "4.1-4.49",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Poseidon",
@@ -56869,7 +56869,7 @@
     "claim_value": "swift-footed",
     "source_id": "homer-iliad",
     "passage_ref": "1.364-1.385",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Achilles",
@@ -56877,7 +56877,7 @@
     "claim_value": "lordly son of Peleus",
     "source_id": "homer-iliad",
     "passage_ref": "10.349-10.399",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Achilles",
@@ -56885,7 +56885,7 @@
     "claim_value": "son of Aeacus",
     "source_id": "homer-iliad",
     "passage_ref": "10.400-10.445",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Achilles",
@@ -56893,7 +56893,7 @@
     "claim_value": "son of Peleus",
     "source_id": "homer-odyssey",
     "passage_ref": "5.291-5.332",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Achilles",
@@ -56989,7 +56989,7 @@
     "claim_value": "king of sandy Pylos",
     "source_id": "homer-iliad",
     "passage_ref": "2.48-2.83",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Nestor",
@@ -56997,7 +56997,7 @@
     "claim_value": "tamer of horses",
     "source_id": "homer-odyssey",
     "passage_ref": "2.405-3.20",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hephaestus",
@@ -57621,7 +57621,7 @@
     "claim_value": "dear to Ares",
     "source_id": "homer-iliad",
     "passage_ref": "3.38-3.83",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Menelaus",
@@ -57645,7 +57645,7 @@
     "claim_value": "fostered of Zeus",
     "source_id": "homer-iliad",
     "passage_ref": "10.42-10.85",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Menelaus",
@@ -57661,7 +57661,7 @@
     "claim_value": "son of Atreus",
     "source_id": "homer-iliad",
     "passage_ref": "23.429-23.472",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Menelaus",
@@ -57709,7 +57709,7 @@
     "claim_value": "Argive Hera",
     "source_id": "homer-iliad",
     "passage_ref": "4.1-4.49",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hera",
@@ -57717,7 +57717,7 @@
     "claim_value": "Queen of Gods, glorious child of Saturn",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "2.508-2.541",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hellen",
@@ -58373,7 +58373,7 @@
     "claim_value": "Odysseus of many wiles",
     "source_id": "homer-iliad",
     "passage_ref": "14.64-14.108",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",
@@ -58381,7 +58381,7 @@
     "claim_value": "Zeus-born",
     "source_id": "homer-odyssey",
     "passage_ref": "2.309-2.360",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",
@@ -58397,7 +58397,7 @@
     "claim_value": "fostered of Zeus",
     "source_id": "homer-odyssey",
     "passage_ref": "10.229-10.273",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",

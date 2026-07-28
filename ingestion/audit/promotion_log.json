@@ -1,0 +1,674 @@
+[
+  {
+    "batchLabel": "p4-f1-batch1",
+    "date": "2026-07-28T17:23:45.449179+00:00",
+    "keys": [
+      [
+        "Achilles",
+        "epithet",
+        "swift-footed",
+        "homer-iliad",
+        "1.364-1.385"
+      ],
+      [
+        "Achilles",
+        "epithet",
+        "lordly son of Peleus",
+        "homer-iliad",
+        "10.349-10.399"
+      ],
+      [
+        "Achilles",
+        "epithet",
+        "son of Aeacus",
+        "homer-iliad",
+        "10.400-10.445"
+      ],
+      [
+        "Achilles",
+        "epithet",
+        "son of Peleus",
+        "homer-odyssey",
+        "5.291-5.332"
+      ],
+      [
+        "Achilles",
+        "marriage",
+        "married to Medea",
+        "apollodorus-bibliotheca",
+        "E.5.5-E.5.13"
+      ],
+      [
+        "Agamemnon",
+        "marriage",
+        "married to Clytaemnestra",
+        "apollodorus-bibliotheca",
+        "E.2.15-E.3.5"
+      ],
+      [
+        "Agamemnon",
+        "marriage",
+        "wedded wife Clytemnestra",
+        "homer-iliad",
+        "1.101-1.146"
+      ],
+      [
+        "Agamemnon",
+        "marriage",
+        "married to Cassandra",
+        "apollodorus-bibliotheca",
+        "E.5.22-E.6.4"
+      ],
+      [
+        "Aphrodite",
+        "epithet",
+        "Called Aphrodite, foam-born goddess, rich-crowned Cytherea, Cyprogenes, and Philommedes",
+        "hesiod-theogony",
+        "176-232"
+      ],
+      [
+        "Aphrodite",
+        "epithet",
+        "called the Cyprian and rich-crowned Cytherea",
+        "hesiod-homeric-hymns",
+        "4.550-5.6"
+      ],
+      [
+        "Aphrodite",
+        "epithet",
+        "Ruler of the walled cities of sea-set Cyprus, called Cytherea, gold-crowned and beautiful",
+        "hesiod-homeric-hymns",
+        "6.1-7.31"
+      ],
+      [
+        "Aphrodite",
+        "epithet",
+        "the Idalian, who hates cruel hearts",
+        "ovid-metamorphoses",
+        "14.675-14.715"
+      ],
+      [
+        "Aphrodite",
+        "marriage",
+        "married to Hephaestus",
+        "homer-odyssey",
+        "8.256-8.294"
+      ],
+      [
+        "Aphrodite",
+        "marriage",
+        "married to Anchises",
+        "hesiod-homeric-hymns",
+        "5.106-5.154"
+      ],
+      [
+        "Aphrodite",
+        "marriage",
+        "married to Adonis",
+        "ovid-metamorphoses",
+        "10.503-10.542"
+      ],
+      [
+        "Apollo",
+        "epithet",
+        "shoots afar; god before whom the gods tremble and rise",
+        "hesiod-homeric-hymns",
+        "2.483-3.29"
+      ],
+      [
+        "Apollo",
+        "epithet",
+        "Phoebus",
+        "hesiod-homeric-hymns",
+        "4.68-4.114"
+      ],
+      [
+        "Apollo",
+        "epithet",
+        "Far-shooter, Phoebus",
+        "hesiod-homeric-hymns",
+        "4.387-4.432"
+      ],
+      [
+        "Apollo",
+        "epithet",
+        "the god that smiteth afar",
+        "homer-iliad",
+        "7.54-7.102"
+      ],
+      [
+        "Apollo",
+        "epithet",
+        "Phoebus Apollo of the golden sword",
+        "homer-iliad",
+        "15.246-15.280"
+      ],
+      [
+        "Apollo",
+        "epithet",
+        "Apollo Delphinius, named for his dolphin form",
+        "hesiod-homeric-hymns",
+        "3.474-3.523"
+      ],
+      [
+        "Athena",
+        "epithet",
+        "guardian of the city, loves deeds of war with Ares",
+        "hesiod-homeric-hymns",
+        "9.1-16.1"
+      ],
+      [
+        "Athena",
+        "epithet",
+        "Tritogeneia",
+        "hesiod-homeric-hymns",
+        "28.1-30.1"
+      ],
+      [
+        "Athena",
+        "epithet",
+        "Alalcomenean Athene",
+        "homer-iliad",
+        "4.1-4.49"
+      ],
+      [
+        "Diomedes",
+        "marriage",
+        "married to Aegialia",
+        "apollodorus-bibliotheca",
+        "1.8.6-1.9.1"
+      ],
+      [
+        "Diomedes",
+        "marriage",
+        "married to Aegialeia, daughter of Adrastus",
+        "homer-iliad",
+        "5.381-5.425"
+      ],
+      [
+        "Diomedes",
+        "marriage",
+        "married to Daunus' daughter",
+        "ovid-metamorphoses",
+        "14.483-14.526"
+      ],
+      [
+        "Hector",
+        "marriage",
+        "married to Andromache",
+        "apollodorus-bibliotheca",
+        "3.12.6"
+      ],
+      [
+        "Hector",
+        "marriage",
+        "married to Andromache",
+        "homer-iliad",
+        "6.466-6.502"
+      ],
+      [
+        "Hera",
+        "epithet",
+        "Argive Hera",
+        "homer-iliad",
+        "4.1-4.49"
+      ],
+      [
+        "Hera",
+        "epithet",
+        "Queen of Gods, glorious child of Saturn",
+        "ovid-metamorphoses",
+        "2.508-2.541"
+      ],
+      [
+        "Hera",
+        "marriage",
+        "married to Zeus",
+        "hesiod-homeric-hymns",
+        "9.1-16.1"
+      ],
+      [
+        "Hera",
+        "marriage",
+        "married to Zeus",
+        "homer-iliad",
+        "14.153-14.196"
+      ],
+      [
+        "Hera",
+        "marriage",
+        "married to Zeus, first came together in love without their parents' knowledge",
+        "homer-iliad",
+        "14.277-14.311"
+      ],
+      [
+        "Hera",
+        "marriage",
+        "Juno married Jupiter (Jove), her brother",
+        "ovid-metamorphoses",
+        "9.487-9.516"
+      ],
+      [
+        "Heracles",
+        "marriage",
+        "married to Megaera",
+        "apollodorus-bibliotheca",
+        "2.4.11-2.4.12"
+      ],
+      [
+        "Heracles",
+        "marriage",
+        "married to Deianira",
+        "apollodorus-bibliotheca",
+        "2.7.4-2.7.6"
+      ],
+      [
+        "Heracles",
+        "marriage",
+        "married to Deianira",
+        "ovid-metamorphoses",
+        "9.172-9.210"
+      ],
+      [
+        "Heracles",
+        "marriage",
+        "married to Hebe",
+        "apollodorus-bibliotheca",
+        "2.7.7"
+      ],
+      [
+        "Heracles",
+        "marriage",
+        "married to Hebe",
+        "homer-odyssey",
+        "11.582-11.626"
+      ],
+      [
+        "Heracles",
+        "marriage",
+        "gave Megara to Iolaus and sought to wed Iole",
+        "apollodorus-bibliotheca",
+        "2.5.12-2.6.1"
+      ],
+      [
+        "Hermes",
+        "epithet",
+        "Slayer of Argus",
+        "hesiod-homeric-hymns",
+        "4.68-4.114"
+      ],
+      [
+        "Hermes",
+        "epithet",
+        "called Argeiphontes",
+        "homer-iliad",
+        "24.77-24.119"
+      ],
+      [
+        "Hermes",
+        "epithet",
+        "Argeiphontes",
+        "homer-odyssey",
+        "10.274-10.320"
+      ],
+      [
+        "Hermes",
+        "marriage",
+        "married to Daughter of Dryops",
+        "hesiod-homeric-hymns",
+        "19.27-23.1"
+      ],
+      [
+        "Hermes",
+        "marriage",
+        "married to Polymele",
+        "homer-iliad",
+        "16.155-16.197"
+      ],
+      [
+        "Menelaus",
+        "epithet",
+        "dear to Ares",
+        "homer-iliad",
+        "3.38-3.83"
+      ],
+      [
+        "Menelaus",
+        "epithet",
+        "fostered of Zeus",
+        "homer-iliad",
+        "10.42-10.85"
+      ],
+      [
+        "Menelaus",
+        "epithet",
+        "son of Atreus",
+        "homer-iliad",
+        "23.429-23.472"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "married to Helen, contested by Paris who took her",
+        "homer-iliad",
+        "3.245-3.291"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "married to Helen",
+        "homer-odyssey",
+        "4.265-4.314"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "has Helen to wife, husband of the daughter of Zeus",
+        "homer-odyssey",
+        "4.538-4.586"
+      ],
+      [
+        "Nestor",
+        "epithet",
+        "king of sandy Pylos",
+        "homer-iliad",
+        "2.48-2.83"
+      ],
+      [
+        "Nestor",
+        "epithet",
+        "tamer of horses",
+        "homer-odyssey",
+        "2.405-3.20"
+      ],
+      [
+        "Nestor",
+        "marriage",
+        "married to Anaxibia daughter of Cratieus",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Nestor",
+        "marriage",
+        "married to Eurydice",
+        "homer-odyssey",
+        "3.447-3.477"
+      ],
+      [
+        "Odysseus",
+        "epithet",
+        "Odysseus of many wiles",
+        "homer-iliad",
+        "14.64-14.108"
+      ],
+      [
+        "Odysseus",
+        "epithet",
+        "Zeus-born",
+        "homer-odyssey",
+        "2.309-2.360"
+      ],
+      [
+        "Odysseus",
+        "epithet",
+        "fostered of Zeus",
+        "homer-odyssey",
+        "10.229-10.273"
+      ],
+      [
+        "Odysseus",
+        "marriage",
+        "married to Penelope",
+        "apollodorus-bibliotheca",
+        "E.3.6-E.3.12"
+      ],
+      [
+        "Odysseus",
+        "marriage",
+        "husband of Penelope, who longs for his return",
+        "homer-odyssey",
+        "2.224-2.266"
+      ],
+      [
+        "Odysseus",
+        "marriage",
+        "married to Hecuba",
+        "apollodorus-bibliotheca",
+        "E.5.22-E.6.4"
+      ],
+      [
+        "Odysseus",
+        "marriage",
+        "married to Circe",
+        "apollodorus-bibliotheca",
+        "E.7.9-E.7.16"
+      ],
+      [
+        "Odysseus",
+        "marriage",
+        "married to Callidice",
+        "apollodorus-bibliotheca",
+        "E.7.33-E.7.40"
+      ],
+      [
+        "Odysseus",
+        "marriage",
+        "married to Thoas' daughter",
+        "apollodorus-bibliotheca",
+        "E.7.33-E.7.40"
+      ],
+      [
+        "Odysseus",
+        "marriage",
+        "married to Penelope, wife who wove and unraveled the shroud of Laertes to delay remarriage",
+        "homer-odyssey",
+        "24.120-24.169"
+      ],
+      [
+        "Penelope",
+        "marriage",
+        "married to Odysseus",
+        "apollodorus-bibliotheca",
+        "3.10.4-3.10.7"
+      ],
+      [
+        "Penelope",
+        "marriage",
+        "married to Odysseus",
+        "homer-odyssey",
+        "16.68-16.111"
+      ],
+      [
+        "Poseidon",
+        "epithet",
+        "loud-roaring Holder of the Earth, whose sacred grove is at Onchestus",
+        "hesiod-homeric-hymns",
+        "4.162-4.211"
+      ],
+      [
+        "Poseidon",
+        "epithet",
+        "Shaker of Earth",
+        "homer-iliad",
+        "8.425-8.468"
+      ],
+      [
+        "Poseidon",
+        "epithet",
+        "dark-haired Earth-shaker, receiving sacrifice of black bulls at Pylos",
+        "homer-odyssey",
+        "2.405-3.20"
+      ],
+      [
+        "Poseidon",
+        "marriage",
+        "married to Amphitrite",
+        "apollodorus-bibliotheca",
+        "1.4.3-1.5.2"
+      ],
+      [
+        "Poseidon",
+        "marriage",
+        "married to Amymone",
+        "apollodorus-bibliotheca",
+        "2.1.4"
+      ],
+      [
+        "Poseidon",
+        "marriage",
+        "married to Thoosa",
+        "homer-odyssey",
+        "1.44-1.95"
+      ],
+      [
+        "Priam",
+        "marriage",
+        "married to Arisbe",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Priam",
+        "marriage",
+        "married to Hecuba",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Priam",
+        "marriage",
+        "married to Hecuba",
+        "homer-iliad",
+        "24.200-24.246"
+      ],
+      [
+        "Priam",
+        "marriage",
+        "married to Castianeira",
+        "homer-iliad",
+        "8.292-8.334"
+      ],
+      [
+        "Priam",
+        "marriage",
+        "married to Laothoe",
+        "homer-iliad",
+        "22.25-22.58"
+      ],
+      [
+        "Zeus",
+        "epithet",
+        "dark-clouded Son of Cronos, far-seeing, loud-thunderer",
+        "hesiod-homeric-hymns",
+        "2.434-2.482"
+      ],
+      [
+        "Zeus",
+        "epithet",
+        "son of Cronos",
+        "homer-iliad",
+        "4.240-4.271"
+      ],
+      [
+        "Zeus",
+        "epithet",
+        "father of men and gods",
+        "homer-iliad",
+        "8.41-8.77"
+      ],
+      [
+        "Zeus",
+        "epithet",
+        "who hurls the thunderbolt",
+        "homer-odyssey",
+        "14.235-14.284"
+      ],
+      [
+        "Zeus",
+        "epithet",
+        "the stranger's god",
+        "homer-odyssey",
+        "14.235-14.284"
+      ],
+      [
+        "Zeus",
+        "marriage",
+        "married to Hera",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Zeus",
+        "marriage",
+        "married to Hera",
+        "homer-iliad",
+        "14.312-14.360"
+      ],
+      [
+        "Zeus",
+        "marriage",
+        "married to Metis",
+        "apollodorus-bibliotheca",
+        "1.3.6-1.4.2"
+      ],
+      [
+        "Zeus",
+        "marriage",
+        "married to Alcmena",
+        "apollodorus-bibliotheca",
+        "2.4.7-2.4.8"
+      ],
+      [
+        "Zeus",
+        "marriage",
+        "married to Mnemosyne",
+        "hesiod-theogony",
+        "53-103"
+      ],
+      [
+        "Zeus",
+        "marriage",
+        "married to Themis",
+        "hesiod-theogony",
+        "869-923"
+      ],
+      [
+        "Zeus",
+        "marriage",
+        "married to Eurynome",
+        "hesiod-theogony",
+        "869-923"
+      ],
+      [
+        "Zeus",
+        "marriage",
+        "married to Demeter",
+        "hesiod-homeric-hymns",
+        "2.19-2.58"
+      ],
+      [
+        "Zeus",
+        "marriage",
+        "married to Leto",
+        "hesiod-theogony",
+        "869-923"
+      ],
+      [
+        "Zeus",
+        "marriage",
+        "married to Maia",
+        "hesiod-homeric-hymns",
+        "4.28-4.67"
+      ],
+      [
+        "Zeus",
+        "marriage",
+        "married to Leda",
+        "hesiod-homeric-hymns",
+        "33.1"
+      ]
+    ],
+    "groupCount": 26
+  }
+]
