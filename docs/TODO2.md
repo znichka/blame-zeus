@@ -389,7 +389,11 @@ Both were documented as found-but-not-fixed and had no TODO home until 2026-07-2
 - [ ] Per batch (~25–50 groups): rank the 838 unreviewed groups by subject prominence; prioritize
       new claim_types beyond parentage/death (marriage, killer/slaying, birthplace, transformation).
       **Count is stale after P3** — J4a's same-source detector condition adds ~145 `parentage`
-      candidates on top
+      candidates on top. **Measured 2026-07-28** (`TODO-phase2-stage-p4.md` *Contracts*): **839**
+      distinct `(subject, claim_type)` groups, **835** of them with zero promoted rows — all **71**
+      `trust_tier=1` rows sit in just **4** groups across **3** subjects (Aphrodite, Achilles, Io).
+      Also measured: the prominence ranking this bullet assumes **does not exist** in
+      `ingestion/audit/` and has to be built (P4 Track B, audit checks A8/A9/A10)
 - [ ] **Own GAP-001 Root cause 3's promotion half (option a′) — carried in from P3, currently
       unscoped.** ~**467** parentage rivals already sit as emitted candidates that clear the
       ≥2-source gate and stall at the ADR-004 review gate; no detector change touches them. This is
@@ -405,9 +409,24 @@ Both were documented as found-but-not-fixed and had no TODO home until 2026-07-2
       enrichment-on-non-CONFLICT-route, schema-boundary); later batches add 1–3 questions per new
       data slice with **live-verified** keywords (DEV-050); old questions kept as regression
       sentinels; raise CONFLICT floor as the category grows
-- [ ] Optional: add the LLM-judge scoring column once the deterministic loop is stable (ADR-018)
+- [ ] Optional: add the LLM-judge scoring column once the deterministic loop is stable (ADR-018).
+      **Deliberately out of scope for P4's tracks** — the deterministic loop does not exist yet, so a
+      non-deterministic scorer would make the first three batches' gates unreadable; revisit after
+      batch 3 or in P5
+- [ ] **Three additions beyond `IMPLEMENTATION_PLAN_PHASE2.md §5`**, found by measuring the live tree
+      while breaking this stage down (2026-07-28) — each is scoped as its own P4 track: the review
+      notebook promotes by **positional index** while DEV-101's merge rewrites the file in extraction
+      order (silent wrong-row promotion — Track C); `report.py` never reads the `_runnerNote` the
+      runner writes on transport error, so a DEV-100-style API slow episode still reads as a
+      regression (Track D); and GAP-002's **362**-name unknown-name long tail (a pre-P3b figure —
+      P4 Track H1 re-measures it before triage), routed here by
+      `DATA-GAPS.md`, needs bucketed source-verified triage rather than a bulk add (Track H)
 
-→ Detailed checklist: `TODO-phase2-stage-p4.md` (created at implementation)
+→ Detailed checklist: [`TODO-phase2-stage-p4.md`](TODO-phase2-stage-p4.md) — 9 tracks (A–H, J),
+  68 items, with a parallelization guide: A/B/C/D fan out immediately, F is the serial batch gate.
+  **Note the baseline:** the P3b close run is DEV-100's own transport episode (3 `transport error:
+  timed out` in its `raw_responses.json`) and is **not** usable as a `compare.py` baseline; F0d
+  re-runs it clean on the current tree first
 
 ---
 

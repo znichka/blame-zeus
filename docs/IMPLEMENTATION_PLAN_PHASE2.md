@@ -310,6 +310,19 @@ the undetected extraction failure mode carry to P4.
 > in `write_output`, verified to preserve all 71 live `trust_tier=1` promotions where a re-extraction
 > previously destroyed every one. **DEV-049 remains open**, so ADR-010's REFUSAL Q16/Q17 still
 > cannot be authored).
+>
+> **Detailed checklist: `docs/TODO-phase2-stage-p4.md`** (2026-07-28). It records three things
+> measured against the live tree that this section assumes otherwise, and does **not** amend the body
+> below per the deviation protocol: (i) step 1's "the audit package emits the ranking" — **it does
+> not**; no prominence/degree code exists in `ingestion/audit/`, so it is built as new audit checks
+> A8/A9/A10; (ii) the "838 unreviewed groups" figure — measured **839** groups, **835** with zero
+> promoted rows, all 71 promotions in **4** groups across **3** subjects; (iii) step 1's "prioritize
+> new claim_types **beyond** parentage/death" is **in open conflict** with `TODO2.md:396-398`
+> ("parentage is the largest unworked dimension", on GAP-001 Root cause 3's ~467 stalled rivals),
+> which this section was never updated to reflect — the checklist's Track F0a resolves it in writing
+> before the first batch. The checklist also adds two tracks with no home in this section: keyed
+> promotion in the review notebook (positional indices are unsafe after DEV-101's merge) and a
+> transport/latency signal in `report.md` (the DEV-100 open item, which §5's own gate leans on).
 
 **Prerequisites, before the first batch.** Both were documented as found-but-not-fixed with no plan
 home until the 2026-07-27 reconciliation, and both bite specifically here:
