@@ -5797,7 +5797,7 @@
     "claim_value": "married to Herse",
     "source_id": "homer-odyssey",
     "passage_ref": "15.92-15.142",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Zeus",
@@ -8845,7 +8845,7 @@
     "claim_value": "married to Medus",
     "source_id": "hesiod-theogony",
     "passage_ref": "270-305",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Poseidon",
@@ -34741,7 +34741,7 @@
     "claim_value": "child of Sthenele",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.13.8-3.14.2",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Patroclus",
@@ -34749,7 +34749,7 @@
     "claim_value": "child of Periopis",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.13.8-3.14.2",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Patroclus",
@@ -34765,7 +34765,7 @@
     "claim_value": "child of Zeus",
     "source_id": "homer-iliad",
     "passage_ref": "1.325-1.363",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Patroclus",
@@ -34997,7 +34997,7 @@
     "claim_value": "sprung from Zeus",
     "source_id": "homer-iliad",
     "passage_ref": "1.325-1.363",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Patroclus",
@@ -35125,7 +35125,7 @@
     "claim_value": "son of Menoetius",
     "source_id": "homer-iliad",
     "passage_ref": "16.816-16.862",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Patroclus",
@@ -35245,7 +35245,7 @@
     "claim_value": "son of Menoetius",
     "source_id": "homer-odyssey",
     "passage_ref": "24.35-24.84",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",
@@ -35893,7 +35893,7 @@
     "claim_value": "married to Hellen",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menelaus",
@@ -35901,7 +35901,7 @@
     "claim_value": "married to Hellen",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.2.15-E.3.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menelaus",
@@ -35909,7 +35909,7 @@
     "claim_value": "married to Hellen",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.3.6-E.3.12",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menelaus",
@@ -35917,7 +35917,7 @@
     "claim_value": "married to Hellen",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.6.23-E.6.29",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menelaus",
@@ -35941,7 +35941,7 @@
     "claim_value": "married to Hellen",
     "source_id": "homer-iliad",
     "passage_ref": "3.245-3.291",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menelaus",
@@ -35949,7 +35949,7 @@
     "claim_value": "married to Hellen",
     "source_id": "homer-iliad",
     "passage_ref": "3.292-3.339",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menelaus",
@@ -35957,7 +35957,7 @@
     "claim_value": "married to Hellen",
     "source_id": "homer-iliad",
     "passage_ref": "3.381-3.420",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menelaus",
@@ -35965,7 +35965,7 @@
     "claim_value": "married to Hellen",
     "source_id": "homer-iliad",
     "passage_ref": "4.1-4.49",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menelaus",
@@ -35973,7 +35973,7 @@
     "claim_value": "married to Hellen",
     "source_id": "homer-iliad",
     "passage_ref": "7.354-7.402",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menelaus",
@@ -35981,7 +35981,7 @@
     "claim_value": "married to Hellen",
     "source_id": "homer-iliad",
     "passage_ref": "13.601-13.642",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menelaus",
@@ -35997,7 +35997,7 @@
     "claim_value": "married to Hellen",
     "source_id": "homer-odyssey",
     "passage_ref": "3.478-4.19",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menelaus",
@@ -36005,7 +36005,7 @@
     "claim_value": "married to Hellen",
     "source_id": "homer-odyssey",
     "passage_ref": "4.65-4.112",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menelaus",
@@ -36013,7 +36013,7 @@
     "claim_value": "married to Hellen",
     "source_id": "homer-odyssey",
     "passage_ref": "4.155-4.202",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menelaus",
@@ -36021,7 +36021,7 @@
     "claim_value": "married to Hellen",
     "source_id": "homer-odyssey",
     "passage_ref": "4.265-4.314",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menelaus",
@@ -36029,7 +36029,7 @@
     "claim_value": "married to Hellen",
     "source_id": "homer-odyssey",
     "passage_ref": "4.538-4.586",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menelaus",
@@ -36037,7 +36037,7 @@
     "claim_value": "married to Hellen",
     "source_id": "homer-odyssey",
     "passage_ref": "15.48-15.91",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menelaus",
@@ -36045,7 +36045,7 @@
     "claim_value": "married to Hellen",
     "source_id": "homer-odyssey",
     "passage_ref": "15.92-15.142",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menelaus",
@@ -36053,7 +36053,7 @@
     "claim_value": "married to Hellen",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "13.162-13.204",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menelaus",
@@ -42197,7 +42197,7 @@
     "claim_value": "killed by Hector",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.4.6-E.5.4",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Patroclus",
@@ -42309,7 +42309,7 @@
     "claim_value": "killed by Apollo",
     "source_id": "homer-iliad",
     "passage_ref": "18.428-18.477",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Patroclus",
@@ -42317,7 +42317,7 @@
     "claim_value": "killed by the gods",
     "source_id": "homer-iliad",
     "passage_ref": "18.590-19.11",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Patroclus",
@@ -42357,7 +42357,7 @@
     "claim_value": "killed by Sarpedon",
     "source_id": "homer-iliad",
     "passage_ref": "23.797-23.835",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Patroclus",
@@ -42637,7 +42637,7 @@
     "claim_value": "slain at Troy",
     "source_id": "homer-odyssey",
     "passage_ref": "3.102-3.154",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Herse",
@@ -44853,7 +44853,7 @@
     "claim_value": "child of Athena",
     "source_id": "homer-odyssey",
     "passage_ref": "2.267-2.308",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Telemachus",
@@ -45165,7 +45165,7 @@
     "claim_value": "child of Zeus",
     "source_id": "homer-odyssey",
     "passage_ref": "21.96-21.142",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Telemachus",
@@ -45293,7 +45293,7 @@
     "claim_value": "son of Odysseus",
     "source_id": "homer-odyssey",
     "passage_ref": "1.156-1.193",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Telemachus",
@@ -45637,7 +45637,7 @@
     "claim_value": "son of Odysseus",
     "source_id": "homer-odyssey",
     "passage_ref": "16.201-16.239",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Telemachus",
@@ -45733,7 +45733,7 @@
     "claim_value": "son of Penelope",
     "source_id": "homer-odyssey",
     "passage_ref": "17.512-17.559",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Telemachus",
@@ -48245,7 +48245,7 @@
     "claim_value": "married to Peleus",
     "source_id": "homer-iliad",
     "passage_ref": "17.412-17.455",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Ajax",
@@ -50133,7 +50133,7 @@
     "claim_value": "married to Arges",
     "source_id": "hesiod-theogony",
     "passage_ref": "924-955",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Aphrodite",
@@ -53285,7 +53285,7 @@
     "claim_value": "Helped the Argonauts pass safely through the Clashing Rocks",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.9.22",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hera",
@@ -53301,7 +53301,7 @@
     "claim_value": "Denied that Hecuba deserved such a fate, showing sympathy for her",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "13.545-13.575",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hera",
@@ -53309,7 +53309,7 @@
     "claim_value": "Has a shrine at the Lacinian Cape that ennobles it",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "15.680-15.718",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Cadmus",
@@ -53533,7 +53533,7 @@
     "claim_value": "Dipped his arrows in the gall of the slain hydra",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.5.2-2.5.3",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Heracles",
@@ -53613,7 +53613,7 @@
     "claim_value": "Overcame Cerberus, the triple-formed hound.",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "9.172-9.210",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Heracles",
@@ -53629,7 +53629,7 @@
     "claim_value": "Defeated the Stymphalian Birds.",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "9.172-9.210",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Heracles",
@@ -53645,7 +53645,7 @@
     "claim_value": "Won the Amazonian girdle of gold (belt of Hippolyta).",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "9.172-9.210",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Heracles",
@@ -53661,7 +53661,7 @@
     "claim_value": "Fought and was not foiled by the Centaurs.",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "9.172-9.210",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Heracles",
@@ -53741,7 +53741,7 @@
     "claim_value": "overcame the cloud-born centaurs in battle",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "12.536-12.579",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Heracles",
@@ -54085,7 +54085,7 @@
     "claim_value": "Exchanged the lyre for the cattle with Apollo",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.2",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hermes",
@@ -54101,7 +54101,7 @@
     "claim_value": "gave Odysseus the herb moly to protect him from Circe's magic",
     "source_id": "homer-odyssey",
     "passage_ref": "10.274-10.320",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hermes",
@@ -54109,7 +54109,7 @@
     "claim_value": "Stole Apollo's unattended cattle and hid them in the forest",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "2.655-2.696",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hermes",
@@ -54125,7 +54125,7 @@
     "claim_value": "Appointed herald to Zeus and to the infernal gods",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.2",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hermes",
@@ -54133,7 +54133,7 @@
     "claim_value": "sent by Zeus as messenger to bring Persephone back from Erebus",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "2.384-2.433",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hermes",
@@ -54141,7 +54141,7 @@
     "claim_value": "Sent by Zeus to tell Tros of his son's fate, described as the Guide and slayer of Argus",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "5.202-5.246",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Ganymede",
@@ -54317,7 +54317,7 @@
     "claim_value": "wore a helm crafted by Hephaestus",
     "source_id": "homer-iliad",
     "passage_ref": "22.289-22.327",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Achilles",
@@ -54333,7 +54333,7 @@
     "claim_value": "his hands had slain many of Priam's sons",
     "source_id": "homer-iliad",
     "passage_ref": "24.440-24.484",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Iphigenia",
@@ -54485,7 +54485,7 @@
     "claim_value": "exchanged arms with Glaucus after recalling the friendship of their fathers",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.3.34-E.4.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Diomedes",
@@ -54493,7 +54493,7 @@
     "claim_value": "wounded on the right shoulder by an arrow shot by Pandarus",
     "source_id": "homer-iliad",
     "passage_ref": "5.76-5.120",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Diomedes",
@@ -54501,7 +54501,7 @@
     "claim_value": "wounded by Pandarus with an arrow",
     "source_id": "homer-iliad",
     "passage_ref": "5.778-5.824",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Diomedes",
@@ -54509,7 +54509,7 @@
     "claim_value": "brought by Achilles from Lesbos as his concubine",
     "source_id": "homer-iliad",
     "passage_ref": "9.643-9.675",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Ajax",
@@ -54517,7 +54517,7 @@
     "claim_value": "chosen by lot to fight Hector in single combat",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.3.34-E.4.5",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Ajax",
@@ -54525,7 +54525,7 @@
     "claim_value": "given the long chine for his honour by Agamemnon",
     "source_id": "homer-iliad",
     "passage_ref": "7.313-7.353",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Ajax",
@@ -54533,7 +54533,7 @@
     "claim_value": "his spear was shorn by Hector's sword, leaving him with a pointless spear",
     "source_id": "homer-iliad",
     "passage_ref": "16.114-16.154",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Ajax",
@@ -54541,7 +54541,7 @@
     "claim_value": "in comeliness and deeds of war was above all other Achaeans, next to Achilles",
     "source_id": "homer-odyssey",
     "passage_ref": "11.538-11.581",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Rhesus",
@@ -54565,7 +54565,7 @@
     "claim_value": "made a breach in the wall and set fire to the ships",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.3.34-E.4.5",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hector",
@@ -54597,7 +54597,7 @@
     "claim_value": "was raised up by Apollo after being felled by Aias' rock",
     "source_id": "homer-iliad",
     "passage_ref": "7.244-7.286",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hector",
@@ -54637,7 +54637,7 @@
     "claim_value": "peer of swift Ares",
     "source_id": "homer-iliad",
     "passage_ref": "17.33-17.81",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hector",
@@ -54653,7 +54653,7 @@
     "claim_value": "wore the armour of Achilles, filled with valour by Ares",
     "source_id": "homer-iliad",
     "passage_ref": "17.209-17.255",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hector",
@@ -54661,7 +54661,7 @@
     "claim_value": "born the same night as Polydamas, his comrade",
     "source_id": "homer-iliad",
     "passage_ref": "18.243-18.283",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hector",
@@ -54677,7 +54677,7 @@
     "claim_value": "spear turned back from Achilles by Athene",
     "source_id": "homer-iliad",
     "passage_ref": "20.419-20.454",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hector",
@@ -54709,7 +54709,7 @@
     "claim_value": "buried with Patroclus in the White Isle, bones mixed together",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.5.5-E.5.13",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Achilles",
@@ -54717,7 +54717,7 @@
     "claim_value": "ashes placed in a golden urn, gift of Dionysus, made by Hephaestus, mingled with the bones of Patroclus, with those of Antilochus nearby, all under a great tomb on a headland by the Hellespont",
     "source_id": "homer-odyssey",
     "passage_ref": "24.35-24.84",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Penelope",
@@ -54725,7 +54725,7 @@
     "claim_value": "Some say Penelope was seduced by Antinous and sent away by Ulysses to her father Icarius, then bore Pan to Hermes at Mantinea in Arcadia",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.7.33-E.7.40",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Penelope",
@@ -54733,7 +54733,7 @@
     "claim_value": "Penelope wove and secretly unraveled a shroud for Laertes to delay remarriage to the suitors",
     "source_id": "homer-odyssey",
     "passage_ref": "2.60-2.110",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Penelope",
@@ -54741,7 +54741,7 @@
     "claim_value": "constant wife who mourns for Odysseus",
     "source_id": "homer-odyssey",
     "passage_ref": "4.65-4.112",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Penelope",
@@ -54749,7 +54749,7 @@
     "claim_value": "to be wed by the suitor who wins her favor or offers the most gifts, and would inherit the house of Telemachus's father",
     "source_id": "homer-odyssey",
     "passage_ref": "16.358-16.405",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Penelope",
@@ -54757,7 +54757,7 @@
     "claim_value": "initially disbelieved Odysseus had returned, suspecting a god slew the suitors instead",
     "source_id": "homer-odyssey",
     "passage_ref": "23.39-23.84",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",
@@ -54773,7 +54773,7 @@
     "claim_value": "sacked the sacred citadel of Troy",
     "source_id": "homer-odyssey",
     "passage_ref": "1.1-1.43",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",
@@ -55253,7 +55253,7 @@
     "claim_value": "dispenser of battle for men",
     "source_id": "homer-iliad",
     "passage_ref": "4.50-4.84",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -55301,7 +55301,7 @@
     "claim_value": "brother and lord of Hera",
     "source_id": "homer-iliad",
     "passage_ref": "14.153-14.196",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -55333,7 +55333,7 @@
     "claim_value": "referred to as 'the son of Cronos'",
     "source_id": "homer-odyssey",
     "passage_ref": "16.266-16.307",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -55357,7 +55357,7 @@
     "claim_value": "bestowed prophetic powers upon Calchas",
     "source_id": "homer-iliad",
     "passage_ref": "1.53-1.100",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Apollo",
@@ -55381,7 +55381,7 @@
     "claim_value": "hawk is the swift messenger of Apollo",
     "source_id": "homer-odyssey",
     "passage_ref": "15.493-15.544",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Apollo",
@@ -55669,7 +55669,7 @@
     "claim_value": "was born on the Isle of Crete",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "8.81-8.118",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -55709,7 +55709,7 @@
     "claim_value": "Shed sleep upon Odysseus's eyes to free him from weariness",
     "source_id": "homer-odyssey",
     "passage_ref": "5.463-6.12",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Athena",
@@ -55717,7 +55717,7 @@
     "claim_value": "Has a promontory named after her along the Italian coast",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "15.680-15.718",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -55733,7 +55733,7 @@
     "claim_value": "Drove the Titans from heaven",
     "source_id": "hesiod-theogony",
     "passage_ref": "820-868",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -56221,7 +56221,7 @@
     "claim_value": "rules over all mortal men",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "2.483-3.29",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Apollo",
@@ -56253,7 +56253,7 @@
     "claim_value": "wooed alongside Phorbas sprung from Triops",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "3.182-3.238",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Apollo",
@@ -56261,7 +56261,7 @@
     "claim_value": "wooed alongside Ereutheus",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "3.182-3.238",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Apollo",
@@ -56597,7 +56597,7 @@
     "claim_value": "hampered Aias in the footrace so that Odysseus would win",
     "source_id": "homer-iliad",
     "passage_ref": "23.753-23.796",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Artemis",
@@ -56685,7 +56685,7 @@
     "claim_value": "Themis sits leaning towards Zeus as he whispers words of wisdom to her",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "19.27-23.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -56693,7 +56693,7 @@
     "claim_value": "father of gods, sent Iris to Priam",
     "source_id": "homer-iliad",
     "passage_ref": "24.120-24.158",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Achilles",
@@ -56749,7 +56749,7 @@
     "claim_value": "breaker of the ranks of men",
     "source_id": "homer-iliad",
     "passage_ref": "16.548-16.592",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Achilles",
@@ -56773,7 +56773,7 @@
     "claim_value": "born of an immortal mother",
     "source_id": "homer-iliad",
     "passage_ref": "17.33-17.81",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Achilles",
@@ -57077,7 +57077,7 @@
     "claim_value": "nurtured of Zeus",
     "source_id": "homer-iliad",
     "passage_ref": "17.33-17.81",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Menelaus",
@@ -57101,7 +57101,7 @@
     "claim_value": "the peer of Zeus in counsel",
     "source_id": "homer-iliad",
     "passage_ref": "2.394-2.440",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",
@@ -57109,7 +57109,7 @@
     "claim_value": "loved by Pallas Athene",
     "source_id": "homer-iliad",
     "passage_ref": "10.227-10.271",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",
@@ -57141,7 +57141,7 @@
     "claim_value": "lost the day of his return from Troy",
     "source_id": "homer-odyssey",
     "passage_ref": "1.325-1.364",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",
@@ -57509,7 +57509,7 @@
     "claim_value": "Zeus made Agamemnon pre-eminent among many, and chiefest amid warriors on that day",
     "source_id": "homer-iliad",
     "passage_ref": "2.441-2.483",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Agamemnon",
@@ -57517,7 +57517,7 @@
     "claim_value": "King of men; swore an oath with sacrifice setting Menelaus to fight the Trojans",
     "source_id": "homer-iliad",
     "passage_ref": "4.148-4.191",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Agamemnon",
@@ -57525,7 +57525,7 @@
     "claim_value": "took Achilles' prize (Briseis) due to blindness cast upon him by Zeus, Fate, and Erinys",
     "source_id": "homer-iliad",
     "passage_ref": "19.54-19.89",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Agamemnon",
@@ -57533,7 +57533,7 @@
     "claim_value": "Saved from the fates by Hera during his voyage home, until driven off course near Malea",
     "source_id": "homer-odyssey",
     "passage_ref": "4.492-4.537",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Agamemnon",
@@ -57541,7 +57541,7 @@
     "claim_value": "Eumaeus's master died to win recompense for Agamemnon",
     "source_id": "homer-odyssey",
     "passage_ref": "14.72-14.120",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Menelaus",
@@ -57565,7 +57565,7 @@
     "claim_value": "brother of Agamemnon who ruled mightily over all the Argives",
     "source_id": "homer-iliad",
     "passage_ref": "10.1-10.41",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Menelaus",
@@ -57581,7 +57581,7 @@
     "claim_value": "led ships to Ilios with Idomeneus at the bidding of the Achaeans",
     "source_id": "homer-odyssey",
     "passage_ref": "14.235-14.284",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Menelaus",
@@ -57677,7 +57677,7 @@
     "claim_value": "reared in the land of Ithaca",
     "source_id": "homer-iliad",
     "passage_ref": "3.171-3.202",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",
@@ -57685,7 +57685,7 @@
     "claim_value": "Saved by Calypso after Zeus destroyed his ship with a thunder-bolt, killing all his comrades; Calypso offered to make him immortal and ageless",
     "source_id": "homer-odyssey",
     "passage_ref": "5.116-5.158",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",
@@ -57693,7 +57693,7 @@
     "claim_value": "of many wiles",
     "source_id": "homer-odyssey",
     "passage_ref": "18.290-18.339",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",
@@ -57701,7 +57701,7 @@
     "claim_value": "went down into the house of Hades to enquire concerning the return of his comrades and himself",
     "source_id": "homer-odyssey",
     "passage_ref": "23.231-23.262",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hera",
@@ -57749,7 +57749,7 @@
     "claim_value": "wounded on the hand at the wrist by Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "5.426-5.469",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Aphrodite",
@@ -57765,7 +57765,7 @@
     "claim_value": "loves Ares and lies with him, caught in adultery by Hephaestus's snare",
     "source_id": "homer-odyssey",
     "passage_ref": "8.295-8.342",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Aphrodite",
@@ -57773,7 +57773,7 @@
     "claim_value": "went to Olympus to ask Zeus for the maidens' marriage to be accomplished",
     "source_id": "homer-odyssey",
     "passage_ref": "20.54-20.101",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Arges",
@@ -57821,7 +57821,7 @@
     "claim_value": "Apollo bade Ares rouse the spirit of the Trojans",
     "source_id": "homer-iliad",
     "passage_ref": "5.470-5.518",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Apollo",
@@ -57829,7 +57829,7 @@
     "claim_value": "took the form of the herald Periphas, son of Epytos, to rouse Aeneas",
     "source_id": "homer-iliad",
     "passage_ref": "17.288-17.332",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Apollo",
@@ -57837,7 +57837,7 @@
     "claim_value": "comes with Artemis and slays aged mortals with his gentle shafts",
     "source_id": "homer-odyssey",
     "passage_ref": "15.403-15.453",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Arges",
@@ -57877,7 +57877,7 @@
     "claim_value": "threatens to smite Ares and drive him out of the battle",
     "source_id": "homer-iliad",
     "passage_ref": "5.733-5.777",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hera",
@@ -57885,7 +57885,7 @@
     "claim_value": "fair-haired; lord of Hera is Zeus who lightens and makes rain, hail, or snow",
     "source_id": "homer-iliad",
     "passage_ref": "10.1-10.41",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hera",
@@ -57925,7 +57925,7 @@
     "claim_value": "Disguised herself as Beroe, an Epidaurian nurse, to deceive Semele",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "3.251-3.286",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hera",
@@ -57957,7 +57957,7 @@
     "claim_value": "breastplate made by Hephaestus",
     "source_id": "homer-iliad",
     "passage_ref": "8.157-8.197",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Diomedes",
@@ -57965,7 +57965,7 @@
     "claim_value": "Rebuked Ulysses by name for cowardly flight after abandoning Nestor",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "13.43-13.81",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Diomedes",
@@ -58069,7 +58069,7 @@
     "claim_value": "took the form of the daughter of Dymas to speak to Nausicaa",
     "source_id": "homer-odyssey",
     "passage_ref": "6.13-6.47",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Athena",
@@ -58077,7 +58077,7 @@
     "claim_value": "departed to Olympus, abode of the gods that stands fast forever",
     "source_id": "homer-odyssey",
     "passage_ref": "6.13-6.47",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Athena",
@@ -58093,7 +58093,7 @@
     "claim_value": "sent the ship a favorable wind",
     "source_id": "homer-odyssey",
     "passage_ref": "15.271-15.300",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Athena",
@@ -58317,7 +58317,7 @@
     "claim_value": "his son's son (grandson) fell in battle, causing his wrath",
     "source_id": "homer-iliad",
     "passage_ref": "13.206-13.253",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Poseidon",
@@ -58429,7 +58429,7 @@
     "claim_value": "Poseidon is described as elder-born compared to Apollo",
     "source_id": "homer-iliad",
     "passage_ref": "21.423-21.467",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Poseidon",
@@ -58437,7 +58437,7 @@
     "claim_value": "father's brother (uncle) to Apollo, brother of Zeus",
     "source_id": "homer-iliad",
     "passage_ref": "21.468-21.513",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Poseidon",
@@ -58469,7 +58469,7 @@
     "claim_value": "Earth-shaker who smote Odysseus and raged against him",
     "source_id": "homer-odyssey",
     "passage_ref": "6.288-6.328",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Poseidon",
@@ -58501,7 +58501,7 @@
     "claim_value": "Turned the Phaeacian ship to stone near the shore of Scheria",
     "source_id": "homer-odyssey",
     "passage_ref": "13.139-13.183",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Poseidon",
@@ -58517,7 +58517,7 @@
     "claim_value": "Is honored eldest and best among the gods according to Zeus",
     "source_id": "homer-odyssey",
     "passage_ref": "13.139-13.183",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Poseidon",
@@ -58781,7 +58781,7 @@
     "claim_value": "Aphrodite went to Cyprus, to Paphos, where is her demesne and fragrant altar",
     "source_id": "homer-odyssey",
     "passage_ref": "8.343-8.384",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Aphrodite",
@@ -58797,7 +58797,7 @@
     "claim_value": "caught in adultery with Mars by a trap set by Vulcan and exposed before the gods",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "4.167-4.189",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Aphrodite",
@@ -58829,7 +58829,7 @@
     "claim_value": "gave Hippomenes three golden apples from a tree in the Field Tamasus in Cyprus to help him win Atalanta",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "10.609-10.651",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Aphrodite",
@@ -58973,7 +58973,7 @@
     "claim_value": "sent as guide (Argeiphontes) to lead Priam to Achilles",
     "source_id": "homer-iliad",
     "passage_ref": "24.159-24.199",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hermes",
@@ -58989,7 +58989,7 @@
     "claim_value": "Used his sleep-inducing wand to violate Chione while she slept",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "11.301-11.317",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Priam",
@@ -58997,7 +58997,7 @@
     "claim_value": "Once preeminent by reason of wealth and sons, ruling over lands including Lesbos and Phrygia, before war brought battles and slayings around his city",
     "source_id": "homer-iliad",
     "passage_ref": "24.525-24.570",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Priam",
@@ -59005,7 +59005,7 @@
     "claim_value": "his city of Ilios (Troy) was sacked by the Achaeans in the tenth year of the war",
     "source_id": "homer-odyssey",
     "passage_ref": "14.235-14.284",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Niobe",
@@ -59181,7 +59181,7 @@
     "claim_value": "seeks Aglauros's aid to win the love of Herse",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "2.737-2.751",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hermes",
@@ -59285,7 +59285,7 @@
     "claim_value": "slew the wooers who vexed his house",
     "source_id": "homer-odyssey",
     "passage_ref": "22.490-23.38",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",

@@ -275,7 +275,48 @@ def test_write_output_reports_how_many_promotions_it_carried_over(tmp_path, caps
     result = _result([_candidate()])
     write_output(result, output_dir=tmp_path)
 
-    assert "1 reviewed promotion" in capsys.readouterr().out
+    out = capsys.readouterr().out
+    assert "carried over 1 reviewed decision(s)" in out
+    assert "1 promoted, 0 rejected" in out
+
+
+# --- P4 Track F3 (DEV-113): a rejected (trust_tier=2) row is a review decision too ----
+
+
+def test_write_output_preserves_a_rejected_row(tmp_path):
+    """A reviewer who checked a candidate against its cited passage and found it unsupported
+    marks it trust_tier=2 (REJECTED_TRUST_TIER), not left at the default 3 -- otherwise it is
+    indistinguishable from "not yet reviewed" to the next reviewer who meets the same group."""
+    path = tmp_path / "variant_claims_candidates.json"
+    path.write_text(json.dumps([_claim(tier=2)]), encoding="utf-8")
+
+    result = _result([_candidate()])
+    write_output(result, output_dir=tmp_path)
+
+    rows = json.loads(path.read_text())
+    assert len(rows) == 1
+    assert rows[0]["trust_tier"] == 2, "the rejection must survive a re-extraction, same as a promotion"
+
+
+def test_write_output_reports_promoted_and_rejected_counts_separately(tmp_path, capsys):
+    path = tmp_path / "variant_claims_candidates.json"
+    path.write_text(
+        json.dumps([
+            _claim(subject="Aphrodite", value="child of Zeus", tier=1),
+            _claim(subject="Aphrodite", value="child of Dione", source="source-b", tier=2),
+        ]),
+        encoding="utf-8",
+    )
+
+    result = _result([
+        _candidate(value="child of Zeus"),
+        _candidate(value="child of Dione", source="source-b"),
+    ])
+    write_output(result, output_dir=tmp_path)
+
+    out = capsys.readouterr().out
+    assert "carried over 2 reviewed decision(s)" in out
+    assert "1 promoted, 1 rejected" in out
 
 
 def test_write_output_on_a_fresh_dir_needs_no_existing_file(tmp_path):

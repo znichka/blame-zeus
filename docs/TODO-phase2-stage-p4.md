@@ -823,16 +823,33 @@ reseed.
 
 ### F2 / F3 — Batches 2 and 3 (template; tranche per F0a's rule)
 
+> ⚠️ **Naming note:** `DEVIATIONS.md` **#DEV-113** labels itself "Track F3" but is **not** this
+> section's batch-3 review — it's the `trust_tier=2` rejected-marker infrastructure change (done
+> between F2 and F3, prompted by "are the extraction errors documented"), reusing the F3 label
+> because it's the next free letter in this track's own sequence. The batch-3 review itself is
+> still the `[ ] **F3**` item below, unstarted.
+
+> ⚠️ **Deviations occurred in F2.** See `DEVIATIONS.md` **#DEV-112**. An ad-hoc review script
+> initially miscounted `Ajax`'s `notable_claim` group (raw claim_type string match instead of
+> normalized) — caught by cross-checking A10's own output before any promotion decision. 8 more
+> extraction errors caught (a reversed kill-direction, two Homeric-formula misreads). **Result:
+> 107 rows / 25 canonical groups, top-20-prominence subject coverage now 20/20 — that exit gate
+> is fully met.**
+
 Each repeats **F1a–F1j** unchanged, with these substitutions. Their content is deliberately not
 pre-assigned: it depends on what F1's eval shows and on which claim_types F1's promotions opened.
 
-- [ ] **F2** — tranche per F0a over the *updated* A8/A9/A10 output (re-run the audit first — the
+- [x] **F2** — tranche per F0a over the *updated* A8/A9/A10 output (re-run the audit first — the
       ranking moves as the graph grows); gold set grows by **1–3** live-verified questions (E7);
       `compare.py` baseline is **F1's accepted run**, not the P3b one; label `p4-batch2`.
+      **Result: label `p4-f2-batch2`, 107 rows/25 canonical groups, +3 gold questions (Q20/E4,
+      Q22/Q23/E7), 21/23 = 91%, zero stable regressions vs. F1.**
 - [ ] **F3** — same again; label `p4-batch3`. At its close, check the exit gate explicitly:
       **≥3 batches**, **≥4 canonical claim_types**, **all top-20-prominence subjects**, **gold set
       ≈25**, **floors enforced**, **overall ≥75% across 3 runs**. Anything unmet is either worked in
       an F4 or written down as a deferral — not quietly dropped.
+      **Status entering F3**: claim_types 8/4 ✅, top-20 subjects 20/20 ✅, gold set 23/~25 (2-3
+      more needed), batches 2/≥3 (F3 itself is the 3rd), floors/overall already holding at 91%.
 - [ ] **F4+** — The loop continues past the gate (`§5`: "the loop continues after"). Additional
       batches follow the same template; the gate is a milestone, not a stopping condition.
 
@@ -882,31 +899,33 @@ pre-assigned: it depends on what F1's eval shows and on which claim_types F1's p
 - [ ] **≥3 batches end-to-end**, each a complete `seedgen → reseed → audit → runner --runs 3 →
       compare.py → commit-or-revert` pass, results dirs committed with their candidates, migrations
       and gold-set changes (Track F).
-      **1 of ≥3 done (F1, DEV-110).** F2/F3 still needed.
+      **2 of ≥3 done (F1 DEV-110, F2 DEV-112).** F3 closes this gate.
 - [x] **`variant_claims` covers ≥4 canonical claim_types** — from **2** today (`parentage`, `death`).
       **Counted in the seeded table after a reseed, not in the candidate file** (they differ: 71
       promoted candidates → 44 rows; see *Contracts*).
-      **MET at F1 (DEV-110): parentage, death, marriage, epithet — 4/4.**
-- [ ] **`variant_claims` covers all top-20-prominence subjects** — from **3** today (Aphrodite,
+      **MET at F1 (DEV-110): parentage, death, marriage, epithet — 4/4.** Now **8/4** after F2
+      (DEV-112): + `notable_claim`, `other`, `role`, `burial`.
+- [x] **`variant_claims` covers all top-20-prominence subjects** — from **3** today (Aphrodite,
       Achilles, Io), measured against Track B's A8 ranking, and again counted **in the seeded table**.
       Because the A8 ranking shifts as Track H adds entities, **freeze the top-20 list from A8's first
       clean run into F0's record** and gate against that snapshot; re-ranking every batch makes the
       gate unfalsifiable. Note any subject that enters or leaves the live top 20 afterwards rather
       than silently re-scoping the target.
-      **17/20 after F1** (missing `Telemachus`/`Patroclus`/`Ajax` — no `marriage`/`epithet`
-      candidates exist for them; a future batch needs a different claim_type for these three).
+      **17/20 after F1**, then **20/20 after F2 (DEV-112) — this gate is fully met.** `Telemachus`/
+      `Patroclus` closed via Tier-3 `parentage`/`death` groups (no unpromoted-type candidates
+      existed for them); `Ajax` via a `notable_claim` group an earlier miscounting script missed.
 - [ ] **Gold set ≈25 questions** — from **16** today; ADR-010's backlog (Q16, Q17, Q19, Q20, Q21)
       authored with live-verified keywords; every pre-existing question retained as a sentinel.
-      **20/~25 after F1** (Q16/Q17/Q19/Q21 landed with live-verified text/routes, some deviating
-      from ADR-010's literal wording per DEV-110; Q20/E4 deferred to F2 pending a new death conflict).
+      **20/~25 after F1**, then **23/~25 after F2** (Q20/E4 landed using `Patroclus`'s new death
+      conflict; Q22/Q23/E7 target F2's new data specifically). 2-3 more in F3 closes this gate.
 - [x] **Per-category floors enforced**, REFUSAL promoted off `null`, CONFLICT raised as the category
       grows; no floor ever lowered to make a run pass.
       **REFUSAL floor set to 0.5 at F1 (DEV-110).** CONFLICT deliberately left at 0.5 (5 questions —
       raising to 0.6 would be cosmetic at this count, revisit at 6+).
 - [x] **Overall ≥75% sustained across a 3-run eval** with **zero stable regressions**, on a run with
       no transport errors (Track D's banner clean).
-      **90% at F1 (DEV-110)**, zero transport errors, zero stable regressions vs. F0d. Must stay true
-      through F2/F3 too, not just this one batch.
+      **90% at F1 (DEV-110), 91% at F2 (DEV-112)**, zero transport errors, zero stable regressions
+      either batch. Must stay true through F3 too, not just these two.
 - [ ] **GAP-001 a′** worked or explicitly deferred with a written waiver (F0b); **GAP-002** long tail
       worked or explicitly deferred with its bucket and reason (H6); **F0c**'s standing-waiver policy
       for A1/A6 residue decided in writing.

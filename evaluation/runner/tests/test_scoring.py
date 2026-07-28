@@ -303,6 +303,26 @@ def test_refusal_pass_sql_route_singular_wording_p4_track_f1g():
     assert s.content_point is True
 
 
+def test_refusal_pass_plural_sources_wording_p4_track_f2_e4():
+    # P4 Track F2/E4 (DEV-112): Q20's real live wording -- "the available sources do not
+    # provide/detail" -- plural, the mirror-image of DEV-110's singular "does not provide" gap.
+    q = gq(id=20, category="REFUSAL", expected_route="RAG",
+           refusal_criteria=REFUSAL_CRITERIA,
+           forbidden_patterns=["his build was", "his hair was", "described as"])
+    r = resp(
+        route_decision="RAG",
+        answer=(
+            "The available ancient sources do not provide a direct physical description of "
+            "Patroclus's appearance. While classical texts describe his actions in battle and "
+            "the armor he wore, they do not detail his physical features, build, complexion, "
+            "or other aspects of his appearance."
+        ),
+        citations=[],
+    )
+    s = score_question(q, r)
+    assert s.content_point is True
+
+
 def test_refusal_fail_fabricated_citation_and_no_source_limit():
     q = gq(id=16, category="REFUSAL", expected_route="RAG",
            refusal_criteria=REFUSAL_CRITERIA,

@@ -670,5 +670,987 @@
       ]
     ],
     "groupCount": 26
+  },
+  {
+    "batchLabel": "p4-f2-batch2",
+    "date": "2026-07-28T18:23:15.142551+00:00",
+    "keys": [
+      [
+        "Odysseus",
+        "notable",
+        "loved by Pallas Athene",
+        "homer-iliad",
+        "10.227-10.271"
+      ],
+      [
+        "Odysseus",
+        "notable",
+        "the peer of Zeus in counsel",
+        "homer-iliad",
+        "2.394-2.440"
+      ],
+      [
+        "Odysseus",
+        "notable_claim",
+        "sacked the sacred citadel of Troy",
+        "homer-odyssey",
+        "1.1-1.43"
+      ],
+      [
+        "Odysseus",
+        "notable_act",
+        "slew the wooers who vexed his house",
+        "homer-odyssey",
+        "22.490-23.38"
+      ],
+      [
+        "Odysseus",
+        "notable",
+        "lost the day of his return from Troy",
+        "homer-odyssey",
+        "1.325-1.364"
+      ],
+      [
+        "Odysseus",
+        "other",
+        "of many wiles",
+        "homer-odyssey",
+        "18.290-18.339"
+      ],
+      [
+        "Odysseus",
+        "other",
+        "reared in the land of Ithaca",
+        "homer-iliad",
+        "3.171-3.202"
+      ],
+      [
+        "Odysseus",
+        "other",
+        "went down into the house of Hades to enquire concerning the return of his comrades and himself",
+        "homer-odyssey",
+        "23.231-23.262"
+      ],
+      [
+        "Odysseus",
+        "other",
+        "Saved by Calypso after Zeus destroyed his ship with a thunder-bolt, killing all his comrades; Calypso offered to make him immortal and ageless",
+        "homer-odyssey",
+        "5.116-5.158"
+      ],
+      [
+        "Zeus",
+        "notable",
+        "brother and lord of Hera",
+        "homer-iliad",
+        "14.153-14.196"
+      ],
+      [
+        "Zeus",
+        "notable",
+        "dispenser of battle for men",
+        "homer-iliad",
+        "4.50-4.84"
+      ],
+      [
+        "Zeus",
+        "notable_act",
+        "Drove the Titans from heaven",
+        "hesiod-theogony",
+        "820-868"
+      ],
+      [
+        "Zeus",
+        "notable_claim",
+        "was born on the Isle of Crete",
+        "ovid-metamorphoses",
+        "8.81-8.118"
+      ],
+      [
+        "Zeus",
+        "notable",
+        "referred to as 'the son of Cronos'",
+        "homer-odyssey",
+        "16.266-16.307"
+      ],
+      [
+        "Zeus",
+        "other",
+        "father of gods, sent Iris to Priam",
+        "homer-iliad",
+        "24.120-24.158"
+      ],
+      [
+        "Zeus",
+        "other",
+        "Themis sits leaning towards Zeus as he whispers words of wisdom to her",
+        "hesiod-homeric-hymns",
+        "19.27-23.1"
+      ],
+      [
+        "Achilles",
+        "notable",
+        "born of an immortal mother",
+        "homer-iliad",
+        "17.33-17.81"
+      ],
+      [
+        "Achilles",
+        "notable",
+        "breaker of the ranks of men",
+        "homer-iliad",
+        "16.548-16.592"
+      ],
+      [
+        "Achilles",
+        "notable claim",
+        "wore a helm crafted by Hephaestus",
+        "homer-iliad",
+        "22.289-22.327"
+      ],
+      [
+        "Achilles",
+        "notable claim",
+        "his hands had slain many of Priam's sons",
+        "homer-iliad",
+        "24.440-24.484"
+      ],
+      [
+        "Achilles",
+        "burial",
+        "buried with Patroclus in the White Isle, bones mixed together",
+        "apollodorus-bibliotheca",
+        "E.5.5-E.5.13"
+      ],
+      [
+        "Achilles",
+        "burial",
+        "ashes placed in a golden urn, gift of Dionysus, made by Hephaestus, mingled with the bones of Patroclus, with those of Antilochus nearby, all under a great tomb on a headland by the Hellespont",
+        "homer-odyssey",
+        "24.35-24.84"
+      ],
+      [
+        "Heracles",
+        "notable_claim",
+        "Defeated the Stymphalian Birds.",
+        "ovid-metamorphoses",
+        "9.172-9.210"
+      ],
+      [
+        "Heracles",
+        "notable_claim",
+        "Fought and was not foiled by the Centaurs.",
+        "ovid-metamorphoses",
+        "9.172-9.210"
+      ],
+      [
+        "Heracles",
+        "notable_deed",
+        "overcame the cloud-born centaurs in battle",
+        "ovid-metamorphoses",
+        "12.536-12.579"
+      ],
+      [
+        "Heracles",
+        "notable_claim",
+        "Overcame Cerberus, the triple-formed hound.",
+        "ovid-metamorphoses",
+        "9.172-9.210"
+      ],
+      [
+        "Heracles",
+        "notable_claim",
+        "Dipped his arrows in the gall of the slain hydra",
+        "apollodorus-bibliotheca",
+        "2.5.2-2.5.3"
+      ],
+      [
+        "Heracles",
+        "notable_claim",
+        "Won the Amazonian girdle of gold (belt of Hippolyta).",
+        "ovid-metamorphoses",
+        "9.172-9.210"
+      ],
+      [
+        "Hector",
+        "notable",
+        "peer of swift Ares",
+        "homer-iliad",
+        "17.33-17.81"
+      ],
+      [
+        "Hector",
+        "notable",
+        "spear turned back from Achilles by Athene",
+        "homer-iliad",
+        "20.419-20.454"
+      ],
+      [
+        "Hector",
+        "notable",
+        "born the same night as Polydamas, his comrade",
+        "homer-iliad",
+        "18.243-18.283"
+      ],
+      [
+        "Hector",
+        "notable",
+        "made a breach in the wall and set fire to the ships",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Hector",
+        "notable",
+        "wore the armour of Achilles, filled with valour by Ares",
+        "homer-iliad",
+        "17.209-17.255"
+      ],
+      [
+        "Hector",
+        "notable",
+        "was raised up by Apollo after being felled by Aias' rock",
+        "homer-iliad",
+        "7.244-7.286"
+      ],
+      [
+        "Agamemnon",
+        "notable_claim",
+        "Eumaeus's master died to win recompense for Agamemnon",
+        "homer-odyssey",
+        "14.72-14.120"
+      ],
+      [
+        "Agamemnon",
+        "notable_claim",
+        "King of men; swore an oath with sacrifice setting Menelaus to fight the Trojans",
+        "homer-iliad",
+        "4.148-4.191"
+      ],
+      [
+        "Agamemnon",
+        "notable_claim",
+        "Zeus made Agamemnon pre-eminent among many, and chiefest amid warriors on that day",
+        "homer-iliad",
+        "2.441-2.483"
+      ],
+      [
+        "Agamemnon",
+        "notable_claim",
+        "took Achilles' prize (Briseis) due to blindness cast upon him by Zeus, Fate, and Erinys",
+        "homer-iliad",
+        "19.54-19.89"
+      ],
+      [
+        "Agamemnon",
+        "notable_claim",
+        "Saved from the fates by Hera during his voyage home, until driven off course near Malea",
+        "homer-odyssey",
+        "4.492-4.537"
+      ],
+      [
+        "Apollo",
+        "notable_deed",
+        "rules over all mortal men",
+        "hesiod-homeric-hymns",
+        "2.483-3.29"
+      ],
+      [
+        "Apollo",
+        "notable_deed",
+        "wooed alongside Ereutheus",
+        "hesiod-homeric-hymns",
+        "3.182-3.238"
+      ],
+      [
+        "Apollo",
+        "notable",
+        "hawk is the swift messenger of Apollo",
+        "homer-odyssey",
+        "15.493-15.544"
+      ],
+      [
+        "Apollo",
+        "notable",
+        "bestowed prophetic powers upon Calchas",
+        "homer-iliad",
+        "1.53-1.100"
+      ],
+      [
+        "Apollo",
+        "notable_deed",
+        "wooed alongside Phorbas sprung from Triops",
+        "hesiod-homeric-hymns",
+        "3.182-3.238"
+      ],
+      [
+        "Apollo",
+        "other",
+        "Apollo bade Ares rouse the spirit of the Trojans",
+        "homer-iliad",
+        "5.470-5.518"
+      ],
+      [
+        "Apollo",
+        "other",
+        "comes with Artemis and slays aged mortals with his gentle shafts",
+        "homer-odyssey",
+        "15.403-15.453"
+      ],
+      [
+        "Apollo",
+        "other",
+        "took the form of the herald Periphas, son of Epytos, to rouse Aeneas",
+        "homer-iliad",
+        "17.288-17.332"
+      ],
+      [
+        "Diomedes",
+        "notable_claim",
+        "breastplate made by Hephaestus",
+        "homer-iliad",
+        "8.157-8.197"
+      ],
+      [
+        "Diomedes",
+        "notable",
+        "wounded by Pandarus with an arrow",
+        "homer-iliad",
+        "5.778-5.824"
+      ],
+      [
+        "Diomedes",
+        "notable",
+        "wounded on the right shoulder by an arrow shot by Pandarus",
+        "homer-iliad",
+        "5.76-5.120"
+      ],
+      [
+        "Athena",
+        "notable",
+        "sent the ship a favorable wind",
+        "homer-odyssey",
+        "15.271-15.300"
+      ],
+      [
+        "Athena",
+        "notable_act",
+        "Has a promontory named after her along the Italian coast",
+        "ovid-metamorphoses",
+        "15.680-15.718"
+      ],
+      [
+        "Athena",
+        "notable_deed",
+        "hampered Aias in the footrace so that Odysseus would win",
+        "homer-iliad",
+        "23.753-23.796"
+      ],
+      [
+        "Athena",
+        "notable_act",
+        "Shed sleep upon Odysseus's eyes to free him from weariness",
+        "homer-odyssey",
+        "5.463-6.12"
+      ],
+      [
+        "Athena",
+        "notable",
+        "took the form of the daughter of Dymas to speak to Nausicaa",
+        "homer-odyssey",
+        "6.13-6.47"
+      ],
+      [
+        "Athena",
+        "notable",
+        "departed to Olympus, abode of the gods that stands fast forever",
+        "homer-odyssey",
+        "6.13-6.47"
+      ],
+      [
+        "Menelaus",
+        "notable_claim",
+        "brother of Agamemnon who ruled mightily over all the Argives",
+        "homer-iliad",
+        "10.1-10.41"
+      ],
+      [
+        "Menelaus",
+        "notable_claim",
+        "led ships to Ilios with Idomeneus at the bidding of the Achaeans",
+        "homer-odyssey",
+        "14.235-14.284"
+      ],
+      [
+        "Menelaus",
+        "notable",
+        "nurtured of Zeus",
+        "homer-iliad",
+        "17.33-17.81"
+      ],
+      [
+        "Penelope",
+        "notable_claim",
+        "constant wife who mourns for Odysseus",
+        "homer-odyssey",
+        "4.65-4.112"
+      ],
+      [
+        "Penelope",
+        "notable_claim",
+        "initially disbelieved Odysseus had returned, suspecting a god slew the suitors instead",
+        "homer-odyssey",
+        "23.39-23.84"
+      ],
+      [
+        "Penelope",
+        "notable_claim",
+        "Penelope wove and secretly unraveled a shroud for Laertes to delay remarriage to the suitors",
+        "homer-odyssey",
+        "2.60-2.110"
+      ],
+      [
+        "Penelope",
+        "notable_claim",
+        "to be wed by the suitor who wins her favor or offers the most gifts, and would inherit the house of Telemachus's father",
+        "homer-odyssey",
+        "16.358-16.405"
+      ],
+      [
+        "Penelope",
+        "notable_claim",
+        "Some say Penelope was seduced by Antinous and sent away by Ulysses to her father Icarius, then bore Pan to Hermes at Mantinea in Arcadia",
+        "apollodorus-bibliotheca",
+        "E.7.33-E.7.40"
+      ],
+      [
+        "Poseidon",
+        "notable_claim",
+        "father's brother (uncle) to Apollo, brother of Zeus",
+        "homer-iliad",
+        "21.468-21.513"
+      ],
+      [
+        "Poseidon",
+        "notable_claim",
+        "Earth-shaker who smote Odysseus and raged against him",
+        "homer-odyssey",
+        "6.288-6.328"
+      ],
+      [
+        "Poseidon",
+        "notable_claim",
+        "Poseidon is described as elder-born compared to Apollo",
+        "homer-iliad",
+        "21.423-21.467"
+      ],
+      [
+        "Poseidon",
+        "notable",
+        "his son's son (grandson) fell in battle, causing his wrath",
+        "homer-iliad",
+        "13.206-13.253"
+      ],
+      [
+        "Poseidon",
+        "notable_claim",
+        "Is honored eldest and best among the gods according to Zeus",
+        "homer-odyssey",
+        "13.139-13.183"
+      ],
+      [
+        "Poseidon",
+        "notable_claim",
+        "Turned the Phaeacian ship to stone near the shore of Scheria",
+        "homer-odyssey",
+        "13.139-13.183"
+      ],
+      [
+        "Hermes",
+        "notable_act",
+        "Exchanged the lyre for the cattle with Apollo",
+        "apollodorus-bibliotheca",
+        "3.10.2"
+      ],
+      [
+        "Hermes",
+        "notable_claim",
+        "seeks Aglauros's aid to win the love of Herse",
+        "ovid-metamorphoses",
+        "2.737-2.751"
+      ],
+      [
+        "Hermes",
+        "notable",
+        "sent as guide (Argeiphontes) to lead Priam to Achilles",
+        "homer-iliad",
+        "24.159-24.199"
+      ],
+      [
+        "Hermes",
+        "notable_act",
+        "Stole Apollo's unattended cattle and hid them in the forest",
+        "ovid-metamorphoses",
+        "2.655-2.696"
+      ],
+      [
+        "Hermes",
+        "notable_act",
+        "gave Odysseus the herb moly to protect him from Circe's magic",
+        "homer-odyssey",
+        "10.274-10.320"
+      ],
+      [
+        "Hermes",
+        "notable",
+        "Used his sleep-inducing wand to violate Chione while she slept",
+        "ovid-metamorphoses",
+        "11.301-11.317"
+      ],
+      [
+        "Hermes",
+        "role",
+        "Appointed herald to Zeus and to the infernal gods",
+        "apollodorus-bibliotheca",
+        "3.10.2"
+      ],
+      [
+        "Hermes",
+        "role",
+        "sent by Zeus as messenger to bring Persephone back from Erebus",
+        "hesiod-homeric-hymns",
+        "2.384-2.433"
+      ],
+      [
+        "Hermes",
+        "role",
+        "Sent by Zeus to tell Tros of his son's fate, described as the Guide and slayer of Argus",
+        "hesiod-homeric-hymns",
+        "5.202-5.246"
+      ],
+      [
+        "Aphrodite",
+        "notable",
+        "wounded on the hand at the wrist by Diomedes",
+        "homer-iliad",
+        "5.426-5.469"
+      ],
+      [
+        "Aphrodite",
+        "notable",
+        "loves Ares and lies with him, caught in adultery by Hephaestus's snare",
+        "homer-odyssey",
+        "8.295-8.342"
+      ],
+      [
+        "Aphrodite",
+        "notable_claim",
+        "Aphrodite went to Cyprus, to Paphos, where is her demesne and fragrant altar",
+        "homer-odyssey",
+        "8.343-8.384"
+      ],
+      [
+        "Aphrodite",
+        "notable_claim",
+        "caught in adultery with Mars by a trap set by Vulcan and exposed before the gods",
+        "ovid-metamorphoses",
+        "4.167-4.189"
+      ],
+      [
+        "Aphrodite",
+        "notable_claim",
+        "gave Hippomenes three golden apples from a tree in the Field Tamasus in Cyprus to help him win Atalanta",
+        "ovid-metamorphoses",
+        "10.609-10.651"
+      ],
+      [
+        "Priam",
+        "notable_claim",
+        "his city of Ilios (Troy) was sacked by the Achaeans in the tenth year of the war",
+        "homer-odyssey",
+        "14.235-14.284"
+      ],
+      [
+        "Priam",
+        "notable_claim",
+        "Once preeminent by reason of wealth and sons, ruling over lands including Lesbos and Phrygia, before war brought battles and slayings around his city",
+        "homer-iliad",
+        "24.525-24.570"
+      ],
+      [
+        "Hera",
+        "notable_act",
+        "Has a shrine at the Lacinian Cape that ennobles it",
+        "ovid-metamorphoses",
+        "15.680-15.718"
+      ],
+      [
+        "Hera",
+        "notable_claim",
+        "threatens to smite Ares and drive him out of the battle",
+        "homer-iliad",
+        "5.733-5.777"
+      ],
+      [
+        "Hera",
+        "notable_act",
+        "Helped the Argonauts pass safely through the Clashing Rocks",
+        "apollodorus-bibliotheca",
+        "1.9.22"
+      ],
+      [
+        "Hera",
+        "notable_act",
+        "Denied that Hecuba deserved such a fate, showing sympathy for her",
+        "ovid-metamorphoses",
+        "13.545-13.575"
+      ],
+      [
+        "Hera",
+        "notable_claim",
+        "Disguised herself as Beroe, an Epidaurian nurse, to deceive Semele",
+        "ovid-metamorphoses",
+        "3.251-3.286"
+      ],
+      [
+        "Hera",
+        "notable_claim",
+        "fair-haired; lord of Hera is Zeus who lightens and makes rain, hail, or snow",
+        "homer-iliad",
+        "10.1-10.41"
+      ],
+      [
+        "Telemachus",
+        "parentage",
+        "son of Odysseus",
+        "homer-odyssey",
+        "16.201-16.239"
+      ],
+      [
+        "Telemachus",
+        "parentage",
+        "son of Odysseus",
+        "homer-odyssey",
+        "1.156-1.193"
+      ],
+      [
+        "Telemachus",
+        "parentage",
+        "son of Penelope",
+        "homer-odyssey",
+        "17.512-17.559"
+      ],
+      [
+        "Patroclus",
+        "death",
+        "slain at Troy",
+        "homer-odyssey",
+        "3.102-3.154"
+      ],
+      [
+        "Patroclus",
+        "death",
+        "killed by Hector",
+        "apollodorus-bibliotheca",
+        "E.4.6-E.5.4"
+      ],
+      [
+        "Patroclus",
+        "death",
+        "killed by Apollo",
+        "homer-iliad",
+        "18.428-18.477"
+      ],
+      [
+        "Patroclus",
+        "death",
+        "killed by the gods",
+        "homer-iliad",
+        "18.590-19.11"
+      ],
+      [
+        "Patroclus",
+        "parentage",
+        "son of Menoetius",
+        "homer-iliad",
+        "16.816-16.862"
+      ],
+      [
+        "Patroclus",
+        "parentage",
+        "son of Menoetius",
+        "homer-odyssey",
+        "24.35-24.84"
+      ],
+      [
+        "Patroclus",
+        "parentage",
+        "child of Sthenele",
+        "apollodorus-bibliotheca",
+        "3.13.8-3.14.2"
+      ],
+      [
+        "Patroclus",
+        "parentage",
+        "child of Periopis",
+        "apollodorus-bibliotheca",
+        "3.13.8-3.14.2"
+      ],
+      [
+        "Ajax",
+        "notable",
+        "chosen by lot to fight Hector in single combat",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Ajax",
+        "notable",
+        "given the long chine for his honour by Agamemnon",
+        "homer-iliad",
+        "7.313-7.353"
+      ],
+      [
+        "Ajax",
+        "notable",
+        "his spear was shorn by Hector's sword, leaving him with a pointless spear",
+        "homer-iliad",
+        "16.114-16.154"
+      ],
+      [
+        "Ajax",
+        "notable",
+        "in comeliness and deeds of war was above all other Achaeans, next to Achilles",
+        "homer-odyssey",
+        "11.538-11.581"
+      ]
+    ],
+    "groupCount": 41
+  },
+  {
+    "batchLabel": "p4-f3-retroactive-rejections",
+    "date": "2026-07-28T18:51:32.612393+00:00",
+    "keys": [],
+    "groupCount": 0,
+    "rejectedKeys": [
+      [
+        "Zeus",
+        "marriage",
+        "married to Herse",
+        "homer-odyssey",
+        "15.92-15.142"
+      ],
+      [
+        "Poseidon",
+        "marriage",
+        "married to Medus",
+        "hesiod-theogony",
+        "270-305"
+      ],
+      [
+        "Patroclus",
+        "parentage",
+        "child of Zeus",
+        "homer-iliad",
+        "1.325-1.363"
+      ],
+      [
+        "Patroclus",
+        "parentage",
+        "sprung from Zeus",
+        "homer-iliad",
+        "1.325-1.363"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "married to Hellen",
+        "apollodorus-bibliotheca",
+        "3.10.8-3.11.1"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "married to Hellen",
+        "apollodorus-bibliotheca",
+        "E.2.15-E.3.5"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "married to Hellen",
+        "apollodorus-bibliotheca",
+        "E.3.6-E.3.12"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "married to Hellen",
+        "apollodorus-bibliotheca",
+        "E.6.23-E.6.29"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "married to Hellen",
+        "homer-iliad",
+        "3.245-3.291"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "married to Hellen",
+        "homer-iliad",
+        "3.292-3.339"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "married to Hellen",
+        "homer-iliad",
+        "3.381-3.420"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "married to Hellen",
+        "homer-iliad",
+        "4.1-4.49"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "married to Hellen",
+        "homer-iliad",
+        "7.354-7.402"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "married to Hellen",
+        "homer-iliad",
+        "13.601-13.642"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "married to Hellen",
+        "homer-odyssey",
+        "3.478-4.19"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "married to Hellen",
+        "homer-odyssey",
+        "4.65-4.112"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "married to Hellen",
+        "homer-odyssey",
+        "4.155-4.202"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "married to Hellen",
+        "homer-odyssey",
+        "4.265-4.314"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "married to Hellen",
+        "homer-odyssey",
+        "4.538-4.586"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "married to Hellen",
+        "homer-odyssey",
+        "15.48-15.91"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "married to Hellen",
+        "homer-odyssey",
+        "15.92-15.142"
+      ],
+      [
+        "Menelaus",
+        "marriage",
+        "married to Hellen",
+        "ovid-metamorphoses",
+        "13.162-13.204"
+      ],
+      [
+        "Patroclus",
+        "death",
+        "killed by Sarpedon",
+        "homer-iliad",
+        "23.797-23.835"
+      ],
+      [
+        "Telemachus",
+        "parentage",
+        "child of Athena",
+        "homer-odyssey",
+        "2.267-2.308"
+      ],
+      [
+        "Telemachus",
+        "parentage",
+        "child of Zeus",
+        "homer-odyssey",
+        "21.96-21.142"
+      ],
+      [
+        "Achilles",
+        "marriage",
+        "married to Peleus",
+        "homer-iliad",
+        "17.412-17.455"
+      ],
+      [
+        "Aphrodite",
+        "marriage",
+        "married to Arges",
+        "hesiod-theogony",
+        "924-955"
+      ],
+      [
+        "Diomedes",
+        "notable",
+        "exchanged arms with Glaucus after recalling the friendship of their fathers",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Diomedes",
+        "notable",
+        "brought by Achilles from Lesbos as his concubine",
+        "homer-iliad",
+        "9.643-9.675"
+      ],
+      [
+        "Aphrodite",
+        "notable",
+        "went to Olympus to ask Zeus for the maidens' marriage to be accomplished",
+        "homer-odyssey",
+        "20.54-20.101"
+      ],
+      [
+        "Diomedes",
+        "notable_claim",
+        "Rebuked Ulysses by name for cowardly flight after abandoning Nestor",
+        "ovid-metamorphoses",
+        "13.43-13.81"
+      ]
+    ],
+    "rejectedGroupCount": 11
   }
 ]

@@ -54,7 +54,7 @@ SOURCE_SILENCE_PHRASES: tuple[str, ...] = (
     # repeated runs of DEV-049's negative control (6/6); none of the phrases above matched it.
     "do not contain",
     "outside the scope",
-    # P4 Track E1/E2 (DEV-111): live-verified against Q16/Q17's replacement questions (3 runs
+    # P4 Track F1/E1/E2 (DEV-110): live-verified against Q16/Q17's replacement questions (3 runs
     # each) — "do not preserve" and "do not document" appeared in Q17's phrasing but neither
     # matched any existing phrase ("not preserved" is the past-tense form only, a different
     # substring from "do not preserve").
@@ -68,6 +68,13 @@ SOURCE_SILENCE_PHRASES: tuple[str, ...] = (
     # earlier passes never exercised (SQL-route refusals, as opposed to RAG-route ones).
     "does not contain",
     "does not provide",
+    # P4 Track F2/E4 (DEV-112): Q20's Patroclus-appearance refusal ("The available sources do
+    # not provide a physical description...") is plural ("do" vs "does") since it's phrased
+    # around "the sources"/"ancient sources", the mirror-image gap of DEV-110's "does not
+    # provide" catch -- checked live before authoring, not discovered via a stable fail this
+    # time, since DEV-110 already established the singular/plural pattern to watch for.
+    "do not provide",
+    "do not detail",
 )
 
 

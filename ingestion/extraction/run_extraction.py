@@ -175,6 +175,16 @@ def _write_json(path: Path, rows: list) -> None:
 # without needing another change here.
 DEFAULT_TRUST_TIER = 3
 
+# Stage P4 Track F3 (DEV-113): the "future rejected tier" DEFAULT_TRUST_TIER's own comment
+# anticipated. A row a reviewer checked against its cited passage and found unsupported
+# (an extraction error -- wrong subject, reversed direction, misread idiom, ...) moves here
+# instead of staying at 3, so it reads as "checked, rejected" rather than "not yet reviewed"
+# to the next reviewer (human or notebook) who encounters the same group. seedgen's
+# trust_tier==1 filter already ignores it, and _write_claims_preserving_review's
+# `!= DEFAULT_TRUST_TIER` check already preserves it across a re-extraction -- both for free,
+# since neither ever hardcoded "1" as the only non-default value.
+REJECTED_TRUST_TIER = 2
+
 # Everything that identifies the claim itself. `trust_tier` is excluded on purpose: it is
 # the mutable review verdict layered on top of that identity, and is what we carry over.
 _CLAIM_IDENTITY = ("subject_name", "claim_type", "claim_value", "source_id", "passage_ref")
@@ -229,7 +239,12 @@ def _write_claims_preserving_review(path: Path, rows: list[dict]) -> None:
 
     _write_json(path, rows)
     if reviewed:
-        print(f"  carried over {carried} reviewed promotion(s)", flush=True)
+        carried_tiers = [reviewed[_claim_key(row)] for row in rows if _claim_key(row) in reviewed]
+        promoted = sum(1 for t in carried_tiers if t == 1)
+        rejected = sum(1 for t in carried_tiers if t == REJECTED_TRUST_TIER)
+        other = carried - promoted - rejected
+        detail = f"{promoted} promoted, {rejected} rejected" + (f", {other} other" if other else "")
+        print(f"  carried over {carried} reviewed decision(s) ({detail})", flush=True)
     dropped = len(reviewed) - carried
     if dropped:
         print(
