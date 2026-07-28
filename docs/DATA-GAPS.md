@@ -9,7 +9,7 @@ gap deferred to Phase 5b.
 | Gap | Summary | Status | Home |
 |---|---|---|---|
 | **GAP-001** | Q9 cannot reach `Ouranos`/`Chaos` | Closed for everything P3 owned; root cause 3's promotion half (a′) open | P4 (a′), P5b (J4b, waived) |
-| **GAP-002** | 367 entities referenced by candidate relationships but absent from the confirmed set | **Partially resolved** — 5 of 7 bucket-1 landed (DEV-096); `Arges`/`Steropes` corruption triaged and `Ares` recovered from 0 relationships (DEV-098); failure mode now detected by audit check **A7** (DEV-099), whose own 6 findings + the unknown-name long tail are open | Stage P3b (partial), P4 (long tail + A7 findings) |
+| **GAP-002** | 367 entities referenced by candidate relationships but absent from the confirmed set | **Partially resolved** — 5 of 7 original bucket-1 landed (DEV-096); `Arges`/`Steropes` corruption triaged and `Ares` recovered (DEV-098); A7 built and its 6 findings closed (DEV-099/DEV-100); **P4 Track H landed 12 more bucket-1 names + 3 translation-spelling aliases (DEV-108)**, unknown-name count 362→347; bucket 2 (namesake collisions) grew by 3 confirmed cases; long tail explicitly deferred with buckets/reasons | Stage P3b (partial), **P4 (DEV-108, this pass)**, P5 (residual long tail) |
 | **GAP-003** | DATA floor breach — Q6/Q7/Q8 all stable-fail | **Resolved** — all 3 root causes landed (DEV-094, DEV-095); DATA 100%, overall 94% | Stage P3b |
 
 ---
@@ -545,14 +545,21 @@ A2 is the first check that ever compared them, which is why this sat undetected 
 
 ### Scope note — this is a triage backlog, not a bulk-add
 
-The 367 (now 362) are **leads**, not a work list. Four buckets now, not three:
+The 367 (now 347) are **leads**, not a work list. Four buckets now, not three:
 1. Genuine, unambiguous figures that belong in the graph — **`Nereus`, `Doris`, `Ceto`, `Thaumas`,
-   `Styx` added 2026-07-27 (DEV-096)**.
+   `Styx` added 2026-07-27 (DEV-096)**; **`Alcinous`, `Arete`, `Pegasus`, `Amphitrite`, `Chiron`,
+   `Chrysaor`, `Argus Panoptes`, `Nessus`, `Rhadamanthys`, `Epaphus`, `Tisiphone`, `Hippolyte` added
+   2026-07-28 (DEV-108)**, plus 3 translation-spelling aliases (`Aesculapius`→`Asclepius`,
+   `Phorcus`→`Phorcys`, `Helios`→`Helius`) resolved into existing entities rather than added new.
 2. Namesake collisions and conflations of the class DEV-078…DEV-082 spent all of Track J untangling
    (`Electra`, `Eurytus`, `Phineus`, `Thoas` are all multi-person names in this corpus) — adding a
-   bare name here would *create* the exact defect Track J just removed. **Still open.**
+   bare name here would *create* the exact defect Track J just removed. **Still open — grew by 3
+   confirmed cases 2026-07-28 (DEV-108): `Oenomaus`, `Hippolytus`, `Ascalaphus`.** `Coronis` and
+   `Eurynome` are flagged as *possible* further cases, investigated but left undecided rather than
+   guessed either way.
 3. Extraction noise and the `<UNKNOWN>` sentinel — no entity to add; a signal about the extraction
-   pass instead. **Still open** (133 rows).
+   pass instead. **Still open** (133 rows), plus a newly-named **place-name sub-class** with no
+   entity-type home at all in the current schema (DEV-108).
 4. *(New, DEV-096)* **Extraction corruption of an existing name** — `Arges` (→ **entirely** `Ares`)
    and `Steropes` (→ mostly five distinct `Sterope`s) were originally filed in bucket 1 but turned
    out to belong here instead. **These two names RESOLVED 2026-07-27 (DEV-098)**, and the *failure
@@ -582,13 +589,107 @@ waived cycle, A5 clean, no new A1 fuzzy-dup pairs).
   from a manual hunt into a mechanical sweep. **Built 2026-07-27 (DEV-099)**; its 6 findings are the
   next data batch.
 
+### Stage P4 Track H (DEV-108, 2026-07-28) — 12 more bucket-1 names landed, 3 translation-spelling
+aliases caught, 3 more bucket-2 collisions confirmed, long tail explicitly deferred
+
+Re-ran the drilldown live: unknown-name count **362 → 359** even before this batch touched
+anything (small drift from intervening candidate-JSON edits, e.g. the Pyramus/Thisbe rows added in
+DEV-100). Full ranked list captured (359 entries, `/tmp/unknown_names_full.txt` at triage time, not
+committed — reproduce with `compute_drop_accounting` over the live candidate files).
+
+**12 names added** (bucket 1, each verified against its actual candidate relationship rows before
+adding — not added by reference-count alone): `Alcinous`, `Arete` (mortal, Phaeacian king/queen —
+added as a pair since every row ties them together), `Pegasus`, `Amphitrite`, `Chiron`, `Chrysaor`,
+`Argus Panoptes`, `Nessus`, `Rhadamanthys`, `Epaphus`, `Tisiphone`, `Hippolyte`. Unlocked **75**
+previously-dropped relationship rows (V11 3295→3370, before the alias corrections below settled it
+at 3365). `entities_candidates_confirmed_v1.json` +12 (net; see the self-caught error below).
+
+**3 translation-spelling aliases, not new entities** — caught by checking each high-reference name
+against the *already-confirmed* set before treating it as a gap:
+- `Aesculapius` → `Asclepius` (Frazer's Apollodorus / More's Ovid use the Latinized spelling;
+  Evelyn-White's Homeric Hymns translation, already confirmed, uses the Greek).
+- `Phorcus` → `Phorcys` (already-confirmed sea god; same figure, translation spelling variant).
+- `Helios` → `Helius` — **not caught before adding, only after**: `Helios` was added as bucket 1,
+  then A1's transliteration pass (run as part of this batch's own fix-loop verification, not
+  skipped) fuzzy-matched it against the already-confirmed `Helius` at 83.3 — same sun god, same
+  parentage (Hyperion), same children (Circe, Aeetes), across the same sources. Reverted from the
+  entities file and re-added here as an alias instead, canonical kept as `Helius` since it was the
+  one already confirmed. Recorded as a positive example, not just a fix: running the **full** audit
+  suite after a batch, not only the checks that seem relevant to what changed, is what caught a
+  self-introduced duplicate before it reached the seeded graph.
+
+**3 more bucket-2 (namesake collision) confirmations**, found by checking each candidate's rows for
+internally-inconsistent parentage/identity before adding, the same discipline DEV-096 applied to
+`Arges`/`Steropes`:
+- `Oenomaus` (7 refs) — the king of Pisa (Pelops's father-in-law, killed by Myrtilus/Pelops per
+  Apollodorus) is conflated with an unrelated minor Trojan warrior of the same name, killed in
+  battle at `homer-iliad` 5.703 ("and smote Oenomaus, full upon the belly...").
+- `Hippolytus` (12 refs) — **at least three** distinct figures conflated: the Giant killed by
+  Hermes in the Gigantomachy (Apollodorus 1.5.3-1.6.2), a son of Helios and Rhode (2.1.5), and the
+  famous one, Theseus's son (the rest of the rows: killed by his own horses/Poseidon/Theseus,
+  parent Hippolyte, Artemis's transformation).
+- `Ascalaphus` (13 refs) — **two** distinct figures: the Underworld gardener, son of Acheron and
+  Orphne/Gorgyra, turned into an owl by Demeter for tattling on Persephone; and the son of Ares and
+  Astyoche, an Argonaut and Orchomenian leader at Troy, killed by Deiphobus (`homer-iliad`
+  13.487-13.525) — cleanly split by parentage across the candidate rows themselves.
+
+Two more names were **investigated and left undecided rather than guessed**: `Coronis` (11 refs,
+mostly consistent as the mother of Asclepius, but one row — "parent_of Orion's daughters",
+`ovid-metamorphoses` 13.685-13.717 — doesn't fit and wasn't resolved) and `Eurynome` (13 refs,
+mostly consistent as the Oceanid mother of the Graces, but two rows — "parent_of Asopus", "parent_of
+Leucothea" — name parentage attributed elsewhere in standard mythology). Neither added; both need a
+closer per-row read before either an add or a bucket-2 call, same caution DEV-096 applied before
+committing to `Arges`/`Steropes`.
+
+**Verified clean via the full fix loop, not just the JSON edit**: `seedgen --strict` →
+`reseed-local.sh` (three passes — the first caught nothing new, the `Helios` fix required a second,
+and `scripts/reseed-local.sh`'s `CLEAR_HISTORY_SQL` needed `'18'`/`'19'` added for a third, the
+exact "Detected resolved migration not applied to database" Flyway ordering trap DEV-100 already
+hit once for `'14.1'`, recurring here for the same structural reason) → `python -m audit`: **A1
+41 pairs (baseline, zero touching the new entities — confirms the `Helios` fix), A3 92 cycles
+(unchanged, no new cycle from the additions), A5 clean (0 findings, 42 entity_aliases), A7 still 2
+waived (no new corruption found, closing H4's generalization check for this pass)**. Live DB:
+entities 2003, relationships 3365, `./gradlew :core-api:test` green (189 tests, independent
+Testcontainers verification of V10-V19 applying cleanly from scratch).
+
+**Two new leads flagged for a future batch, not worked here** (explicit, not silent — H6):
+1. **Hesiod's personified abstractions** (*Theogony* 211-232, children of Nyx/Eris): `Famine`,
+   `Doom`, `Woe`, `Toil`, `Forgetfulness`, `Sorrows`, `Fightings`, `Battles`, `Murders`,
+   `Manslaughters`, `Quarrels`, `Lying Words`, `Disputes`, `Lawlessness`, `Ruin`, `Oath`, `Age`,
+   `Blame`, `Deceit`, `Friendship`, `Dreams` all appear in the unknown-name list and look like noise
+   at a glance (generic English nouns), but are genuine named figures in the source text, not
+   descriptive language the extractor over-fired on. Not source-verified row-by-row here; that's
+   the batch's own first step.
+2. **The Hecatoncheires cluster**: `Cottus` (6), `Gyes` (6), `Briareus` (2), collective
+   `Hecatoncheires` (2) — the three Hundred-Handers, siblings of the Cyclopes in Hesiod's
+   cosmogony, distinct from the `Arges`/`Brontes`/`Steropes` trio DEV-098 already resolved.
+
+**Everything else is deferred, explicitly, with its bucket**: the residual ~330 names split
+roughly into (a) bucket 3 noise — the `<UNKNOWN>` sentinel (133) and ~98 more heuristically-flagged
+descriptive/relational phrases ("fall from chariot", "sons of Alcinous", lowercase-leading strings);
+(b) a **place-name cluster** with no home in the current schema at all — `entities.type` has no
+"place" value, so `Asia`, `Sparta`, `Olympus`, `Thebes`, `Athens`, `Troy`/`Ilios`/`Ilium`, `Sicilia`,
+`Persia`, `India` and similar geographic names were never addable as entities under this data model,
+a schema-scope limitation worth its own note rather than a triage miss; (c) **collective/group
+nouns** whose individual members already exist or could be added separately but whose plural form
+isn't itself a single entity (`Titans`, `Giants`, `Trojans`, `Argonauts`, `Amazons`, `Erinyes`,
+`Dioscuri`, `Gorgons`, `Graiae`, `Charites`, `Horae`, `Fates`/`Moerae`); (d) ~230 remaining
+individual-name candidates not yet source-verified, several visibly high-value for a next batch —
+`Tiresias` (5, the blind prophet — surprising he isn't already confirmed), `Narcissus` (3),
+`Calchas` (4, the Greek seer), `Alecto` (4, Tisiphone's sister Erinys, a natural companion add now
+that `Tisiphone` exists), `Enceladus` (4, a Giant), `Talos` (4, the bronze automaton). None of these
+are waived (option (c) in the Decision-needed list above is still rejected for the same reason it
+always was) — they carry forward as P4/P5 leads with this session's own ranked list as the starting
+point, not a re-derivation from scratch.
+
 **References:** `ingestion/audit/drop_accounting.py` (A2, unknown-name drilldown);
 `ingestion/seedgen/relationships_gen.py` (`_filter_and_dedup`);
 `ingestion/extraction/output/entities_candidates_confirmed_v1.json`;
 `ingestion/extraction/output/relationships_candidates_cleaned.json` (the `Arges`/`Steropes` rows,
 triaged); `docs/DEVIATIONS.md` #DEV-074 (discovery), #DEV-076/#DEV-083 (re-confirmed unchanged),
 #DEV-093 (homed), #DEV-096 (5 names landed, `Arges`/`Steropes` finding), **#DEV-098** (`Arges`/
-`Steropes` triaged, `Ares` recovered); `docs/TODO2.md` Stage P3b.
+`Steropes` triaged, `Ares` recovered), **#DEV-108** (this pass — 12 more names, 3 aliases, 3 bucket-2
+confirmations); `docs/TODO2.md` Stage P3b; `docs/TODO-phase2-stage-p4.md` Track H.
 
 ---
 

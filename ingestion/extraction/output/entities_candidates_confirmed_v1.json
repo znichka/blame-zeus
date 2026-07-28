@@ -13935,5 +13935,89 @@
     "generation": null,
     "domain": null,
     "subtype": "Pleiad"
+  },
+  {
+    "name": "Alcinous",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Arete",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Pegasus",
+    "type": "monster",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Amphitrite",
+    "type": "other_god",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Chiron",
+    "type": "monster",
+    "generation": null,
+    "domain": null,
+    "subtype": "Centaur"
+  },
+  {
+    "name": "Chrysaor",
+    "type": "monster",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Argus Panoptes",
+    "type": "monster",
+    "generation": null,
+    "domain": null,
+    "subtype": "Giant"
+  },
+  {
+    "name": "Nessus",
+    "type": "monster",
+    "generation": null,
+    "domain": null,
+    "subtype": "Centaur"
+  },
+  {
+    "name": "Rhadamanthys",
+    "type": "hero",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Epaphus",
+    "type": "hero",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Tisiphone",
+    "type": "other_god",
+    "generation": null,
+    "domain": null,
+    "subtype": "Erinys"
+  },
+  {
+    "name": "Hippolyte",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
   }
 ]

@@ -120,6 +120,7 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Alcimedon', 'mortal', NULL, NULL, 'warrior'),
     ('Alcimenes', 'mortal', NULL, NULL, NULL),
     ('Alcimus', 'hero', NULL, NULL, NULL),
+    ('Alcinous', 'mortal', NULL, NULL, NULL),
     ('Alcippe', 'mortal', NULL, NULL, NULL),
     ('Alcithoe', 'mortal', NULL, NULL, NULL),
     ('Alcmaeon', 'hero', NULL, NULL, NULL),
@@ -164,6 +165,7 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Amphithea (wife of Lycurgus)', 'mortal', NULL, NULL, NULL),
     ('Amphithea, daughter of Pronax', 'mortal', NULL, NULL, NULL),
     ('Amphithoe', 'nymph', NULL, NULL, NULL),
+    ('Amphitrite', 'other_god', NULL, NULL, NULL),
     ('Amphius', 'hero', NULL, NULL, NULL),
     ('Amphoterus', 'hero', NULL, NULL, NULL),
     ('Ampyx', 'mortal', NULL, NULL, NULL),
@@ -249,6 +251,7 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Ares', 'olympian', NULL, NULL, NULL),
     ('Arestor', 'mortal', NULL, NULL, NULL),
     ('Aretaon', 'mortal', NULL, NULL, NULL),
+    ('Arete', 'mortal', NULL, NULL, NULL),
     ('Arethusa', 'nymph', NULL, NULL, NULL),
     ('Aretias', 'mortal', NULL, NULL, NULL),
     ('Aretus', 'mortal', NULL, NULL, NULL),
@@ -258,6 +261,7 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Argiope', 'nymph', NULL, NULL, NULL),
     ('Argus', 'mortal', NULL, NULL, NULL),
     ('Argus (son of Zeus)', 'mortal', NULL, NULL, 'king'),
+    ('Argus Panoptes', 'monster', NULL, NULL, 'Giant'),
     ('Argus, son of Phrixus', 'hero', NULL, NULL, NULL),
     ('Argyphia', 'mortal', NULL, NULL, NULL),
     ('Ariadne', 'mortal', NULL, NULL, NULL),
@@ -457,8 +461,10 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Chimera', 'monster', NULL, NULL, NULL),
     ('Chione', 'mortal', NULL, NULL, NULL),
     ('Chirimachus', 'mortal', NULL, NULL, NULL),
+    ('Chiron', 'monster', NULL, NULL, 'Centaur'),
     ('Chloris', 'mortal', NULL, NULL, NULL),
     ('Chromius', 'mortal', NULL, NULL, NULL),
+    ('Chrysaor', 'monster', NULL, NULL, NULL),
     ('Chryses', 'mortal', NULL, NULL, NULL),
     ('Chrysippe', 'mortal', NULL, NULL, NULL),
     ('Chrysippus', 'mortal', NULL, NULL, NULL),
@@ -494,16 +500,16 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Clitus', 'mortal', NULL, NULL, NULL),
     ('Clonia', 'nymph', NULL, NULL, NULL),
     ('Clonius', 'mortal', NULL, NULL, NULL),
-    ('Clotho', 'other_god', NULL, NULL, NULL),
+    ('Clotho', 'other_god', NULL, NULL, NULL)
+ON CONFLICT (name) DO NOTHING;
+
+INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Clymene', 'mortal', NULL, NULL, NULL),
     ('Clymenus', 'mortal', NULL, NULL, NULL),
     ('Clytaemnestra', 'mortal', NULL, NULL, NULL),
     ('Clytie', 'other_god', NULL, NULL, NULL),
     ('Clytippe', 'mortal', NULL, NULL, NULL),
-    ('Clytomedes', 'mortal', NULL, NULL, NULL)
-ON CONFLICT (name) DO NOTHING;
-
-INSERT INTO entities (name, type, generation, domain, subtype) VALUES
+    ('Clytomedes', 'mortal', NULL, NULL, NULL),
     ('Clytoneus', 'mortal', NULL, NULL, NULL),
     ('Cnossia', 'nymph', NULL, NULL, NULL),
     ('Cocalus', 'mortal', NULL, NULL, NULL),
@@ -730,6 +736,7 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Eos', 'other_god', NULL, NULL, NULL),
     ('Eosphorus', 'other_god', NULL, NULL, NULL),
     ('Epaltes', 'mortal', NULL, NULL, 'warrior'),
+    ('Epaphus', 'hero', NULL, NULL, NULL),
     ('Epeigeus', 'hero', NULL, NULL, NULL),
     ('Epeus', 'hero', NULL, NULL, NULL),
     ('Epicasta', 'mortal', NULL, NULL, NULL),
@@ -963,6 +970,7 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Hippodice', 'mortal', NULL, NULL, NULL),
     ('Hippodromus', 'mortal', NULL, NULL, NULL),
     ('Hippolochus', 'mortal', NULL, NULL, NULL),
+    ('Hippolyte', 'mortal', NULL, NULL, NULL),
     ('Hippomachus', 'mortal', NULL, NULL, NULL),
     ('Hippomedon', 'mortal', NULL, NULL, NULL),
     ('Hippomedusa', 'mortal', NULL, NULL, NULL),
@@ -995,7 +1003,10 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Hyperenor', 'mortal', NULL, NULL, NULL),
     ('Hyperion', 'titan', NULL, NULL, NULL),
     ('Hyperippe', 'mortal', NULL, NULL, NULL),
-    ('Hyperlaus', 'mortal', NULL, NULL, NULL),
+    ('Hyperlaus', 'mortal', NULL, NULL, NULL)
+ON CONFLICT (name) DO NOTHING;
+
+INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Hypermnestra', 'mortal', NULL, NULL, NULL),
     ('Hyperphas', 'mortal', NULL, NULL, NULL),
     ('Hypirochus', 'mortal', NULL, NULL, NULL),
@@ -1003,10 +1014,7 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Hypseus', 'mortal', NULL, NULL, NULL),
     ('Hypsipyle', 'mortal', NULL, NULL, NULL),
     ('Hyrie', 'nymph', NULL, NULL, NULL),
-    ('Hyrieus', 'mortal', NULL, NULL, NULL)
-ON CONFLICT (name) DO NOTHING;
-
-INSERT INTO entities (name, type, generation, domain, subtype) VALUES
+    ('Hyrieus', 'mortal', NULL, NULL, NULL),
     ('Hyrnetho', 'mortal', NULL, NULL, NULL),
     ('Hyrtacus', 'mortal', NULL, NULL, NULL),
     ('Hyrtius', 'mortal', NULL, NULL, 'warrior'),
@@ -1347,6 +1355,7 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Nereus', 'other_god', NULL, NULL, NULL),
     ('Neritus', 'mortal', NULL, NULL, NULL),
     ('Nesaea', 'other_god', NULL, NULL, 'nereid'),
+    ('Nessus', 'monster', NULL, NULL, 'Centaur'),
     ('Nestor', 'mortal', NULL, NULL, NULL),
     ('Nestor (son of Priam)', 'mortal', NULL, NULL, NULL),
     ('Nice', 'mortal', NULL, NULL, NULL),
@@ -1496,7 +1505,11 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Pedaeus', 'hero', NULL, NULL, NULL),
     ('Pedasus', 'mortal', NULL, NULL, NULL),
     ('Pedias', 'mortal', NULL, NULL, NULL),
-    ('Peiraeus', 'mortal', NULL, NULL, NULL),
+    ('Pegasus', 'monster', NULL, NULL, NULL),
+    ('Peiraeus', 'mortal', NULL, NULL, NULL)
+ON CONFLICT (name) DO NOTHING;
+
+INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Peires', 'mortal', NULL, NULL, NULL),
     ('Peirous', 'hero', NULL, NULL, NULL),
     ('Peitho', 'other_god', NULL, NULL, NULL),
@@ -1506,10 +1519,7 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Pelegon', 'hero', NULL, NULL, NULL),
     ('Peleus', 'hero', NULL, NULL, NULL),
     ('Pelias', 'mortal', NULL, NULL, NULL),
-    ('Pellas', 'mortal', NULL, NULL, NULL)
-ON CONFLICT (name) DO NOTHING;
-
-INSERT INTO entities (name, type, generation, domain, subtype) VALUES
+    ('Pellas', 'mortal', NULL, NULL, NULL),
     ('Pelopia', 'mortal', NULL, NULL, NULL),
     ('Pelops', 'mortal', NULL, NULL, NULL),
     ('Pelorus', 'mortal', NULL, NULL, NULL),
@@ -1754,6 +1764,7 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Quirinus', 'other_god', NULL, NULL, NULL),
     ('Remulus', 'mortal', NULL, NULL, 'king'),
     ('Remus', 'hero', NULL, NULL, NULL),
+    ('Rhadamanthys', 'hero', NULL, NULL, NULL),
     ('Rhanis', 'nymph', NULL, NULL, NULL),
     ('Rhea', 'titan', NULL, NULL, NULL),
     ('Rhene', 'mortal', NULL, NULL, NULL),
@@ -1950,6 +1961,7 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Timandra', 'mortal', NULL, NULL, NULL),
     ('Tiphys', 'hero', NULL, NULL, NULL),
     ('Tisamenus', 'mortal', NULL, NULL, NULL),
+    ('Tisiphone', 'other_god', NULL, NULL, 'Erinys'),
     ('Tithonus', 'mortal', NULL, NULL, NULL),
     ('Tlepolemus', 'hero', NULL, NULL, NULL),
     ('Tmolus', 'mortal', NULL, NULL, NULL),
@@ -1997,7 +2009,10 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Zeus', 'olympian', NULL, NULL, NULL),
     ('Zeuxo', 'other_god', NULL, NULL, NULL),
     ('dragon', 'monster', NULL, NULL, NULL),
-    ('satyr', 'monster', NULL, NULL, NULL),
+    ('satyr', 'monster', NULL, NULL, NULL)
+ON CONFLICT (name) DO NOTHING;
+
+INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('soothsayer', 'mortal', NULL, NULL, NULL),
     ('the she-dragon', 'monster', NULL, NULL, NULL),
     ('wild boar', 'monster', NULL, NULL, NULL)

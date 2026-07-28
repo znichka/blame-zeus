@@ -624,32 +624,54 @@ always take a fresh V-number. The V9_2 `birth`→`parentage` migration is the pr
 
 ## Track H — GAP-002 unknown-name long tail (independent triage; merges serialize through F)
 
+> ⚠️ **Deviations occurred in this track.** See `DEVIATIONS.md` **#DEV-108**. Landed 12 bucket-1
+> entities + 3 translation-spelling aliases (one, `Helios`→`Helius`, caught only *after* adding —
+> by running the full audit suite, not by the pre-add review — a useful reminder that the fix-loop
+> verification step isn't optional even when the manual check felt thorough). Confirmed 3 more
+> bucket-2 collisions (`Oenomaus`, `Hippolytus`, `Ascalaphus`). `scripts/reseed-local.sh` needed a
+> fix (`CLEAR_HISTORY_SQL` +`'18'`/`'19'`) hit live while landing this.
+
 `DATA-GAPS.md` routes GAP-002's remainder here: **362** distinct names referenced by candidate
 relationships but absent from the confirmed entity set (367 before DEV-096 added `Nereus`, `Doris`,
 `Ceto`, `Styx`, `Thaumas`), across ~1,253 dropped rows. **These are leads, not a work list.**
 
-- [ ] **H1** — Re-run `python -m audit --only A2` and `--only A7` and record the **current** unknown-name
+- [x] **H1** — Re-run `python -m audit --only A2` and `--only A7` and record the **current** unknown-name
       count and A7 finding set; the 362 figure predates P3b's later passes.
-- [ ] **H2** — **Bucket every name** per `DATA-GAPS.md`'s four buckets: (1) genuine unambiguous
+      **Result: 359** (before this batch), **347** (after) — see DATA-GAPS.md for the full drilldown.
+- [x] **H2** — **Bucket every name** per `DATA-GAPS.md`'s four buckets: (1) genuine unambiguous
       figures; (2) namesake collisions and conflations — `Electra`, `Eurytus`, `Phineus`, `Thoas` are
       all multi-person names in this corpus; (3) extraction noise and the `<UNKNOWN>` sentinel
       (~133 rows) — a signal about the extraction pass, no entity to add; (4) **extraction corruption
       of an existing name**, the `Arges`→`Ares` class DEV-098 proved was *total*, not partial.
-- [ ] **H3** — **Bucket 1 only, in small source-verified batches.** Every added entity cites the
+      **Done at a full-list scale** (359 names, heuristic noise classifier + manual review); found a
+      **place-name sub-class** with no home in the `entities.type` enum at all, and a
+      **collective/group-noun sub-class** distinct from bucket 3's descriptive-phrase noise.
+- [x] **H3** — **Bucket 1 only, in small source-verified batches.** Every added entity cites the
       passage that attests it (DEV-047: never fabricated). **Bulk-adding is rejected** — option (b) in
       `DATA-GAPS.md`'s decision list — because it recreates the name-conflation class DEV-078…DEV-082
       spent all of Track J removing. Bucket 2 needs a per-name **split or merge** decision, not an add.
-- [ ] **H4** — **Work DEV-098's open generalization**: whether the same near-miss extraction confusion
+      **12 entities added, 3 resolved as aliases instead of adds** (`Aesculapius`→`Asclepius`,
+      `Phorcus`→`Phorcys`, `Helios`→`Helius`), each verified against its actual candidate rows (and,
+      for the 3 newly-confirmed bucket-2 cases, against raw corpus text) before deciding.
+- [x] **H4** — **Work DEV-098's open generalization**: whether the same near-miss extraction confusion
       corrupts other major names. A7 detects the shape; run it against the *current* candidate set and
       triage anything it names, since a confirmed entity with anomalously few relationships is the
       `Ares` signature (`Ares`: 0 → 33).
-- [ ] **H5** — Adding entities grows the graph and **can surface new A3 cycles** — always state the
+      **A7 unchanged at 2 waived findings** — no new corruption found this pass.
+- [x] **H5** — Adding entities grows the graph and **can surface new A3 cycles** — always state the
       layer when quoting a cycle count (ADR-020: post-resolver `parent_of`, pre-collapse candidates,
       `audit --candidates`, live DB are four incomparable graphs). Each batch goes through F's loop
       like any other data change.
-- [ ] **H6** — Whatever is not worked by F3 gets an **explicit written deferral** to P5 with its
+      **A3 unchanged at 92 (candidates) / 1 waived (db)** — no new cycle from this batch's additions.
+      Full `seedgen → reseed-local.sh → audit` loop run (three passes, see DEV-108).
+- [x] **H6** — Whatever is not worked by F3 gets an **explicit written deferral** to P5 with its
       bucket and reason — GAP-002 does not close silently, and option (c) (permanent waiver) was
       already rejected on the grounds that these are real absent pieces of the graph, not duplicates.
+      **Written deferral in `DATA-GAPS.md`**: ~330 residual names split into bucket 3 noise (+ the
+      new place-name/collective-noun sub-classes), 2 flagged future-batch leads (Hesiod's
+      personified abstractions, the Hecatoncheires cluster), and named high-value individual
+      candidates (`Tiresias`, `Narcissus`, `Calchas`, `Alecto`, `Enceladus`, `Talos`) for whoever
+      picks up the next batch.
 
 ---
 

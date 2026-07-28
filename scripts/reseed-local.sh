@@ -59,7 +59,15 @@ TRUNCATE_SQL="TRUNCATE myth_participants, variant_claims, relationships, myths, 
 # would recreate the table without them and Flyway would skip the already-applied V14_1.
 # Any future V-numbered migration that writes into a dropped/truncated seed table needs the
 # same treatment; note Flyway's version key for `V14_1__` is '14.1', not '14_1'.
-CLEAR_HISTORY_SQL="DELETE FROM flyway_schema_history WHERE version IN ('10','11','12','13','14','14.1','15','16','17');"
+# '19' (Stage P4 Track H, DEV-108) is the same shape as '14.1': it inserts into entity_aliases
+# too, so it must be cleared for the same data-preservation reason. '18' (Track G, DEV-107)
+# inserts into claim_type_aliases, which this script never drops or truncates -- no data-loss
+# risk either way -- but it still MUST be cleared here, for the ordering reason the comment
+# above already documents: leaving a higher version (18) recorded as applied while lower ones
+# (10-17) get cleared is the exact "Detected resolved migration not applied to database" failure
+# Flyway throws, discovered live re-running this script after editing V19 in the same session.
+# Re-applying V18 is harmless regardless (ON CONFLICT DO NOTHING).
+CLEAR_HISTORY_SQL="DELETE FROM flyway_schema_history WHERE version IN ('10','11','12','13','14','14.1','15','16','17','18','19');"
 
 if [ "$CHECK_ONLY" = true ]; then
   echo "==> --check: printing the reset steps, nothing will be executed"
