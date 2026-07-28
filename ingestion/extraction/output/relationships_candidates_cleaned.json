@@ -55054,5 +55054,21 @@
     "is_contested": false,
     "passage_ref": "5.864-5.907",
     "source_id": "homer-iliad"
+  },
+  {
+    "from_name": "Pyramus",
+    "relation": "loves",
+    "to_name": "Thisbe",
+    "is_contested": false,
+    "passage_ref": "4.55-4.80",
+    "source_id": "ovid-metamorphoses"
+  },
+  {
+    "from_name": "Thisbe",
+    "relation": "loves",
+    "to_name": "Pyramus",
+    "is_contested": false,
+    "passage_ref": "4.55-4.80",
+    "source_id": "ovid-metamorphoses"
   }
 ]

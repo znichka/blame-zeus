@@ -303,14 +303,32 @@ Track B/C are half-landed.
       Auto-discovered by `python -m audit` (now A1–A7) and part of the standing pre-seedgen gate.
       14 tests, headline test mutation-verified; `audit/tests/` green at 102.
 
-- [ ] **Triage A7's 6 live findings — a data batch, not yet worked.** Three are defect classes no
-      existing check can reach: `Argeiphontes` (26 mentions, 0 rows) is a standing **epithet of
-      Hermes**, who is separately confirmed — belongs in `entity_aliases`, and A1 can't see it
-      (fuzzy 33.3); `Acusilaus` (10) is an **ancient author Apollodorus cites**, not a mythological
-      figure, so it should not be an entity at all; `Diomed` (10) is a **spelling variant of
-      `Diomedes`** that A1 structurally misses at **85.7**, just under the shared 88 threshold. The
-      other three (`Charybdis`, `Demodocus`, `Thisbe`) look like genuine extraction misses. Runs
-      through the standard fix loop.
+- [x] **Triage A7's 6 live findings — LANDED 2026-07-27** `[DEVIATED - see DEVIATIONS.md #DEV-100]`.
+      They resolved into **three** fix shapes, not one — and two of the six needed *removal*, the
+      opposite of what a coverage gap invites:
+      - **Not entities at all, removed (3):** `Argeiphontes` → alias of **`Hermes`** (the extraction's
+        own `variant_claims` candidates already carried it as `claim_type='epithet'`); `Diomed` →
+        alias of **`Diomedes`** (More's metrical contraction, Ovid-only, book 13 assigns it the
+        Iliadic Diomedes' own deeds); `Acusilaus` → **an ancient mythographer Apollodorus cites**,
+        removed outright with no alias. Aliases in a new additive `V14_1` migration (V9_2 precedent)
+        + `known_aliases.json` (37→39).
+      - **Real, and given its missing rows (1):** `Thisbe` — the Ovidian heroine, whose partner
+        `Pyramus` was *also* at zero rows. Added `Pyramus loves Thisbe` + `Thisbe loves Pyramus`
+        @ `ovid-metamorphoses 4.55-4.80` ("they grew fond, and **loved each other**" — both
+        directions justified by the stated reciprocity).
+      - **True positives with nothing to extract, waived (2):** `Charybdis` (17 mentions, a sea
+        hazard in every one — no parentage/marriage/death anywhere, and no `encountered` relation
+        exists) and `Demodocus` (11, the Phaeacian minstrel — no kinship stated, and `servant_of`
+        would overstate a bard the king summons as an honoured performer). Written reasons in
+        `audit-waivers.json`; inventing a relation type to zero the count would let an audit check
+        dictate the data model.
+
+      **A7 6 findings → 2, both waived. A5 still PASS** — its alias-shadowing check would have fired
+      had the three entities been left in place alongside the new aliases. **Latent reseed bug fixed
+      in passing:** `scripts/reseed-local.sh` clears a *hardcoded* Flyway version list, so `V14_1`
+      (which inserts into the `entity_aliases` table the script drops) would have been silently
+      skipped on every reseed and the aliases would have vanished with no error — `'14.1'` added,
+      with a warning comment for future migrations of the same shape.
 - [ ] **Fix loop** (unchanged from P3): edit candidate JSON → `seedgen --strict` →
       `reseed-local.sh` → `audit` clean-or-waived → `runner --runs 3` → `compare.py` → commit or
       revert. Expect A3 to surface new cycles as the graph grows — that is the loop working.
@@ -409,6 +427,16 @@ floors hold across a 3-run eval; the relevant ADR/DEV entries are logged.
   A workaround (prompt rule, query-time bound, retry, migration) ships only on *evidence* that the
   cause-level fix left the question failing — never pre-emptively stacked on an unreproduced defect.
 - **Never act on a single-run delta** — the 3-run stable/flaky classification is the contract.
+- **An eval run containing transport timeouts is invalid, not evidence.** Updated based on DEV-100
+  (see DEVIATIONS.md). The runner's 60 s client timeout (`evaluation/eval-config.json`) is ample at
+  normal latency — Q15, the heaviest conflict question, measured **9.1 s** — but during an LLM-API
+  slow episode the same question exceeded **7.5 minutes**, and three requests across Q13/Q15 hit
+  `transport error: timed out`. That does not merely slow the run: it converts passing CONFLICT
+  questions into **false failures** and cost 7 points of reported score, while the server sat idle
+  and healthy (13 ms on `/api/v1/sources`, 0% CPU) and the answers were **identical whenever they
+  completed**. Check `raw_responses.json` for `_runnerNote: transport error` before reading any
+  score as a regression. **Open item:** the report has no signal distinguishing an API-latency
+  episode from a real quality drop — worth adding before P4's loop leans on these numbers.
 - **Always state the layer when quoting an A3 cycle count** (ADR-020): post-resolver `parent_of`,
   pre-collapse candidates, `audit --candidates`, and the live seeded DB measure different graphs and
   are not comparable to each other.

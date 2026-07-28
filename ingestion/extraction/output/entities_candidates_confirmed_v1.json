@@ -217,13 +217,6 @@
     "subtype": null
   },
   {
-    "name": "Acusilaus",
-    "type": "mortal",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
     "name": "Adamas",
     "type": "hero",
     "generation": null,
@@ -1752,13 +1745,6 @@
   {
     "name": "Aretus",
     "type": "mortal",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
-    "name": "Argeiphontes",
-    "type": "other_god",
     "generation": null,
     "domain": null,
     "subtype": null
@@ -4398,13 +4384,6 @@
   {
     "name": "Diogenia",
     "type": "mortal",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
-    "name": "Diomed",
-    "type": "hero",
     "generation": null,
     "domain": null,
     "subtype": null

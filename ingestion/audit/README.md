@@ -213,13 +213,18 @@ evaluated" rather than guessing; **split siblings are grouped by base name** (`S
 translation); and a **translation-name mismatch is a known false-negative** (Ovid says `Mars`), which
 is the safe direction — it under-counts mentions and so under-flags.
 
-Today: **6 findings**, and they are three distinct defect classes, none of which A1 can reach —
-`Argeiphontes` (26 mentions) is a standing **epithet of Hermes**, who is separately confirmed, so it
-belongs in `entity_aliases`, not `entities` (fuzzy score to `Hermes`: 33.3); `Acusilaus` (10) is an
-**ancient author Apollodorus cites**, not a mythological figure at all; `Diomed` (10) is a **spelling
-variant of `Diomedes`** that A1 misses because it scores **85.7**, just under the 88 threshold. The
-rest (`Charybdis`, `Demodocus`, `Thisbe`) look like genuine extraction misses. Triage is a data
-batch, not part of this check.
+The first sweep found **6**, all now worked (DEV-100): three were **not entities at all** —
+`Argeiphontes` (a standing **epithet of Hermes**; A1 scores the pair 33.3), `Diomed` (More's
+contraction of **`Diomedes`**; A1 misses it at **85.7**, just under the 88 threshold), and
+`Acusilaus` (an **ancient mythographer Apollodorus cites**) — the first two now `entity_aliases`
+rows via `V14_1`, the third removed outright. `Thisbe` was real and got the rows it was missing
+(`Pyramus loves Thisbe` and back, Ovid `4.55-4.80`).
+
+Today: **2 findings, both waived** — `Charybdis` and `Demodocus` are true positives with genuinely
+nothing to extract (a sea hazard and a court minstrel; no kinship, marriage or death stated for
+either anywhere in the six sources, and no relation in the vocabulary honestly fits). That is the
+intended end state for this class: **waive with a written reason, don't invent a relation type to
+zero the count** — an audit check must not get to dictate the data model.
 
 ## The Flyway checksum trap (shared with Track F)
 

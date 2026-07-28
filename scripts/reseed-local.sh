@@ -54,7 +54,12 @@ fi
 # Track I first pass landing relation_aliases (see docs/DEVIATIONS.md).
 DROP_ALIASES_SQL="DROP TABLE IF EXISTS entity_aliases; DROP TABLE IF EXISTS relation_aliases;"
 TRUNCATE_SQL="TRUNCATE myth_participants, variant_claims, relationships, myths, entities CASCADE;"
-CLEAR_HISTORY_SQL="DELETE FROM flyway_schema_history WHERE version IN ('10','11','12','13','14','15','16','17');"
+# '14.1' (DEV-100) inserts into V14's entity_aliases table, which DROP_ALIASES_SQL removes --
+# so it MUST be cleared alongside '14' or the aliases silently vanish on every reseed: V14
+# would recreate the table without them and Flyway would skip the already-applied V14_1.
+# Any future V-numbered migration that writes into a dropped/truncated seed table needs the
+# same treatment; note Flyway's version key for `V14_1__` is '14.1', not '14_1'.
+CLEAR_HISTORY_SQL="DELETE FROM flyway_schema_history WHERE version IN ('10','11','12','13','14','14.1','15','16','17');"
 
 if [ "$CHECK_ONLY" = true ]; then
   echo "==> --check: printing the reset steps, nothing will be executed"

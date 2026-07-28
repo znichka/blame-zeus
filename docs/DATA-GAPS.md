@@ -518,13 +518,22 @@ ahead of the next entry. (208, not the 153 quoted above — that figure was the 
 part of the standing pre-seedgen gate, so a future extraction run that reintroduces this class fails
 the gate instead of seeding silently.
 
-**Still open — A7's own findings.** The sweep confirmed the broader suspicion: **6 live findings**,
-three of them defect classes no existing check can reach — `Argeiphontes` (26 mentions, an **epithet
-of Hermes**, who is separately confirmed; belongs in `entity_aliases`, and A1 scores the pair 33.3),
-`Acusilaus` (10, an **ancient author Apollodorus cites**, not a mythological figure — it should not
-be an entity at all), and `Diomed` (10, a **spelling variant of `Diomedes`** that A1 structurally
-misses at **85.7**, just under its 88 threshold), plus `Charybdis`/`Demodocus`/`Thisbe` as likely
-genuine extraction misses. Triaging these is a data batch, carried to P4.
+**A7's own findings: worked and closed (DEV-100).** The first sweep produced **6 findings**, and
+they resolved into **three** fix shapes — notably, two needed *removal*, the opposite of what a
+coverage gap invites:
+
+| finding | mentions | verdict |
+|---|---:|---|
+| `Argeiphontes` | 26 | **Not an entity** — a standing Homeric **epithet of `Hermes`** ("Hermes, the messenger, Argeiphontes"). The extraction's own `variant_claims` candidates already carried it as `claim_type='epithet'`. Removed; now an alias. A1 scores the pair **33.3** and could never reach it. |
+| `Acusilaus` | 10 | **Not an entity** — an **ancient mythographer Apollodorus cites** ("so says Acusilaus"). Removed outright, no alias. |
+| `Diomed` | 10 | **Not an entity** — More's metrical contraction of **`Diomedes`**, Ovid-only; book 13 assigns it the Iliadic Diomedes' own deeds. Removed; now an alias. A1 misses it at **85.7**, just under its 88 threshold. |
+| `Thisbe` | 10 | **Real, rows added** — the Ovidian heroine; `Pyramus` was *also* at zero rows. `Pyramus loves Thisbe` + `Thisbe loves Pyramus` @ `4.55-4.80`. |
+| `Charybdis` | 17 | **True positive, nothing to extract — waived.** A sea hazard in every mention; no parentage/marriage/death anywhere in the six sources, and no `encountered` relation exists. |
+| `Demodocus` | 11 | **True positive, nothing to extract — waived.** The Phaeacian minstrel; no kinship stated, and `servant_of` would overstate a bard the king summons as an honoured performer. |
+
+A7 now reports **2 findings, both waived**. The two waivers are the honest outcome, not an evasion:
+inventing a relation type to drive the count to zero would let an audit check dictate the data
+model, and fabricating a parentage is the DEV-047/DEV-095 line this project does not cross.
 
 ### Root cause
 

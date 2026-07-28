@@ -32,7 +32,6 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Actaeus', 'mortal', NULL, NULL, NULL),
     ('Actaeä', 'nymph', NULL, NULL, NULL),
     ('Actor', 'mortal', NULL, NULL, NULL),
-    ('Acusilaus', 'mortal', NULL, NULL, NULL),
     ('Adamas', 'hero', NULL, NULL, NULL),
     ('Adiante', 'mortal', NULL, NULL, NULL),
     ('Adite', 'mortal', NULL, NULL, NULL),
@@ -253,7 +252,6 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Arethusa', 'nymph', NULL, NULL, NULL),
     ('Aretias', 'mortal', NULL, NULL, NULL),
     ('Aretus', 'mortal', NULL, NULL, NULL),
-    ('Argeiphontes', 'other_god', NULL, NULL, NULL),
     ('Argele', 'mortal', NULL, NULL, NULL),
     ('Arges', 'other_god', NULL, NULL, 'Cyclops'),
     ('Argia', 'mortal', NULL, NULL, NULL),
@@ -500,12 +498,12 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Clymene', 'mortal', NULL, NULL, NULL),
     ('Clymenus', 'mortal', NULL, NULL, NULL),
     ('Clytaemnestra', 'mortal', NULL, NULL, NULL),
-    ('Clytie', 'other_god', NULL, NULL, NULL)
+    ('Clytie', 'other_god', NULL, NULL, NULL),
+    ('Clytippe', 'mortal', NULL, NULL, NULL),
+    ('Clytomedes', 'mortal', NULL, NULL, NULL)
 ON CONFLICT (name) DO NOTHING;
 
 INSERT INTO entities (name, type, generation, domain, subtype) VALUES
-    ('Clytippe', 'mortal', NULL, NULL, NULL),
-    ('Clytomedes', 'mortal', NULL, NULL, NULL),
     ('Clytoneus', 'mortal', NULL, NULL, NULL),
     ('Cnossia', 'nymph', NULL, NULL, NULL),
     ('Cocalus', 'mortal', NULL, NULL, NULL),
@@ -650,7 +648,6 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Dioclus', 'mortal', NULL, NULL, NULL),
     ('Diocorystes', 'mortal', NULL, NULL, NULL),
     ('Diogenia', 'mortal', NULL, NULL, NULL),
-    ('Diomed', 'hero', NULL, NULL, NULL),
     ('Diomedes', 'hero', NULL, NULL, NULL),
     ('Diomedes of Thrace', 'mortal', NULL, NULL, NULL),
     ('Dione', 'titan', NULL, NULL, NULL),
@@ -1003,13 +1000,13 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Hyperphas', 'mortal', NULL, NULL, NULL),
     ('Hypirochus', 'mortal', NULL, NULL, NULL),
     ('Hypsenor', 'mortal', NULL, NULL, NULL),
-    ('Hypseus', 'mortal', NULL, NULL, NULL)
+    ('Hypseus', 'mortal', NULL, NULL, NULL),
+    ('Hypsipyle', 'mortal', NULL, NULL, NULL),
+    ('Hyrie', 'nymph', NULL, NULL, NULL),
+    ('Hyrieus', 'mortal', NULL, NULL, NULL)
 ON CONFLICT (name) DO NOTHING;
 
 INSERT INTO entities (name, type, generation, domain, subtype) VALUES
-    ('Hypsipyle', 'mortal', NULL, NULL, NULL),
-    ('Hyrie', 'nymph', NULL, NULL, NULL),
-    ('Hyrieus', 'mortal', NULL, NULL, NULL),
     ('Hyrnetho', 'mortal', NULL, NULL, NULL),
     ('Hyrtacus', 'mortal', NULL, NULL, NULL),
     ('Hyrtius', 'mortal', NULL, NULL, 'warrior'),
@@ -1506,13 +1503,13 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Pelagon', 'mortal', NULL, NULL, NULL),
     ('Pelasgus', 'mortal', NULL, NULL, NULL),
     ('Pelates', 'mortal', NULL, NULL, NULL),
-    ('Pelegon', 'hero', NULL, NULL, NULL)
+    ('Pelegon', 'hero', NULL, NULL, NULL),
+    ('Peleus', 'hero', NULL, NULL, NULL),
+    ('Pelias', 'mortal', NULL, NULL, NULL),
+    ('Pellas', 'mortal', NULL, NULL, NULL)
 ON CONFLICT (name) DO NOTHING;
 
 INSERT INTO entities (name, type, generation, domain, subtype) VALUES
-    ('Peleus', 'hero', NULL, NULL, NULL),
-    ('Pelias', 'mortal', NULL, NULL, NULL),
-    ('Pellas', 'mortal', NULL, NULL, NULL),
     ('Pelopia', 'mortal', NULL, NULL, NULL),
     ('Pelops', 'mortal', NULL, NULL, NULL),
     ('Pelorus', 'mortal', NULL, NULL, NULL),
