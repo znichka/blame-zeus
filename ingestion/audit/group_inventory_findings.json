@@ -1,10 +1,10 @@
 {
   "counts": {
     "groupsTotal": 798,
-    "groupsWithPromotions": 29,
-    "zeroPromoted": 769
+    "groupsWithPromotions": 54,
+    "zeroPromoted": 744
   },
-  "trend": "zero_promoted 769 (-0 since last run, -26 since the 795-group starting baseline)",
+  "trend": "zero_promoted 744 (-0 since last run, -51 since the 795-group starting baseline)",
   "groups": [
     {
       "subject": "",
@@ -66,7 +66,7 @@
       "candidateRowCount": 2,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
-      "promotedRowCount": 0,
+      "promotedRowCount": 2,
       "subjectRank": 3
     },
     {
@@ -102,7 +102,7 @@
       "candidateRowCount": 38,
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 38,
-      "promotedRowCount": 0,
+      "promotedRowCount": 4,
       "subjectRank": 3
     },
     {
@@ -354,7 +354,7 @@
       "candidateRowCount": 5,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
-      "promotedRowCount": 0,
+      "promotedRowCount": 5,
       "subjectRank": 6
     },
     {
@@ -444,7 +444,7 @@
       "candidateRowCount": 4,
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 4,
-      "promotedRowCount": 0,
+      "promotedRowCount": 4,
       "subjectRank": 21
     },
     {
@@ -966,7 +966,7 @@
       "candidateRowCount": 17,
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 16,
-      "promotedRowCount": 0,
+      "promotedRowCount": 5,
       "subjectRank": 16
     },
     {
@@ -1002,7 +1002,7 @@
       "candidateRowCount": 66,
       "distinctSourceCount": 6,
       "distinctClaimValueCount": 66,
-      "promotedRowCount": 0,
+      "promotedRowCount": 5,
       "subjectRank": 7
     },
     {
@@ -1011,7 +1011,7 @@
       "candidateRowCount": 3,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
-      "promotedRowCount": 0,
+      "promotedRowCount": 3,
       "subjectRank": 7
     },
     {
@@ -1299,7 +1299,7 @@
       "candidateRowCount": 23,
       "distinctSourceCount": 5,
       "distinctClaimValueCount": 23,
-      "promotedRowCount": 0,
+      "promotedRowCount": 6,
       "subjectRank": 11
     },
     {
@@ -2316,7 +2316,7 @@
       "candidateRowCount": 9,
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 9,
-      "promotedRowCount": 0,
+      "promotedRowCount": 3,
       "subjectRank": 9
     },
     {
@@ -3162,7 +3162,7 @@
       "candidateRowCount": 18,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 18,
-      "promotedRowCount": 0,
+      "promotedRowCount": 6,
       "subjectRank": 5
     },
     {
@@ -3297,7 +3297,7 @@
       "candidateRowCount": 14,
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 14,
-      "promotedRowCount": 0,
+      "promotedRowCount": 6,
       "subjectRank": 18
     },
     {
@@ -3333,7 +3333,7 @@
       "candidateRowCount": 33,
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 33,
-      "promotedRowCount": 0,
+      "promotedRowCount": 6,
       "subjectRank": 4
     },
     {
@@ -3369,7 +3369,7 @@
       "candidateRowCount": 13,
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 13,
-      "promotedRowCount": 0,
+      "promotedRowCount": 6,
       "subjectRank": 15
     },
     {
@@ -3387,7 +3387,7 @@
       "candidateRowCount": 3,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 3,
-      "promotedRowCount": 0,
+      "promotedRowCount": 3,
       "subjectRank": 15
     },
     {
@@ -4476,7 +4476,7 @@
       "candidateRowCount": 16,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 15,
-      "promotedRowCount": 0,
+      "promotedRowCount": 3,
       "subjectRank": 12
     },
     {
@@ -4962,7 +4962,7 @@
       "candidateRowCount": 124,
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 124,
-      "promotedRowCount": 0,
+      "promotedRowCount": 5,
       "subjectRank": 1
     },
     {
@@ -4971,7 +4971,7 @@
       "candidateRowCount": 4,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 4,
-      "promotedRowCount": 0,
+      "promotedRowCount": 4,
       "subjectRank": 1
     },
     {
@@ -5349,7 +5349,7 @@
       "candidateRowCount": 57,
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 37,
-      "promotedRowCount": 0,
+      "promotedRowCount": 4,
       "subjectRank": 10
     },
     {
@@ -5358,7 +5358,7 @@
       "candidateRowCount": 66,
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 12,
-      "promotedRowCount": 0,
+      "promotedRowCount": 4,
       "subjectRank": 10
     },
     {
@@ -5466,7 +5466,7 @@
       "candidateRowCount": 5,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 5,
-      "promotedRowCount": 0,
+      "promotedRowCount": 5,
       "subjectRank": 13
     },
     {
@@ -6114,7 +6114,7 @@
       "candidateRowCount": 30,
       "distinctSourceCount": 4,
       "distinctClaimValueCount": 30,
-      "promotedRowCount": 0,
+      "promotedRowCount": 6,
       "subjectRank": 14
     },
     {
@@ -6150,7 +6150,7 @@
       "candidateRowCount": 2,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
-      "promotedRowCount": 0,
+      "promotedRowCount": 2,
       "subjectRank": 17
     },
     {
@@ -6681,7 +6681,7 @@
       "candidateRowCount": 154,
       "distinctSourceCount": 3,
       "distinctClaimValueCount": 23,
-      "promotedRowCount": 0,
+      "promotedRowCount": 3,
       "subjectRank": 8
     },
     {
@@ -7167,7 +7167,7 @@
       "candidateRowCount": 51,
       "distinctSourceCount": 5,
       "distinctClaimValueCount": 51,
-      "promotedRowCount": 0,
+      "promotedRowCount": 5,
       "subjectRank": 2
     },
     {
@@ -7176,7 +7176,7 @@
       "candidateRowCount": 2,
       "distinctSourceCount": 2,
       "distinctClaimValueCount": 2,
-      "promotedRowCount": 0,
+      "promotedRowCount": 2,
       "subjectRank": 2
     },
     {

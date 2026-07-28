@@ -427,5 +427,44 @@
       "I cannot",
       "I'm not sure"
     ]
+  },
+  {
+    "id": 24,
+    "category": "CONFLICT",
+    "question": "Who is the father of Priam?",
+    "expected_route": "SQL",
+    "required_keywords": [
+      "Laomedon",
+      "Dardanus"
+    ],
+    "required_authors": [
+      "Apollodorus",
+      "Homer"
+    ],
+    "forbidden_patterns": [
+      "I don't know",
+      "not in my corpus",
+      "I cannot",
+      "I'm not sure"
+    ],
+    "conflicts_min_count": 2
+  },
+  {
+    "id": 25,
+    "category": "DATA",
+    "question": "Who is the mother of Athena?",
+    "expected_route": "SQL",
+    "required_keywords": [
+      "Metis"
+    ],
+    "required_authors": [
+      "Apollodorus"
+    ],
+    "forbidden_patterns": [
+      "I don't know",
+      "not in my corpus",
+      "I cannot",
+      "I'm not sure"
+    ]
   }
 ]

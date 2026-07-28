@@ -844,14 +844,24 @@ pre-assigned: it depends on what F1's eval shows and on which claim_types F1's p
       `compare.py` baseline is **F1's accepted run**, not the P3b one; label `p4-batch2`.
       **Result: label `p4-f2-batch2`, 107 rows/25 canonical groups, +3 gold questions (Q20/E4,
       Q22/Q23/E7), 21/23 = 91%, zero stable regressions vs. F1.**
-- [ ] **F3** — same again; label `p4-batch3`. At its close, check the exit gate explicitly:
+- [x] **F3** — same again; label `p4-batch3`. At its close, check the exit gate explicitly:
       **≥3 batches**, **≥4 canonical claim_types**, **all top-20-prominence subjects**, **gold set
       ≈25**, **floors enforced**, **overall ≥75% across 3 runs**. Anything unmet is either worked in
       an F4 or written down as a deferral — not quietly dropped.
-      **Status entering F3**: claim_types 8/4 ✅, top-20 subjects 20/20 ✅, gold set 23/~25 (2-3
-      more needed), batches 2/≥3 (F3 itself is the 3rd), floors/overall already holding at 91%.
+      **Result: label `p4-f3-batch3`, 48 rows promoted / 17 canonical `parentage` groups (Tier 1/2
+      were empty by this point, so F0a's rule routed the whole tranche into Tier 3 — the GAP-001
+      top-20 parentage backlog F0b named), 89 rows rejected (see DEV-114 — a newly-discovered
+      systemic reversed-parentage-direction extraction bug, distinct in shape from F1/F2's catches),
+      +2 gold questions (Q24/Q25/E7), 22/25 = 88%, zero stable regressions vs. F2. **Full exit gate
+      met: claim_types 8/4 ✅, top-20 subjects 20/20 ✅, gold set 25/~25 ✅, batches 3/≥3 ✅, overall
+      88% ✅.** Two items carried forward rather than closed here (both written down, not silently
+      dropped): A3's pre-existing 92 cycle findings (F0c's own deferral) and a newly-honest A6 gap
+      (40 findings that predate this batch but were never actually covered by F0c's original waiver
+      text) — both need their own dedicated pass, out of scope for a `variant_claims`-only batch.**
 - [ ] **F4+** — The loop continues past the gate (`§5`: "the loop continues after"). Additional
-      batches follow the same template; the gate is a milestone, not a stopping condition.
+      batches follow the same template; the gate is a milestone, not a stopping condition. Two
+      carry-forward items from F3 are natural F4+ candidates: the A6 residue (DEV-114) and A3's
+      cycle findings (F0c).
 
 ---
 
@@ -896,10 +906,10 @@ pre-assigned: it depends on what F1's eval shows and on which claim_types F1's p
       does not reproduce on the live tree (root cause understood, not fixed — nothing to fix); see
       `DEVIATIONS.md` #DEV-102. Track E carries forward the open question of whether Q16/Q17's fixed
       text is still a valid zero-retrieval REFUSAL case.
-- [ ] **≥3 batches end-to-end**, each a complete `seedgen → reseed → audit → runner --runs 3 →
+- [x] **≥3 batches end-to-end**, each a complete `seedgen → reseed → audit → runner --runs 3 →
       compare.py → commit-or-revert` pass, results dirs committed with their candidates, migrations
       and gold-set changes (Track F).
-      **2 of ≥3 done (F1 DEV-110, F2 DEV-112).** F3 closes this gate.
+      **3/3 done (F1 DEV-110, F2 DEV-112, F3 DEV-114) — this gate is fully met.**
 - [x] **`variant_claims` covers ≥4 canonical claim_types** — from **2** today (`parentage`, `death`).
       **Counted in the seeded table after a reseed, not in the candidate file** (they differ: 71
       promoted candidates → 44 rows; see *Contracts*).
@@ -914,27 +924,35 @@ pre-assigned: it depends on what F1's eval shows and on which claim_types F1's p
       **17/20 after F1**, then **20/20 after F2 (DEV-112) — this gate is fully met.** `Telemachus`/
       `Patroclus` closed via Tier-3 `parentage`/`death` groups (no unpromoted-type candidates
       existed for them); `Ajax` via a `notable_claim` group an earlier miscounting script missed.
-- [ ] **Gold set ≈25 questions** — from **16** today; ADR-010's backlog (Q16, Q17, Q19, Q20, Q21)
+- [x] **Gold set ≈25 questions** — from **16** today; ADR-010's backlog (Q16, Q17, Q19, Q20, Q21)
       authored with live-verified keywords; every pre-existing question retained as a sentinel.
       **20/~25 after F1**, then **23/~25 after F2** (Q20/E4 landed using `Patroclus`'s new death
-      conflict; Q22/Q23/E7 target F2's new data specifically). 2-3 more in F3 closes this gate.
+      conflict; Q22/Q23/E7 target F2's new data specifically), then **25/~25 after F3** (Q24/E7 a
+      live-verified new `Priam` parentage conflict, Q25/E7 the new `Athena`/`Metis` promotion) —
+      **this gate is fully met.**
 - [x] **Per-category floors enforced**, REFUSAL promoted off `null`, CONFLICT raised as the category
       grows; no floor ever lowered to make a run pass.
       **REFUSAL floor set to 0.5 at F1 (DEV-110).** CONFLICT deliberately left at 0.5 (5 questions —
       raising to 0.6 would be cosmetic at this count, revisit at 6+).
 - [x] **Overall ≥75% sustained across a 3-run eval** with **zero stable regressions**, on a run with
       no transport errors (Track D's banner clean).
-      **90% at F1 (DEV-110), 91% at F2 (DEV-112)**, zero transport errors, zero stable regressions
-      either batch. Must stay true through F3 too, not just these two.
-- [ ] **GAP-001 a′** worked or explicitly deferred with a written waiver (F0b); **GAP-002** long tail
+      **90% at F1 (DEV-110), 91% at F2 (DEV-112), 88% at F3 (DEV-114)**, zero transport errors, zero
+      stable regressions across all three batches — **sustained, this gate is fully met.**
+- [x] **GAP-001 a′** worked or explicitly deferred with a written waiver (F0b); **GAP-002** long tail
       worked or explicitly deferred with its bucket and reason (H6); **F0c**'s standing-waiver policy
       for A1/A6 residue decided in writing.
       **F0b/F0c/H6 all done** (DEV-108/DEV-109) — GAP-001 a′ bounded to the top-20-child tranche (49
-      rows), GAP-002 long tail bucketed with two flagged future leads, F0c's waiver policy covers
-      A1/A2/A4/A6/A10 in writing (A3 deliberately excluded, see F0c).
+      rows). **F3 (DEV-114) closed the top-20 half of that tranche outright** (17 subjects' own
+      `variant_claims` parentage promoted directly, a stronger outcome than F0b's original bounded
+      deferral). GAP-002 long tail bucketed with two flagged future leads, F0c's waiver policy covers
+      A1/A2/A4/A6/A10 in writing (A3 deliberately excluded, see F0c) — **though F3 found A6's own
+      waiver text was inaccurate for 40 entries and reverted rather than compounded it (DEV-114)**;
+      that residue is now honestly unwaived, carried to a future pass rather than papered over.
 - [ ] **One DEV entry per landed track** logged in `DEVIATIONS.md` (indicatively DEV-102…DEV-108+;
       claim the numbers actually free at the time — J1); `TODO2.md`, `IMPLEMENTATION_PLAN_PHASE2.md §5`
       and ADR-010's action items annotated per the deviation protocol; the stale 838-group count
       corrected by banner, never by overwriting the plan body.
-      **DEV-102 through DEV-110 logged** (one per track: A, B, C, D, G, H, F0, F1). `TODO2.md`/
-      `IMPLEMENTATION_PLAN_PHASE2.md §5`/ADR-010 action-item annotation still open (Track J).
+      **DEV-102 through DEV-114 logged** (one per track: A, B, C, D, G, H, F0, F1, F2, F3, plus
+      DEV-113's rejected-tier infrastructure change). `TODO2.md`/`IMPLEMENTATION_PLAN_PHASE2.md §5`/
+      ADR-010 action-item annotation still open (Track J) — the full definition-of-done above is
+      otherwise met; Track J is pure doc cleanup, not a data/eval gate.
