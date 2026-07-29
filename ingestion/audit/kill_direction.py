@@ -5,8 +5,9 @@ symmetry argument. Of the six direction errors DEV-121 fixed while merging the
 `Ajax` cluster, **five were `killed_by`** -- Ajax recorded as the victim of
 Satnius, Archelochus, Caletor and Laodamas, all of whom he kills, plus a reversed
 Poseidon row. DEV-122 then found two more reversed edges by walking rows for an
-unrelated reason. Both passes found them *by accident*: `killed_by` is 528 of the
-seeded edges and no check has ever read one. A11 covers `parent_of` only.
+unrelated reason. Both passes found them *by accident*: `killed_by` is **872 distinct candidate
+edges** (528 survive into the seeded table -- state the layer, ADR-020's rule) and no
+check has ever read one. A11 covers `parent_of` only.
 
 Same evidentiary rule as A11, different formula. The seeded convention is
 `from_id` = victim, `to_id` = killer (`Abaris killed_by Perses`), so for each edge
@@ -57,14 +58,14 @@ _KILL_VERB = r"(?:slew|slayeth|slay|smote|smiteth|killeth|killed|laid\s+low)"
 # character-budgeted, following A11's `_KINSHIP`: it tolerates the epithets and
 # patronymics Homer stacks in ("Aias, son of Telamon, smote goodly Anthemion") while
 # refusing to run across the clause boundaries a character budget happily crosses.
-# A first cut using `[^.;:]{0,60}` was measurably worse: it matched Iliad 16.732's
+# A first cut using `[^.;:]{0,60}` was measurably worse: it matched Iliad 16.712's
 # "against Patroclus thy strong-hoofed horses, if so be thou mayest slay him, and
 # Apollo give thee glory" as "Patroclus slew Apollo". Requiring the filler to be
 # whole words breaks that match on the hyphen and the clause comma.
 #
 # The filler also **excludes capitalised words**, which is the rule that does most of
 # the precision work. A third proper noun sitting between the two names is almost
-# always the verb's real subject, not an epithet: Iliad 15.68 reads "...Patroclus
+# always the verb's real subject, not an epithet: Iliad 15.47 reads "...Patroclus
 # shall goodly Achilles slay Hector...", which a capital-tolerant filler scores as
 # "Patroclus slew Hector" -- wrong twice over, since Achilles kills Hector and Hector
 # kills Patroclus. Murray, Frazer and More all write epithets in lower case

@@ -91,7 +91,7 @@ def test_lowercase_epithets_in_the_gap_still_match_but_a_sentence_boundary_does_
 
 
 def test_an_intervening_proper_noun_suppresses_the_match():
-    # Iliad 15.68 in miniature: the capitalised name between the two is the verb's real
+    # Iliad 15.47 in miniature: the capitalised name between the two is the verb's real
     # subject, so this must NOT read as "Patroclus slew Hector". The documented cost is
     # that a patronymic in the same position ("Aias, son of Telamon, smote X") is also
     # missed -- lost recall, never a wrong report.

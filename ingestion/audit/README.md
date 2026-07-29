@@ -406,7 +406,7 @@ reversal as no-evidence.
 
 - **The filler between the two names excludes capitalised words, and that rule does most of the
   precision work.** A third proper noun between them is almost always the verb's real subject:
-  Iliad 15.68 reads "…Patroclus shall goodly Achilles slay Hector…", which a capital-tolerant
+  Iliad 15.47 reads "…Patroclus shall goodly Achilles slay Hector…", which a capital-tolerant
   pattern scores as "Patroclus slew Hector" — wrong twice over. Every translation here writes
   epithets in lower case ("goodly", "swift-footed", "brazen"), so excluding capitals keeps the
   epithets and drops the intervening-subject case. **Cost:** a patronymic in that position ("Aias,
@@ -417,7 +417,7 @@ reversal as no-evidence.
   capitals too and silently undoes the whole rule. This was caught by a test, after the first
   live run reported 7 findings where the rule should have given 6.
 - **One known false-positive shape, waived rather than engineered around: pronoun anaphora.**
-  Iliad 5.657 has both men strike — "Sarpedon smote **him** full upon the neck… down upon his eyes
+  Iliad 5.655 has both men strike — "Sarpedon smote **him** full upon the neck… down upon his eyes
   came the darkness of night", then "And Tlepolemus smote Sarpedon upon the left thigh". The kill
   names its victim with a pronoun, so `correct == 0` cannot suppress the wound. No regex over
   entity names resolves that reference. `Tlepolemus killed_by Sarpedon` is waived in

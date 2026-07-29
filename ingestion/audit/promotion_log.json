@@ -2770,7 +2770,7 @@
         "11.456-11.488"
       ]
     ],
-    "rationale": "GAP-007's variant_claims half. Same Homeric vocative formula the deny-list entry suppresses on the relationships side: \"Aias, sprung from Zeus, thou son of Telamon, captain of the host\", verified live in the corpus at Iliad 7.233, 9.643 and 11.465 -- one real father and one divine honorific in a single line. Extends DEV-112/F2's identical verdict on 'Patroclus | parentage | sprung from Zeus' @ 1.325-1.363 to the other hero the formula names. Telamon is attested as Ajax's father 22 times in the Iliad alone and is already promoted at trust_tier=1 from two sources."
+    "rationale": "GAP-007's variant_claims half. Same Homeric vocative formula the deny-list entry suppresses on the relationships side: \"Aias, sprung from Zeus, thou son of Telamon, captain of the host\", verified live in the corpus at Iliad 7.233, 9.643 and 11.456 -- one real father and one divine honorific in a single line. Extends DEV-112/F2's identical verdict on 'Patroclus | parentage | sprung from Zeus' @ 1.325-1.363 to the other hero the formula names. Telamon is attested as Ajax's father 22 times in the Iliad alone and is already promoted at trust_tier=1 from two sources."
   },
   {
     "batchLabel": "telamon-pherecydes-variant",

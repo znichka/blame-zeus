@@ -564,13 +564,13 @@ The 367 (now 347) are **leads**, not a work list. Four buckets now, not three:
    guessed either way. **Grew by 2 more 2026-07-29 (DEV-122), and these two are already-confirmed
    entities rather than unknown names — a sub-class this bucket had not held before:**
    - **`Clitus` conflates three men** — Apollodorus 2.1.5's son of Egyptus and Tyria who married
-     Clite; Iliad 15.445's *"Cleitus, the glorious son of Peisenor, comrade of Polydamas"*; and
-     Odyssey 15.249's Cleitus son of Mantius, carried off by Dawn. The contested collapse keeps the
+     Clite; Iliad 15.442's *"Cleitus, the glorious son of Peisenor, comrade of Polydamas"*; and
+     Odyssey 15.238's Cleitus son of Mantius, carried off by Dawn. The contested collapse keeps the
      spine source's Egyptus+Tyria couple and drops Peisenor and Mantius as *rivals* — but they are
      not rivals, they are two other men's true fathers.
    - **`Pisenor` conflates at least two** — the Odyssey's Peisenor, father of Ops and grandfather of
      Eurycleia, and the Iliad's Peisenor, father of Cleitus. (A third, the Odyssey herald Peisenor
-     at 2.38, has no extracted rows.) DEV-122 corrected the direction of both edges into this entity,
+     at 2.35, has no extracted rows.) DEV-122 corrected the direction of both edges into this entity,
      which made the conflation visible: it now reads as one man fathering two unrelated sons instead
      of one man having two unrelated fathers.
 
@@ -885,7 +885,7 @@ have filed all five under the Telamonian.
    Eurycleia's father ("Eurycleia, daughter of Ops, son of Pisenor"), not Ovid's Roman Ops. The row
    was repointed to `Rhea`, who is who Ovid actually means. This is the DEV-096 `Arges`/`Steropes`
    lesson repeating: **check the rows, not the name**, before any bulk rewrite.
-2. **`Oileus` is a namesake collision too.** `Oïleus killed_by Agamemnon` (Iliad 11.93) is Bienor's
+2. **`Oileus` is a namesake collision too.** `Oïleus killed_by Agamemnon` (Iliad 11.84) is Bienor's
    *charioteer*, not the Locrian king — who is alive for another twelve books. Split off as
    `Oileus (charioteer of Bienor)`.
 3. **There was a sixteenth Ajax-cluster duplicate, and this pass introduced a defect by missing it.**
@@ -1055,9 +1055,9 @@ that way:
 All six were read against their cited passage:
 
 - **`Ajax <- Zeus` — false, fixed.** The vocative formula, live in the corpus at **three** refs
-  (7.233, 9.643, **11.465**), not the two GAP-007 named. The deny-list is keyed on child + parent
+  (7.233, 9.643, **11.456**), not the two GAP-007 named. The deny-list is keyed on child + parent
   pair rather than passage, so one entry covers all three.
-- **`Molione <- Poseidon` — genuine, kept.** Iliad 11.750 states it outright and non-formulaically:
+- **`Molione <- Poseidon` — genuine, kept.** Iliad 11.737 states it outright and non-formulaically:
   *"the two Moliones, of the blood of Actor, but that **their father, the wide-ruling Shaker of
   Earth**, saved them"* — a real dual mortal/divine parentage alongside `Actor`.
 - **`Pandia <- Zeus` — genuine, kept.** Homeric Hymn 32.14: *"the Son of Cronos was joined with her
