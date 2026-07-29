@@ -390,10 +390,16 @@ overall ≥75% sustained across a 3-run eval. *(The loop continues past this gat
 > **reverted rather than compounded** (DEV-114). F3 also surfaced a **systemic reversed-parentage
 > extraction bug** (89 rows rejected; "`X`, son of `Y`" read backwards as "`Y` is the child of
 > `X`") — rejected in `variant_claims`, but the same candidate rows feed `relationships`, so the
-> `parent_of` edges deserve the same check. These three are the same shape of problem and are
-> plausibly one pass, not three. **Plus (new, DEV-117)**: Q21's cross-session RAG-synthesis
-> instability — the chat model now volunteers cited parentage info alongside a location refusal
-> where it previously gave a clean citation-free refusal to the identical question/data.
+> `parent_of` edges deserve the same check. ~~These three are the same shape of problem and are
+> plausibly one pass, not three.~~ **Corrected 2026-07-29 (DEV-118): that hypothesis was measured
+> and largely fails.** The `relationships` half was done as A11 — 72 reversed pairs fixed, 39 of
+> them live in the seeded table, and the seeded graph is now acyclic — but A3's *candidate*-layer
+> cycles moved only 92 → 87, so reversed direction explains **~5%** of them; the remaining 87 need
+> the separate name-collision explanation. A6 got *larger*, not smaller (unwaived 49 → 76), since
+> correcting 72 directions creates contested groups no existing waiver covers. Treat A3 and A6 as
+> their own investigations, not as fallout from this one. **Plus (new, DEV-117)**: Q21's
+> cross-session RAG-synthesis instability — the chat model now volunteers cited parentage info
+> alongside a location refusal where it previously gave a clean citation-free refusal.
 >
 > **Next: Stage P5** — new data types (numeric per ADR-009, myths, geography/epithets) and
 > systematic gap discovery. The P4 loop itself continues past this gate (F4+).

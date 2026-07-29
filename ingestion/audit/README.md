@@ -11,11 +11,11 @@ Every check in this package **reports only** — none of them mutate any file or
 
 `__main__.py` walks the package for any sibling module exposing the contract in `contract.py`
 (module-level `NAME: str` + `run(candidates_dir, db_conn) -> CheckResult`) — a module needs no
-separate registration call, just those two names, to be picked up. All **ten** checks are live:
+separate registration call, just those two names, to be picked up. All **eleven** checks are live:
 **`duplicate_entities.py` (`A1`)**, **`drop_accounting.py` (`A2`)**, **`cycle_check.py` (`A3`)**,
 **`relation_taxonomy.py` (`A4`)**, **`integrity.py` (`A5`)**, **`dropped_parents.py` (`A6`)**,
 **`name_coverage.py` (`A7`)**, **`prominence.py` (`A8`)**, **`claim_type_distribution.py` (`A9`)**,
-**`group_inventory.py` (`A10`)**.
+**`group_inventory.py` (`A10`)**, **`parentage_direction.py` (`A11`)**.
 
 **A note on what "reporting-only" has to mean for A8/A9/A10** (Stage P4 Track B9), because the
 obvious reading of `contract.py` is wrong: `AuditRun.exit_code` is `1 if any(not f.waived for f in
@@ -353,3 +353,36 @@ switch to an additive follow-up migration (a `V17_1`-style file), exactly like `
   actually lands in) and `load_from_db` (the live, already-seeded graph, read via the read-only
   `zeus_app` user under the same `statement_timeout` guardrail `core-api` runs under) — running
   both confirms the seeded graph actually matches what's in the candidates file.
+
+---
+
+## `parentage_direction.py` — the A11 reversed-edge check (post-P4, DEV-118)
+
+A3's complement. A3 sees a direction error only when it **closes a cycle**, which needs the
+correct edge to also be present — so a reversed edge whose counterpart was never extracted is
+invisible to it. That is the majority case: of the 72 reversed edges A11 first found, A3's cycle
+detector had caught exactly **one** (`Eurymachus`/`Polybus`, the only mutual pair in a 4,466-edge
+graph).
+
+The signal is the corpus text, not graph shape. Greek epic names people by patronymic constantly
+("Asius, son of Hyrtacus"), and the extractor sometimes recorded that as `Asius parent_of
+Hyrtacus`, backwards. For each candidate `parent_of` edge A11 reads the source's own text and
+counts the formula both ways, reporting **only** when the reversed reading is attested and the
+correct one never is, anywhere in that source.
+
+- **`correct == 0` is required, deliberately.** A name reused across generations (Homer has
+  several) attests both directions; such a pair is left for a human rather than auto-flagged.
+- **Alias-aware, and this is load-bearing, not a refinement.** The public-domain translations
+  disagree on names *across works*: Murray's *Iliad* writes "Athene" where his *Odyssey* writes
+  "Athena", and Frazer writes "Ulysses"/"Hercules". The first cut matched `entities.name`
+  literally and therefore scored the whole `Athena`/`Zeus` pair as "no evidence either way"
+  while the Iliad states it twice. Resolving through `entity_aliases` (the same table
+  `ConflictLookup` uses) found 2 further reversed edges, one of which — `Antiochus parent_of
+  Heracles` — no check had ever caught.
+- **State the layer when quoting an A11 count** (ADR-020's rule, which applies here as much as to
+  A3): the candidate graph and the seeded graph are different graphs. At first run it was **72**
+  reversed pairs at the candidate layer, of which **39** had survived into the seeded table; the
+  resolver had already dropped the other 33.
+- Reports only. A human edits `relationships_candidates_cleaned.json` (the editable source of
+  truth), then reruns `python -m seedgen` + `scripts/reseed-local.sh` + this check — the same
+  workflow A3 documents.

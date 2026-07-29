@@ -1,0 +1,604 @@
+{
+  "batchLabel": "a11-parentage-direction-fix",
+  "check": "A11",
+  "rule": "swap from_name/to_name where the source text attests the patronymic only in the opposite direction",
+  "rounds": [
+    {
+      "round": 1,
+      "detector": "literal entity names",
+      "pairs": 70
+    },
+    {
+      "round": 2,
+      "detector": "alias-aware (entity_aliases)",
+      "pairs": 2
+    }
+  ],
+  "pairsFixed": 72,
+  "rowsSwapped": 96,
+  "bySource": {
+    "apollodorus-bibliotheca": 28,
+    "hesiod-homeric-hymns": 3,
+    "homer-iliad": 45,
+    "homer-odyssey": 18,
+    "ovid-metamorphoses": 2
+  },
+  "rows": [
+    {
+      "was": "Admete parent_of Eurystheus",
+      "now": "Eurystheus parent_of Admete",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "2.5.9"
+    },
+    {
+      "was": "Agamemnon parent_of Aerope",
+      "now": "Aerope parent_of Agamemnon",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "E.3.6-E.3.12"
+    },
+    {
+      "was": "Antiochus parent_of Heracles",
+      "now": "Heracles parent_of Antiochus",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "2.8.3-2.8.4"
+    },
+    {
+      "was": "Asteropaeus parent_of Pelegon",
+      "now": "Pelegon parent_of Asteropaeus",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "E.4.6-E.5.4"
+    },
+    {
+      "was": "Capaneus parent_of Hipponous",
+      "now": "Hipponous parent_of Capaneus",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "3.6.1-3.6.3"
+    },
+    {
+      "was": "Diogenia parent_of Cephisus",
+      "now": "Cephisus parent_of Diogenia",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "3.14.8-3.15.2"
+    },
+    {
+      "was": "Dymas parent_of Aegimius",
+      "now": "Aegimius parent_of Dymas",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "2.8.3-2.8.4"
+    },
+    {
+      "was": "Echion parent_of Portheus",
+      "now": "Portheus parent_of Echion",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "E.5.14-E.5.21"
+    },
+    {
+      "was": "Elephenor parent_of Alcyone",
+      "now": "Alcyone parent_of Elephenor",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "E.3.6-E.3.12"
+    },
+    {
+      "was": "Eteoclus parent_of Iphis",
+      "now": "Iphis parent_of Eteoclus",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "3.6.1-3.6.3"
+    },
+    {
+      "was": "Eurypylus parent_of Telephus",
+      "now": "Telephus parent_of Eurypylus",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "E.5.5-E.5.13"
+    },
+    {
+      "was": "Evadne parent_of Iphis",
+      "now": "Iphis parent_of Evadne",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "3.6.8-3.7.2"
+    },
+    {
+      "was": "Glaucus parent_of Antenor",
+      "now": "Antenor parent_of Glaucus",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "E.5.14-E.5.21"
+    },
+    {
+      "was": "Hippomedon parent_of Aristomachus",
+      "now": "Aristomachus parent_of Hippomedon",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "3.6.1-3.6.3"
+    },
+    {
+      "was": "Hippotes parent_of Phylas",
+      "now": "Phylas parent_of Hippotes",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "2.8.3-2.8.4"
+    },
+    {
+      "was": "Idaea parent_of Dardanus",
+      "now": "Dardanus parent_of Idaea",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "3.15.3-3.15.5"
+    },
+    {
+      "was": "Lycurgus parent_of Dryas",
+      "now": "Dryas parent_of Lycurgus",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "3.4.4-3.5.1"
+    },
+    {
+      "was": "Menelaus parent_of Aerope",
+      "now": "Aerope parent_of Menelaus",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "E.3.6-E.3.12"
+    },
+    {
+      "was": "Menoetes parent_of Ceuthonymus",
+      "now": "Ceuthonymus parent_of Menoetes",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "2.5.12-2.6.1"
+    },
+    {
+      "was": "Myrtilus parent_of Hermes",
+      "now": "Hermes parent_of Myrtilus",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "E.1.24-E.2.7"
+    },
+    {
+      "was": "Oxylus parent_of Andraemon",
+      "now": "Andraemon parent_of Oxylus",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "2.8.3-2.8.4"
+    },
+    {
+      "was": "Pelegon parent_of Axius",
+      "now": "Axius parent_of Pelegon",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "E.4.6-E.5.4"
+    },
+    {
+      "was": "Penthesilia parent_of Otrere",
+      "now": "Otrere parent_of Penthesilia",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "E.4.6-E.5.4"
+    },
+    {
+      "was": "Phylas parent_of Antiochus",
+      "now": "Antiochus parent_of Phylas",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "2.8.3-2.8.4"
+    },
+    {
+      "was": "Thoas parent_of Andraemon",
+      "now": "Andraemon parent_of Thoas",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "E.3.6-E.3.12"
+    },
+    {
+      "was": "Thoas parent_of Gorge",
+      "now": "Gorge parent_of Thoas",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "E.3.6-E.3.12"
+    },
+    {
+      "was": "Tisamenus parent_of Orestes",
+      "now": "Orestes parent_of Tisamenus",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "2.8.2"
+    },
+    {
+      "was": "Tisamenus parent_of Orestes",
+      "now": "Orestes parent_of Tisamenus",
+      "source_id": "apollodorus-bibliotheca",
+      "passage_ref": "2.8.3-2.8.4"
+    },
+    {
+      "was": "Athena parent_of Zeus",
+      "now": "Zeus parent_of Athena",
+      "source_id": "hesiod-homeric-hymns",
+      "passage_ref": "5.7-5.52"
+    },
+    {
+      "was": "Celeus parent_of Eleusis",
+      "now": "Eleusis parent_of Celeus",
+      "source_id": "hesiod-homeric-hymns",
+      "passage_ref": "2.90-2.144"
+    },
+    {
+      "was": "Macar parent_of Aeolus",
+      "now": "Aeolus parent_of Macar",
+      "source_id": "hesiod-homeric-hymns",
+      "passage_ref": "3.30-3.82"
+    },
+    {
+      "was": "Amphius parent_of Selagus",
+      "now": "Selagus parent_of Amphius",
+      "source_id": "homer-iliad",
+      "passage_ref": "5.607-5.654"
+    },
+    {
+      "was": "Aphareus parent_of Caletor",
+      "now": "Caletor parent_of Aphareus",
+      "source_id": "homer-iliad",
+      "passage_ref": "13.526-13.559"
+    },
+    {
+      "was": "Apisaon parent_of Phausius",
+      "now": "Phausius parent_of Apisaon",
+      "source_id": "homer-iliad",
+      "passage_ref": "11.575-11.615"
+    },
+    {
+      "was": "Ascalaphus parent_of Enyalius",
+      "now": "Enyalius parent_of Ascalaphus",
+      "source_id": "homer-iliad",
+      "passage_ref": "13.487-13.525"
+    },
+    {
+      "was": "Asius parent_of Hyrtacus",
+      "now": "Hyrtacus parent_of Asius",
+      "source_id": "homer-iliad",
+      "passage_ref": "2.824-2.865"
+    },
+    {
+      "was": "Asius parent_of Hyrtacus",
+      "now": "Hyrtacus parent_of Asius",
+      "source_id": "homer-iliad",
+      "passage_ref": "12.80-12.107"
+    },
+    {
+      "was": "Asius parent_of Hyrtacus",
+      "now": "Hyrtacus parent_of Asius",
+      "source_id": "homer-iliad",
+      "passage_ref": "12.153-12.194"
+    },
+    {
+      "was": "Asius parent_of Hyrtacus",
+      "now": "Hyrtacus parent_of Asius",
+      "source_id": "homer-iliad",
+      "passage_ref": "13.754-13.787"
+    },
+    {
+      "was": "Astynous parent_of Protiaon",
+      "now": "Protiaon parent_of Astynous",
+      "source_id": "homer-iliad",
+      "passage_ref": "15.429-15.470"
+    },
+    {
+      "was": "Athena parent_of Zeus",
+      "now": "Zeus parent_of Athena",
+      "source_id": "homer-iliad",
+      "passage_ref": "5.864-5.907"
+    },
+    {
+      "was": "Athena parent_of Zeus",
+      "now": "Zeus parent_of Athena",
+      "source_id": "homer-iliad",
+      "passage_ref": "21.382-21.422"
+    },
+    {
+      "was": "Bathycles parent_of Chalcon",
+      "now": "Chalcon parent_of Bathycles",
+      "source_id": "homer-iliad",
+      "passage_ref": "16.593-16.631"
+    },
+    {
+      "was": "Clytomedes parent_of Enops",
+      "now": "Enops parent_of Clytomedes",
+      "source_id": "homer-iliad",
+      "passage_ref": "23.612-23.650"
+    },
+    {
+      "was": "Echecles parent_of Actor",
+      "now": "Actor parent_of Echecles",
+      "source_id": "homer-iliad",
+      "passage_ref": "16.155-16.197"
+    },
+    {
+      "was": "Ephialtes parent_of Aloeus",
+      "now": "Aloeus parent_of Ephialtes",
+      "source_id": "homer-iliad",
+      "passage_ref": "5.381-5.425"
+    },
+    {
+      "was": "Hippomachus parent_of Antimachus",
+      "now": "Antimachus parent_of Hippomachus",
+      "source_id": "homer-iliad",
+      "passage_ref": "12.153-12.194"
+    },
+    {
+      "was": "Hypsenor parent_of Hippasus",
+      "now": "Hippasus parent_of Hypsenor",
+      "source_id": "homer-iliad",
+      "passage_ref": "13.402-13.444"
+    },
+    {
+      "was": "Hyrtius parent_of Gyrtius",
+      "now": "Gyrtius parent_of Hyrtius",
+      "source_id": "homer-iliad",
+      "passage_ref": "14.486-14.508"
+    },
+    {
+      "was": "Ilioneus parent_of Phorbas",
+      "now": "Phorbas parent_of Ilioneus",
+      "source_id": "homer-iliad",
+      "passage_ref": "14.486-14.508"
+    },
+    {
+      "was": "Iphition parent_of Otrynteus",
+      "now": "Otrynteus parent_of Iphition",
+      "source_id": "homer-iliad",
+      "passage_ref": "20.379-20.418"
+    },
+    {
+      "was": "Laodocus parent_of Antenor",
+      "now": "Antenor parent_of Laodocus",
+      "source_id": "homer-iliad",
+      "passage_ref": "4.85-4.126"
+    },
+    {
+      "was": "Laogonus parent_of Onetor",
+      "now": "Onetor parent_of Laogonus",
+      "source_id": "homer-iliad",
+      "passage_ref": "16.593-16.631"
+    },
+    {
+      "was": "Lethus parent_of Teutamus",
+      "now": "Teutamus parent_of Lethus",
+      "source_id": "homer-iliad",
+      "passage_ref": "2.824-2.865"
+    },
+    {
+      "was": "Lycurgus parent_of Dryas",
+      "now": "Dryas parent_of Lycurgus",
+      "source_id": "homer-iliad",
+      "passage_ref": "6.119-6.155"
+    },
+    {
+      "was": "Machaon parent_of Asclepius",
+      "now": "Asclepius parent_of Machaon",
+      "source_id": "homer-iliad",
+      "passage_ref": "2.729-2.779"
+    },
+    {
+      "was": "Machaon parent_of Asclepius",
+      "now": "Asclepius parent_of Machaon",
+      "source_id": "homer-iliad",
+      "passage_ref": "4.192-4.239"
+    },
+    {
+      "was": "Machaon parent_of Asclepius",
+      "now": "Asclepius parent_of Machaon",
+      "source_id": "homer-iliad",
+      "passage_ref": "11.575-11.615"
+    },
+    {
+      "was": "Machaon parent_of Asclepius",
+      "now": "Asclepius parent_of Machaon",
+      "source_id": "homer-iliad",
+      "passage_ref": "13.833-14.26"
+    },
+    {
+      "was": "Maeon parent_of Haemon",
+      "now": "Haemon parent_of Maeon",
+      "source_id": "homer-iliad",
+      "passage_ref": "4.356-4.400"
+    },
+    {
+      "was": "Morys parent_of Hippotion",
+      "now": "Hippotion parent_of Morys",
+      "source_id": "homer-iliad",
+      "passage_ref": "13.788-13.832"
+    },
+    {
+      "was": "Perimus parent_of Megas",
+      "now": "Megas parent_of Perimus",
+      "source_id": "homer-iliad",
+      "passage_ref": "16.676-16.711"
+    },
+    {
+      "was": "Phaestus parent_of Borus",
+      "now": "Borus parent_of Phaestus",
+      "source_id": "homer-iliad",
+      "passage_ref": "5.29-5.75"
+    },
+    {
+      "was": "Phereclus parent_of Tecton",
+      "now": "Tecton parent_of Phereclus",
+      "source_id": "homer-iliad",
+      "passage_ref": "5.29-5.75"
+    },
+    {
+      "was": "Polydamas parent_of Panthous",
+      "now": "Panthous parent_of Polydamas",
+      "source_id": "homer-iliad",
+      "passage_ref": "13.754-13.787"
+    },
+    {
+      "was": "Polydamas parent_of Panthous",
+      "now": "Panthous parent_of Polydamas",
+      "source_id": "homer-iliad",
+      "passage_ref": "15.429-15.470"
+    },
+    {
+      "was": "Polydamas parent_of Panthous",
+      "now": "Panthous parent_of Polydamas",
+      "source_id": "homer-iliad",
+      "passage_ref": "15.514-15.558"
+    },
+    {
+      "was": "Polydamas parent_of Panthous",
+      "now": "Panthous parent_of Polydamas",
+      "source_id": "homer-iliad",
+      "passage_ref": "18.243-18.283"
+    },
+    {
+      "was": "Promachus parent_of Alegenor",
+      "now": "Alegenor parent_of Promachus",
+      "source_id": "homer-iliad",
+      "passage_ref": "14.486-14.508"
+    },
+    {
+      "was": "Scamandrius parent_of Strophius",
+      "now": "Strophius parent_of Scamandrius",
+      "source_id": "homer-iliad",
+      "passage_ref": "5.29-5.75"
+    },
+    {
+      "was": "Thestor parent_of Enops",
+      "now": "Enops parent_of Thestor",
+      "source_id": "homer-iliad",
+      "passage_ref": "16.394-16.438"
+    },
+    {
+      "was": "Thoas parent_of Andraemon",
+      "now": "Andraemon parent_of Thoas",
+      "source_id": "homer-iliad",
+      "passage_ref": "2.631-2.680"
+    },
+    {
+      "was": "Thoas parent_of Andraemon",
+      "now": "Andraemon parent_of Thoas",
+      "source_id": "homer-iliad",
+      "passage_ref": "7.132-7.180"
+    },
+    {
+      "was": "Thoas parent_of Andraemon",
+      "now": "Andraemon parent_of Thoas",
+      "source_id": "homer-iliad",
+      "passage_ref": "13.206-13.253"
+    },
+    {
+      "was": "Thoas parent_of Andraemon",
+      "now": "Andraemon parent_of Thoas",
+      "source_id": "homer-iliad",
+      "passage_ref": "15.281-15.327"
+    },
+    {
+      "was": "Tlepolemus parent_of Damastor",
+      "now": "Damastor parent_of Tlepolemus",
+      "source_id": "homer-iliad",
+      "passage_ref": "16.394-16.438"
+    },
+    {
+      "was": "Amphialus parent_of Polyneus",
+      "now": "Polyneus parent_of Amphialus",
+      "source_id": "homer-odyssey",
+      "passage_ref": "8.83-8.120"
+    },
+    {
+      "was": "Eteoneus parent_of Boethous",
+      "now": "Boethous parent_of Eteoneus",
+      "source_id": "homer-odyssey",
+      "passage_ref": "4.20-4.64"
+    },
+    {
+      "was": "Eteoneus parent_of Boethous",
+      "now": "Boethous parent_of Eteoneus",
+      "source_id": "homer-odyssey",
+      "passage_ref": "15.92-15.142"
+    },
+    {
+      "was": "Eurycleia parent_of Ops",
+      "now": "Ops parent_of Eurycleia",
+      "source_id": "homer-odyssey",
+      "passage_ref": "1.412-2.14"
+    },
+    {
+      "was": "Eurycleia parent_of Ops",
+      "now": "Ops parent_of Eurycleia",
+      "source_id": "homer-odyssey",
+      "passage_ref": "2.309-2.360"
+    },
+    {
+      "was": "Eurymachus parent_of Polybus",
+      "now": "Polybus parent_of Eurymachus",
+      "source_id": "homer-odyssey",
+      "passage_ref": "15.493-15.544"
+    },
+    {
+      "was": "Eurymachus parent_of Polybus",
+      "now": "Polybus parent_of Eurymachus",
+      "source_id": "homer-odyssey",
+      "passage_ref": "16.308-16.357"
+    },
+    {
+      "was": "Eurymachus parent_of Polybus",
+      "now": "Polybus parent_of Eurymachus",
+      "source_id": "homer-odyssey",
+      "passage_ref": "16.406-16.447"
+    },
+    {
+      "was": "Eurymachus parent_of Polybus",
+      "now": "Polybus parent_of Eurymachus",
+      "source_id": "homer-odyssey",
+      "passage_ref": "20.320-20.370"
+    },
+    {
+      "was": "Ilus parent_of Mermerus",
+      "now": "Mermerus parent_of Ilus",
+      "source_id": "homer-odyssey",
+      "passage_ref": "1.230-1.279"
+    },
+    {
+      "was": "Laodamas parent_of Alcinous",
+      "now": "Alcinous parent_of Laodamas",
+      "source_id": "homer-odyssey",
+      "passage_ref": "7.152-7.180"
+    },
+    {
+      "was": "Laodamas parent_of Alcinous",
+      "now": "Alcinous parent_of Laodamas",
+      "source_id": "homer-odyssey",
+      "passage_ref": "8.121-8.164"
+    },
+    {
+      "was": "Mentes parent_of Anchialus",
+      "now": "Anchialus parent_of Mentes",
+      "source_id": "homer-odyssey",
+      "passage_ref": "1.156-1.193"
+    },
+    {
+      "was": "Mentes parent_of Anchialus",
+      "now": "Anchialus parent_of Mentes",
+      "source_id": "homer-odyssey",
+      "passage_ref": "1.412-2.14"
+    },
+    {
+      "was": "Nymphs of the fountain parent_of Zeus",
+      "now": "Zeus parent_of Nymphs of the fountain",
+      "source_id": "homer-odyssey",
+      "passage_ref": "17.197-17.246"
+    },
+    {
+      "was": "Peiraeus parent_of Clytius",
+      "now": "Clytius parent_of Peiraeus",
+      "source_id": "homer-odyssey",
+      "passage_ref": "15.493-15.544"
+    },
+    {
+      "was": "Phrontis parent_of Onetor",
+      "now": "Onetor parent_of Phrontis",
+      "source_id": "homer-odyssey",
+      "passage_ref": "3.276-3.312"
+    },
+    {
+      "was": "Polyneus parent_of Tecton",
+      "now": "Tecton parent_of Polyneus",
+      "source_id": "homer-odyssey",
+      "passage_ref": "8.83-8.120"
+    },
+    {
+      "was": "Crocale parent_of Ismenus",
+      "now": "Ismenus parent_of Crocale",
+      "source_id": "ovid-metamorphoses",
+      "passage_ref": "3.138-3.186"
+    },
+    {
+      "was": "Erithus parent_of Actor",
+      "now": "Actor parent_of Erithus",
+      "source_id": "ovid-metamorphoses",
+      "passage_ref": "5.74-5.106"
+    }
+  ]
+}

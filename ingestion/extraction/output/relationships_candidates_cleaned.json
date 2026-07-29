@@ -9528,9 +9528,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Admete",
+    "from_name": "Eurystheus",
     "relation": "parent_of",
-    "to_name": "Eurystheus",
+    "to_name": "Admete",
     "is_contested": false,
     "passage_ref": "2.5.9",
     "source_id": "apollodorus-bibliotheca"
@@ -9992,9 +9992,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Menoetes",
+    "from_name": "Ceuthonymus",
     "relation": "parent_of",
-    "to_name": "Ceuthonymus",
+    "to_name": "Menoetes",
     "is_contested": false,
     "passage_ref": "2.5.12-2.6.1",
     "source_id": "apollodorus-bibliotheca"
@@ -11752,17 +11752,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Hippotes",
-    "relation": "parent_of",
-    "to_name": "Phylas",
-    "is_contested": false,
-    "passage_ref": "2.8.3-2.8.4",
-    "source_id": "apollodorus-bibliotheca"
-  },
-  {
     "from_name": "Phylas",
     "relation": "parent_of",
-    "to_name": "Antiochus",
+    "to_name": "Hippotes",
     "is_contested": false,
     "passage_ref": "2.8.3-2.8.4",
     "source_id": "apollodorus-bibliotheca"
@@ -11770,7 +11762,15 @@
   {
     "from_name": "Antiochus",
     "relation": "parent_of",
-    "to_name": "Heracles",
+    "to_name": "Phylas",
+    "is_contested": false,
+    "passage_ref": "2.8.3-2.8.4",
+    "source_id": "apollodorus-bibliotheca"
+  },
+  {
+    "from_name": "Heracles",
+    "relation": "parent_of",
+    "to_name": "Antiochus",
     "is_contested": false,
     "passage_ref": "2.8.3-2.8.4",
     "source_id": "apollodorus-bibliotheca"
@@ -11800,17 +11800,17 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Dymas",
+    "from_name": "Aegimius",
     "relation": "parent_of",
-    "to_name": "Aegimius",
+    "to_name": "Dymas",
     "is_contested": false,
     "passage_ref": "2.8.3-2.8.4",
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Oxylus",
+    "from_name": "Andraemon",
     "relation": "parent_of",
-    "to_name": "Andraemon",
+    "to_name": "Oxylus",
     "is_contested": false,
     "passage_ref": "2.8.3-2.8.4",
     "source_id": "apollodorus-bibliotheca"
@@ -12640,9 +12640,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Lycurgus",
+    "from_name": "Dryas",
     "relation": "parent_of",
-    "to_name": "Dryas",
+    "to_name": "Lycurgus",
     "is_contested": false,
     "passage_ref": "3.4.4-3.5.1",
     "source_id": "apollodorus-bibliotheca"
@@ -13312,17 +13312,17 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Capaneus",
+    "from_name": "Hipponous",
     "relation": "parent_of",
-    "to_name": "Hipponous",
+    "to_name": "Capaneus",
     "is_contested": false,
     "passage_ref": "3.6.1-3.6.3",
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Hippomedon",
+    "from_name": "Aristomachus",
     "relation": "parent_of",
-    "to_name": "Aristomachus",
+    "to_name": "Hippomedon",
     "is_contested": true,
     "passage_ref": "3.6.1-3.6.3",
     "source_id": "apollodorus-bibliotheca"
@@ -13336,9 +13336,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Eteoclus",
+    "from_name": "Iphis",
     "relation": "parent_of",
-    "to_name": "Iphis",
+    "to_name": "Eteoclus",
     "is_contested": false,
     "passage_ref": "3.6.1-3.6.3",
     "source_id": "apollodorus-bibliotheca"
@@ -13504,9 +13504,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Evadne",
+    "from_name": "Iphis",
     "relation": "parent_of",
-    "to_name": "Iphis",
+    "to_name": "Evadne",
     "is_contested": false,
     "passage_ref": "3.6.8-3.7.2",
     "source_id": "apollodorus-bibliotheca"
@@ -18232,9 +18232,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Diogenia",
+    "from_name": "Cephisus",
     "relation": "parent_of",
-    "to_name": "Cephisus",
+    "to_name": "Diogenia",
     "is_contested": false,
     "passage_ref": "3.14.8-3.15.2",
     "source_id": "apollodorus-bibliotheca"
@@ -18448,9 +18448,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Idaea",
+    "from_name": "Dardanus",
     "relation": "parent_of",
-    "to_name": "Dardanus",
+    "to_name": "Idaea",
     "is_contested": false,
     "passage_ref": "3.15.3-3.15.5",
     "source_id": "apollodorus-bibliotheca"
@@ -19112,9 +19112,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Myrtilus",
+    "from_name": "Hermes",
     "relation": "parent_of",
-    "to_name": "Hermes",
+    "to_name": "Myrtilus",
     "is_contested": false,
     "passage_ref": "E.1.24-E.2.7",
     "source_id": "apollodorus-bibliotheca"
@@ -19440,33 +19440,33 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Elephenor",
+    "from_name": "Alcyone",
     "relation": "parent_of",
-    "to_name": "Alcyone",
+    "to_name": "Elephenor",
     "is_contested": false,
     "passage_ref": "E.3.6-E.3.12",
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Agamemnon",
+    "from_name": "Aerope",
     "relation": "parent_of",
-    "to_name": "Aerope",
+    "to_name": "Agamemnon",
     "is_contested": false,
     "passage_ref": "E.3.6-E.3.12",
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Menelaus",
+    "from_name": "Aerope",
     "relation": "parent_of",
-    "to_name": "Aerope",
+    "to_name": "Menelaus",
     "is_contested": false,
     "passage_ref": "E.3.6-E.3.12",
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Thoas",
+    "from_name": "Gorge",
     "relation": "parent_of",
-    "to_name": "Gorge",
+    "to_name": "Thoas",
     "is_contested": false,
     "passage_ref": "E.3.6-E.3.12",
     "source_id": "apollodorus-bibliotheca"
@@ -19888,9 +19888,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Penthesilia",
+    "from_name": "Otrere",
     "relation": "parent_of",
-    "to_name": "Otrere",
+    "to_name": "Penthesilia",
     "is_contested": false,
     "passage_ref": "E.4.6-E.5.4",
     "source_id": "apollodorus-bibliotheca"
@@ -20016,17 +20016,17 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Echion",
+    "from_name": "Portheus",
     "relation": "parent_of",
-    "to_name": "Portheus",
+    "to_name": "Echion",
     "is_contested": false,
     "passage_ref": "E.5.14-E.5.21",
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Glaucus",
+    "from_name": "Antenor",
     "relation": "parent_of",
-    "to_name": "Antenor",
+    "to_name": "Glaucus",
     "is_contested": false,
     "passage_ref": "E.5.14-E.5.21",
     "source_id": "apollodorus-bibliotheca"
@@ -25864,9 +25864,9 @@
     "source_id": "hesiod-homeric-hymns"
   },
   {
-    "from_name": "Celeus",
+    "from_name": "Eleusis",
     "relation": "parent_of",
-    "to_name": "Eleusis",
+    "to_name": "Celeus",
     "is_contested": false,
     "passage_ref": "2.90-2.144",
     "source_id": "hesiod-homeric-hymns"
@@ -26008,9 +26008,9 @@
     "source_id": "hesiod-homeric-hymns"
   },
   {
-    "from_name": "Macar",
+    "from_name": "Aeolus",
     "relation": "parent_of",
-    "to_name": "Aeolus",
+    "to_name": "Macar",
     "is_contested": false,
     "passage_ref": "3.30-3.82",
     "source_id": "hesiod-homeric-hymns"
@@ -26288,9 +26288,9 @@
     "source_id": "hesiod-homeric-hymns"
   },
   {
-    "from_name": "Athena",
+    "from_name": "Zeus",
     "relation": "parent_of",
-    "to_name": "Zeus",
+    "to_name": "Athena",
     "is_contested": false,
     "passage_ref": "5.7-5.52",
     "source_id": "hesiod-homeric-hymns"
@@ -27528,9 +27528,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Lethus",
+    "from_name": "Teutamus",
     "relation": "parent_of",
-    "to_name": "Teutamus",
+    "to_name": "Lethus",
     "is_contested": false,
     "passage_ref": "2.824-2.865",
     "source_id": "homer-iliad"
@@ -27856,9 +27856,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Laodocus",
+    "from_name": "Antenor",
     "relation": "parent_of",
-    "to_name": "Antenor",
+    "to_name": "Laodocus",
     "is_contested": false,
     "passage_ref": "4.85-4.126",
     "source_id": "homer-iliad"
@@ -27944,9 +27944,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Maeon",
+    "from_name": "Haemon",
     "relation": "parent_of",
-    "to_name": "Haemon",
+    "to_name": "Maeon",
     "is_contested": false,
     "passage_ref": "4.356-4.400",
     "source_id": "homer-iliad"
@@ -28112,25 +28112,25 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Phaestus",
+    "from_name": "Borus",
     "relation": "parent_of",
-    "to_name": "Borus",
+    "to_name": "Phaestus",
     "is_contested": false,
     "passage_ref": "5.29-5.75",
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Scamandrius",
+    "from_name": "Strophius",
     "relation": "parent_of",
-    "to_name": "Strophius",
+    "to_name": "Scamandrius",
     "is_contested": false,
     "passage_ref": "5.29-5.75",
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Phereclus",
+    "from_name": "Tecton",
     "relation": "parent_of",
-    "to_name": "Tecton",
+    "to_name": "Phereclus",
     "is_contested": false,
     "passage_ref": "5.29-5.75",
     "source_id": "homer-iliad"
@@ -28352,9 +28352,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Ephialtes",
+    "from_name": "Aloeus",
     "relation": "parent_of",
-    "to_name": "Aloeus",
+    "to_name": "Ephialtes",
     "is_contested": false,
     "passage_ref": "5.381-5.425",
     "source_id": "homer-iliad"
@@ -28488,9 +28488,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Amphius",
+    "from_name": "Selagus",
     "relation": "parent_of",
-    "to_name": "Selagus",
+    "to_name": "Amphius",
     "is_contested": false,
     "passage_ref": "5.607-5.654",
     "source_id": "homer-iliad"
@@ -28672,9 +28672,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Athena",
+    "from_name": "Zeus",
     "relation": "parent_of",
-    "to_name": "Zeus",
+    "to_name": "Athena",
     "is_contested": false,
     "passage_ref": "5.864-5.907",
     "source_id": "homer-iliad"
@@ -28896,9 +28896,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Lycurgus",
+    "from_name": "Dryas",
     "relation": "parent_of",
-    "to_name": "Dryas",
+    "to_name": "Lycurgus",
     "is_contested": false,
     "passage_ref": "6.119-6.155",
     "source_id": "homer-iliad"
@@ -30880,9 +30880,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Apisaon",
+    "from_name": "Phausius",
     "relation": "parent_of",
-    "to_name": "Phausius",
+    "to_name": "Apisaon",
     "is_contested": false,
     "passage_ref": "11.575-11.615",
     "source_id": "homer-iliad"
@@ -31048,9 +31048,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Hippomachus",
+    "from_name": "Antimachus",
     "relation": "parent_of",
-    "to_name": "Antimachus",
+    "to_name": "Hippomachus",
     "is_contested": false,
     "passage_ref": "12.153-12.194",
     "source_id": "homer-iliad"
@@ -31376,9 +31376,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Hypsenor",
+    "from_name": "Hippasus",
     "relation": "parent_of",
-    "to_name": "Hippasus",
+    "to_name": "Hypsenor",
     "is_contested": false,
     "passage_ref": "13.402-13.444",
     "source_id": "homer-iliad"
@@ -31440,9 +31440,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Ascalaphus",
+    "from_name": "Enyalius",
     "relation": "parent_of",
-    "to_name": "Enyalius",
+    "to_name": "Ascalaphus",
     "is_contested": false,
     "passage_ref": "13.487-13.525",
     "source_id": "homer-iliad"
@@ -31480,9 +31480,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Aphareus",
+    "from_name": "Caletor",
     "relation": "parent_of",
-    "to_name": "Caletor",
+    "to_name": "Aphareus",
     "is_contested": false,
     "passage_ref": "13.526-13.559",
     "source_id": "homer-iliad"
@@ -31640,9 +31640,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Morys",
+    "from_name": "Hippotion",
     "relation": "parent_of",
-    "to_name": "Hippotion",
+    "to_name": "Morys",
     "is_contested": false,
     "passage_ref": "13.788-13.832",
     "source_id": "homer-iliad"
@@ -31936,9 +31936,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Ilioneus",
+    "from_name": "Phorbas",
     "relation": "parent_of",
-    "to_name": "Phorbas",
+    "to_name": "Ilioneus",
     "is_contested": false,
     "passage_ref": "14.486-14.508",
     "source_id": "homer-iliad"
@@ -31952,17 +31952,17 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Promachus",
+    "from_name": "Alegenor",
     "relation": "parent_of",
-    "to_name": "Alegenor",
+    "to_name": "Promachus",
     "is_contested": false,
     "passage_ref": "14.486-14.508",
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Hyrtius",
+    "from_name": "Gyrtius",
     "relation": "parent_of",
-    "to_name": "Gyrtius",
+    "to_name": "Hyrtius",
     "is_contested": false,
     "passage_ref": "14.486-14.508",
     "source_id": "homer-iliad"
@@ -32336,9 +32336,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Astynous",
+    "from_name": "Protiaon",
     "relation": "parent_of",
-    "to_name": "Protiaon",
+    "to_name": "Astynous",
     "is_contested": false,
     "passage_ref": "15.429-15.470",
     "source_id": "homer-iliad"
@@ -32600,9 +32600,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Echecles",
+    "from_name": "Actor",
     "relation": "parent_of",
-    "to_name": "Actor",
+    "to_name": "Echecles",
     "is_contested": false,
     "passage_ref": "16.155-16.197",
     "source_id": "homer-iliad"
@@ -32776,17 +32776,17 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Thestor",
+    "from_name": "Enops",
     "relation": "parent_of",
-    "to_name": "Enops",
+    "to_name": "Thestor",
     "is_contested": false,
     "passage_ref": "16.394-16.438",
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Tlepolemus",
+    "from_name": "Damastor",
     "relation": "parent_of",
-    "to_name": "Damastor",
+    "to_name": "Tlepolemus",
     "is_contested": false,
     "passage_ref": "16.394-16.438",
     "source_id": "homer-iliad"
@@ -32968,17 +32968,17 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Bathycles",
+    "from_name": "Chalcon",
     "relation": "parent_of",
-    "to_name": "Chalcon",
+    "to_name": "Bathycles",
     "is_contested": false,
     "passage_ref": "16.593-16.631",
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Laogonus",
+    "from_name": "Onetor",
     "relation": "parent_of",
-    "to_name": "Onetor",
+    "to_name": "Laogonus",
     "is_contested": false,
     "passage_ref": "16.593-16.631",
     "source_id": "homer-iliad"
@@ -33016,9 +33016,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Perimus",
+    "from_name": "Megas",
     "relation": "parent_of",
-    "to_name": "Megas",
+    "to_name": "Perimus",
     "is_contested": false,
     "passage_ref": "16.676-16.711",
     "source_id": "homer-iliad"
@@ -34256,9 +34256,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Iphition",
+    "from_name": "Otrynteus",
     "relation": "parent_of",
-    "to_name": "Otrynteus",
+    "to_name": "Iphition",
     "is_contested": false,
     "passage_ref": "20.379-20.418",
     "source_id": "homer-iliad"
@@ -34680,9 +34680,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Athena",
+    "from_name": "Zeus",
     "relation": "parent_of",
-    "to_name": "Zeus",
+    "to_name": "Athena",
     "is_contested": false,
     "passage_ref": "21.382-21.422",
     "source_id": "homer-iliad"
@@ -35344,9 +35344,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Clytomedes",
+    "from_name": "Enops",
     "relation": "parent_of",
-    "to_name": "Enops",
+    "to_name": "Clytomedes",
     "is_contested": false,
     "passage_ref": "23.612-23.650",
     "source_id": "homer-iliad"
@@ -36000,9 +36000,9 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Mentes",
+    "from_name": "Anchialus",
     "relation": "parent_of",
-    "to_name": "Anchialus",
+    "to_name": "Mentes",
     "is_contested": false,
     "passage_ref": "1.156-1.193",
     "source_id": "homer-odyssey"
@@ -36016,9 +36016,9 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Ilus",
+    "from_name": "Mermerus",
     "relation": "parent_of",
-    "to_name": "Mermerus",
+    "to_name": "Ilus",
     "is_contested": false,
     "passage_ref": "1.230-1.279",
     "source_id": "homer-odyssey"
@@ -36056,9 +36056,9 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Mentes",
+    "from_name": "Anchialus",
     "relation": "parent_of",
-    "to_name": "Anchialus",
+    "to_name": "Mentes",
     "is_contested": false,
     "passage_ref": "1.412-2.14",
     "source_id": "homer-odyssey"
@@ -36400,9 +36400,9 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Phrontis",
+    "from_name": "Onetor",
     "relation": "parent_of",
-    "to_name": "Onetor",
+    "to_name": "Phrontis",
     "is_contested": false,
     "passage_ref": "3.276-3.312",
     "source_id": "homer-odyssey"
@@ -36536,9 +36536,9 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Eteoneus",
+    "from_name": "Boethous",
     "relation": "parent_of",
-    "to_name": "Boethous",
+    "to_name": "Eteoneus",
     "is_contested": false,
     "passage_ref": "4.20-4.64",
     "source_id": "homer-odyssey"
@@ -37232,17 +37232,17 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Amphialus",
+    "from_name": "Polyneus",
     "relation": "parent_of",
-    "to_name": "Polyneus",
+    "to_name": "Amphialus",
     "is_contested": false,
     "passage_ref": "8.83-8.120",
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Polyneus",
+    "from_name": "Tecton",
     "relation": "parent_of",
-    "to_name": "Tecton",
+    "to_name": "Polyneus",
     "is_contested": false,
     "passage_ref": "8.83-8.120",
     "source_id": "homer-odyssey"
@@ -38664,9 +38664,9 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Eteoneus",
+    "from_name": "Boethous",
     "relation": "parent_of",
-    "to_name": "Boethous",
+    "to_name": "Eteoneus",
     "is_contested": false,
     "passage_ref": "15.92-15.142",
     "source_id": "homer-odyssey"
@@ -38856,9 +38856,9 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Peiraeus",
+    "from_name": "Clytius",
     "relation": "parent_of",
-    "to_name": "Clytius",
+    "to_name": "Peiraeus",
     "is_contested": false,
     "passage_ref": "15.493-15.544",
     "source_id": "homer-odyssey"
@@ -39024,9 +39024,9 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Nymphs of the fountain",
+    "from_name": "Zeus",
     "relation": "parent_of",
-    "to_name": "Zeus",
+    "to_name": "Nymphs of the fountain",
     "is_contested": false,
     "passage_ref": "17.197-17.246",
     "source_id": "homer-odyssey"
@@ -40952,9 +40952,9 @@
     "source_id": "ovid-metamorphoses"
   },
   {
-    "from_name": "Crocale",
+    "from_name": "Ismenus",
     "relation": "parent_of",
-    "to_name": "Ismenus",
+    "to_name": "Crocale",
     "is_contested": false,
     "passage_ref": "3.138-3.186",
     "source_id": "ovid-metamorphoses"
@@ -41944,9 +41944,9 @@
     "source_id": "ovid-metamorphoses"
   },
   {
-    "from_name": "Erithus",
+    "from_name": "Actor",
     "relation": "parent_of",
-    "to_name": "Actor",
+    "to_name": "Erithus",
     "is_contested": false,
     "passage_ref": "5.74-5.106",
     "source_id": "ovid-metamorphoses"
@@ -50400,17 +50400,17 @@
     "source_id": "ovid-metamorphoses"
   },
   {
-    "from_name": "Tisamenus",
+    "from_name": "Orestes",
     "relation": "parent_of",
-    "to_name": "Orestes",
+    "to_name": "Tisamenus",
     "is_contested": false,
     "passage_ref": "2.8.2",
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Tisamenus",
+    "from_name": "Orestes",
     "relation": "parent_of",
-    "to_name": "Orestes",
+    "to_name": "Tisamenus",
     "is_contested": false,
     "passage_ref": "2.8.3-2.8.4",
     "source_id": "apollodorus-bibliotheca"
@@ -53552,41 +53552,41 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Thoas",
+    "from_name": "Andraemon",
     "relation": "parent_of",
-    "to_name": "Andraemon",
+    "to_name": "Thoas",
     "is_contested": false,
     "passage_ref": "E.3.6-E.3.12",
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Thoas",
+    "from_name": "Andraemon",
     "relation": "parent_of",
-    "to_name": "Andraemon",
+    "to_name": "Thoas",
     "is_contested": false,
     "passage_ref": "2.631-2.680",
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Thoas",
+    "from_name": "Andraemon",
     "relation": "parent_of",
-    "to_name": "Andraemon",
+    "to_name": "Thoas",
     "is_contested": false,
     "passage_ref": "7.132-7.180",
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Thoas",
+    "from_name": "Andraemon",
     "relation": "parent_of",
-    "to_name": "Andraemon",
+    "to_name": "Thoas",
     "is_contested": false,
     "passage_ref": "13.206-13.253",
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Thoas",
+    "from_name": "Andraemon",
     "relation": "parent_of",
-    "to_name": "Andraemon",
+    "to_name": "Thoas",
     "is_contested": false,
     "passage_ref": "15.281-15.327",
     "source_id": "homer-iliad"
@@ -53680,33 +53680,33 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Asius",
+    "from_name": "Hyrtacus",
     "relation": "parent_of",
-    "to_name": "Hyrtacus",
+    "to_name": "Asius",
     "is_contested": false,
     "passage_ref": "2.824-2.865",
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Asius",
+    "from_name": "Hyrtacus",
     "relation": "parent_of",
-    "to_name": "Hyrtacus",
+    "to_name": "Asius",
     "is_contested": false,
     "passage_ref": "12.80-12.107",
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Asius",
+    "from_name": "Hyrtacus",
     "relation": "parent_of",
-    "to_name": "Hyrtacus",
+    "to_name": "Asius",
     "is_contested": false,
     "passage_ref": "12.153-12.194",
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Asius",
+    "from_name": "Hyrtacus",
     "relation": "parent_of",
-    "to_name": "Hyrtacus",
+    "to_name": "Asius",
     "is_contested": false,
     "passage_ref": "13.754-13.787",
     "source_id": "homer-iliad"
@@ -53928,17 +53928,17 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Asteropaeus",
+    "from_name": "Pelegon",
     "relation": "parent_of",
-    "to_name": "Pelegon",
+    "to_name": "Asteropaeus",
     "is_contested": false,
     "passage_ref": "E.4.6-E.5.4",
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Pelegon",
+    "from_name": "Axius",
     "relation": "parent_of",
-    "to_name": "Axius",
+    "to_name": "Pelegon",
     "is_contested": false,
     "passage_ref": "E.4.6-E.5.4",
     "source_id": "apollodorus-bibliotheca"
@@ -53952,9 +53952,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Eurypylus",
+    "from_name": "Telephus",
     "relation": "parent_of",
-    "to_name": "Telephus",
+    "to_name": "Eurypylus",
     "is_contested": false,
     "passage_ref": "E.5.5-E.5.13",
     "source_id": "apollodorus-bibliotheca"
@@ -54344,33 +54344,33 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Machaon",
+    "from_name": "Asclepius",
     "relation": "parent_of",
-    "to_name": "Asclepius",
+    "to_name": "Machaon",
     "is_contested": false,
     "passage_ref": "2.729-2.779",
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Machaon",
+    "from_name": "Asclepius",
     "relation": "parent_of",
-    "to_name": "Asclepius",
+    "to_name": "Machaon",
     "is_contested": false,
     "passage_ref": "4.192-4.239",
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Machaon",
+    "from_name": "Asclepius",
     "relation": "parent_of",
-    "to_name": "Asclepius",
+    "to_name": "Machaon",
     "is_contested": false,
     "passage_ref": "11.575-11.615",
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Machaon",
+    "from_name": "Asclepius",
     "relation": "parent_of",
-    "to_name": "Asclepius",
+    "to_name": "Machaon",
     "is_contested": false,
     "passage_ref": "13.833-14.26",
     "source_id": "homer-iliad"
@@ -54568,33 +54568,33 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Polydamas",
+    "from_name": "Panthous",
     "relation": "parent_of",
-    "to_name": "Panthous",
+    "to_name": "Polydamas",
     "is_contested": false,
     "passage_ref": "13.754-13.787",
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Polydamas",
+    "from_name": "Panthous",
     "relation": "parent_of",
-    "to_name": "Panthous",
+    "to_name": "Polydamas",
     "is_contested": false,
     "passage_ref": "15.429-15.470",
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Polydamas",
+    "from_name": "Panthous",
     "relation": "parent_of",
-    "to_name": "Panthous",
+    "to_name": "Polydamas",
     "is_contested": false,
     "passage_ref": "15.514-15.558",
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Polydamas",
+    "from_name": "Panthous",
     "relation": "parent_of",
-    "to_name": "Panthous",
+    "to_name": "Polydamas",
     "is_contested": false,
     "passage_ref": "18.243-18.283",
     "source_id": "homer-iliad"
@@ -54808,49 +54808,49 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Eurymachus",
+    "from_name": "Polybus",
     "relation": "parent_of",
-    "to_name": "Polybus",
+    "to_name": "Eurymachus",
     "is_contested": false,
     "passage_ref": "15.493-15.544",
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Eurymachus",
+    "from_name": "Polybus",
     "relation": "parent_of",
-    "to_name": "Polybus",
+    "to_name": "Eurymachus",
     "is_contested": false,
     "passage_ref": "16.308-16.357",
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Eurymachus",
+    "from_name": "Polybus",
     "relation": "parent_of",
-    "to_name": "Polybus",
+    "to_name": "Eurymachus",
     "is_contested": false,
     "passage_ref": "16.406-16.447",
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Eurymachus",
+    "from_name": "Polybus",
     "relation": "parent_of",
-    "to_name": "Polybus",
+    "to_name": "Eurymachus",
     "is_contested": false,
     "passage_ref": "20.320-20.370",
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Eurycleia",
+    "from_name": "Ops",
     "relation": "parent_of",
-    "to_name": "Ops",
+    "to_name": "Eurycleia",
     "is_contested": false,
     "passage_ref": "1.412-2.14",
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Eurycleia",
+    "from_name": "Ops",
     "relation": "parent_of",
-    "to_name": "Ops",
+    "to_name": "Eurycleia",
     "is_contested": false,
     "passage_ref": "2.309-2.360",
     "source_id": "homer-odyssey"
@@ -54904,17 +54904,17 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Laodamas",
+    "from_name": "Alcinous",
     "relation": "parent_of",
-    "to_name": "Alcinous",
+    "to_name": "Laodamas",
     "is_contested": false,
     "passage_ref": "7.152-7.180",
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Laodamas",
+    "from_name": "Alcinous",
     "relation": "parent_of",
-    "to_name": "Alcinous",
+    "to_name": "Laodamas",
     "is_contested": false,
     "passage_ref": "8.121-8.164",
     "source_id": "homer-odyssey"
