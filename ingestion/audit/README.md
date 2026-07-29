@@ -28,16 +28,30 @@ going into `summary` and each module's own `--output` JSON artifact — **never*
 unmapped formatting-duplicates (the `notable_claim`/`"notable claim"` class — never a semantic
 collapse guess, that stays human-reviewed in Track G) and A10's `(a)`/`(b)`/`(c)` invariant
 breaks (group-total drift, a broken arithmetic identity, or `zero_promoted` increasing — the
-DEV-101/Track C corruption signature). A10's per-group rows themselves — all 835 of them today —
+DEV-101/Track C corruption signature). A10's per-group rows themselves — **798** of them today
+(the "835" this line used to quote predates Track G's V18 `notable*` collapse; see P4 Track J2) —
 are never findings; only three prior checks (A2, A4, A6) emit one finding per row/label, which is
 why those three need standing waiver policies (F0c) to ever reach a clean exit.
 
 ```
+# Source the repo-root .env first -- see the note below, this is not optional
+set -a && source ../.env && set +a
+
 python -m audit                    # both sources (default): candidate JSON + a live DB connection
 python -m audit --candidates       # candidate JSON only, no DB connection opened
 python -m audit --db               # live DB only (via the read-only zeus_app user)
 python -m audit --only A3          # run exactly one check by NAME
 ```
+
+> ⚠️ **The `.env` lives at the repo root, not in `ingestion/`** — but these commands run from
+> `ingestion/`, so a bare `python -m audit` dies at import time with
+> `KeyError: 'OPENAI_API_KEY'` raised from `config.py`, before any check runs and with no hint
+> about the real cause. `config.py` deliberately does **not** call `load_dotenv()` itself (its
+> top-level reads execute at import; see `docs/TODO-stage2.md` H1), and `python -m audit` has no
+> `main.py` to bootstrap it the way the ingestion pipeline does. **Note the key it names is
+> misleading**: the audit checks never embed anything and never call OpenAI — they only need the
+> Postgres variables that happen to sit in the same file. Recorded 2026-07-28 (P4 Track J,
+> DEV-115) after it interrupted two runs in one session.
 
 Exits non-zero if any **un-waived** finding survives — this is the standing **pre-seedgen gate**
 (`docs/TODO-phase2-stage-p3.md` Track I): no batch of candidate-JSON edits reaches a commit

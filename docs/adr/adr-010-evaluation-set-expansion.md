@@ -102,10 +102,22 @@ not a statistical benchmark. The fix is *targeted coverage*, not bulk size.
 > the P1 implementation note above already said the scoring half was done, but these boxes were
 > never flipped.
 
-- [ ] Author the ~8 new gold questions above in `evaluation/gold-questions.json`. — **still open;
+- [x] Author the ~8 new gold questions above in `evaluation/gold-questions.json`. — **still open;
       P4** (`docs/TODO2.md`). Note **DEV-049** must be fixed first: the REFUSAL pair is by
       construction the zero-retrieval case, which currently returns non-JSON prose and scores as a
       `serviceError` fail rather than a refusal.
+      **DONE at P4 Track F3, 2026-07-28** `[DEVIATED - see DEVIATIONS.md #DEV-110, #DEV-112, #DEV-114]`
+      — **9 questions authored, 16 → 25**, satisfying "~8". Deliberately ticked at **F3, not at the
+      named-backlog batch**: this item's backlog is only *part* of the count. F1 landed the named
+      ADR-010 questions (Q16/Q17 REFUSAL, Q19 enrichment-on-non-CONFLICT-route, Q21 schema-boundary);
+      F2 added Q20/Q22/Q23 and F3 added Q24/Q25, each targeting that batch's own new data. Ticking
+      when the named backlog landed would have closed this with more than half of it unwritten.
+      **DEV-049 turned out not to need fixing** (DEV-102): it did not reproduce on the P4 tree — the
+      `@SystemMessage` reaches the model independently of `DefaultContentInjector`, so 6/6 negative
+      controls parsed cleanly. The real REFUSAL obstacle was different and only found by live-testing
+      each candidate: **neither draft Q16 nor Q17 actually retrieves zero chunks**, so both were
+      replaced with live-verified alternatives rather than authored from this ADR's literal text.
+      All 4 REFUSAL questions pass; the floor is off `null` at 0.5.
 - [x] Update `IMPLEMENTATION_PLAN.md §7` + `EvaluationRunner`: per-category pass rates, floors on
       CONFLICT/REFUSAL, conflict questions scored on `conflicts[]` not route match. — **done in P1
       (DEV-060)**, as `evaluation/runner/scoring.py` + `eval-config.json`, not the Kotlin
@@ -113,6 +125,9 @@ not a statistical benchmark. The fix is *targeted coverage*, not bulk size.
       `null`/absent until its questions exist.
 - [ ] Confirm the numeric questions are added only if ADR-009 is accepted. — **still open**; ADR-009
       remains *Proposed* and flips to *Accepted* at **P5a** (ADR-017 §Decision 5).
+      **Re-confirmed still open at P4's close** (Track J4): P4 added 9 questions and **none of them
+      is numeric**, so this constraint has not been violated — it stays open on purpose until P5a
+      decides ADR-009, rather than being closed alongside the item above.
 - [x] Log **DEV-017**; add `> ⚠️ Amended by ADR-010` to `IMPLEMENTATION_PLAN.md §7`. — the DEV-number
       instruction is **superseded**: this ADR landed under **DEV-059** (Phase-2 direction) and its
       scoring half under **DEV-060**. DEV-017 was already taken by an unrelated Stage-4 entry.

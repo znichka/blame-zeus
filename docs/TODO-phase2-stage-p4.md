@@ -539,27 +539,27 @@ ADR-010 Decision 3: **curated, not bulk** — every question keeps hand-authored
 are never removed**; they are the regression sentinels. **Next free id is 19** (1–15 and 18 are
 taken; 16/17 are reserved for the REFUSAL pair and must use those numbers).
 
-- [ ] **E1** — **Q16 REFUSAL** *"What did Achilles look like physically?"*, `expected_route: RAG`,
+- [x] **E1** — **Q16 REFUSAL** *"What did Achilles look like physically?"*, `expected_route: RAG`,
       `refusal_criteria: {must_not_assert_answer, must_mention_source_limit,
       must_not_fabricate_citation}` all `true`, `forbidden_patterns` targeting this question's
       hallucination signature (`IMPLEMENTATION_PLAN.md:981-1002` gives `"his hair was"`, `"he had"`,
       `"described as"` — **verify each against a live answer** before committing them, DEV-050).
       **Needs A5f's live-verified refusal wording.**
-- [ ] **E2** — **Q17 REFUSAL** *"What were Zeus's exact words at the Trojan council?"*, same shape,
+- [x] **E2** — **Q17 REFUSAL** *"What were Zeus's exact words at the Trojan council?"*, same shape,
       its own `forbidden_patterns` (quotation signatures rather than description signatures). Verify
       it is genuinely a zero-retrieval question at the live `min-score` — if it retrieves chunks it
       tests something else and the `forbidden_patterns` must change accordingly.
-- [ ] **E3** — **Q19 — conflict surfacing via enrichment on a non-CONFLICT route** (ADR-010
+- [x] **E3** — **Q19 — conflict surfacing via enrichment on a non-CONFLICT route** (ADR-010
       Decision 1; ADR-007 §5 router-independence). A conflict-shaped question the router sends to SQL
       or RAG that must still populate `conflicts[]`. Category `CONFLICT`, `conflicts_min_count >= 2`,
       `expected_route` set to whatever the router **actually** produces — confirm live, and if the
       route proves unstable across 3 runs say so rather than pinning a coin-flip.
-- [ ] **E4** — **Q20 — claim-type-relevant REFUSAL** (ADR-010 Decision 1): an *appearance* question
+- [x] **E4** — **Q20 — claim-type-relevant REFUSAL** (ADR-010 Decision 1): an *appearance* question
       about a subject that holds a stored **death** conflict, asserting `conflicts[]` comes back
       **empty**. This tests `ConflictLookup`'s claim-type filter, which nothing currently covers. Pick
       the subject from Track B's A10 inventory *after* F1's promotions, so the stored death conflict
       genuinely exists.
-- [ ] **E5** — **Q21 — schema-boundary routing** (ADR-010 Decision 1; ADR-005's open action item):
+- [x] **E5** — **Q21 — schema-boundary routing** (ADR-010 Decision 1; ADR-005's open action item):
       *"Where is Achilles from?"* → `expected_route: RAG`, with `forbidden_patterns` catching a
       fabricated citation. Location is not in the schema, so this asserts the router does not force it
       into SQL.
@@ -568,10 +568,22 @@ taken; 16/17 are reserved for the REFUSAL pair and must use those numbers).
       that floors exist, not specific numbers), and raise `CONFLICT` as the category grows past 4.
       Never lower a floor to make a run pass — that is the keyword-tuning anti-pattern in another
       costume.
-- [ ] **E7** — Per later batch: **1–3 questions targeting the newly promoted data**, keywords
+      **First half DONE at F1 (DEV-110): `REFUSAL` is off `null` at 0.5** (4 questions, all passing).
+      **Second half GENUINELY OPEN — and its own trigger has now fired** (found at Track J's
+      verification pass, 2026-07-28, DEV-115). F2 deferred the raise with a written reason —
+      *"CONFLICT deliberately left at 0.5 (5 questions — raising to 0.6 would be cosmetic at this
+      count, **revisit at 6+**)"* — and the category has since grown to **7** (Q13, Q15, Q18, Q19,
+      Q22, Q24, and one more), past both this item's "grows past 4" and F2's own "6+". The floor is
+      still 0.5. **Not raised here on purpose**: changing an eval gate is a judgement call and a
+      scored-behaviour change, not something a documentation track should do silently — and doing it
+      after the closing eval has already run would mean the recorded 88% was measured against a
+      different gate than the one left in the file. Low risk whenever it is done: CONFLICT scored
+      **7/7 = 100%** in F3's run, so 0.6 or 0.7 would pass with room. **Owner: the next batch (F4),
+      which re-runs the eval anyway.**
+- [x] **E7** — Per later batch: **1–3 questions targeting the newly promoted data**, keywords
       **live-verified against a real answer** before commit (DEV-048/050 — a static corpus grep was
       wrong three times in Stage 6). Each lands in **the same commit** as the batch it measures.
-- [ ] **E8** — **Watch the ADR-007 risk** (§5:348-350): more claim_types stress `ConflictProbe`'s
+- [x] **E8** — **Watch the ADR-007 risk** (§5:348-350): more claim_types stress `ConflictProbe`'s
       phrasing sensitivity. Track flaky CONFLICT questions **separately** across batches and do not
       touch the probe prompt on a single batch's evidence — ADR-007 warns against over-enumerating
       surface forms, and the RAG backstop is the designed complement. Log **DEV-106**.
@@ -614,7 +626,7 @@ always take a fresh V-number. The V9_2 `birth`→`parentage` migration is the pr
       one seems necessary, the alias mechanism is being bypassed somewhere and that is the bug.
       **Confirmed by grep**: `seedgen/variant_claims_gen.py:39` already calls `normalize(...)` at
       promotion time. No code touched.
-- [ ] **G4** — Verify through F1's reseed: the regenerated `V12__seed_variant_claims.sql` contains
+- [x] **G4** — Verify through F1's reseed: the regenerated `V12__seed_variant_claims.sql` contains
       **zero** occurrences of any collapsed surface form, and a spot sample of former-`notable act`
       rows lands canonical. This is F's loop, not a standalone reseed (the P3 F6 precedent).
       Log **DEV-107**. **G4 itself stays open until Track F1 actually reseeds** — by design, not
@@ -867,31 +879,67 @@ pre-assigned: it depends on what F1's eval shows and on which claim_types F1's p
 
 ## Track J — Docs / DEV entries / banners (pure prose — do anytime)
 
-- [ ] **J1** — Log **one DEV entry per landed track** in `DEVIATIONS.md`, in the
+> ✅ **Track J complete 2026-07-28.** All six items landed; see the per-item results below.
+> Nothing here changed code, data, or the eval — pure prose reconciliation, as scoped.
+
+- [x] **J1** — Log **one DEV entry per landed track** in `DEVIATIONS.md`, in the
       Stage/Original Plan/What Changed/Reason/Impact/Date format, **claiming whatever number is free
       when it lands** — the `DEV-102`…`DEV-108+` assignments above are indicative, reserved before any
       of this was built, and P3b's own numbering moved twice under exactly this assumption. The
       requirement is one entry per track, not these specific integers. Tracks **C** and **D** are new
       relative to `§5` and Track **B** builds what `§5` asserted already existed — each entry says so
       plainly rather than presenting them as planned work.
-- [ ] **J2** — **Fix the stale group count where it appears.** "838 unreviewed groups" in
+      **Done: DEV-102 … DEV-114**, one per landed track (A, B, C, D, G, H, F0, F1, F2, F3) plus
+      DEV-113's rejected-tier addition. The indicative `DEV-102…DEV-108` numbering held for the
+      early tracks and ran on to 114 as F1/F2/F3 landed, exactly as this item anticipated.
+- [x] **J2** — **Fix the stale group count where it appears.** "838 unreviewed groups" in
       `ADR-017:61`, `IMPLEMENTATION_PLAN_PHASE2.md:324`, `TODO2.md:389` and `TODO.md:113` — the
       measured figures are **839 total groups / 835 with zero promotions / 71 promoted rows in 4
       groups**. Per the deviation protocol, **do not overwrite the plan body** — add the correction as
       a banner and let this checklist's *Contracts* section be the live reference.
-- [ ] **J3** — **Record the §5-vs-TODO2 tranche-priority conflict and F0a's resolution** in both
+      **Done — but this item's own figures had gone stale too, so all four sites got the current
+      numbers, not the ones quoted here.** `ADR-017` and `TODO.md` had no correction at all and got
+      banners; `IMPLEMENTATION_PLAN_PHASE2.md`/`TODO2.md` already carried the 839/835 correction and
+      were amended rather than rewritten. **Current: 798 canonical groups** (839 raw → 835 after the
+      `birth`→`parentage` merges → **798 after Track G's V18 `notable*` collapse**, DEV-109),
+      **727 zero-promoted**, **321 promoted rows across 71 groups** seeding **293** `variant_claims`.
+      Every site flags the **number collision** this creates: the old "71" counts promoted *rows*
+      in 4 *groups*; today's 71 counts *groups*.
+- [x] **J3** — **Record the §5-vs-TODO2 tranche-priority conflict and F0a's resolution** in both
       documents, so the next reader does not re-derive it. `§5` step 1 is currently unamended.
-- [ ] **J4** — **ADR-010 action items**: tick "Author the ~8 new gold questions" **at F3, not at E5**
+      **Done in both.** `§5`'s banner previously said F0a "resolves it before the first batch"
+      (future tense, no outcome); it now records the actual 4-tier rule and how it played out.
+      `TODO2.md` got the same as a new ticked bullet. The recorded resolution: **F0a satisfied both
+      sides instead of picking one** — Tiers 1-2 are §5's "new claim_types" instinct, Tier 3 is
+      `TODO2.md`'s parentage backlog. F1/F2 ran Tiers 1-2; **F3 fell entirely into Tier 3**, so both
+      documents were right, at different points in the same loop.
+- [x] **J4** — **ADR-010 action items**: tick "Author the ~8 new gold questions" **at F3, not at E5**
       — E1–E5 is **five** questions (16 → 21), and reaching ADR-010's ~8 (and this stage's "≈25")
       needs E7's 1–3 per batch from F2 and F3 on top, landing somewhere in 23–27. Ticking it when the
       named backlog lands would close the item with a third of it unwritten. Also
       leave "numeric questions only if ADR-009 is accepted" open — ADR-009 flips at **P5a**, not here.
-- [ ] **J5** — `TODO2.md` Stage P4: tick DEV-049 when Track A lands, tick each bullet as its track
+      **Done, ticked at F3 as instructed** — **9 questions, 16 → 25**, satisfying "~8" and landing
+      inside this item's own predicted 23–27 range. The ADR entry also records that **DEV-049 turned
+      out not to need fixing** (DEV-102, did not reproduce) and that the real obstacle was different:
+      neither draft Q16 nor Q17 actually retrieves zero chunks, so both were replaced with
+      live-verified alternatives. The numeric-questions item is **left open on purpose**, with a note
+      that P4's 9 additions include no numeric question, so the constraint stands unviolated.
+- [x] **J5** — `TODO2.md` Stage P4: tick DEV-049 when Track A lands, tick each bullet as its track
       closes, and add the stage-closure banner in the P3b style (`> ✅ **STAGE CLOSED <date>.**` +
       the numbers + `> **Next: Stage P5**`) only when the definition-of-done below is genuinely met.
-- [ ] **J6** — Add the `> ⚠️ Deviations occurred in this stage` banner extension to
+      **Done — DEV-049 was already ticked at Track A; the remaining six P4 bullets are now ticked
+      with their outcomes, and the closure banner is in.** The banner carries the stage totals
+      (`variant_claims` 44→293, claim_types 2→8, top-20 coverage 3/20→20/20, gold set 16→25, overall
+      81%→88%) **and the three carry-forward items** — A3's 92 cycles, A6's 40 inaccurately-waived
+      findings, and F3's reversed-parentage extraction bug — noted as plausibly one pass, not three.
+- [x] **J6** — Add the `> ⚠️ Deviations occurred in this stage` banner extension to
       `IMPLEMENTATION_PLAN_PHASE2.md §5` naming this checklist, per the CLAUDE.md protocol step 4.
       Correct DEV-101's Impact field, which says "nothing committed" — it was committed as `2e4ce40`.
+      **Both done.** The `§5` banner names this checklist and the DEV-102…DEV-114 range. DEV-101's
+      Impact field got **two** corrections appended (not rewritten): the "nothing committed" error
+      this item names, **plus** a second one this item did not — its "Not addressed here: DEV-049 …
+      still surface as `serviceError`" claim was investigated in DEV-102 and did not reproduce, so
+      the entry was asserting an open defect that does not exist.
 
 ---
 
@@ -930,10 +978,17 @@ pre-assigned: it depends on what F1's eval shows and on which claim_types F1's p
       conflict; Q22/Q23/E7 target F2's new data specifically), then **25/~25 after F3** (Q24/E7 a
       live-verified new `Priam` parentage conflict, Q25/E7 the new `Athena`/`Metis` promotion) —
       **this gate is fully met.**
-- [x] **Per-category floors enforced**, REFUSAL promoted off `null`, CONFLICT raised as the category
+- [~] **Per-category floors enforced**, REFUSAL promoted off `null`, CONFLICT raised as the category
       grows; no floor ever lowered to make a run pass.
       **REFUSAL floor set to 0.5 at F1 (DEV-110).** CONFLICT deliberately left at 0.5 (5 questions —
       raising to 0.6 would be cosmetic at this count, revisit at 6+).
+      **⚠️ Partially met — corrected at Track J (DEV-115), previously ticked in full.** Floors *are*
+      enforced and none was ever lowered, and REFUSAL is off `null`. But "CONFLICT raised as the
+      category grows" **has not happened**: the category is now **7** questions and the floor is
+      still 0.5, past both this box's "grows past 4" and F2's own "revisit at 6+" deferral. The
+      earlier `[x]` overstated it by carrying F2's 5-question reasoning forward unexamined after the
+      count changed. Deliberately not raised inside a documentation track — see E6 for the reasoning
+      and the handoff to F4. **This is the one item in this checklist not fully met.**
 - [x] **Overall ≥75% sustained across a 3-run eval** with **zero stable regressions**, on a run with
       no transport errors (Track D's banner clean).
       **90% at F1 (DEV-110), 91% at F2 (DEV-112), 88% at F3 (DEV-114)**, zero transport errors, zero
@@ -948,11 +1003,21 @@ pre-assigned: it depends on what F1's eval shows and on which claim_types F1's p
       A1/A2/A4/A6/A10 in writing (A3 deliberately excluded, see F0c) — **though F3 found A6's own
       waiver text was inaccurate for 40 entries and reverted rather than compounded it (DEV-114)**;
       that residue is now honestly unwaived, carried to a future pass rather than papered over.
-- [ ] **One DEV entry per landed track** logged in `DEVIATIONS.md` (indicatively DEV-102…DEV-108+;
+- [x] **One DEV entry per landed track** logged in `DEVIATIONS.md` (indicatively DEV-102…DEV-108+;
       claim the numbers actually free at the time — J1); `TODO2.md`, `IMPLEMENTATION_PLAN_PHASE2.md §5`
       and ADR-010's action items annotated per the deviation protocol; the stale 838-group count
       corrected by banner, never by overwriting the plan body.
       **DEV-102 through DEV-114 logged** (one per track: A, B, C, D, G, H, F0, F1, F2, F3, plus
-      DEV-113's rejected-tier infrastructure change). `TODO2.md`/`IMPLEMENTATION_PLAN_PHASE2.md §5`/
-      ADR-010 action-item annotation still open (Track J) — the full definition-of-done above is
-      otherwise met; Track J is pure doc cleanup, not a data/eval gate.
+      DEV-113's rejected-tier infrastructure change). **Track J closed 2026-07-28**: `TODO2.md`
+      bullets ticked + stage-closure banner, `IMPLEMENTATION_PLAN_PHASE2.md §5` banner extended with
+      the deviation range and the F0a resolution, ADR-010's gold-question item ticked at F3 (9
+      questions) with the numeric item left open for P5a, the 838-count corrected by banner in all
+      four sites (with the current 798/727/71 figures, since this checklist's own quoted numbers had
+      themselves gone stale), and DEV-101's Impact field corrected on two counts.
+      **Note the DEV-106 gap is deliberate, not a lost entry**: E8 instructed "Log DEV-106", but
+      Track E's items land *inside* the batch that carries them by design (E7: "Each lands in the
+      same commit as the batch it measures"), so Track E's record lives in **DEV-110/112/114** and
+      the number was never claimed. The sequence runs DEV-105 → DEV-107 for that reason alone.
+      **Every gate in this checklist is met except one**, found during this track's own verification
+      pass and corrected rather than glossed: the **CONFLICT floor was never raised** as its category
+      grew to 7 — see E6 and the floors box below.

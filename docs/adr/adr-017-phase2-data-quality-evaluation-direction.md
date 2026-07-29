@@ -60,6 +60,16 @@ work. Concretely:
      integrity, relation-label canonicalization per **ADR-019**), working the documented backlogs.
    - **P4** — the iterative conflict-depth loop over the 838 unreviewed groups, with the gold set
      growing in lockstep.
+     > ⚠️ **The "838" figure is stale** (P4 Track J2, 2026-07-28). Measured on the live tree:
+     > **839** raw `(subject, raw claim_type)` groups, which become **835** under canonical
+     > grouping (the `birth`→`parentage` merges), then **798** after Track G's V18 collapsed the
+     > `notable*` family — 798 is what A10 reports today. Of those, **727** still have zero promoted
+     > rows after P4's three batches, and **71 groups** hold the **321** promoted (`trust_tier=1`)
+     > candidate rows behind V12's 293 deduplicated `variant_claims`.
+     > **Beware a coincidence:** "71" also appears in the pre-P4 numbers meaning something else
+     > entirely — 71 promoted *rows* in just 4 *groups*. Today it is 71 *groups*.
+     > Live reference: `docs/TODO-phase2-stage-p4.md` *Contracts*. Per the deviation protocol this
+     > banner corrects the body rather than rewriting it.
    - **P5** — new structured data types (numeric per ADR-009, myths, geography/epithets) and
      systematic gap discovery.
 

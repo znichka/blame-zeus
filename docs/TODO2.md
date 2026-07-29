@@ -362,6 +362,39 @@ Track B/C are half-landed.
 all top-20-prominence subjects; the gold set is ≈25 questions with per-category floors enforced;
 overall ≥75% sustained across a 3-run eval. *(The loop continues past this gate.)*
 
+> ✅ **STAGE CLOSED 2026-07-28.** Every "Done when" condition met: **3 of ≥3 batches** end-to-end
+> (F1 DEV-110, F2 DEV-112, F3 DEV-114), each a full `seedgen → reseed → audit → runner --runs 3 →
+> compare.py` pass with its results dir; `variant_claims` covers **8 canonical claim_types** (≥4)
+> and **20/20 top-20-prominence subjects**; the gold set is **25 questions** (≈25) with floors
+> enforced and REFUSAL promoted off `null`; overall **90% → 91% → 88%** across the three batches'
+> 3-run evals (≥75%), **zero stable regressions in any of them**.
+> Logged: **DEV-102 … DEV-115** (DEV-106 is a deliberately-unclaimed number, not a lost entry —
+> Track E's items land inside the batch that carries them, so its record is in DEV-110/112/114).
+>
+> **One sub-item of the checklist's finer-grained definition-of-done is *not* met**, found during
+> Track J's verification and recorded rather than glossed: the **CONFLICT floor was never raised**
+> as its category grew from 5 to **7** questions, past its own "revisit at 6+" deferral — it is
+> still 0.5. This stage's "Done when" above asks only that floors be *enforced*, which they are
+> (all three exist and all three passed), so the closure stands; but the raise is now owed and is
+> handed to **F4**, which re-runs the eval anyway. CONFLICT scored 7/7 = 100%, so it is not at risk.
+>
+> Stage total: `variant_claims` 44 → **293** rows, claim_types 2 → **8**, top-20 subject coverage
+> 3/20 → **20/20**, gold set 16 → **25**, overall 81% → **88%** (peaked at 94% on F0d's baseline,
+> before the gold set nearly doubled — the later runs answer half again as many questions).
+>
+> **Carried forward, deliberately and in writing** (neither is a P4 gate, both are real): A3's
+> **92** candidate-layer `parent_of` cycles, left unwaived by F0c's explicit choice since a cycle is
+> a near-certain bug rather than reviewed residue; and **40** A6 dropped-parent findings whose
+> children *are* top-20 but which F0c's waiver text describes inaccurately — found in F3 and
+> **reverted rather than compounded** (DEV-114). F3 also surfaced a **systemic reversed-parentage
+> extraction bug** (89 rows rejected; "`X`, son of `Y`" read backwards as "`Y` is the child of
+> `X`") — rejected in `variant_claims`, but the same candidate rows feed `relationships`, so the
+> `parent_of` edges deserve the same check. These three are the same shape of problem and are
+> plausibly one pass, not three.
+>
+> **Next: Stage P5** — new data types (numeric per ADR-009, myths, geography/epithets) and
+> systematic gap discovery. The P4 loop itself continues past this gate (F4+).
+
 **Prerequisites — two long-standing DEVIATIONS-only hazards that this stage is the first to trip.**
 Both were documented as found-but-not-fixed and had no TODO home until 2026-07-27
 `[DEVIATED - see DEVIATIONS.md #DEV-093]`. Do these **before** the first promotion batch:
@@ -392,7 +425,7 @@ Both were documented as found-but-not-fixed and had no TODO home until 2026-07-2
       Closed as a verification note, not a code fix — nothing in `RagConfig.kt`/`RagAgent.kt` changed.
       Open carry-over for Track E: neither draft Q16 nor Q17 currently retrieves zero chunks.
 
-- [ ] Per batch (~25–50 groups): rank the 838 unreviewed groups by subject prominence; prioritize
+- [x] Per batch (~25–50 groups): rank the 838 unreviewed groups by subject prominence; prioritize
       new claim_types beyond parentage/death (marriage, killer/slaying, birthplace, transformation).
       **Count is stale after P3** — J4a's same-source detector condition adds ~145 `parentage`
       candidates on top. **Measured 2026-07-28** (`TODO-phase2-stage-p4.md` *Contracts*): **839**
@@ -400,7 +433,26 @@ Both were documented as found-but-not-fixed and had no TODO home until 2026-07-2
       `trust_tier=1` rows sit in just **4** groups across **3** subjects (Aphrodite, Achilles, Io).
       Also measured: the prominence ranking this bullet assumes **does not exist** in
       `ingestion/audit/` and has to be built (P4 Track B, audit checks A8/A9/A10)
-- [ ] **Own GAP-001 Root cause 3's promotion half (option a′) — carried in from P3, currently
+      **[DEVIATED - see DEVIATIONS.md #DEV-103, #DEV-109, #DEV-114]** — **the figures above moved
+      again after they were written** (P4 Track J2): Track G's V18 collapsed the `notable*`
+      claim_type family, taking the canonical group total **835 → 798**, which is what A10 reports
+      today (baseline re-anchored, DEV-109). **After P4's three batches: 727 groups still have zero
+      promoted rows; 71 groups hold the 321 promoted rows seeding V12's 293 `variant_claims`.**
+      Note the number collision — the "71" in the sentence above counts promoted *rows* in 4
+      *groups*; today's 71 counts *groups*. **The prominence ranking was built** as A8/A9/A10
+      (DEV-103) and every batch's tranche was picked from it mechanically.
+- [x] **Tranche-priority conflict with `IMPLEMENTATION_PLAN_PHASE2.md §5` step 1 — resolved at
+      F0a** (P4 Track J3, `[DEVIATED - see DEVIATIONS.md #DEV-109]`). §5 step 1 said prioritize
+      claim_types *beyond* parentage/death; the bullet below says parentage is the largest unworked
+      dimension. **F0a resolved it by satisfying both rather than picking a side**, as a 4-tier rule
+      applied unchanged by every batch: *Tier 1* top-20 subject **and** an uncovered claim_type;
+      *Tier 2* an uncovered claim_type, any subject (§5's instinct); *Tier 3* top-20 subject whose
+      claim_type is already covered elsewhere — **where this file's parentage backlog and GAP-001
+      Root cause 3's rivals live**; *Tier 4* the rest. Filled in that order. F1/F2 ran Tiers 1-2
+      (`marriage`, `epithet`, `notable_claim`); **F3 fell entirely into Tier 3** — the parentage
+      backlog — taking top-20 `parentage` coverage 3/20 → 20/20 (DEV-114). Both instincts were
+      right, at different points in the same loop.
+- [x] **Own GAP-001 Root cause 3's promotion half (option a′) — carried in from P3, currently
       unscoped.** ~**467** parentage rivals already sit as emitted candidates that clear the
       ≥2-source gate and stall at the ADR-004 review gate; no detector change touches them. This is
       the **binding constraint on ADR-007 §6's promise**, and it means "prioritize claim_types
@@ -408,18 +460,38 @@ Both were documented as found-but-not-fixed and had no TODO home until 2026-07-2
       dimension. Decide the policy in the first batch: a bounded first tranche (gold-question
       subjects + the Olympian/Titan spine), a sampling rule, or an explicit P5b deferral with a
       written waiver. Input artifact = P3's per-row dropped-parent record (all 612 rivals)
-- [ ] Review & promote in `notebooks/02_verify_conflicts.ipynb` (trust_tier 3→1, ADR-004 gate); new
+      **[DEVIATED - see DEVIATIONS.md #DEV-109, #DEV-114]** — **F0b chose the bounded tranche**
+      (the 49 dropped-parent rows whose *child* is in the frozen top-20; the rest deferred with a
+      written, non-permanent reason). **F3 then went further than the deferral required**: rather
+      than promoting the dropped `relationships` rows, it promoted each top-20 subject's own
+      `variant_claims` parentage rows directly — 48 rows / 17 canonical groups — taking top-20
+      parentage coverage **3/20 → 20/20**. *Still open, carried to P5:* the ~690 non-top-20 dropped
+      rows, plus **40 A6 findings whose children ARE top-20 but which F0c's waiver text describes
+      inaccurately** (found and reverted in F3 rather than compounded — DEV-114); they need either
+      per-row review or waiver reasons that are actually true.
+- [x] Review & promote in `notebooks/02_verify_conflicts.ipynb` (trust_tier 3→1, ADR-004 gate); new
       surface variants → `claim_type_aliases` follow-up migration (V9_2 precedent), never code
-- [ ] Regenerate → reseed → audit → eval → compare → commit-or-revert (the P3 fix loop)
-- [ ] Grow the gold set in the same commit: first batch adds ADR-010 backlog (REFUSAL Q16/Q17,
+      — **done across three batches (250 rows promoted: 95 + 107 + 48), every row checked against
+      its cited source passage.** Surface variants went to V18, never code (DEV-107). The notebook
+      also gained a keyed (not positional) promotion workflow (DEV-104) and a `trust_tier=2`
+      *rejected* marker (DEV-113), so the **120 rows rejected as extraction errors** are recorded as
+      reviewed rather than sinking back into the unreviewed pool.
+- [x] Regenerate → reseed → audit → eval → compare → commit-or-revert (the P3 fix loop)
+      — **ran end-to-end three times** (F1/F2/F3), each with its own results dir and `compare.py`
+      check against the previous accepted run; zero stable regressions in all three.
+- [x] Grow the gold set in the same commit: first batch adds ADR-010 backlog (REFUSAL Q16/Q17,
       enrichment-on-non-CONFLICT-route, schema-boundary); later batches add 1–3 questions per new
       data slice with **live-verified** keywords (DEV-050); old questions kept as regression
       sentinels; raise CONFLICT floor as the category grows
+      — **16 → 25 questions**: F1 landed the ADR-010 backlog (Q16/Q17/Q19/Q21) + the REFUSAL floor
+      off `null`; F2 added Q20/Q22/Q23; F3 added Q24/Q25. All live-verified per DEV-050, every
+      pre-existing question retained. CONFLICT floor deliberately held at 0.5 (7 questions — see
+      the P4 checklist's note).
 - [ ] Optional: add the LLM-judge scoring column once the deterministic loop is stable (ADR-018).
       **Deliberately out of scope for P4's tracks** — the deterministic loop does not exist yet, so a
       non-deterministic scorer would make the first three batches' gates unreadable; revisit after
       batch 3 or in P5
-- [ ] **Three additions beyond `IMPLEMENTATION_PLAN_PHASE2.md §5`**, found by measuring the live tree
+- [x] **Three additions beyond `IMPLEMENTATION_PLAN_PHASE2.md §5`**, found by measuring the live tree
       while breaking this stage down (2026-07-28) — each is scoped as its own P4 track: the review
       notebook promotes by **positional index** while DEV-101's merge rewrites the file in extraction
       order (silent wrong-row promotion — Track C); `report.py` never reads the `_runnerNote` the
@@ -427,6 +499,11 @@ Both were documented as found-but-not-fixed and had no TODO home until 2026-07-2
       regression (Track D); and GAP-002's **362**-name unknown-name long tail (a pre-P3b figure —
       P4 Track H1 re-measures it before triage), routed here by
       `DATA-GAPS.md`, needs bucketed source-verified triage rather than a bulk add (Track H)
+      — **all three landed**: Track C keyed the notebook to the claim 5-tuple and *proved* the
+      hazard was real, not theoretical (73/73 historical indices resolved to unrelated claims after
+      a simulated re-extraction — DEV-104); Track D added the transport banner (DEV-105); Track H
+      added 12 entities + 3 aliases from bucket-1 and bucketed the rest with a written deferral
+      (DEV-108).
 
 → Detailed checklist: [`TODO-phase2-stage-p4.md`](TODO-phase2-stage-p4.md) — 9 tracks (A–H, J),
   68 items, with a parallelization guide: A/B/C/D fan out immediately, F is the serial batch gate.

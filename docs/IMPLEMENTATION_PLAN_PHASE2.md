@@ -328,6 +328,32 @@ the undetected extraction failure mode carry to P4.
 > before the first batch. The checklist also adds two tracks with no home in this section: keyed
 > promotion in the review notebook (positional indices are unsafe after DEV-101's merge) and a
 > transport/latency signal in `report.md` (the DEV-100 open item, which §5's own gate leans on).
+>
+> ⚠️ **Deviations occurred in this stage.** See `DEVIATIONS.md` **#DEV-102 … #DEV-114** — one entry
+> per landed track, plus DEV-113's rejected-tier addition. Detailed checklist and live figures:
+> `docs/TODO-phase2-stage-p4.md`.
+>
+> **Amendments to (ii) and (iii) above, recorded at P4's close (Track J2/J3, 2026-07-28):**
+>
+> - **(ii) has itself moved since it was written.** The 839/835 pair still holds as the raw vs.
+>   canonical grouping of the same measurement, but Track G's V18 then collapsed the `notable*`
+>   claim_type family, taking the canonical total **835 → 798** — that is the figure A10 reports
+>   today, and the baseline was re-anchored to it (DEV-109). After P4's three promotion batches:
+>   **727** groups still have zero promoted rows, and **71 groups** hold the **321** promoted
+>   (`trust_tier=1`) candidate rows that seed V12's **293** deduplicated `variant_claims`.
+>   **Beware a coincidence**: the "71" in the original sentence above means 71 promoted *rows* in
+>   4 *groups*; today's 71 is a count of *groups*. Different quantities, same number.
+> - **(iii) is now resolved, not merely scheduled.** Track F0a settled the conflict **by satisfying
+>   both sides rather than picking one** (DEV-109), as a 4-tier mechanical rule applied unchanged by
+>   every batch: *Tier 1* — subject in the frozen top-20 **and** a claim_type with no promoted
+>   coverage anywhere (advances both exit-gate numbers at once); *Tier 2* — an uncovered claim_type,
+>   any subject (§5 step 1's "new types beyond parentage/death" instinct); *Tier 3* — a top-20
+>   subject whose claim_type already has coverage elsewhere, which is exactly where `TODO2.md`'s
+>   "parentage is the largest unworked dimension" backlog and GAP-001 Root cause 3's stalled rivals
+>   live; *Tier 4* — everything else. Filled in that order until the tranche is full. In practice
+>   F1/F2 ran on Tiers 1-2 (`marriage`, `epithet`, `notable_claim`) and **F3 fell entirely into
+>   Tier 3** — the parentage backlog — closing top-20 `parentage` coverage 3/20 → 20/20 (DEV-114).
+>   Neither document's instinct was discarded; they applied at different points in the same loop.
 
 **Prerequisites, before the first batch.** Both were documented as found-but-not-fixed with no plan
 home until the 2026-07-27 reconciliation, and both bite specifically here:
