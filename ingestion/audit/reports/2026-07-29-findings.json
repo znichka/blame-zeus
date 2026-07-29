@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T16:34:42.675780+00:00",
+  "generatedAt": "2026-07-29T18:06:57.477650+00:00",
   "checks": [
     {
       "name": "A1",
@@ -783,6 +783,11 @@
     {
       "name": "A13",
       "summary": "0 unresolvable citation(s) of 6882 distinct edge citation(s) checked across 6 source(s)",
+      "findings": []
+    },
+    {
+      "name": "A14",
+      "summary": "0 reversed parentage claim(s) (0 of them promoted/live); 1120 distinct subject+source group(s) checked; 493 claim value(s) had no resolvable parent name (free prose or the 'sprung from' formula -- left unchecked, not guessed)",
       "findings": []
     },
     {

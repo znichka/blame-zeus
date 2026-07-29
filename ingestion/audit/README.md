@@ -11,12 +11,12 @@ Every check in this package **reports only** — none of them mutate any file or
 
 `__main__.py` walks the package for any sibling module exposing the contract in `contract.py`
 (module-level `NAME: str` + `run(candidates_dir, db_conn) -> CheckResult`) — a module needs no
-separate registration call, just those two names, to be picked up. All **thirteen** checks are live:
+separate registration call, just those two names, to be picked up. All **fourteen** checks are live:
 **`duplicate_entities.py` (`A1`)**, **`drop_accounting.py` (`A2`)**, **`cycle_check.py` (`A3`)**,
 **`relation_taxonomy.py` (`A4`)**, **`integrity.py` (`A5`)**, **`dropped_parents.py` (`A6`)**,
 **`name_coverage.py` (`A7`)**, **`prominence.py` (`A8`)**, **`claim_type_distribution.py` (`A9`)**,
 **`group_inventory.py` (`A10`)**, **`parentage_direction.py` (`A11`)**,
-**`kill_direction.py` (`A12`)**, **`passage_support.py` (`A13`)**.
+**`kill_direction.py` (`A12`)**, **`passage_support.py` (`A13`)**, **`claim_direction.py` (`A14`)**.
 
 **A note on what "reporting-only" has to mean for A8/A9/A10** (Stage P4 Track B9), because the
 obvious reading of `contract.py` is wrong: `AuditRun.exit_code` is `1 if any(not f.waived for f in
@@ -467,3 +467,43 @@ Circe and Pasiphae" states `Sun parent_of Pasiphae` only by inference across two
 *Periphrasis:* Iliad 19 calls Patroclus "the valiant son of Menoetius". Closing these needs a
 parser or an LLM pass, and an LLM pass would reintroduce the very extraction step whose errors the
 check exists to catch. GAP-008 stays **open** with this recorded.
+
+---
+
+## `claim_direction.py` — the A14 reversed-`parentage`-claim check (post-P4, DEV-124)
+
+A11's rule applied to the **other table**. A11, A12 and A13 all guard `relationships`;
+`variant_claims` — the table the product's defining feature actually reads — had **no
+source-grounded check of any kind**, while carrying **4,825 unreviewed `parentage` claims**.
+
+The gap was not theoretical. The reversed shape had been found there twice, both times **by
+hand**: DEV-114 (Track F3) rejected a batch of backwards rows, and DEV-122 found ten more
+(`Telamon | parentage | child of Ajax` / `child of Teucer`) while triaging something else. Hand
+review does not reach 4,825 rows.
+
+The extra work versus A11 is that a claim's parent is **free text**, not a resolved entity:
+`"child of Telamon"`, `"son of wily Cronus"`, `"child of Ajax son of Telamon"`. `parse_parent`
+requires one of the four `<child|son|daughter|offspring> of …` prefixes — **4,840 of 5,046 rows
+(96%)** — and then takes the **first confirmed entity name** in the remainder. *First*, not longest
+or last, is what makes `"child of Ajax son of Telamon"` resolve to **Ajax**: the nested patronymic
+describes the parent, it is not a second claim.
+
+- **Unresolvable values are counted, never guessed.** The Homeric formula (`"sprung from Zeus"`, 11
+  rows — its own defect class, GAP-007's, handled by a deny-list) and free prose (179 rows) are
+  reported as a count in the summary. The prose rows are worth their own note: values like *"Mother
+  of the nine Muses by Zeus"* have the **subject as the parent**, so `parentage` conflates "X's
+  parent is Y" with "X is parent of Y". Feeding those to a direction check would invert the
+  question being asked.
+- **Tier handling is deliberately not uniform.** `trust_tier=2` rows are **skipped** — a human
+  already checked that row against the source (DEV-113), and re-reporting asks them to re-litigate
+  their own decision. `trust_tier=1` rows **are** checked and reported: those are live in V12, so a
+  reversed one is the worst case here, not a candidate to skip. `trust_tier=3` is the point.
+- Same conservative rule as A11 (`correct == 0`), same alias resolution, reports only.
+
+**First sweep: 108 findings, 0 of them promoted, and — reviewed per row against the matched phrase
+A14 extracted from each cited source — zero false positives.** All textbook patronymic reversals:
+`Cronus | child of Zeus` against Homer's *"Zeus, son of Cronos"*; `Leto | child of Apollo` against
+*"Apollo, son of Leto"*; `Laertes | child of Odysseus` against *"Odysseus, son of Laertes"*. The
+108 triples covered **209 claim rows**, all rejected to `trust_tier=2` through the keyed workflow
+(DEV-104). **No seeded data changed** — every row was tier 3, and V10/V11/V12 regenerated
+byte-identical.

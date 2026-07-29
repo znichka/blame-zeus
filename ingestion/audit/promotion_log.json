@@ -2808,5 +2808,1477 @@
     "groupCount": 1,
     "rejectedKeys": [],
     "rationale": "A genuine within-source variant tradition, verified verbatim against Apollodorus 3.12.6: \"And Aeacus married Endeis, daughter of Sciron, by whom he had two sons, Peleus and Telamon. But Pherecydes says that Telamon was a friend, not a brother of Peleus, he being a son of Actaeus and Glauce, daughter of Cychreus.\" One passage, one mythographer, two incompatible parentages, both attributed -- the same shape DEV-119 promoted for Agamemnon/Plisthenes. Found by DEV-122 while triaging Telamon's reversed-direction rows and recorded there as owed work. The corroborating 'child of Aeacus' rows at 1.8.2 / 1.9.16 / ovid 7.469-7.500 / 13.1-13.42 stay at trust_tier=3: they were not read against their own passages in this pass, and promoting on inference is what the review gate exists to prevent."
+  },
+  {
+    "batchLabel": "a14-reversed-parentage-claims",
+    "date": "2026-07-29T18:04:12.858847+00:00",
+    "keys": [],
+    "groupCount": 0,
+    "rejectedKeys": [
+      [
+        "Oceanus",
+        "parentage",
+        "child of Clymene",
+        "hesiod-theogony",
+        "507-557"
+      ],
+      [
+        "Poseidon",
+        "parentage",
+        "child of Busiris",
+        "apollodorus-bibliotheca",
+        "2.5.11"
+      ],
+      [
+        "Poseidon",
+        "parentage",
+        "child of Nauplius",
+        "apollodorus-bibliotheca",
+        "2.7.4-2.7.6"
+      ],
+      [
+        "Poseidon",
+        "parentage",
+        "child of Periclymenus",
+        "apollodorus-bibliotheca",
+        "3.6.8-3.7.2"
+      ],
+      [
+        "Zeus",
+        "parentage",
+        "child of Sarpedon",
+        "apollodorus-bibliotheca",
+        "E.4.6-E.5.4"
+      ],
+      [
+        "Zeus",
+        "parentage",
+        "child of Muses",
+        "hesiod-theogony",
+        "1-52"
+      ],
+      [
+        "Zeus",
+        "parentage",
+        "child of Sarpedon",
+        "homer-iliad",
+        "5.607-5.654"
+      ],
+      [
+        "Zeus",
+        "parentage",
+        "child of Nymphs of the fountain",
+        "homer-odyssey",
+        "17.197-17.246"
+      ],
+      [
+        "Sun",
+        "parentage",
+        "child of Circe",
+        "ovid-metamorphoses",
+        "14.1-14.39"
+      ],
+      [
+        "Menoetius",
+        "parentage",
+        "child of Patroclus",
+        "homer-iliad",
+        "1.292-1.324"
+      ],
+      [
+        "Menoetius",
+        "parentage",
+        "child of Patroclus",
+        "homer-iliad",
+        "9.205-9.221"
+      ],
+      [
+        "Menoetius",
+        "parentage",
+        "child of Patroclus",
+        "homer-iliad",
+        "11.575-11.615"
+      ],
+      [
+        "Menoetius",
+        "parentage",
+        "child of Patroclus",
+        "homer-iliad",
+        "16.548-16.592"
+      ],
+      [
+        "Menoetius",
+        "parentage",
+        "child of Patroclus",
+        "homer-iliad",
+        "17.491-17.539"
+      ],
+      [
+        "Menoetius",
+        "parentage",
+        "child of Patroclus",
+        "homer-iliad",
+        "18.1-18.49"
+      ],
+      [
+        "Nereus",
+        "parentage",
+        "child of Thetis",
+        "apollodorus-bibliotheca",
+        "3.4.4-3.5.1"
+      ],
+      [
+        "Nereus",
+        "parentage",
+        "child of Thetis",
+        "hesiod-homeric-hymns",
+        "3.294-3.339"
+      ],
+      [
+        "Apollo",
+        "parentage",
+        "child of Miletus",
+        "apollodorus-bibliotheca",
+        "3.1.2-3.1.4"
+      ],
+      [
+        "Deucalion",
+        "parentage",
+        "child of Idomeneus",
+        "apollodorus-bibliotheca",
+        "E.3.13-E.3.19"
+      ],
+      [
+        "Aeolus",
+        "parentage",
+        "child of Macar",
+        "hesiod-homeric-hymns",
+        "3.30-3.82"
+      ],
+      [
+        "Sisyphus",
+        "parentage",
+        "child of Glaucus",
+        "apollodorus-bibliotheca",
+        "2.3.1-2.4.1"
+      ],
+      [
+        "Perieres",
+        "parentage",
+        "child of Aphareus",
+        "apollodorus-bibliotheca",
+        "3.10.4-3.10.7"
+      ],
+      [
+        "Perieres",
+        "parentage",
+        "child of Leucippus",
+        "apollodorus-bibliotheca",
+        "3.10.4-3.10.7"
+      ],
+      [
+        "Perieres",
+        "parentage",
+        "child of Borus",
+        "homer-iliad",
+        "16.155-16.197"
+      ],
+      [
+        "Orestes",
+        "parentage",
+        "child of Tisamenus",
+        "apollodorus-bibliotheca",
+        "2.8.2"
+      ],
+      [
+        "Orestes",
+        "parentage",
+        "child of Tisamenus",
+        "apollodorus-bibliotheca",
+        "2.8.3-2.8.4"
+      ],
+      [
+        "Actor",
+        "parentage",
+        "child of Cteatus",
+        "homer-iliad",
+        "13.169-13.205"
+      ],
+      [
+        "Actor",
+        "parentage",
+        "child of Echecles",
+        "homer-iliad",
+        "16.155-16.197"
+      ],
+      [
+        "Actor",
+        "parentage",
+        "child of Erithus",
+        "ovid-metamorphoses",
+        "5.74-5.106"
+      ],
+      [
+        "Agenor",
+        "parentage",
+        "child of Echeclus",
+        "homer-iliad",
+        "20.455-20.489"
+      ],
+      [
+        "Oeneus",
+        "parentage",
+        "child of Tydeus",
+        "apollodorus-bibliotheca",
+        "3.6.1-3.6.3"
+      ],
+      [
+        "Oeneus",
+        "parentage",
+        "child of Meleager",
+        "homer-iliad",
+        "9.529-9.549"
+      ],
+      [
+        "Dryas",
+        "parentage",
+        "child of Lycurgus",
+        "apollodorus-bibliotheca",
+        "3.4.4-3.5.1"
+      ],
+      [
+        "Peleus",
+        "parentage",
+        "child of Achilles",
+        "homer-iliad",
+        "1.292-1.324"
+      ],
+      [
+        "Peleus",
+        "parentage",
+        "child of Achilles",
+        "homer-iliad",
+        "2.729-2.779"
+      ],
+      [
+        "Peleus",
+        "parentage",
+        "child of Achilles",
+        "homer-iliad",
+        "9.222-9.259"
+      ],
+      [
+        "Peleus",
+        "parentage",
+        "child of Achilles",
+        "homer-iliad",
+        "17.169-17.208"
+      ],
+      [
+        "Peleus",
+        "parentage",
+        "child of Achilles",
+        "homer-iliad",
+        "17.673-17.714"
+      ],
+      [
+        "Peleus",
+        "parentage",
+        "child of Achilles",
+        "homer-iliad",
+        "18.1-18.49"
+      ],
+      [
+        "Peleus",
+        "parentage",
+        "child of Achilles",
+        "homer-iliad",
+        "18.202-18.242"
+      ],
+      [
+        "Peleus",
+        "parentage",
+        "child of Achilles",
+        "homer-iliad",
+        "18.243-18.283"
+      ],
+      [
+        "Peleus",
+        "parentage",
+        "child of Achilles",
+        "homer-iliad",
+        "20.292-20.339"
+      ],
+      [
+        "Peleus",
+        "parentage",
+        "child of Achilles",
+        "homer-iliad",
+        "20.490-21.33"
+      ],
+      [
+        "Peleus",
+        "parentage",
+        "child of Achilles",
+        "homer-iliad",
+        "21.136-21.181"
+      ],
+      [
+        "Peleus",
+        "parentage",
+        "child of Achilles",
+        "homer-iliad",
+        "23.35-23.53"
+      ],
+      [
+        "Peleus",
+        "parentage",
+        "child of Achilles",
+        "homer-iliad",
+        "23.54-23.98"
+      ],
+      [
+        "Peleus",
+        "parentage",
+        "child of Achilles",
+        "homer-iliad",
+        "24.440-24.484"
+      ],
+      [
+        "Peleus",
+        "parentage",
+        "child of Achilles",
+        "homer-iliad",
+        "24.525-24.570"
+      ],
+      [
+        "Peleus",
+        "parentage",
+        "child of Achilles",
+        "homer-odyssey",
+        "8.46-8.82"
+      ],
+      [
+        "Amphiaraus",
+        "parentage",
+        "child of Amphilochus",
+        "apollodorus-bibliotheca",
+        "3.6.8-3.7.2"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "apollodorus-bibliotheca",
+        "3.6.8-3.7.2"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "apollodorus-bibliotheca",
+        "E.3.6-E.3.12"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "homer-iliad",
+        "4.356-4.400"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "homer-iliad",
+        "5.121-5.165"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "homer-iliad",
+        "5.217-5.250"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "homer-iliad",
+        "5.251-5.296"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "homer-iliad",
+        "5.334-5.380"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "homer-iliad",
+        "5.381-5.425"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "homer-iliad",
+        "5.426-5.469"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "homer-iliad",
+        "5.560-5.606"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "homer-iliad",
+        "5.825-5.863"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "homer-iliad",
+        "5.864-5.907"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "homer-iliad",
+        "6.119-6.155"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "homer-iliad",
+        "7.132-7.180"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "homer-iliad",
+        "8.512-8.552"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "homer-iliad",
+        "9.50-9.88"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "homer-iliad",
+        "10.272-10.312"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "homer-iliad",
+        "10.564-11.14"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "homer-iliad",
+        "11.336-11.367"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "homer-iliad",
+        "11.655-11.695"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "homer-iliad",
+        "14.27-14.63"
+      ],
+      [
+        "Tydeus",
+        "parentage",
+        "child of Diomedes",
+        "homer-iliad",
+        "21.382-21.422"
+      ],
+      [
+        "Antiochus",
+        "parentage",
+        "child of Phylas",
+        "apollodorus-bibliotheca",
+        "2.8.3-2.8.4"
+      ],
+      [
+        "Glaucus",
+        "parentage",
+        "child of Bellerophon",
+        "apollodorus-bibliotheca",
+        "2.3.1-2.4.1"
+      ],
+      [
+        "Icarius",
+        "parentage",
+        "child of Penelope",
+        "homer-odyssey",
+        "2.15-2.59"
+      ],
+      [
+        "Icarius",
+        "parentage",
+        "child of Penelope",
+        "homer-odyssey",
+        "16.406-16.447"
+      ],
+      [
+        "Icarius",
+        "parentage",
+        "child of Penelope",
+        "homer-odyssey",
+        "18.250-18.289"
+      ],
+      [
+        "Pelias",
+        "parentage",
+        "child of Acastus",
+        "apollodorus-bibliotheca",
+        "1.9.26-1.9.27"
+      ],
+      [
+        "Neleus",
+        "parentage",
+        "child of Nestor",
+        "apollodorus-bibliotheca",
+        "E.3.6-E.3.12"
+      ],
+      [
+        "Neleus",
+        "parentage",
+        "child of Nestor",
+        "homer-iliad",
+        "11.655-11.695"
+      ],
+      [
+        "Neleus",
+        "parentage",
+        "child of Nestor",
+        "homer-iliad",
+        "14.27-14.63"
+      ],
+      [
+        "Neleus",
+        "parentage",
+        "child of Nestor",
+        "homer-iliad",
+        "23.301-23.348"
+      ],
+      [
+        "Nestor",
+        "parentage",
+        "child of Thrasymedes",
+        "homer-iliad",
+        "9.50-9.88"
+      ],
+      [
+        "Nestor",
+        "parentage",
+        "child of Thrasymedes",
+        "homer-iliad",
+        "13.833-14.26"
+      ],
+      [
+        "Nestor",
+        "parentage",
+        "child of Polycaste",
+        "homer-odyssey",
+        "3.447-3.477"
+      ],
+      [
+        "Chloris",
+        "parentage",
+        "child of Nestor",
+        "apollodorus-bibliotheca",
+        "E.3.6-E.3.12"
+      ],
+      [
+        "Pheres",
+        "parentage",
+        "child of Admetus",
+        "apollodorus-bibliotheca",
+        "3.10.4-3.10.7"
+      ],
+      [
+        "Talaus",
+        "parentage",
+        "child of Adrastus",
+        "apollodorus-bibliotheca",
+        "3.6.1-3.6.3"
+      ],
+      [
+        "Talaus",
+        "parentage",
+        "child of Mecisteus",
+        "homer-iliad",
+        "23.676-23.707"
+      ],
+      [
+        "Adrastus",
+        "parentage",
+        "child of Aegialeus",
+        "apollodorus-bibliotheca",
+        "3.6.8-3.7.2"
+      ],
+      [
+        "Mecisteus",
+        "parentage",
+        "child of Euryalus",
+        "apollodorus-bibliotheca",
+        "3.6.8-3.7.2"
+      ],
+      [
+        "Heracles",
+        "parentage",
+        "child of Antiochus",
+        "apollodorus-bibliotheca",
+        "2.8.3-2.8.4"
+      ],
+      [
+        "Heracles",
+        "parentage",
+        "child of Tlepolemus",
+        "homer-iliad",
+        "5.607-5.654"
+      ],
+      [
+        "Laertes",
+        "parentage",
+        "child of Odysseus",
+        "apollodorus-bibliotheca",
+        "3.10.8-3.11.1"
+      ],
+      [
+        "Laertes",
+        "parentage",
+        "child of Odysseus",
+        "apollodorus-bibliotheca",
+        "E.3.6-E.3.12"
+      ],
+      [
+        "Laertes",
+        "parentage",
+        "child of Odysseus",
+        "homer-odyssey",
+        "1.156-1.193"
+      ],
+      [
+        "Laertes",
+        "parentage",
+        "child of Odysseus",
+        "homer-odyssey",
+        "10.388-10.438"
+      ],
+      [
+        "Laertes",
+        "parentage",
+        "child of Odysseus",
+        "homer-odyssey",
+        "10.487-10.502"
+      ],
+      [
+        "Laertes",
+        "parentage",
+        "child of Odysseus",
+        "homer-odyssey",
+        "10.503-10.549"
+      ],
+      [
+        "Laertes",
+        "parentage",
+        "child of Odysseus",
+        "homer-odyssey",
+        "12.374-12.425"
+      ],
+      [
+        "Laertes",
+        "parentage",
+        "child of Odysseus",
+        "homer-odyssey",
+        "16.68-16.111"
+      ],
+      [
+        "Laertes",
+        "parentage",
+        "child of Odysseus",
+        "homer-odyssey",
+        "16.448-17.15"
+      ],
+      [
+        "Laertes",
+        "parentage",
+        "child of Odysseus",
+        "homer-odyssey",
+        "18.1-18.49"
+      ],
+      [
+        "Laertes",
+        "parentage",
+        "child of Odysseus",
+        "homer-odyssey",
+        "19.164-19.202"
+      ],
+      [
+        "Laertes",
+        "parentage",
+        "child of Odysseus",
+        "homer-odyssey",
+        "19.248-19.299"
+      ],
+      [
+        "Laertes",
+        "parentage",
+        "child of Odysseus",
+        "homer-odyssey",
+        "20.275-20.319"
+      ],
+      [
+        "Laertes",
+        "parentage",
+        "child of Odysseus",
+        "homer-odyssey",
+        "23.344-23.366"
+      ],
+      [
+        "Laertes",
+        "parentage",
+        "child of Odysseus",
+        "homer-odyssey",
+        "24.219-24.255"
+      ],
+      [
+        "Laertes",
+        "parentage",
+        "child of Odysseus",
+        "homer-odyssey",
+        "24.496-24.544"
+      ],
+      [
+        "Thoas",
+        "parentage",
+        "child of Hypsipyle",
+        "apollodorus-bibliotheca",
+        "1.9.17-1.9.20"
+      ],
+      [
+        "Mermerus",
+        "parentage",
+        "child of Ilus",
+        "homer-odyssey",
+        "1.230-1.279"
+      ],
+      [
+        "Proteus",
+        "parentage",
+        "child of Eidothea",
+        "homer-odyssey",
+        "4.398-4.447"
+      ],
+      [
+        "Eurystheus",
+        "parentage",
+        "child of Admete",
+        "apollodorus-bibliotheca",
+        "2.5.9"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Agamemnon",
+        "apollodorus-bibliotheca",
+        "E.3.6-E.3.12"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Menelaus",
+        "apollodorus-bibliotheca",
+        "E.3.6-E.3.12"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Agamemnon",
+        "homer-iliad",
+        "1.292-1.324"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Agamemnon",
+        "homer-iliad",
+        "3.171-3.202"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Menelaus",
+        "homer-iliad",
+        "4.85-4.126"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Menelaus",
+        "homer-iliad",
+        "4.192-4.239"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Agamemnon",
+        "homer-iliad",
+        "4.401-4.445"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Menelaus",
+        "homer-iliad",
+        "5.29-5.75"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Menelaus",
+        "homer-iliad",
+        "5.560-5.606"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Menelaus",
+        "homer-iliad",
+        "6.1-6.50"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Agamemnon",
+        "homer-iliad",
+        "7.132-7.180"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Agamemnon",
+        "homer-iliad",
+        "9.222-9.259"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Agamemnon",
+        "homer-iliad",
+        "13.833-14.26"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Agamemnon",
+        "homer-iliad",
+        "14.27-14.63"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Menelaus",
+        "homer-odyssey",
+        "4.20-4.64"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Menelaus",
+        "homer-odyssey",
+        "4.155-4.202"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Menelaus",
+        "homer-odyssey",
+        "4.233-4.264"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Menelaus",
+        "homer-odyssey",
+        "4.315-4.350"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Agamemnon",
+        "homer-odyssey",
+        "9.231-9.280"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Agamemnon",
+        "homer-odyssey",
+        "13.416-13.429"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Menelaus",
+        "homer-odyssey",
+        "15.48-15.91"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Menelaus",
+        "homer-odyssey",
+        "17.107-17.149"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Agamemnon",
+        "homer-odyssey",
+        "24.85-24.119"
+      ],
+      [
+        "Atreus",
+        "parentage",
+        "child of Agamemnon",
+        "homer-odyssey",
+        "24.120-24.169"
+      ],
+      [
+        "Phyleus",
+        "parentage",
+        "child of Meges",
+        "apollodorus-bibliotheca",
+        "E.3.6-E.3.12"
+      ],
+      [
+        "Phyleus",
+        "parentage",
+        "child of Meges",
+        "homer-iliad",
+        "5.29-5.75"
+      ],
+      [
+        "Phyleus",
+        "parentage",
+        "child of Meges",
+        "homer-iliad",
+        "13.685-13.722"
+      ],
+      [
+        "Phyleus",
+        "parentage",
+        "child of Meges",
+        "homer-iliad",
+        "15.514-15.558"
+      ],
+      [
+        "Tithonus",
+        "parentage",
+        "child of Emathion",
+        "apollodorus-bibliotheca",
+        "2.5.11"
+      ],
+      [
+        "Tithonus",
+        "parentage",
+        "child of Memnon",
+        "apollodorus-bibliotheca",
+        "E.4.6-E.5.4"
+      ],
+      [
+        "Cteatus",
+        "parentage",
+        "child of Amphimachus",
+        "homer-iliad",
+        "13.169-13.205"
+      ],
+      [
+        "Hippasus",
+        "parentage",
+        "child of Hypsenor",
+        "homer-iliad",
+        "13.402-13.444"
+      ],
+      [
+        "Antimachus",
+        "parentage",
+        "child of Hippomachus",
+        "homer-iliad",
+        "12.153-12.194"
+      ],
+      [
+        "Andraemon",
+        "parentage",
+        "child of Oxylus",
+        "apollodorus-bibliotheca",
+        "2.8.3-2.8.4"
+      ],
+      [
+        "Semele",
+        "parentage",
+        "child of Dionysus",
+        "hesiod-homeric-hymns",
+        "6.1-7.31"
+      ],
+      [
+        "Ismenus",
+        "parentage",
+        "child of Crocale",
+        "ovid-metamorphoses",
+        "3.138-3.186"
+      ],
+      [
+        "Tantalus",
+        "parentage",
+        "child of Niobe",
+        "apollodorus-bibliotheca",
+        "3.5.6-3.5.7"
+      ],
+      [
+        "Oedipus",
+        "parentage",
+        "child of Polynices",
+        "apollodorus-bibliotheca",
+        "3.6.1-3.6.3"
+      ],
+      [
+        "Oedipus",
+        "parentage",
+        "child of Antigone",
+        "apollodorus-bibliotheca",
+        "3.6.8-3.7.2"
+      ],
+      [
+        "Haemon",
+        "parentage",
+        "child of Maeon",
+        "homer-iliad",
+        "4.356-4.400"
+      ],
+      [
+        "Oicles",
+        "parentage",
+        "child of Amphiaraus",
+        "apollodorus-bibliotheca",
+        "3.6.1-3.6.3"
+      ],
+      [
+        "Iphis",
+        "parentage",
+        "child of Eteoclus",
+        "apollodorus-bibliotheca",
+        "3.6.1-3.6.3"
+      ],
+      [
+        "Tiresias",
+        "parentage",
+        "child of Manto",
+        "ovid-metamorphoses",
+        "6.129-6.164"
+      ],
+      [
+        "Lycurgus",
+        "parentage",
+        "child of Ancaeus",
+        "apollodorus-bibliotheca",
+        "3.9.2-3.10.1"
+      ],
+      [
+        "Maia",
+        "parentage",
+        "child of Hermes",
+        "hesiod-homeric-hymns",
+        "4.260-4.303"
+      ],
+      [
+        "Hermes",
+        "parentage",
+        "child of Myrtilus",
+        "apollodorus-bibliotheca",
+        "E.1.24-E.2.7"
+      ],
+      [
+        "Alcinous",
+        "parentage",
+        "child of Laodamas",
+        "homer-odyssey",
+        "7.152-7.180"
+      ],
+      [
+        "Alcinous",
+        "parentage",
+        "child of Laodamas",
+        "homer-odyssey",
+        "8.121-8.164"
+      ],
+      [
+        "Dardanus",
+        "parentage",
+        "child of Idaea",
+        "apollodorus-bibliotheca",
+        "3.15.3-3.15.5"
+      ],
+      [
+        "Dardanus",
+        "parentage",
+        "child of Priam",
+        "homer-iliad",
+        "5.121-5.165"
+      ],
+      [
+        "Anchises",
+        "parentage",
+        "child of Aeneas",
+        "apollodorus-bibliotheca",
+        "E.5.14-E.5.21"
+      ],
+      [
+        "Laomedon",
+        "parentage",
+        "child of Bucolion",
+        "homer-iliad",
+        "6.1-6.50"
+      ],
+      [
+        "Laomedon",
+        "parentage",
+        "child of Lampus",
+        "homer-iliad",
+        "15.514-15.558"
+      ],
+      [
+        "Clytius",
+        "parentage",
+        "child of Peiraeus",
+        "homer-odyssey",
+        "15.493-15.544"
+      ],
+      [
+        "Aeacus",
+        "parentage",
+        "child of Peleus",
+        "homer-iliad",
+        "18.428-18.477"
+      ],
+      [
+        "Hecuba",
+        "parentage",
+        "child of Hector",
+        "ovid-metamorphoses",
+        "13.508-13.544"
+      ],
+      [
+        "Borus",
+        "parentage",
+        "child of Phaestus",
+        "homer-iliad",
+        "5.29-5.75"
+      ],
+      [
+        "Aegeus",
+        "parentage",
+        "child of Theseus",
+        "ovid-metamorphoses",
+        "7.425-7.468"
+      ],
+      [
+        "Aegeus",
+        "parentage",
+        "child of Theseus",
+        "ovid-metamorphoses",
+        "12.327-12.365"
+      ],
+      [
+        "Anticlia",
+        "parentage",
+        "child of Odysseus",
+        "apollodorus-bibliotheca",
+        "E.3.6-E.3.12"
+      ],
+      [
+        "Pelegon",
+        "parentage",
+        "child of Asteropaeus",
+        "apollodorus-bibliotheca",
+        "E.4.6-E.5.4"
+      ],
+      [
+        "Antenor",
+        "parentage",
+        "child of Glaucus",
+        "apollodorus-bibliotheca",
+        "E.5.14-E.5.21"
+      ],
+      [
+        "Antenor",
+        "parentage",
+        "child of Archelochus",
+        "homer-iliad",
+        "2.780-2.823"
+      ],
+      [
+        "Antenor",
+        "parentage",
+        "child of Laodocus",
+        "homer-iliad",
+        "4.85-4.126"
+      ],
+      [
+        "Antenor",
+        "parentage",
+        "child of Archelochus",
+        "homer-iliad",
+        "12.80-12.107"
+      ],
+      [
+        "Thessalus",
+        "parentage",
+        "child of Antiphus",
+        "apollodorus-bibliotheca",
+        "E.6.14"
+      ],
+      [
+        "Cronus",
+        "parentage",
+        "child of Zeus",
+        "homer-iliad",
+        "2.84-2.108"
+      ],
+      [
+        "Cronus",
+        "parentage",
+        "child of Zeus",
+        "homer-iliad",
+        "5.864-5.907"
+      ],
+      [
+        "Cronus",
+        "parentage",
+        "child of Zeus",
+        "homer-iliad",
+        "8.469-8.511"
+      ],
+      [
+        "Cronus",
+        "parentage",
+        "child of Zeus",
+        "homer-iliad",
+        "9.222-9.259"
+      ],
+      [
+        "Cronus",
+        "parentage",
+        "child of Zeus",
+        "homer-iliad",
+        "11.56-11.83"
+      ],
+      [
+        "Cronus",
+        "parentage",
+        "child of Zeus",
+        "homer-iliad",
+        "12.442-13.16"
+      ],
+      [
+        "Cronus",
+        "parentage",
+        "child of Zeus",
+        "homer-iliad",
+        "16.816-16.862"
+      ],
+      [
+        "Cronus",
+        "parentage",
+        "child of Zeus",
+        "homer-iliad",
+        "18.97-18.144"
+      ],
+      [
+        "Cronus",
+        "parentage",
+        "child of Zeus",
+        "homer-iliad",
+        "24.200-24.246"
+      ],
+      [
+        "Cronus",
+        "parentage",
+        "child of Zeus",
+        "homer-odyssey",
+        "1.44-1.95"
+      ],
+      [
+        "Cronus",
+        "parentage",
+        "child of Zeus",
+        "homer-odyssey",
+        "12.374-12.425"
+      ],
+      [
+        "Cronus",
+        "parentage",
+        "child of Zeus",
+        "homer-odyssey",
+        "19.47-19.88"
+      ],
+      [
+        "Cronus",
+        "parentage",
+        "child of Zeus",
+        "homer-odyssey",
+        "24.496-24.544"
+      ],
+      [
+        "Leto",
+        "parentage",
+        "child of Apollo",
+        "hesiod-homeric-hymns",
+        "3.30-3.82"
+      ],
+      [
+        "Leto",
+        "parentage",
+        "child of Apollo",
+        "hesiod-homeric-hymns",
+        "3.83-3.132"
+      ],
+      [
+        "Leto",
+        "parentage",
+        "child of Apollo",
+        "hesiod-homeric-hymns",
+        "4.260-4.303"
+      ],
+      [
+        "Asclepius",
+        "parentage",
+        "child of Machaon",
+        "homer-iliad",
+        "2.729-2.779"
+      ],
+      [
+        "Asclepius",
+        "parentage",
+        "child of Machaon",
+        "homer-iliad",
+        "4.192-4.239"
+      ],
+      [
+        "Asclepius",
+        "parentage",
+        "child of Machaon",
+        "homer-iliad",
+        "11.575-11.615"
+      ],
+      [
+        "Asclepius",
+        "parentage",
+        "child of Machaon",
+        "homer-iliad",
+        "13.833-14.26"
+      ],
+      [
+        "Tecton",
+        "parentage",
+        "child of Phereclus",
+        "homer-iliad",
+        "5.29-5.75"
+      ],
+      [
+        "Tecton",
+        "parentage",
+        "child of Polyneus",
+        "homer-odyssey",
+        "8.83-8.120"
+      ],
+      [
+        "Damastor",
+        "parentage",
+        "child of Tlepolemus",
+        "homer-iliad",
+        "16.394-16.438"
+      ],
+      [
+        "Damastor",
+        "parentage",
+        "child of Agelaus",
+        "homer-odyssey",
+        "20.320-20.370"
+      ],
+      [
+        "Onetor",
+        "parentage",
+        "child of Laogonus",
+        "homer-iliad",
+        "16.593-16.631"
+      ],
+      [
+        "Onetor",
+        "parentage",
+        "child of Phrontis",
+        "homer-odyssey",
+        "3.276-3.312"
+      ],
+      [
+        "Polybus",
+        "parentage",
+        "child of Eurymachus",
+        "homer-odyssey",
+        "15.493-15.544"
+      ],
+      [
+        "Polybus",
+        "parentage",
+        "child of Eurymachus",
+        "homer-odyssey",
+        "16.308-16.357"
+      ],
+      [
+        "Polybus",
+        "parentage",
+        "child of Eurymachus",
+        "homer-odyssey",
+        "16.406-16.447"
+      ],
+      [
+        "Polybus",
+        "parentage",
+        "child of Eurymachus",
+        "homer-odyssey",
+        "20.320-20.370"
+      ]
+    ],
+    "rationale": "Audit check A14's first sweep: reversed-direction parentage claims, the F3/DEV-114 shape, found mechanically instead of by hand. Each of the 108 findings was reviewed against the matched phrase A14 extracted from its own cited source -- per-row evidence, not a sample -- and all 108 are clean patronymic reversals ('Cronus | child of Zeus' against Homer's 'Zeus, son of Cronos'; 'Leto | child of Apollo' against 'Apollo, son of Leto'). Zero false positives. Every row was at trust_tier=3, so nothing seeded changes; this records the review verdict so no future reviewer re-litigates them and the rows can never be promoted by accident."
   }
 ]

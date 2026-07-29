@@ -389,7 +389,7 @@
     "claim_value": "child of Clymene",
     "source_id": "hesiod-theogony",
     "passage_ref": "507-557",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Coeus",
@@ -1437,7 +1437,7 @@
     "claim_value": "child of Busiris",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.5.11",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Poseidon",
@@ -1445,7 +1445,7 @@
     "claim_value": "child of Nauplius",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.7.4-2.7.6",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Poseidon",
@@ -1453,7 +1453,7 @@
     "claim_value": "child of Periclymenus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.6.8-3.7.2",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Poseidon",
@@ -1549,7 +1549,7 @@
     "claim_value": "child of Sarpedon",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.4.6-E.5.4",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Zeus",
@@ -1565,7 +1565,7 @@
     "claim_value": "child of Muses",
     "source_id": "hesiod-theogony",
     "passage_ref": "1-52",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Zeus",
@@ -1765,7 +1765,7 @@
     "claim_value": "child of Sarpedon",
     "source_id": "homer-iliad",
     "passage_ref": "5.607-5.654",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Zeus",
@@ -2053,7 +2053,7 @@
     "claim_value": "child of Nymphs of the fountain",
     "source_id": "homer-odyssey",
     "passage_ref": "17.197-17.246",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Zeus",
@@ -3061,7 +3061,7 @@
     "claim_value": "child of Circe",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "14.1-14.39",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Astraeus",
@@ -3637,7 +3637,7 @@
     "claim_value": "child of Patroclus",
     "source_id": "homer-iliad",
     "passage_ref": "1.292-1.324",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menoetius",
@@ -3645,7 +3645,7 @@
     "claim_value": "child of Patroclus",
     "source_id": "homer-iliad",
     "passage_ref": "9.205-9.221",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menoetius",
@@ -3653,7 +3653,7 @@
     "claim_value": "child of Patroclus",
     "source_id": "homer-iliad",
     "passage_ref": "11.575-11.615",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menoetius",
@@ -3677,7 +3677,7 @@
     "claim_value": "child of Patroclus",
     "source_id": "homer-iliad",
     "passage_ref": "16.548-16.592",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menoetius",
@@ -3685,7 +3685,7 @@
     "claim_value": "child of Patroclus",
     "source_id": "homer-iliad",
     "passage_ref": "17.491-17.539",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menoetius",
@@ -3693,7 +3693,7 @@
     "claim_value": "child of Patroclus",
     "source_id": "homer-iliad",
     "passage_ref": "18.1-18.49",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menoetius",
@@ -4149,7 +4149,7 @@
     "claim_value": "child of Thetis",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.4.4-3.5.1",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Nereus",
@@ -4165,7 +4165,7 @@
     "claim_value": "child of Thetis",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "3.294-3.339",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Nereus",
@@ -7989,7 +7989,7 @@
     "claim_value": "child of Miletus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.1.2-3.1.4",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Apollo",
@@ -9621,7 +9621,7 @@
     "claim_value": "child of Idomeneus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.3.13-E.3.19",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Deucalion",
@@ -10061,7 +10061,7 @@
     "claim_value": "child of Macar",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "3.30-3.82",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Aeolus",
@@ -10197,7 +10197,7 @@
     "claim_value": "child of Glaucus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.3.1-2.4.1",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Sisyphus",
@@ -10261,7 +10261,7 @@
     "claim_value": "child of Aphareus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.4-3.10.7",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Perieres",
@@ -10269,7 +10269,7 @@
     "claim_value": "child of Leucippus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.4-3.10.7",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Perieres",
@@ -10285,7 +10285,7 @@
     "claim_value": "child of Borus",
     "source_id": "homer-iliad",
     "passage_ref": "16.155-16.197",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Perieres",
@@ -10429,7 +10429,7 @@
     "claim_value": "child of Tisamenus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.8.2",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Orestes",
@@ -10437,7 +10437,7 @@
     "claim_value": "child of Tisamenus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.8.3-2.8.4",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Orestes",
@@ -10725,7 +10725,7 @@
     "claim_value": "child of Cteatus",
     "source_id": "homer-iliad",
     "passage_ref": "13.169-13.205",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Actor",
@@ -10733,7 +10733,7 @@
     "claim_value": "child of Echecles",
     "source_id": "homer-iliad",
     "passage_ref": "16.155-16.197",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Actor",
@@ -10741,7 +10741,7 @@
     "claim_value": "child of Erithus",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "5.74-5.106",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Ceyx",
@@ -11261,7 +11261,7 @@
     "claim_value": "child of Echeclus",
     "source_id": "homer-iliad",
     "passage_ref": "20.455-20.489",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Agenor",
@@ -11765,7 +11765,7 @@
     "claim_value": "child of Tydeus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.6.1-3.6.3",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Oeneus",
@@ -11773,7 +11773,7 @@
     "claim_value": "child of Meleager",
     "source_id": "homer-iliad",
     "passage_ref": "9.529-9.549",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Oeneus",
@@ -12349,7 +12349,7 @@
     "claim_value": "child of Lycurgus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.4.4-3.5.1",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Dryas",
@@ -12957,7 +12957,7 @@
     "claim_value": "child of Achilles",
     "source_id": "homer-iliad",
     "passage_ref": "1.292-1.324",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Peleus",
@@ -12965,7 +12965,7 @@
     "claim_value": "child of Achilles",
     "source_id": "homer-iliad",
     "passage_ref": "2.729-2.779",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Peleus",
@@ -12981,7 +12981,7 @@
     "claim_value": "child of Achilles",
     "source_id": "homer-iliad",
     "passage_ref": "9.222-9.259",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Peleus",
@@ -12997,7 +12997,7 @@
     "claim_value": "child of Achilles",
     "source_id": "homer-iliad",
     "passage_ref": "17.169-17.208",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Peleus",
@@ -13013,7 +13013,7 @@
     "claim_value": "child of Achilles",
     "source_id": "homer-iliad",
     "passage_ref": "17.673-17.714",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Peleus",
@@ -13021,7 +13021,7 @@
     "claim_value": "child of Achilles",
     "source_id": "homer-iliad",
     "passage_ref": "18.1-18.49",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Peleus",
@@ -13029,7 +13029,7 @@
     "claim_value": "child of Achilles",
     "source_id": "homer-iliad",
     "passage_ref": "18.202-18.242",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Peleus",
@@ -13045,7 +13045,7 @@
     "claim_value": "child of Achilles",
     "source_id": "homer-iliad",
     "passage_ref": "18.243-18.283",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Peleus",
@@ -13053,7 +13053,7 @@
     "claim_value": "child of Achilles",
     "source_id": "homer-iliad",
     "passage_ref": "20.292-20.339",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Peleus",
@@ -13061,7 +13061,7 @@
     "claim_value": "child of Achilles",
     "source_id": "homer-iliad",
     "passage_ref": "20.490-21.33",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Peleus",
@@ -13069,7 +13069,7 @@
     "claim_value": "child of Achilles",
     "source_id": "homer-iliad",
     "passage_ref": "21.136-21.181",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Peleus",
@@ -13093,7 +13093,7 @@
     "claim_value": "child of Achilles",
     "source_id": "homer-iliad",
     "passage_ref": "23.35-23.53",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Peleus",
@@ -13101,7 +13101,7 @@
     "claim_value": "child of Achilles",
     "source_id": "homer-iliad",
     "passage_ref": "23.54-23.98",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Peleus",
@@ -13109,7 +13109,7 @@
     "claim_value": "child of Achilles",
     "source_id": "homer-iliad",
     "passage_ref": "24.440-24.484",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Peleus",
@@ -13117,7 +13117,7 @@
     "claim_value": "child of Achilles",
     "source_id": "homer-iliad",
     "passage_ref": "24.525-24.570",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Peleus",
@@ -13125,7 +13125,7 @@
     "claim_value": "child of Achilles",
     "source_id": "homer-odyssey",
     "passage_ref": "8.46-8.82",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Peleus",
@@ -13461,7 +13461,7 @@
     "claim_value": "child of Amphilochus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.6.8-3.7.2",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Amphiaraus",
@@ -13861,7 +13861,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.6.8-3.7.2",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -13869,7 +13869,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.3.6-E.3.12",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -13877,7 +13877,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "4.356-4.400",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -13885,7 +13885,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "5.121-5.165",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -13893,7 +13893,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "5.217-5.250",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -13901,7 +13901,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "5.251-5.296",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -13909,7 +13909,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "5.334-5.380",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -13917,7 +13917,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "5.381-5.425",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -13925,7 +13925,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "5.426-5.469",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -13933,7 +13933,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "5.560-5.606",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -13949,7 +13949,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "5.825-5.863",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -13957,7 +13957,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "5.864-5.907",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -13965,7 +13965,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "6.119-6.155",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -13973,7 +13973,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "7.132-7.180",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -13981,7 +13981,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "8.512-8.552",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -13989,7 +13989,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "9.50-9.88",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -13997,7 +13997,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "10.272-10.312",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -14013,7 +14013,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "10.564-11.14",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -14021,7 +14021,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "11.336-11.367",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -14029,7 +14029,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "11.655-11.695",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -14037,7 +14037,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "14.27-14.63",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -14053,7 +14053,7 @@
     "claim_value": "child of Diomedes",
     "source_id": "homer-iliad",
     "passage_ref": "21.382-21.422",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tydeus",
@@ -14989,7 +14989,7 @@
     "claim_value": "child of Phylas",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.8.3-2.8.4",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Antiochus",
@@ -16125,7 +16125,7 @@
     "claim_value": "child of Bellerophon",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.3.1-2.4.1",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Glaucus",
@@ -16501,7 +16501,7 @@
     "claim_value": "child of Penelope",
     "source_id": "homer-odyssey",
     "passage_ref": "2.15-2.59",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Icarius",
@@ -16509,7 +16509,7 @@
     "claim_value": "child of Penelope",
     "source_id": "homer-odyssey",
     "passage_ref": "16.406-16.447",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Icarius",
@@ -16517,7 +16517,7 @@
     "claim_value": "child of Penelope",
     "source_id": "homer-odyssey",
     "passage_ref": "18.250-18.289",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Icarius",
@@ -16677,7 +16677,7 @@
     "claim_value": "child of Acastus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.9.26-1.9.27",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Pelias",
@@ -16725,7 +16725,7 @@
     "claim_value": "child of Nestor",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.3.6-E.3.12",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Neleus",
@@ -16733,7 +16733,7 @@
     "claim_value": "child of Nestor",
     "source_id": "homer-iliad",
     "passage_ref": "11.655-11.695",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Neleus",
@@ -16741,7 +16741,7 @@
     "claim_value": "child of Nestor",
     "source_id": "homer-iliad",
     "passage_ref": "14.27-14.63",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Neleus",
@@ -16749,7 +16749,7 @@
     "claim_value": "child of Nestor",
     "source_id": "homer-iliad",
     "passage_ref": "23.301-23.348",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Neleus",
@@ -16917,7 +16917,7 @@
     "claim_value": "child of Thrasymedes",
     "source_id": "homer-iliad",
     "passage_ref": "9.50-9.88",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Nestor",
@@ -16965,7 +16965,7 @@
     "claim_value": "child of Thrasymedes",
     "source_id": "homer-iliad",
     "passage_ref": "13.833-14.26",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Nestor",
@@ -17077,7 +17077,7 @@
     "claim_value": "child of Polycaste",
     "source_id": "homer-odyssey",
     "passage_ref": "3.447-3.477",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Nestor",
@@ -17397,7 +17397,7 @@
     "claim_value": "child of Nestor",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.3.6-E.3.12",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Chloris",
@@ -18069,7 +18069,7 @@
     "claim_value": "child of Admetus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.4-3.10.7",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Pheres",
@@ -18277,7 +18277,7 @@
     "claim_value": "child of Adrastus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.6.1-3.6.3",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Talaus",
@@ -18293,7 +18293,7 @@
     "claim_value": "child of Mecisteus",
     "source_id": "homer-iliad",
     "passage_ref": "23.676-23.707",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Abas",
@@ -18349,7 +18349,7 @@
     "claim_value": "child of Aegialeus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.6.8-3.7.2",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Adrastus",
@@ -18405,7 +18405,7 @@
     "claim_value": "child of Euryalus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.6.8-3.7.2",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Mecisteus",
@@ -18677,7 +18677,7 @@
     "claim_value": "child of Antiochus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.8.3-2.8.4",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Heracles",
@@ -18733,7 +18733,7 @@
     "claim_value": "child of Tlepolemus",
     "source_id": "homer-iliad",
     "passage_ref": "5.607-5.654",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Heracles",
@@ -19149,7 +19149,7 @@
     "claim_value": "child of Odysseus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Laertes",
@@ -19157,7 +19157,7 @@
     "claim_value": "child of Odysseus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.3.6-E.3.12",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Laertes",
@@ -19181,7 +19181,7 @@
     "claim_value": "child of Odysseus",
     "source_id": "homer-odyssey",
     "passage_ref": "1.156-1.193",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Laertes",
@@ -19197,7 +19197,7 @@
     "claim_value": "child of Odysseus",
     "source_id": "homer-odyssey",
     "passage_ref": "10.388-10.438",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Laertes",
@@ -19205,7 +19205,7 @@
     "claim_value": "child of Odysseus",
     "source_id": "homer-odyssey",
     "passage_ref": "10.487-10.502",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Laertes",
@@ -19213,7 +19213,7 @@
     "claim_value": "child of Odysseus",
     "source_id": "homer-odyssey",
     "passage_ref": "10.503-10.549",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Laertes",
@@ -19221,7 +19221,7 @@
     "claim_value": "child of Odysseus",
     "source_id": "homer-odyssey",
     "passage_ref": "12.374-12.425",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Laertes",
@@ -19229,7 +19229,7 @@
     "claim_value": "child of Odysseus",
     "source_id": "homer-odyssey",
     "passage_ref": "16.68-16.111",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Laertes",
@@ -19245,7 +19245,7 @@
     "claim_value": "child of Odysseus",
     "source_id": "homer-odyssey",
     "passage_ref": "16.448-17.15",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Laertes",
@@ -19253,7 +19253,7 @@
     "claim_value": "child of Odysseus",
     "source_id": "homer-odyssey",
     "passage_ref": "18.1-18.49",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Laertes",
@@ -19261,7 +19261,7 @@
     "claim_value": "child of Odysseus",
     "source_id": "homer-odyssey",
     "passage_ref": "19.164-19.202",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Laertes",
@@ -19269,7 +19269,7 @@
     "claim_value": "child of Odysseus",
     "source_id": "homer-odyssey",
     "passage_ref": "19.248-19.299",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Laertes",
@@ -19277,7 +19277,7 @@
     "claim_value": "child of Odysseus",
     "source_id": "homer-odyssey",
     "passage_ref": "20.275-20.319",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Laertes",
@@ -19285,7 +19285,7 @@
     "claim_value": "child of Odysseus",
     "source_id": "homer-odyssey",
     "passage_ref": "23.344-23.366",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Laertes",
@@ -19293,7 +19293,7 @@
     "claim_value": "child of Odysseus",
     "source_id": "homer-odyssey",
     "passage_ref": "24.219-24.255",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Laertes",
@@ -19309,7 +19309,7 @@
     "claim_value": "child of Odysseus",
     "source_id": "homer-odyssey",
     "passage_ref": "24.496-24.544",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Laertes",
@@ -19733,7 +19733,7 @@
     "claim_value": "child of Hypsipyle",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.9.17-1.9.20",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Thoas",
@@ -20349,7 +20349,7 @@
     "claim_value": "child of Ilus",
     "source_id": "homer-odyssey",
     "passage_ref": "1.230-1.279",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Medus",
@@ -20885,7 +20885,7 @@
     "claim_value": "child of Eidothea",
     "source_id": "homer-odyssey",
     "passage_ref": "4.398-4.447",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Clitus",
@@ -22245,7 +22245,7 @@
     "claim_value": "child of Admete",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.5.9",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Eurystheus",
@@ -22277,7 +22277,7 @@
     "claim_value": "child of Agamemnon",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.3.6-E.3.12",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22285,7 +22285,7 @@
     "claim_value": "child of Menelaus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.3.6-E.3.12",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22293,7 +22293,7 @@
     "claim_value": "child of Agamemnon",
     "source_id": "homer-iliad",
     "passage_ref": "1.292-1.324",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22301,7 +22301,7 @@
     "claim_value": "child of Agamemnon",
     "source_id": "homer-iliad",
     "passage_ref": "3.171-3.202",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22309,7 +22309,7 @@
     "claim_value": "child of Menelaus",
     "source_id": "homer-iliad",
     "passage_ref": "4.85-4.126",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22317,7 +22317,7 @@
     "claim_value": "child of Menelaus",
     "source_id": "homer-iliad",
     "passage_ref": "4.192-4.239",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22325,7 +22325,7 @@
     "claim_value": "child of Agamemnon",
     "source_id": "homer-iliad",
     "passage_ref": "4.401-4.445",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22333,7 +22333,7 @@
     "claim_value": "child of Menelaus",
     "source_id": "homer-iliad",
     "passage_ref": "5.29-5.75",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22341,7 +22341,7 @@
     "claim_value": "child of Menelaus",
     "source_id": "homer-iliad",
     "passage_ref": "5.560-5.606",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22349,7 +22349,7 @@
     "claim_value": "child of Menelaus",
     "source_id": "homer-iliad",
     "passage_ref": "6.1-6.50",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22357,7 +22357,7 @@
     "claim_value": "child of Agamemnon",
     "source_id": "homer-iliad",
     "passage_ref": "7.132-7.180",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22365,7 +22365,7 @@
     "claim_value": "child of Agamemnon",
     "source_id": "homer-iliad",
     "passage_ref": "9.222-9.259",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22373,7 +22373,7 @@
     "claim_value": "child of Agamemnon",
     "source_id": "homer-iliad",
     "passage_ref": "13.833-14.26",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22381,7 +22381,7 @@
     "claim_value": "child of Agamemnon",
     "source_id": "homer-iliad",
     "passage_ref": "14.27-14.63",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22389,7 +22389,7 @@
     "claim_value": "child of Menelaus",
     "source_id": "homer-odyssey",
     "passage_ref": "4.20-4.64",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22397,7 +22397,7 @@
     "claim_value": "child of Menelaus",
     "source_id": "homer-odyssey",
     "passage_ref": "4.155-4.202",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22405,7 +22405,7 @@
     "claim_value": "child of Menelaus",
     "source_id": "homer-odyssey",
     "passage_ref": "4.233-4.264",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22413,7 +22413,7 @@
     "claim_value": "child of Menelaus",
     "source_id": "homer-odyssey",
     "passage_ref": "4.315-4.350",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22421,7 +22421,7 @@
     "claim_value": "child of Agamemnon",
     "source_id": "homer-odyssey",
     "passage_ref": "9.231-9.280",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22429,7 +22429,7 @@
     "claim_value": "child of Agamemnon",
     "source_id": "homer-odyssey",
     "passage_ref": "13.416-13.429",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22437,7 +22437,7 @@
     "claim_value": "child of Menelaus",
     "source_id": "homer-odyssey",
     "passage_ref": "15.48-15.91",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22445,7 +22445,7 @@
     "claim_value": "child of Menelaus",
     "source_id": "homer-odyssey",
     "passage_ref": "17.107-17.149",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22453,7 +22453,7 @@
     "claim_value": "child of Agamemnon",
     "source_id": "homer-odyssey",
     "passage_ref": "24.85-24.119",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22461,7 +22461,7 @@
     "claim_value": "child of Agamemnon",
     "source_id": "homer-odyssey",
     "passage_ref": "24.120-24.169",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Atreus",
@@ -22885,7 +22885,7 @@
     "claim_value": "child of Meges",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.3.6-E.3.12",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Phyleus",
@@ -22893,7 +22893,7 @@
     "claim_value": "child of Meges",
     "source_id": "homer-iliad",
     "passage_ref": "5.29-5.75",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Phyleus",
@@ -22901,7 +22901,7 @@
     "claim_value": "child of Meges",
     "source_id": "homer-iliad",
     "passage_ref": "13.685-13.722",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Phyleus",
@@ -22909,7 +22909,7 @@
     "claim_value": "child of Meges",
     "source_id": "homer-iliad",
     "passage_ref": "15.514-15.558",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Phyleus",
@@ -24629,7 +24629,7 @@
     "claim_value": "child of Emathion",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.5.11",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tithonus",
@@ -24661,7 +24661,7 @@
     "claim_value": "child of Memnon",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.4.6-E.5.4",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tithonus",
@@ -24965,7 +24965,7 @@
     "claim_value": "child of Amphimachus",
     "source_id": "homer-iliad",
     "passage_ref": "13.169-13.205",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Cteatus",
@@ -25189,7 +25189,7 @@
     "claim_value": "child of Hypsenor",
     "source_id": "homer-iliad",
     "passage_ref": "13.402-13.444",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Deianira",
@@ -25333,7 +25333,7 @@
     "claim_value": "child of Hippomachus",
     "source_id": "homer-iliad",
     "passage_ref": "12.153-12.194",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Agelaus",
@@ -25477,7 +25477,7 @@
     "claim_value": "child of Oxylus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.8.3-2.8.4",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Andraemon",
@@ -27877,7 +27877,7 @@
     "claim_value": "child of Dionysus",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "6.1-7.31",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Semele",
@@ -28901,7 +28901,7 @@
     "claim_value": "child of Crocale",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "3.138-3.186",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Ismenus",
@@ -28965,7 +28965,7 @@
     "claim_value": "child of Niobe",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.5.6-3.5.7",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tantalus",
@@ -29037,7 +29037,7 @@
     "claim_value": "child of Polynices",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.6.1-3.6.3",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Oedipus",
@@ -29045,7 +29045,7 @@
     "claim_value": "child of Antigone",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.6.8-3.7.2",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Oedipus",
@@ -29077,7 +29077,7 @@
     "claim_value": "child of Maeon",
     "source_id": "homer-iliad",
     "passage_ref": "4.356-4.400",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Sphinx",
@@ -29197,7 +29197,7 @@
     "claim_value": "child of Amphiaraus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.6.1-3.6.3",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Oicles",
@@ -29245,7 +29245,7 @@
     "claim_value": "child of Eteoclus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.6.1-3.6.3",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Iphis",
@@ -29349,7 +29349,7 @@
     "claim_value": "child of Manto",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "6.129-6.164",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Melanippus",
@@ -30405,7 +30405,7 @@
     "claim_value": "child of Ancaeus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.9.2-3.10.1",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Lycurgus",
@@ -30445,7 +30445,7 @@
     "claim_value": "child of Hermes",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "4.260-4.303",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Maia",
@@ -30477,7 +30477,7 @@
     "claim_value": "child of Myrtilus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.1.24-E.2.7",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Hermes",
@@ -31421,7 +31421,7 @@
     "claim_value": "child of Laodamas",
     "source_id": "homer-odyssey",
     "passage_ref": "7.152-7.180",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Alcinous",
@@ -31429,7 +31429,7 @@
     "claim_value": "child of Laodamas",
     "source_id": "homer-odyssey",
     "passage_ref": "8.121-8.164",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Alcinous",
@@ -36237,7 +36237,7 @@
     "claim_value": "child of Idaea",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.15.3-3.15.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Dardanus",
@@ -36245,7 +36245,7 @@
     "claim_value": "child of Priam",
     "source_id": "homer-iliad",
     "passage_ref": "5.121-5.165",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Dardanus",
@@ -36597,7 +36597,7 @@
     "claim_value": "child of Aeneas",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.5.14-E.5.21",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Anchises",
@@ -37061,7 +37061,7 @@
     "claim_value": "child of Bucolion",
     "source_id": "homer-iliad",
     "passage_ref": "6.1-6.50",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Laomedon",
@@ -37069,7 +37069,7 @@
     "claim_value": "child of Lampus",
     "source_id": "homer-iliad",
     "passage_ref": "15.514-15.558",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Laomedon",
@@ -37133,7 +37133,7 @@
     "claim_value": "child of Peiraeus",
     "source_id": "homer-odyssey",
     "passage_ref": "15.493-15.544",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Clytius",
@@ -37413,7 +37413,7 @@
     "claim_value": "child of Peleus",
     "source_id": "homer-iliad",
     "passage_ref": "18.428-18.477",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Aeacus",
@@ -37589,7 +37589,7 @@
     "claim_value": "child of Hector",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "13.508-13.544",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Hecuba",
@@ -40101,7 +40101,7 @@
     "claim_value": "child of Phaestus",
     "source_id": "homer-iliad",
     "passage_ref": "5.29-5.75",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Peleus",
@@ -43605,7 +43605,7 @@
     "claim_value": "child of Theseus",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "7.425-7.468",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Aegeus",
@@ -43613,7 +43613,7 @@
     "claim_value": "child of Theseus",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "12.327-12.365",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Aegeus",
@@ -46013,7 +46013,7 @@
     "claim_value": "child of Odysseus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.3.6-E.3.12",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Anticlia",
@@ -47525,7 +47525,7 @@
     "claim_value": "child of Asteropaeus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.4.6-E.5.4",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Pelegon",
@@ -48389,7 +48389,7 @@
     "claim_value": "child of Glaucus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.5.14-E.5.21",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Antenor",
@@ -48397,7 +48397,7 @@
     "claim_value": "child of Archelochus",
     "source_id": "homer-iliad",
     "passage_ref": "2.780-2.823",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Antenor",
@@ -48413,7 +48413,7 @@
     "claim_value": "child of Laodocus",
     "source_id": "homer-iliad",
     "passage_ref": "4.85-4.126",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Antenor",
@@ -48453,7 +48453,7 @@
     "claim_value": "child of Archelochus",
     "source_id": "homer-iliad",
     "passage_ref": "12.80-12.107",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Antenor",
@@ -49077,7 +49077,7 @@
     "claim_value": "child of Antiphus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.6.14",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Thessalus",
@@ -49437,7 +49437,7 @@
     "claim_value": "child of Zeus",
     "source_id": "homer-iliad",
     "passage_ref": "2.84-2.108",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Cronus",
@@ -49445,7 +49445,7 @@
     "claim_value": "child of Zeus",
     "source_id": "homer-iliad",
     "passage_ref": "5.864-5.907",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Cronus",
@@ -49453,7 +49453,7 @@
     "claim_value": "child of Zeus",
     "source_id": "homer-iliad",
     "passage_ref": "8.469-8.511",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Cronus",
@@ -49461,7 +49461,7 @@
     "claim_value": "child of Zeus",
     "source_id": "homer-iliad",
     "passage_ref": "9.222-9.259",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Cronus",
@@ -49469,7 +49469,7 @@
     "claim_value": "child of Zeus",
     "source_id": "homer-iliad",
     "passage_ref": "11.56-11.83",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Cronus",
@@ -49477,7 +49477,7 @@
     "claim_value": "child of Zeus",
     "source_id": "homer-iliad",
     "passage_ref": "12.442-13.16",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Cronus",
@@ -49485,7 +49485,7 @@
     "claim_value": "child of Zeus",
     "source_id": "homer-iliad",
     "passage_ref": "16.816-16.862",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Cronus",
@@ -49493,7 +49493,7 @@
     "claim_value": "child of Zeus",
     "source_id": "homer-iliad",
     "passage_ref": "18.97-18.144",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Cronus",
@@ -49501,7 +49501,7 @@
     "claim_value": "child of Zeus",
     "source_id": "homer-iliad",
     "passage_ref": "24.200-24.246",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Cronus",
@@ -49509,7 +49509,7 @@
     "claim_value": "child of Zeus",
     "source_id": "homer-odyssey",
     "passage_ref": "1.44-1.95",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Cronus",
@@ -49517,7 +49517,7 @@
     "claim_value": "child of Zeus",
     "source_id": "homer-odyssey",
     "passage_ref": "12.374-12.425",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Cronus",
@@ -49525,7 +49525,7 @@
     "claim_value": "child of Zeus",
     "source_id": "homer-odyssey",
     "passage_ref": "19.47-19.88",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Cronus",
@@ -49533,7 +49533,7 @@
     "claim_value": "child of Zeus",
     "source_id": "homer-odyssey",
     "passage_ref": "24.496-24.544",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Cronus",
@@ -50085,7 +50085,7 @@
     "claim_value": "child of Apollo",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "3.30-3.82",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Leto",
@@ -50093,7 +50093,7 @@
     "claim_value": "child of Apollo",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "3.83-3.132",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Leto",
@@ -50101,7 +50101,7 @@
     "claim_value": "child of Apollo",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "4.260-4.303",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Leto",
@@ -50909,7 +50909,7 @@
     "claim_value": "child of Machaon",
     "source_id": "homer-iliad",
     "passage_ref": "2.729-2.779",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Asclepius",
@@ -50917,7 +50917,7 @@
     "claim_value": "child of Machaon",
     "source_id": "homer-iliad",
     "passage_ref": "4.192-4.239",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Asclepius",
@@ -50925,7 +50925,7 @@
     "claim_value": "child of Machaon",
     "source_id": "homer-iliad",
     "passage_ref": "11.575-11.615",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Asclepius",
@@ -50933,7 +50933,7 @@
     "claim_value": "child of Machaon",
     "source_id": "homer-iliad",
     "passage_ref": "13.833-14.26",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Asclepius",
@@ -51437,7 +51437,7 @@
     "claim_value": "child of Phereclus",
     "source_id": "homer-iliad",
     "passage_ref": "5.29-5.75",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tecton",
@@ -51445,7 +51445,7 @@
     "claim_value": "child of Polyneus",
     "source_id": "homer-odyssey",
     "passage_ref": "8.83-8.120",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Athena",
@@ -52381,7 +52381,7 @@
     "claim_value": "child of Tlepolemus",
     "source_id": "homer-iliad",
     "passage_ref": "16.394-16.438",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Damastor",
@@ -52389,7 +52389,7 @@
     "claim_value": "child of Agelaus",
     "source_id": "homer-odyssey",
     "passage_ref": "20.320-20.370",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Onetor",
@@ -52397,7 +52397,7 @@
     "claim_value": "child of Laogonus",
     "source_id": "homer-iliad",
     "passage_ref": "16.593-16.631",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Onetor",
@@ -52405,7 +52405,7 @@
     "claim_value": "child of Phrontis",
     "source_id": "homer-odyssey",
     "passage_ref": "3.276-3.312",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Echeclus",
@@ -52941,7 +52941,7 @@
     "claim_value": "child of Eurymachus",
     "source_id": "homer-odyssey",
     "passage_ref": "15.493-15.544",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Polybus",
@@ -52949,7 +52949,7 @@
     "claim_value": "child of Eurymachus",
     "source_id": "homer-odyssey",
     "passage_ref": "16.308-16.357",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Polybus",
@@ -52957,7 +52957,7 @@
     "claim_value": "child of Eurymachus",
     "source_id": "homer-odyssey",
     "passage_ref": "16.406-16.447",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Polybus",
@@ -52965,7 +52965,7 @@
     "claim_value": "child of Eurymachus",
     "source_id": "homer-odyssey",
     "passage_ref": "20.320-20.370",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Polybus",
