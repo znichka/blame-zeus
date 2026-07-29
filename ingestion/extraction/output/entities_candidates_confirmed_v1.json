@@ -630,34 +630,6 @@
     "subtype": null
   },
   {
-    "name": "Aias (Telamonian)",
-    "type": "hero",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
-    "name": "Aias (son of Oïleus)",
-    "type": "hero",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
-    "name": "Aias (son of Telamon)",
-    "type": "hero",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
-    "name": "Aias the less",
-    "type": "hero",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
     "name": "Aidoneus",
     "type": "other_god",
     "generation": null,
@@ -666,55 +638,6 @@
   },
   {
     "name": "Ajax",
-    "type": "hero",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
-    "name": "Ajax (Oilean)",
-    "type": "hero",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
-    "name": "Ajax (Telamon's son)",
-    "type": "hero",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
-    "name": "Ajax son of Oileus",
-    "type": "hero",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
-    "name": "Ajax son of Telamon",
-    "type": "hero",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
-    "name": "Ajax the Great",
-    "type": "hero",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
-    "name": "Ajax the Lesser",
-    "type": "hero",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
-    "name": "Ajax the Locrian",
     "type": "hero",
     "generation": null,
     "domain": null,
@@ -6055,13 +5978,6 @@
     "subtype": null
   },
   {
-    "name": "Great Ajax",
-    "type": "hero",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
     "name": "Guneus",
     "type": "mortal",
     "generation": null,
@@ -9912,13 +9828,6 @@
     "subtype": null
   },
   {
-    "name": "Oïleus",
-    "type": "mortal",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
     "name": "Paean",
     "type": "other_god",
     "generation": null,
@@ -12117,13 +12026,6 @@
     "subtype": null
   },
   {
-    "name": "Saturn",
-    "type": "other_god",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
     "name": "Scaea",
     "type": "mortal",
     "generation": null,
@@ -12681,20 +12583,6 @@
     "type": "hero",
     "generation": null,
     "domain": null,
-    "subtype": null
-  },
-  {
-    "name": "Telamonian Aias",
-    "type": "hero",
-    "generation": null,
-    "domain": null,
-    "subtype": null
-  },
-  {
-    "name": "Telamonian Ajax",
-    "type": "hero",
-    "generation": null,
-    "domain": "Salamis",
     "subtype": null
   },
   {
@@ -14019,5 +13907,19 @@
     "generation": null,
     "domain": null,
     "subtype": null
+  },
+  {
+    "name": "Ajax (son of Oileus)",
+    "type": "hero",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Oileus (charioteer of Bienor)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": "charioteer"
   }
 ]

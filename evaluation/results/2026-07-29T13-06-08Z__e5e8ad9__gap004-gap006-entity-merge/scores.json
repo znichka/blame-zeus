@@ -1,0 +1,1351 @@
+{
+  "label": "gap004-gap006-entity-merge",
+  "runs": 3,
+  "base_url": "http://localhost:8080",
+  "git_sha": "e5e8ad9",
+  "timestamp": "2026-07-29T13-06-08Z",
+  "flaky_ids": [
+    2,
+    9
+  ],
+  "aggregate": {
+    "passed_questions": 20,
+    "total_questions": 25,
+    "total_points": 69,
+    "max_points": 75,
+    "overall_pass_rate": 0.8,
+    "overall_target": 0.75,
+    "overall_met": true,
+    "worst_run_index": 0,
+    "per_category": [
+      {
+        "category": "FACT",
+        "passed": 4,
+        "total": 5,
+        "rate": 0.8,
+        "floor": null,
+        "floor_met": null
+      },
+      {
+        "category": "DATA",
+        "passed": 5,
+        "total": 7,
+        "rate": 0.7143,
+        "floor": 0.5,
+        "floor_met": true
+      },
+      {
+        "category": "MIXED",
+        "passed": 1,
+        "total": 2,
+        "rate": 0.5,
+        "floor": null,
+        "floor_met": null
+      },
+      {
+        "category": "CONFLICT",
+        "passed": 7,
+        "total": 7,
+        "rate": 1.0,
+        "floor": 0.6,
+        "floor_met": true
+      },
+      {
+        "category": "REFUSAL",
+        "passed": 3,
+        "total": 4,
+        "rate": 0.75,
+        "floor": 0.5,
+        "floor_met": true
+      }
+    ],
+    "floor_breaches": []
+  },
+  "questions": [
+    {
+      "id": 1,
+      "category": "FACT",
+      "expected_route": "RAG",
+      "classification": "stable-pass",
+      "worst_run_total": 3,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 11.137
+        },
+        {
+          "run": 1,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 8.842
+        },
+        {
+          "run": 2,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 7.378
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "category": "FACT",
+      "expected_route": "RAG",
+      "classification": "flaky",
+      "worst_run_total": 2,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": false,
+          "total": 2,
+          "passed": false,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [
+            "required_keywords not all present"
+          ],
+          "runner_note": null,
+          "elapsed_seconds": 7.264
+        },
+        {
+          "run": 1,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 7.478
+        },
+        {
+          "run": 2,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 7.163
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "category": "FACT",
+      "expected_route": "RAG",
+      "classification": "stable-pass",
+      "worst_run_total": 3,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 9.778
+        },
+        {
+          "run": 1,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 8.703
+        },
+        {
+          "run": 2,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 9.522
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "category": "FACT",
+      "expected_route": "RAG",
+      "classification": "stable-pass",
+      "worst_run_total": 3,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 7.511
+        },
+        {
+          "run": 1,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 7.326
+        },
+        {
+          "run": 2,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 7.409
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "category": "FACT",
+      "expected_route": "RAG",
+      "classification": "stable-pass",
+      "worst_run_total": 3,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 6.416
+        },
+        {
+          "run": 1,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 7.009
+        },
+        {
+          "run": 2,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 5.7
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "category": "DATA",
+      "expected_route": "SQL",
+      "classification": "stable-pass",
+      "worst_run_total": 3,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 5.528
+        },
+        {
+          "run": 1,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 5.428
+        },
+        {
+          "run": 2,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 7.269
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "category": "DATA",
+      "expected_route": "SQL",
+      "classification": "stable-pass",
+      "worst_run_total": 3,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 3,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 8.397
+        },
+        {
+          "run": 1,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 3,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 7.779
+        },
+        {
+          "run": 2,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 3,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 9.815
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "category": "DATA",
+      "expected_route": "SQL",
+      "classification": "stable-fail",
+      "worst_run_total": 1,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "RAG",
+          "route": false,
+          "author": false,
+          "content": true,
+          "total": 1,
+          "passed": false,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 10.738
+        },
+        {
+          "run": 1,
+          "actual_route": "RAG",
+          "route": false,
+          "author": false,
+          "content": true,
+          "total": 1,
+          "passed": false,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 12.724
+        },
+        {
+          "run": 2,
+          "actual_route": "RAG",
+          "route": false,
+          "author": false,
+          "content": true,
+          "total": 1,
+          "passed": false,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 12.816
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "category": "DATA",
+      "expected_route": "SQL",
+      "classification": "flaky",
+      "worst_run_total": 2,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": false,
+          "total": 2,
+          "passed": false,
+          "service_error": false,
+          "conflicts_count": 3,
+          "notes": [
+            "required_keywords not all present"
+          ],
+          "runner_note": null,
+          "elapsed_seconds": 8.002
+        },
+        {
+          "run": 1,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 3,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 6.507
+        },
+        {
+          "run": 2,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 3,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 6.759
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "category": "DATA",
+      "expected_route": "SQL",
+      "classification": "stable-pass",
+      "worst_run_total": 3,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 5.732
+        },
+        {
+          "run": 1,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 5.123
+        },
+        {
+          "run": 2,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 5.618
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "category": "MIXED",
+      "expected_route": "MIXED",
+      "classification": "stable-fail",
+      "worst_run_total": 2,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "MIXED",
+          "route": true,
+          "author": false,
+          "content": true,
+          "total": 2,
+          "passed": false,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 13.393
+        },
+        {
+          "run": 1,
+          "actual_route": "MIXED",
+          "route": true,
+          "author": false,
+          "content": true,
+          "total": 2,
+          "passed": false,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 8.733
+        },
+        {
+          "run": 2,
+          "actual_route": "MIXED",
+          "route": true,
+          "author": false,
+          "content": true,
+          "total": 2,
+          "passed": false,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 8.734
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "category": "MIXED",
+      "expected_route": "MIXED",
+      "classification": "stable-pass",
+      "worst_run_total": 3,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "MIXED",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 4,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 12.603
+        },
+        {
+          "run": 1,
+          "actual_route": "MIXED",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 4,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 12.8
+        },
+        {
+          "run": 2,
+          "actual_route": "MIXED",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 4,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 12.7
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "category": "CONFLICT",
+      "expected_route": "SQL",
+      "classification": "stable-pass",
+      "worst_run_total": 3,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 13,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 6.763
+        },
+        {
+          "run": 1,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 13,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 7.372
+        },
+        {
+          "run": 2,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 13,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 7.267
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "category": "CONFLICT",
+      "expected_route": "SQL",
+      "classification": "stable-pass",
+      "worst_run_total": 3,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 9,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 6.463
+        },
+        {
+          "run": 1,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 9,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 8.069
+        },
+        {
+          "run": 2,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 9,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 8.091
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "category": "CONFLICT",
+      "expected_route": "RAG",
+      "classification": "stable-pass",
+      "worst_run_total": 3,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 22,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 11.048
+        },
+        {
+          "run": 1,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 22,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 9.755
+        },
+        {
+          "run": 2,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 22,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 9.01
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "category": "REFUSAL",
+      "expected_route": "RAG",
+      "classification": "stable-pass",
+      "worst_run_total": 3,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 4.301
+        },
+        {
+          "run": 1,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 6.606
+        },
+        {
+          "run": 2,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 5.73
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "category": "REFUSAL",
+      "expected_route": "RAG",
+      "classification": "stable-pass",
+      "worst_run_total": 3,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 6.541
+        },
+        {
+          "run": 1,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 12.025
+        },
+        {
+          "run": 2,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 7.686
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "category": "CONFLICT",
+      "expected_route": "RAG",
+      "classification": "stable-pass",
+      "worst_run_total": 3,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 7.024
+        },
+        {
+          "run": 1,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 8.192
+        },
+        {
+          "run": 2,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 7.372
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "category": "CONFLICT",
+      "expected_route": "SQL",
+      "classification": "stable-pass",
+      "worst_run_total": 3,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 11,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 7.94
+        },
+        {
+          "run": 1,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 11,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 8.088
+        },
+        {
+          "run": 2,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 11,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 7.475
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "category": "REFUSAL",
+      "expected_route": "RAG",
+      "classification": "stable-pass",
+      "worst_run_total": 3,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 7.654
+        },
+        {
+          "run": 1,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 5.239
+        },
+        {
+          "run": 2,
+          "actual_route": "RAG",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 0,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 5.734
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "category": "REFUSAL",
+      "expected_route": "SQL",
+      "classification": "stable-fail",
+      "worst_run_total": 2,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": false,
+          "total": 2,
+          "passed": false,
+          "service_error": false,
+          "conflicts_count": 4,
+          "notes": [
+            "refusal: no source-limit acknowledgement phrase"
+          ],
+          "runner_note": null,
+          "elapsed_seconds": 5.561
+        },
+        {
+          "run": 1,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": false,
+          "total": 2,
+          "passed": false,
+          "service_error": false,
+          "conflicts_count": 4,
+          "notes": [
+            "refusal: no source-limit acknowledgement phrase"
+          ],
+          "runner_note": null,
+          "elapsed_seconds": 5.617
+        },
+        {
+          "run": 2,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": false,
+          "total": 2,
+          "passed": false,
+          "service_error": false,
+          "conflicts_count": 4,
+          "notes": [
+            "refusal: no source-limit acknowledgement phrase"
+          ],
+          "runner_note": null,
+          "elapsed_seconds": 4.914
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "category": "CONFLICT",
+      "expected_route": "SQL",
+      "classification": "stable-pass",
+      "worst_run_total": 3,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 5,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 8.391
+        },
+        {
+          "run": 1,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 5,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 6.657
+        },
+        {
+          "run": 2,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 5,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 7.683
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "category": "DATA",
+      "expected_route": "SQL",
+      "classification": "stable-pass",
+      "worst_run_total": 3,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 2,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 6.89
+        },
+        {
+          "run": 1,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 2,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 8.908
+        },
+        {
+          "run": 2,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 2,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 8.6
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "category": "CONFLICT",
+      "expected_route": "SQL",
+      "classification": "stable-pass",
+      "worst_run_total": 3,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 2,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 6.626
+        },
+        {
+          "run": 1,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 2,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 9.521
+        },
+        {
+          "run": 2,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 2,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 17.204
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "category": "DATA",
+      "expected_route": "SQL",
+      "classification": "stable-pass",
+      "worst_run_total": 3,
+      "per_run": [
+        {
+          "run": 0,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 4,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 6.517
+        },
+        {
+          "run": 1,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 4,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 6.454
+        },
+        {
+          "run": 2,
+          "actual_route": "SQL",
+          "route": true,
+          "author": true,
+          "content": true,
+          "total": 3,
+          "passed": true,
+          "service_error": false,
+          "conflicts_count": 4,
+          "notes": [],
+          "runner_note": null,
+          "elapsed_seconds": 7.781
+        }
+      ]
+    }
+  ]
+}

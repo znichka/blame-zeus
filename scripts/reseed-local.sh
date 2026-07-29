@@ -67,7 +67,7 @@ TRUNCATE_SQL="TRUNCATE myth_participants, variant_claims, relationships, myths, 
 # (10-17) get cleared is the exact "Detected resolved migration not applied to database" failure
 # Flyway throws, discovered live re-running this script after editing V19 in the same session.
 # Re-applying V18 is harmless regardless (ON CONFLICT DO NOTHING).
-CLEAR_HISTORY_SQL="DELETE FROM flyway_schema_history WHERE version IN ('10','11','12','13','14','14.1','15','16','17','18','19');"
+CLEAR_HISTORY_SQL="DELETE FROM flyway_schema_history WHERE version IN ('10','11','12','13','14','14.1','15','16','17','18','19','20');"
 
 if [ "$CHECK_ONLY" = true ]; then
   echo "==> --check: printing the reset steps, nothing will be executed"

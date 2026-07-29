@@ -15938,7 +15938,7 @@
   {
     "from_name": "Oileus",
     "relation": "parent_of",
-    "to_name": "Ajax son of Oileus",
+    "to_name": "Ajax (son of Oileus)",
     "is_contested": false,
     "passage_ref": "3.10.8-3.11.1",
     "source_id": "apollodorus-bibliotheca"
@@ -20170,7 +20170,7 @@
   {
     "from_name": "Thetis",
     "relation": "buried",
-    "to_name": "Ajax",
+    "to_name": "Ajax (son of Oileus)",
     "is_contested": false,
     "passage_ref": "E.6.5-E.6.13",
     "source_id": "apollodorus-bibliotheca"
@@ -27216,9 +27216,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Oïleus",
+    "from_name": "Oileus",
     "relation": "parent_of",
-    "to_name": "Aias the less",
+    "to_name": "Ajax (son of Oileus)",
     "is_contested": false,
     "passage_ref": "2.484-2.535",
     "source_id": "homer-iliad"
@@ -28498,7 +28498,7 @@
   {
     "from_name": "Amphius",
     "relation": "killed_by",
-    "to_name": "Telamonian Aias",
+    "to_name": "Ajax",
     "is_contested": false,
     "passage_ref": "5.607-5.654",
     "source_id": "homer-iliad"
@@ -29626,7 +29626,7 @@
   {
     "from_name": "Telamon",
     "relation": "parent_of",
-    "to_name": "Ajax (Telamon's son)",
+    "to_name": "Ajax",
     "is_contested": false,
     "passage_ref": "8.245-8.291",
     "source_id": "homer-iliad"
@@ -30360,7 +30360,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Oïleus",
+    "from_name": "Oileus (charioteer of Bienor)",
     "relation": "killed_by",
     "to_name": "Agamemnon",
     "is_contested": false,
@@ -31122,7 +31122,7 @@
   {
     "from_name": "Telamon",
     "relation": "parent_of",
-    "to_name": "Aias (Telamonian)",
+    "to_name": "Ajax",
     "is_contested": false,
     "passage_ref": "12.351-12.399",
     "source_id": "homer-iliad"
@@ -31138,7 +31138,7 @@
   {
     "from_name": "Epicles",
     "relation": "killed_by",
-    "to_name": "Aias (Telamonian)",
+    "to_name": "Ajax",
     "is_contested": false,
     "passage_ref": "12.351-12.399",
     "source_id": "homer-iliad"
@@ -31194,7 +31194,7 @@
   {
     "from_name": "Oileus",
     "relation": "parent_of",
-    "to_name": "Ajax the Lesser",
+    "to_name": "Ajax (son of Oileus)",
     "is_contested": false,
     "passage_ref": "13.59-13.88",
     "source_id": "homer-iliad"
@@ -31202,7 +31202,7 @@
   {
     "from_name": "Telamon",
     "relation": "parent_of",
-    "to_name": "Ajax the Great",
+    "to_name": "Ajax",
     "is_contested": false,
     "passage_ref": "13.59-13.88",
     "source_id": "homer-iliad"
@@ -31280,9 +31280,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Ajax the Lesser",
+    "from_name": "Oileus",
     "relation": "parent_of",
-    "to_name": "Oïleus",
+    "to_name": "Ajax (son of Oileus)",
     "is_contested": false,
     "passage_ref": "13.169-13.205",
     "source_id": "homer-iliad"
@@ -31568,7 +31568,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Oïleus",
+    "from_name": "Oileus",
     "relation": "parent_of",
     "to_name": "Medon",
     "is_contested": false,
@@ -31576,9 +31576,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Oïleus",
+    "from_name": "Oileus",
     "relation": "parent_of",
-    "to_name": "Aias (son of Oïleus)",
+    "to_name": "Ajax (son of Oileus)",
     "is_contested": false,
     "passage_ref": "13.685-13.722",
     "source_id": "homer-iliad"
@@ -31586,13 +31586,13 @@
   {
     "from_name": "Medon",
     "relation": "sibling_of",
-    "to_name": "Aias (son of Oïleus)",
+    "to_name": "Ajax (son of Oileus)",
     "is_contested": false,
     "passage_ref": "13.685-13.722",
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Oïleus",
+    "from_name": "Oileus",
     "relation": "married_to",
     "to_name": "Eriopis",
     "is_contested": false,
@@ -31618,7 +31618,7 @@
   {
     "from_name": "Telamon",
     "relation": "parent_of",
-    "to_name": "Aias (son of Telamon)",
+    "to_name": "Ajax",
     "is_contested": false,
     "passage_ref": "13.685-13.722",
     "source_id": "homer-iliad"
@@ -31880,9 +31880,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Ajax the Lesser",
+    "from_name": "Satnius",
     "relation": "killed_by",
-    "to_name": "Satnius",
+    "to_name": "Ajax (son of Oileus)",
     "is_contested": false,
     "passage_ref": "14.440-14.485",
     "source_id": "homer-iliad"
@@ -31912,9 +31912,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Ajax",
+    "from_name": "Archelochus",
     "relation": "killed_by",
-    "to_name": "Archelochus",
+    "to_name": "Ajax",
     "is_contested": false,
     "passage_ref": "14.440-14.485",
     "source_id": "homer-iliad"
@@ -31970,7 +31970,7 @@
   {
     "from_name": "Hyrtius",
     "relation": "killed_by",
-    "to_name": "Ajax son of Telamon",
+    "to_name": "Ajax",
     "is_contested": false,
     "passage_ref": "14.486-14.508",
     "source_id": "homer-iliad"
@@ -32216,7 +32216,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Oïleus",
+    "from_name": "Oileus",
     "relation": "parent_of",
     "to_name": "Medon",
     "is_contested": false,
@@ -32224,9 +32224,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Oïleus",
+    "from_name": "Oileus",
     "relation": "parent_of",
-    "to_name": "Ajax",
+    "to_name": "Ajax (son of Oileus)",
     "is_contested": false,
     "passage_ref": "15.328-15.351",
     "source_id": "homer-iliad"
@@ -32234,13 +32234,13 @@
   {
     "from_name": "Medon",
     "relation": "sibling_of",
-    "to_name": "Ajax",
+    "to_name": "Ajax (son of Oileus)",
     "is_contested": false,
     "passage_ref": "15.328-15.351",
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Oïleus",
+    "from_name": "Oileus",
     "relation": "married_to",
     "to_name": "Eriopis",
     "is_contested": false,
@@ -32304,9 +32304,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Ajax",
+    "from_name": "Caletor",
     "relation": "killed_by",
-    "to_name": "Caletor",
+    "to_name": "Ajax",
     "is_contested": false,
     "passage_ref": "15.390-15.428",
     "source_id": "homer-iliad"
@@ -32368,9 +32368,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Ajax",
+    "from_name": "Laodamas",
     "relation": "killed_by",
-    "to_name": "Laodamas",
+    "to_name": "Ajax",
     "is_contested": false,
     "passage_ref": "15.514-15.558",
     "source_id": "homer-iliad"
@@ -32738,7 +32738,7 @@
   {
     "from_name": "Oileus",
     "relation": "parent_of",
-    "to_name": "Ajax the Lesser",
+    "to_name": "Ajax (son of Oileus)",
     "is_contested": false,
     "passage_ref": "16.330-16.363",
     "source_id": "homer-iliad"
@@ -32746,7 +32746,7 @@
   {
     "from_name": "Cleobulus",
     "relation": "killed_by",
-    "to_name": "Ajax the Lesser",
+    "to_name": "Ajax (son of Oileus)",
     "is_contested": false,
     "passage_ref": "16.330-16.363",
     "source_id": "homer-iliad"
@@ -33322,7 +33322,7 @@
   {
     "from_name": "Oileus",
     "relation": "parent_of",
-    "to_name": "Ajax the Lesser",
+    "to_name": "Ajax (son of Oileus)",
     "is_contested": false,
     "passage_ref": "17.256-17.287",
     "source_id": "homer-iliad"
@@ -35320,9 +35320,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Oïleus",
+    "from_name": "Oileus",
     "relation": "parent_of",
-    "to_name": "Ajax",
+    "to_name": "Ajax (son of Oileus)",
     "is_contested": false,
     "passage_ref": "23.473-23.513",
     "source_id": "homer-iliad"
@@ -35384,9 +35384,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Oïleus",
+    "from_name": "Oileus",
     "relation": "parent_of",
-    "to_name": "Ajax",
+    "to_name": "Ajax (son of Oileus)",
     "is_contested": false,
     "passage_ref": "23.753-23.796",
     "source_id": "homer-iliad"
@@ -40122,7 +40122,7 @@
   {
     "from_name": "Zeus",
     "relation": "successor_of",
-    "to_name": "Saturn",
+    "to_name": "Cronus",
     "is_contested": false,
     "passage_ref": "1.76-1.124",
     "source_id": "ovid-metamorphoses"
@@ -40602,7 +40602,7 @@
   {
     "from_name": "Hera",
     "relation": "child_of",
-    "to_name": "Saturn",
+    "to_name": "Cronus",
     "is_contested": false,
     "passage_ref": "2.508-2.541",
     "source_id": "ovid-metamorphoses"
@@ -41034,7 +41034,7 @@
   {
     "from_name": "Hera",
     "relation": "daughter_of",
-    "to_name": "Saturn",
+    "to_name": "Cronus",
     "is_contested": false,
     "passage_ref": "3.251-3.286",
     "source_id": "ovid-metamorphoses"
@@ -41512,7 +41512,7 @@
     "source_id": "ovid-metamorphoses"
   },
   {
-    "from_name": "Saturn",
+    "from_name": "Cronus",
     "relation": "parent_of",
     "to_name": "Hera",
     "is_contested": false,
@@ -41536,7 +41536,7 @@
     "source_id": "ovid-metamorphoses"
   },
   {
-    "from_name": "Saturn",
+    "from_name": "Cronus",
     "relation": "parent_of",
     "to_name": "Hera",
     "is_contested": false,
@@ -42410,7 +42410,7 @@
   {
     "from_name": "Hades",
     "relation": "child_of",
-    "to_name": "Saturn",
+    "to_name": "Cronus",
     "is_contested": false,
     "passage_ref": "5.409-5.437",
     "source_id": "ovid-metamorphoses"
@@ -42592,7 +42592,7 @@
     "source_id": "ovid-metamorphoses"
   },
   {
-    "from_name": "Saturn",
+    "from_name": "Cronus",
     "relation": "parent_of",
     "to_name": "Chiron",
     "is_contested": false,
@@ -44576,9 +44576,9 @@
     "source_id": "ovid-metamorphoses"
   },
   {
-    "from_name": "Saturn",
+    "from_name": "Cronus",
     "relation": "married_to",
-    "to_name": "Ops",
+    "to_name": "Rhea",
     "is_contested": false,
     "passage_ref": "9.487-9.516",
     "source_id": "ovid-metamorphoses"
@@ -46361,14 +46361,6 @@
   },
   {
     "from_name": "Ajax",
-    "relation": "killed_by",
-    "to_name": "Hector",
-    "is_contested": false,
-    "passage_ref": "13.82-13.127",
-    "source_id": "ovid-metamorphoses"
-  },
-  {
-    "from_name": "Ajax",
     "relation": "child_of",
     "to_name": "Telamon",
     "is_contested": false,
@@ -46565,14 +46557,6 @@
     "to_name": "Achilles",
     "is_contested": false,
     "passage_ref": "13.238-13.279",
-    "source_id": "ovid-metamorphoses"
-  },
-  {
-    "from_name": "Ajax",
-    "relation": "killed_by",
-    "to_name": "Odysseus",
-    "is_contested": false,
-    "passage_ref": "13.280-13.312",
     "source_id": "ovid-metamorphoses"
   },
   {
@@ -47192,7 +47176,7 @@
     "source_id": "ovid-metamorphoses"
   },
   {
-    "from_name": "Saturn",
+    "from_name": "Cronus",
     "relation": "parent_of",
     "to_name": "Picus",
     "is_contested": false,
@@ -47296,7 +47280,7 @@
     "source_id": "ovid-metamorphoses"
   },
   {
-    "from_name": "Ajax the Locrian",
+    "from_name": "Ajax (son of Oileus)",
     "relation": "punished_for",
     "to_name": "Cassandra",
     "is_contested": false,
@@ -47864,7 +47848,7 @@
     "source_id": "ovid-metamorphoses"
   },
   {
-    "from_name": "Saturn",
+    "from_name": "Cronus",
     "relation": "parent_of",
     "to_name": "Zeus",
     "is_contested": false,
@@ -51466,7 +51450,7 @@
   {
     "from_name": "Telamon",
     "relation": "parent_of",
-    "to_name": "Ajax son of Telamon",
+    "to_name": "Ajax",
     "is_contested": false,
     "passage_ref": "3.10.8-3.11.1",
     "source_id": "apollodorus-bibliotheca"
@@ -53960,9 +53944,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Poseidon",
+    "from_name": "Ajax (son of Oileus)",
     "relation": "killed_by",
-    "to_name": "Ajax",
+    "to_name": "Poseidon",
     "is_contested": false,
     "passage_ref": "E.6.5-E.6.13",
     "source_id": "apollodorus-bibliotheca"

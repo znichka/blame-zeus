@@ -1371,11 +1371,6 @@
   },
   {
     "check": "A6",
-    "subject": "candidates: Chiron <- Saturn",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
     "subject": "candidates: Chromius <- Chloris",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
@@ -1871,11 +1866,6 @@
   },
   {
     "check": "A6",
-    "subject": "candidates: Hades <- Saturn",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
     "subject": "candidates: Hades <- Tethys",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
@@ -2362,11 +2352,6 @@
   {
     "check": "A6",
     "subject": "candidates: Medesicaste <- Priam",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
-    "subject": "candidates: Medon <- Oïleus",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
   {
@@ -5261,11 +5246,6 @@
   },
   {
     "check": "A6",
-    "subject": "candidates: Ajax <- Oïleus",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
-  },
-  {
-    "check": "A6",
     "subject": "candidates: Amphius <- Selagus",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
   },
@@ -5532,7 +5512,7 @@
   {
     "check": "A6",
     "subject": "candidates: Apollo <- Hyperion",
-    "reason": "A6 triage (post-P4, DEV-119): the claim is TRUE but reaches us under a different name, so the rival is a naming artifact rather than a real second parent -- Ovid's Roman theonyms (Saturn for Cronus, 'Hyperion's Son' for Sol/Phoebus, whom Ovid identifies with Apollo). `Saturn` is currently a separate `other_god` entity rather than an alias of the `titan` Cronus, unlike the Jove/Jupiter and Juno aliases that DO exist. Waived here because the fix is an A1-class entity merge with its own migration, not an A6 promotion decision; recorded in DEV-119 as owed work."
+    "reason": "A6 triage (post-P4, DEV-119): the claim is TRUE but reaches us under a different name, so the rival is a naming artifact rather than a real second parent -- Ovid's Roman theonyms (Saturn for Cronus, 'Hyperion's Son' for Sol/Phoebus, whom Ovid identifies with Apollo). The parallel `Saturn` half of this finding was FIXED in the GAP-004/GAP-006 merge pass (DEV-121): `Saturn` is now an `entity_aliases` row pointing at `Cronus` (V20), so those rows no longer read as spurious second parents. This waiver survives for the `Hyperion` half only, which is the same shape and still unfixed: Ovid identifies Sol/Phoebus ('Hyperion's Son') with Apollo, and no alias records it. Fix is an A1-class entity merge, not an A6 promotion decision."
   },
   {
     "check": "A6",
@@ -5548,11 +5528,6 @@
     "check": "A6",
     "subject": "candidates: Hector <- Zeus",
     "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage, which contains NO parentage claim for this subject at all -- the same misattributed-passage shape F1 documented (DEV-110). Verified case by case: e.g. Achilles<-Zeus cites an Idomeneus battle scene, Diomedes<-Xuthus an Athamas/Ino passage, Zeus<-Styx and Zeus<-Pallas the Theogony's Oceanid roster. Correctly dropped; not promoted."
-  },
-  {
-    "check": "A6",
-    "subject": "candidates: Hera <- Saturn",
-    "reason": "A6 triage (post-P4, DEV-119): the claim is TRUE but reaches us under a different name, so the rival is a naming artifact rather than a real second parent -- Ovid's Roman theonyms (Saturn for Cronus, 'Hyperion's Son' for Sol/Phoebus, whom Ovid identifies with Apollo). `Saturn` is currently a separate `other_god` entity rather than an alias of the `titan` Cronus, unlike the Jove/Jupiter and Juno aliases that DO exist. Waived here because the fix is an A1-class entity merge with its own migration, not an A6 promotion decision; recorded in DEV-119 as owed work."
   },
   {
     "check": "A6",
@@ -5618,11 +5593,6 @@
     "check": "A6",
     "subject": "candidates: Zeus <- Pallas",
     "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage, which contains NO parentage claim for this subject at all -- the same misattributed-passage shape F1 documented (DEV-110). Verified case by case: e.g. Achilles<-Zeus cites an Idomeneus battle scene, Diomedes<-Xuthus an Athamas/Ino passage, Zeus<-Styx and Zeus<-Pallas the Theogony's Oceanid roster. Correctly dropped; not promoted."
-  },
-  {
-    "check": "A6",
-    "subject": "candidates: Zeus <- Saturn",
-    "reason": "A6 triage (post-P4, DEV-119): the claim is TRUE but reaches us under a different name, so the rival is a naming artifact rather than a real second parent -- Ovid's Roman theonyms (Saturn for Cronus, 'Hyperion's Son' for Sol/Phoebus, whom Ovid identifies with Apollo). `Saturn` is currently a separate `other_god` entity rather than an alias of the `titan` Cronus, unlike the Jove/Jupiter and Juno aliases that DO exist. Waived here because the fix is an A1-class entity merge with its own migration, not an A6 promotion decision; recorded in DEV-119 as owed work."
   },
   {
     "check": "A6",

@@ -11,8 +11,9 @@ gap deferred to Phase 5b.
 | **GAP-001** | Q9 cannot reach `Ouranos`/`Chaos` | Closed for everything P3 owned; root cause 3's promotion half (a′) open | P4 (a′), P5b (J4b, waived) |
 | **GAP-002** | 367 entities referenced by candidate relationships but absent from the confirmed set | **Partially resolved** — 5 of 7 original bucket-1 landed (DEV-096); `Arges`/`Steropes` corruption triaged and `Ares` recovered (DEV-098); A7 built and its 6 findings closed (DEV-099/DEV-100); **P4 Track H landed 12 more bucket-1 names + 3 translation-spelling aliases (DEV-108)**, unknown-name count 362→347; bucket 2 (namesake collisions) grew by 3 confirmed cases; long tail explicitly deferred with buckets/reasons | Stage P3b (partial), **P4 (DEV-108, this pass)**, P5 (residual long tail) |
 | **GAP-003** | DATA floor breach — Q6/Q7/Q8 all stable-fail | **Resolved** — all 3 root causes landed (DEV-094, DEV-095); DATA 100%, overall 94% | Stage P3b |
-| **GAP-004** | `Saturn` is a separate `other_god` entity instead of an alias of the `titan` `Cronus` | **Open** — found during A6 triage (DEV-119). Roman-name duplicate of the same figure, so Ovid's true claims (`Zeus <- Saturn`, `Hera <- Saturn`) read as spurious second parents and were waived rather than promoted. The parallel `Jove`/`Jupiter`→Zeus and `Juno`→Hera aliases already exist, making this an inconsistency, not a missing convention. Fix is an A1-class merge-and-alias (`entity_aliases` row + candidate-layer merge), not an A6 promotion decision | P5 (A1/J1 entity-merge backlog) |
-| **GAP-006** | `Ajax` is fragmented across **15 entities** for what are really two people, and A1 cannot see it | **Open** — found 2026-07-29 while verifying DEV-119's findings. Eight surface forms for Ajax the Greater (`Ajax`, `Ajax the Great`, `Great Ajax`, `Ajax son of Telamon`, `Ajax (Telamon's son)`, `Aias (son of Telamon)`, `Aias (Telamonian)`, `Telamonian Aias`/`Telamonian Ajax`) and six for the Lesser (`Ajax the Lesser`, `Ajax the Locrian`, `Ajax (Oilean)`, `Ajax son of Oileus`, `Aias (son of Oïleus)`, `Aias the less`) — proven co-referent, not namesakes, by their own edges: **`Telamon parent_of` six of them and `Oileus`/`Oïleus parent_of` four**. The father is duplicated too (`Oileus` vs `Oïleus`). Three compounding consequences, all verified: (a) evidence is split — bare `Ajax` holds 22 edges while ~15 more scatter across the other 14, which plausibly explains DEV-110's otherwise-odd finding that `Ajax` had *no* promotable `marriage`/`epithet` candidates; (b) it defeats **A1**, which flags **zero** of these pairs — its 88-point fuzzy threshold and transliteration pass cannot span `Great Ajax`↔`Telamonian Aias`; (c) it defeats **A11**, which cannot catch the reversed `Ajax the Lesser parent_of Oïleus` because the fragmented entity name never appears in the corpus text in the patronymic formula. Distinct from the documented, *intentional* `Name (descriptor)` convention (DEV-079/080/082) — this is that convention applied inconsistently in five competing styles, not a deliberate namesake split | P5 (A1/J1 entity-merge backlog, with GAP-004) |
+| **GAP-004** | `Saturn` is a separate `other_god` entity instead of an alias of the `titan` `Cronus` | **RESOLVED 2026-07-29 (DEV-121)** — merged with GAP-006 as one entity-merge pass. `Saturn` is now an `entity_aliases` row → `Cronus` (V20), alongside V14's `Jove`/`Jupiter`/`Juno` for the same translator; its 10 candidate rows were rewritten, so Ovid's `Zeus <- Saturn` / `Hera <- Saturn` now corroborate the existing parentage instead of reading as spurious second parents, and their A6 waivers are gone. Merging it also exposed a namesake collision the gap never mentioned — see the entry below | Closed |
+| **GAP-006** | `Ajax` is fragmented across **15 entities** for what are really two people, and A1 cannot see it | **Open** — found 2026-07-29 while verifying DEV-119's findings. Eight surface forms for Ajax the Greater (`Ajax`, `Ajax the Great`, `Great Ajax`, `Ajax son of Telamon`, `Ajax (Telamon's son)`, `Aias (son of Telamon)`, `Aias (Telamonian)`, `Telamonian Aias`/`Telamonian Ajax`) and six for the Lesser (`Ajax the Lesser`, `Ajax the Locrian`, `Ajax (Oilean)`, `Ajax son of Oileus`, `Aias (son of Oïleus)`, `Aias the less`) — proven co-referent, not namesakes, by their own edges: **`Telamon parent_of` six of them and `Oileus`/`Oïleus parent_of` four**. The father is duplicated too (`Oileus` vs `Oïleus`). Three compounding consequences, all verified: (a) evidence is split — bare `Ajax` holds 22 edges while ~15 more scatter across the other 14, which plausibly explains DEV-110's otherwise-odd finding that `Ajax` had *no* promotable `marriage`/`epithet` candidates; (b) it defeats **A1**, which flags **zero** of these pairs — its 88-point fuzzy threshold and transliteration pass cannot span `Great Ajax`↔`Telamonian Aias`; (c) it defeats **A11**, which cannot catch the reversed `Ajax the Lesser parent_of Oïleus` because the fragmented entity name never appears in the corpus text in the patronymic formula. Distinct from the documented, *intentional* `Name (descriptor)` convention (DEV-079/080/082) — this is that convention applied inconsistently in five competing styles, not a deliberate namesake split. **RESOLVED 2026-07-29 (DEV-121)** — see the entry below; it was **16** entities, not 15 | Closed |
+| **GAP-007** | `Zeus parent_of Ajax` is **seeded live** — ADR-020's co-mention rule reads the Homeric vocative formula *"Aias, sprung from Zeus, thou son of Telamon"* (Iliad 7.233) as one passage naming two co-parents | **Open** — found 2026-07-29 while verifying the GAP-004/GAP-006 merge (DEV-121). Not an extraction error: the text says it, and rules 1-3 of the discriminator cannot exclude it by construction (never flagged contested; `Telamon` *is* the winner and `Zeus` is in the pair). It is what rule 4's deny-list exists for, and that list still holds only `Io`. The `relationships` counterpart of the Homeric-formula misreads DEV-112 rejected behind the `variant_claims` review gate — but this table is seeded, not review-gated, so it reaches users. `Ajax` shows up in gold Q7's "children of Zeus" answer today | P5 (deny-list sweep) |
 | **GAP-005** | Extraction reads in-narrative **deception** as fact | **Open** — a NEW error shape found during A6 triage (DEV-119), distinct from every shape P4 catalogued: a character stating a *false* parentage while disguised. Aphrodite tells Anchises *"Otreus … is my father"* directly after *"know that I am no goddess"*; Hermes, disguised as a Myrmidon, names Polyctor. The cited passage genuinely says what was extracted — it is the speaker who is lying — so no passage-verification check can catch it, unlike the misattributed-passage and reversed-direction shapes. Both known instances are waived; unknown how many more exist | P5 (extraction-quality) |
 
 ---
@@ -825,3 +826,197 @@ genuine GAP-002 name in his own right, just not one Q7/Q8 needed).
 sighting, Stage 5), #DEV-048/#DEV-050 (the keyword-fix precedent), #DEV-090 (fixed Q7's `Heracles`
 half), #DEV-093 (homed), #DEV-094 (Q6 fixed), #DEV-095 (Q7/Q8 fixed); `docs/TODO2.md` Stage P3b;
 **GAP-002** (`Phineus` overlap, still open).
+
+---
+
+## GAP-004 + GAP-006 — the `Saturn`→`Cronus` and `Ajax` entity merges
+
+**Status:** BOTH RESOLVED 2026-07-29 (**DEV-121**), worked as **one pass** because both entries had
+independently concluded the fix was "an A1-class entity merge, belongs with the other one". Read the
+summary-table rows above for what each gap *was*; this section records how they closed and, more
+usefully, the three things the merge found that neither entry predicted.
+
+### What landed
+
+| | before | after |
+|---|---|---|
+| `Ajax` entities | **16** (see below — GAP-006 said 15) | **2** |
+| `Saturn` | separate `other_god` entity | `entity_aliases` row → `Cronus` |
+| confirmed entities | 2003 | **1989** |
+| seeded `relationships` (V11) | 3369 | **3364** |
+| live `entity_aliases` | 42 | **58** |
+
+Canonical names follow this project's own precedent (DEV-078/079/080/081/082) — the bare name stays
+with the more central, more-referenced figure, the namesake takes a `Name (descriptor)` form:
+**`Ajax`** = the Telamonian (49 of the 54 bare-name candidate rows are his) and
+**`Ajax (son of Oileus)`** = the Locrian, matching `Cecrops (son of Erechtheus)` /
+`Pandion (son of Cecrops)` / `Ilus (son of Dardanus)`.
+
+**Every one of the 73 cluster rows was assigned by reading its cited passage, not by its surface
+form.** That is what caught five bare-`Ajax` rows that are really the *Locrian* — Iliad 15.328
+("Medon … son of godlike Oïleus, and brother of Aias"), the two funeral-games rows at 23.473/23.753
+("swift Aias, son of Oïleus"), and Apollodorus E.6.6's shipwreck. Surface-form matching alone would
+have filed all five under the Telamonian.
+
+### The three findings the merge surfaced, which neither gap entry predicted
+
+1. **`Ops` is a namesake collision.** Rewriting `Saturn married_to Ops` mechanically would have
+   produced `Cronus married_to Ops` — where the *confirmed* `Ops` is the **male** Ops of the Odyssey,
+   Eurycleia's father ("Eurycleia, daughter of Ops, son of Pisenor"), not Ovid's Roman Ops. The row
+   was repointed to `Rhea`, who is who Ovid actually means. This is the DEV-096 `Arges`/`Steropes`
+   lesson repeating: **check the rows, not the name**, before any bulk rewrite.
+2. **`Oileus` is a namesake collision too.** `Oïleus killed_by Agamemnon` (Iliad 11.93) is Bienor's
+   *charioteer*, not the Locrian king — who is alive for another twelve books. Split off as
+   `Oileus (charioteer of Bienor)`.
+3. **There was a sixteenth Ajax-cluster duplicate, and this pass introduced a defect by missing it.**
+   `Oïleus` (with diaeresis) was *itself* a confirmed entity, not merely an unconfirmed surface form.
+   The initial sweep grepped ASCII `oile` and the diaeresis defeated it — the same non-ASCII blind
+   spot DEV-118 hit with `Athene`/`Athena`. It was caught by **A5** on the first post-merge audit
+   (*"'Oïleus' is both an entity_aliases.alias and an existing entities.name"*), i.e. by running the
+   **full** suite after the batch rather than only the checks that looked relevant — the DEV-108
+   `Helios` discipline catching a self-introduced duplicate for the second time. **A1 scores the pair
+   83.3, under its 88 threshold**, so A1 would never have surfaced it either.
+
+### Direction errors fixed along the way
+
+Six reversed edges, each verified against its own passage and fixed as a **swap, not a delete** (the
+DEV-118 rule — the kinship or kill is real and cited, only the direction was wrong):
+`Ajax the Lesser parent_of Oïleus` — the one GAP-006 predicted **A11 structurally cannot see**,
+because the fragmented name never appears in the corpus in the patronymic formula A11 keys on — plus
+five `killed_by` rows where Ajax is the *killer*: Satnius (14.440), Archelochus (14.463), Caletor
+(15.419), Laodamas (15.516), and Apollodorus E.6.6, where Poseidon kills Ajax rather than the
+reverse. Two further rows were dropped as unsupported by their own cited passage (the DEV-098 shape):
+`Ajax killed_by Hector` @ Ovid 13.82-13.127 and `Ajax killed_by Odysseus` @ 13.280-13.312 — the
+latter's claim is real in Ovid but sits at 13.386ff, and moving the ref would be inventing provenance.
+
+### Verification
+
+Full fix loop, not just the JSON edit: `seedgen --strict` → `reseed-local.sh` (two passes — the first
+is what surfaced the `Oïleus` defect above) → `python -m audit` → `runner --runs 3` → `compare.py`.
+Audit ends **PASS or WAIVED on every check except A3's 87 candidate-layer cycles** — identical to the
+pre-pass gate state; A5 PASS, A11 PASS, A1 unchanged at 41 waived pairs, live `parent_of` graph still
+acyclic. Eval **20/25 = 80%**, zero transport errors, `compare.py` **zero stable regressions, exit 0**
+(`evaluation/results/2026-07-29T13-06-08Z__e5e8ad9__gap004-gap006-entity-merge/`). Suites: ingestion
+344, `./gradlew :core-api:test` green.
+
+**Live behaviour, confirmed rather than inferred from row counts:** `Ajax (son of Oileus)` now holds
+one coherent 8-edge biography — father Oileus, brother Medon, kills Cleobulus and Satnius, drags
+Cassandra, drowned by Poseidon, buried by Thetis — where the same facts were previously scattered
+across six entities with the parentage pointing backwards. `GET /api/v1/conflicts/Telamonian%20Aias`
+resolves through the new alias and returns the Telamonian's claims.
+
+### New leads, recorded rather than worked
+
+- **A11 has no non-parentage sibling.** Five of the six direction errors here were `killed_by`, which
+  no audit check looks at; they were found only because a merge happened to walk those rows. A
+  `killed_by` direction check is the obvious A11 companion.
+- **`Ops parent_of Pisenor` is reversed** the same way (the Odyssey says Ops is the *son* of
+  Pisenor). Noticed while checking `Ops`, left unfixed as outside this pass.
+- **32 A6 waivers are stale for reasons predating this pass.** Measured, not assumed — A6 was re-run
+  against the pre-pass candidate files, which shows 50 stale before and confirms the 6 removed here
+  are exactly the ones this pass caused. The other 32 are a separate cleanup.
+
+**References:** `docs/DEVIATIONS.md` #DEV-121; `core-api/src/main/resources/db/migration/V20__add_entity_aliases_ajax_and_saturn.sql`;
+`ingestion/extraction/known_aliases.json`; `ingestion/extraction/output/entities_candidates_confirmed_v1.json`,
+`relationships_candidates_cleaned.json`; `ingestion/audit/duplicate_entities.py` (A1's 88 threshold),
+`ingestion/audit/integrity.py` (A5, which caught the self-introduced duplicate),
+`ingestion/audit/parentage_direction.py` (A11, and its recall limit); `docs/DEVIATIONS.md` #DEV-119
+(where both gaps were filed), #DEV-118 (the swap-not-delete rule), #DEV-108 (the `Helios` precedent),
+#DEV-096/#DEV-098 (check the rows, not the name).
+
+### Findings this pass did **not** fix
+
+Written up after the fact, when the pass was checked for unrecorded findings (the DEV-115/DEV-119
+discipline). Four things were found and none had been written down; the first is now **GAP-007**.
+
+1. **`Zeus parent_of Ajax` is live in the seeded graph — see GAP-007 below.** Not a dropped rival:
+   it is a seeded edge, and it is why gold **Q7** ("Which heroes are children of Zeus?") lists
+   `Ajax` alongside Heracles and Perseus.
+2. **GAP-006's own prediction about DEV-110 is disproved — and the real mechanism is more useful.**
+   GAP-006 argued the fragmentation "plausibly explains DEV-110's otherwise-odd finding that `Ajax`
+   had *no* promotable `marriage`/`epithet` candidates", since the evidence was split 22-vs-15
+   across the cluster. Measured after the merge: `Ajax` still has **zero** of either
+   (46 `parentage` + 17 `death` + 4 promoted `notable`, and nothing else). So splitting was never
+   the cause. The epithet material was never shaped as `epithet` *claims* at all — it was extracted
+   as **entity names** (`Telamonian Aias`, `Great Ajax`, `Aias the less`), which is exactly where
+   this pass has now put it: as `entity_aliases` rows. The evidence wasn't lost, it was mis-typed,
+   and de-fragmenting is what converts it into the right shape.
+3. **8 `Telamon | parentage | child of Ajax` candidates sit at `trust_tier=3`.** Telamon is Ajax's
+   *father*; this is F3's reversed-direction shape (DEV-114) in `variant_claims`. They are
+   unreviewed, so nothing reaches runtime, and they were left untouched — but they are more of the
+   same population, not a one-off.
+4. **A1's 88 threshold misses a measurable class, not just one pair.** `Oileus`/`Oïleus` scores
+   **83.3** and `Helios`/`Helius` (DEV-108) scores **83.3** — identically — with
+   `Diomed`/`Diomedes` (DEV-100) at **85.7**. Three independent, real duplicates clustered in
+   83-86, each caught after the fact by a *different* check (A5, A1-after-adding, A7). The pattern
+   argues for a **diacritic-folding pre-pass** rather than a threshold nudge: folding takes
+   `Oileus`/`Oïleus` to 100 without loosening anything else, whereas dropping the threshold to 83
+   would admit the long tail A1 already waives 41 pairs of.
+
+---
+
+## GAP-007 — `Zeus parent_of Ajax` is seeded live, from a Homeric vocative formula ADR-020 reads as joint parentage
+
+**Status:** **Open** — found 2026-07-29 while verifying the GAP-004/GAP-006 merge (DEV-121), not
+fixed in that pass. Wrong data currently being served.
+
+### Symptom
+
+```
+SELECT f.name FROM relationships r ... WHERE r.relation='parent_of' AND t.name='Ajax';
+  Telamon  [apollodorus-bibliotheca 3.12.7-3.13.4]
+  Telamon  [homer-iliad 6.1-6.50]
+  Telamon  [homer-odyssey 11.538-11.581]
+  Telamon  [ovid-metamorphoses 13.1-13.42]
+  Zeus     [homer-iliad 7.206-7.243]     <-- live, and wrong
+```
+
+`Ajax` therefore appears in the answer to gold **Q7** ("Which heroes are children of Zeus?")
+alongside Heracles and Perseus. Q7 still passes — its `required_keywords` are `Heracles`/`Perseus`
+— so this has been shipping unnoticed since before DEV-095 quoted that answer.
+
+### Root cause — this is **not** an extraction error
+
+The two candidate rows cite Iliad `7.233` and `9.643`, and both passages say exactly this:
+
+> "Aias, **sprung from Zeus**, thou **son of Telamon**, captain of the host…"
+
+A Homeric vocative formula: one real parent, one divine honorific, in a single line. The extractor
+recorded what the text says. What turns it into a seeded edge is **ADR-020's co-mention
+discriminator**: `Telamon` and `Zeus` share a `(source_id, passage_ref)`, so they qualify as a
+*co-mention pair*, and the pair contains the canonical winner (`Telamon`), so rule 2 keeps both.
+
+**None of the first three rules can catch this**, by construction:
+- **Rule 1 (contested-aware)** — the extractor never set `is_contested`; the source is not
+  presenting alternatives, it is being formulaic.
+- **Rule 2 (winner-anchored)** — `Telamon` *is* the winner and `Zeus` is in the pair, so anchoring
+  admits it rather than excluding it.
+- **Rule 3 (corroboration-ranked)** — only ranks among qualifying pairs; this is the only one.
+
+This is exactly what **rule 4, the hand-maintained deny-list, exists for** — and that list is still
+seeded with `Io` alone, as ADR-020 shipped it. So the fix is a deny-list entry, not a rule change:
+
+```
+(child='Ajax', pair={'Telamon','Zeus'}, reason='Homeric vocative formula "Aias, sprung from Zeus,
+ thou son of Telamon" (Iliad 7.233, 9.643) -- one parent + one honorific, not two co-parents')
+```
+
+### Why it deserves its own gap rather than a one-line fix in DEV-121's pass
+
+The mechanism generalises. **"X, sprung from Zeus"** and its relatives are standing Homeric
+formulae, so any hero addressed that way in the same line as a real parent is a candidate for the
+same false co-parent — this is the `relationships` counterpart of the Homeric-formula misreads
+**DEV-112 (F2)** caught and rejected behind the `variant_claims` review gate. The same structural
+argument DEV-118 made for direction errors applies here: `relationships` is **seeded, not
+review-gated**, so this class reaches users where the `variant_claims` half never did.
+
+The right next step is therefore a **sweep, not a single deny-list row**: enumerate every child
+whose ADR-020 co-mention pair contains a god co-named by a formula, and deny-list the ones that
+verify. Cheapest detector: for each multi-parent child in the seeded graph, re-read the co-mention
+passage and check whether the divine parent appears only inside an epithet construction.
+
+**References:** `docs/adr/adr-020-joint-parentage-multi-edge.md` (the four-part rule and the
+deny-list); `ingestion/seedgen/canonical_edge.py` (`build_comention_pairs`, `load_deny_list`);
+`ingestion/corpus/homer_iliad_murray1924.txt` `[233]`, `[643]`; `evaluation/gold-questions.json`
+(Q7); `docs/DEVIATIONS.md` #DEV-121 (found here), #DEV-112 (the `variant_claims` half of the same
+formula class), #DEV-118 (seeded-vs-review-gated argument).

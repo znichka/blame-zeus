@@ -34608,7 +34608,7 @@
     "trust_tier": 3
   },
   {
-    "subject_name": "Ajax son of Telamon",
+    "subject_name": "Ajax",
     "claim_type": "parentage",
     "claim_value": "child of Telamon",
     "source_id": "apollodorus-bibliotheca",
@@ -34616,7 +34616,7 @@
     "trust_tier": 3
   },
   {
-    "subject_name": "Ajax son of Telamon",
+    "subject_name": "Ajax",
     "claim_type": "parentage",
     "claim_value": "son of Telamon",
     "source_id": "homer-iliad",
