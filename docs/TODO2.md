@@ -397,7 +397,10 @@ overall ≥75% sustained across a 3-run eval. *(The loop continues past this gat
 > cycles moved only 92 → 87, so reversed direction explains **~5%** of them; the remaining 87 need
 > the separate name-collision explanation. A6 got *larger*, not smaller (unwaived 49 → 76), since
 > correcting 72 directions creates contested groups no existing waiver covers. Treat A3 and A6 as
-> their own investigations, not as fallout from this one. **Plus (new, DEV-117)**: Q21's
+> their own investigations, not as fallout from this one. **A6 is now CLOSED (DEV-119)**: all 76
+> triaged per-row into 7 truthful reasons, 3 genuine variant traditions promoted (Agamemnon/
+> Menelaus ← Plisthenes, Patroclus ← Polymele), `A6: WAIVED`, eval 84% with zero regressions.
+> **A3's 87 cycles are now the only un-waived audit check.** **Plus (new, DEV-117)**: Q21's
 > cross-session RAG-synthesis instability — the chat model now volunteers cited parentage info
 > alongside a location refusal where it previously gave a clean citation-free refusal.
 >

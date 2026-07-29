@@ -5248,5 +5248,385 @@
     "check": "A10",
     "subject": "groups_total",
     "reason": "F0c (Stage P4 Track F0, DEV-109): Track G's V18 migration (DEV-107) intentionally collapsed the 7-member notable* claim_type family into one canonical, which legitimately moved A10's canonical-grouping total from the frozen 835-group baseline to 798 -- a real, documented, one-time structural change, not a regression. The baseline is being re-anchored to the new figure in the same change (group_inventory_baseline.json), so this specific finding should not recur; if it does, that is a genuine new finding, not a repeat of this one."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Admete <- Oceanus",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Admete <- Tethys",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Ajax <- Oïleus",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Amphius <- Selagus",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Antiochus <- Heracles",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Aphareus <- Caletor",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Apisaon <- Phausius",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Asius <- Hyrtacus",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Astynous <- Protiaon",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Capaneus <- Sthenelaus",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Capaneus <- Sthenelaus",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Elephenor <- Chalcodon",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Elephenor <- Chalcodon",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Eurypylus <- Telephus",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Glaucus <- Hippolochus",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Glaucus <- Hippolochus",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Hypsenor <- Hippasus",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Ilioneus <- Amphion",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Ilioneus <- Niobe",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Ilus <- Mermerus",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Laodamas <- Alcinous",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Laodocus <- Antenor",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Lycurgus <- Dryas",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Lycurgus <- Dryas",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Oxylus <- Ares",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Oxylus <- Protogenia (daughter of Calydon)",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Phrontis <- Onetor",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Promachus <- Alegenor",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Tlepolemus <- Damastor",
+    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109), re-verified at A6 triage (DEV-119): GAP-001 Root cause 3's promotion backlog. This row's child is genuinely outside the frozen top-20 A8 prominence list -- checked against the live ranking rather than assumed, which is the error DEV-114 caught in the original blanket application of this reason. Explicitly deferred, not silently dropped, and not permanent: each future batch narrows this set."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Agamemnon <- Atreus",
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Agamemnon <- Atreus",
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Agamemnon <- Atreus",
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Apollo <- Leto",
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Apollo <- Leto",
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Apollo <- Leto",
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Apollo <- Leto",
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Hector <- Hecabe",
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Menelaus <- Atreus",
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Menelaus <- Atreus",
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Menelaus <- Atreus",
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Odysseus <- Laërtes",
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Patroclus <- Periopis",
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Patroclus <- Sthenele",
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Priam <- Dardanus",
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Agamemnon <- Achilles",
+    "reason": "A6 triage (post-P4, DEV-119): this exact (child, parent) claim was already reviewed against its cited passage and REJECTED as an extraction error during Stage P4's batches, and carries trust_tier=2 in variant_claims_candidates.json (the DEV-113 rejected tier). Dropping it from `relationships` is consistent with that verdict, not a second unreviewed loss."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Diomedes <- Phorbas",
+    "reason": "A6 triage (post-P4, DEV-119): this exact (child, parent) claim was already reviewed against its cited passage and REJECTED as an extraction error during Stage P4's batches, and carries trust_tier=2 in variant_claims_candidates.json (the DEV-113 rejected tier). Dropping it from `relationships` is consistent with that verdict, not a second unreviewed loss."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Patroclus <- Zeus",
+    "reason": "A6 triage (post-P4, DEV-119): this exact (child, parent) claim was already reviewed against its cited passage and REJECTED as an extraction error during Stage P4's batches, and carries trust_tier=2 in variant_claims_candidates.json (the DEV-113 rejected tier). Dropping it from `relationships` is consistent with that verdict, not a second unreviewed loss."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Priam <- Iasus",
+    "reason": "A6 triage (post-P4, DEV-119): this exact (child, parent) claim was already reviewed against its cited passage and REJECTED as an extraction error during Stage P4's batches, and carries trust_tier=2 in variant_claims_candidates.json (the DEV-113 rejected tier). Dropping it from `relationships` is consistent with that verdict, not a second unreviewed loss."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Priam <- Nestor (son of Priam)",
+    "reason": "A6 triage (post-P4, DEV-119): this exact (child, parent) claim was already reviewed against its cited passage and REJECTED as an extraction error during Stage P4's batches, and carries trust_tier=2 in variant_claims_candidates.json (the DEV-113 rejected tier). Dropping it from `relationships` is consistent with that verdict, not a second unreviewed loss."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Telemachus <- Athena",
+    "reason": "A6 triage (post-P4, DEV-119): this exact (child, parent) claim was already reviewed against its cited passage and REJECTED as an extraction error during Stage P4's batches, and carries trust_tier=2 in variant_claims_candidates.json (the DEV-113 rejected tier). Dropping it from `relationships` is consistent with that verdict, not a second unreviewed loss."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Telemachus <- Zeus",
+    "reason": "A6 triage (post-P4, DEV-119): this exact (child, parent) claim was already reviewed against its cited passage and REJECTED as an extraction error during Stage P4's batches, and carries trust_tier=2 in variant_claims_candidates.json (the DEV-113 rejected tier). Dropping it from `relationships` is consistent with that verdict, not a second unreviewed loss."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Achilles <- Aeacus",
+    "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage, which contains NO parentage claim for this subject at all -- the same misattributed-passage shape F1 documented (DEV-110). Verified case by case: e.g. Achilles<-Zeus cites an Idomeneus battle scene, Diomedes<-Xuthus an Athamas/Ino passage, Zeus<-Styx and Zeus<-Pallas the Theogony's Oceanid roster. Correctly dropped; not promoted."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Achilles <- Aeacus",
+    "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage, which contains NO parentage claim for this subject at all -- the same misattributed-passage shape F1 documented (DEV-110). Verified case by case: e.g. Achilles<-Zeus cites an Idomeneus battle scene, Diomedes<-Xuthus an Athamas/Ino passage, Zeus<-Styx and Zeus<-Pallas the Theogony's Oceanid roster. Correctly dropped; not promoted."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Achilles <- Zeus",
+    "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage, which contains NO parentage claim for this subject at all -- the same misattributed-passage shape F1 documented (DEV-110). Verified case by case: e.g. Achilles<-Zeus cites an Idomeneus battle scene, Diomedes<-Xuthus an Athamas/Ino passage, Zeus<-Styx and Zeus<-Pallas the Theogony's Oceanid roster. Correctly dropped; not promoted."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Agamemnon <- Plisthenes",
+    "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage and found to be a GENUINE variant tradition, not an extraction error -- and promoted to variant_claims (trust_tier=1) as part of that triage. The relationships drop is therefore correct and lossless by design: ADR-007/CLAUDE.md keep ONE canonical edge in `relationships` and put the contradiction in `variant_claims`, which is where this rival now lives and where the app surfaces it."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Aphrodite <- Otreus",
+    "reason": "A6 triage (post-P4, DEV-119): a NEW extraction-error shape, not previously documented (distinct from F1's misattributed passages, F2's Homeric formulae, F3's reversed direction) -- a character stating a FALSE parentage while disguised, which the extractor read as a factual claim. Aphrodite, posing as a mortal to Anchises, says 'Otreus of famous name is my father' immediately after 'know that I am no goddess'; Hermes, disguised as a Myrmidon to Priam, names Polyctor as his father. Both are lies inside the narrative, verified in the cited passage. Correctly dropped."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Apollo <- Hyperion",
+    "reason": "A6 triage (post-P4, DEV-119): the claim is TRUE but reaches us under a different name, so the rival is a naming artifact rather than a real second parent -- Ovid's Roman theonyms (Saturn for Cronus, 'Hyperion's Son' for Sol/Phoebus, whom Ovid identifies with Apollo). `Saturn` is currently a separate `other_god` entity rather than an alias of the `titan` Cronus, unlike the Jove/Jupiter and Juno aliases that DO exist. Waived here because the fix is an A1-class entity merge with its own migration, not an A6 promotion decision; recorded in DEV-119 as owed work."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Diomedes <- Xuthus",
+    "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage, which contains NO parentage claim for this subject at all -- the same misattributed-passage shape F1 documented (DEV-110). Verified case by case: e.g. Achilles<-Zeus cites an Idomeneus battle scene, Diomedes<-Xuthus an Athamas/Ino passage, Zeus<-Styx and Zeus<-Pallas the Theogony's Oceanid roster. Correctly dropped; not promoted."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Diomedes <- Zeus",
+    "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage, which contains NO parentage claim for this subject at all -- the same misattributed-passage shape F1 documented (DEV-110). Verified case by case: e.g. Achilles<-Zeus cites an Idomeneus battle scene, Diomedes<-Xuthus an Athamas/Ino passage, Zeus<-Styx and Zeus<-Pallas the Theogony's Oceanid roster. Correctly dropped; not promoted."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Hector <- Zeus",
+    "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage, which contains NO parentage claim for this subject at all -- the same misattributed-passage shape F1 documented (DEV-110). Verified case by case: e.g. Achilles<-Zeus cites an Idomeneus battle scene, Diomedes<-Xuthus an Athamas/Ino passage, Zeus<-Styx and Zeus<-Pallas the Theogony's Oceanid roster. Correctly dropped; not promoted."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Hera <- Saturn",
+    "reason": "A6 triage (post-P4, DEV-119): the claim is TRUE but reaches us under a different name, so the rival is a naming artifact rather than a real second parent -- Ovid's Roman theonyms (Saturn for Cronus, 'Hyperion's Son' for Sol/Phoebus, whom Ovid identifies with Apollo). `Saturn` is currently a separate `other_god` entity rather than an alias of the `titan` Cronus, unlike the Jove/Jupiter and Juno aliases that DO exist. Waived here because the fix is an A1-class entity merge with its own migration, not an A6 promotion decision; recorded in DEV-119 as owed work."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Heracles <- Amphictyon",
+    "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage, which contains NO parentage claim for this subject at all -- the same misattributed-passage shape F1 documented (DEV-110). Verified case by case: e.g. Achilles<-Zeus cites an Idomeneus battle scene, Diomedes<-Xuthus an Athamas/Ino passage, Zeus<-Styx and Zeus<-Pallas the Theogony's Oceanid roster. Correctly dropped; not promoted."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Heracles <- Amphictyon",
+    "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage, which contains NO parentage claim for this subject at all -- the same misattributed-passage shape F1 documented (DEV-110). Verified case by case: e.g. Achilles<-Zeus cites an Idomeneus battle scene, Diomedes<-Xuthus an Athamas/Ino passage, Zeus<-Styx and Zeus<-Pallas the Theogony's Oceanid roster. Correctly dropped; not promoted."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Hermes <- Eudorus",
+    "reason": "A6 triage (post-P4, DEV-119): reversed direction -- the named 'parent' is in fact this subject's CHILD (Eudorus is Hermes' son by Polymele, Iliad 16; Pisistratus is Nestor's son, Odyssey 3). Same bug class as DEV-118's A11, but invisible to A11's patronymic detector because Homer phrases these as 'bare to Hermes' rather than the 'X, son of Y' formula A11 keys on -- worth noting as A11's recall limit. Correctly dropped."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Hermes <- Polyctor",
+    "reason": "A6 triage (post-P4, DEV-119): a NEW extraction-error shape, not previously documented (distinct from F1's misattributed passages, F2's Homeric formulae, F3's reversed direction) -- a character stating a FALSE parentage while disguised, which the extractor read as a factual claim. Aphrodite, posing as a mortal to Anchises, says 'Otreus of famous name is my father' immediately after 'know that I am no goddess'; Hermes, disguised as a Myrmidon to Priam, names Polyctor as his father. Both are lies inside the narrative, verified in the cited passage. Correctly dropped."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Menelaus <- Plisthenes",
+    "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage and found to be a GENUINE variant tradition, not an extraction error -- and promoted to variant_claims (trust_tier=1) as part of that triage. The relationships drop is therefore correct and lossless by design: ADR-007/CLAUDE.md keep ONE canonical edge in `relationships` and put the contradiction in `variant_claims`, which is where this rival now lives and where the app surfaces it."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Nestor <- Pisistratus",
+    "reason": "A6 triage (post-P4, DEV-119): reversed direction -- the named 'parent' is in fact this subject's CHILD (Eudorus is Hermes' son by Polymele, Iliad 16; Pisistratus is Nestor's son, Odyssey 3). Same bug class as DEV-118's A11, but invisible to A11's patronymic detector because Homer phrases these as 'bare to Hermes' rather than the 'X, son of Y' formula A11 keys on -- worth noting as A11's recall limit. Correctly dropped."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Nestor <- Priam",
+    "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage, which contains NO parentage claim for this subject at all -- the same misattributed-passage shape F1 documented (DEV-110). Verified case by case: e.g. Achilles<-Zeus cites an Idomeneus battle scene, Diomedes<-Xuthus an Athamas/Ino passage, Zeus<-Styx and Zeus<-Pallas the Theogony's Oceanid roster. Correctly dropped; not promoted."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Odysseus <- Zeus",
+    "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage, which contains NO parentage claim for this subject at all -- the same misattributed-passage shape F1 documented (DEV-110). Verified case by case: e.g. Achilles<-Zeus cites an Idomeneus battle scene, Diomedes<-Xuthus an Athamas/Ino passage, Zeus<-Styx and Zeus<-Pallas the Theogony's Oceanid roster. Correctly dropped; not promoted."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Odysseus <- Zeus",
+    "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage, which contains NO parentage claim for this subject at all -- the same misattributed-passage shape F1 documented (DEV-110). Verified case by case: e.g. Achilles<-Zeus cites an Idomeneus battle scene, Diomedes<-Xuthus an Athamas/Ino passage, Zeus<-Styx and Zeus<-Pallas the Theogony's Oceanid roster. Correctly dropped; not promoted."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Patroclus <- Polymele",
+    "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage and found to be a GENUINE variant tradition, not an extraction error -- and promoted to variant_claims (trust_tier=1) as part of that triage. The relationships drop is therefore correct and lossless by design: ADR-007/CLAUDE.md keep ONE canonical edge in `relationships` and put the contradiction in `variant_claims`, which is where this rival now lives and where the app surfaces it."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Telemachus <- Eurymachus",
+    "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage, which contains NO parentage claim for this subject at all -- the same misattributed-passage shape F1 documented (DEV-110). Verified case by case: e.g. Achilles<-Zeus cites an Idomeneus battle scene, Diomedes<-Xuthus an Athamas/Ino passage, Zeus<-Styx and Zeus<-Pallas the Theogony's Oceanid roster. Correctly dropped; not promoted."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Zeus <- Hades",
+    "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage, which contains NO parentage claim for this subject at all -- the same misattributed-passage shape F1 documented (DEV-110). Verified case by case: e.g. Achilles<-Zeus cites an Idomeneus battle scene, Diomedes<-Xuthus an Athamas/Ino passage, Zeus<-Styx and Zeus<-Pallas the Theogony's Oceanid roster. Correctly dropped; not promoted."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Zeus <- Pallas",
+    "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage, which contains NO parentage claim for this subject at all -- the same misattributed-passage shape F1 documented (DEV-110). Verified case by case: e.g. Achilles<-Zeus cites an Idomeneus battle scene, Diomedes<-Xuthus an Athamas/Ino passage, Zeus<-Styx and Zeus<-Pallas the Theogony's Oceanid roster. Correctly dropped; not promoted."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Zeus <- Saturn",
+    "reason": "A6 triage (post-P4, DEV-119): the claim is TRUE but reaches us under a different name, so the rival is a naming artifact rather than a real second parent -- Ovid's Roman theonyms (Saturn for Cronus, 'Hyperion's Son' for Sol/Phoebus, whom Ovid identifies with Apollo). `Saturn` is currently a separate `other_god` entity rather than an alias of the `titan` Cronus, unlike the Jove/Jupiter and Juno aliases that DO exist. Waived here because the fix is an A1-class entity merge with its own migration, not an A6 promotion decision; recorded in DEV-119 as owed work."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Zeus <- Styx",
+    "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage, which contains NO parentage claim for this subject at all -- the same misattributed-passage shape F1 documented (DEV-110). Verified case by case: e.g. Achilles<-Zeus cites an Idomeneus battle scene, Diomedes<-Xuthus an Athamas/Ino passage, Zeus<-Styx and Zeus<-Pallas the Theogony's Oceanid roster. Correctly dropped; not promoted."
   }
 ]
