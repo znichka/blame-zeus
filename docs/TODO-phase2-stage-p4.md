@@ -563,23 +563,21 @@ taken; 16/17 are reserved for the REFUSAL pair and must use those numbers).
       *"Where is Achilles from?"* → `expected_route: RAG`, with `forbidden_patterns` catching a
       fabricated citation. Location is not in the schema, so this asserts the router does not force it
       into SQL.
-- [ ] **E6** — **Floors** in `evaluation/eval-config.json`: flip `REFUSAL` off `null` once E1/E2 land
+- [x] **E6** — **Floors** in `evaluation/eval-config.json`: flip `REFUSAL` off `null` once E1/E2 land
       (2 questions — pick the floor deliberately and justify it in the DEV entry; ADR-010 mandates
       that floors exist, not specific numbers), and raise `CONFLICT` as the category grows past 4.
       Never lower a floor to make a run pass — that is the keyword-tuning anti-pattern in another
       costume.
       **First half DONE at F1 (DEV-110): `REFUSAL` is off `null` at 0.5** (4 questions, all passing).
-      **Second half GENUINELY OPEN — and its own trigger has now fired** (found at Track J's
-      verification pass, 2026-07-28, DEV-115). F2 deferred the raise with a written reason —
-      *"CONFLICT deliberately left at 0.5 (5 questions — raising to 0.6 would be cosmetic at this
-      count, **revisit at 6+**)"* — and the category has since grown to **7** (Q13, Q15, Q18, Q19,
-      Q22, Q24, and one more), past both this item's "grows past 4" and F2's own "6+". The floor is
-      still 0.5. **Not raised here on purpose**: changing an eval gate is a judgement call and a
-      scored-behaviour change, not something a documentation track should do silently — and doing it
-      after the closing eval has already run would mean the recorded 88% was measured against a
-      different gate than the one left in the file. Low risk whenever it is done: CONFLICT scored
-      **7/7 = 100%** in F3's run, so 0.6 or 0.7 would pass with room. **Owner: the next batch (F4),
-      which re-runs the eval anyway.**
+      **Second half DONE at F4 (DEV-117), 2026-07-29**: `CONFLICT` raised **0.5 → 0.6**, chosen as
+      the smaller of the two values the closure banner flagged safe rather than the most aggressive
+      one (picking 0.7 for headroom alone would be the anti-pattern this item warns against).
+      Verified against a live 3-run eval: CONFLICT 7/7 = 100% ≥ 0.6, overall 84% ≥ 75%, zero floor
+      breaches. **Re-running the eval to verify this surfaced an unrelated finding**, recorded not
+      chased per DEV-117: Q21 (REFUSAL) flipped stable-pass → stable-fail against F3's baseline —
+      chat-model sampling variance in the RAG/synthesis step (the model now volunteers cited
+      parentage info alongside the location refusal), not caused by this floor change and not fixed
+      by this item. Carried forward alongside A3/A6/the reversed-parentage bug.
 - [x] **E7** — Per later batch: **1–3 questions targeting the newly promoted data**, keywords
       **live-verified against a real answer** before commit (DEV-048/050 — a static corpus grep was
       wrong three times in Stage 6). Each lands in **the same commit** as the batch it measures.

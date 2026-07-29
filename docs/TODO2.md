@@ -371,18 +371,19 @@ overall ≥75% sustained across a 3-run eval. *(The loop continues past this gat
 > Logged: **DEV-102 … DEV-115** (DEV-106 is a deliberately-unclaimed number, not a lost entry —
 > Track E's items land inside the batch that carries them, so its record is in DEV-110/112/114).
 >
-> **One sub-item of the checklist's finer-grained definition-of-done is *not* met**, found during
-> Track J's verification and recorded rather than glossed: the **CONFLICT floor was never raised**
-> as its category grew from 5 to **7** questions, past its own "revisit at 6+" deferral — it is
-> still 0.5. This stage's "Done when" above asks only that floors be *enforced*, which they are
-> (all three exist and all three passed), so the closure stands; but the raise is now owed and is
-> handed to **F4**, which re-runs the eval anyway. CONFLICT scored 7/7 = 100%, so it is not at risk.
+> **One sub-item of the checklist's finer-grained definition-of-done was *not* met** at close, found
+> during Track J's verification and recorded rather than glossed: the **CONFLICT floor was never
+> raised** as its category grew from 5 to **7** questions, past its own "revisit at 6+" deferral.
+> **Closed at F4 (DEV-117), 2026-07-29**: raised 0.5 → 0.6, verified live (CONFLICT 7/7 = 100%,
+> overall 84% ≥ 75%, zero floor breaches). That same re-verification run surfaced a new, unrelated
+> finding — Q21 (REFUSAL) regressed stable-pass → stable-fail on chat-model sampling variance, not
+> the floor change — logged and carried forward rather than chased inline (DEV-117).
 >
 > Stage total: `variant_claims` 44 → **293** rows, claim_types 2 → **8**, top-20 subject coverage
 > 3/20 → **20/20**, gold set 16 → **25**, overall 81% → **88%** (peaked at 94% on F0d's baseline,
 > before the gold set nearly doubled — the later runs answer half again as many questions).
 >
-> **Carried forward, deliberately and in writing** (neither is a P4 gate, both are real): A3's
+> **Carried forward, deliberately and in writing** (none is a P4 gate, all are real): A3's
 > **92** candidate-layer `parent_of` cycles, left unwaived by F0c's explicit choice since a cycle is
 > a near-certain bug rather than reviewed residue; and **40** A6 dropped-parent findings whose
 > children *are* top-20 but which F0c's waiver text describes inaccurately — found in F3 and
@@ -390,7 +391,9 @@ overall ≥75% sustained across a 3-run eval. *(The loop continues past this gat
 > extraction bug** (89 rows rejected; "`X`, son of `Y`" read backwards as "`Y` is the child of
 > `X`") — rejected in `variant_claims`, but the same candidate rows feed `relationships`, so the
 > `parent_of` edges deserve the same check. These three are the same shape of problem and are
-> plausibly one pass, not three.
+> plausibly one pass, not three. **Plus (new, DEV-117)**: Q21's cross-session RAG-synthesis
+> instability — the chat model now volunteers cited parentage info alongside a location refusal
+> where it previously gave a clean citation-free refusal to the identical question/data.
 >
 > **Next: Stage P5** — new data types (numeric per ADR-009, myths, geography/epithets) and
 > systematic gap discovery. The P4 loop itself continues past this gate (F4+).

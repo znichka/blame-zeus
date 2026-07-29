@@ -7,7 +7,7 @@
   "overall_target": 0.75,
 
   "category_floors": {
-    "CONFLICT": 0.5,
+    "CONFLICT": 0.6,
     "DATA": 0.5,
     "REFUSAL": 0.5
   },
