@@ -2,9 +2,12 @@ import os
 from unittest.mock import MagicMock, patch
 
 # Module-level instructor client requires these at import time (matches
-# pipeline/embedding_pipeline.py's OPENAI_API_KEY pattern).
+# pipeline/embedding_pipeline.py's OPENAI_API_KEY pattern). Both are placeholders
+# for the import to succeed, never values a test asserts on — EXTRACTION_MODEL is
+# owned by the environment (`.env` sets it), so a test that pins a literal here
+# passes bare and fails once `.env` is sourced.
 os.environ.setdefault("ANTHROPIC_API_KEY", "test-key")
-os.environ.setdefault("EXTRACTION_MODEL", "claude-opus-4-8")
+os.environ.setdefault("EXTRACTION_MODEL", "test-extraction-model")
 
 import extraction.claim_extractor as ce
 from extraction.schema import ExtractedFacts
@@ -16,14 +19,18 @@ def test_source_hints_cover_every_registered_source():
     assert registry_ids == set(ce.SOURCE_HINTS.keys())
 
 
-def test_extract_facts_passes_model_and_response_schema():
+def test_extract_facts_passes_model_and_response_schema(monkeypatch):
+    # Pin the model to a sentinel rather than asserting whatever EXTRACTION_MODEL
+    # happens to hold: what's under test is that the configured value reaches the
+    # `model` kwarg, not which model ADR-008 currently names.
+    monkeypatch.setattr(ce, "EXTRACTION_MODEL", "sentinel-extraction-model")
     expected = ExtractedFacts()
     with patch.object(ce.client.chat.completions, "create", return_value=expected) as create:
         result = ce.extract_facts("Zeus was the father of Athena.", "hesiod-theogony")
 
     assert result is expected
     kwargs = create.call_args.kwargs
-    assert kwargs["model"] == "claude-opus-4-8"
+    assert kwargs["model"] == "sentinel-extraction-model"
     assert kwargs["response_model"] is ExtractedFacts
     assert kwargs["messages"] == [{"role": "user", "content": "Zeus was the father of Athena."}]
 
