@@ -84,7 +84,7 @@ def test_warn_near_duplicate_claim_types_groups_by_subject():
         _claim("Heracles", "notable_claim", "killed the Nemean lion", "apollodorus-bibliotheca"),
         _claim("Heracles", "notable claim", "killed the Nemean lion", "hesiod-theogony"),
     ]
-    warnings = warn_near_duplicate_claim_types(claims)
+    warnings = warn_near_duplicate_claim_types(claims, ALIAS_MAP)
     assert len(warnings) == 1
     assert "heracles" in warnings[0]
 
@@ -94,4 +94,16 @@ def test_warn_near_duplicate_claim_types_no_warning_for_identical_types():
         _claim("Heracles", "notable_claim", "a", "s1"),
         _claim("Heracles", "notable_claim", "b", "s2"),
     ]
-    assert warn_near_duplicate_claim_types(claims) == []
+    assert warn_near_duplicate_claim_types(claims, ALIAS_MAP) == []
+
+
+def test_warn_near_duplicate_claim_types_no_warning_when_alias_map_already_unifies():
+    # Regression for the stale-warning bug (DEV-115 finding (1)): once claim_type_aliases
+    # maps every surface form to the same canonical value, this is no longer "near-duplicate,
+    # needs a migration" -- it's already resolved and must stay silent.
+    claims = [
+        _claim("Heracles", "notable_claim", "killed the Nemean lion", "apollodorus-bibliotheca"),
+        _claim("Heracles", "notable claim", "killed the Nemean lion", "hesiod-theogony"),
+    ]
+    alias_map = {"notable_claim": "notable_claim", "notable claim": "notable_claim"}
+    assert warn_near_duplicate_claim_types(claims, alias_map) == []

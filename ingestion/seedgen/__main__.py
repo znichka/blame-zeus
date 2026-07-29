@@ -126,7 +126,7 @@ def main() -> None:
     if args.strict and floor_warnings:
         raise SystemExit(f"{len(floor_warnings)} floor conflict(s) missing -- see warnings above")
 
-    near_dup_warnings = variant_claims_gen.warn_near_duplicate_claim_types(variant_claims)
+    near_dup_warnings = variant_claims_gen.warn_near_duplicate_claim_types(variant_claims, alias_map)
     for w in near_dup_warnings[:20]:
         print(f"[WARN] {w}", flush=True)
     if len(near_dup_warnings) > 20:

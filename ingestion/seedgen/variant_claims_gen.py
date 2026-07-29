@@ -82,13 +82,15 @@ def _near_dup_key(claim_type: str) -> str:
     return claim_type.strip().lower().replace("_", "").replace(" ", "")
 
 
-def warn_near_duplicate_claim_types(variant_claims: list[dict]) -> list[str]:
+def warn_near_duplicate_claim_types(variant_claims: list[dict], alias_map: dict[str, str]) -> list[str]:
     """Diagnostic only, does not alter output: flags claim_type strings that collapse
     to the same key after stripping separators/case but aren't identical, grouped per
-    subject -- signals a likely missing claim_type_aliases row (e.g. the observed
-    notable_claim/notable/notable_deed/notable act tail) that a developer should
+    subject -- signals a likely missing claim_type_aliases row that a developer should
     resolve via a follow-up migration before finalizing V12, not something this
-    generator auto-fixes."""
+    generator auto-fixes. Only fires when alias_map doesn't already unify the group
+    (unlike build_variant_claim_rows/check_floor_conflicts, this compared raw surface
+    forms and kept re-flagging groups claim_type_aliases had already resolved --
+    e.g. the notable_claim/notable/notable_deed/notable act tail, stale after V18)."""
     by_subject: dict[str, dict[str, set[str]]] = defaultdict(lambda: defaultdict(set))
     for c in variant_claims:
         subject = c["subject_name"].strip().lower()
@@ -97,7 +99,7 @@ def warn_near_duplicate_claim_types(variant_claims: list[dict]) -> list[str]:
     warnings = []
     for subject, groups in sorted(by_subject.items()):
         for variants in groups.values():
-            if len(variants) > 1:
+            if len(variants) > 1 and len({normalize(alias_map, v) for v in variants}) > 1:
                 warnings.append(f"near-duplicate claim_type for {subject!r}: {sorted(variants)}")
     return warnings
 
