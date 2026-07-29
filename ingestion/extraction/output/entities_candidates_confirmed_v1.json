@@ -13921,5 +13921,12 @@
     "generation": null,
     "domain": null,
     "subtype": "charioteer"
+  },
+  {
+    "name": "Iphitus (son of Eurytus)",
+    "type": "hero",
+    "generation": null,
+    "domain": null,
+    "subtype": null
   }
 ]

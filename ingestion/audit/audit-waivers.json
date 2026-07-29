@@ -5448,5 +5448,10 @@
     "check": "A6",
     "subject": "candidates: Clitus <- Pisenor",
     "reason": "DEV-122: the rival is real and correctly extracted, but the CHILD is a namesake collision, so this is a GAP-002 bucket-2 lead rather than an A6 promotion candidate. `Clitus` conflates three distinct men -- Apollodorus 2.1.5's son of Egyptus and Tyria who married Clite, Iliad 15.445's \"Cleitus, the glorious son of Peisenor, comrade of Polydamas\", and Odyssey 15.249's Cleitus son of Mantius carried off by Dawn. The collapse keeps the spine source's Egyptus+Tyria couple and drops Peisenor and Mantius as rivals, but they are not rivals -- they are two other men's true fathers. Newly visible because this pass corrected the direction of `Clitus parent_of Pisenor` (the Iliad states \"son of Peisenor\", so the edge was backwards); before the swap the same conflation was hidden as a wrong-direction edge. The claim is not lost: 'Clitus | parentage | son of Peisenor' @ homer-iliad 15.429-15.470 sits at trust_tier=3 in variant_claims_candidates.json. Splitting the entity is deliberately NOT done here -- it is an A1-class entity decision, the DEV-119 precedent for finding one inside a different kind of pass, and it cannot be papered over with a `Cleitus`->`Clitus` spelling alias, which would assert all three men are one."
+  },
+  {
+    "check": "A12",
+    "subject": "Tlepolemus killed_by Sarpedon",
+    "reason": "False positive, and the worked example of A12's one structural limit -- pronoun anaphora. Iliad 5.657-659 has BOTH men strike: \"Sarpedon smote him full upon the neck, and the grievous point passed clean through, and down upon his eyes came the darkness of night\" (Tlepolemus dies -- Sarpedon is the killer, so the seeded edge is CORRECT), immediately followed by \"And Tlepolemus smote Sarpedon upon the left thigh\" (a wound, not a kill). A12 sees the second and not the first, because the first names its victim with the pronoun \"him\". No regex over entity names can resolve that reference, so `correct == 0` cannot suppress it here. Verified against the passage 2026-07-29 (DEV-123); the edge is right and must NOT be swapped."
   }
 ]

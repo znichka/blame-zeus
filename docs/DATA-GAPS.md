@@ -1134,10 +1134,31 @@ and that is the same seeded-vs-review-gated asymmetry GAP-007 turned on and DEV-
 general: `variant_claims` has a human gate, `relationships` does not, so a defect of identical shape
 reaches users on one side and not the other.
 
-**Cheapest detector**, by analogy with A11 (which already reads the corpus text per edge and could
-host it): for each seeded `parent_of` edge, check that the cited passage contains the child's name
-and the parent's name *inside one kinship construction*, rather than merely both somewhere in the
-passage. A11's `_KINSHIP` regex is most of the machinery already.
+### The proposed detector was built, measured, and does not work — 2026-07-29 (DEV-123)
+
+This entry originally proposed: *"for each seeded `parent_of` edge, check that the cited passage
+contains the child's name and the parent's name inside one kinship construction… A11's `_KINSHIP`
+regex is most of the machinery already."* That was implemented as A13 and run against the full
+corpus. **It flags 82% of 5,259 citations** (4,355), and the flagged rows are overwhelmingly
+correct data phrased in ways no regex recognises. Two rounds of vocabulary widening — adding
+`begat`/`bare`/`had by`/`sire of`/possessives, and fixing a real recall bug in A11 along the way —
+moved it only from 87% to 82%, because the residue is structural, not lexical:
+
+| failure mode | worked example |
+|---|---|
+| **Enumeration** | Apollodorus 3.12.5 lists ~40 sons of Priam after one verb — **252 characters** from "Priam had sons" to "Echephron". Any word budget wide enough destroys precision everywhere else. |
+| **Relative clause** | Hymn 31: "Helios **whom** mild-eyed Euryphaessa … **bare** to the Son of Earth" — inverted order, pair separated. |
+| **Coordination** | Apollodorus 1.9.1: "Aeetes, son of the Sun …, **and brother of** Circe and Pasiphae" states `Sun parent_of Pasiphae` only by inference across two clauses. |
+| **Periphrasis** | Iliad 19 calls Patroclus "the valiant **son of Menoetius**" — the kinship is stated about someone the clause does not name. |
+
+Closing these needs a parser or an LLM pass, and an LLM pass would reintroduce exactly the
+extraction step whose errors the check exists to catch. **So GAP-008 stays open, and the
+construction-matching approach is now a recorded dead end rather than an untried idea.**
+
+**What did ship** is the decidable part of the same scope: A13 verifies that every edge's
+`passage_ref` **resolves to a real segment**. That caught all four hand-added rows whose citations
+pointed at nothing (DEV-095's Perseus pair @ `2.4.1`, DEV-100's Thisbe pair @ `4.55-4.80`), which
+were corrected and now PASS. It does not address the Ate row, which cites a passage that exists.
 
 **References:** `core-api/src/main/resources/db/migration/V11__seed_relationships.sql`
 (`Zeus parent_of Ate`); `ingestion/corpus/homer_iliad_murray1924.txt` `[502]` (the Litai passage) and

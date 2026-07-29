@@ -9312,9 +9312,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Copreus",
+    "from_name": "Iphitus",
     "relation": "killed_by",
-    "to_name": "Iphitus",
+    "to_name": "Copreus",
     "is_contested": false,
     "passage_ref": "2.5.1",
     "source_id": "apollodorus-bibliotheca"
@@ -10010,7 +10010,7 @@
   {
     "from_name": "Eurytus",
     "relation": "parent_of",
-    "to_name": "Iphitus",
+    "to_name": "Iphitus (son of Eurytus)",
     "is_contested": false,
     "passage_ref": "2.5.12-2.6.1",
     "source_id": "apollodorus-bibliotheca"
@@ -10064,7 +10064,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Iphitus",
+    "from_name": "Iphitus (son of Eurytus)",
     "relation": "killed_by",
     "to_name": "Heracles",
     "is_contested": false,
@@ -11688,9 +11688,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Tlepolemus",
+    "from_name": "Licymnius",
     "relation": "killed_by",
-    "to_name": "Licymnius",
+    "to_name": "Tlepolemus",
     "is_contested": false,
     "passage_ref": "2.8.2",
     "source_id": "apollodorus-bibliotheca"
@@ -17688,9 +17688,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Patroclus",
+    "from_name": "Clitonymus",
     "relation": "killed_by",
-    "to_name": "Clitonymus",
+    "to_name": "Patroclus",
     "is_contested": false,
     "passage_ref": "3.13.8-3.14.2",
     "source_id": "apollodorus-bibliotheca"
@@ -32376,9 +32376,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Polydamas",
+    "from_name": "Otus",
     "relation": "killed_by",
-    "to_name": "Otus",
+    "to_name": "Polydamas",
     "is_contested": false,
     "passage_ref": "15.514-15.558",
     "source_id": "homer-iliad"
@@ -34360,9 +34360,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Echeclus",
+    "from_name": "Agenor",
     "relation": "parent_of",
-    "to_name": "Agenor",
+    "to_name": "Echeclus",
     "is_contested": false,
     "passage_ref": "20.455-20.489",
     "source_id": "homer-iliad"
@@ -39506,7 +39506,7 @@
   {
     "from_name": "Eurytus",
     "relation": "parent_of",
-    "to_name": "Iphitus",
+    "to_name": "Iphitus (son of Eurytus)",
     "is_contested": false,
     "passage_ref": "20.371-21.19",
     "source_id": "homer-odyssey"
@@ -39522,13 +39522,13 @@
   {
     "from_name": "Eurytus",
     "relation": "parent_of",
-    "to_name": "Iphitus",
+    "to_name": "Iphitus (son of Eurytus)",
     "is_contested": false,
     "passage_ref": "21.20-21.62",
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Iphitus",
+    "from_name": "Iphitus (son of Eurytus)",
     "relation": "killed_by",
     "to_name": "Heracles",
     "is_contested": false,
@@ -39696,9 +39696,9 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Odysseus",
+    "from_name": "Demoptolemus",
     "relation": "killed_by",
-    "to_name": "Demoptolemus",
+    "to_name": "Odysseus",
     "is_contested": false,
     "passage_ref": "22.265-22.309",
     "source_id": "homer-odyssey"
@@ -55004,7 +55004,7 @@
     "relation": "parent_of",
     "to_name": "Perseus",
     "is_contested": false,
-    "passage_ref": "2.4.1",
+    "passage_ref": "2.3.1-2.4.1",
     "source_id": "apollodorus-bibliotheca"
   },
   {
@@ -55012,7 +55012,7 @@
     "relation": "parent_of",
     "to_name": "Perseus",
     "is_contested": false,
-    "passage_ref": "2.4.1",
+    "passage_ref": "2.3.1-2.4.1",
     "source_id": "apollodorus-bibliotheca"
   },
   {
@@ -55044,7 +55044,7 @@
     "relation": "loves",
     "to_name": "Thisbe",
     "is_contested": false,
-    "passage_ref": "4.55-4.80",
+    "passage_ref": "4.55-4.92",
     "source_id": "ovid-metamorphoses"
   },
   {
@@ -55052,7 +55052,7 @@
     "relation": "loves",
     "to_name": "Pyramus",
     "is_contested": false,
-    "passage_ref": "4.55-4.80",
+    "passage_ref": "4.55-4.92",
     "source_id": "ovid-metamorphoses"
   }
 ]

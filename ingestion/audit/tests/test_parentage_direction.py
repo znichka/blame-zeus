@@ -108,3 +108,27 @@ def test_findings_are_ordered_by_strength_of_evidence():
     findings = find_reversed_edges(edges, corpus)
 
     assert [f["from_name"] for f in findings] == ["Asius", "Morys"]
+
+
+def test_commaless_patronymic_is_matched():
+    # DEV-123: "Amphilochus son of Alcmaeon" is as common in Frazer and Murray as the
+    # comma'd form, and the original optional-comma separator matched neither space.
+    edges = [_edge("Amphilochus", "Alcmaeon")]
+    corpus = {ILIAD: "Amphilochus son of Alcmaeon, who arrived later at Troy, was driven in the storm."}
+
+    assert len(find_reversed_edges(edges, corpus)) == 1
+
+
+def test_possessive_form_is_matched_in_the_other_word_order():
+    # "Andraemon's son Thoas" states what "Thoas, son of Andraemon" states, parent first.
+    edges = [_edge("Thoas", "Andraemon")]
+    corpus = {ILIAD: "likening his voice to that of Andraemon's son Thoas, that in all Pleuron was lord."}
+
+    assert len(find_reversed_edges(edges, corpus)) == 1
+
+
+def test_possessive_agreeing_with_the_edge_is_not_reported():
+    edges = [_edge("Andraemon", "Thoas")]
+    corpus = {ILIAD: "likening his voice to that of Andraemon's son Thoas, that in all Pleuron was lord."}
+
+    assert find_reversed_edges(edges, corpus) == []

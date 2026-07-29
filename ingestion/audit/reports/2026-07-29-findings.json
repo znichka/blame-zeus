@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-29T13:47:16.433691+00:00",
+  "generatedAt": "2026-07-29T15:53:33.253852+00:00",
   "checks": [
     {
       "name": "A1",
-      "summary": "candidates: 41 candidate pair(s) (of 1989 entities); db: 41 candidate pair(s) (of 1989 entities)",
+      "summary": "candidates: 41 candidate pair(s) (of 1990 entities); db: 41 candidate pair(s) (of 1990 entities)",
       "findings": [
         {
           "check": "A1",
@@ -747,7 +747,7 @@
     },
     {
       "name": "A10",
-      "summary": "797 group(s), 71 with a promoted row, zero_promoted 726 (-0 since last run, -69 since the 795-group starting baseline)",
+      "summary": "797 group(s), 72 with a promoted row, zero_promoted 725 (-0 since last run, -70 since the 795-group starting baseline)",
       "findings": [
         {
           "check": "A10",
@@ -766,8 +766,28 @@
       "findings": []
     },
     {
+      "name": "A12",
+      "summary": "1 reversed killed_by edge(s) across 1 source(s); 872 distinct edges checked",
+      "findings": [
+        {
+          "check": "A12",
+          "severity": "error",
+          "subject": "Tlepolemus killed_by Sarpedon",
+          "detail": "homer-iliad attests \"Tlepolemus slew/smote Sarpedon\" 1x and never the reverse -- the edge has the direction backwards (Tlepolemus is the killer, not the victim).",
+          "suggestedFix": "In relationships_candidates_cleaned.json, swap from_name/to_name on the killed_by row(s) for Tlepolemus/Sarpedon in homer-iliad, then rerun seedgen + reseed. Swap, do not delete -- the kill is real and cited, only the direction is wrong (DEV-118).",
+          "waived": true,
+          "waiverReason": "False positive, and the worked example of A12's one structural limit -- pronoun anaphora. Iliad 5.657-659 has BOTH men strike: \"Sarpedon smote him full upon the neck, and the grievous point passed clean through, and down upon his eyes came the darkness of night\" (Tlepolemus dies -- Sarpedon is the killer, so the seeded edge is CORRECT), immediately followed by \"And Tlepolemus smote Sarpedon upon the left thigh\" (a wound, not a kill). A12 sees the second and not the first, because the first names its victim with the pronoun \"him\". No regex over entity names can resolve that reference, so `correct == 0` cannot suppress it here. Verified against the passage 2026-07-29 (DEV-123); the edge is right and must NOT be swapped."
+        }
+      ]
+    },
+    {
+      "name": "A13",
+      "summary": "0 unresolvable citation(s) of 6882 distinct edge citation(s) checked across 6 source(s)",
+      "findings": []
+    },
+    {
       "name": "A2",
-      "summary": "candidates: 6882 raw -> 3363 seeded (unknown_name=901, exact_dup=1579, contested_collapse=1039, residual=0); 347 distinct unknown name(s); db: live=3363 (drift=0)",
+      "summary": "candidates: 6882 raw -> 3367 seeded (unknown_name=901, exact_dup=1579, contested_collapse=1035, residual=0); 347 distinct unknown name(s); db: live=3367 (drift=0)",
       "findings": [
         {
           "check": "A2",
@@ -3896,22 +3916,13 @@
     },
     {
       "name": "A3",
-      "summary": "candidates: 87 parent_of cycle(s); db: 0 parent_of cycle(s)",
+      "summary": "candidates: 86 parent_of cycle(s); db: 0 parent_of cycle(s)",
       "findings": [
         {
           "check": "A3",
           "severity": "warning",
           "subject": "candidates: Eurydice -> Danae -> Perses -> Aeetes -> Chalciope -> Melas -> Euryalus -> Naubolus -> Iphitus -> Schedius -> Perimede -> Hippodamas -> Euryte -> Oeneus -> Clymenus -> Eurydice",
           "detail": "Eurydice parent_of Danae [apollodorus-bibliotheca, 2.2.1-2.2.2]; Danae parent_of Perses [apollodorus-bibliotheca, 2.3.1-2.4.1]; Perses parent_of Aeetes [apollodorus-bibliotheca, 1.8.6-1.9.1]; Aeetes parent_of Chalciope [apollodorus-bibliotheca, 1.8.6-1.9.1]; Chalciope parent_of Melas [apollodorus-bibliotheca, 1.8.6-1.9.1]; Melas parent_of Euryalus [apollodorus-bibliotheca, 1.8.3-1.8.5]; Euryalus parent_of Naubolus [homer-odyssey, 8.83-8.120]; Naubolus parent_of Iphitus [apollodorus-bibliotheca, 1.9.16]; Iphitus parent_of Schedius [apollodorus-bibliotheca, 3.10.8-3.11.1]; Schedius parent_of Perimede [homer-iliad, 15.514-15.558]; Perimede parent_of Hippodamas [apollodorus-bibliotheca, 1.7.1-1.7.3]; Hippodamas parent_of Euryte [apollodorus-bibliotheca, 1.7.9-1.8.1]; Euryte parent_of Oeneus [apollodorus-bibliotheca, 1.7.9-1.8.1]; Oeneus parent_of Clymenus [apollodorus-bibliotheca, 1.7.9-1.8.1]; Clymenus parent_of Eurydice [homer-odyssey, 3.447-3.477]",
-          "suggestedFix": "reverse or drop the offending edge in relationships_candidates_cleaned.json (tie-break by source_id / canonical_edge.py spine priority), then reseed",
-          "waived": false,
-          "waiverReason": null
-        },
-        {
-          "check": "A3",
-          "severity": "warning",
-          "subject": "candidates: Iphitus -> Schedius -> Perimede -> Hippodamas -> Euryte -> Oeneus -> Gorge -> Tydeus -> Diomedes -> Actor -> Eurytus -> Iphitus",
-          "detail": "Iphitus parent_of Schedius [apollodorus-bibliotheca, 3.10.8-3.11.1]; Schedius parent_of Perimede [homer-iliad, 15.514-15.558]; Perimede parent_of Hippodamas [apollodorus-bibliotheca, 1.7.1-1.7.3]; Hippodamas parent_of Euryte [apollodorus-bibliotheca, 1.7.9-1.8.1]; Euryte parent_of Oeneus [apollodorus-bibliotheca, 1.7.9-1.8.1]; Oeneus parent_of Gorge [apollodorus-bibliotheca, 1.7.9-1.8.1]; Gorge parent_of Tydeus [apollodorus-bibliotheca, 1.8.3-1.8.5]; Tydeus parent_of Diomedes [apollodorus-bibliotheca, 1.8.3-1.8.5]; Diomedes parent_of Actor [apollodorus-bibliotheca, 1.9.2-1.9.7]; Actor parent_of Eurytus [apollodorus-bibliotheca, 2.7.2-2.7.3]; Eurytus parent_of Iphitus [apollodorus-bibliotheca, 2.5.12-2.6.1]",
           "suggestedFix": "reverse or drop the offending edge in relationships_candidates_cleaned.json (tie-break by source_id / canonical_edge.py spine priority), then reseed",
           "waived": false,
           "waiverReason": null
@@ -4772,12 +4783,12 @@
     },
     {
       "name": "A5",
-      "summary": "db: 58 entity_aliases, 22 myth_participants, 3363 relationships checked -- 0 finding(s)",
+      "summary": "db: 58 entity_aliases, 22 myth_participants, 3367 relationships checked -- 0 finding(s)",
       "findings": []
     },
     {
       "name": "A6",
-      "summary": "candidates: 727 dropped parent row(s) (679 with no existing variant_claims parentage row)",
+      "summary": "candidates: 726 dropped parent row(s) (674 with no existing variant_claims parentage row)",
       "findings": [
         {
           "check": "A6",
@@ -5216,15 +5227,6 @@
           "severity": "info",
           "subject": "candidates: Agenor <- Antenor",
           "detail": "dropped by the contested-parentage collapse [homer-iliad, 21.544-21.589]; no variant_claims parentage row exists for this subject",
-          "suggestedFix": "GAP-001 Root cause 3 residue -- candidate for promotion via the ADR-004 review gate into variant_claims (parentage), not a code fix",
-          "waived": true,
-          "waiverReason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-        },
-        {
-          "check": "A6",
-          "severity": "info",
-          "subject": "candidates: Agenor <- Echeclus",
-          "detail": "dropped by the contested-parentage collapse [homer-iliad, 20.455-20.489]; no variant_claims parentage row exists for this subject",
           "suggestedFix": "GAP-001 Root cause 3 residue -- candidate for promotion via the ADR-004 review gate into variant_claims (parentage), not a code fix",
           "waived": true,
           "waiverReason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
@@ -10966,7 +10968,7 @@
           "check": "A6",
           "severity": "info",
           "subject": "candidates: Telamon <- Aeacus",
-          "detail": "dropped by the contested-parentage collapse [apollodorus-bibliotheca, 1.8.2]; no variant_claims parentage row exists for this subject",
+          "detail": "dropped by the contested-parentage collapse [apollodorus-bibliotheca, 1.8.2]; already has a variant_claims parentage row",
           "suggestedFix": "GAP-001 Root cause 3 residue -- candidate for promotion via the ADR-004 review gate into variant_claims (parentage), not a code fix",
           "waived": true,
           "waiverReason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
@@ -10975,7 +10977,7 @@
           "check": "A6",
           "severity": "info",
           "subject": "candidates: Telamon <- Aeacus",
-          "detail": "dropped by the contested-parentage collapse [ovid-metamorphoses, 7.469-7.500]; no variant_claims parentage row exists for this subject",
+          "detail": "dropped by the contested-parentage collapse [ovid-metamorphoses, 7.469-7.500]; already has a variant_claims parentage row",
           "suggestedFix": "GAP-001 Root cause 3 residue -- candidate for promotion via the ADR-004 review gate into variant_claims (parentage), not a code fix",
           "waived": true,
           "waiverReason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
@@ -10984,7 +10986,7 @@
           "check": "A6",
           "severity": "info",
           "subject": "candidates: Telamon <- Endeis",
-          "detail": "dropped by the contested-parentage collapse [apollodorus-bibliotheca, 3.12.6]; no variant_claims parentage row exists for this subject",
+          "detail": "dropped by the contested-parentage collapse [apollodorus-bibliotheca, 3.12.6]; already has a variant_claims parentage row",
           "suggestedFix": "GAP-001 Root cause 3 residue -- candidate for promotion via the ADR-004 review gate into variant_claims (parentage), not a code fix",
           "waived": true,
           "waiverReason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
@@ -10993,7 +10995,7 @@
           "check": "A6",
           "severity": "info",
           "subject": "candidates: Telamon <- Glauce",
-          "detail": "dropped by the contested-parentage collapse [apollodorus-bibliotheca, 3.12.6]; no variant_claims parentage row exists for this subject",
+          "detail": "dropped by the contested-parentage collapse [apollodorus-bibliotheca, 3.12.6]; already has a variant_claims parentage row",
           "suggestedFix": "GAP-001 Root cause 3 residue -- candidate for promotion via the ADR-004 review gate into variant_claims (parentage), not a code fix",
           "waived": true,
           "waiverReason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
@@ -11326,7 +11328,7 @@
     },
     {
       "name": "A7",
-      "summary": "candidates: 2 confirmed entit(ies) named >=10x in the corpus with no candidate relationship rows (of 1989 entities; 58 multi-word name(s) skipped)",
+      "summary": "candidates: 2 confirmed entit(ies) named >=10x in the corpus with no candidate relationship rows (of 1990 entities; 58 multi-word name(s) skipped)",
       "findings": [
         {
           "check": "A7",
@@ -11350,7 +11352,7 @@
     },
     {
       "name": "A8",
-      "summary": "1655 distinct subject(s) ranked; top 50: Odysseus(497), Zeus(484), Achilles(391), Heracles(276), Hector(264), Apollo(219), Agamemnon(218), Telemachus(164), Diomedes(151), Patroclus(146) ...",
+      "summary": "1657 distinct subject(s) ranked; top 50: Odysseus(498), Zeus(484), Achilles(391), Heracles(276), Hector(266), Apollo(219), Agamemnon(218), Telemachus(164), Diomedes(151), Patroclus(148) ...",
       "findings": []
     },
     {

@@ -1063,6 +1063,7 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Iphis', 'mortal', NULL, NULL, NULL),
     ('Iphition', 'hero', NULL, NULL, NULL),
     ('Iphitus', 'hero', NULL, NULL, NULL),
+    ('Iphitus (son of Eurytus)', 'hero', NULL, NULL, NULL),
     ('Iphthime', 'mortal', NULL, NULL, NULL),
     ('Iris', 'other_god', NULL, NULL, NULL),
     ('Irus', 'mortal', NULL, NULL, NULL),
@@ -1505,11 +1506,11 @@ INSERT INTO entities (name, type, generation, domain, subtype) VALUES
     ('Pelegon', 'hero', NULL, NULL, NULL),
     ('Peleus', 'hero', NULL, NULL, NULL),
     ('Pelias', 'mortal', NULL, NULL, NULL),
-    ('Pellas', 'mortal', NULL, NULL, NULL),
-    ('Pelopia', 'mortal', NULL, NULL, NULL)
+    ('Pellas', 'mortal', NULL, NULL, NULL)
 ON CONFLICT (name) DO NOTHING;
 
 INSERT INTO entities (name, type, generation, domain, subtype) VALUES
+    ('Pelopia', 'mortal', NULL, NULL, NULL),
     ('Pelops', 'mortal', NULL, NULL, NULL),
     ('Pelorus', 'mortal', NULL, NULL, NULL),
     ('Peneleos', 'hero', NULL, NULL, NULL),

@@ -2771,5 +2771,42 @@
       ]
     ],
     "rationale": "GAP-007's variant_claims half. Same Homeric vocative formula the deny-list entry suppresses on the relationships side: \"Aias, sprung from Zeus, thou son of Telamon, captain of the host\", verified live in the corpus at Iliad 7.233, 9.643 and 11.465 -- one real father and one divine honorific in a single line. Extends DEV-112/F2's identical verdict on 'Patroclus | parentage | sprung from Zeus' @ 1.325-1.363 to the other hero the formula names. Telamon is attested as Ajax's father 22 times in the Iliad alone and is already promoted at trust_tier=1 from two sources."
+  },
+  {
+    "batchLabel": "telamon-pherecydes-variant",
+    "date": "2026-07-29T15:50:05.252657+00:00",
+    "keys": [
+      [
+        "Telamon",
+        "parentage",
+        "child of Aeacus",
+        "apollodorus-bibliotheca",
+        "3.12.6"
+      ],
+      [
+        "Telamon",
+        "parentage",
+        "child of Endeis",
+        "apollodorus-bibliotheca",
+        "3.12.6"
+      ],
+      [
+        "Telamon",
+        "parentage",
+        "child of Actaeus",
+        "apollodorus-bibliotheca",
+        "3.12.6"
+      ],
+      [
+        "Telamon",
+        "parentage",
+        "child of Glauce",
+        "apollodorus-bibliotheca",
+        "3.12.6"
+      ]
+    ],
+    "groupCount": 1,
+    "rejectedKeys": [],
+    "rationale": "A genuine within-source variant tradition, verified verbatim against Apollodorus 3.12.6: \"And Aeacus married Endeis, daughter of Sciron, by whom he had two sons, Peleus and Telamon. But Pherecydes says that Telamon was a friend, not a brother of Peleus, he being a son of Actaeus and Glauce, daughter of Cychreus.\" One passage, one mythographer, two incompatible parentages, both attributed -- the same shape DEV-119 promoted for Agamemnon/Plisthenes. Found by DEV-122 while triaging Telamon's reversed-direction rows and recorded there as owed work. The corroborating 'child of Aeacus' rows at 1.8.2 / 1.9.16 / ovid 7.469-7.500 / 13.1-13.42 stay at trust_tier=3: they were not read against their own passages in this pass, and promoting on inference is what the review gate exists to prevent."
   }
 ]

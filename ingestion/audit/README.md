@@ -11,11 +11,12 @@ Every check in this package **reports only** — none of them mutate any file or
 
 `__main__.py` walks the package for any sibling module exposing the contract in `contract.py`
 (module-level `NAME: str` + `run(candidates_dir, db_conn) -> CheckResult`) — a module needs no
-separate registration call, just those two names, to be picked up. All **eleven** checks are live:
+separate registration call, just those two names, to be picked up. All **thirteen** checks are live:
 **`duplicate_entities.py` (`A1`)**, **`drop_accounting.py` (`A2`)**, **`cycle_check.py` (`A3`)**,
 **`relation_taxonomy.py` (`A4`)**, **`integrity.py` (`A5`)**, **`dropped_parents.py` (`A6`)**,
 **`name_coverage.py` (`A7`)**, **`prominence.py` (`A8`)**, **`claim_type_distribution.py` (`A9`)**,
-**`group_inventory.py` (`A10`)**, **`parentage_direction.py` (`A11`)**.
+**`group_inventory.py` (`A10`)**, **`parentage_direction.py` (`A11`)**,
+**`kill_direction.py` (`A12`)**, **`passage_support.py` (`A13`)**.
 
 **A note on what "reporting-only" has to mean for A8/A9/A10** (Stage P4 Track B9), because the
 obvious reading of `contract.py` is wrong: `AuditRun.exit_code` is `1 if any(not f.waived for f in
@@ -386,3 +387,83 @@ correct one never is, anywhere in that source.
 - Reports only. A human edits `relationships_candidates_cleaned.json` (the editable source of
   truth), then reruns `python -m seedgen` + `scripts/reseed-local.sh` + this check — the same
   workflow A3 documents.
+
+---
+
+## `kill_direction.py` — the A12 reversed-`killed_by` check (post-P4, DEV-123)
+
+A11's sibling, built on a measured blind spot rather than a symmetry argument. Of the six
+direction errors DEV-121 fixed while merging the `Ajax` cluster, **five were `killed_by`**;
+DEV-122 then found two more by walking rows for an unrelated reason. Both passes found them **by
+accident**. `killed_by` is 872 distinct candidate edges and, until this check, **no audit check
+had ever read one** — A11 covers `parent_of` only.
+
+Same evidentiary rule as A11 (`correct == 0`, alias-aware, reports only), different formula. The
+seeded convention is `from_id` = victim, `to_id` = killer (`Abaris killed_by Perses`), and both
+voices are matched: Homer prefers the active ("Idomeneus slew Phaestus"), Frazer reaches for the
+passive ("Parthenopaeus was slain by Periclymenus") far more often. Missing either scores a real
+reversal as no-evidence.
+
+- **The filler between the two names excludes capitalised words, and that rule does most of the
+  precision work.** A third proper noun between them is almost always the verb's real subject:
+  Iliad 15.68 reads "…Patroclus shall goodly Achilles slay Hector…", which a capital-tolerant
+  pattern scores as "Patroclus slew Hector" — wrong twice over. Every translation here writes
+  epithets in lower case ("goodly", "swift-footed", "brazen"), so excluding capitals keeps the
+  epithets and drops the intervening-subject case. **Cost:** a patronymic in that position ("Aias,
+  son of Telamon, smote goodly Anthemion") is no longer matched — lost recall, never a wrong
+  report, which is this check's designed failure mode.
+- **`(?-i:[a-z])` is load-bearing.** The patterns compile with `re.IGNORECASE` so name spellings
+  match regardless of case; without scoping the flag off for that one class, `[a-z]` matches
+  capitals too and silently undoes the whole rule. This was caught by a test, after the first
+  live run reported 7 findings where the rule should have given 6.
+- **One known false-positive shape, waived rather than engineered around: pronoun anaphora.**
+  Iliad 5.657 has both men strike — "Sarpedon smote **him** full upon the neck… down upon his eyes
+  came the darkness of night", then "And Tlepolemus smote Sarpedon upon the left thigh". The kill
+  names its victim with a pronoun, so `correct == 0` cannot suppress the wound. No regex over
+  entity names resolves that reference. `Tlepolemus killed_by Sarpedon` is waived in
+  `audit-waivers.json` with the passage quoted.
+
+First run: **872 distinct edges, 6 reported, 5 genuine** (`Copreus`/`Iphitus`,
+`Odysseus`/`Demoptolemus`, `Patroclus`/`Clitonymus`, `Polydamas`/`Otus`,
+`Tlepolemus`/`Licymnius`), all fixed as **swaps, not deletes** (DEV-118's rule).
+
+---
+
+## `passage_support.py` — the A13 citation-resolvability check (post-P4, DEV-123)
+
+**Read this before extending it.** A13 was commissioned to close GAP-008 by verifying that each
+seeded edge's *cited passage actually states the claim*. That rule was built, measured against
+the full corpus, and **does not work** with surface patterns: it flagged **82% of 5,259
+citations**, almost all correct data phrased in a way no regex recognises. What shipped is the
+part that is decidable — **a citation must point at a passage that exists**.
+
+That is not as trivial as it sounds. `passage_ref` is provenance: it is what the product shows a
+user under "attributed to". A ref matching no segment is a citation to nothing, and nothing else
+in the pipeline checks it — `seedgen` copies the string through and `relationships` has no human
+review gate. The founding members were the four **hand-added** rows, every one of them written by
+a human reading the source directly rather than by the extractor: DEV-095's `Zeus`/`Danae
+parent_of Perseus` @ `2.4.1` (the extractor's segment is `2.3.1-2.4.1`) and DEV-100's
+`Pyramus`/`Thisbe` @ `4.55-4.80` (segment `4.55-4.92`). All four are fixed; A13 now PASSes.
+
+- **Correcting one of these is not "moving a ref".** DEV-121's rule forbids repointing a citation
+  to a *different* passage that happens to state the claim, because that invents provenance. Here
+  the cited text is the right text and only the ref string was written outside the segment
+  vocabulary, so resolving it to the segment containing that same text is a formatting fix.
+- **Segments come from the extraction segmenter, not `narrative_chunks`.** A candidate's
+  `passage_ref` is a segment ref by construction, so lookup is exact. Chunk refs are
+  paragraph-aligned by the *ingestion* chunker (ADR-014 Amendment 2) and the two vocabularies do
+  not line up.
+- **Every relation is checked**, not just the ones with direction vocabulary — resolvability needs
+  none, which is exactly why this part of the original scope holds. That is how the `loves` rows
+  are covered.
+- **Runs without a DB connection**, unlike A11/A12: resolvability is decided against the segment
+  index alone.
+
+**Why the construction rule failed — keep this list, it is the reason not to retry with a wider
+regex.** *Enumeration:* Apollodorus 3.12.5 lists ~40 sons of Priam after one verb, **252
+characters** from "Priam had sons" to "Echephron". *Relative clause:* "Helios whom mild-eyed
+Euryphaessa … bare to the Son of Earth". *Coordination:* "Aeetes, son of the Sun…, and brother of
+Circe and Pasiphae" states `Sun parent_of Pasiphae` only by inference across two clauses.
+*Periphrasis:* Iliad 19 calls Patroclus "the valiant son of Menoetius". Closing these needs a
+parser or an LLM pass, and an LLM pass would reintroduce the very extraction step whose errors the
+check exists to catch. GAP-008 stays **open** with this recorded.

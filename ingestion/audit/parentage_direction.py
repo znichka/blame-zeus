@@ -44,7 +44,19 @@ DEFAULT_CANDIDATES_PATH = OUTPUT_DIR / "relationships_candidates_cleaned.json"
 # The patronymic formula, tolerant of the epithets Homer stacks inside it
 # ("Eurymachus, glorious son of wise Polybus") but bounded so it cannot run across
 # a sentence boundary into an unrelated name.
-_KINSHIP = r"(?:,\s*)?(?:\w+\s+){0,3}?(?:son|daughter|sons|daughters|child|children)\s+of\s+(?:\w+\s+){0,2}?"
+#
+# The separator is `(?:,\s*|\s+)` and not the original `(?:,\s*)?`, which was a
+# silent recall bug (found 2026-07-29 by A13's first calibration run, DEV-123):
+# optional-comma-only meant nothing consumed the plain space in the **comma-less**
+# patronymic, so "Amphilochus son of Alcmaeon" -- as common in Frazer and Murray as
+# the comma'd form -- scored zero and every edge resting on it read as "no textual
+# evidence either way".
+_KINSHIP = r"(?:,\s*|\s+)(?:\w+\s+){0,3}?(?:son|daughter|sons|daughters|child|children)\s+of\s+(?:\w+\s+){0,2}?"
+
+# The possessive form, which inverts the word order: "Andraemon's son Thoas" states
+# exactly what "Thoas, son of Andraemon" does, with parent first. Missed entirely by
+# `_KINSHIP`, which only ever reads child-first.
+_POSSESSIVE = r"(?:'s|s')\s+(?:\w+\s+){0,2}?(?:son|daughter|child)\s+(?:\w+\s+){0,2}?"
 
 
 def _spellings(name: str, aliases: dict[str, set[str]]) -> str:
@@ -62,13 +74,13 @@ def _spellings(name: str, aliases: dict[str, set[str]]) -> str:
 
 
 def _attests(child: str, parent: str, text: str, aliases: dict[str, set[str]] | None = None) -> int:
-    """Occurrences of '<child> ... son of ... <parent>' -- i.e. text saying child is parent's issue."""
+    """Occurrences of text saying child is parent's issue, in either word order:
+    '<child>, son of <parent>' and the possessive '<parent>'s son <child>'."""
     aliases = aliases or {}
-    pattern = re.compile(
-        _spellings(child, aliases) + r"\b" + _KINSHIP + _spellings(parent, aliases) + r"\b",
-        re.IGNORECASE,
-    )
-    return len(pattern.findall(text))
+    c, p = _spellings(child, aliases), _spellings(parent, aliases)
+    patronymic = re.compile(c + r"\b" + _KINSHIP + p + r"\b", re.IGNORECASE)
+    possessive = re.compile(p + r"\b" + _POSSESSIVE + c + r"\b", re.IGNORECASE)
+    return len(patronymic.findall(text)) + len(possessive.findall(text))
 
 
 def find_reversed_edges(
