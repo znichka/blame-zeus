@@ -32328,9 +32328,9 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Clitus",
+    "from_name": "Pisenor",
     "relation": "parent_of",
-    "to_name": "Pisenor",
+    "to_name": "Clitus",
     "is_contested": false,
     "passage_ref": "15.429-15.470",
     "source_id": "homer-iliad"
@@ -54840,17 +54840,17 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Ops",
+    "from_name": "Pisenor",
     "relation": "parent_of",
-    "to_name": "Pisenor",
+    "to_name": "Ops",
     "is_contested": false,
     "passage_ref": "1.412-2.14",
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Ops",
+    "from_name": "Pisenor",
     "relation": "parent_of",
-    "to_name": "Pisenor",
+    "to_name": "Ops",
     "is_contested": false,
     "passage_ref": "2.309-2.360",
     "source_id": "homer-odyssey"

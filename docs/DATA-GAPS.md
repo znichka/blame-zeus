@@ -13,7 +13,8 @@ gap deferred to Phase 5b.
 | **GAP-003** | DATA floor breach — Q6/Q7/Q8 all stable-fail | **Resolved** — all 3 root causes landed (DEV-094, DEV-095); DATA 100%, overall 94% | Stage P3b |
 | **GAP-004** | `Saturn` is a separate `other_god` entity instead of an alias of the `titan` `Cronus` | **RESOLVED 2026-07-29 (DEV-121)** — merged with GAP-006 as one entity-merge pass. `Saturn` is now an `entity_aliases` row → `Cronus` (V20), alongside V14's `Jove`/`Jupiter`/`Juno` for the same translator; its 10 candidate rows were rewritten, so Ovid's `Zeus <- Saturn` / `Hera <- Saturn` now corroborate the existing parentage instead of reading as spurious second parents, and their A6 waivers are gone. Merging it also exposed a namesake collision the gap never mentioned — see the entry below | Closed |
 | **GAP-006** | `Ajax` is fragmented across **15 entities** for what are really two people, and A1 cannot see it | **Open** — found 2026-07-29 while verifying DEV-119's findings. Eight surface forms for Ajax the Greater (`Ajax`, `Ajax the Great`, `Great Ajax`, `Ajax son of Telamon`, `Ajax (Telamon's son)`, `Aias (son of Telamon)`, `Aias (Telamonian)`, `Telamonian Aias`/`Telamonian Ajax`) and six for the Lesser (`Ajax the Lesser`, `Ajax the Locrian`, `Ajax (Oilean)`, `Ajax son of Oileus`, `Aias (son of Oïleus)`, `Aias the less`) — proven co-referent, not namesakes, by their own edges: **`Telamon parent_of` six of them and `Oileus`/`Oïleus parent_of` four**. The father is duplicated too (`Oileus` vs `Oïleus`). Three compounding consequences, all verified: (a) evidence is split — bare `Ajax` holds 22 edges while ~15 more scatter across the other 14, which plausibly explains DEV-110's otherwise-odd finding that `Ajax` had *no* promotable `marriage`/`epithet` candidates; (b) it defeats **A1**, which flags **zero** of these pairs — its 88-point fuzzy threshold and transliteration pass cannot span `Great Ajax`↔`Telamonian Aias`; (c) it defeats **A11**, which cannot catch the reversed `Ajax the Lesser parent_of Oïleus` because the fragmented entity name never appears in the corpus text in the patronymic formula. Distinct from the documented, *intentional* `Name (descriptor)` convention (DEV-079/080/082) — this is that convention applied inconsistently in five competing styles, not a deliberate namesake split. **RESOLVED 2026-07-29 (DEV-121)** — see the entry below; it was **16** entities, not 15 | Closed |
-| **GAP-007** | `Zeus parent_of Ajax` is **seeded live** — ADR-020's co-mention rule reads the Homeric vocative formula *"Aias, sprung from Zeus, thou son of Telamon"* (Iliad 7.233) as one passage naming two co-parents | **Open** — found 2026-07-29 while verifying the GAP-004/GAP-006 merge (DEV-121). Not an extraction error: the text says it, and rules 1-3 of the discriminator cannot exclude it by construction (never flagged contested; `Telamon` *is* the winner and `Zeus` is in the pair). It is what rule 4's deny-list exists for, and that list still holds only `Io`. The `relationships` counterpart of the Homeric-formula misreads DEV-112 rejected behind the `variant_claims` review gate — but this table is seeded, not review-gated, so it reaches users. `Ajax` shows up in gold Q7's "children of Zeus" answer today | P5 (deny-list sweep) |
+| **GAP-007** | `Zeus parent_of Ajax` is **seeded live** — ADR-020's co-mention rule reads the Homeric vocative formula *"Aias, sprung from Zeus, thou son of Telamon"* (Iliad 7.233) as one passage naming two co-parents | **Open** — found 2026-07-29 while verifying the GAP-004/GAP-006 merge (DEV-121). Not an extraction error: the text says it, and rules 1-3 of the discriminator cannot exclude it by construction (never flagged contested; `Telamon` *is* the winner and `Zeus` is in the pair). It is what rule 4's deny-list exists for, and that list still holds only `Io`. The `relationships` counterpart of the Homeric-formula misreads DEV-112 rejected behind the `variant_claims` review gate — but this table is seeded, not review-gated, so it reaches users. `Ajax` shows up in gold Q7's "children of Zeus" answer today | **RESOLVED 2026-07-29 (DEV-122)** — deny-list entry added, and the sweep it asked for was **run and bounded, not deferred**: only **3** seeded divine co-parents rest solely on the formula-bearing sources (Homer + Homeric Hymns; the formulae are absent from Apollodorus/Hesiod/Ovid — measured, 0 hits), of which `Ajax <- Zeus` is the one false positive and `Molione <- Poseidon` / `Pandia <- Zeus` verify as genuine. The five `variant_claims` counterparts were rejected to `trust_tier=2` in the same pass. Live: `Ajax` now has Telamon only, from four sources, and is gone from Q7's answer | Closed |
+| **GAP-008** | The **misattributed-passage** shape is unswept in the *seeded* `relationships` table — `Zeus parent_of Ate` cites Iliad 9.496-9.528, where the "daughters of great Zeus" are the **Prayers** (Litai), not Ate | **Open** — found 2026-07-29 by DEV-122's GAP-007 sweep, which checked every single-parent divine edge as well as the co-parent ones. The claim is true and Homer *does* state it — *"Eldest daughter of Zeus is Ate that blindeth all"* — but at **19.90**, not at the cited ref. Same shape DEV-119 catalogued as bucket (4) among *dropped* parents (18 instances) and DEV-121 hit twice among Ajax's `killed_by` rows; nobody has ever swept the **seeded** edges for it, and seeded rows are not review-gated. Left unfixed deliberately: the only two honest fixes are dropping a true claim or moving the ref, and DEV-121 established that moving a ref is inventing provenance — so it needs a decision, not a silent edit | P5 (extraction-quality) |
 | **GAP-005** | Extraction reads in-narrative **deception** as fact | **Open** — a NEW error shape found during A6 triage (DEV-119), distinct from every shape P4 catalogued: a character stating a *false* parentage while disguised. Aphrodite tells Anchises *"Otreus … is my father"* directly after *"know that I am no goddess"*; Hermes, disguised as a Myrmidon, names Polyctor. The cited passage genuinely says what was extracted — it is the speaker who is lying — so no passage-verification check can catch it, unlike the misattributed-passage and reversed-direction shapes. Both known instances are waived; unknown how many more exist | P5 (extraction-quality) |
 
 ---
@@ -560,7 +561,26 @@ The 367 (now 347) are **leads**, not a work list. Four buckets now, not three:
    bare name here would *create* the exact defect Track J just removed. **Still open — grew by 3
    confirmed cases 2026-07-28 (DEV-108): `Oenomaus`, `Hippolytus`, `Ascalaphus`.** `Coronis` and
    `Eurynome` are flagged as *possible* further cases, investigated but left undecided rather than
-   guessed either way.
+   guessed either way. **Grew by 2 more 2026-07-29 (DEV-122), and these two are already-confirmed
+   entities rather than unknown names — a sub-class this bucket had not held before:**
+   - **`Clitus` conflates three men** — Apollodorus 2.1.5's son of Egyptus and Tyria who married
+     Clite; Iliad 15.445's *"Cleitus, the glorious son of Peisenor, comrade of Polydamas"*; and
+     Odyssey 15.249's Cleitus son of Mantius, carried off by Dawn. The contested collapse keeps the
+     spine source's Egyptus+Tyria couple and drops Peisenor and Mantius as *rivals* — but they are
+     not rivals, they are two other men's true fathers.
+   - **`Pisenor` conflates at least two** — the Odyssey's Peisenor, father of Ops and grandfather of
+     Eurycleia, and the Iliad's Peisenor, father of Cleitus. (A third, the Odyssey herald Peisenor
+     at 2.38, has no extracted rows.) DEV-122 corrected the direction of both edges into this entity,
+     which made the conflation visible: it now reads as one man fathering two unrelated sons instead
+     of one man having two unrelated fathers.
+
+   **Neither is fixable by a spelling alias, and that is the transferable lesson.** The obvious
+   repair for both — `Peisenor`→`Pisenor` and `Cleitus`→`Clitus`, translation-spelling aliases in the
+   DEV-108 style — was drafted and then **discarded before being written**, because the corpus
+   spelling denotes *several people*: the alias would assert that all three Clituses are one. This
+   bounds DEV-121's finding (4) proposal for a diacritic-folding pre-pass on A1: folding and aliasing
+   only help where the surface form denotes exactly one figure, so a folding pre-pass needs a
+   namesake guard, not just a lower threshold.
 3. Extraction noise and the `<UNKNOWN>` sentinel — no entity to add; a signal about the extraction
    pass instead. **Still open** (133 rows), plus a newly-named **place-name sub-class** with no
    entity-type home at all in the current schema (DEV-108).
@@ -957,8 +977,9 @@ discipline). Four things were found and none had been written down; the first is
 
 ## GAP-007 — `Zeus parent_of Ajax` is seeded live, from a Homeric vocative formula ADR-020 reads as joint parentage
 
-**Status:** **Open** — found 2026-07-29 while verifying the GAP-004/GAP-006 merge (DEV-121), not
-fixed in that pass. Wrong data currently being served.
+**Status:** **RESOLVED 2026-07-29 (DEV-122).** Found 2026-07-29 while verifying the GAP-004/GAP-006
+merge (DEV-121), fixed in the next pass. The entry below is preserved as written; the resolution and
+the sweep's measured result are appended at the end.
 
 ### Symptom
 
@@ -1015,8 +1036,111 @@ whose ADR-020 co-mention pair contains a god co-named by a formula, and deny-lis
 verify. Cheapest detector: for each multi-parent child in the seeded graph, re-read the co-mention
 passage and check whether the divine parent appears only inside an epithet construction.
 
+### Resolution (DEV-122, 2026-07-29) — the sweep was run, and it is small
+
+This entry asked for "a **sweep, not a single deny-list row**". The sweep was run before the fix, and
+the reason it is cheap is that **the formula class is Homeric**: `"sprung from Zeus"` and its
+relatives occur **49×** in the *Iliad*, **43×** in the *Odyssey* and **1×** in the Homeric Hymns, and
+**zero times** in Apollodorus, Hesiod's *Theogony*, or Ovid — measured across all six corpus files,
+not assumed from genre. So only edges resting on Homer/Hymns can carry it. Narrowing the seeded graph
+that way:
+
+| slice | count |
+|---|---|
+| children with ≥2 seeded parents | 534 |
+| …where one parent is a major god | 98 |
+| …where the divine parent is attested **only** by Homer/Hymns | **3** |
+| single-parent children whose only parent is a god, attested only by Homer/Hymns | **3** |
+
+All six were read against their cited passage:
+
+- **`Ajax <- Zeus` — false, fixed.** The vocative formula, live in the corpus at **three** refs
+  (7.233, 9.643, **11.465**), not the two GAP-007 named. The deny-list is keyed on child + parent
+  pair rather than passage, so one entry covers all three.
+- **`Molione <- Poseidon` — genuine, kept.** Iliad 11.750 states it outright and non-formulaically:
+  *"the two Moliones, of the blood of Actor, but that **their father, the wide-ruling Shaker of
+  Earth**, saved them"* — a real dual mortal/divine parentage alongside `Actor`.
+- **`Pandia <- Zeus` — genuine, kept.** Homeric Hymn 32.14: *"the Son of Cronos was joined with her
+  in love; and she conceived and bare a daughter Pandia."*
+- **`Naiads <- Zeus`, `Nymphs of the fountain <- Zeus` — genuine, kept.** *"Naiad Nymphs, daughters
+  of Zeus"* / *"Nymphs of the fountain, daughters of Zeus"*, a genealogical claim Homer repeats, not
+  an honorific attached to a mortal.
+- **`Ate <- Zeus` — a *different* defect, now GAP-008.** Not the formula: the cited passage
+  (9.496-9.528) states a parentage of the **Prayers**, not of Ate. Recorded, not fixed.
+
+**Also fixed on the `variant_claims` side, so both halves of the class agree:** `Ajax` carried five
+unreviewed formula rows (`child of Zeus` ×2, `sprung from Zeus` ×2, `son of Telamon, sprung from
+Zeus`) at `trust_tier=3`. All five were verified against the same three passages and rejected to
+`trust_tier=2`, extending DEV-112/F2's identical verdict on `Patroclus | parentage | sprung from
+Zeus`. Nothing seeded changed — they were never promoted — but leaving them would have left the same
+claim approved-shaped on one side and denied on the other.
+
 **References:** `docs/adr/adr-020-joint-parentage-multi-edge.md` (the four-part rule and the
 deny-list); `ingestion/seedgen/canonical_edge.py` (`build_comention_pairs`, `load_deny_list`);
-`ingestion/corpus/homer_iliad_murray1924.txt` `[233]`, `[643]`; `evaluation/gold-questions.json`
-(Q7); `docs/DEVIATIONS.md` #DEV-121 (found here), #DEV-112 (the `variant_claims` half of the same
-formula class), #DEV-118 (seeded-vs-review-gated argument).
+`ingestion/extraction/parentage_deny_list.json` (the new entry);
+`ingestion/corpus/homer_iliad_murray1924.txt` `[233]`, `[643]`, `[465]`;
+`evaluation/gold-questions.json` (Q7); `docs/DEVIATIONS.md` #DEV-121 (found here), **#DEV-122**
+(fixed here), #DEV-112 (the `variant_claims` half of the same formula class), #DEV-118
+(seeded-vs-review-gated argument).
+
+---
+
+## GAP-008 — the misattributed-passage shape has never been swept in the *seeded* `relationships` table
+
+**Status:** **Open** — found 2026-07-29 (DEV-122) as a by-product of GAP-007's sweep, which read
+every single-parent divine edge as well as the co-parent ones. One confirmed instance; the class is
+unmeasured.
+
+### The instance
+
+```
+Zeus parent_of Ate   [homer-iliad, 9.496-9.528]   <-- live, and cites the wrong passage
+```
+
+The cited passage is the Litai simile in Achilles' embassy scene. What it actually says is:
+
+> "For **Prayers are the daughters of great Zeus**, halting and wrinkled... Now whoso revereth the
+> daughters of Zeus... then they go their way and make prayer to Zeus, son of Cronos, **that Ate may
+> follow after**"
+
+Ate is named in the passage, and a parentage is stated in the passage — but they are not the same
+claim. The daughters are the **Prayers**; Ate is what the Prayers ask Zeus to send. The extractor
+merged the two.
+
+**The claim itself is true**, which is what makes this awkward rather than a simple delete. Homer
+does say it, at **19.90**: *"Eldest daughter of Zeus is Ate that blindeth all — a power fraught with
+bane."* So the row is right about the fact and wrong about the provenance.
+
+### Why it is left unfixed rather than patched
+
+Both available fixes cost something this project has explicitly refused before:
+
+- **Drop the row** (the DEV-098/DEV-121 treatment for "unsupported by its own cited passage") throws
+  away a genuine, corpus-attested parentage.
+- **Move the ref to 19.90** is what DEV-121 called inventing provenance, when it dropped
+  `Ajax killed_by Odysseus` rather than repoint it from 13.280-13.312 to the real 13.386ff.
+
+A third option — re-extract that passage — is out of scope for a data pass. This needs a decision on
+which cost to pay, and the decision should be made once for the whole class, not once for Ate.
+
+### Why it is its own gap
+
+The shape is **known**: DEV-119 catalogued it as bucket (4) of the A6 triage, with **18** instances
+among *dropped* parents (`Achilles <- Zeus` citing an Idomeneus battle scene, `Diomedes <- Xuthus`
+citing an Athamas/Ino passage, `Zeus <- Styx`/`Zeus <- Pallas` citing the Theogony's Oceanid roster),
+and DEV-121 hit it twice more among Ajax's `killed_by` rows. Every one of those was found in
+candidate rows that were **dropped or review-gated**. Nobody has swept the rows that are **seeded**,
+and that is the same seeded-vs-review-gated asymmetry GAP-007 turned on and DEV-118 argued in
+general: `variant_claims` has a human gate, `relationships` does not, so a defect of identical shape
+reaches users on one side and not the other.
+
+**Cheapest detector**, by analogy with A11 (which already reads the corpus text per edge and could
+host it): for each seeded `parent_of` edge, check that the cited passage contains the child's name
+and the parent's name *inside one kinship construction*, rather than merely both somewhere in the
+passage. A11's `_KINSHIP` regex is most of the machinery already.
+
+**References:** `core-api/src/main/resources/db/migration/V11__seed_relationships.sql`
+(`Zeus parent_of Ate`); `ingestion/corpus/homer_iliad_murray1924.txt` `[502]` (the Litai passage) and
+`[90]` (where the claim is actually made); `ingestion/audit/parentage_direction.py` (A11, the natural
+host); `docs/DEVIATIONS.md` #DEV-119 (the 18 dropped-parent instances), #DEV-121 (the two `killed_by`
+instances and the do-not-move-a-ref rule), **#DEV-122** (found here).

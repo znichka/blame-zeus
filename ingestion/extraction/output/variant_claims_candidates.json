@@ -13245,7 +13245,7 @@
     "claim_value": "child of Ajax",
     "source_id": "homer-iliad",
     "passage_ref": "6.1-6.50",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Telamon",
@@ -13253,7 +13253,7 @@
     "claim_value": "child of Ajax",
     "source_id": "homer-iliad",
     "passage_ref": "10.564-11.14",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Telamon",
@@ -13261,7 +13261,7 @@
     "claim_value": "child of Ajax",
     "source_id": "homer-iliad",
     "passage_ref": "11.575-11.615",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Telamon",
@@ -13269,7 +13269,7 @@
     "claim_value": "child of Ajax son of Telamon",
     "source_id": "homer-iliad",
     "passage_ref": "12.309-12.350",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Telamon",
@@ -13277,7 +13277,7 @@
     "claim_value": "child of Teucer",
     "source_id": "homer-iliad",
     "passage_ref": "13.169-13.205",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Telamon",
@@ -13285,7 +13285,7 @@
     "claim_value": "child of Ajax",
     "source_id": "homer-iliad",
     "passage_ref": "15.281-15.327",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Telamon",
@@ -13293,7 +13293,7 @@
     "claim_value": "child of Teucer",
     "source_id": "homer-iliad",
     "passage_ref": "15.429-15.470",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Telamon",
@@ -13301,7 +13301,7 @@
     "claim_value": "child of Ajax",
     "source_id": "homer-iliad",
     "passage_ref": "15.429-15.470",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Telamon",
@@ -13317,7 +13317,7 @@
     "claim_value": "child of Ajax",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "13.1-13.42",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Telamon",
@@ -13333,7 +13333,7 @@
     "claim_value": "child of Ajax",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "13.313-13.349",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Telamon",
@@ -39533,7 +39533,7 @@
     "claim_value": "child of Zeus",
     "source_id": "homer-iliad",
     "passage_ref": "7.206-7.243",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Ajax",
@@ -39549,7 +39549,7 @@
     "claim_value": "child of Zeus",
     "source_id": "homer-iliad",
     "passage_ref": "9.643-9.675",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Ajax",
@@ -39709,7 +39709,7 @@
     "claim_value": "sprung from Zeus",
     "source_id": "homer-iliad",
     "passage_ref": "7.206-7.243",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Ajax",
@@ -39733,7 +39733,7 @@
     "claim_value": "son of Telamon, sprung from Zeus",
     "source_id": "homer-iliad",
     "passage_ref": "9.643-9.675",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Ajax",
@@ -39757,7 +39757,7 @@
     "claim_value": "sprung from Zeus",
     "source_id": "homer-iliad",
     "passage_ref": "11.456-11.488",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Ajax",

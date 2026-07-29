@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T12:55:29.007802+00:00",
+  "generatedAt": "2026-07-29T13:47:16.433691+00:00",
   "checks": [
     {
       "name": "A1",
@@ -767,7 +767,7 @@
     },
     {
       "name": "A2",
-      "summary": "candidates: 6882 raw -> 3364 seeded (unknown_name=901, exact_dup=1579, contested_collapse=1038, residual=0); 347 distinct unknown name(s); db: live=3364 (drift=0)",
+      "summary": "candidates: 6882 raw -> 3363 seeded (unknown_name=901, exact_dup=1579, contested_collapse=1039, residual=0); 347 distinct unknown name(s); db: live=3363 (drift=0)",
       "findings": [
         {
           "check": "A2",
@@ -4772,12 +4772,12 @@
     },
     {
       "name": "A5",
-      "summary": "db: 58 entity_aliases, 22 myth_participants, 3364 relationships checked -- 0 finding(s)",
+      "summary": "db: 58 entity_aliases, 22 myth_participants, 3363 relationships checked -- 0 finding(s)",
       "findings": []
     },
     {
       "name": "A6",
-      "summary": "candidates: 726 dropped parent row(s) (679 with no existing variant_claims parentage row)",
+      "summary": "candidates: 727 dropped parent row(s) (679 with no existing variant_claims parentage row)",
       "findings": [
         {
           "check": "A6",
@@ -5291,6 +5291,15 @@
           "suggestedFix": "GAP-001 Root cause 3 residue -- candidate for promotion via the ADR-004 review gate into variant_claims (parentage), not a code fix",
           "waived": true,
           "waiverReason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
+        },
+        {
+          "check": "A6",
+          "severity": "info",
+          "subject": "candidates: Ajax <- Zeus",
+          "detail": "dropped by the contested-parentage collapse [homer-iliad, 7.206-7.243]; already has a variant_claims parentage row",
+          "suggestedFix": "GAP-001 Root cause 3 residue -- candidate for promotion via the ADR-004 review gate into variant_claims (parentage), not a code fix",
+          "waived": true,
+          "waiverReason": "GAP-007 / DEV-122: not a lost rival parent -- not a parent claim at all. ADR-020 rule 4's deny-list now drops this pair because Iliad 7.233 / 9.643 / 11.465 are the Homeric vocative formula \"Aias, sprung from Zeus, thou son of Telamon, captain of the host\": one real father plus one divine honorific in a single line, which rules 1-3 cannot exclude by construction (never flagged is_contested, and Telamon IS the winner with Zeus in the pair). The claim's variant_claims counterparts were reviewed against these same passages and rejected to trust_tier=2 in the same pass (promotion_log batch gap007-ajax-zeus-homeric-formula), extending DEV-112/F2's identical verdict on 'Patroclus | parentage | sprung from Zeus'. Telamon is attested 22 times in the Iliad alone and is promoted at trust_tier=1 from two sources. The drop is the fix, not a loss."
         },
         {
           "check": "A6",
@@ -6902,6 +6911,15 @@
           "suggestedFix": "GAP-001 Root cause 3 residue -- candidate for promotion via the ADR-004 review gate into variant_claims (parentage), not a code fix",
           "waived": true,
           "waiverReason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
+        },
+        {
+          "check": "A6",
+          "severity": "info",
+          "subject": "candidates: Clitus <- Pisenor",
+          "detail": "dropped by the contested-parentage collapse [homer-iliad, 15.429-15.470]; no variant_claims parentage row exists for this subject",
+          "suggestedFix": "GAP-001 Root cause 3 residue -- candidate for promotion via the ADR-004 review gate into variant_claims (parentage), not a code fix",
+          "waived": true,
+          "waiverReason": "DEV-122: the rival is real and correctly extracted, but the CHILD is a namesake collision, so this is a GAP-002 bucket-2 lead rather than an A6 promotion candidate. `Clitus` conflates three distinct men -- Apollodorus 2.1.5's son of Egyptus and Tyria who married Clite, Iliad 15.445's \"Cleitus, the glorious son of Peisenor, comrade of Polydamas\", and Odyssey 15.249's Cleitus son of Mantius carried off by Dawn. The collapse keeps the spine source's Egyptus+Tyria couple and drops Peisenor and Mantius as rivals, but they are not rivals -- they are two other men's true fathers. Newly visible because this pass corrected the direction of `Clitus parent_of Pisenor` (the Iliad states \"son of Peisenor\", so the edge was backwards); before the swap the same conflation was hidden as a wrong-direction edge. The claim is not lost: 'Clitus | parentage | son of Peisenor' @ homer-iliad 15.429-15.470 sits at trust_tier=3 in variant_claims_candidates.json. Splitting the entity is deliberately NOT done here -- it is an A1-class entity decision, the DEV-119 precedent for finding one inside a different kind of pass, and it cannot be papered over with a `Cleitus`->`Clitus` spelling alias, which would assert all three men are one."
         },
         {
           "check": "A6",
@@ -10272,15 +10290,6 @@
         {
           "check": "A6",
           "severity": "info",
-          "subject": "candidates: Pisenor <- Ops",
-          "detail": "dropped by the contested-parentage collapse [homer-odyssey, 1.412-2.14]; no variant_claims parentage row exists for this subject",
-          "suggestedFix": "GAP-001 Root cause 3 residue -- candidate for promotion via the ADR-004 review gate into variant_claims (parentage), not a code fix",
-          "waived": true,
-          "waiverReason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-        },
-        {
-          "check": "A6",
-          "severity": "info",
           "subject": "candidates: Pisistratus <- Nestor",
           "detail": "dropped by the contested-parentage collapse [homer-odyssey, 3.21-3.62]; no variant_claims parentage row exists for this subject",
           "suggestedFix": "GAP-001 Root cause 3 residue -- candidate for promotion via the ADR-004 review gate into variant_claims (parentage), not a code fix",
@@ -11341,7 +11350,7 @@
     },
     {
       "name": "A8",
-      "summary": "1655 distinct subject(s) ranked; top 50: Odysseus(497), Zeus(485), Achilles(391), Heracles(276), Hector(264), Apollo(219), Agamemnon(218), Telemachus(164), Diomedes(151), Patroclus(146) ...",
+      "summary": "1655 distinct subject(s) ranked; top 50: Odysseus(497), Zeus(484), Achilles(391), Heracles(276), Hector(264), Apollo(219), Agamemnon(218), Telemachus(164), Diomedes(151), Patroclus(146) ...",
       "findings": []
     },
     {

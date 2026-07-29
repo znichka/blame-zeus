@@ -2648,5 +2648,128 @@
         "3.13.8-3.14.2"
       ]
     ]
+  },
+  {
+    "batchLabel": "gap007-telamon-reversed-direction",
+    "date": "2026-07-29T13:43:04.290961+00:00",
+    "keys": [],
+    "groupCount": 0,
+    "rejectedKeys": [
+      [
+        "Telamon",
+        "parentage",
+        "child of Ajax",
+        "homer-iliad",
+        "6.1-6.50"
+      ],
+      [
+        "Telamon",
+        "parentage",
+        "child of Ajax",
+        "homer-iliad",
+        "10.564-11.14"
+      ],
+      [
+        "Telamon",
+        "parentage",
+        "child of Ajax",
+        "homer-iliad",
+        "11.575-11.615"
+      ],
+      [
+        "Telamon",
+        "parentage",
+        "child of Ajax son of Telamon",
+        "homer-iliad",
+        "12.309-12.350"
+      ],
+      [
+        "Telamon",
+        "parentage",
+        "child of Ajax",
+        "homer-iliad",
+        "15.281-15.327"
+      ],
+      [
+        "Telamon",
+        "parentage",
+        "child of Ajax",
+        "homer-iliad",
+        "15.429-15.470"
+      ],
+      [
+        "Telamon",
+        "parentage",
+        "child of Ajax",
+        "ovid-metamorphoses",
+        "13.1-13.42"
+      ],
+      [
+        "Telamon",
+        "parentage",
+        "child of Ajax",
+        "ovid-metamorphoses",
+        "13.313-13.349"
+      ],
+      [
+        "Telamon",
+        "parentage",
+        "child of Teucer",
+        "homer-iliad",
+        "13.169-13.205"
+      ],
+      [
+        "Telamon",
+        "parentage",
+        "child of Teucer",
+        "homer-iliad",
+        "15.429-15.470"
+      ]
+    ],
+    "rationale": "F3/DEV-114 reversed-direction shape in variant_claims, verified against the cited source by A11's own criterion (reversed reading attested, correct reading never attested in that source). The Iliad says 'son of Telamon' 22 times and never 'Telamon, son of' anyone; 'Teucer, son of Telamon' at 13.170 and 15.436. So Telamon is the father of both Ajax and Teucer, and every 'Telamon | parentage | child of Ajax/Teucer' row is backwards. Found by DEV-121's verification addendum (8 rows); the two 'child of Teucer' rows are the same shape and were not counted there."
+  },
+  {
+    "batchLabel": "gap007-ajax-zeus-homeric-formula",
+    "date": "2026-07-29T13:46:42.813596+00:00",
+    "keys": [],
+    "groupCount": 0,
+    "rejectedKeys": [
+      [
+        "Ajax",
+        "parentage",
+        "child of Zeus",
+        "homer-iliad",
+        "7.206-7.243"
+      ],
+      [
+        "Ajax",
+        "parentage",
+        "child of Zeus",
+        "homer-iliad",
+        "9.643-9.675"
+      ],
+      [
+        "Ajax",
+        "parentage",
+        "sprung from Zeus",
+        "homer-iliad",
+        "7.206-7.243"
+      ],
+      [
+        "Ajax",
+        "parentage",
+        "son of Telamon, sprung from Zeus",
+        "homer-iliad",
+        "9.643-9.675"
+      ],
+      [
+        "Ajax",
+        "parentage",
+        "sprung from Zeus",
+        "homer-iliad",
+        "11.456-11.488"
+      ]
+    ],
+    "rationale": "GAP-007's variant_claims half. Same Homeric vocative formula the deny-list entry suppresses on the relationships side: \"Aias, sprung from Zeus, thou son of Telamon, captain of the host\", verified live in the corpus at Iliad 7.233, 9.643 and 11.465 -- one real father and one divine honorific in a single line. Extends DEV-112/F2's identical verdict on 'Patroclus | parentage | sprung from Zeus' @ 1.325-1.363 to the other hero the formula names. Telamon is attested as Ajax's father 22 times in the Iliad alone and is already promoted at trust_tier=1 from two sources."
   }
 ]

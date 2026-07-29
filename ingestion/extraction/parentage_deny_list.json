@@ -3,5 +3,10 @@
     "child": "Io",
     "parents": ["Iasus", "Inachus"],
     "reason": "Apollodorus 2.1.2-2.1.3 names Inachus, Iasus, and Piren as rival alternatives (\"or\") for Io's father, not co-parents -- none of the three rows is flagged is_contested (a data limitation, not a couple). Piren is absent from the confirmed entity set, so the entity filter reduces the group to exactly two unflagged names, which ADR-020's rules 1-3 alone would otherwise treat as a genuine single-source co-mention couple. ADR-020 worked outcomes / DEV-088; ADR-020's own rejected 'bare co-mention count' alternative mis-coupled this exact case."
+  },
+  {
+    "child": "Ajax",
+    "parents": ["Telamon", "Zeus"],
+    "reason": "GAP-007 / DEV-122. Homeric vocative formula, not joint parentage: \"Aias, sprung from Zeus, thou son of Telamon, captain of the host\" (Iliad 7.233 and again 9.643 -- the candidate rows cite 7.206-7.243 and 9.643-9.675). One real father and one divine honorific in a single line, so Telamon and Zeus share a (source_id, passage_ref) and qualify as a co-mention pair. Rules 1-3 cannot exclude it by construction: the extractor never flagged the rows is_contested (Homer is being formulaic, not presenting alternatives), Telamon IS _pick_winner's winner and Zeus is in the pair so rule 2 admits it, and rule 3 only ranks among qualifying pairs when there is more than one. Same formula class that DEV-112 (Track F2) rejected on the variant_claims side -- 'Patroclus | parentage | sprung from Zeus' @ Iliad 1.325-1.363 is in promotion_log.json's rejectedKeys -- but relationships is seeded rather than review-gated, so this half reached users: Ajax was listed in gold Q7's 'which heroes are children of Zeus' answer. Telamon alone is attested 25 times across four sources; Zeus only in these two formulaic lines."
   }
 ]

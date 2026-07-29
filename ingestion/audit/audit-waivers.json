@@ -1,10 +1,5 @@
 [
   {
-    "check": "A3",
-    "subject": "db: Eurymachus -> Polybus -> Eurymachus",
-    "reason": "Pre-existing 2-node cycle (homer-odyssey 15.493-15.544 vs 2.177-2.223), unrelated to the J1/J2/J3f-h batch that surfaced it -- masked pre-reseed by DFS iteration order (same pattern as J3e/J3g), not fixed by this batch's edits. Already documented by name as the measured post-resolver baseline in docs/adr/adr-020-joint-parentage-multi-edge.md and docs/DATA-GAPS.md GAP-001 (\"baseline 1, unrelated to this change\" -- J4a/DEV-088 is expected to take it 1->2 when the co-parent carve-out lands, and budgets a reversed-edge fix pass, J4a-8 in docs/TODO-phase2-stage-p3.md). Deferred to that pass rather than fixed unbudgeted here."
-  },
-  {
     "check": "A7",
     "subject": "candidates: Charybdis",
     "reason": "True positive, but nothing to fix: the corpus names Charybdis 17x (Apollodorus E.7.20-E.7.23, Odyssey 12, Ovid) and every mention is a sea hazard in a strait -- 'in the other cliff was Charybdis, who thrice a day drew up the water and spouted it again'. No parentage, marriage, killing, or any other relation in the existing vocabulary is attested for her anywhere in the six sources (unlike Scylla, whose parents Apollodorus does name at E.7.20, and who has 17 rows). Odysseus passes her but does not fight or kill her, and there is no 'encountered' relation; inventing one to satisfy this check would be the tail wagging the dog, and fabricating a parentage is the DEV-047/DEV-095 line this project does not cross. Revisit if P5b's myth/participant work adds a modeling shape for 'hazard encountered during a voyage'."
@@ -456,16 +451,6 @@
   },
   {
     "check": "A6",
-    "subject": "candidates: Actor <- Echecles",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
-    "subject": "candidates: Actor <- Erithus",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
     "subject": "candidates: Actor <- Hippasus",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
@@ -566,17 +551,7 @@
   },
   {
     "check": "A6",
-    "subject": "candidates: Aeolus <- Macar",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
     "subject": "candidates: Aeolus <- Misenus",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
-    "subject": "candidates: Aerope <- Catreus",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
   {
@@ -696,11 +671,6 @@
   },
   {
     "check": "A6",
-    "subject": "candidates: Alcinous <- Laodamas",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
     "subject": "candidates: Alcinous <- Nausicaa",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
@@ -722,11 +692,6 @@
   {
     "check": "A6",
     "subject": "candidates: Alcyone <- Atlas",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
-    "subject": "candidates: Alcyone <- Elephenor",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
   {
@@ -846,11 +811,6 @@
   },
   {
     "check": "A6",
-    "subject": "candidates: Antenor <- Acamas",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
     "subject": "candidates: Antenor <- Demoleon",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
@@ -861,17 +821,7 @@
   },
   {
     "check": "A6",
-    "subject": "candidates: Antenor <- Laodocus",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
     "subject": "candidates: Antenor <- Pedaeus",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
-    "subject": "candidates: Antenor <- Polybus",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
   {
@@ -896,17 +846,7 @@
   },
   {
     "check": "A6",
-    "subject": "candidates: Antimachus <- Hippomachus",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
     "subject": "candidates: Antiochus <- Melas",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
-    "subject": "candidates: Antiochus <- Phylas",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
   {
@@ -1012,16 +952,6 @@
   {
     "check": "A6",
     "subject": "candidates: Argus Panoptes <- Ismene (daughter of Asopus)",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
-    "subject": "candidates: Aristomachus <- Lysimache",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
-    "subject": "candidates: Aristomachus <- Talaus",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
   {
@@ -1172,11 +1102,6 @@
   {
     "check": "A6",
     "subject": "candidates: Boreas <- Typhoeus",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
-    "subject": "candidates: Borus <- Phaestus",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
   {
@@ -1496,11 +1421,6 @@
   },
   {
     "check": "A6",
-    "subject": "candidates: Dardanus <- Zeus",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
     "subject": "candidates: Dawn <- Memnon",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
@@ -1552,11 +1472,6 @@
   {
     "check": "A6",
     "subject": "candidates: Dryas <- Caliadne",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
-    "subject": "candidates: Dryas <- Lycurgus",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
   {
@@ -1617,11 +1532,6 @@
   {
     "check": "A6",
     "subject": "candidates: Endymion <- Zeus",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
-    "subject": "candidates: Enops <- Thestor",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
   {
@@ -1791,11 +1701,6 @@
   },
   {
     "check": "A6",
-    "subject": "candidates: Eurystheus <- Sthenelaus",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
     "subject": "candidates: Evagoras <- Priam",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
@@ -1876,11 +1781,6 @@
   },
   {
     "check": "A6",
-    "subject": "candidates: Haemon <- Maeon",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
     "subject": "candidates: Hecate <- Persaeus",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
@@ -1956,11 +1856,6 @@
   },
   {
     "check": "A6",
-    "subject": "candidates: Hippasus <- Hypsenor",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
     "subject": "candidates: Hippocorystes <- Hippocoon",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
@@ -1982,16 +1877,6 @@
   {
     "check": "A6",
     "subject": "candidates: Hippomenes <- Poseidon",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
-    "subject": "candidates: Hipponous <- Hecuba",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
-    "subject": "candidates: Hipponous <- Priam",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
   {
@@ -2146,16 +2031,6 @@
   },
   {
     "check": "A6",
-    "subject": "candidates: Iphis <- Ligdus",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
-    "subject": "candidates: Iphis <- Telethusa",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
     "subject": "candidates: Iris <- Zeus",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
@@ -2167,11 +2042,6 @@
   {
     "check": "A6",
     "subject": "candidates: Ismene <- Oedipus",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
-    "subject": "candidates: Ismenus <- Crocale",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
   {
@@ -2471,11 +2341,6 @@
   },
   {
     "check": "A6",
-    "subject": "candidates: Mermerus <- Ilus",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
     "subject": "candidates: Merope <- Oenopion",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
@@ -2626,11 +2491,6 @@
   },
   {
     "check": "A6",
-    "subject": "candidates: Onetor <- Phrontis",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
     "subject": "candidates: Opheltes <- Eurydice",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
@@ -2652,11 +2512,6 @@
   {
     "check": "A6",
     "subject": "candidates: Orestes <- Clytaemnestra",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
-    "subject": "candidates: Orestes <- Tisamenus",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
   {
@@ -3101,11 +2956,6 @@
   },
   {
     "check": "A6",
-    "subject": "candidates: Portheus <- Lycaon",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
     "subject": "candidates: Proteus <- Poseidon",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
@@ -3291,11 +3141,6 @@
   },
   {
     "check": "A6",
-    "subject": "candidates: Tecton <- Polyneus",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
     "subject": "candidates: Telamon <- Aeacus",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
@@ -3312,11 +3157,6 @@
   {
     "check": "A6",
     "subject": "candidates: Telegonus <- Proteus",
-    "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
-  },
-  {
-    "check": "A6",
-    "subject": "candidates: Telephus <- Eurypylus",
     "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): GAP-001 Root cause 3's promotion backlog. F0b decided a bounded first tranche -- rows whose CHILD is in the frozen top-20 A8 prominence list -- as F1's working set; this row's child is outside that list, so it is explicitly deferred, not silently dropped. See docs/DATA-GAPS.md GAP-001 and docs/DEVIATIONS.md #DEV-109 for the full policy. Not a permanent waiver: each future batch narrows this set as more subjects get promoted coverage."
   },
   {
@@ -5598,5 +5438,15 @@
     "check": "A6",
     "subject": "candidates: Zeus <- Styx",
     "reason": "A6 triage (post-P4, DEV-119): reviewed against its cited passage, which contains NO parentage claim for this subject at all -- the same misattributed-passage shape F1 documented (DEV-110). Verified case by case: e.g. Achilles<-Zeus cites an Idomeneus battle scene, Diomedes<-Xuthus an Athamas/Ino passage, Zeus<-Styx and Zeus<-Pallas the Theogony's Oceanid roster. Correctly dropped; not promoted."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Ajax <- Zeus",
+    "reason": "GAP-007 / DEV-122: not a lost rival parent -- not a parent claim at all. ADR-020 rule 4's deny-list now drops this pair because Iliad 7.233 / 9.643 / 11.465 are the Homeric vocative formula \"Aias, sprung from Zeus, thou son of Telamon, captain of the host\": one real father plus one divine honorific in a single line, which rules 1-3 cannot exclude by construction (never flagged is_contested, and Telamon IS the winner with Zeus in the pair). The claim's variant_claims counterparts were reviewed against these same passages and rejected to trust_tier=2 in the same pass (promotion_log batch gap007-ajax-zeus-homeric-formula), extending DEV-112/F2's identical verdict on 'Patroclus | parentage | sprung from Zeus'. Telamon is attested 22 times in the Iliad alone and is promoted at trust_tier=1 from two sources. The drop is the fix, not a loss."
+  },
+  {
+    "check": "A6",
+    "subject": "candidates: Clitus <- Pisenor",
+    "reason": "DEV-122: the rival is real and correctly extracted, but the CHILD is a namesake collision, so this is a GAP-002 bucket-2 lead rather than an A6 promotion candidate. `Clitus` conflates three distinct men -- Apollodorus 2.1.5's son of Egyptus and Tyria who married Clite, Iliad 15.445's \"Cleitus, the glorious son of Peisenor, comrade of Polydamas\", and Odyssey 15.249's Cleitus son of Mantius carried off by Dawn. The collapse keeps the spine source's Egyptus+Tyria couple and drops Peisenor and Mantius as rivals, but they are not rivals -- they are two other men's true fathers. Newly visible because this pass corrected the direction of `Clitus parent_of Pisenor` (the Iliad states \"son of Peisenor\", so the edge was backwards); before the swap the same conflation was hidden as a wrong-direction edge. The claim is not lost: 'Clitus | parentage | son of Peisenor' @ homer-iliad 15.429-15.470 sits at trust_tier=3 in variant_claims_candidates.json. Splitting the entity is deliberately NOT done here -- it is an A1-class entity decision, the DEV-119 precedent for finding one inside a different kind of pass, and it cannot be papered over with a `Cleitus`->`Clitus` spelling alias, which would assert all three men are one."
   }
 ]
