@@ -241,8 +241,22 @@ Scope limits, all deliberate: the **corpus is not committed**, so a run without 
 evaluated" rather than guessing; **split siblings are grouped by base name** (`Sterope (Pleiad)` →
 `Sterope`) and their rows pooled, so a five-way split isn't flagged because one sibling got no rows;
 **multi-word names are skipped**, not flagged (`Diomedes of Thrace` never appears verbatim in a
-translation); and a **translation-name mismatch is a known false-negative** (Ovid says `Mars`), which
-is the safe direction — it under-counts mentions and so under-flags.
+translation).
+
+**Translation-name mismatch: this limit was documented from the start and its severity was
+misjudged (fixed 2026-07-30, DEV-127).** The original text called it "the safe direction — it
+under-counts mentions and so under-flags." Under-flagging is *not* safe for a check whose entire
+purpose is catching a major figure's total erasure. Counting only the canonical spelling meant
+`Heracles` scored 29 while the corpus says `Hercules` **201** times, and `Ajax` 46 against `Aias`
+**177** — and it pushed three names **below the 10-mention floor entirely**: `Cronus` (9 canonical /
+**195** as `Cronos`), `Ouranos` (**0** / 72 as `Heaven`), `Helius` (6 / 32 as `Helios`). Those three
+were unreachable at any row count, so the DEV-098 erasure this check exists to catch could have
+happened to a Titan king, a primordial, or the sun god and A7 would have been silent.
+`find_uncovered` now takes `name_aliases` (the map A1 and A14/A15 read) and sums a figure's
+spellings: live, `Cronus` 9 → **214**, `Ouranos` 0 → **77**, `Helius` 6 → **38**. Finding count
+unchanged at 2 — the hole was latent, since all three still have rows — but it is closed rather than
+relabelled. The lesson worth keeping: *"it only under-flags"* is not a reason to leave a gap in a
+check that exists to find absences.
 
 The first sweep found **6**, all now worked (DEV-100): three were **not entities at all** —
 `Argeiphontes` (a standing **epithet of Hermes**; A1 scores the pair 33.3), `Diomed` (More's
@@ -321,6 +335,20 @@ promotion is monotone, so growth means a promotion was lost, the DEV-101/Track C
 signature. A normal **decrease** — what every successful P4 batch produces — is printed as a
 trend line against both the last run and the frozen starting baseline, never a finding: a check
 that fires on ordinary progress is worse than no check.
+
+**A run without a DB reports but never advances the tracker (DEV-127).** `claim_type` normalization
+needs `load_alias_map(db_conn)`, so `python -m audit --candidates` builds the inventory with an
+**empty** alias map: surface variants never collapse and the totals inflate to **838 groups / 749
+zero-promoted**, against the DB-backed **797 / 725**. Until this was fixed, such a run compared those
+figures to the baseline — firing the DEV-101 corruption signature as a **false alarm** — and then
+persisted 749 to a **committed** file. The false alarm was the visible harm; the silent one was
+worse. With `lastZeroPromoted` sitting at an inflated 749, a genuine lost promotion anywhere below it
+is no longer an *increase*, so **the guard stops firing altogether** — it fails open. Both
+baseline-relative findings are now suppressed when the counts are incomparable, and the tracker is
+left untouched; the **arithmetic identity still runs in both modes**, being internal to the run. Note
+the first-run case was the sharpest: with no baseline file present, a no-DB run would have frozen the
+inflated figure as `zeroPromotedBaseline` **permanently**. If you want a comparable A10 number, give
+it a DB connection — `--candidates` will tell you plainly that its figure is not one.
 
 ## The Flyway checksum trap (shared with Track F)
 

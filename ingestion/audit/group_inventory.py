@@ -108,10 +108,24 @@ def summarize_counts(rows: list[GroupRow]) -> InventoryCounts:
     return InventoryCounts(groups_total, groups_with_promotions, zero_promoted)
 
 
-def check_invariants(counts: InventoryCounts, baseline: dict | None) -> tuple[list[Finding], str, dict]:
+def check_invariants(
+    counts: InventoryCounts, baseline: dict | None, comparable: bool = True
+) -> tuple[list[Finding], str, dict]:
     """Pure core -- no I/O (B8). Returns `(findings, trend_line, new_baseline)`. `baseline is
     None` means this is the first-ever run: no findings are possible yet (nothing to compare
-    against), so it just records the starting point."""
+    against), so it just records the starting point.
+
+    `comparable=False` means these counts were produced without the `claim_type` alias map
+    (a no-DB run), so surface variants never collapsed and the totals are inflated against
+    any DB-derived baseline -- 838 groups versus 797 on live data. Both baseline-relative
+    findings are then suppressed and the tracker is left where it was (DEV-127).
+
+    Suppressing them is not cosmetic. Persisting an inflated `lastZeroPromoted` makes the
+    monotonicity guard **fail open**: a genuine lost promotion anywhere below the inflated
+    figure is no longer an increase, so the DEV-101 corruption signature this check exists
+    to raise would never fire again. The false alarm is the visible harm; the silent one is
+    worse. The arithmetic identity below is deliberately still checked -- it is internal to
+    the run and owes nothing to the baseline."""
     if baseline is None:
         trend = f"first run -- baseline set at {counts.groups_total} group(s), {counts.zero_promoted} zero-promoted"
         new_baseline = {
@@ -123,7 +137,7 @@ def check_invariants(counts: InventoryCounts, baseline: dict | None) -> tuple[li
 
     findings: list[Finding] = []
 
-    if counts.groups_total != baseline["groupsTotalBaseline"]:
+    if comparable and counts.groups_total != baseline["groupsTotalBaseline"]:
         findings.append(
             Finding(
                 check=NAME,
@@ -153,6 +167,14 @@ def check_invariants(counts: InventoryCounts, baseline: dict | None) -> tuple[li
                 suggested_fix="counting bug in build_group_inventory/summarize_counts -- investigate before trusting any other A10 output",
             )
         )
+
+    if not comparable:
+        # The caller's summary already prints groups_total, so name only the tracked figure.
+        trend = (
+            f"zero_promoted {counts.zero_promoted} -- not comparable to the baseline "
+            "(no DB connection, so claim_type variants were not collapsed); tracker left unchanged"
+        )
+        return findings, trend, dict(baseline)
 
     if counts.zero_promoted > baseline["lastZeroPromoted"]:
         findings.append(
@@ -200,9 +222,11 @@ def run(candidates_dir: Path | None, db_conn: object | None, baseline_path: Path
     """Track A2r contract adapter. `baseline_path` defaults to `DEFAULT_BASELINE_PATH`, looked up
     at call time (not bound as a mutable default arg) so tests can redirect it to a `tmp_path`
     without touching the real committed baseline file. The baseline file is updated on every
-    call, including `--only A10` runs -- matching every other check's "always reflects the live
-    tree" behaviour. A caller wanting a true dry run (inspect without advancing
-    `lastZeroPromoted`) should pass its own `baseline_path` copy."""
+    call **that has a DB connection**, including `--only A10` runs -- matching every other
+    check's "always reflects the live tree" behaviour. A no-DB run reports but never advances
+    `lastZeroPromoted`, because without the `claim_type` alias map its totals are inflated and
+    not comparable (DEV-127). A caller wanting a true dry run of a DB-backed invocation should
+    still pass its own `baseline_path` copy."""
     if candidates_dir is None:
         return CheckResult(
             findings=(), summary="no candidates source given -- A10 needs candidate JSON to build the inventory"
@@ -220,8 +244,12 @@ def run(candidates_dir: Path | None, db_conn: object | None, baseline_path: Path
     counts = summarize_counts(rows)
 
     baseline = load_baseline(baseline_path)
-    findings, trend, new_baseline = check_invariants(counts, baseline)
-    save_baseline(new_baseline, baseline_path)
+    # A no-DB run has no claim_type alias map, so its totals are inflated and must
+    # neither be compared against the baseline nor written to it (DEV-127).
+    comparable = db_conn is not None
+    findings, trend, new_baseline = check_invariants(counts, baseline, comparable=comparable)
+    if comparable:
+        save_baseline(new_baseline, baseline_path)
 
     summary = (
         f"{counts.groups_total} group(s), {counts.groups_with_promotions} with a promoted row, "
@@ -275,9 +303,15 @@ def main(argv: list[str] | None = None) -> int:
     rows = build_group_inventory(claims, claim_type_alias_map, subject_ranks=subject_ranks)
     counts = summarize_counts(rows)
 
+    # Same rule as `run()`: without a DB there is no claim_type alias map, so these
+    # counts are inflated and must not be compared or persisted (DEV-127). This path
+    # writes the REAL committed baseline (no override), so an unguarded save here is
+    # the more damaging of the two.
+    comparable = args.db
     baseline = load_baseline()
-    findings, trend, new_baseline = check_invariants(counts, baseline)
-    save_baseline(new_baseline)
+    findings, trend, new_baseline = check_invariants(counts, baseline, comparable=comparable)
+    if comparable:
+        save_baseline(new_baseline)
 
     print(f"{counts.groups_total} group(s), {counts.groups_with_promotions} with a promoted row")
     print(trend)

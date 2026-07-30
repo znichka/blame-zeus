@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 from audit.group_inventory import (
     GroupRow,
     InventoryCounts,
@@ -6,6 +9,8 @@ from audit.group_inventory import (
     run,
     summarize_counts,
 )
+
+OUTPUT_DIR = Path(__file__).resolve().parent.parent.parent / "extraction" / "output"
 
 
 def _claim(subject, claim_type, value, source, trust_tier=3):
@@ -120,6 +125,53 @@ def test_check_invariants_flags_zero_promoted_increase_as_a_finding():
     assert new_baseline["lastZeroPromoted"] == 836
 
 
+# --------------------------------------------------------------------------- #
+# comparable=False -- a run that could not normalize claim_type (DEV-127)
+# --------------------------------------------------------------------------- #
+def test_incomparable_counts_raise_no_baseline_relative_findings():
+    # Without a DB the claim_type alias map is empty, so surface variants never
+    # collapse and the group count is inflated (838 vs 797 on live data). Comparing
+    # that against a DB-derived baseline fires BOTH baseline-relative findings --
+    # including the DEV-101 corruption signature -- as pure false alarms.
+    counts = InventoryCounts(groups_total=880, groups_with_promotions=4, zero_promoted=876)
+    baseline = {"groupsTotalBaseline": 839, "zeroPromotedBaseline": 835, "lastZeroPromoted": 835}
+    findings, _trend, _new = check_invariants(counts, baseline, comparable=False)
+
+    assert not any(f.subject == "zero_promoted" for f in findings)
+    assert not any(f.subject == "groups_total" for f in findings)
+
+
+def test_incomparable_counts_never_advance_the_tracker():
+    # The serious half: persisting an inflated number makes the monotonicity guard
+    # fail OPEN -- a genuine lost promotion below it passes silently ever after.
+    counts = InventoryCounts(groups_total=880, groups_with_promotions=4, zero_promoted=876)
+    baseline = {"groupsTotalBaseline": 839, "zeroPromotedBaseline": 835, "lastZeroPromoted": 835}
+    _findings, trend, new_baseline = check_invariants(counts, baseline, comparable=False)
+
+    assert new_baseline["lastZeroPromoted"] == 835, "tracker must not move on an incomparable run"
+    assert "not comparable" in trend
+
+
+def test_incomparable_counts_still_flag_a_counting_bug():
+    # The arithmetic identity is internal to the run, so it stays live -- it does not
+    # depend on the baseline and a counting bug is a counting bug in either mode.
+    counts = InventoryCounts(groups_total=880, groups_with_promotions=4, zero_promoted=870)
+    baseline = {"groupsTotalBaseline": 839, "zeroPromotedBaseline": 835, "lastZeroPromoted": 835}
+    findings, _trend, _new = check_invariants(counts, baseline, comparable=False)
+
+    assert any(f.subject == "arithmetic identity" for f in findings)
+
+
+def test_run_without_a_db_leaves_the_baseline_file_untouched(tmp_path):
+    baseline_path = tmp_path / "baseline.json"
+    original = {"groupsTotalBaseline": 839, "zeroPromotedBaseline": 835, "lastZeroPromoted": 725}
+    baseline_path.write_text(json.dumps(original))
+
+    run(OUTPUT_DIR, None, baseline_path=baseline_path)
+
+    assert json.loads(baseline_path.read_text()) == original
+
+
 def test_check_invariants_normal_decrease_is_a_trend_not_a_finding():
     # The case that matters most -- what every successful batch produces.
     counts = InventoryCounts(groups_total=839, groups_with_promotions=25, zero_promoted=814)
@@ -145,10 +197,29 @@ def test_run_reports_inventory_from_candidates_only(tmp_path):
 
     assert result.findings == ()
     assert "1 group" in result.summary
-    assert baseline_path.exists()
+    # Previously this asserted the opposite -- that a no-DB run writes the baseline.
+    # That assertion pinned the DEV-127 defect: such a run has no claim_type alias map,
+    # so its totals are inflated, and on a FIRST run it would fix that inflated figure
+    # as `zeroPromotedBaseline` permanently, with nothing to compare it against later.
+    assert not baseline_path.exists()
 
 
 def test_run_with_no_candidates_reports_plainly():
     result = run(None, None)
     assert result.findings == ()
     assert "no candidates source" in result.summary
+
+
+def test_standalone_cli_without_db_leaves_the_committed_baseline_untouched(monkeypatch, tmp_path):
+    """The second instance of the DEV-127 defect, missed by that entry's first fix and
+    found by its own verification pass. `main()` writes DEFAULT_BASELINE_PATH directly
+    -- there is no `baseline_path` override here -- so an unguarded save on this path
+    corrupts the real committed file, not a test copy."""
+    from audit import group_inventory as gi
+
+    saved: list = []
+    monkeypatch.setattr(gi, "save_baseline", lambda *a, **k: saved.append(a))
+
+    gi.main(["--candidates-dir", str(OUTPUT_DIR), "--output", str(tmp_path / "out.json")])
+
+    assert saved == [], "a no-DB CLI run must not write the committed baseline"

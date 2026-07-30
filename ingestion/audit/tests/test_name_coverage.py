@@ -168,3 +168,59 @@ def test_finding_without_a_partner_suggests_a_different_fix():
     assert "no similar unconfirmed name" in findings[0].detail
     assert "translation-name mismatch" in findings[0].suggested_fix
     assert findings[0].check == "A7"
+
+
+# --------------------------------------------------------------------------- #
+# Alias-aware mention counting (DEV-127)
+# --------------------------------------------------------------------------- #
+def test_alias_spellings_count_toward_the_canonical_name():
+    """The corpus calls him `Cronos` 195x and `Cronus` 9x. Crediting only the
+    canonical spelling puts him under the 10-mention floor, so this check -- which
+    exists to catch a major figure being erased from the candidate rows -- cannot
+    see him at any row count."""
+    uncovered, _ = find_uncovered(
+        entity_names=["Cronus"],
+        relationships=[],
+        corpus_counts=Counter({"Cronus": 9, "Cronos": 195}),
+        name_aliases={"Cronos": "Cronus"},
+    )
+
+    assert [u.base_name for u in uncovered] == ["Cronus"]
+    assert uncovered[0].corpus_mentions == 204
+
+
+def test_without_an_alias_map_the_canonical_count_is_unchanged():
+    uncovered, _ = find_uncovered(
+        entity_names=["Cronus"],
+        relationships=[],
+        corpus_counts=Counter({"Cronus": 9, "Cronos": 195}),
+    )
+
+    assert uncovered == ()
+
+
+def test_an_alias_of_another_entity_is_not_credited():
+    """`Heaven` maps to `Ouranos`, so it must not inflate an unrelated entity."""
+    uncovered, _ = find_uncovered(
+        entity_names=["Ouranos", "Zeus"],
+        relationships=[_rel("Zeus", "Athena")],
+        corpus_counts=Counter({"Ouranos": 0, "Heaven": 72, "Zeus": 500}),
+        name_aliases={"Heaven": "Ouranos"},
+    )
+
+    assert [u.base_name for u in uncovered] == ["Ouranos"]
+    assert uncovered[0].corpus_mentions == 72
+
+
+def test_alias_counting_survives_the_qualifier_convention():
+    """Entity names carry `Name (descriptor)`; aliases point at the full name, so the
+    credit must land on the same base the mention count is keyed by."""
+    uncovered, _ = find_uncovered(
+        entity_names=["Sterope (Pleiad)"],
+        relationships=[],
+        corpus_counts=Counter({"Sterope": 4, "Asterope": 20}),
+        name_aliases={"Asterope": "Sterope (Pleiad)"},
+    )
+
+    assert [u.base_name for u in uncovered] == ["Sterope"]
+    assert uncovered[0].corpus_mentions == 24

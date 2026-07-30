@@ -55,6 +55,7 @@ from pathlib import Path
 
 from rapidfuzz import fuzz
 
+from audit.claim_direction import load_name_aliases
 from audit.contract import CheckResult, Finding
 
 NAME = "A7"
@@ -106,16 +107,34 @@ def find_uncovered(
     corpus_counts: Counter[str],
     min_mentions: int = DEFAULT_MIN_MENTIONS,
     max_rows: int = 0,
+    name_aliases: dict[str, str] | None = None,
 ) -> tuple[tuple[Uncovered, ...], int]:
     """Pure core -- no I/O. Returns (findings, skipped_multiword_count).
 
     `max_rows=0` (the default) is the strongest and quietest signal: the entity is
     named by the sources and referenced by *nothing*. Raise it to catch
     under-referenced entities too, at the cost of a much longer tail.
+
+    `name_aliases` (surface -> canonical, the map A1 and A14/A15 read) credits a
+    figure's other corpus spellings toward its mention count. Without it this check
+    counts only the canonical form, which understates the translations badly --
+    `Heracles` 29 against `Hercules` 201, `Ajax` 46 against `Aias` 177 -- and pushes
+    three names under the floor entirely: `Cronus` (9 canonical, **195** as `Cronos`),
+    `Ouranos` (**0**, 72 as `Heaven`) and `Helius` (6, 32 as `Helios`). Those three
+    were unreachable by this check at any row count, which is a hole in precisely its
+    own use case: it exists because DEV-098 found `Ares` *totally erased* from the
+    candidate rows, and it could not have caught the same erasure of a Titan king, a
+    primordial, or the sun god (DEV-127).
     """
     groups: dict[str, list[str]] = {}
     for name in entity_names:
         groups.setdefault(base_name(name), []).append(name)
+
+    # Aliases point at full entity names, but mentions are keyed by base -- so fold the
+    # canonical through `base_name` too, or the credit lands on a key nothing looks up.
+    alias_spellings: dict[str, set[str]] = {}
+    for alias, canonical in (name_aliases or {}).items():
+        alias_spellings.setdefault(base_name(canonical), set()).add(alias)
 
     referenced: Counter[str] = Counter()
     for row in relationships:
@@ -131,7 +150,9 @@ def find_uncovered(
         if " " in base:  # descriptive artifact, never a verbatim corpus string
             skipped += 1
             continue
-        mentions = corpus_counts.get(base, 0)
+        mentions = corpus_counts.get(base, 0) + sum(
+            corpus_counts.get(spelling, 0) for spelling in alias_spellings.get(base, ())
+        )
         rows = sum(referenced.get(m, 0) for m in members)
         if mentions < min_mentions or rows > max_rows:
             continue
@@ -240,7 +261,12 @@ def run(candidates_dir: Path | None, db_conn: object | None) -> CheckResult:
     relationships = json.loads((candidates_dir / "relationships_candidates_cleaned.json").read_text(encoding="utf-8"))
 
     corpus_counts = count_corpus_tokens(texts)
-    uncovered, skipped = find_uncovered([e["name"] for e in entities], relationships, corpus_counts)
+    # A7 runs candidates-only (no db_conn param), so this is the JSON layer of the map;
+    # that is the curated one and survives a DB reset (DEV-127).
+    name_aliases = load_name_aliases()
+    uncovered, skipped = find_uncovered(
+        [e["name"] for e in entities], relationships, corpus_counts, name_aliases=name_aliases
+    )
 
     summary = (
         f"candidates: {len(uncovered)} confirmed entit(ies) named >={DEFAULT_MIN_MENTIONS}x in the corpus"
