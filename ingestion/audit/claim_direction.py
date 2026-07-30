@@ -53,6 +53,7 @@ NAME = "A14"
 OUTPUT_DIR = Path(__file__).resolve().parent.parent / "extraction" / "output"
 DEFAULT_CLAIMS_PATH = OUTPUT_DIR / "variant_claims_candidates.json"
 DEFAULT_ENTITIES_PATH = OUTPUT_DIR / "entities_candidates_confirmed_v1.json"
+DEFAULT_KNOWN_ALIASES_PATH = Path(__file__).resolve().parent.parent / "extraction" / "known_aliases.json"
 
 REJECTED_TIER = 2
 
@@ -63,7 +64,56 @@ _PARENTAGE_FORMS = {"parentage", "parent_of", "parents", "birth"}
 _PREFIX = re.compile(r"^\s*(?:child|son|daughter|offspring)\s+of\s+(.+)$", re.IGNORECASE)
 
 
-def parse_parent(claim_value: str, known_names: set[str]) -> str | None:
+def _resolve_name(
+    remainder: str, known_names: set[str], name_aliases: dict[str, str] | None = None
+) -> str | None:
+    """The earliest whole-word confirmed entity named in `remainder`, as its canonical
+    name, or None. Shared by A14's `parse_parent` and A15's `parse_killer`.
+
+    `name_aliases` maps a surface spelling to a canonical entity name -- the same
+    two-layer map A1 has always read (`known_aliases.json` plus the live
+    `entity_aliases` table). Without it the scan sees only canonical spellings, which
+    made both checks blind to 209 rows whose parent or killer the corpus names under a
+    translation variant the project had *already curated* (DEV-126).
+
+    Two guards make widening the candidate set safe. Neither fires on today's data --
+    the map has no such entry -- but both are cheap and the alternative is a silent
+    misresolution the moment a future batch adds one:
+
+      - an alias whose canonical is **not confirmed** is ignored, so a dangling entry
+        can never invent a parent outside the entity set;
+      - an alias key that is **itself a confirmed entity** never overrides that entity,
+        so a real figure's claims are never rewritten onto someone else.
+
+    Returning the canonical, not the surface form, is required rather than tidy: the
+    caller compares the result against `subject_name` and hands it to `_attests`, and
+    both speak canonical names."""
+    candidates = {name: name for name in known_names}
+    for alias, canonical in (name_aliases or {}).items():
+        if alias in known_names or canonical not in known_names:
+            continue
+        candidates[alias] = canonical
+
+    best: tuple[int, str, str] | None = None
+    for surface, canonical in candidates.items():
+        position = remainder.find(surface)
+        if position == -1:
+            continue
+        # Whole-word only: "Ops" must not match inside "Opsimus".
+        after = position + len(surface)
+        if after < len(remainder) and (remainder[after].isalnum() or remainder[after] == "'"):
+            continue
+        if position > 0 and remainder[position - 1].isalnum():
+            continue
+        # Earliest position wins; longer name breaks a tie at the same position.
+        if best is None or position < best[0] or (position == best[0] and len(surface) > len(best[1])):
+            best = (position, surface, canonical)
+    return best[2] if best else None
+
+
+def parse_parent(
+    claim_value: str, known_names: set[str], name_aliases: dict[str, str] | None = None
+) -> str | None:
     """The named parent in a `<child|son|daughter|offspring> of ...` claim value, or
     None when the value has no such prefix or names nobody in the confirmed set.
 
@@ -72,26 +122,34 @@ def parse_parent(claim_value: str, known_names: set[str]) -> str | None:
     match = _PREFIX.match(claim_value or "")
     if not match:
         return None
-    remainder = match.group(1)
-
-    best: tuple[int, str] | None = None
-    for name in known_names:
-        position = remainder.find(name)
-        if position == -1:
-            continue
-        # Whole-word only: "Ops" must not match inside "Opsimus".
-        after = position + len(name)
-        if after < len(remainder) and (remainder[after].isalnum() or remainder[after] == "'"):
-            continue
-        if position > 0 and remainder[position - 1].isalnum():
-            continue
-        # Earliest position wins; longer name breaks a tie at the same position.
-        if best is None or position < best[0] or (position == best[0] and len(name) > len(best[1])):
-            best = (position, name)
-    return best[1] if best else None
+    return _resolve_name(match.group(1), known_names, name_aliases)
 
 
-def names_self(claim_value: str, subject: str) -> bool:
+def _self_surface_forms(subject: str, name_aliases: dict[str, str] | None) -> set[str]:
+    """Every spelling that denotes the same figure as `subject` -- its canonical name
+    and every alias mapping to it. Lets a self-reference be caught when the two halves
+    of the claim use different translations of one name (`Ajax | killed by Aias`).
+
+    Deliberately a pure string map with no entity set involved, preserving
+    `names_self`'s independence from the confirmed set."""
+    if not name_aliases:
+        return {subject}
+    canonical = name_aliases.get(subject, subject)
+    return {subject, canonical} | {a for a, c in name_aliases.items() if c == canonical}
+
+
+def _matches_self(remainder: str, forms: set[str]) -> bool:
+    # A possessive is somebody ELSE: "killed by Actaeon's dogs" and "killed by Pelias's
+    # daughters" are both true claims about a death caused by the subject's animals or
+    # kin, not by the subject. Without this the check inverts them into defects.
+    return any(
+        re.match(rf"{re.escape(form)}(?!['’]s\b|s['’]\b)\b", remainder, re.IGNORECASE)
+        for form in forms
+        if form
+    )
+
+
+def names_self(claim_value: str, subject: str, name_aliases: dict[str, str] | None = None) -> bool:
     """True when a claim makes its own subject the parent -- `Orpheus | child of
     Orpheus`.
 
@@ -111,10 +169,7 @@ def names_self(claim_value: str, subject: str) -> bool:
     remainder = match.group(1).strip()
     # Tolerate the epithets the translations stack in ("wily Cronus").
     remainder = re.sub(r"^(?:(?-i:[a-z])[\w'-]*\s+)+", "", remainder)
-    # A possessive is somebody ELSE: "killed by Actaeon's dogs" and "killed by Pelias's
-    # daughters" are both true claims about a death caused by the subject's animals or
-    # kin, not by the subject. Without this the check inverts them into defects.
-    return bool(re.match(rf"{re.escape(subject)}(?!['\u2019]s\b|s['\u2019]\b)\b", remainder, re.IGNORECASE))
+    return _matches_self(remainder, _self_surface_forms(subject, name_aliases))
 
 
 def find_reversed_claims(
@@ -122,11 +177,17 @@ def find_reversed_claims(
     corpus: dict[str, str],
     known_names: set[str],
     aliases: dict[str, set[str]] | None = None,
+    name_aliases: dict[str, str] | None = None,
 ) -> list[dict]:
     """Pure core. `claims` are `variant_claims` candidate dicts; `corpus` maps
     source_id -> that source's full text; `known_names` is the confirmed entity set
     used to resolve a parent out of the free-text claim value. Returns one entry per
-    distinct (subject, parent, source) whose evidence is exclusively reversed."""
+    distinct (subject, parent, source) whose evidence is exclusively reversed.
+
+    The two alias arguments are different maps and are not interchangeable: `aliases`
+    is canonical -> surface forms, used by `_attests` to search the corpus text, while
+    `name_aliases` is surface -> canonical, used to resolve a name out of the claim
+    value (DEV-126)."""
     seen: set[tuple[str, str, str]] = set()
     findings: list[dict] = []
 
@@ -141,7 +202,7 @@ def find_reversed_claims(
         # Self-reference first, and reported rather than skipped. The original cut
         # `continue`d here, which dropped these rows from the output entirely -- so the
         # only check that reads them could never flag one (DEV-125).
-        if names_self(claim["claim_value"], subject):
+        if names_self(claim["claim_value"], subject, name_aliases):
             # Self-reference dedups per ROW (passage_ref included), unlike the reversed
             # kind which dedups per pair+source. The fix differs: a reversed pair is one
             # decision covering every ref, while each self-referential row is its own bad
@@ -165,8 +226,11 @@ def find_reversed_claims(
             )
             continue
 
-        parent = parse_parent(claim["claim_value"], known_names)
-        if parent is None or parent == subject:
+        parent = parse_parent(claim["claim_value"], known_names, name_aliases)
+        # Compare canonical-to-canonical: with alias resolution the parent comes back
+        # canonical, so a subject written under a variant spelling would otherwise read
+        # as a two-party claim rather than the self-reference it is.
+        if parent is None or parent == subject or parent == (name_aliases or {}).get(subject, subject):
             continue
 
         source_id = claim["source_id"]
@@ -215,13 +279,35 @@ def load_known_names(entities_path: Path) -> set[str]:
     return {e["name"] for e in (entities["entities"] if isinstance(entities, dict) else entities)}
 
 
-def count_unparsed(claims: list[dict], known_names: set[str]) -> int:
+def load_name_aliases(db_conn: object | None = None, path: Path | None = None) -> dict[str, str]:
+    """Surface spelling -> canonical entity name: the same two-layer map A1 has always
+    read (`duplicate_entities.py`, B3) -- `known_aliases.json` always, plus the live
+    `entity_aliases` table when a DB connection is available.
+
+    The JSON layer wins a conflict, being the curated one that survives a DB reset."""
+    aliases: dict[str, str] = {}
+    path = path or DEFAULT_KNOWN_ALIASES_PATH
+    if path.exists():
+        with open(path) as fh:
+            aliases.update(json.load(fh))
+    if db_conn is not None:
+        from audit.parentage_direction import load_aliases
+
+        for canonical, surfaces in load_aliases(db_conn).items():
+            for surface in surfaces:
+                aliases.setdefault(surface, canonical)
+    return aliases
+
+
+def count_unparsed(
+    claims: list[dict], known_names: set[str], name_aliases: dict[str, str] | None = None
+) -> int:
     return sum(
         1
         for c in claims
         if c.get("claim_type", "").strip().lower() in _PARENTAGE_FORMS
         and c.get("trust_tier") != REJECTED_TIER
-        and parse_parent(c["claim_value"], known_names) is None
+        and parse_parent(c["claim_value"], known_names, name_aliases) is None
     )
 
 
@@ -246,7 +332,8 @@ def run(candidates_dir: Path | None, db_conn: object | None) -> CheckResult:
     claims = load_claims(claims_path)
     known_names = load_known_names(entities_path)
     corpus = load_corpus(db_conn)
-    reversed_claims = find_reversed_claims(claims, corpus, known_names, load_aliases(db_conn))
+    name_aliases = load_name_aliases(db_conn)
+    reversed_claims = find_reversed_claims(claims, corpus, known_names, load_aliases(db_conn), name_aliases)
 
     def _detail(f):
         if f["kind"] == "self_referential":
@@ -293,7 +380,7 @@ def run(candidates_dir: Path | None, db_conn: object | None) -> CheckResult:
             f"{len(findings)} bad parentage claim(s) -- {len(findings) - selfref} reversed, "
             f"{selfref} self-referential ({live} of them promoted/live); "
             f"{checked} distinct subject+source group(s) checked; "
-            f"{count_unparsed(claims, known_names)} claim value(s) had no resolvable parent name "
+            f"{count_unparsed(claims, known_names, name_aliases)} claim value(s) had no resolvable parent name "
             f"(free prose or the 'sprung from' formula -- left unchecked, not guessed)"
         ),
     )

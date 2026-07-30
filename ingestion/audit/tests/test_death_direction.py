@@ -1,7 +1,9 @@
 from audit.death_direction import find_bad_death_claims, parse_killer
 
 ILIAD = "homer-iliad"
-KNOWN = {"Hector", "Achilles", "Patroclus", "Paris", "Cronus", "Ouranos", "Eurydice"}
+KNOWN = {"Hector", "Achilles", "Patroclus", "Paris", "Cronus", "Ouranos", "Eurydice", "Odysseus", "Ajax"}
+# alias -> canonical, the shape of `known_aliases.json` (DEV-126).
+ALIASES = {"Ulysses": "Odysseus", "Aias": "Ajax"}
 
 
 def _claim(subject, value, tier=3, source_id=ILIAD, claim_type="death"):
@@ -37,6 +39,36 @@ def test_a_value_with_no_named_agent_is_unparsed():
 
 def test_a_value_with_no_agent_prefix_is_unparsed():
     assert parse_killer("struck by Zeus with a lurid thunderbolt", KNOWN) is None
+
+
+# --- parse_killer: alias resolution (DEV-126) ---------------------------------
+
+
+def test_an_alias_killer_resolves_to_its_canonical_name():
+    # "killed by Ulysses" is 9 rows live -- Ovid's translation uses the Latin name
+    # throughout, so every death it narrates was invisible to this check.
+    assert parse_killer("killed by Ulysses", KNOWN, ALIASES) == "Odysseus"
+
+
+def test_without_an_alias_map_the_killer_behaviour_is_unchanged():
+    assert parse_killer("killed by Ulysses", KNOWN) is None
+
+
+def test_an_alias_whose_canonical_is_not_confirmed_is_ignored():
+    assert parse_killer("killed by Nemo", KNOWN, {"Nemo": "Unconfirmed"}) is None
+
+
+def test_an_alias_key_that_is_itself_a_confirmed_entity_is_not_hijacked():
+    assert parse_killer("killed by Hector", KNOWN, {"Hector": "Paris"}) == "Hector"
+
+
+def test_a_suicide_written_under_an_alias_is_still_a_self_reference():
+    # `Ajax | death | killed by Aias` names the same man twice. Before alias
+    # resolution this read as a normal two-party claim and the suicide -- the shape
+    # DEV-125 proved must reach review rather than be auto-rejected -- went unseen.
+    claims = [_claim("Ajax", "killed by Aias")]
+    findings = find_bad_death_claims(claims, {ILIAD: "He drew his sword."}, KNOWN, aliases=None, name_aliases=ALIASES)
+    assert [f["kind"] for f in findings] == ["self_referential"]
 
 
 # --- find_bad_death_claims ----------------------------------------------------

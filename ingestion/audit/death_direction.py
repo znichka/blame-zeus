@@ -42,6 +42,7 @@ import json
 import re
 from pathlib import Path
 
+from audit.claim_direction import _matches_self, _resolve_name, _self_surface_forms
 from audit.contract import CheckResult, Finding
 from audit.kill_direction import _attests_kill
 
@@ -62,41 +63,31 @@ _AGENT = re.compile(r"^\s*(?:killed|slain|murdered|shot|struck\s+down)\s+by\s+(.
 _LEADING_EPITHETS = re.compile(r"^(?:(?-i:[a-z])[\w'-]*\s+)+")
 
 
-def parse_killer(claim_value: str, known_names: set[str]) -> str | None:
+def parse_killer(
+    claim_value: str, known_names: set[str], name_aliases: dict[str, str] | None = None
+) -> str | None:
     """The named killer in a `<killed|slain|murdered|shot> by ...` value, or None when
-    the value names no agent or nobody in the confirmed set ("killed by a boar")."""
+    the value names no agent or nobody in the confirmed set ("killed by a boar").
+
+    `name_aliases` (surface -> canonical) is what lets Ovid's `killed by Ulysses`
+    resolve to `Odysseus`; see `_resolve_name` for the guards (DEV-126)."""
     match = _AGENT.match(claim_value or "")
     if not match:
         return None
-    remainder = match.group(1)
-
-    best: tuple[int, str] | None = None
-    for name in known_names:
-        position = remainder.find(name)
-        if position == -1:
-            continue
-        after = position + len(name)
-        if after < len(remainder) and (remainder[after].isalnum() or remainder[after] == "'"):
-            continue
-        if position > 0 and remainder[position - 1].isalnum():
-            continue
-        if best is None or position < best[0] or (position == best[0] and len(name) > len(best[1])):
-            best = (position, name)
-    return best[1] if best else None
+    return _resolve_name(match.group(1), known_names, name_aliases)
 
 
-def names_self(claim_value: str, subject: str) -> bool:
-    """True when a death claim names its own subject as the killer."""
+def names_self(claim_value: str, subject: str, name_aliases: dict[str, str] | None = None) -> bool:
+    """True when a death claim names its own subject as the killer -- including when
+    the two halves use different translations of one name (`Ajax | killed by Aias`),
+    which before alias resolution read as an ordinary two-party claim."""
     if not (subject or "").strip():
         return False
     match = _AGENT.match(claim_value or "")
     if not match:
         return False
     remainder = _LEADING_EPITHETS.sub("", match.group(1).strip())
-    # A possessive is somebody ELSE: "killed by Actaeon's dogs" and "killed by Pelias's
-    # daughters" are both true claims about a death caused by the subject's animals or
-    # kin, not by the subject. Without this the check inverts them into defects.
-    return bool(re.match(rf"{re.escape(subject)}(?!['\u2019]s\b|s['\u2019]\b)\b", remainder, re.IGNORECASE))
+    return _matches_self(remainder, _self_surface_forms(subject, name_aliases))
 
 
 def find_bad_death_claims(
@@ -104,9 +95,11 @@ def find_bad_death_claims(
     corpus: dict[str, str],
     known_names: set[str],
     aliases: dict[str, set[str]] | None = None,
+    name_aliases: dict[str, str] | None = None,
 ) -> list[dict]:
     """Pure core, mirroring `claim_direction.find_reversed_claims`. Returns one entry
-    per distinct (subject, killer, source)."""
+    per distinct (subject, killer, source). `aliases` is canonical -> surface forms
+    (corpus search); `name_aliases` is surface -> canonical (claim-value resolution)."""
     seen: set[tuple[str, str, str]] = set()
     findings: list[dict] = []
 
@@ -125,7 +118,7 @@ def find_bad_death_claims(
             "trust_tier": claim["trust_tier"],
         }
 
-        if names_self(claim["claim_value"], subject):
+        if names_self(claim["claim_value"], subject, name_aliases):
             # Self-reference dedups per ROW (passage_ref included), unlike the reversed
             # kind which dedups per pair+source. The fix differs: a reversed pair is one
             # decision covering every ref, while each self-referential row is its own bad
@@ -138,8 +131,10 @@ def find_bad_death_claims(
             findings.append({**base, "kind": "self_referential", "killer_name": subject, "reversed_evidence": 0})
             continue
 
-        killer = parse_killer(claim["claim_value"], known_names)
-        if killer is None or killer == subject:
+        killer = parse_killer(claim["claim_value"], known_names, name_aliases)
+        # Canonical-to-canonical, so a subject written under a variant spelling is not
+        # mistaken for a two-party claim (DEV-126).
+        if killer is None or killer == subject or killer == (name_aliases or {}).get(subject, subject):
             continue
 
         source_id = claim["source_id"]
@@ -166,14 +161,16 @@ def find_bad_death_claims(
     return findings
 
 
-def count_unparsed(claims: list[dict], known_names: set[str]) -> int:
+def count_unparsed(
+    claims: list[dict], known_names: set[str], name_aliases: dict[str, str] | None = None
+) -> int:
     return sum(
         1
         for c in claims
         if c.get("claim_type", "").strip().lower() in _DEATH_FORMS
         and c.get("trust_tier") != REJECTED_TIER
-        and not names_self(c["claim_value"], c["subject_name"])
-        and parse_killer(c["claim_value"], known_names) is None
+        and not names_self(c["claim_value"], c["subject_name"], name_aliases)
+        and parse_killer(c["claim_value"], known_names, name_aliases) is None
     )
 
 
@@ -184,7 +181,7 @@ def run(candidates_dir: Path | None, db_conn: object | None) -> CheckResult:
     if db_conn is None:
         return CheckResult(findings=(), summary="no DB connection -- A15 needs narrative_chunks for corpus evidence")
 
-    from audit.claim_direction import load_claims, load_known_names
+    from audit.claim_direction import load_claims, load_known_names, load_name_aliases
     from audit.parentage_direction import load_aliases, load_corpus
 
     claims_path = Path(candidates_dir) / DEFAULT_CLAIMS_PATH.name
@@ -197,7 +194,8 @@ def run(candidates_dir: Path | None, db_conn: object | None) -> CheckResult:
     claims = load_claims(claims_path)
     known_names = load_known_names(entities_path)
     corpus = load_corpus(db_conn)
-    bad = find_bad_death_claims(claims, corpus, known_names, load_aliases(db_conn))
+    name_aliases = load_name_aliases(db_conn)
+    bad = find_bad_death_claims(claims, corpus, known_names, load_aliases(db_conn), name_aliases)
 
     def _detail(f):
         if f["kind"] == "self_referential":
@@ -246,7 +244,7 @@ def run(candidates_dir: Path | None, db_conn: object | None) -> CheckResult:
             f"{len(findings)} bad death claim(s) -- {len(findings) - selfref} reversed, "
             f"{selfref} self-referential ({live} of them promoted/live); "
             f"{checked} distinct subject+source group(s) checked; "
-            f"{count_unparsed(claims, known_names)} claim value(s) named no resolvable killer "
+            f"{count_unparsed(claims, known_names, name_aliases)} claim value(s) named no resolvable killer "
             f"(no agent, or an unnamed one -- left unchecked, not guessed)"
         ),
     )

@@ -498,7 +498,20 @@ describes the parent, it is not a second claim.
   already checked that row against the source (DEV-113), and re-reporting asks them to re-litigate
   their own decision. `trust_tier=1` rows **are** checked and reported: those are live in V12, so a
   reversed one is the worst case here, not a candidate to skip. `trust_tier=3` is the point.
-- Same conservative rule as A11 (`correct == 0`), same alias resolution, reports only.
+- **Names are resolved through the curated alias map (DEV-126).** `parse_parent` matches a claim
+  value against the confirmed entity names **plus** every surface spelling in `known_aliases.json`
+  and the live `entity_aliases` table — the same two-layer map A1 has always read — and returns the
+  **canonical** name, which is what the caller compares against `subject_name` and hands to
+  `_attests`. Without this the check was blind to any claim phrased in a translation variant the
+  project had already curated: `child of Cronos` alone was **114 rows**, on the most genealogically
+  central Titan in the corpus. Two guards keep the widening safe — an alias whose canonical is not
+  confirmed is ignored (it cannot invent a parent outside the entity set), and an alias key that is
+  itself a confirmed entity never overrides that entity. Neither fires on today's data; both exist
+  because the alternative is a silent misresolution the first time a batch adds such an entry.
+- Same conservative rule as A11 (`correct == 0`), same corpus-search alias handling, reports only.
+  Note the two alias maps are **different and not interchangeable**: `aliases` is canonical → surface
+  forms, used to search the corpus text; `name_aliases` is surface → canonical, used to resolve a
+  name out of the claim value.
 
 **First sweep: 108 findings, 0 of them promoted, and — reviewed per row against the matched phrase
 A14 extracted from each cited source — zero false positives.** All textbook patronymic reversals:
@@ -506,6 +519,17 @@ A14 extracted from each cited source — zero false positives.** All textbook pa
 *"Apollo, son of Leto"*; `Laertes | child of Odysseus` against *"Odysseus, son of Laertes"*. The
 108 triples covered **209 claim rows**, all rejected to `trust_tier=2` through the keyed workflow
 (DEV-104). **No seeded data changed** — every row was tier 3, and V10/V11/V12 regenerated
+byte-identical.
+
+**Second sweep, after alias resolution (DEV-126): unparsed 496 → 298, and one more reversal.**
+`Zeus | parentage | child of Athene` — Athena is Zeus's daughter, and the cited Iliad passage says
+so in its own first line (*"Athene, daughter of Zeus that beareth the aegis"*, 5.733). It had been
+invisible because the value spells her `Athene`, an alias rather than a confirmed entity name. What
+makes it worth reading twice is what sat beside it: the **six sibling rows spelling her `Athena`
+were already reviewed and rejected by an earlier hand pass**, so the identical false claim was
+caught on one spelling and unreviewable on the other. That asymmetry, not the single row, is the
+finding. All four `Athene` rows rejected (three reversed with passage evidence, one — Iliad
+5.864-5.907 — unsupported by its own citation, the DEV-098 shape); all tier 3, V10/V11/V12 again
 byte-identical.
 
 ---
@@ -540,6 +564,14 @@ Three exclusions, each found by a false positive on live data rather than antici
   per pair+source. The fix differs: a reversed pair is one decision covering every ref, while each
   self-referential row is its own bad row. Keying both alike made the check report one ref at a time
   and surface the next only after the first was rejected.
+
+**Alias resolution (DEV-126)** applies here exactly as in A14, and reaches the self-reference test
+too: `names_self` compares the subject against **every spelling of the same figure**, so a suicide
+written as `Ajax | killed by Aias` is recognised rather than read as an ordinary two-party claim.
+The sweep moved unparsed **348 → 330** and produced **no new findings** — A15's four are the
+pre-existing waived ones (two Ajax suicides, two pronoun-anaphora false positives). Worth stating
+plainly: on this check the alias map bought coverage, not defects, and Ovid's `killed by Ulysses`
+(9 rows) is the class it opened up.
 
 **A12's pronoun-anaphora limit applies here too**, and produced the same shape of false positive:
 `Tlepolemus | killed by Sarpedon` is correct (Iliad 5.655 kills him, naming the victim with "him"),

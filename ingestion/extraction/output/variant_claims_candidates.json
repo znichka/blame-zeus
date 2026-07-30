@@ -1661,7 +1661,7 @@
     "claim_value": "child of Athene",
     "source_id": "hesiod-homeric-hymns",
     "passage_ref": "5.7-5.52",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Zeus",
@@ -1773,7 +1773,7 @@
     "claim_value": "child of Athene",
     "source_id": "homer-iliad",
     "passage_ref": "5.733-5.777",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Zeus",
@@ -1797,7 +1797,7 @@
     "claim_value": "child of Athene",
     "source_id": "homer-iliad",
     "passage_ref": "5.864-5.907",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Zeus",
@@ -1949,7 +1949,7 @@
     "claim_value": "child of Athene",
     "source_id": "homer-iliad",
     "passage_ref": "21.382-21.422",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Zeus",

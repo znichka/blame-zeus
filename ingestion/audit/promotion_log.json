@@ -4713,5 +4713,42 @@
       ]
     ],
     "rationale": "The remaining self-referential parentage rows, surfaced once A14's dedup key was corrected to include passage_ref. Nobody can be their own parent, so unlike A15's death equivalent (where suicide makes self-reference legitimate) these need no passage read. The Chryses rows are a plain extraction slip: the daughter is Chryseis, and 'Chryses | daughter of Chryses' collapses the two names."
+  },
+  {
+    "batchLabel": "a14-alias-resolved-athene-reversal",
+    "date": "2026-07-30T09:45:02.672164+00:00",
+    "keys": [],
+    "groupCount": 0,
+    "rejectedKeys": [
+      [
+        "Zeus",
+        "parentage",
+        "child of Athene",
+        "hesiod-homeric-hymns",
+        "5.7-5.52"
+      ],
+      [
+        "Zeus",
+        "parentage",
+        "child of Athene",
+        "homer-iliad",
+        "5.733-5.777"
+      ],
+      [
+        "Zeus",
+        "parentage",
+        "child of Athene",
+        "homer-iliad",
+        "5.864-5.907"
+      ],
+      [
+        "Zeus",
+        "parentage",
+        "child of Athene",
+        "homer-iliad",
+        "21.382-21.422"
+      ]
+    ],
+    "rationale": "Zeus is not the child of Athena -- she is his daughter, born from his head, in every source in this corpus. A14 could not see these four rows until it was taught the curated alias map (DEV-126): the claim value spells her 'Athene' (Murray's Iliad and Evelyn-White's Hymns), which is an entity_aliases/known_aliases entry, not a confirmed entity name, so parse_parent resolved nobody and the rows counted as unparsed. The six sibling rows spelling her 'Athena' were already reviewed and rejected to trust_tier=2 by an earlier hand pass -- the same false claim was caught on one spelling and invisible on the other, which is the asymmetry this fix removes. Verified per row against its own cited passage rather than by reasoning from the claim: Hymns 5.7 states the correct direction outright ('the daughter of Zeus who holds the aegis, bright-eyed Athene'), Iliad 5.733 likewise ('Athene, daughter of Zeus that beareth the aegis'), and Iliad 21.416 names Zeus's actual father ('Zeus, son of Cronos'). The fourth, Iliad 5.864-5.907, is a different defect in the same row set -- its passage states no parentage at all ('Alalcomenean Athene'), so it is unsupported by its own citation (the DEV-098 shape) rather than reversed. All four are tier 3, so nothing seeded changes."
   }
 ]

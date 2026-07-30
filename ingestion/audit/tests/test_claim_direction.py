@@ -2,6 +2,9 @@ from audit.claim_direction import find_reversed_claims, parse_parent
 
 ILIAD = "homer-iliad"
 KNOWN = {"Telamon", "Ajax", "Cronus", "Zeus", "Actaeus", "Glauce", "Sun", "Oileus"}
+# alias -> canonical, the shape of `known_aliases.json` and of an inverted
+# `entity_aliases` snapshot (DEV-126).
+ALIASES = {"Cronos": "Cronus", "Aias": "Ajax", "Jupiter": "Zeus"}
 
 
 def _claim(subject, value, tier=3, source_id=ILIAD, claim_type="parentage"):
@@ -50,6 +53,48 @@ def test_a_value_that_is_not_a_parentage_prefix_is_unparsed():
     # "<child> of <parent>" statements this check can turn into a name pair.
     assert parse_parent("sprung from Zeus", KNOWN) is None
     assert parse_parent("Mother of the nine Muses by Zeus", KNOWN) is None
+
+
+# --- parse_parent: alias resolution (DEV-126) ---------------------------------
+
+
+def test_an_alias_spelling_resolves_to_its_canonical_name():
+    # "child of Cronos" is 114 rows in the live candidate data -- the single largest
+    # blind spot this check had, on the most genealogically central Titan there is.
+    assert parse_parent("child of Cronos", KNOWN, ALIASES) == "Cronus"
+
+
+def test_alias_resolution_returns_the_canonical_not_the_surface_form():
+    # The caller compares the result against `subject_name` and feeds it to `_attests`,
+    # both of which speak canonical names. Returning "Cronos" would silently break both.
+    assert parse_parent("son of wily Cronos", KNOWN, ALIASES) == "Cronus"
+
+
+def test_without_an_alias_map_the_behaviour_is_unchanged():
+    # The map is optional; every existing caller and test must keep working.
+    assert parse_parent("child of Cronos", KNOWN) is None
+
+
+def test_a_confirmed_name_beats_an_alias_at_an_earlier_position():
+    # Position semantics are unchanged by widening the candidate set: the earliest
+    # match still wins, whether it arrived as a canonical name or an alias.
+    assert parse_parent("child of Cronos and Zeus", KNOWN, ALIASES) == "Cronus"
+    assert parse_parent("child of Zeus and Cronos", KNOWN, ALIASES) == "Zeus"
+
+
+def test_an_alias_whose_canonical_is_not_confirmed_is_ignored():
+    # A dangling alias must not invent a parent outside the confirmed set.
+    assert parse_parent("child of Nobody", KNOWN, {"Nobody": "Unconfirmed"}) is None
+
+
+def test_an_alias_key_that_is_itself_a_confirmed_entity_is_not_hijacked():
+    # If a future alias batch maps a name that is ALSO its own entity, the entity
+    # wins -- resolving it to something else would rewrite a real figure's claims.
+    assert parse_parent("child of Zeus", KNOWN, {"Zeus": "Jupiter"}) == "Zeus"
+
+
+def test_alias_matching_is_whole_word_like_canonical_matching():
+    assert parse_parent("child of Cronosium", KNOWN, ALIASES) is None
 
 
 # --- find_reversed_claims -----------------------------------------------------
