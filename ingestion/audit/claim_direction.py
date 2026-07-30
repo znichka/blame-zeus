@@ -91,6 +91,32 @@ def parse_parent(claim_value: str, known_names: set[str]) -> str | None:
     return best[1] if best else None
 
 
+def names_self(claim_value: str, subject: str) -> bool:
+    """True when a claim makes its own subject the parent -- `Orpheus | child of
+    Orpheus`.
+
+    Deliberately independent of the confirmed entity set: a self-reference is wrong
+    on its face, whatever the name resolves to, and requiring resolution would let a
+    subject outside that set slip through. Checked before `parse_parent` for the same
+    reason."""
+    # A blank subject must never self-match: `re.escape("")` is the empty pattern,
+    # which matches at every position, so without this guard every claim whose subject
+    # failed to extract reads as self-referential. Found live -- four such rows exist
+    # (DEV-125), and they are their own defect, not this one.
+    if not (subject or "").strip():
+        return False
+    match = _PREFIX.match(claim_value or "")
+    if not match:
+        return False
+    remainder = match.group(1).strip()
+    # Tolerate the epithets the translations stack in ("wily Cronus").
+    remainder = re.sub(r"^(?:(?-i:[a-z])[\w'-]*\s+)+", "", remainder)
+    # A possessive is somebody ELSE: "killed by Actaeon's dogs" and "killed by Pelias's
+    # daughters" are both true claims about a death caused by the subject's animals or
+    # kin, not by the subject. Without this the check inverts them into defects.
+    return bool(re.match(rf"{re.escape(subject)}(?!['\u2019]s\b|s['\u2019]\b)\b", remainder, re.IGNORECASE))
+
+
 def find_reversed_claims(
     claims: list[dict],
     corpus: dict[str, str],
@@ -111,6 +137,34 @@ def find_reversed_claims(
             continue
 
         subject = claim["subject_name"]
+
+        # Self-reference first, and reported rather than skipped. The original cut
+        # `continue`d here, which dropped these rows from the output entirely -- so the
+        # only check that reads them could never flag one (DEV-125).
+        if names_self(claim["claim_value"], subject):
+            # Self-reference dedups per ROW (passage_ref included), unlike the reversed
+            # kind which dedups per pair+source. The fix differs: a reversed pair is one
+            # decision covering every ref, while each self-referential row is its own bad
+            # row. Keying both the same way made the check report one ref at a time and
+            # surface the next only after the first was rejected (DEV-125).
+            key = (subject, subject, claim["source_id"], claim["passage_ref"])
+            if key in seen:
+                continue
+            seen.add(key)
+            findings.append(
+                {
+                    "kind": "self_referential",
+                    "subject_name": subject,
+                    "parent_name": subject,
+                    "claim_value": claim["claim_value"],
+                    "source_id": claim["source_id"],
+                    "passage_ref": claim["passage_ref"],
+                    "trust_tier": claim["trust_tier"],
+                    "reversed_evidence": 0,
+                }
+            )
+            continue
+
         parent = parse_parent(claim["claim_value"], known_names)
         if parent is None or parent == subject:
             continue
@@ -135,6 +189,7 @@ def find_reversed_claims(
 
         findings.append(
             {
+                "kind": "reversed",
                 "subject_name": subject,
                 "parent_name": parent,
                 "claim_value": claim["claim_value"],
@@ -145,7 +200,7 @@ def find_reversed_claims(
             }
         )
 
-    findings.sort(key=lambda f: (f["trust_tier"], -f["reversed_evidence"], f["subject_name"]))
+    findings.sort(key=lambda f: (f["trust_tier"], f["kind"], -f["reversed_evidence"], f["subject_name"]))
     return findings
 
 
@@ -193,22 +248,33 @@ def run(candidates_dir: Path | None, db_conn: object | None) -> CheckResult:
     corpus = load_corpus(db_conn)
     reversed_claims = find_reversed_claims(claims, corpus, known_names, load_aliases(db_conn))
 
+    def _detail(f):
+        if f["kind"] == "self_referential":
+            return (
+                f"the claim names its own subject as the parent -- {f['subject_name']} cannot be "
+                f"{f['subject_name']}'s child. No source can support this, so it is not a direction "
+                f"question. trust_tier={f['trust_tier']}"
+                + (" -- THIS ROW IS LIVE IN V12." if f["trust_tier"] == 1 else "")
+            )
+        return (
+            f"{f['source_id']} attests \"{f['parent_name']}, son/daughter of {f['subject_name']}\" "
+            f"{f['reversed_evidence']}x and never the reverse -- the claim has the direction backwards "
+            f"({f['subject_name']} is the parent of {f['parent_name']}, not the child). "
+            f"trust_tier={f['trust_tier']}"
+            + (" -- THIS ROW IS LIVE IN V12." if f["trust_tier"] == 1 else "")
+        )
+
     findings = tuple(
         Finding(
             check=NAME,
             severity="error",
             subject=f"{f['subject_name']} | parentage | {f['claim_value']} [{f['source_id']} {f['passage_ref']}]",
-            detail=(
-                f"{f['source_id']} attests \"{f['parent_name']}, son/daughter of {f['subject_name']}\" "
-                f"{f['reversed_evidence']}x and never the reverse -- the claim has the direction backwards "
-                f"({f['subject_name']} is the parent of {f['parent_name']}, not the child). "
-                f"trust_tier={f['trust_tier']}"
-                + (" -- THIS ROW IS LIVE IN V12." if f["trust_tier"] == 1 else "")
-            ),
+            detail=_detail(f),
             suggested_fix=(
                 "Read the cited passage. If it is backwards, reject the row to trust_tier=2 through "
                 "the keyed promotion workflow (DEV-104/DEV-113) -- never edit trust_tier by position. "
-                "A promoted (tier 1) row additionally needs a V12 regeneration and reseed."
+                "A self-referential row needs no passage read: reject it. A promoted (tier 1) row "
+                "additionally needs a V12 regeneration and reseed."
             ),
         )
         for f in reversed_claims
@@ -220,10 +286,12 @@ def run(candidates_dir: Path | None, db_conn: object | None) -> CheckResult:
         if c.get("claim_type", "").strip().lower() in _PARENTAGE_FORMS and c.get("trust_tier") != REJECTED_TIER
     })
     live = sum(1 for f in reversed_claims if f["trust_tier"] == 1)
+    selfref = sum(1 for f in reversed_claims if f["kind"] == "self_referential")
     return CheckResult(
         findings=findings,
         summary=(
-            f"{len(findings)} reversed parentage claim(s) ({live} of them promoted/live); "
+            f"{len(findings)} bad parentage claim(s) -- {len(findings) - selfref} reversed, "
+            f"{selfref} self-referential ({live} of them promoted/live); "
             f"{checked} distinct subject+source group(s) checked; "
             f"{count_unparsed(claims, known_names)} claim value(s) had no resolvable parent name "
             f"(free prose or the 'sprung from' formula -- left unchecked, not guessed)"

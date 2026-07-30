@@ -5453,5 +5453,25 @@
     "check": "A12",
     "subject": "Tlepolemus killed_by Sarpedon",
     "reason": "False positive, and the worked example of A12's one structural limit -- pronoun anaphora. Iliad 5.655-5.659 has BOTH men strike: \"Sarpedon smote him full upon the neck, and the grievous point passed clean through, and down upon his eyes came the darkness of night\" (Tlepolemus dies -- Sarpedon is the killer, so the seeded edge is CORRECT), immediately followed by \"And Tlepolemus smote Sarpedon upon the left thigh\" (a wound, not a kill). A12 sees the second and not the first, because the first names its victim with the pronoun \"him\". No regex over entity names can resolve that reference, so `correct == 0` cannot suppress it here. Verified against the passage 2026-07-29 (DEV-123); the edge is right and must NOT be swapped."
+  },
+  {
+    "check": "A15",
+    "subject": "Ajax | death | killed by Ajax [apollodorus-bibliotheca E.5.5-E.5.13]",
+    "reason": "CORRECT, not a defect -- Ajax's suicide. Apollodorus E.5.7: after Athena drives him mad and he slaughters the cattle, \"afterwards he came to his senses and slew himself\". Self-reference in a `death` claim is the legitimate encoding of suicide, which is why A15 reports this kind for review rather than treating it as certain error (unlike A14's parentage equivalent, where self-reference is impossible). Verified against the passage 2026-07-29 (DEV-125); do NOT reject."
+  },
+  {
+    "check": "A15",
+    "subject": "Ajax | death | killed by Ajax [ovid-metamorphoses 13.382-13.428]",
+    "reason": "CORRECT, not a defect -- the same suicide in Ovid, and the passage DEV-121 identified as its true location (13.386ff) sits inside this cited range: \"The unconquerable was conquered by his grief. He drew his sword, and said:--'This is at least my own'\". Verified 2026-07-29 (DEV-125); do NOT reject."
+  },
+  {
+    "check": "A15",
+    "subject": "Amphimedon | death | Killed by Telemachus in the second exchange of spears [homer-odyssey 22.265-22.309]",
+    "reason": "False positive of A12's documented wound-not-kill shape. Telemachus DOES kill Amphimedon (Odyssey 22.277ff), so the claim is correct; A15 flags it because the same passage has Amphimedon wounding Telemachus on the wrist first, which the kill-verb pattern reads as reversed evidence while the actual kill is phrased without naming the victim adjacent to the verb. Verified 2026-07-29 (DEV-125); do NOT reject."
+  },
+  {
+    "check": "A15",
+    "subject": "Tlepolemus | death | killed by Sarpedon [homer-iliad 5.607-5.654]",
+    "reason": "The `variant_claims` twin of A12's standing waiver, same passage and same cause: Iliad 5.655 has \"Sarpedon smote HIM full upon the neck\" (Tlepolemus dies -- the claim is CORRECT) immediately followed by \"And Tlepolemus smote Sarpedon upon the left thigh\" (a wound). The kill names its victim with a pronoun, so `correct == 0` cannot suppress it. No regex over entity names resolves that reference. Do NOT reject."
   }
 ]

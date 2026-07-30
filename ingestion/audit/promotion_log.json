@@ -4280,5 +4280,438 @@
       ]
     ],
     "rationale": "Audit check A14's first sweep: reversed-direction parentage claims, the F3/DEV-114 shape, found mechanically instead of by hand. Each of the 108 findings was reviewed against the matched phrase A14 extracted from its own cited source -- per-row evidence, not a sample -- and all 108 are clean patronymic reversals ('Cronus | child of Zeus' against Homer's 'Zeus, son of Cronos'; 'Leto | child of Apollo' against 'Apollo, son of Leto'). Zero false positives. Every row was at trust_tier=3, so nothing seeded changes; this records the review verdict so no future reviewer re-litigates them and the rows can never be promoted by accident."
+  },
+  {
+    "batchLabel": "a14-a15-selfref-and-death-direction",
+    "date": "2026-07-29T19:05:36.370301+00:00",
+    "keys": [],
+    "groupCount": 0,
+    "rejectedKeys": [
+      [
+        "Cronus",
+        "death",
+        "killed by Cronus",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Perses",
+        "parentage",
+        "child of Perses",
+        "apollodorus-bibliotheca",
+        "2.4.5"
+      ],
+      [
+        "Perses",
+        "parentage",
+        "child of Andromeda",
+        "apollodorus-bibliotheca",
+        "2.4.5"
+      ],
+      [
+        "Orpheus",
+        "parentage",
+        "child of Orpheus",
+        "ovid-metamorphoses",
+        "10.126-10.161"
+      ],
+      [
+        "Orpheus",
+        "parentage",
+        "child of Calliope",
+        "ovid-metamorphoses",
+        "10.126-10.161"
+      ],
+      [
+        "Orpheus",
+        "parentage",
+        "Son of the Muse Calliope, addressed as 'my loved mother, Muse'.",
+        "ovid-metamorphoses",
+        "10.126-10.161"
+      ],
+      [
+        "Eurydice",
+        "death",
+        "killed by Eurydice",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Aeolus",
+        "parentage",
+        "child of Aeolus",
+        "homer-odyssey",
+        "10.13-10.55"
+      ],
+      [
+        "Aeolus",
+        "parentage",
+        "child of Hippotas",
+        "homer-odyssey",
+        "10.13-10.55"
+      ],
+      [
+        "Aeolus",
+        "parentage",
+        "son of Hippotas",
+        "homer-odyssey",
+        "10.13-10.55"
+      ],
+      [
+        "Ceyx",
+        "parentage",
+        "child of Ceyx",
+        "ovid-metamorphoses",
+        "11.444-11.473"
+      ],
+      [
+        "Ceyx",
+        "parentage",
+        "child of Morning Star",
+        "ovid-metamorphoses",
+        "11.444-11.473"
+      ],
+      [
+        "Ceyx",
+        "parentage",
+        "son of the Morning Star",
+        "ovid-metamorphoses",
+        "11.444-11.473"
+      ],
+      [
+        "Idas",
+        "parentage",
+        "child of Idas",
+        "apollodorus-bibliotheca",
+        "1.7.4-1.7.8"
+      ],
+      [
+        "Idas",
+        "parentage",
+        "child of Aphareus",
+        "apollodorus-bibliotheca",
+        "1.7.4-1.7.8"
+      ],
+      [
+        "Sthenelaus",
+        "parentage",
+        "child of Sthenelaus",
+        "homer-iliad",
+        "5.297-5.333"
+      ],
+      [
+        "Sthenelaus",
+        "parentage",
+        "son of Capaneus",
+        "homer-iliad",
+        "5.297-5.333"
+      ],
+      [
+        "Medea",
+        "death",
+        "killed by Medea",
+        "apollodorus-bibliotheca",
+        "1.9.24-1.9.25"
+      ],
+      [
+        "Medea",
+        "death",
+        "killed by Medea",
+        "ovid-metamorphoses",
+        "7.391-7.424"
+      ],
+      [
+        "Chryses",
+        "parentage",
+        "child of Chryses",
+        "homer-iliad",
+        "Homer, Iliad"
+      ],
+      [
+        "Chryses",
+        "parentage",
+        "daughter of Chryses, priest of Apollo",
+        "homer-iliad",
+        "Homer, Iliad"
+      ],
+      [
+        "Eurymedon",
+        "death",
+        "killed by Eurymedon",
+        "homer-odyssey",
+        "7.46-7.76"
+      ],
+      [
+        "Eurymedon",
+        "death",
+        "Brought destruction on his insolent people, the Giants, and was himself destroyed",
+        "homer-odyssey",
+        "7.46-7.76"
+      ],
+      [
+        "Tlepolemus",
+        "death",
+        "killed by Licymnius",
+        "apollodorus-bibliotheca",
+        "2.8.2"
+      ],
+      [
+        "Idomeneus",
+        "parentage",
+        "child of Idomeneus",
+        "homer-iliad",
+        "12.108-12.152"
+      ],
+      [
+        "Idomeneus",
+        "parentage",
+        "child of Deucalion",
+        "homer-iliad",
+        "12.108-12.152"
+      ],
+      [
+        "Idomeneus",
+        "parentage",
+        "son of Deucalion",
+        "homer-iliad",
+        "12.108-12.152"
+      ],
+      [
+        "Cadmus",
+        "death",
+        "killed by Cadmus",
+        "apollodorus-bibliotheca",
+        "3.3.1-3.4.1"
+      ],
+      [
+        "Athena",
+        "death",
+        "killed by Athena",
+        "apollodorus-bibliotheca",
+        "3.12.3-3.12.4"
+      ],
+      [
+        "Patroclus",
+        "death",
+        "killed by Clitonymus",
+        "apollodorus-bibliotheca",
+        "3.13.8-3.14.2"
+      ],
+      [
+        "Scylla",
+        "death",
+        "killed by Scylla",
+        "ovid-metamorphoses",
+        "8.81-8.118"
+      ],
+      [
+        "Telemachus",
+        "parentage",
+        "child of Telemachus",
+        "homer-odyssey",
+        "17.462-17.511"
+      ],
+      [
+        "Telemachus",
+        "parentage",
+        "child of Odysseus",
+        "homer-odyssey",
+        "17.462-17.511"
+      ],
+      [
+        "Odysseus",
+        "death",
+        "killed by Demoptolemus",
+        "homer-odyssey",
+        "22.265-22.309"
+      ],
+      [
+        "Hector",
+        "death",
+        "killed by Schedius",
+        "homer-iliad",
+        "15.514-15.558"
+      ],
+      [
+        "Ajax",
+        "death",
+        "killed by Laodamas",
+        "homer-iliad",
+        "15.514-15.558"
+      ],
+      [
+        "Nilus",
+        "parentage",
+        "child of Nilus",
+        "ovid-metamorphoses",
+        "5.177-5.209"
+      ],
+      [
+        "Nilus",
+        "parentage",
+        "child of Nile",
+        "ovid-metamorphoses",
+        "5.177-5.209"
+      ],
+      [
+        "Nilus",
+        "parentage",
+        "Falsely claimed to be begotten by the seven-fold Nile river, shield adorned with seven gold and silver streams",
+        "ovid-metamorphoses",
+        "5.177-5.209"
+      ],
+      [
+        "Eos",
+        "parentage",
+        "child of Eos",
+        "ovid-metamorphoses",
+        "15.186-15.213"
+      ],
+      [
+        "Eos",
+        "parentage",
+        "child of Pallas",
+        "ovid-metamorphoses",
+        "15.186-15.213"
+      ],
+      [
+        "Eos",
+        "parentage",
+        "daughter of Pallas",
+        "ovid-metamorphoses",
+        "15.186-15.213"
+      ],
+      [
+        "Elatus",
+        "death",
+        "killed by Elatus",
+        "homer-odyssey",
+        "22.265-22.309"
+      ],
+      [
+        "Elatus",
+        "death",
+        "Killed by the swineherd Eumaeus in the hall fight",
+        "homer-odyssey",
+        "22.265-22.309"
+      ],
+      [
+        "Pisander",
+        "death",
+        "killed by Pisander",
+        "homer-odyssey",
+        "22.265-22.309"
+      ],
+      [
+        "Pisander",
+        "death",
+        "Killed by the herdsman of the cattle (Philoetius) in the hall fight",
+        "homer-odyssey",
+        "22.265-22.309"
+      ],
+      [
+        "Liocritus",
+        "death",
+        "killed by Liocritus",
+        "homer-odyssey",
+        "22.265-22.309"
+      ],
+      [
+        "Liocritus",
+        "death",
+        "Wounded by Telemachus with a spear-thrust to the groin, fell dead",
+        "homer-odyssey",
+        "22.265-22.309"
+      ]
+    ],
+    "rationale": "A14's repaired self-reference reporting plus A15's first sweep. Each group was read against its own cited passage, not batch-rejected: 11 parentage self-references (nobody can be their own parent), 12 death self-references whose passages name a different agent or no death at all (Elatus is killed by the swineherd at Odyssey 22.268; Eurydice dies 'bitten by a snake'), and 5 reversed death claims mirroring the relationships-layer swaps DEV-123 made via A12. FOUR findings were verified CORRECT and are waived rather than rejected: both Ajax rows encode his SUICIDE ('he came to his senses and slew himself', Apollodorus E.5.7), Amphimedon/Telemachus is a wrist wound not a kill, and Tlepolemus/Sarpedon is the pronoun-anaphora false positive A12 already carries a standing waiver for."
+  },
+  {
+    "batchLabel": "a14-a15-selfref-residual",
+    "date": "2026-07-29T19:07:17.414745+00:00",
+    "keys": [],
+    "groupCount": 0,
+    "rejectedKeys": [
+      [
+        "Chryses",
+        "parentage",
+        "child of Chryses",
+        "homer-iliad",
+        "1.1-1.52"
+      ],
+      [
+        "Chryses",
+        "parentage",
+        "daughter of Chryses",
+        "homer-iliad",
+        "1.1-1.52"
+      ],
+      [
+        "Telemachus",
+        "parentage",
+        "child of Telemachus",
+        "homer-odyssey",
+        "23.39-23.84"
+      ],
+      [
+        "Amphimedon",
+        "death",
+        "killed by Amphimedon",
+        "homer-odyssey",
+        "22.265-22.309"
+      ]
+    ],
+    "rationale": "Three self-referential rows the first batch missed, each rejected by exact claim key rather than by subject+source+passage_ref group. Two (`Chryses`, `Telemachus`) sit at a different ref from the rows already rejected; the third (`Amphimedon | killed by Amphimedon`) shares its ref with the CORRECT `Killed by Telemachus` row, so the group-level key had protected it along with its waived sibling -- the same over-broad keying that the tier-1 guard caught earlier in this pass, here caught by A15 still reporting after the batch."
+  },
+  {
+    "batchLabel": "a14-selfref-all-refs",
+    "date": "2026-07-29T19:09:02.292548+00:00",
+    "keys": [],
+    "groupCount": 0,
+    "rejectedKeys": [
+      [
+        "Chryses",
+        "parentage",
+        "child of Chryses",
+        "homer-iliad",
+        "1.53-1.100"
+      ],
+      [
+        "Chryses",
+        "parentage",
+        "child of Chryses",
+        "homer-iliad",
+        "1.364-1.385"
+      ],
+      [
+        "Chryses",
+        "parentage",
+        "child of Chryses",
+        "homer-iliad",
+        "1.428-1.474"
+      ],
+      [
+        "Chryses",
+        "parentage",
+        "daughter of Chryses",
+        "homer-iliad",
+        "1.101-1.146"
+      ],
+      [
+        "Chryses",
+        "parentage",
+        "daughter of Chryses",
+        "homer-iliad",
+        "1.364-1.385"
+      ],
+      [
+        "Chryses",
+        "parentage",
+        "daughter of Chryses",
+        "homer-iliad",
+        "1.428-1.474"
+      ]
+    ],
+    "rationale": "The remaining self-referential parentage rows, surfaced once A14's dedup key was corrected to include passage_ref. Nobody can be their own parent, so unlike A15's death equivalent (where suicide makes self-reference legitimate) these need no passage read. The Chryses rows are a plain extraction slip: the daughter is Chryseis, and 'Chryses | daughter of Chryses' collapses the two names."
   }
 ]

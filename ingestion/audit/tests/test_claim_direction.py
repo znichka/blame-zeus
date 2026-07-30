@@ -130,3 +130,67 @@ def test_duplicate_claims_are_reported_once():
     corpus = {ILIAD: "Aias, son of Telamon, captain of the host."}
 
     assert len(find_reversed_claims(claims, corpus, KNOWN, aliases={"Ajax": {"Aias"}})) == 1
+
+
+# --- self-referential claims (DEV-125) ----------------------------------------
+
+
+def test_self_referential_claim_is_reported_not_silently_skipped():
+    # The defect this fixes: `continue` on subject == parent dropped these rows from the
+    # output entirely, so the only check reading them could never flag one.
+    claims = [_claim("Cronus", "child of Cronus")]
+    corpus = {ILIAD: "Zeus, son of Cronus, ruled on high."}
+
+    findings = find_reversed_claims(claims, corpus, KNOWN)
+
+    assert len(findings) == 1
+    assert findings[0]["kind"] == "self_referential"
+    assert findings[0]["subject_name"] == "Cronus"
+
+
+def test_self_reference_needs_no_corpus_evidence():
+    # Nothing in any text can make someone their own parent, so unlike a direction
+    # finding this one does not consult the source at all.
+    claims = [_claim("Orpheus", "child of Orpheus")]
+
+    findings = find_reversed_claims(claims, {}, KNOWN)
+
+    assert len(findings) == 1
+    assert findings[0]["kind"] == "self_referential"
+
+
+def test_self_reference_respects_the_rejected_tier_skip():
+    claims = [_claim("Orpheus", "child of Orpheus", tier=2)]
+
+    assert find_reversed_claims(claims, {}, KNOWN) == []
+
+
+def test_reversed_findings_carry_the_reversed_kind():
+    claims = [_claim("Telamon", "child of Ajax")]
+    corpus = {ILIAD: "Aias, son of Telamon, captain of the host."}
+
+    findings = find_reversed_claims(claims, corpus, KNOWN, aliases={"Ajax": {"Aias"}})
+
+    assert findings[0]["kind"] == "reversed"
+
+
+def test_a_blank_subject_never_self_matches():
+    # re.escape("") is the empty pattern and matches everywhere, so without an explicit
+    # guard every claim whose subject failed to extract reads as self-referential. Four
+    # such rows exist in the live candidate data (DEV-125); they are a separate defect.
+    from audit.claim_direction import names_self
+
+    assert names_self("child of Hermes", "") is False
+    assert names_self("child of Hermes", "   ") is False
+    assert find_reversed_claims([_claim("", "child of Hermes")], {}, KNOWN) == []
+
+
+def test_self_referential_rows_at_different_refs_are_all_reported():
+    # Keyed per row, not per subject+source: otherwise the check reports one ref at a
+    # time and only surfaces the next after the first is rejected (DEV-125).
+    claims = [
+        _claim("Cronus", "child of Cronus"),
+        {**_claim("Cronus", "child of Cronus"), "passage_ref": "2.1-2.50"},
+    ]
+
+    assert len(find_reversed_claims(claims, {}, KNOWN)) == 2

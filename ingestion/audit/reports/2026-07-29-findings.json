@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T18:06:57.477650+00:00",
+  "generatedAt": "2026-07-29T19:09:34.533642+00:00",
   "checks": [
     {
       "name": "A1",
@@ -787,8 +787,50 @@
     },
     {
       "name": "A14",
-      "summary": "0 reversed parentage claim(s) (0 of them promoted/live); 1120 distinct subject+source group(s) checked; 493 claim value(s) had no resolvable parent name (free prose or the 'sprung from' formula -- left unchecked, not guessed)",
+      "summary": "0 bad parentage claim(s) -- 0 reversed, 0 self-referential (0 of them promoted/live); 1117 distinct subject+source group(s) checked; 492 claim value(s) had no resolvable parent name (free prose or the 'sprung from' formula -- left unchecked, not guessed)",
       "findings": []
+    },
+    {
+      "name": "A15",
+      "summary": "4 bad death claim(s) -- 2 reversed, 2 self-referential (0 of them promoted/live); 336 distinct subject+source group(s) checked; 345 claim value(s) named no resolvable killer (no agent, or an unnamed one -- left unchecked, not guessed)",
+      "findings": [
+        {
+          "check": "A15",
+          "severity": "error",
+          "subject": "Amphimedon | death | Killed by Telemachus in the second exchange of spears [homer-odyssey 22.265-22.309]",
+          "detail": "homer-odyssey attests \"Amphimedon slew/smote Telemachus\" 1x and never the reverse -- the claim has the direction backwards (Amphimedon is the killer, not the victim). trust_tier=3",
+          "suggestedFix": "Read the cited passage. If it is backwards, reject the row to trust_tier=2 through the keyed promotion workflow (DEV-104/DEV-113) -- never edit trust_tier by position. A self-referential row needs no passage read: reject it. Note A12's known limit applies here too -- a kill whose victim is named by a pronoun can hide the correct reading and produce a false positive, so verify before rejecting.",
+          "waived": true,
+          "waiverReason": "False positive of A12's documented wound-not-kill shape. Telemachus DOES kill Amphimedon (Odyssey 22.277ff), so the claim is correct; A15 flags it because the same passage has Amphimedon wounding Telemachus on the wrist first, which the kill-verb pattern reads as reversed evidence while the actual kill is phrased without naming the victim adjacent to the verb. Verified 2026-07-29 (DEV-125); do NOT reject."
+        },
+        {
+          "check": "A15",
+          "severity": "error",
+          "subject": "Tlepolemus | death | killed by Sarpedon [homer-iliad 5.607-5.654]",
+          "detail": "homer-iliad attests \"Tlepolemus slew/smote Sarpedon\" 1x and never the reverse -- the claim has the direction backwards (Tlepolemus is the killer, not the victim). trust_tier=3",
+          "suggestedFix": "Read the cited passage. If it is backwards, reject the row to trust_tier=2 through the keyed promotion workflow (DEV-104/DEV-113) -- never edit trust_tier by position. A self-referential row needs no passage read: reject it. Note A12's known limit applies here too -- a kill whose victim is named by a pronoun can hide the correct reading and produce a false positive, so verify before rejecting.",
+          "waived": true,
+          "waiverReason": "The `variant_claims` twin of A12's standing waiver, same passage and same cause: Iliad 5.655 has \"Sarpedon smote HIM full upon the neck\" (Tlepolemus dies -- the claim is CORRECT) immediately followed by \"And Tlepolemus smote Sarpedon upon the left thigh\" (a wound). The kill names its victim with a pronoun, so `correct == 0` cannot suppress it. No regex over entity names resolves that reference. Do NOT reject."
+        },
+        {
+          "check": "A15",
+          "severity": "error",
+          "subject": "Ajax | death | killed by Ajax [apollodorus-bibliotheca E.5.5-E.5.13]",
+          "detail": "the claim names its own subject as the killer -- Ajax killed by Ajax. Read the passage before acting: this is a defect when the source names a different agent, but SUICIDE is real and encodes this way (Ajax at Apollodorus E.5.5-E.5.13 / Ovid 13.382-13.428 is correct). trust_tier=3",
+          "suggestedFix": "Read the cited passage. If it is backwards, reject the row to trust_tier=2 through the keyed promotion workflow (DEV-104/DEV-113) -- never edit trust_tier by position. A self-referential row needs no passage read: reject it. Note A12's known limit applies here too -- a kill whose victim is named by a pronoun can hide the correct reading and produce a false positive, so verify before rejecting.",
+          "waived": true,
+          "waiverReason": "CORRECT, not a defect -- Ajax's suicide. Apollodorus E.5.7: after Athena drives him mad and he slaughters the cattle, \"afterwards he came to his senses and slew himself\". Self-reference in a `death` claim is the legitimate encoding of suicide, which is why A15 reports this kind for review rather than treating it as certain error (unlike A14's parentage equivalent, where self-reference is impossible). Verified against the passage 2026-07-29 (DEV-125); do NOT reject."
+        },
+        {
+          "check": "A15",
+          "severity": "error",
+          "subject": "Ajax | death | killed by Ajax [ovid-metamorphoses 13.382-13.428]",
+          "detail": "the claim names its own subject as the killer -- Ajax killed by Ajax. Read the passage before acting: this is a defect when the source names a different agent, but SUICIDE is real and encodes this way (Ajax at Apollodorus E.5.5-E.5.13 / Ovid 13.382-13.428 is correct). trust_tier=3",
+          "suggestedFix": "Read the cited passage. If it is backwards, reject the row to trust_tier=2 through the keyed promotion workflow (DEV-104/DEV-113) -- never edit trust_tier by position. A self-referential row needs no passage read: reject it. Note A12's known limit applies here too -- a kill whose victim is named by a pronoun can hide the correct reading and produce a false positive, so verify before rejecting.",
+          "waived": true,
+          "waiverReason": "CORRECT, not a defect -- the same suicide in Ovid, and the passage DEV-121 identified as its true location (13.386ff) sits inside this cited range: \"The unconquerable was conquered by his grief. He drew his sword, and said:--'This is at least my own'\". Verified 2026-07-29 (DEV-125); do NOT reject."
+        }
+      ]
     },
     {
       "name": "A2",

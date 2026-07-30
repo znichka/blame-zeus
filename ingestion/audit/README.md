@@ -11,12 +11,12 @@ Every check in this package **reports only** — none of them mutate any file or
 
 `__main__.py` walks the package for any sibling module exposing the contract in `contract.py`
 (module-level `NAME: str` + `run(candidates_dir, db_conn) -> CheckResult`) — a module needs no
-separate registration call, just those two names, to be picked up. All **fourteen** checks are live:
+separate registration call, just those two names, to be picked up. All **fifteen** checks are live:
 **`duplicate_entities.py` (`A1`)**, **`drop_accounting.py` (`A2`)**, **`cycle_check.py` (`A3`)**,
 **`relation_taxonomy.py` (`A4`)**, **`integrity.py` (`A5`)**, **`dropped_parents.py` (`A6`)**,
 **`name_coverage.py` (`A7`)**, **`prominence.py` (`A8`)**, **`claim_type_distribution.py` (`A9`)**,
 **`group_inventory.py` (`A10`)**, **`parentage_direction.py` (`A11`)**,
-**`kill_direction.py` (`A12`)**, **`passage_support.py` (`A13`)**, **`claim_direction.py` (`A14`)**.
+**`kill_direction.py` (`A12`)**, **`passage_support.py` (`A13`)**, **`claim_direction.py` (`A14`)**, **`death_direction.py` (`A15`)**.
 
 **A note on what "reporting-only" has to mean for A8/A9/A10** (Stage P4 Track B9), because the
 obvious reading of `contract.py` is wrong: `AuditRun.exit_code` is `1 if any(not f.waived for f in
@@ -507,3 +507,41 @@ A14 extracted from each cited source — zero false positives.** All textbook pa
 108 triples covered **209 claim rows**, all rejected to `trust_tier=2` through the keyed workflow
 (DEV-104). **No seeded data changed** — every row was tier 3, and V10/V11/V12 regenerated
 byte-identical.
+
+---
+
+## `death_direction.py` — the A15 `death`-claim check (post-P4, DEV-125)
+
+The last uncovered asymmetric relation. A12 checks kill direction in `relationships`; A14 checks
+parentage direction in `variant_claims`. `death` sat in the intersection neither reached — **943
+claims, 31 of them live in V12** — and a death claim is asymmetric in exactly the way a marriage
+claim is not: "killed by X" names an agent, and getting the agent backwards inverts the fact.
+(`married_to` was briefly considered for the same treatment and dropped: marriage is symmetric, so a
+direction check there has nothing to detect.)
+
+Structure is A14's, vocabulary is A12's. `parse_killer` requires an explicit agent prefix — `killed
+by`, `slain by`, `murdered by`, `shot by` — covering **677 of 943** values; the rest name no agent
+("died at Troy") or wrap the death in prose, and are counted as unparsed rather than guessed at.
+
+**`self_referential` is a report-for-review here, NOT an automatic defect — suicide exists.** This is
+the difference from A14, where self-reference is impossible. `Ajax | death | killed by Ajax` is
+**correct** at both Apollodorus E.5.5-E.5.13 (*"afterwards he came to his senses and slew himself"*)
+and Ovid 13.382-13.428 (*"He drew his sword"*). First sweep: **14 self-references, 12 errors, 2
+suicide** — read the passage before acting. Both Ajax rows are waived, not rejected.
+
+Three exclusions, each found by a false positive on live data rather than anticipated:
+
+- **Possessives are somebody else.** `killed by Actaeon's dogs` and `killed by Pelias's daughters`
+  are true claims about a death caused by the subject's hounds and kin. Without the guard the check
+  inverts a correct row into a defect.
+- **A blank subject never self-matches.** `re.escape("")` matches everywhere; four rows with an empty
+  `subject_name` exist in the live data, and they are their own defect.
+- **Self-reference dedups per row (passage_ref included), unlike the reversed kind**, which dedups
+  per pair+source. The fix differs: a reversed pair is one decision covering every ref, while each
+  self-referential row is its own bad row. Keying both alike made the check report one ref at a time
+  and surface the next only after the first was rejected.
+
+**A12's pronoun-anaphora limit applies here too**, and produced the same shape of false positive:
+`Tlepolemus | killed by Sarpedon` is correct (Iliad 5.655 kills him, naming the victim with "him"),
+as is `Amphimedon | Killed by Telemachus` (the same passage has Amphimedon *wounding* Telemachus
+first). Both waived with the passage quoted. **First sweep: 21 findings → 17 rejected, 4 waived.**

@@ -885,7 +885,7 @@
     "claim_value": "killed by Cronus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.1.1-1.1.7",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Cronus",
@@ -3213,7 +3213,7 @@
     "claim_value": "child of Perses",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Perses",
@@ -3221,7 +3221,7 @@
     "claim_value": "child of Andromeda",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Perses",
@@ -6741,7 +6741,7 @@
     "claim_value": "child of Orpheus",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "10.126-10.161",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Orpheus",
@@ -6749,7 +6749,7 @@
     "claim_value": "child of Calliope",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "10.126-10.161",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Orpheus",
@@ -6765,7 +6765,7 @@
     "claim_value": "Son of the Muse Calliope, addressed as 'my loved mother, Muse'.",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "10.126-10.161",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Orpheus",
@@ -6813,7 +6813,7 @@
     "claim_value": "killed by Eurydice",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.3.1-1.3.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Eurydice",
@@ -10077,7 +10077,7 @@
     "claim_value": "child of Aeolus",
     "source_id": "homer-odyssey",
     "passage_ref": "10.13-10.55",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Aeolus",
@@ -10085,7 +10085,7 @@
     "claim_value": "child of Hippotas",
     "source_id": "homer-odyssey",
     "passage_ref": "10.13-10.55",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Aeolus",
@@ -10125,7 +10125,7 @@
     "claim_value": "son of Hippotas",
     "source_id": "homer-odyssey",
     "passage_ref": "10.13-10.55",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Aeolus",
@@ -10837,7 +10837,7 @@
     "claim_value": "child of Ceyx",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "11.444-11.473",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Ceyx",
@@ -10845,7 +10845,7 @@
     "claim_value": "child of Morning Star",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "11.444-11.473",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Ceyx",
@@ -10861,7 +10861,7 @@
     "claim_value": "son of the Morning Star",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "11.444-11.473",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Zeus",
@@ -11381,7 +11381,7 @@
     "claim_value": "child of Idas",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.7.4-1.7.8",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Idas",
@@ -11389,7 +11389,7 @@
     "claim_value": "child of Aphareus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.7.4-1.7.8",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Idas",
@@ -15293,7 +15293,7 @@
     "claim_value": "child of Sthenelaus",
     "source_id": "homer-iliad",
     "passage_ref": "5.297-5.333",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Sthenelaus",
@@ -15365,7 +15365,7 @@
     "claim_value": "son of Capaneus",
     "source_id": "homer-iliad",
     "passage_ref": "5.297-5.333",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Sthenelaus",
@@ -20157,7 +20157,7 @@
     "claim_value": "killed by Medea",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.9.24-1.9.25",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Medea",
@@ -20165,7 +20165,7 @@
     "claim_value": "killed by Medea",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "7.391-7.424",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Medea",
@@ -23805,7 +23805,7 @@
     "claim_value": "child of Chryses",
     "source_id": "homer-iliad",
     "passage_ref": "Homer, Iliad",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Chryses",
@@ -23813,7 +23813,7 @@
     "claim_value": "child of Chryses",
     "source_id": "homer-iliad",
     "passage_ref": "1.1-1.52",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Chryses",
@@ -23821,7 +23821,7 @@
     "claim_value": "child of Chryses",
     "source_id": "homer-iliad",
     "passage_ref": "1.53-1.100",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Chryses",
@@ -23829,7 +23829,7 @@
     "claim_value": "child of Chryses",
     "source_id": "homer-iliad",
     "passage_ref": "1.364-1.385",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Chryses",
@@ -23837,7 +23837,7 @@
     "claim_value": "child of Chryses",
     "source_id": "homer-iliad",
     "passage_ref": "1.428-1.474",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Chryses",
@@ -23845,7 +23845,7 @@
     "claim_value": "daughter of Chryses, priest of Apollo",
     "source_id": "homer-iliad",
     "passage_ref": "Homer, Iliad",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Chryses",
@@ -23853,7 +23853,7 @@
     "claim_value": "daughter of Chryses",
     "source_id": "homer-iliad",
     "passage_ref": "1.1-1.52",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Chryses",
@@ -23861,7 +23861,7 @@
     "claim_value": "daughter of Chryses",
     "source_id": "homer-iliad",
     "passage_ref": "1.101-1.146",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Chryses",
@@ -23869,7 +23869,7 @@
     "claim_value": "daughter of Chryses",
     "source_id": "homer-iliad",
     "passage_ref": "1.364-1.385",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Chryses",
@@ -23877,7 +23877,7 @@
     "claim_value": "daughter of Chryses",
     "source_id": "homer-iliad",
     "passage_ref": "1.428-1.474",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Androgeus",
@@ -24221,7 +24221,7 @@
     "claim_value": "killed by Eurymedon",
     "source_id": "homer-odyssey",
     "passage_ref": "7.46-7.76",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Eurymedon",
@@ -24229,7 +24229,7 @@
     "claim_value": "Brought destruction on his insolent people, the Giants, and was himself destroyed",
     "source_id": "homer-odyssey",
     "passage_ref": "7.46-7.76",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Mygdon",
@@ -25421,7 +25421,7 @@
     "claim_value": "killed by Licymnius",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.8.2",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Tlepolemus",
@@ -27589,7 +27589,7 @@
     "claim_value": "child of Idomeneus",
     "source_id": "homer-iliad",
     "passage_ref": "12.108-12.152",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Idomeneus",
@@ -27597,7 +27597,7 @@
     "claim_value": "child of Deucalion",
     "source_id": "homer-iliad",
     "passage_ref": "12.108-12.152",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Idomeneus",
@@ -27637,7 +27637,7 @@
     "claim_value": "son of Deucalion",
     "source_id": "homer-iliad",
     "passage_ref": "12.108-12.152",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Idomeneus",
@@ -27733,7 +27733,7 @@
     "claim_value": "killed by Cadmus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.3.1-3.4.1",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Cadmus",
@@ -37037,7 +37037,7 @@
     "claim_value": "killed by Athena",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.12.3-3.12.4",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Athena",
@@ -42189,7 +42189,7 @@
     "claim_value": "killed by Clitonymus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.13.8-3.14.2",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Patroclus",
@@ -43821,7 +43821,7 @@
     "claim_value": "killed by Scylla",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "8.81-8.118",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Scylla",
@@ -45077,7 +45077,7 @@
     "claim_value": "child of Telemachus",
     "source_id": "homer-odyssey",
     "passage_ref": "17.462-17.511",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Telemachus",
@@ -45085,7 +45085,7 @@
     "claim_value": "child of Odysseus",
     "source_id": "homer-odyssey",
     "passage_ref": "17.462-17.511",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Telemachus",
@@ -45237,7 +45237,7 @@
     "claim_value": "child of Telemachus",
     "source_id": "homer-odyssey",
     "passage_ref": "23.39-23.84",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Telemachus",
@@ -47245,7 +47245,7 @@
     "claim_value": "killed by Demoptolemus",
     "source_id": "homer-odyssey",
     "passage_ref": "22.265-22.309",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Odysseus",
@@ -47637,7 +47637,7 @@
     "claim_value": "killed by Schedius",
     "source_id": "homer-iliad",
     "passage_ref": "15.514-15.558",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Hector",
@@ -48277,7 +48277,7 @@
     "claim_value": "killed by Laodamas",
     "source_id": "homer-iliad",
     "passage_ref": "15.514-15.558",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Ajax",
@@ -49685,7 +49685,7 @@
     "claim_value": "child of Nilus",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "5.177-5.209",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Nilus",
@@ -49693,7 +49693,7 @@
     "claim_value": "child of Nile",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "5.177-5.209",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Nilus",
@@ -49701,7 +49701,7 @@
     "claim_value": "Falsely claimed to be begotten by the seven-fold Nile river, shield adorned with seven gold and silver streams",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "5.177-5.209",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Alpheus",
@@ -49965,7 +49965,7 @@
     "claim_value": "child of Eos",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "15.186-15.213",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Eos",
@@ -49973,7 +49973,7 @@
     "claim_value": "child of Pallas",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "15.186-15.213",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Eos",
@@ -49989,7 +49989,7 @@
     "claim_value": "daughter of Pallas",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "15.186-15.213",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Eos",
@@ -51869,7 +51869,7 @@
     "claim_value": "killed by Elatus",
     "source_id": "homer-odyssey",
     "passage_ref": "22.265-22.309",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Elatus",
@@ -51885,7 +51885,7 @@
     "claim_value": "Killed by the swineherd Eumaeus in the hall fight",
     "source_id": "homer-odyssey",
     "passage_ref": "22.265-22.309",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Melanthius",
@@ -52093,7 +52093,7 @@
     "claim_value": "killed by Pisander",
     "source_id": "homer-odyssey",
     "passage_ref": "22.265-22.309",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Pisander",
@@ -52117,7 +52117,7 @@
     "claim_value": "Killed by the herdsman of the cattle (Philoetius) in the hall fight",
     "source_id": "homer-odyssey",
     "passage_ref": "22.265-22.309",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Orus",
@@ -52981,7 +52981,7 @@
     "claim_value": "killed by Amphimedon",
     "source_id": "homer-odyssey",
     "passage_ref": "22.265-22.309",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Amphimedon",
@@ -53037,7 +53037,7 @@
     "claim_value": "killed by Liocritus",
     "source_id": "homer-odyssey",
     "passage_ref": "22.265-22.309",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Liocritus",
@@ -53053,7 +53053,7 @@
     "claim_value": "Wounded by Telemachus with a spear-thrust to the groin, fell dead",
     "source_id": "homer-odyssey",
     "passage_ref": "22.265-22.309",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Prothoënor",
