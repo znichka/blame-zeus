@@ -445,6 +445,12 @@ Both were documented as found-but-not-fixed and had no TODO home until 2026-07-2
       `trust_tier=1` rows sit in just **4** groups across **3** subjects (Aphrodite, Achilles, Io).
       Also measured: the prominence ranking this bullet assumes **does not exist** in
       `ingestion/audit/` and has to be built (P4 Track B, audit checks A8/A9/A10)
+      - **The `838`/`839` figures here are pre-normalization and should not be carried forward**
+        `[DEVIATED - see DEVIATIONS.md #DEV-129]`. Both predate DEV-126 teaching A10 the alias maps;
+        alias-blind grouping still returns 838, while A10 as it runs now returns **795 / 723**. This
+        bullet is where DEV-128 picked the number up — a stale measurement quoted forward as current
+        is exactly what P5-0 Track E3 and the new "a recorded figure names its construction"
+        cross-cutting rule exist to stop. Left standing as the historical record of what P4 measured.
       **[DEVIATED - see DEVIATIONS.md #DEV-103, #DEV-109, #DEV-114]** — **the figures above moved
       again after they were written** (P4 Track J2): Track G's V18 collapsed the `notable*`
       claim_type family, taking the canonical group total **835 → 798**, which is what A10 reports
@@ -525,18 +531,53 @@ Both were documented as found-but-not-fixed and had no TODO home until 2026-07-2
 
 ---
 
-## Stage P5 — New data types & systematic gap discovery
+## Stage P5 — Corpus-complete seeding, then new data types
 **Done when (per sub-stage):** its new gold questions pass, all sentinels stay green, per-category
 floors hold across a 3-run eval; the relevant ADR/DEV entries are logged.
 
+> ⚠️ Deviations occurred in this stage. See DEVIATIONS.md for details.
+> **Re-scoped 2026-07-30** `[DEVIATED - see DEVIATIONS.md #DEV-128]`. P5 was three *new data type*
+> sub-stages (P5a/P5b/P5c). **P5-0 — corpus-complete seeding of the tables that already exist — is
+> inserted ahead of them and owns the stage.** Reason, measured: `variant_claims` sits at **6.3% row
+> coverage** (300 of a **4,743-row reachable ceiling**) and **8.1% conflict-group coverage** (62 of
+> 764 surfaceable-conflict groups; 723 of 795 groups have zero promoted rows), while the two days
+> before the re-scope **promoted 4 rows** and rejected 286. Adding new data types on top of a
+> 6%-seeded differentiator table optimises the wrong thing. **P5b is frozen** (see below).
+>
+> **Figures corrected same-day** `[DEVIATED - see DEVIATIONS.md #DEV-129]`: this banner first read
+> "4% row / ~7% group coverage (300 of 7,429; 749 of 838 groups)" and "every rejected row at
+> `trust_tier=3`". All four are wrong — 7,429 is an unreachable denominator (`seedgen` drops 359
+> rows for absent subjects and collapses 2,327 under a 4-tuple dedup that omits `passage_ref`);
+> 838/749 are the **alias-blind** group figures where A10 as it runs reports 795/723; and rejection
+> writes `trust_tier=2`, not 3 (1 = promoted, 2 = checked-and-rejected, 3 = never reviewed).
+
+- [ ] **P5-0** — **corpus-complete seeding of the existing tables.** Re-scope the review axis from
+      subject prominence to **passage**: the 6,695 unreviewed tier-3 claims live in only **1,059
+      distinct passages**, so the backlog is 1,059 reads, not 6,695 row decisions. Measured, the
+      current subject axis costs 750 passage reads to reach 2,544 rows (3.4 rows/read); the passage
+      axis reaches all 6,695 in 1,059 (6.3 rows/read) — 2.6× the rows for 1.4× the reads. State the
+      absolute cost too: those 1,059 segments are **~424,000 words**, ~88% of the corpus.
+      Six tracks: **A** instrument (`A16` coverage check, the stage's exit metric) —
+      **B** review engine (`claim_evidence.py` + `review_passage()` + **ADR-004 Amendment 1**, which
+      sanctions evidence-assisted batch approval) — **C** four seeding sprints, full pool, top
+      passages first — **D** the `relationships`/`entities` seam (GAP-002 bucket 1) — **E** stop/
+      retire/consolidate — **F** coverage statement + eval. Absorbs GAP-001's a′ residue and GAP-002
+      from P3/P4, and homes **DEV-066** (A3's non-exhaustive cycle detection) at Track A8
 - [ ] **P5a** — numeric data (**activates ADR-009 → Accepted**): `contingents` table (new V-number),
       bounded extraction reusing instructor/checkpoint + `ref_ranges.py`, seedgen extension, numeric
       gold questions incl. one `ship_count` conflict
-- [ ] **P5b** — myths & participants: grow beyond 5 myths (Trojan cycle — "died at Troy" has no
-      structured backing, DEV-054 Q11); MIXED over-constraint prompt fix (SQL encodes only structured
-      predicates), verified by Q11. **Also lands here if deferred from P3** (GAP-001): **J4b**, the
-      `Chaos → Earth` cosmogonic (non-parentage) relation — recommended deferral target; and any
-      un-worked residue of Root cause 3's promotion half (a′)
+- [~] **P5b** — myths & participants — **FROZEN 2026-07-30**
+      `[DEVIATED - see DEVIATIONS.md #DEV-128]`. Original plan: grow beyond 5 myths (Trojan cycle —
+      "died at Troy" has no structured backing, DEV-054 Q11); MIXED over-constraint prompt fix (SQL
+      encodes only structured predicates), verified by Q11. **Why frozen:** unlike every other table,
+      `myths`/`myth_participants` have **no candidate pool** — nothing in the extraction pipeline
+      targets them, so growth means either a new extraction schema or hand-curation, and neither
+      competes with P5-0 for value. A 5-row table sitting in `SchemaIntrospector`'s text-to-SQL
+      prompt is closer to a liability than an asset. Replaced by a **written coverage statement** in
+      `docs/DATA-GAPS.md` (P5-0 Track F1) saying so explicitly. **Knowingly left unbacked:** Q11's
+      "died at Troy" and GAP-001's **J4b** (`Chaos → Earth` cosmogonic non-parentage relation).
+      **Moved, not frozen:** Root cause 3's promotion half (a′) — its ~690 dropped rival parents are
+      A6-contested rows, which P5-0 Track C front-loads by design (Track C6)
 - [ ] **P5c** — geography/epithets: places as attributes or a small table; epithets → `entity_aliases`
 - [ ] Schema-prompt co-evolution each sub-stage: schema comments + `SchemaIntrospector` vocabulary
       (frequency-ordered, DEV-041); a new gold question verifies the model uses each new table
@@ -552,7 +593,18 @@ floors hold across a 3-run eval; the relevant ADR/DEV entries are logged.
       exhaustive enumeration, or document the non-exhaustiveness in A3's own output so the next count
       jump is self-explaining.
 
-→ Detailed checklist: `TODO-phase2-stage-p5.md` (created at implementation)
+→ Detailed checklist: [`TODO-phase2-stage-p5.md`](TODO-phase2-stage-p5.md) — created 2026-07-30
+  (DEV-128), figures and track arithmetic corrected same day (DEV-129), five execution-blocking
+  contradictions fixed same day (DEV-130). 6 tracks (A–F), **43 items** (A 13, B 9, C 6, D 4, E 7,
+  F 4), plus a **standing-rules block** (the seeding rule + the findings rule) that governs every
+  track. **Track A is the serial gate:** nothing else starts until `python -m audit --only A16`
+  answers "are we drifting?" in one command. B and D fan out after it; C is the serial batch loop and
+  the bulk of the stage. **Three items run out of alphabetical order** — see the *Track order* block
+  at the foot of that file: **E5** creates the backlog artifact and moves the 347 A2 scope waivers
+  into it *before* A6 and A7 (A7 otherwise crashes every `python -m audit` run, `load_waivers`
+  raising at load time; A6 otherwise leaves 949 findings unwaived and pins the suite at exit 1 for
+  the whole stage `[DEVIATED - see DEVIATIONS.md #DEV-130]`), and **A9** drops the `<UNKNOWN>`
+  placeholder before D1's budget or E2's tiebreak rank on it.
 
 ---
 
@@ -581,6 +633,71 @@ floors hold across a 3-run eval; the relevant ADR/DEV entries are logged.
   are not comparable to each other.
 - **Keyword edits are logged eval-bug fixes** (live-verified, DEV-048/050), never silent tuning.
 - **Embedding preservation:** never `down -v`; `reseed-local.sh` is the only sanctioned reseed path.
+- **The seeding rule.** Added 2026-07-30 based on DEV-128, scoped 2026-07-30 based on DEV-129 (see
+  DEVIATIONS.md). Every **seeding batch** — an item that writes rows to a user-visible table — names,
+  before it starts, **the table it will add rows to and the row count it expects.** A batch closes
+  only on a re-run of `python -m audit --only A16` showing that table's coverage moved; the
+  before/after figures go into the batch's own entry in `ingestion/audit/promotion_log.json`
+  alongside `batchLabel`/`keys`/`rejectedKeys`. **This batch-closing requirement binds seeding
+  batches only** — instrument, engine, retire and close items add no rows and name the seeding work
+  they unblock instead; without the limit the rule reads as violated by most of P5-0's own items.
+  **The detector budget below is the opposite: it binds every track**
+  `[DEVIATED - see DEVIATIONS.md #DEV-132]`, since bounding row-free work is its entire purpose and
+  exempting the row-free tracks would empty it. **Coverage is always quoted against the
+  reachable ceiling, never the raw candidate pool** — `variant_claims` can hold at most 4,743 of its
+  7,429 candidates (and at most 715 of its 764 conflict groups), so a pool-based percentage makes
+  every batch look like a failure.
+  **Detector budget:** at most one new `audit/` check module per **250 net rows** added to a
+  user-visible table since the last one — and fixing a bug *in* an existing check spends the same
+  budget, because that maintenance surface is what the rule bounds. **Two standing exemptions, both
+  narrow:** (a) **a check that cannot emit a finding is an instrument, not a detector, and does not
+  spend the budget** (A16 is the only one today; without this the budget forbids the very metric the
+  rule depends on); (b) **P5-0's A9 is a one-off budgeted bugfix**, granted explicitly because the
+  budget would otherwise forbid it at 0 net rows and deadlock the stage. Neither exemption is
+  renewable, so the budget still bites on check number 17.
+  **Rejection is not coverage:** writing `trust_tier=2` shrinks the backlog and is worth doing,
+  but it reports against the *decided* fraction, never the *seeded* one, and can never satisfy a
+  batch's exit criterion on its own. That last clause is what would have caught 2026-07-29/30, where
+  286 rejections and 4 promotions read as two days of progress.
+  **A batch's audit gate is exit 0 with a non-growing deferral count**, not exit 0 alone
+  `[DEVIATED - see DEVIATIONS.md #DEV-130]`. Scope-shaped waivers move to a backlog artifact whose
+  findings report `DEFERRED` — excluded from `AuditRun.exit_code`, counted per check every run — so a
+  batch that adjudicates nothing still exits 0. Read the deferral counts, which must be strictly
+  lower for the checks the batch touched and never higher for any check. Deleting such waivers
+  instead of relocating them pins the suite at exit 1 for the whole stage and makes the gate
+  unsatisfiable, which is how this clause was found.
+- **The findings rule — new findings are routed, not chased.** Added 2026-07-30 based on DEV-128
+  (see DEVIATIONS.md). Recording stray findings is already convention here (the "Findings this pass
+  did not fix" sections; the DEV-115/119/121/122 discipline); this rule decides **whether to act
+  now**, which nothing did — and recording-then-fixing-immediately is the DEV-124→127 loop in one
+  sentence. Classify each new finding, in order: **(1) reaches users now** — the defect is in
+  *seeded* data, which is not review-gated (the GAP-007/GAP-008 shape); **this is the only class
+  that interrupts the batch.** **(2) blocks the rows in front of you** — fix inline, minimally, for
+  the rows in hand; if the fix outgrows the batch it is demoted to class 3. **(3) affects rows the
+  queue has not reached** — record it against the queue position where it will be met and keep
+  going; **most findings are class 3, and treating them as class 1 is the drift.** **(4) needs new
+  tooling** — record as a candidate detector in `docs/DATA-GAPS.md` with a stated row-yield
+  hypothesis; it spends the detector budget, is never built mid-batch, and is recorded as a dead end
+  rather than iterated if its first sweep promotes nothing (the A13 precedent). **(5) mechanically
+  undetectable** (the GAP-005 deception shape) — straight to "Known and accepted"; do not design a
+  detector for it. **A16 is the arbiter:** a proposed interrupt that would not move a coverage
+  number for the table being worked is not an interrupt. **One destination:** classes 3–5 land in
+  `docs/DATA-GAPS.md` with a "rows at stake" line, so routing is not losing. This composes with
+  "Root cause first" above — that rule governs *how* to fix, this one governs *whether to fix now*.
+- **A recorded figure names its construction, or it is not recorded.** Added 2026-07-30 based on
+  DEV-129 (see DEVIATIONS.md). Any count quoted in a doc states the query, script or function call
+  that produced it — enough to re-derive, per the existing "state the layer" rule. **Why:** DEV-128
+  quoted `838 groups / 749 zero-promoted` as "verified against the live tree and exact"; they are the
+  **alias-blind** figures (`build_group_inventory(cands, {}, None)`), while A10 as it runs reports
+  795/723 — the same alias-blindness class DEV-126 had just fixed, reintroduced in prose because no
+  construction was recorded. A second figure in the same entry (`2,621 rows / 753 passages`) is
+  unreproducible under any construction. Prefer citing an A16 run and a `batchLabel` over restating
+  a number at all (P5-0 Track E3). **And keep the entry under ~4 KB**
+  `[DEVIATED - see DEVIATIONS.md #DEV-131]` — average entry size grew **1.2 KB → 10.4 KB (8.5×)**
+  across Phase 2, which is what pushed `DEVIATIONS.md` past a single read (~169K tokens) and forced
+  the Phase 1 archive. Entry count was never the problem; entry length is. Read the **Index**, not
+  the whole file, and never hand-edit it — `python3 scripts/deviations-index.py` regenerates it,
+  `--check` verifies it.
 - **Deviation protocol (CLAUDE.md):** log DEV entries; annotate with banners; ADR status flips
   (ADR-009 at P5a) recorded properly.
 - **Any `LLM_CHAT_MODEL` change is eval-gated, and now also a cost decision.** Updated based on

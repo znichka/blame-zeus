@@ -208,4 +208,6 @@ When implementing any planned stage:
 4. **Add a note** to the relevant stage in `IMPLEMENTATION_PLAN.md` of the form:
    `> ⚠️ Deviations occurred in this stage. See DEVIATIONS.md for details.`
 5. **Update future stage plans** in `TODO.md` / `TODO-stage1.md` if the deviation changes their input assumptions — be explicit: `"Updated based on DEV-NNN (see DEVIATIONS.md)"`.
-6. **Before starting any stage**, re-read `DEVIATIONS.md` to understand what assumptions from prior stages have changed.
+6. **Before starting any stage**, read `DEVIATIONS.md`'s **Index** (not the whole file) to see what assumptions from prior stages have changed, then open the entries that matter. The file outgrew a single read at ~169K tokens, so closed phases are archived under `docs/deviations/` and the index is the entry point (DEV-131).
+7. **Never hand-edit the Index.** It is generated: `python3 scripts/deviations-index.py` after appending an entry, `--check` to verify it is current. The `DEV-NNN` counter is **global and never forks** across archive files — an id identifies an entry regardless of which file holds it, which is what keeps every `[DEVIATED - see DEVIATIONS.md #DEV-NNN]` marker resolving after an archive.
+8. **Keep entries under ~4 KB.** Cite an A16 run and a `promotion_log.json` `batchLabel` rather than restating measurements; where a figure must appear, record the construction that produced it. Average entry size grew 8.5× (1.2 KB → 10.4 KB) over Phase 2 — that growth, not the entry count, is what forced the archive.
