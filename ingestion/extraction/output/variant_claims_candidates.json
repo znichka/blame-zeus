@@ -1362,22 +1362,6 @@
   {
     "subject_name": "Hades",
     "claim_type": "parentage",
-    "claim_value": "child of Oceanus",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "346-403",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Hades",
-    "claim_type": "parentage",
-    "claim_value": "child of Tethys",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "346-403",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Hades",
-    "claim_type": "parentage",
     "claim_value": "child of Cronus",
     "source_id": "hesiod-theogony",
     "passage_ref": "453-506",
@@ -3242,22 +3226,6 @@
   {
     "subject_name": "Perses",
     "claim_type": "parentage",
-    "claim_value": "child of Perseus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.4.5",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Perses",
-    "claim_type": "parentage",
-    "claim_value": "child of Andromeda",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.4.5",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Perses",
-    "claim_type": "parentage",
     "claim_value": "child of Eurybia",
     "source_id": "hesiod-theogony",
     "passage_ref": "346-403",
@@ -4392,7 +4360,7 @@
     "trust_tier": 1
   },
   {
-    "subject_name": "Erato",
+    "subject_name": "Erato (Nereid)",
     "claim_type": "parentage",
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
@@ -4400,47 +4368,7 @@
     "trust_tier": 2
   },
   {
-    "subject_name": "Erato",
-    "claim_type": "parentage",
-    "claim_value": "child of Zeus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "1.3.1-1.3.5",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Erato",
-    "claim_type": "parentage",
-    "claim_value": "child of Mnemosyne",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "1.3.1-1.3.5",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Erato",
-    "claim_type": "parentage",
-    "claim_value": "child of Polyxo",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.1.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Erato",
-    "claim_type": "parentage",
-    "claim_value": "child of Mnemosyne",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "53-103",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Erato",
-    "claim_type": "parentage",
-    "claim_value": "child of Zeus",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "53-103",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Erato",
+    "subject_name": "Erato (Nereid)",
     "claim_type": "parentage",
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
@@ -4448,7 +4376,7 @@
     "trust_tier": 2
   },
   {
-    "subject_name": "Erato",
+    "subject_name": "Erato (Nereid)",
     "claim_type": "parentage",
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
@@ -4640,70 +4568,6 @@
     "trust_tier": 1
   },
   {
-    "subject_name": "Agave",
-    "claim_type": "parentage",
-    "claim_value": "child of Nereus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Agave",
-    "claim_type": "parentage",
-    "claim_value": "child of Europe",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.1.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Agave",
-    "claim_type": "parentage",
-    "claim_value": "child of Danaus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.1.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Agave",
-    "claim_type": "parentage",
-    "claim_value": "child of Harmonia",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.4.2-3.4.3",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Agave",
-    "claim_type": "parentage",
-    "claim_value": "child of Cadmus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.4.2-3.4.3",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Agave",
-    "claim_type": "parentage",
-    "claim_value": "child of Harmonia",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "956-1010",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Agave",
-    "claim_type": "parentage",
-    "claim_value": "child of Cadmus",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "956-1010",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Agave",
-    "claim_type": "parentage",
-    "claim_value": "daughter of Cadmus and Harmonia",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "956-1010",
-    "trust_tier": 3
-  },
-  {
     "subject_name": "Doto",
     "claim_type": "parentage",
     "claim_value": "child of Nereus",
@@ -4800,7 +4664,7 @@
     "trust_tier": 3
   },
   {
-    "subject_name": "Actaea",
+    "subject_name": "Actaea (Nereid)",
     "claim_type": "parentage",
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
@@ -4808,23 +4672,7 @@
     "trust_tier": 1
   },
   {
-    "subject_name": "Actaea",
-    "claim_type": "parentage",
-    "claim_value": "child of Danaus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.1.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Actaea",
-    "claim_type": "parentage",
-    "claim_value": "child of Pieria",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.1.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Actaea",
+    "subject_name": "Actaea (Nereid)",
     "claim_type": "parentage",
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
@@ -4832,7 +4680,7 @@
     "trust_tier": 2
   },
   {
-    "subject_name": "Actaea",
+    "subject_name": "Actaea (Nereid)",
     "claim_type": "parentage",
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
@@ -4840,7 +4688,7 @@
     "trust_tier": 2
   },
   {
-    "subject_name": "Hippothoe",
+    "subject_name": "Hippothoe (Nereid)",
     "claim_type": "parentage",
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
@@ -4848,31 +4696,7 @@
     "trust_tier": 1
   },
   {
-    "subject_name": "Hippothoe",
-    "claim_type": "parentage",
-    "claim_value": "child of Pelias",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "1.9.8-1.9.11",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Hippothoe",
-    "claim_type": "parentage",
-    "claim_value": "child of Mestor",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.4.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Hippothoe",
-    "claim_type": "parentage",
-    "claim_value": "child of Lysidice",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.4.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Hippothoe",
+    "subject_name": "Hippothoe (Nereid)",
     "claim_type": "parentage",
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
@@ -4880,7 +4704,7 @@
     "trust_tier": 2
   },
   {
-    "subject_name": "Hippothoe",
+    "subject_name": "Hippothoe (Nereid)",
     "claim_type": "parentage",
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
@@ -4888,7 +4712,7 @@
     "trust_tier": 2
   },
   {
-    "subject_name": "Lysianassa",
+    "subject_name": "Lysianassa (Nereid)",
     "claim_type": "parentage",
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
@@ -4896,15 +4720,7 @@
     "trust_tier": 1
   },
   {
-    "subject_name": "Lysianassa",
-    "claim_type": "parentage",
-    "claim_value": "child of Epaphus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.5.11",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Lysianassa",
+    "subject_name": "Lysianassa (Nereid)",
     "claim_type": "parentage",
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
@@ -4912,7 +4728,7 @@
     "trust_tier": 2
   },
   {
-    "subject_name": "Lysianassa",
+    "subject_name": "Lysianassa (Nereid)",
     "claim_type": "parentage",
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
@@ -5104,7 +4920,7 @@
     "trust_tier": 1
   },
   {
-    "subject_name": "Autonoe",
+    "subject_name": "Autonoe (Nereid)",
     "claim_type": "parentage",
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
@@ -5112,47 +4928,7 @@
     "trust_tier": 2
   },
   {
-    "subject_name": "Autonoe",
-    "claim_type": "parentage",
-    "claim_value": "child of Danaus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.1.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Autonoe",
-    "claim_type": "parentage",
-    "claim_value": "child of Polyxo",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.1.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Autonoe",
-    "claim_type": "parentage",
-    "claim_value": "child of Pireus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.7.8-2.8.1",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Autonoe",
-    "claim_type": "parentage",
-    "claim_value": "child of Harmonia",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.4.2-3.4.3",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Autonoe",
-    "claim_type": "parentage",
-    "claim_value": "child of Cadmus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.4.2-3.4.3",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Autonoe",
+    "subject_name": "Autonoe (Nereid)",
     "claim_type": "parentage",
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
@@ -5160,36 +4936,12 @@
     "trust_tier": 2
   },
   {
-    "subject_name": "Autonoe",
+    "subject_name": "Autonoe (Nereid)",
     "claim_type": "parentage",
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
     "trust_tier": 2
-  },
-  {
-    "subject_name": "Autonoe",
-    "claim_type": "parentage",
-    "claim_value": "child of Harmonia",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "956-1010",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Autonoe",
-    "claim_type": "parentage",
-    "claim_value": "child of Cadmus",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "956-1010",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Autonoe",
-    "claim_type": "parentage",
-    "claim_value": "daughter of Cadmus and Harmonia",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "956-1010",
-    "trust_tier": 3
   },
   {
     "subject_name": "Melite",
@@ -6672,6 +6424,38 @@
     "trust_tier": 3
   },
   {
+    "subject_name": "Erato",
+    "claim_type": "parentage",
+    "claim_value": "child of Zeus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "1.3.1-1.3.5",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Erato",
+    "claim_type": "parentage",
+    "claim_value": "child of Mnemosyne",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "1.3.1-1.3.5",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Erato",
+    "claim_type": "parentage",
+    "claim_value": "child of Mnemosyne",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "53-103",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Erato",
+    "claim_type": "parentage",
+    "claim_value": "child of Zeus",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "53-103",
+    "trust_tier": 3
+  },
+  {
     "subject_name": "Terpsichore",
     "claim_type": "parentage",
     "claim_value": "child of Zeus",
@@ -6734,22 +6518,6 @@
     "source_id": "hesiod-theogony",
     "passage_ref": "53-103",
     "trust_tier": 3
-  },
-  {
-    "subject_name": "Urania",
-    "claim_type": "parentage",
-    "claim_value": "child of Oceanus",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "346-403",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Urania",
-    "claim_type": "parentage",
-    "claim_value": "child of Tethys",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "346-403",
-    "trust_tier": 2
   },
   {
     "subject_name": "Polymnia",
@@ -10824,14 +10592,6 @@
     "trust_tier": 3
   },
   {
-    "subject_name": "Hippodamas",
-    "claim_type": "parentage",
-    "claim_value": "child of Priam",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.12.5",
-    "trust_tier": 2
-  },
-  {
     "subject_name": "Orestes",
     "claim_type": "parentage",
     "claim_value": "child of Perimede",
@@ -12162,22 +11922,6 @@
   {
     "subject_name": "Idas",
     "claim_type": "parentage",
-    "claim_value": "child of Egyptus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.1.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Idas",
-    "claim_type": "parentage",
-    "claim_value": "child of Hephaestine",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.1.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Idas",
-    "claim_type": "parentage",
     "claim_value": "child of Aphareus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.3",
@@ -12570,14 +12314,6 @@
   {
     "subject_name": "Oeneus",
     "claim_type": "parentage",
-    "claim_value": "child of Gorgo",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.1.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Oeneus",
-    "claim_type": "parentage",
     "claim_value": "child of Tydeus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.6.1-3.6.3",
@@ -12790,14 +12526,6 @@
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.8.3-1.8.5",
     "trust_tier": 3
-  },
-  {
-    "subject_name": "Oeneus",
-    "claim_type": "marriage",
-    "claim_value": "married to Podarce",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.1.5",
-    "trust_tier": 2
   },
   {
     "subject_name": "Oeneus",
@@ -13206,14 +12934,6 @@
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.8.2",
     "trust_tier": 3
-  },
-  {
-    "subject_name": "Dryas",
-    "claim_type": "parentage",
-    "claim_value": "child of Caliadne",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.1.5",
-    "trust_tier": 2
   },
   {
     "subject_name": "Dryas",
@@ -14422,14 +14142,6 @@
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.8.2",
     "trust_tier": 3
-  },
-  {
-    "subject_name": "Cleopatra",
-    "claim_type": "parentage",
-    "claim_value": "child of Polyxo",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.1.5",
-    "trust_tier": 2
   },
   {
     "subject_name": "Cleopatra",
@@ -16800,30 +16512,6 @@
     "trust_tier": 3
   },
   {
-    "subject_name": "Themisto",
-    "claim_type": "parentage",
-    "claim_value": "child of Hypseus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "1.9.2-1.9.7",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Themisto",
-    "claim_type": "parentage",
-    "claim_value": "child of Nereus",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "233-269",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Themisto",
-    "claim_type": "parentage",
-    "claim_value": "child of Doris",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "233-269",
-    "trust_tier": 2
-  },
-  {
     "subject_name": "Glaucus",
     "claim_type": "parentage",
     "claim_value": "child of Sisyphus",
@@ -16854,14 +16542,6 @@
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.1.2-3.1.4",
     "trust_tier": 3
-  },
-  {
-    "subject_name": "Glaucus",
-    "claim_type": "parentage",
-    "claim_value": "child of Priam",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.12.5",
-    "trust_tier": 2
   },
   {
     "subject_name": "Glaucus",
@@ -18458,14 +18138,6 @@
   {
     "subject_name": "Aretus",
     "claim_type": "parentage",
-    "claim_value": "child of Priam",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.12.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Aretus",
-    "claim_type": "parentage",
     "claim_value": "child of Nestor",
     "source_id": "homer-odyssey",
     "passage_ref": "3.404-3.446",
@@ -18494,14 +18166,6 @@
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.9.8-1.9.11",
     "trust_tier": 3
-  },
-  {
-    "subject_name": "Echephron",
-    "claim_type": "parentage",
-    "claim_value": "child of Priam",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.12.5",
-    "trust_tier": 2
   },
   {
     "subject_name": "Echephron",
@@ -18888,6 +18552,30 @@
     "trust_tier": 3
   },
   {
+    "subject_name": "Hippothoe",
+    "claim_type": "parentage",
+    "claim_value": "child of Pelias",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "1.9.8-1.9.11",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Hippothoe",
+    "claim_type": "parentage",
+    "claim_value": "child of Mestor",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.4.5",
+    "trust_tier": 2
+  },
+  {
+    "subject_name": "Hippothoe",
+    "claim_type": "parentage",
+    "claim_value": "child of Lysidice",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.4.5",
+    "trust_tier": 2
+  },
+  {
     "subject_name": "Alcestis",
     "claim_type": "parentage",
     "claim_value": "child of Pelias",
@@ -19110,14 +18798,6 @@
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.9.8-1.9.11",
     "trust_tier": 3
-  },
-  {
-    "subject_name": "Bias",
-    "claim_type": "parentage",
-    "claim_value": "child of Priam",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.12.5",
-    "trust_tier": 2
   },
   {
     "subject_name": "Bias",
@@ -21720,22 +21400,6 @@
     "trust_tier": 3
   },
   {
-    "subject_name": "Glauce",
-    "claim_type": "parentage",
-    "claim_value": "child of Nereus",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "233-269",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Glauce",
-    "claim_type": "parentage",
-    "claim_value": "child of Doris",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "233-269",
-    "trust_tier": 2
-  },
-  {
     "subject_name": "Mermerus",
     "claim_type": "death",
     "claim_value": "killed by Medea",
@@ -22424,7 +22088,7 @@
     "trust_tier": 3
   },
   {
-    "subject_name": "Proteus",
+    "subject_name": "Proteus (son of Egyptus)",
     "claim_type": "parentage",
     "claim_value": "child of Argyphia",
     "source_id": "apollodorus-bibliotheca",
@@ -22432,84 +22096,12 @@
     "trust_tier": 2
   },
   {
-    "subject_name": "Proteus",
+    "subject_name": "Proteus (son of Egyptus)",
     "claim_type": "parentage",
     "claim_value": "child of Egyptus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
     "trust_tier": 2
-  },
-  {
-    "subject_name": "Proteus",
-    "claim_type": "parentage",
-    "claim_value": "child of Poseidon",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.5.9",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Proteus",
-    "claim_type": "parentage",
-    "claim_value": "child of Eidothea",
-    "source_id": "homer-odyssey",
-    "passage_ref": "4.398-4.447",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Busiris",
-    "claim_type": "parentage",
-    "claim_value": "child of Egyptus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.1.5",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Busiris",
-    "claim_type": "parentage",
-    "claim_value": "child of Poseidon",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.5.11",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Busiris",
-    "claim_type": "parentage",
-    "claim_value": "child of Lysianassa",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.5.11",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Busiris",
-    "claim_type": "parentage",
-    "claim_value": "child of Amphidamas",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.5.11",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Lycus",
-    "claim_type": "parentage",
-    "claim_value": "child of Egyptus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.1.5",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Lycus",
-    "claim_type": "parentage",
-    "claim_value": "child of Dascylus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.5.9",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Lycus",
-    "claim_type": "parentage",
-    "claim_value": "child of Pandion",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.15.3-3.15.5",
-    "trust_tier": 3
   },
   {
     "subject_name": "Daiphron",
@@ -22558,6 +22150,22 @@
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
     "trust_tier": 3
+  },
+  {
+    "subject_name": "Agave (Danaid)",
+    "claim_type": "parentage",
+    "claim_value": "child of Europe",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.5",
+    "trust_tier": 2
+  },
+  {
+    "subject_name": "Agave (Danaid)",
+    "claim_type": "parentage",
+    "claim_value": "child of Danaus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.5",
+    "trust_tier": 2
   },
   {
     "subject_name": "Scaea",
@@ -22872,7 +22480,15 @@
     "trust_tier": 3
   },
   {
-    "subject_name": "Theano",
+    "subject_name": "Autonoe (Danaid)",
+    "claim_type": "parentage",
+    "claim_value": "child of Danaus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.5",
+    "trust_tier": 2
+  },
+  {
+    "subject_name": "Autonoe (Danaid)",
     "claim_type": "parentage",
     "claim_value": "child of Polyxo",
     "source_id": "apollodorus-bibliotheca",
@@ -22880,95 +22496,7 @@
     "trust_tier": 2
   },
   {
-    "subject_name": "Theano",
-    "claim_type": "parentage",
-    "claim_value": "child of Cisseus",
-    "source_id": "homer-iliad",
-    "passage_ref": "6.286-6.331",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Theano",
-    "claim_type": "parentage",
-    "claim_value": "child of Cisseus",
-    "source_id": "homer-iliad",
-    "passage_ref": "11.210-11.247",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Theano",
-    "claim_type": "parentage",
-    "claim_value": "daughter of Cisseus",
-    "source_id": "homer-iliad",
-    "passage_ref": "6.286-6.331",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Theano",
-    "claim_type": "parentage",
-    "claim_value": "daughter of Cisseus",
-    "source_id": "homer-iliad",
-    "passage_ref": "11.210-11.247",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Eurydice",
-    "claim_type": "parentage",
-    "claim_value": "child of Polyxo",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.1.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Eurydice",
-    "claim_type": "parentage",
-    "claim_value": "child of Lacedaemon",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.2.1-2.2.2",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Eurydice",
-    "claim_type": "parentage",
-    "claim_value": "child of Lacedaemon",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.10.3",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Eurydice",
-    "claim_type": "parentage",
-    "claim_value": "child of Sparta",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.10.3",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Eurydice",
-    "claim_type": "parentage",
-    "claim_value": "child of Adrastus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.12.3-3.12.4",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Eurydice",
-    "claim_type": "parentage",
-    "claim_value": "child of Clymenus",
-    "source_id": "homer-odyssey",
-    "passage_ref": "3.447-3.477",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Eurydice",
-    "claim_type": "parentage",
-    "claim_value": "eldest daughter of Clymenus",
-    "source_id": "homer-odyssey",
-    "passage_ref": "3.447-3.477",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Periphas",
+    "subject_name": "Periphas (son of Egyptus)",
     "claim_type": "parentage",
     "claim_value": "child of Egyptus",
     "source_id": "apollodorus-bibliotheca",
@@ -22976,36 +22504,12 @@
     "trust_tier": 2
   },
   {
-    "subject_name": "Periphas",
+    "subject_name": "Periphas (son of Egyptus)",
     "claim_type": "parentage",
     "claim_value": "child of Gorgo",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
     "trust_tier": 2
-  },
-  {
-    "subject_name": "Periphas",
-    "claim_type": "parentage",
-    "claim_value": "child of Epytos",
-    "source_id": "homer-iliad",
-    "passage_ref": "17.288-17.332",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Periphas",
-    "claim_type": "parentage",
-    "claim_value": "son of Ochesius",
-    "source_id": "homer-iliad",
-    "passage_ref": "5.825-5.863",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Periphas",
-    "claim_type": "parentage",
-    "claim_value": "son of Epytos",
-    "source_id": "homer-iliad",
-    "passage_ref": "17.288-17.332",
-    "trust_tier": 3
   },
   {
     "subject_name": "Lampus",
@@ -23048,52 +22552,36 @@
     "trust_tier": 3
   },
   {
-    "subject_name": "Pandion",
+    "subject_name": "Actaea (Danaid)",
     "claim_type": "parentage",
-    "claim_value": "child of Hephaestine",
+    "claim_value": "child of Danaus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
     "trust_tier": 2
   },
   {
-    "subject_name": "Pandion",
+    "subject_name": "Actaea (Danaid)",
     "claim_type": "parentage",
-    "claim_value": "child of Erichthonius",
+    "claim_value": "child of Pieria",
     "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.14.6-3.14.7",
-    "trust_tier": 3
+    "passage_ref": "2.1.5",
+    "trust_tier": 2
   },
   {
-    "subject_name": "Pandion",
+    "subject_name": "Idas (son of Egyptus)",
     "claim_type": "parentage",
-    "claim_value": "child of Cecrops",
+    "claim_value": "child of Egyptus",
     "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.15.3-3.15.5",
-    "trust_tier": 3
+    "passage_ref": "2.1.5",
+    "trust_tier": 2
   },
   {
-    "subject_name": "Pandion",
+    "subject_name": "Idas (son of Egyptus)",
     "claim_type": "parentage",
-    "claim_value": "child of Metiadusa",
+    "claim_value": "child of Hephaestine",
     "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.15.3-3.15.5",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Pandion",
-    "claim_type": "parentage",
-    "claim_value": "child of Aegeus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.15.6-3.15.7",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Pandion",
-    "claim_type": "parentage",
-    "claim_value": "child of Procne",
-    "source_id": "ovid-metamorphoses",
-    "passage_ref": "6.619-6.646",
-    "trust_tier": 3
+    "passage_ref": "2.1.5",
+    "trust_tier": 2
   },
   {
     "subject_name": "Hippocorystes",
@@ -23128,30 +22616,6 @@
     "trust_tier": 3
   },
   {
-    "subject_name": "Callidice",
-    "claim_type": "parentage",
-    "claim_value": "child of Crino",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.1.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Callidice",
-    "claim_type": "parentage",
-    "claim_value": "child of Celeus",
-    "source_id": "hesiod-homeric-hymns",
-    "passage_ref": "2.90-2.144",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Callidice",
-    "claim_type": "parentage",
-    "claim_value": "daughter of Celeus",
-    "source_id": "hesiod-homeric-hymns",
-    "passage_ref": "2.145-2.183",
-    "trust_tier": 3
-  },
-  {
     "subject_name": "Celaeno",
     "claim_type": "parentage",
     "claim_value": "child of Crino",
@@ -23173,62 +22637,6 @@
     "claim_value": "child of Pleione",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.9.2-3.10.1",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Busiris",
-    "claim_type": "death",
-    "claim_value": "killed by Automate",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.1.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Busiris",
-    "claim_type": "death",
-    "claim_value": "killed by Heracles",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.5.11",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Busiris",
-    "claim_type": "death",
-    "claim_value": "killed by Heracles",
-    "source_id": "ovid-metamorphoses",
-    "passage_ref": "9.172-9.210",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Lycus",
-    "claim_type": "death",
-    "claim_value": "killed by Agave",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.1.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Lycus",
-    "claim_type": "death",
-    "claim_value": "killed by Zethus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.5.5",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Lycus",
-    "claim_type": "death",
-    "claim_value": "killed by Amphion",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.5.5",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Lycus",
-    "claim_type": "death",
-    "claim_value": "Killed by Pirithous",
-    "source_id": "ovid-metamorphoses",
-    "passage_ref": "12.327-12.365",
     "trust_tier": 3
   },
   {
@@ -23261,62 +22669,6 @@
     "claim_value": "son of Poseidon",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.7.4-2.7.6",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Clymene",
-    "claim_type": "parentage",
-    "claim_value": "child of Catreus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "2.1.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Clymene",
-    "claim_type": "parentage",
-    "claim_value": "child of Catreus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.2.1-3.2.2",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Clymene",
-    "claim_type": "parentage",
-    "claim_value": "child of Catreus",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "E.6.5-E.6.13",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Clymene",
-    "claim_type": "parentage",
-    "claim_value": "child of Oceanus",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "346-403",
-    "trust_tier": 1
-  },
-  {
-    "subject_name": "Clymene",
-    "claim_type": "parentage",
-    "claim_value": "child of Tethys",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "346-403",
-    "trust_tier": 1
-  },
-  {
-    "subject_name": "Clymene",
-    "claim_type": "parentage",
-    "claim_value": "child of Phaethon",
-    "source_id": "ovid-metamorphoses",
-    "passage_ref": "1.755-2.18",
-    "trust_tier": 3
-  },
-  {
-    "subject_name": "Clymene",
-    "claim_type": "parentage",
-    "claim_value": "daughter of Ocean",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "507-557",
     "trust_tier": 3
   },
   {
@@ -23437,6 +22789,54 @@
     "claim_value": "child of Acrisius",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.3.1-2.4.1",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Eurydice",
+    "claim_type": "parentage",
+    "claim_value": "child of Lacedaemon",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.2.1-2.2.2",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Eurydice",
+    "claim_type": "parentage",
+    "claim_value": "child of Lacedaemon",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.10.3",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Eurydice",
+    "claim_type": "parentage",
+    "claim_value": "child of Sparta",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.10.3",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Eurydice",
+    "claim_type": "parentage",
+    "claim_value": "child of Adrastus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.12.3-3.12.4",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Eurydice",
+    "claim_type": "parentage",
+    "claim_value": "child of Clymenus",
+    "source_id": "homer-odyssey",
+    "passage_ref": "3.447-3.477",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Eurydice",
+    "claim_type": "parentage",
+    "claim_value": "eldest daughter of Clymenus",
+    "source_id": "homer-odyssey",
+    "passage_ref": "3.447-3.477",
     "trust_tier": 3
   },
   {
@@ -24256,6 +23656,22 @@
     "trust_tier": 3
   },
   {
+    "subject_name": "Perses (son of Perseus)",
+    "claim_type": "parentage",
+    "claim_value": "child of Perseus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.4.5",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Perses (son of Perseus)",
+    "claim_type": "parentage",
+    "claim_value": "child of Andromeda",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.4.5",
+    "trust_tier": 3
+  },
+  {
     "subject_name": "Alcaeus",
     "claim_type": "parentage",
     "claim_value": "child of Perseus",
@@ -24501,14 +23917,6 @@
     "claim_value": "child of Pterelaus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Chromius",
-    "claim_type": "parentage",
-    "claim_value": "child of Priam",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.12.5",
     "trust_tier": 2
   },
   {
@@ -26568,6 +25976,22 @@
     "trust_tier": 3
   },
   {
+    "subject_name": "Lycus",
+    "claim_type": "parentage",
+    "claim_value": "child of Dascylus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.5.9",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Lycus",
+    "claim_type": "parentage",
+    "claim_value": "child of Pandion",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.15.3-3.15.5",
+    "trust_tier": 3
+  },
+  {
     "subject_name": "Sarpedon",
     "claim_type": "parentage",
     "claim_value": "child of Poseidon",
@@ -26846,6 +26270,22 @@
     "source_id": "hesiod-theogony",
     "passage_ref": "1011-1021",
     "trust_tier": 3
+  },
+  {
+    "subject_name": "Proteus",
+    "claim_type": "parentage",
+    "claim_value": "child of Poseidon",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.5.9",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Proteus",
+    "claim_type": "parentage",
+    "claim_value": "child of Eidothea",
+    "source_id": "homer-odyssey",
+    "passage_ref": "4.398-4.447",
+    "trust_tier": 2
   },
   {
     "subject_name": "Eurymedon",
@@ -27289,6 +26729,46 @@
   },
   {
     "subject_name": "Antaeus",
+    "claim_type": "death",
+    "claim_value": "killed by Heracles",
+    "source_id": "ovid-metamorphoses",
+    "passage_ref": "9.172-9.210",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Busiris",
+    "claim_type": "parentage",
+    "claim_value": "child of Poseidon",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.5.11",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Busiris",
+    "claim_type": "parentage",
+    "claim_value": "child of Lysianassa",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.5.11",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Busiris",
+    "claim_type": "parentage",
+    "claim_value": "child of Amphidamas",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.5.11",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Busiris",
+    "claim_type": "death",
+    "claim_value": "killed by Heracles",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.5.11",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Busiris",
     "claim_type": "death",
     "claim_value": "killed by Heracles",
     "source_id": "ovid-metamorphoses",
@@ -29192,6 +28672,54 @@
     "trust_tier": 3
   },
   {
+    "subject_name": "Autonoe",
+    "claim_type": "parentage",
+    "claim_value": "child of Pireus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.7.8-2.8.1",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Autonoe",
+    "claim_type": "parentage",
+    "claim_value": "child of Harmonia",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.4.2-3.4.3",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Autonoe",
+    "claim_type": "parentage",
+    "claim_value": "child of Cadmus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.4.2-3.4.3",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Autonoe",
+    "claim_type": "parentage",
+    "claim_value": "child of Harmonia",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "956-1010",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Autonoe",
+    "claim_type": "parentage",
+    "claim_value": "child of Cadmus",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "956-1010",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Autonoe",
+    "claim_type": "parentage",
+    "claim_value": "daughter of Cadmus and Harmonia",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "956-1010",
+    "trust_tier": 3
+  },
+  {
     "subject_name": "Perimedes",
     "claim_type": "parentage",
     "claim_value": "child of Eurystheus",
@@ -29438,22 +28966,6 @@
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.8.5-3.1.1",
     "trust_tier": 3
-  },
-  {
-    "subject_name": "Europa",
-    "claim_type": "parentage",
-    "claim_value": "child of Oceanus",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "346-403",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Europa",
-    "claim_type": "parentage",
-    "claim_value": "child of Tethys",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "346-403",
-    "trust_tier": 2
   },
   {
     "subject_name": "Europa",
@@ -30021,6 +29533,54 @@
     "claim_value": "child of Menelaus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "E.3.6-E.3.12",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Clymene",
+    "claim_type": "parentage",
+    "claim_value": "child of Catreus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.2.1-3.2.2",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Clymene",
+    "claim_type": "parentage",
+    "claim_value": "child of Catreus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "E.6.5-E.6.13",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Clymene",
+    "claim_type": "parentage",
+    "claim_value": "child of Oceanus",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "346-403",
+    "trust_tier": 1
+  },
+  {
+    "subject_name": "Clymene",
+    "claim_type": "parentage",
+    "claim_value": "child of Tethys",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "346-403",
+    "trust_tier": 1
+  },
+  {
+    "subject_name": "Clymene",
+    "claim_type": "parentage",
+    "claim_value": "child of Phaethon",
+    "source_id": "ovid-metamorphoses",
+    "passage_ref": "1.755-2.18",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Clymene",
+    "claim_type": "parentage",
+    "claim_value": "daughter of Ocean",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "507-557",
     "trust_tier": 3
   },
   {
@@ -31546,14 +31106,6 @@
   {
     "subject_name": "Idomeneus",
     "claim_type": "parentage",
-    "claim_value": "child of Priam",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.12.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Idomeneus",
-    "claim_type": "parentage",
     "claim_value": "child of Idomeneus",
     "source_id": "homer-iliad",
     "passage_ref": "12.108-12.152",
@@ -31857,6 +31409,46 @@
   },
   {
     "subject_name": "Semele",
+    "claim_type": "parentage",
+    "claim_value": "daughter of Cadmus and Harmonia",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "956-1010",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Agave",
+    "claim_type": "parentage",
+    "claim_value": "child of Harmonia",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.4.2-3.4.3",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Agave",
+    "claim_type": "parentage",
+    "claim_value": "child of Cadmus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.4.2-3.4.3",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Agave",
+    "claim_type": "parentage",
+    "claim_value": "child of Harmonia",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "956-1010",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Agave",
+    "claim_type": "parentage",
+    "claim_value": "child of Cadmus",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "956-1010",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Agave",
     "claim_type": "parentage",
     "claim_value": "daughter of Cadmus and Harmonia",
     "source_id": "hesiod-theogony",
@@ -32869,6 +32461,30 @@
     "claim_value": "Son of Ares and Dotis the Boeotian",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.5.5",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Lycus",
+    "claim_type": "death",
+    "claim_value": "killed by Zethus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.5.5",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Lycus",
+    "claim_type": "death",
+    "claim_value": "killed by Amphion",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.5.5",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Lycus",
+    "claim_type": "death",
+    "claim_value": "Killed by Pirithous",
+    "source_id": "ovid-metamorphoses",
+    "passage_ref": "12.327-12.365",
     "trust_tier": 3
   },
   {
@@ -33970,14 +33586,6 @@
   {
     "subject_name": "Lycaon",
     "claim_type": "parentage",
-    "claim_value": "child of Priam",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.12.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Lycaon",
-    "claim_type": "parentage",
     "claim_value": "child of Pandarus",
     "source_id": "homer-iliad",
     "passage_ref": "2.824-2.865",
@@ -34550,22 +34158,6 @@
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.9.1",
     "trust_tier": 3
-  },
-  {
-    "subject_name": "Laodice",
-    "claim_type": "parentage",
-    "claim_value": "child of Priam",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.12.5",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Laodice",
-    "claim_type": "parentage",
-    "claim_value": "child of Hecuba",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.12.5",
-    "trust_tier": 2
   },
   {
     "subject_name": "Laodice",
@@ -35838,14 +35430,6 @@
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.4-3.10.7",
     "trust_tier": 3
-  },
-  {
-    "subject_name": "Hippothous",
-    "claim_type": "parentage",
-    "claim_value": "child of Priam",
-    "source_id": "apollodorus-bibliotheca",
-    "passage_ref": "3.12.5",
-    "trust_tier": 2
   },
   {
     "subject_name": "Hippothous",
@@ -43712,6 +43296,22 @@
     "trust_tier": 3
   },
   {
+    "subject_name": "Laodice (daughter of Priam)",
+    "claim_type": "parentage",
+    "claim_value": "child of Priam",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.12.5",
+    "trust_tier": 2
+  },
+  {
+    "subject_name": "Laodice (daughter of Priam)",
+    "claim_type": "parentage",
+    "claim_value": "child of Hecuba",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.12.5",
+    "trust_tier": 2
+  },
+  {
     "subject_name": "Polyxena",
     "claim_type": "parentage",
     "claim_value": "child of Priam",
@@ -45014,22 +44614,6 @@
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.12.7-3.13.4",
     "trust_tier": 3
-  },
-  {
-    "subject_name": "Polydora",
-    "claim_type": "parentage",
-    "claim_value": "child of Oceanus",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "346-403",
-    "trust_tier": 2
-  },
-  {
-    "subject_name": "Polydora",
-    "claim_type": "parentage",
-    "claim_value": "child of Tethys",
-    "source_id": "hesiod-theogony",
-    "passage_ref": "346-403",
-    "trust_tier": 2
   },
   {
     "subject_name": "Polydora",
@@ -48117,6 +47701,46 @@
     "claim_value": "Died from wounds (bathed in blood, nearly dead) mourned by Aphrodite",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "10.717",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Pandion",
+    "claim_type": "parentage",
+    "claim_value": "child of Erichthonius",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.14.6-3.14.7",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Pandion",
+    "claim_type": "parentage",
+    "claim_value": "child of Cecrops",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.15.3-3.15.5",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Pandion",
+    "claim_type": "parentage",
+    "claim_value": "child of Metiadusa",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.15.3-3.15.5",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Pandion",
+    "claim_type": "parentage",
+    "claim_value": "child of Aegeus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.15.6-3.15.7",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Pandion",
+    "claim_type": "parentage",
+    "claim_value": "child of Procne",
+    "source_id": "ovid-metamorphoses",
+    "passage_ref": "6.619-6.646",
     "trust_tier": 3
   },
   {
@@ -54920,6 +54544,22 @@
     "trust_tier": 3
   },
   {
+    "subject_name": "Glauce (Nereid)",
+    "claim_type": "parentage",
+    "claim_value": "child of Nereus",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "233-269",
+    "trust_tier": 2
+  },
+  {
+    "subject_name": "Glauce (Nereid)",
+    "claim_type": "parentage",
+    "claim_value": "child of Doris",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "233-269",
+    "trust_tier": 2
+  },
+  {
     "subject_name": "Speo",
     "claim_type": "parentage",
     "claim_value": "child of Nereus",
@@ -55254,6 +54894,22 @@
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
     "trust_tier": 3
+  },
+  {
+    "subject_name": "Themisto (Nereid)",
+    "claim_type": "parentage",
+    "claim_value": "child of Nereus",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "233-269",
+    "trust_tier": 2
+  },
+  {
+    "subject_name": "Themisto (Nereid)",
+    "claim_type": "parentage",
+    "claim_value": "child of Doris",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "233-269",
+    "trust_tier": 2
   },
   {
     "subject_name": "Pronoe",
@@ -55960,6 +55616,22 @@
     "trust_tier": 3
   },
   {
+    "subject_name": "Urania (Oceanid)",
+    "claim_type": "parentage",
+    "claim_value": "child of Oceanus",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "346-403",
+    "trust_tier": 2
+  },
+  {
+    "subject_name": "Urania (Oceanid)",
+    "claim_type": "parentage",
+    "claim_value": "child of Tethys",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "346-403",
+    "trust_tier": 2
+  },
+  {
     "subject_name": "Hippo",
     "claim_type": "parentage",
     "claim_value": "child of Oceanus",
@@ -56104,6 +55776,22 @@
     "trust_tier": 3
   },
   {
+    "subject_name": "Polydora (Oceanid)",
+    "claim_type": "parentage",
+    "claim_value": "child of Oceanus",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "346-403",
+    "trust_tier": 2
+  },
+  {
+    "subject_name": "Polydora (Oceanid)",
+    "claim_type": "parentage",
+    "claim_value": "child of Tethys",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "346-403",
+    "trust_tier": 2
+  },
+  {
     "subject_name": "Cerceis",
     "claim_type": "parentage",
     "claim_value": "child of Oceanus",
@@ -56118,6 +55806,22 @@
     "source_id": "hesiod-theogony",
     "passage_ref": "346-403",
     "trust_tier": 3
+  },
+  {
+    "subject_name": "Pluto (Oceanid)",
+    "claim_type": "parentage",
+    "claim_value": "child of Oceanus",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "346-403",
+    "trust_tier": 2
+  },
+  {
+    "subject_name": "Pluto (Oceanid)",
+    "claim_type": "parentage",
+    "claim_value": "child of Tethys",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "346-403",
+    "trust_tier": 2
   },
   {
     "subject_name": "Perseis",
@@ -56214,6 +55918,22 @@
     "source_id": "hesiod-theogony",
     "passage_ref": "346-403",
     "trust_tier": 3
+  },
+  {
+    "subject_name": "Europa (Oceanid)",
+    "claim_type": "parentage",
+    "claim_value": "child of Oceanus",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "346-403",
+    "trust_tier": 2
+  },
+  {
+    "subject_name": "Europa (Oceanid)",
+    "claim_type": "parentage",
+    "claim_value": "child of Tethys",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "346-403",
+    "trust_tier": 2
   },
   {
     "subject_name": "Telesto",
@@ -57365,6 +57085,22 @@
     "claim_value": "Daughters of Zeus that beareth the aegis",
     "source_id": "homer-iliad",
     "passage_ref": "2.581-2.630",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Callidice",
+    "claim_type": "parentage",
+    "claim_value": "child of Celeus",
+    "source_id": "hesiod-homeric-hymns",
+    "passage_ref": "2.90-2.144",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Callidice",
+    "claim_type": "parentage",
+    "claim_value": "daughter of Celeus",
+    "source_id": "hesiod-homeric-hymns",
+    "passage_ref": "2.145-2.183",
     "trust_tier": 3
   },
   {
@@ -59192,6 +58928,38 @@
     "trust_tier": 3
   },
   {
+    "subject_name": "Theano",
+    "claim_type": "parentage",
+    "claim_value": "child of Cisseus",
+    "source_id": "homer-iliad",
+    "passage_ref": "6.286-6.331",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Theano",
+    "claim_type": "parentage",
+    "claim_value": "child of Cisseus",
+    "source_id": "homer-iliad",
+    "passage_ref": "11.210-11.247",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Theano",
+    "claim_type": "parentage",
+    "claim_value": "daughter of Cisseus",
+    "source_id": "homer-iliad",
+    "passage_ref": "6.286-6.331",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Theano",
+    "claim_type": "parentage",
+    "claim_value": "daughter of Cisseus",
+    "source_id": "homer-iliad",
+    "passage_ref": "11.210-11.247",
+    "trust_tier": 3
+  },
+  {
     "subject_name": "Iphinous",
     "claim_type": "parentage",
     "claim_value": "child of Dexios",
@@ -60509,6 +60277,30 @@
     "claim_value": "Killed by the younger son of Atreus (Menelaus) in the Trojan War, speared in the breast",
     "source_id": "ovid-metamorphoses",
     "passage_ref": "15.153-15.185",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Periphas",
+    "claim_type": "parentage",
+    "claim_value": "child of Epytos",
+    "source_id": "homer-iliad",
+    "passage_ref": "17.288-17.332",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Periphas",
+    "claim_type": "parentage",
+    "claim_value": "son of Ochesius",
+    "source_id": "homer-iliad",
+    "passage_ref": "5.825-5.863",
+    "trust_tier": 3
+  },
+  {
+    "subject_name": "Periphas",
+    "claim_type": "parentage",
+    "claim_value": "son of Epytos",
+    "source_id": "homer-iliad",
+    "passage_ref": "17.288-17.332",
     "trust_tier": 3
   },
   {

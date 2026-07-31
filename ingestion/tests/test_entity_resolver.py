@@ -4,6 +4,7 @@ from extraction.entity_resolver import (
     METHOD_FUZZY,
     METHOD_FUZZY_SUGGESTION,
     METHOD_NEW,
+    METHOD_REGISTRY,
     EntityResolver,
     load_known_aliases,
 )
@@ -203,3 +204,127 @@ def test_the_ledger_covers_every_resolution_in_a_mixed_run():
         METHOD_NEW,
     ]
     assert all(r.source_id == APOLLODORUS for r in resolver.resolutions)
+
+
+# --- P6 G3: the passage-scoped namesake registry ---------------------------------
+
+THEOGONY = "hesiod-theogony"
+OCEANIDS = "346-403"
+
+
+def _registry(*entries):
+    from extraction.entity_resolver import load_namesake_registry
+    import json, tempfile, pathlib
+
+    path = pathlib.Path(tempfile.mkdtemp()) / "namesake_registry.json"
+    path.write_text(json.dumps(list(entries)))
+    return load_namesake_registry(path)
+
+
+def _entry(name, identity, source_id=THEOGONY, passage_ref=OCEANIDS, reason="test evidence"):
+    e = {"name": name, "identity": identity, "reason": reason}
+    if source_id is not None:
+        e["source_id"] = source_id
+    if passage_ref is not None:
+        e["passage_ref"] = passage_ref
+    return e
+
+
+def test_the_registry_beats_an_already_memoised_exact_match():
+    """G3.2's whole point, and the assertion that must not pass vacuously: the resolver
+    has ALREADY resolved the bare name in an earlier passage, so `_seen` holds an exact
+    hit. GAP-010's strings are byte-identical, so a lookup placed behind the memo would
+    never fire for the majority of what P6 exists to fix."""
+    resolver = EntityResolver(namesake_registry=_registry(_entry("Erato", "Erato (Nereid)")))
+    assert resolver.resolve("Erato", source_id=THEOGONY, passage_ref="1-115") == "Erato"  # the Muse
+    assert "erato" in resolver._seen  # the memo is now primed -- this is what makes the test real
+
+    assert resolver.resolve("Erato", source_id=THEOGONY, passage_ref=OCEANIDS) == "Erato (Nereid)"
+    assert resolver.resolutions[-1].method == METHOD_REGISTRY
+
+
+def test_the_registry_beats_the_alias_layer():
+    """ADR-022's worked example: `Pluto` is Hades everywhere except Hesiod's catalogue
+    of Ocean's daughters, and the Pluto->Hades alias stays correct everywhere else."""
+    resolver = EntityResolver(
+        known_aliases={"pluto": "Hades"},
+        namesake_registry=_registry(_entry("Pluto", "Pluto (Oceanid)")),
+    )
+    assert resolver.resolve("Pluto", source_id=THEOGONY, passage_ref=OCEANIDS) == "Pluto (Oceanid)"
+    assert resolver.resolve("Pluto", source_id="homer-iliad", passage_ref="9.1-9.50") == "Hades"
+
+
+def test_the_registry_beats_a_near_match():
+    resolver = EntityResolver(fuzzy_threshold=88, namesake_registry=_registry(_entry("Atas", "Atas (son of Priam)")))
+    resolver.resolve("Atlas", source_id=THEOGONY, passage_ref="507-544")
+    assert resolver.resolve("Atas", source_id=THEOGONY, passage_ref=OCEANIDS) == "Atas (son of Priam)"
+    assert resolver.fuzzy_merges == []  # the registry short-circuits before the fuzzy step runs
+
+
+def test_the_same_surface_resolves_differently_in_two_passages_within_one_run():
+    """G3.2a. Asserted in BOTH passage orders: memoising a registry answer under the bare
+    name would return the scoped identity for every later passage -- the same defect
+    inverted, one layer up -- and only one of the two orders would catch it."""
+    reg = _registry(_entry("Erato", "Erato (Nereid)"))
+
+    forward = EntityResolver(namesake_registry=reg)
+    assert forward.resolve("Erato", source_id=THEOGONY, passage_ref=OCEANIDS) == "Erato (Nereid)"
+    assert forward.resolve("Erato", source_id=THEOGONY, passage_ref="1-115") == "Erato"
+
+    backward = EntityResolver(namesake_registry=reg)
+    assert backward.resolve("Erato", source_id=THEOGONY, passage_ref="1-115") == "Erato"
+    assert backward.resolve("Erato", source_id=THEOGONY, passage_ref=OCEANIDS) == "Erato (Nereid)"
+
+
+def test_a_registry_answer_never_enters_the_global_memo():
+    resolver = EntityResolver(namesake_registry=_registry(_entry("Erato", "Erato (Nereid)")))
+    resolver.resolve("Erato", source_id=THEOGONY, passage_ref=OCEANIDS)
+    assert "erato" not in resolver._seen
+    assert "erato" not in resolver._methods
+
+
+def test_the_three_level_key_falls_back_in_order():
+    reg = _registry(
+        _entry("Erato", "Erato (Nereid)"),
+        _entry("Erato", "Erato (source-wide)", passage_ref=None),
+        _entry("Erato", "Erato (global)", source_id=None, passage_ref=None),
+    )
+    resolver = EntityResolver(namesake_registry=reg)
+    assert resolver.resolve("Erato", THEOGONY, OCEANIDS) == "Erato (Nereid)"
+    assert resolver.resolve("Erato", THEOGONY, "1-115") == "Erato (source-wide)"
+    assert resolver.resolve("Erato", "homer-iliad", "1.1-1.52") == "Erato (global)"
+
+
+def test_an_absent_entry_changes_nothing():
+    plain = EntityResolver(known_aliases={"jupiter": "Zeus"})
+    with_registry = EntityResolver(
+        known_aliases={"jupiter": "Zeus"}, namesake_registry=_registry(_entry("Erato", "Erato (Nereid)"))
+    )
+    for r in (plain, with_registry):
+        r.resolve("Zeus", THEOGONY, OCEANIDS)
+        r.resolve("Jupiter", THEOGONY, OCEANIDS)
+        r.resolve("Hera", THEOGONY, "1-115")
+    assert _methods(plain) == _methods(with_registry)
+
+
+def test_a_registry_entry_without_a_reason_is_refused():
+    """Matching parentage_deny_list.json (ADR-020 rule 4): an entry overrides every other
+    layer, so one without stated evidence is unreviewable by construction."""
+    import pytest
+
+    with pytest.raises(ValueError, match="without a reason"):
+        _registry({"name": "Erato", "source_id": THEOGONY, "passage_ref": OCEANIDS, "identity": "X"})
+
+
+def test_the_shipped_registry_loads_and_every_entry_is_evidence_bearing():
+    from extraction.entity_resolver import load_namesake_registry
+    import json as _json
+    from extraction.entity_resolver import NAMESAKE_REGISTRY_PATH
+
+    assert load_namesake_registry()  # non-empty and every reason present (load raises otherwise)
+    entries = _json.loads(NAMESAKE_REGISTRY_PATH.read_text())
+    assert all("DEV-1" in e["reason"] and "promotion_log" in e["reason"] or "ADR-022" in e["reason"]
+               for e in entries), "every entry must cite the adjudication it came from"
+    # ADR-022's stated limit: two figures sharing ONE passage are not reachable by a
+    # (name, passage) key, so Lynceus @ 2.1.5 must NOT be here -- it is G4.4, by hand.
+    assert not [e for e in entries if e["name"] == "Lynceus"]

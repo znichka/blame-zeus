@@ -285,10 +285,10 @@ measurement so the outcome is not chosen after seeing it.
 
 The mechanism that survives re-extraction, and the only one that reaches GAP-010.
 
-- [ ] **G3.1** — Create `ingestion/extraction/namesake_registry.json`. Entry shape:
+- [x] **G3.1** — Create `ingestion/extraction/namesake_registry.json`. Entry shape:
       `{name, source_id, passage_ref, identity, reason}` — mirrors `parentage_deny_list.json`
       (ADR-020 rule 4) and `known_aliases.json`; a `reason` is mandatory.
-- [ ] **G3.2** — Wire the lookup into `resolve()` **first — ahead of the exact-match memo**, not just
+- [x] **G3.2** — Wire the lookup into `resolve()` **first — ahead of the exact-match memo**, not just
       ahead of the alias and fuzzy steps. Keyed `(lower(name), source_id, passage_ref)` →
       `(lower(name), source_id)` → global. Ledger `method="registry"`.
       **Why the memo, and not only the alias/fuzzy steps:** `entity_resolver.py:43-45` checks
@@ -296,13 +296,13 @@ The mechanism that survives re-extraction, and the only one that reaches GAP-010
       exact hit and never fires for GAP-010 — where the strings are byte-identical and that exact hit
       is the entire defect. GAP-010 is ≥82 of the confirmed instances, i.e. the majority of what this
       stage exists to fix.
-- [ ] **G3.2a** — **Make the resolution memo passage-aware.** `_seen` is today one per-run dict keyed
+- [x] **G3.2a** — **Make the resolution memo passage-aware.** `_seen` is today one per-run dict keyed
       on `name.strip().lower()`, so caching a registry answer under the bare name would return
       `Pluto (Oceanid)` for *every* later passage — the same defect inverted, one layer up. A
       registry hit is memoized under `(source_id, passage_ref, lower(name))`; surfaces with no
       registry entry keep today's global memo and today's behaviour byte-for-byte. Without this,
       G3.2 alone cannot produce passage-scoped resolution at all.
-- [ ] **G3.3** — Seed from the **already-adjudicated** evidence in DEV-136/137/138 — nothing
+- [x] **G3.3** — Seed from the **already-adjudicated** evidence in DEV-136/137/138 — nothing
       speculative:
       | passage | shape |
       |---|---|
@@ -312,7 +312,7 @@ The mechanism that survives re-extraction, and the only one that reaches GAP-010
       | `apollodorus-bibliotheca 2.1.5` | the Danaid catalogue (31 of 40 rows rejected — the extreme case) |
       | `apollodorus-bibliotheca 1.2.1-1.2.7`, `2.4.5` | `Erato`, `Amphitryon`, `Idas`, `Oeneus` |
       | `apollodorus-bibliotheca 3.10.8-3.11.1` | `Coronus` |
-- [ ] **G3.4** — Unit tests beside `ingestion/audit/tests/test_parentage_direction.py`: registry beats
+- [x] **G3.4** — Unit tests beside `ingestion/audit/tests/test_parentage_direction.py`: registry beats
       **exact** match — assert against a resolver that has *already* resolved the bare name in an
       earlier passage, or the test passes vacuously and proves nothing; registry beats **fuzzy**; the
       three-level key falls back in order; an absent entry changes nothing. Plus G3.2a's case: **the
@@ -324,8 +324,12 @@ The mechanism that survives re-extraction, and the only one that reaches GAP-010
 outcome — strictly better than a confidently wrong one — and it must be stated in the DEV entry so
 the hold does not read as a regression.
 
-**Exit:** every confirmed instance from DEV-136/137/138 resolves to its correct identity on a
-re-run, verified against the ledger.
+**Exit MET (DEV-144)** — all **28** confirmed instances from DEV-136/137/138 resolve to their correct
+identity on a re-run, verified against the ledger (131 registry resolutions, 40 split identities).
+`[DEVIATED - see DEVIATIONS.md #DEV-144]` **Scoped down on evidence:** G2's demote had already
+dissolved every *fuzzy* collision in G3.3's table, so the 45 seeded entries cover only genuine
+GAP-010 exact-name collisions plus the `Pluto`→Hades alias case. G3.2a is satisfied by the registry
+holding **no state** rather than by a scoped memo — same invariant, strictly simpler.
 
 ---
 

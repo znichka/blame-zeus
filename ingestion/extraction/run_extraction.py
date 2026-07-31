@@ -27,7 +27,13 @@ from extraction.conflict_detector import (
     relationship_claim_candidates,
     variant_claim_candidates,
 )
-from extraction.entity_resolver import EntityResolver, FuzzyMerge, ResolutionEntry, load_known_aliases
+from extraction.entity_resolver import (
+    EntityResolver,
+    FuzzyMerge,
+    ResolutionEntry,
+    load_known_aliases,
+    load_namesake_registry,
+)
 from extraction.schema import ExtractedEntity, ExtractedRelationship, ExtractedVariantClaim, stamp_provenance
 from extraction.segmentation import segment
 from loader.source_registry import SourceConfig
@@ -65,7 +71,9 @@ def build_candidates(
     not marked failed) if nothing is cached for them yet.
     """
     alias_map = load_alias_map(conn)
-    resolver = EntityResolver(known_aliases=load_known_aliases())
+    resolver = EntityResolver(
+        known_aliases=load_known_aliases(), namesake_registry=load_namesake_registry()
+    )
     checkpoint = load_checkpoint(checkpoint_path)
 
     entities: dict[str, ExtractedEntity] = {}

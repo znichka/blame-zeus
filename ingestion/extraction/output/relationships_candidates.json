@@ -1218,7 +1218,7 @@
   {
     "from_name": "Nereus",
     "relation": "parent_of",
-    "to_name": "Erato",
+    "to_name": "Erato (Nereid)",
     "is_contested": false,
     "passage_ref": "1.2.1-1.2.7",
     "source_id": "apollodorus-bibliotheca"
@@ -1266,7 +1266,7 @@
   {
     "from_name": "Nereus",
     "relation": "parent_of",
-    "to_name": "Agave",
+    "to_name": "Agave (Nereid)",
     "is_contested": false,
     "passage_ref": "1.2.1-1.2.7",
     "source_id": "apollodorus-bibliotheca"
@@ -1306,7 +1306,7 @@
   {
     "from_name": "Nereus",
     "relation": "parent_of",
-    "to_name": "Actaea",
+    "to_name": "Actaea (Nereid)",
     "is_contested": false,
     "passage_ref": "1.2.1-1.2.7",
     "source_id": "apollodorus-bibliotheca"
@@ -1322,7 +1322,7 @@
   {
     "from_name": "Nereus",
     "relation": "parent_of",
-    "to_name": "Hippothoe",
+    "to_name": "Hippothoe (Nereid)",
     "is_contested": false,
     "passage_ref": "1.2.1-1.2.7",
     "source_id": "apollodorus-bibliotheca"
@@ -1330,7 +1330,7 @@
   {
     "from_name": "Nereus",
     "relation": "parent_of",
-    "to_name": "Lysianassa",
+    "to_name": "Lysianassa (Nereid)",
     "is_contested": false,
     "passage_ref": "1.2.1-1.2.7",
     "source_id": "apollodorus-bibliotheca"
@@ -1442,7 +1442,7 @@
   {
     "from_name": "Nereus",
     "relation": "parent_of",
-    "to_name": "Autonoe",
+    "to_name": "Autonoe (Nereid)",
     "is_contested": false,
     "passage_ref": "1.2.1-1.2.7",
     "source_id": "apollodorus-bibliotheca"
@@ -7592,7 +7592,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Proteus",
+    "from_name": "Proteus (son of Egyptus)",
     "relation": "married_to",
     "to_name": "Gorgophone",
     "is_contested": false,
@@ -7618,7 +7618,7 @@
   {
     "from_name": "Argyphia",
     "relation": "parent_of",
-    "to_name": "Proteus",
+    "to_name": "Proteus (son of Egyptus)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -7634,7 +7634,7 @@
   {
     "from_name": "Egyptus",
     "relation": "parent_of",
-    "to_name": "Proteus",
+    "to_name": "Proteus (son of Egyptus)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -7642,7 +7642,7 @@
   {
     "from_name": "Egyptus",
     "relation": "parent_of",
-    "to_name": "Busiris",
+    "to_name": "Busiris (son of Egyptus)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -7658,7 +7658,7 @@
   {
     "from_name": "Egyptus",
     "relation": "parent_of",
-    "to_name": "Lycus",
+    "to_name": "Lycus (son of Egyptus)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -7690,7 +7690,7 @@
   {
     "from_name": "Europe",
     "relation": "parent_of",
-    "to_name": "Agave",
+    "to_name": "Agave (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -7722,7 +7722,7 @@
   {
     "from_name": "Danaus",
     "relation": "parent_of",
-    "to_name": "Agave",
+    "to_name": "Agave (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -7768,7 +7768,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Busiris",
+    "from_name": "Busiris (son of Egyptus)",
     "relation": "married_to",
     "to_name": "Automate",
     "is_contested": false,
@@ -7784,9 +7784,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Lycus",
+    "from_name": "Lycus (son of Egyptus)",
     "relation": "married_to",
-    "to_name": "Agave",
+    "to_name": "Agave (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -7818,7 +7818,7 @@
   {
     "from_name": "Agenor",
     "relation": "married_to",
-    "to_name": "Cleopatra",
+    "to_name": "Cleopatra (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8098,7 +8098,7 @@
   {
     "from_name": "Caliadne",
     "relation": "parent_of",
-    "to_name": "Dryas",
+    "to_name": "Dryas (son of Egyptus)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8162,7 +8162,7 @@
   {
     "from_name": "Danaus",
     "relation": "parent_of",
-    "to_name": "Autonoe",
+    "to_name": "Autonoe (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8170,7 +8170,7 @@
   {
     "from_name": "Polyxo",
     "relation": "parent_of",
-    "to_name": "Autonoe",
+    "to_name": "Autonoe (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8178,7 +8178,7 @@
   {
     "from_name": "Polyxo",
     "relation": "parent_of",
-    "to_name": "Theano",
+    "to_name": "Theano (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8194,7 +8194,7 @@
   {
     "from_name": "Polyxo",
     "relation": "parent_of",
-    "to_name": "Cleopatra",
+    "to_name": "Cleopatra (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8202,7 +8202,7 @@
   {
     "from_name": "Polyxo",
     "relation": "parent_of",
-    "to_name": "Eurydice",
+    "to_name": "Eurydice (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8242,7 +8242,7 @@
   {
     "from_name": "Polyxo",
     "relation": "parent_of",
-    "to_name": "Erato",
+    "to_name": "Erato (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8266,7 +8266,7 @@
   {
     "from_name": "Eurylochus",
     "relation": "married_to",
-    "to_name": "Autonoe",
+    "to_name": "Autonoe (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8274,7 +8274,7 @@
   {
     "from_name": "Phantes",
     "relation": "married_to",
-    "to_name": "Theano",
+    "to_name": "Theano (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8290,15 +8290,15 @@
   {
     "from_name": "Hermus",
     "relation": "married_to",
-    "to_name": "Cleopatra",
+    "to_name": "Cleopatra (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Dryas",
+    "from_name": "Dryas (son of Egyptus)",
     "relation": "married_to",
-    "to_name": "Eurydice",
+    "to_name": "Eurydice (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8338,7 +8338,7 @@
   {
     "from_name": "Bromius",
     "relation": "married_to",
-    "to_name": "Erato",
+    "to_name": "Erato (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8362,7 +8362,7 @@
   {
     "from_name": "Egyptus",
     "relation": "parent_of",
-    "to_name": "Periphas",
+    "to_name": "Periphas (son of Egyptus)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8370,7 +8370,7 @@
   {
     "from_name": "Gorgo",
     "relation": "parent_of",
-    "to_name": "Periphas",
+    "to_name": "Periphas (son of Egyptus)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8378,7 +8378,7 @@
   {
     "from_name": "Gorgo",
     "relation": "parent_of",
-    "to_name": "Oeneus",
+    "to_name": "Oeneus (son of Egyptus)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8418,7 +8418,7 @@
   {
     "from_name": "Danaus",
     "relation": "parent_of",
-    "to_name": "Actaea",
+    "to_name": "Actaea (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8426,7 +8426,7 @@
   {
     "from_name": "Pieria",
     "relation": "parent_of",
-    "to_name": "Actaea",
+    "to_name": "Actaea (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8472,15 +8472,15 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Periphas",
+    "from_name": "Periphas (son of Egyptus)",
     "relation": "married_to",
-    "to_name": "Actaea",
+    "to_name": "Actaea (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Oeneus",
+    "from_name": "Oeneus (son of Egyptus)",
     "relation": "married_to",
     "to_name": "Podarce",
     "is_contested": false,
@@ -8522,7 +8522,7 @@
   {
     "from_name": "Egyptus",
     "relation": "parent_of",
-    "to_name": "Idas",
+    "to_name": "Idas (son of Egyptus)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8530,7 +8530,7 @@
   {
     "from_name": "Hephaestine",
     "relation": "parent_of",
-    "to_name": "Idas",
+    "to_name": "Idas (son of Egyptus)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8546,7 +8546,7 @@
   {
     "from_name": "Hephaestine",
     "relation": "parent_of",
-    "to_name": "Pandion",
+    "to_name": "Pandion (son of Egyptus)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8602,7 +8602,7 @@
   {
     "from_name": "Crino",
     "relation": "parent_of",
-    "to_name": "Callidice",
+    "to_name": "Callidice (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8632,7 +8632,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Idas",
+    "from_name": "Idas (son of Egyptus)",
     "relation": "married_to",
     "to_name": "Hippodice",
     "is_contested": false,
@@ -8648,9 +8648,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Pandion",
+    "from_name": "Pandion (son of Egyptus)",
     "relation": "married_to",
-    "to_name": "Callidice",
+    "to_name": "Callidice (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8688,7 +8688,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Busiris",
+    "from_name": "Busiris (son of Egyptus)",
     "relation": "killed_by",
     "to_name": "Automate",
     "is_contested": false,
@@ -8704,9 +8704,9 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Lycus",
+    "from_name": "Lycus (son of Egyptus)",
     "relation": "killed_by",
-    "to_name": "Agave",
+    "to_name": "Agave (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8730,7 +8730,7 @@
   {
     "from_name": "Nauplius",
     "relation": "married_to",
-    "to_name": "Clymene",
+    "to_name": "Clymene (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8754,7 +8754,7 @@
   {
     "from_name": "Catreus",
     "relation": "parent_of",
-    "to_name": "Clymene",
+    "to_name": "Clymene (Danaid)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -9314,7 +9314,7 @@
   {
     "from_name": "Perseus",
     "relation": "parent_of",
-    "to_name": "Perses",
+    "to_name": "Perses (son of Perseus)",
     "is_contested": false,
     "passage_ref": "2.4.5",
     "source_id": "apollodorus-bibliotheca"
@@ -9322,7 +9322,7 @@
   {
     "from_name": "Andromeda",
     "relation": "parent_of",
-    "to_name": "Perses",
+    "to_name": "Perses (son of Perseus)",
     "is_contested": false,
     "passage_ref": "2.4.5",
     "source_id": "apollodorus-bibliotheca"
@@ -18314,7 +18314,7 @@
   {
     "from_name": "Priam",
     "relation": "parent_of",
-    "to_name": "Laodice",
+    "to_name": "Laodice (daughter of Priam)",
     "is_contested": false,
     "passage_ref": "3.12.5",
     "source_id": "apollodorus-bibliotheca"
@@ -18322,7 +18322,7 @@
   {
     "from_name": "Hecuba",
     "relation": "parent_of",
-    "to_name": "Laodice",
+    "to_name": "Laodice (daughter of Priam)",
     "is_contested": false,
     "passage_ref": "3.12.5",
     "source_id": "apollodorus-bibliotheca"
@@ -18514,7 +18514,7 @@
   {
     "from_name": "Priam",
     "relation": "parent_of",
-    "to_name": "Hippothous",
+    "to_name": "Hippothous (son of Priam)",
     "is_contested": false,
     "passage_ref": "3.12.5",
     "source_id": "apollodorus-bibliotheca"
@@ -18522,7 +18522,7 @@
   {
     "from_name": "Priam",
     "relation": "parent_of",
-    "to_name": "Glaucus",
+    "to_name": "Glaucus (son of Priam)",
     "is_contested": false,
     "passage_ref": "3.12.5",
     "source_id": "apollodorus-bibliotheca"
@@ -18554,7 +18554,7 @@
   {
     "from_name": "Priam",
     "relation": "parent_of",
-    "to_name": "Hippodamas",
+    "to_name": "Hippodamas (son of Priam)",
     "is_contested": false,
     "passage_ref": "3.12.5",
     "source_id": "apollodorus-bibliotheca"
@@ -18586,7 +18586,7 @@
   {
     "from_name": "Priam",
     "relation": "parent_of",
-    "to_name": "Lycaon",
+    "to_name": "Lycaon (son of Priam)",
     "is_contested": false,
     "passage_ref": "3.12.5",
     "source_id": "apollodorus-bibliotheca"
@@ -18602,7 +18602,7 @@
   {
     "from_name": "Priam",
     "relation": "parent_of",
-    "to_name": "Bias",
+    "to_name": "Bias (son of Priam)",
     "is_contested": false,
     "passage_ref": "3.12.5",
     "source_id": "apollodorus-bibliotheca"
@@ -18610,7 +18610,7 @@
   {
     "from_name": "Priam",
     "relation": "parent_of",
-    "to_name": "Chromius",
+    "to_name": "Chromius (son of Priam)",
     "is_contested": false,
     "passage_ref": "3.12.5",
     "source_id": "apollodorus-bibliotheca"
@@ -18674,7 +18674,7 @@
   {
     "from_name": "Priam",
     "relation": "parent_of",
-    "to_name": "Echephron",
+    "to_name": "Echephron (son of Priam)",
     "is_contested": false,
     "passage_ref": "3.12.5",
     "source_id": "apollodorus-bibliotheca"
@@ -18682,7 +18682,7 @@
   {
     "from_name": "Priam",
     "relation": "parent_of",
-    "to_name": "Idomeneus",
+    "to_name": "Idomeneus (son of Priam)",
     "is_contested": false,
     "passage_ref": "3.12.5",
     "source_id": "apollodorus-bibliotheca"
@@ -18714,7 +18714,7 @@
   {
     "from_name": "Priam",
     "relation": "parent_of",
-    "to_name": "Aretus",
+    "to_name": "Aretus (son of Priam)",
     "is_contested": false,
     "passage_ref": "3.12.5",
     "source_id": "apollodorus-bibliotheca"
@@ -24306,7 +24306,7 @@
   {
     "from_name": "Nereus",
     "relation": "parent_of",
-    "to_name": "Glauce",
+    "to_name": "Glauce (Nereid)",
     "is_contested": false,
     "passage_ref": "233-269",
     "source_id": "hesiod-theogony"
@@ -24354,7 +24354,7 @@
   {
     "from_name": "Nereus",
     "relation": "parent_of",
-    "to_name": "Erato",
+    "to_name": "Erato (Nereid)",
     "is_contested": false,
     "passage_ref": "233-269",
     "source_id": "hesiod-theogony"
@@ -24434,7 +24434,7 @@
   {
     "from_name": "Nereus",
     "relation": "parent_of",
-    "to_name": "Actaea",
+    "to_name": "Actaea (Nereid)",
     "is_contested": false,
     "passage_ref": "233-269",
     "source_id": "hesiod-theogony"
@@ -24474,7 +24474,7 @@
   {
     "from_name": "Nereus",
     "relation": "parent_of",
-    "to_name": "Hippothoe",
+    "to_name": "Hippothoe (Nereid)",
     "is_contested": false,
     "passage_ref": "233-269",
     "source_id": "hesiod-theogony"
@@ -24578,7 +24578,7 @@
   {
     "from_name": "Nereus",
     "relation": "parent_of",
-    "to_name": "Autonoe",
+    "to_name": "Autonoe (Nereid)",
     "is_contested": false,
     "passage_ref": "233-269",
     "source_id": "hesiod-theogony"
@@ -24586,7 +24586,7 @@
   {
     "from_name": "Nereus",
     "relation": "parent_of",
-    "to_name": "Lysianassa",
+    "to_name": "Lysianassa (Nereid)",
     "is_contested": false,
     "passage_ref": "233-269",
     "source_id": "hesiod-theogony"
@@ -24634,7 +24634,7 @@
   {
     "from_name": "Nereus",
     "relation": "parent_of",
-    "to_name": "Themisto",
+    "to_name": "Themisto (Nereid)",
     "is_contested": false,
     "passage_ref": "233-269",
     "source_id": "hesiod-theogony"
@@ -24714,7 +24714,7 @@
   {
     "from_name": "Doris",
     "relation": "parent_of",
-    "to_name": "Glauce",
+    "to_name": "Glauce (Nereid)",
     "is_contested": false,
     "passage_ref": "233-269",
     "source_id": "hesiod-theogony"
@@ -24762,7 +24762,7 @@
   {
     "from_name": "Doris",
     "relation": "parent_of",
-    "to_name": "Erato",
+    "to_name": "Erato (Nereid)",
     "is_contested": false,
     "passage_ref": "233-269",
     "source_id": "hesiod-theogony"
@@ -24842,7 +24842,7 @@
   {
     "from_name": "Doris",
     "relation": "parent_of",
-    "to_name": "Actaea",
+    "to_name": "Actaea (Nereid)",
     "is_contested": false,
     "passage_ref": "233-269",
     "source_id": "hesiod-theogony"
@@ -24882,7 +24882,7 @@
   {
     "from_name": "Doris",
     "relation": "parent_of",
-    "to_name": "Hippothoe",
+    "to_name": "Hippothoe (Nereid)",
     "is_contested": false,
     "passage_ref": "233-269",
     "source_id": "hesiod-theogony"
@@ -24986,7 +24986,7 @@
   {
     "from_name": "Doris",
     "relation": "parent_of",
-    "to_name": "Autonoe",
+    "to_name": "Autonoe (Nereid)",
     "is_contested": false,
     "passage_ref": "233-269",
     "source_id": "hesiod-theogony"
@@ -24994,7 +24994,7 @@
   {
     "from_name": "Doris",
     "relation": "parent_of",
-    "to_name": "Lysianassa",
+    "to_name": "Lysianassa (Nereid)",
     "is_contested": false,
     "passage_ref": "233-269",
     "source_id": "hesiod-theogony"
@@ -25042,7 +25042,7 @@
   {
     "from_name": "Doris",
     "relation": "parent_of",
-    "to_name": "Themisto",
+    "to_name": "Themisto (Nereid)",
     "is_contested": false,
     "passage_ref": "233-269",
     "source_id": "hesiod-theogony"
@@ -25962,7 +25962,7 @@
   {
     "from_name": "Oceanus",
     "relation": "parent_of",
-    "to_name": "Urania",
+    "to_name": "Urania (Oceanid)",
     "is_contested": false,
     "passage_ref": "346-403",
     "source_id": "hesiod-theogony"
@@ -25970,7 +25970,7 @@
   {
     "from_name": "Tethys",
     "relation": "parent_of",
-    "to_name": "Urania",
+    "to_name": "Urania (Oceanid)",
     "is_contested": false,
     "passage_ref": "346-403",
     "source_id": "hesiod-theogony"
@@ -26186,7 +26186,7 @@
   {
     "from_name": "Oceanus",
     "relation": "parent_of",
-    "to_name": "Polydora",
+    "to_name": "Polydora (Oceanid)",
     "is_contested": false,
     "passage_ref": "346-403",
     "source_id": "hesiod-theogony"
@@ -26194,7 +26194,7 @@
   {
     "from_name": "Tethys",
     "relation": "parent_of",
-    "to_name": "Polydora",
+    "to_name": "Polydora (Oceanid)",
     "is_contested": false,
     "passage_ref": "346-403",
     "source_id": "hesiod-theogony"
@@ -26218,7 +26218,7 @@
   {
     "from_name": "Oceanus",
     "relation": "parent_of",
-    "to_name": "Hades",
+    "to_name": "Pluto (Oceanid)",
     "is_contested": false,
     "passage_ref": "346-403",
     "source_id": "hesiod-theogony"
@@ -26226,7 +26226,7 @@
   {
     "from_name": "Tethys",
     "relation": "parent_of",
-    "to_name": "Hades",
+    "to_name": "Pluto (Oceanid)",
     "is_contested": false,
     "passage_ref": "346-403",
     "source_id": "hesiod-theogony"
@@ -26330,7 +26330,7 @@
   {
     "from_name": "Oceanus",
     "relation": "parent_of",
-    "to_name": "Europa",
+    "to_name": "Europa (Oceanid)",
     "is_contested": false,
     "passage_ref": "346-403",
     "source_id": "hesiod-theogony"
@@ -26338,7 +26338,7 @@
   {
     "from_name": "Tethys",
     "relation": "parent_of",
-    "to_name": "Europa",
+    "to_name": "Europa (Oceanid)",
     "is_contested": false,
     "passage_ref": "346-403",
     "source_id": "hesiod-theogony"

@@ -510,7 +510,7 @@
     "domain": null
   },
   {
-    "name": "Erato",
+    "name": "Erato (Nereid)",
     "type": "Nereid",
     "generation": null,
     "domain": null
@@ -540,7 +540,7 @@
     "domain": null
   },
   {
-    "name": "Agave",
+    "name": "Agave (Nereid)",
     "type": "Nereid",
     "generation": null,
     "domain": null
@@ -570,7 +570,7 @@
     "domain": null
   },
   {
-    "name": "Actaea",
+    "name": "Actaea (Nereid)",
     "type": "Nereid",
     "generation": null,
     "domain": null
@@ -582,13 +582,13 @@
     "domain": null
   },
   {
-    "name": "Hippothoe",
+    "name": "Hippothoe (Nereid)",
     "type": "Nereid",
     "generation": null,
     "domain": null
   },
   {
-    "name": "Lysianassa",
+    "name": "Lysianassa (Nereid)",
     "type": "Nereid",
     "generation": null,
     "domain": null
@@ -672,7 +672,7 @@
     "domain": null
   },
   {
-    "name": "Autonoe",
+    "name": "Autonoe (Nereid)",
     "type": "Nereid",
     "generation": null,
     "domain": null
@@ -835,6 +835,12 @@
   },
   {
     "name": "Euterpe",
+    "type": "god",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Erato",
     "type": "god",
     "generation": null,
     "domain": null
@@ -2748,6 +2754,12 @@
     "domain": null
   },
   {
+    "name": "Hippothoe",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Alcestis",
     "type": "mortal",
     "generation": null,
@@ -3648,7 +3660,7 @@
     "domain": null
   },
   {
-    "name": "Proteus",
+    "name": "Proteus (son of Egyptus)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -3660,7 +3672,13 @@
     "domain": null
   },
   {
-    "name": "Busiris",
+    "name": "Busiris (son of Egyptus)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lycus (son of Egyptus)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -3679,6 +3697,12 @@
   },
   {
     "name": "Automate",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Agave (Danaid)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -3715,6 +3739,12 @@
   },
   {
     "name": "Rhodia",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Cleopatra (Danaid)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -3936,6 +3966,12 @@
     "domain": null
   },
   {
+    "name": "Dryas (son of Egyptus)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Potamon",
     "type": "mortal",
     "generation": null,
@@ -3978,7 +4014,19 @@
     "domain": null
   },
   {
-    "name": "Theano",
+    "name": "Autonoe (Danaid)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Theano (Danaid)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Eurydice (Danaid)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -3997,6 +4045,12 @@
   },
   {
     "name": "Cleodore",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Erato (Danaid)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -4026,7 +4080,19 @@
     "domain": null
   },
   {
-    "name": "Periphas",
+    "name": "Periphas (son of Egyptus)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Actaea (Danaid)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Oeneus (son of Egyptus)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -4062,6 +4128,12 @@
     "domain": null
   },
   {
+    "name": "Idas (son of Egyptus)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Hippodice",
     "type": "mortal",
     "generation": null,
@@ -4080,13 +4152,13 @@
     "domain": null
   },
   {
-    "name": "Pandion",
+    "name": "Pandion (son of Egyptus)",
     "type": "mortal",
     "generation": null,
     "domain": null
   },
   {
-    "name": "Callidice",
+    "name": "Callidice (Danaid)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -4146,7 +4218,7 @@
     "domain": null
   },
   {
-    "name": "Clymene",
+    "name": "Clymene (Danaid)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -4387,6 +4459,12 @@
   },
   {
     "name": "Teutamides",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Perses (son of Perseus)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -5070,6 +5148,12 @@
     "domain": null
   },
   {
+    "name": "Proteus",
+    "type": "god",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Callirrhoe",
     "type": "nymph",
     "generation": null,
@@ -5144,6 +5228,18 @@
   {
     "name": "Antaeus",
     "type": "giant",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Busiris",
+    "type": "king",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Lysianassa",
+    "type": "mortal",
     "generation": null,
     "domain": null
   },
@@ -6006,6 +6102,12 @@
     "domain": null
   },
   {
+    "name": "Autonoe",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Pireus",
     "type": "mortal",
     "generation": null,
@@ -6264,6 +6366,12 @@
     "domain": null
   },
   {
+    "name": "Clymene",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Apemosyne",
     "type": "mortal",
     "generation": null,
@@ -6355,6 +6463,12 @@
   },
   {
     "name": "Semele",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Agave",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -7950,6 +8064,12 @@
     "domain": null
   },
   {
+    "name": "Laodice (daughter of Priam)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Polyxena",
     "type": "mortal",
     "generation": null,
@@ -7998,7 +8118,25 @@
     "domain": null
   },
   {
+    "name": "Hippothous (son of Priam)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Glaucus (son of Priam)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Agathon",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Hippodamas (son of Priam)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -8016,7 +8154,25 @@
     "domain": null
   },
   {
+    "name": "Lycaon (son of Priam)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Dryops",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Bias (son of Priam)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Chromius (son of Priam)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -8052,6 +8208,18 @@
     "domain": null
   },
   {
+    "name": "Echephron (son of Priam)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Idomeneus (son of Priam)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Ascanius",
     "type": "mortal",
     "generation": null,
@@ -8059,6 +8227,12 @@
   },
   {
     "name": "Democoon",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Aretus (son of Priam)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -8426,6 +8600,12 @@
   {
     "name": "Atthis",
     "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Pandion",
+    "type": "mortal/king",
     "generation": null,
     "domain": null
   },
@@ -9942,6 +10122,12 @@
     "domain": null
   },
   {
+    "name": "Callidice",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Poliporthes",
     "type": "mortal",
     "generation": null,
@@ -10272,6 +10458,12 @@
     "domain": null
   },
   {
+    "name": "Glauce (Nereid)",
+    "type": "deity",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Speo",
     "type": "deity",
     "generation": null,
@@ -10387,6 +10579,12 @@
   },
   {
     "name": "Eupompe",
+    "type": "deity",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Themisto (Nereid)",
     "type": "deity",
     "generation": null,
     "domain": null
@@ -10530,6 +10728,12 @@
     "domain": null
   },
   {
+    "name": "Urania (Oceanid)",
+    "type": "goddess",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Rhodea",
     "type": "goddess",
     "generation": null,
@@ -10572,7 +10776,19 @@
     "domain": null
   },
   {
+    "name": "Polydora (Oceanid)",
+    "type": "goddess",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Cerceis",
+    "type": "goddess",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Pluto (Oceanid)",
     "type": "goddess",
     "generation": null,
     "domain": null
@@ -10603,6 +10819,12 @@
   },
   {
     "name": "Menestho",
+    "type": "goddess",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Europa (Oceanid)",
     "type": "goddess",
     "generation": null,
     "domain": null
@@ -11688,6 +11910,12 @@
     "domain": null
   },
   {
+    "name": "Theano",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Hypsenor",
     "type": "mortal",
     "generation": null,
@@ -11852,6 +12080,12 @@
   {
     "name": "Stentor",
     "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Periphas",
+    "type": "hero",
     "generation": null,
     "domain": null
   },

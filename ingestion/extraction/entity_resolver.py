@@ -25,6 +25,7 @@ from rapidfuzz import fuzz, process
 
 FUZZY_THRESHOLD = 88
 KNOWN_ALIASES_PATH = Path(__file__).parent / "known_aliases.json"
+NAMESAKE_REGISTRY_PATH = Path(__file__).parent / "namesake_registry.json"
 
 # `method` values, per ADR-022. `registry` has no producer until G3.
 METHOD_EXACT = "exact"  # the surface matched a canonical this run already established
@@ -60,6 +61,31 @@ def load_known_aliases(path: Path = KNOWN_ALIASES_PATH) -> dict[str, str]:
     with open(path, encoding="utf-8") as f:
         raw = json.load(f)
     return {alias.lower(): canonical for alias, canonical in raw.items()}
+
+
+def load_namesake_registry(path: Path = NAMESAKE_REGISTRY_PATH) -> dict[tuple, str]:
+    """P6 G3: `{name, source_id, passage_ref, identity, reason}` entries keyed
+    `(lower(name), source_id, passage_ref)` for the three-level lookup in `resolve()`.
+
+    `reason` is **mandatory and enforced here**, matching `parentage_deny_list.json`
+    (ADR-020 rule 4): an entry overrides every other resolution layer, so one added
+    without stated evidence is unreviewable by construction. Omitting `source_id` or
+    `passage_ref` widens an entry to source-wide or global.
+    """
+    if not Path(path).exists():
+        return {}
+    with open(path, encoding="utf-8") as f:
+        entries = json.load(f)
+
+    registry: dict[tuple, str] = {}
+    for e in entries:
+        if not (e.get("reason") or "").strip():
+            raise ValueError(f"namesake_registry entry without a reason: {e.get('name')!r} @ {e.get('passage_ref')!r}")
+        key = (e["name"].strip().lower(), e.get("source_id"), e.get("passage_ref"))
+        if key in registry and registry[key] != e["identity"]:
+            raise ValueError(f"namesake_registry has conflicting identities for {key}")
+        registry[key] = e["identity"]
+    return registry
 
 
 @dataclass
@@ -102,6 +128,7 @@ class ResolutionEntry:
 @dataclass
 class EntityResolver:
     known_aliases: dict[str, str] = field(default_factory=dict)
+    namesake_registry: dict[tuple, str] = field(default_factory=dict)
     fuzzy_threshold: int = FUZZY_THRESHOLD
     # G2: False since the measurement. Kept as a field, not inlined, so the pre-G2
     # behaviour stays reachable for the tests that pin it and for any future re-measure.
@@ -123,6 +150,22 @@ class EntityResolver:
         real values at all four call sites.
         """
         key = name.strip().lower()
+
+        # G3.2: the registry is consulted FIRST -- ahead of the exact-match memo, not
+        # merely ahead of the alias and fuzzy steps. GAP-010's strings are byte-identical
+        # (Priam's son `Lycaon` and the Arcadian king), so the memo's exact hit *is* the
+        # defect; a lookup placed behind it would never fire for the majority of what
+        # this stage exists to fix.
+        #
+        # G3.2a, satisfied by holding no state rather than by a second memo: a registry
+        # answer is never written to `_seen`/`_methods`, so it cannot leak to a later
+        # passage, and a surface with no entry keeps today's global memo and today's
+        # behaviour byte-for-byte. The lookup is a dict hit, so recomputing it per call
+        # costs nothing and repeat sightings stay consistent by construction.
+        identity = self._registry_lookup(key, source_id, passage_ref)
+        if identity is not None:
+            return self._record(name, identity, METHOD_REGISTRY, None, source_id, passage_ref)
+
         if key in self._seen:
             canonical = self._seen[key]
             method, score, near = self._memo_method(key)
@@ -168,6 +211,17 @@ class EntityResolver:
             self._seen[candidate_name.lower()] = candidate_name
             self._methods[candidate_name.lower()] = (METHOD_NEW, None, None)
         return self._record(name, candidate_name, method, near_score, source_id, passage_ref, near_match)
+
+    def _registry_lookup(self, key: str, source_id, passage_ref) -> str | None:
+        """Three levels, most specific first: this passage, then anywhere in this
+        source, then global."""
+        if not self.namesake_registry:
+            return None
+        for candidate in ((key, source_id, passage_ref), (key, source_id, None), (key, None, None)):
+            identity = self.namesake_registry.get(candidate)
+            if identity is not None:
+                return identity
+        return None
 
     def _memo_method(self, key: str) -> tuple[str, float | None, str | None]:
         """What to report for a repeat sighting of `key`.

@@ -10240,5 +10240,1020 @@
       "1": 558,
       "2": 493
     }
+  },
+  {
+    "batchLabel": "p6-g3-namesake-registry-rekey",
+    "date": "2026-07-31T19:36:43.985959+00:00",
+    "keys": [],
+    "groupCount": 0,
+    "rationale": "Stage P6 G0: ADR-022's resolver changes re-key reviewed rows through subject_name / claim_value. Trust tiers carried across the rename via the G1 resolution ledger; rows that could not be mapped are listed under reReview and go back through ADR-004's gate.",
+    "rekeyed": [
+      {
+        "from": [
+          "Hades",
+          "parentage",
+          "child of Oceanus",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "to": [
+          "Pluto (Oceanid)",
+          "parentage",
+          "child of Oceanus",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Hades",
+          "parentage",
+          "child of Tethys",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "to": [
+          "Pluto (Oceanid)",
+          "parentage",
+          "child of Tethys",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Erato",
+          "parentage",
+          "child of Nereus",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "to": [
+          "Erato (Nereid)",
+          "parentage",
+          "child of Nereus",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Erato",
+          "parentage",
+          "child of Nereus",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "to": [
+          "Erato (Nereid)",
+          "parentage",
+          "child of Nereus",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Erato",
+          "parentage",
+          "child of Doris",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "to": [
+          "Erato (Nereid)",
+          "parentage",
+          "child of Doris",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Agave",
+          "parentage",
+          "child of Europe",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "to": [
+          "Agave (Danaid)",
+          "parentage",
+          "child of Europe",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Agave",
+          "parentage",
+          "child of Danaus",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "to": [
+          "Agave (Danaid)",
+          "parentage",
+          "child of Danaus",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Actaea",
+          "parentage",
+          "child of Nereus",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "to": [
+          "Actaea (Nereid)",
+          "parentage",
+          "child of Nereus",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Actaea",
+          "parentage",
+          "child of Danaus",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "to": [
+          "Actaea (Danaid)",
+          "parentage",
+          "child of Danaus",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Actaea",
+          "parentage",
+          "child of Pieria",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "to": [
+          "Actaea (Danaid)",
+          "parentage",
+          "child of Pieria",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Actaea",
+          "parentage",
+          "child of Nereus",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "to": [
+          "Actaea (Nereid)",
+          "parentage",
+          "child of Nereus",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Actaea",
+          "parentage",
+          "child of Doris",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "to": [
+          "Actaea (Nereid)",
+          "parentage",
+          "child of Doris",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Hippothoe",
+          "parentage",
+          "child of Nereus",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "to": [
+          "Hippothoe (Nereid)",
+          "parentage",
+          "child of Nereus",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Hippothoe",
+          "parentage",
+          "child of Nereus",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "to": [
+          "Hippothoe (Nereid)",
+          "parentage",
+          "child of Nereus",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Hippothoe",
+          "parentage",
+          "child of Doris",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "to": [
+          "Hippothoe (Nereid)",
+          "parentage",
+          "child of Doris",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Lysianassa",
+          "parentage",
+          "child of Nereus",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "to": [
+          "Lysianassa (Nereid)",
+          "parentage",
+          "child of Nereus",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Lysianassa",
+          "parentage",
+          "child of Nereus",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "to": [
+          "Lysianassa (Nereid)",
+          "parentage",
+          "child of Nereus",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Lysianassa",
+          "parentage",
+          "child of Doris",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "to": [
+          "Lysianassa (Nereid)",
+          "parentage",
+          "child of Doris",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Autonoe",
+          "parentage",
+          "child of Nereus",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "to": [
+          "Autonoe (Nereid)",
+          "parentage",
+          "child of Nereus",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Autonoe",
+          "parentage",
+          "child of Danaus",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "to": [
+          "Autonoe (Danaid)",
+          "parentage",
+          "child of Danaus",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Autonoe",
+          "parentage",
+          "child of Polyxo",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "to": [
+          "Autonoe (Danaid)",
+          "parentage",
+          "child of Polyxo",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Autonoe",
+          "parentage",
+          "child of Nereus",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "to": [
+          "Autonoe (Nereid)",
+          "parentage",
+          "child of Nereus",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Autonoe",
+          "parentage",
+          "child of Doris",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "to": [
+          "Autonoe (Nereid)",
+          "parentage",
+          "child of Doris",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Urania",
+          "parentage",
+          "child of Oceanus",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "to": [
+          "Urania (Oceanid)",
+          "parentage",
+          "child of Oceanus",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Urania",
+          "parentage",
+          "child of Tethys",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "to": [
+          "Urania (Oceanid)",
+          "parentage",
+          "child of Tethys",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Idas",
+          "parentage",
+          "child of Egyptus",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "to": [
+          "Idas (son of Egyptus)",
+          "parentage",
+          "child of Egyptus",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Idas",
+          "parentage",
+          "child of Hephaestine",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "to": [
+          "Idas (son of Egyptus)",
+          "parentage",
+          "child of Hephaestine",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Themisto",
+          "parentage",
+          "child of Nereus",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "to": [
+          "Themisto (Nereid)",
+          "parentage",
+          "child of Nereus",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Themisto",
+          "parentage",
+          "child of Doris",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "to": [
+          "Themisto (Nereid)",
+          "parentage",
+          "child of Doris",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Glauce",
+          "parentage",
+          "child of Nereus",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "to": [
+          "Glauce (Nereid)",
+          "parentage",
+          "child of Nereus",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Glauce",
+          "parentage",
+          "child of Doris",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "to": [
+          "Glauce (Nereid)",
+          "parentage",
+          "child of Doris",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Proteus",
+          "parentage",
+          "child of Argyphia",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "to": [
+          "Proteus (son of Egyptus)",
+          "parentage",
+          "child of Argyphia",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Proteus",
+          "parentage",
+          "child of Egyptus",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "to": [
+          "Proteus (son of Egyptus)",
+          "parentage",
+          "child of Egyptus",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Periphas",
+          "parentage",
+          "child of Egyptus",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "to": [
+          "Periphas (son of Egyptus)",
+          "parentage",
+          "child of Egyptus",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Periphas",
+          "parentage",
+          "child of Gorgo",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "to": [
+          "Periphas (son of Egyptus)",
+          "parentage",
+          "child of Gorgo",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Europa",
+          "parentage",
+          "child of Oceanus",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "to": [
+          "Europa (Oceanid)",
+          "parentage",
+          "child of Oceanus",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Europa",
+          "parentage",
+          "child of Tethys",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "to": [
+          "Europa (Oceanid)",
+          "parentage",
+          "child of Tethys",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Laodice",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "to": [
+          "Laodice (daughter of Priam)",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Laodice",
+          "parentage",
+          "child of Hecuba",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "to": [
+          "Laodice (daughter of Priam)",
+          "parentage",
+          "child of Hecuba",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Polydora",
+          "parentage",
+          "child of Oceanus",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "to": [
+          "Polydora (Oceanid)",
+          "parentage",
+          "child of Oceanus",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Polydora",
+          "parentage",
+          "child of Tethys",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "to": [
+          "Polydora (Oceanid)",
+          "parentage",
+          "child of Tethys",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 2
+      }
+    ],
+    "carriedCount": 1029,
+    "renamedCount": 41,
+    "absorbed": [
+      {
+        "from": [
+          "Priam",
+          "marriage",
+          "married to Hecuba",
+          "homer-iliad",
+          "24.200-24.246"
+        ],
+        "into": [
+          "Priam",
+          "marriage",
+          "married to Hecuba",
+          "homer-iliad",
+          "24.200-24.246"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Aphrodite",
+          "marriage",
+          "married to Hephaestus",
+          "homer-odyssey",
+          "8.256-8.294"
+        ],
+        "into": [
+          "Aphrodite",
+          "marriage",
+          "married to Hephaestus",
+          "homer-odyssey",
+          "8.256-8.294"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Hera",
+          "marriage",
+          "married to Zeus",
+          "homer-iliad",
+          "14.153-14.196"
+        ],
+        "into": [
+          "Hera",
+          "marriage",
+          "married to Zeus",
+          "homer-iliad",
+          "14.153-14.196"
+        ],
+        "trustTier": 1
+      }
+    ],
+    "absorbedCount": 3,
+    "reReview": [
+      {
+        "key": [
+          "Erato",
+          "parentage",
+          "child of Polyxo",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Agave",
+          "parentage",
+          "child of Nereus",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Hippodamas",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Oeneus",
+          "parentage",
+          "child of Gorgo",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Oeneus",
+          "marriage",
+          "married to Podarce",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Dryas",
+          "parentage",
+          "child of Caliadne",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Cleopatra",
+          "parentage",
+          "child of Polyxo",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Glaucus",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Aretus",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Echephron",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Bias",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Theano",
+          "parentage",
+          "child of Polyxo",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Eurydice",
+          "parentage",
+          "child of Polyxo",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Pandion",
+          "parentage",
+          "child of Hephaestine",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Callidice",
+          "parentage",
+          "child of Crino",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Busiris",
+          "death",
+          "killed by Automate",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Lycus",
+          "death",
+          "killed by Agave",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Clymene",
+          "parentage",
+          "child of Catreus",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Chromius",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Idomeneus",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Lycaon",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Hippothous",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      }
+    ],
+    "reReviewCount": 22,
+    "tierCountsBefore": {
+      "1": 561,
+      "2": 493
+    },
+    "tierCountsAfter": {
+      "1": 558,
+      "2": 471
+    }
   }
 ]

@@ -1,0 +1,317 @@
+[
+  {
+    "name": "Pluto",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "346-403",
+    "identity": "Pluto (Oceanid)",
+    "reason": "GAP-009, DEV-136. ADR-022's worked example: \"soft eyed Pluto\" is one of Ocean's daughters, not Hades. This is the ALIAS path, not the fuzzy one -- the entity_aliases/known_aliases Pluto->Hades mapping is correct everywhere else and stays."
+  },
+  {
+    "name": "Europa",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "346-403",
+    "identity": "Europa (Oceanid)",
+    "reason": "GAP-009/GAP-010, DEV-136 (Track C1 batch 1): Hesiod's catalogue of Ocean's daughters. This figure is an Oceanid of the catalogue, not the established namesake the bare name resolves to. Adjudicated row-by-row; keys in promotion_log batch p5-track-c1-batch1-hesiod-theogony-346-403."
+  },
+  {
+    "name": "Urania",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "346-403",
+    "identity": "Urania (Oceanid)",
+    "reason": "GAP-009/GAP-010, DEV-136 (Track C1 batch 1): Hesiod's catalogue of Ocean's daughters. This figure is an Oceanid of the catalogue, not the established namesake the bare name resolves to. Adjudicated row-by-row; keys in promotion_log batch p5-track-c1-batch1-hesiod-theogony-346-403."
+  },
+  {
+    "name": "Polydora",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "346-403",
+    "identity": "Polydora (Oceanid)",
+    "reason": "GAP-009/GAP-010, DEV-136 (Track C1 batch 1): Hesiod's catalogue of Ocean's daughters. This figure is an Oceanid of the catalogue, not the established namesake the bare name resolves to. Adjudicated row-by-row; keys in promotion_log batch p5-track-c1-batch1-hesiod-theogony-346-403."
+  },
+  {
+    "name": "Actaea",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "233-269",
+    "identity": "Actaea (Nereid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Hesiod's Nereid catalogue. The bare name belongs to a better-established unrelated figure; this one is a daughter of Nereus. Keys in promotion_log batch p5-track-c1-batch3-hesiod-theogony-233-269."
+  },
+  {
+    "name": "Autonoe",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "233-269",
+    "identity": "Autonoe (Nereid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Hesiod's Nereid catalogue. The bare name belongs to a better-established unrelated figure; this one is a daughter of Nereus. Keys in promotion_log batch p5-track-c1-batch3-hesiod-theogony-233-269."
+  },
+  {
+    "name": "Erato",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "233-269",
+    "identity": "Erato (Nereid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Hesiod's Nereid catalogue. The bare name belongs to a better-established unrelated figure; this one is a daughter of Nereus. Keys in promotion_log batch p5-track-c1-batch3-hesiod-theogony-233-269."
+  },
+  {
+    "name": "Glauce",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "233-269",
+    "identity": "Glauce (Nereid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Hesiod's Nereid catalogue. The bare name belongs to a better-established unrelated figure; this one is a daughter of Nereus. Keys in promotion_log batch p5-track-c1-batch3-hesiod-theogony-233-269."
+  },
+  {
+    "name": "Hippothoe",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "233-269",
+    "identity": "Hippothoe (Nereid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Hesiod's Nereid catalogue. The bare name belongs to a better-established unrelated figure; this one is a daughter of Nereus. Keys in promotion_log batch p5-track-c1-batch3-hesiod-theogony-233-269."
+  },
+  {
+    "name": "Lysianassa",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "233-269",
+    "identity": "Lysianassa (Nereid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Hesiod's Nereid catalogue. The bare name belongs to a better-established unrelated figure; this one is a daughter of Nereus. Keys in promotion_log batch p5-track-c1-batch3-hesiod-theogony-233-269."
+  },
+  {
+    "name": "Themisto",
+    "source_id": "hesiod-theogony",
+    "passage_ref": "233-269",
+    "identity": "Themisto (Nereid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Hesiod's Nereid catalogue. The bare name belongs to a better-established unrelated figure; this one is a daughter of Nereus. Keys in promotion_log batch p5-track-c1-batch3-hesiod-theogony-233-269."
+  },
+  {
+    "name": "Agave",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "1.2.1-1.2.7",
+    "identity": "Agave (Nereid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Nereid catalogue at 1.2.7. Same figures as the Theogony 233-269 catalogue, same collision. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-1.2.1-1.2.7."
+  },
+  {
+    "name": "Autonoe",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "1.2.1-1.2.7",
+    "identity": "Autonoe (Nereid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Nereid catalogue at 1.2.7. Same figures as the Theogony 233-269 catalogue, same collision. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-1.2.1-1.2.7."
+  },
+  {
+    "name": "Erato",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "1.2.1-1.2.7",
+    "identity": "Erato (Nereid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Nereid catalogue at 1.2.7. Same figures as the Theogony 233-269 catalogue, same collision. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-1.2.1-1.2.7."
+  },
+  {
+    "name": "Actaea",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.5",
+    "identity": "Actaea (Danaid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Danaid catalogue -- the extreme case, 31 of 40 rows rejected, nearly every name colliding with a famous unrelated namesake. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-2.1.5."
+  },
+  {
+    "name": "Agave",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.5",
+    "identity": "Agave (Danaid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Danaid catalogue -- the extreme case, 31 of 40 rows rejected, nearly every name colliding with a famous unrelated namesake. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-2.1.5."
+  },
+  {
+    "name": "Autonoe",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.5",
+    "identity": "Autonoe (Danaid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Danaid catalogue -- the extreme case, 31 of 40 rows rejected, nearly every name colliding with a famous unrelated namesake. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-2.1.5."
+  },
+  {
+    "name": "Callidice",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.5",
+    "identity": "Callidice (Danaid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Danaid catalogue -- the extreme case, 31 of 40 rows rejected, nearly every name colliding with a famous unrelated namesake. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-2.1.5."
+  },
+  {
+    "name": "Cleopatra",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.5",
+    "identity": "Cleopatra (Danaid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Danaid catalogue -- the extreme case, 31 of 40 rows rejected, nearly every name colliding with a famous unrelated namesake. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-2.1.5."
+  },
+  {
+    "name": "Clymene",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.5",
+    "identity": "Clymene (Danaid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Danaid catalogue -- the extreme case, 31 of 40 rows rejected, nearly every name colliding with a famous unrelated namesake. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-2.1.5."
+  },
+  {
+    "name": "Erato",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.5",
+    "identity": "Erato (Danaid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Danaid catalogue -- the extreme case, 31 of 40 rows rejected, nearly every name colliding with a famous unrelated namesake. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-2.1.5."
+  },
+  {
+    "name": "Eurydice",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.5",
+    "identity": "Eurydice (Danaid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Danaid catalogue -- the extreme case, 31 of 40 rows rejected, nearly every name colliding with a famous unrelated namesake. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-2.1.5."
+  },
+  {
+    "name": "Theano",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.5",
+    "identity": "Theano (Danaid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Danaid catalogue -- the extreme case, 31 of 40 rows rejected, nearly every name colliding with a famous unrelated namesake. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-2.1.5."
+  },
+  {
+    "name": "Busiris",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.5",
+    "identity": "Busiris (son of Egyptus)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Danaid catalogue -- the extreme case, 31 of 40 rows rejected, nearly every name colliding with a famous unrelated namesake. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-2.1.5."
+  },
+  {
+    "name": "Dryas",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.5",
+    "identity": "Dryas (son of Egyptus)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Danaid catalogue -- the extreme case, 31 of 40 rows rejected, nearly every name colliding with a famous unrelated namesake. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-2.1.5."
+  },
+  {
+    "name": "Idas",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.5",
+    "identity": "Idas (son of Egyptus)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Danaid catalogue -- the extreme case, 31 of 40 rows rejected, nearly every name colliding with a famous unrelated namesake. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-2.1.5."
+  },
+  {
+    "name": "Lycus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.5",
+    "identity": "Lycus (son of Egyptus)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Danaid catalogue -- the extreme case, 31 of 40 rows rejected, nearly every name colliding with a famous unrelated namesake. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-2.1.5."
+  },
+  {
+    "name": "Oeneus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.5",
+    "identity": "Oeneus (son of Egyptus)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Danaid catalogue -- the extreme case, 31 of 40 rows rejected, nearly every name colliding with a famous unrelated namesake. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-2.1.5."
+  },
+  {
+    "name": "Pandion",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.5",
+    "identity": "Pandion (son of Egyptus)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Danaid catalogue -- the extreme case, 31 of 40 rows rejected, nearly every name colliding with a famous unrelated namesake. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-2.1.5."
+  },
+  {
+    "name": "Periphas",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.5",
+    "identity": "Periphas (son of Egyptus)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Danaid catalogue -- the extreme case, 31 of 40 rows rejected, nearly every name colliding with a famous unrelated namesake. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-2.1.5."
+  },
+  {
+    "name": "Proteus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.5",
+    "identity": "Proteus (son of Egyptus)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Danaid catalogue -- the extreme case, 31 of 40 rows rejected, nearly every name colliding with a famous unrelated namesake. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-2.1.5."
+  },
+  {
+    "name": "Aretus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.12.5",
+    "identity": "Aretus (son of Priam)",
+    "reason": "GAP-010, DEV-137 (Track C1 batch 2): Apollodorus's catalogue of Priam's children. 15 of 21 rejections in that passage were a minor Priamid resolved onto an unrelated established figure sharing the name. Keys in promotion_log batch p5-track-c1-batch2-apollodorus-3.12.5."
+  },
+  {
+    "name": "Bias",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.12.5",
+    "identity": "Bias (son of Priam)",
+    "reason": "GAP-010, DEV-137 (Track C1 batch 2): Apollodorus's catalogue of Priam's children. 15 of 21 rejections in that passage were a minor Priamid resolved onto an unrelated established figure sharing the name. Keys in promotion_log batch p5-track-c1-batch2-apollodorus-3.12.5."
+  },
+  {
+    "name": "Chromius",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.12.5",
+    "identity": "Chromius (son of Priam)",
+    "reason": "GAP-010, DEV-137 (Track C1 batch 2): Apollodorus's catalogue of Priam's children. 15 of 21 rejections in that passage were a minor Priamid resolved onto an unrelated established figure sharing the name. Keys in promotion_log batch p5-track-c1-batch2-apollodorus-3.12.5."
+  },
+  {
+    "name": "Echephron",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.12.5",
+    "identity": "Echephron (son of Priam)",
+    "reason": "GAP-010, DEV-137 (Track C1 batch 2): Apollodorus's catalogue of Priam's children. 15 of 21 rejections in that passage were a minor Priamid resolved onto an unrelated established figure sharing the name. Keys in promotion_log batch p5-track-c1-batch2-apollodorus-3.12.5."
+  },
+  {
+    "name": "Glaucus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.12.5",
+    "identity": "Glaucus (son of Priam)",
+    "reason": "GAP-010, DEV-137 (Track C1 batch 2): Apollodorus's catalogue of Priam's children. 15 of 21 rejections in that passage were a minor Priamid resolved onto an unrelated established figure sharing the name. Keys in promotion_log batch p5-track-c1-batch2-apollodorus-3.12.5."
+  },
+  {
+    "name": "Hippodamas",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.12.5",
+    "identity": "Hippodamas (son of Priam)",
+    "reason": "GAP-010, DEV-137 (Track C1 batch 2): Apollodorus's catalogue of Priam's children. 15 of 21 rejections in that passage were a minor Priamid resolved onto an unrelated established figure sharing the name. Keys in promotion_log batch p5-track-c1-batch2-apollodorus-3.12.5."
+  },
+  {
+    "name": "Hippothous",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.12.5",
+    "identity": "Hippothous (son of Priam)",
+    "reason": "GAP-010, DEV-137 (Track C1 batch 2): Apollodorus's catalogue of Priam's children. 15 of 21 rejections in that passage were a minor Priamid resolved onto an unrelated established figure sharing the name. Keys in promotion_log batch p5-track-c1-batch2-apollodorus-3.12.5."
+  },
+  {
+    "name": "Idomeneus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.12.5",
+    "identity": "Idomeneus (son of Priam)",
+    "reason": "GAP-010, DEV-137 (Track C1 batch 2): Apollodorus's catalogue of Priam's children. 15 of 21 rejections in that passage were a minor Priamid resolved onto an unrelated established figure sharing the name. Keys in promotion_log batch p5-track-c1-batch2-apollodorus-3.12.5."
+  },
+  {
+    "name": "Lycaon",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.12.5",
+    "identity": "Lycaon (son of Priam)",
+    "reason": "GAP-010, DEV-137 (Track C1 batch 2): Apollodorus's catalogue of Priam's children. 15 of 21 rejections in that passage were a minor Priamid resolved onto an unrelated established figure sharing the name. Keys in promotion_log batch p5-track-c1-batch2-apollodorus-3.12.5."
+  },
+  {
+    "name": "Laodice",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.12.5",
+    "identity": "Laodice (daughter of Priam)",
+    "reason": "GAP-010, DEV-137 (Track C1 batch 2): Apollodorus's catalogue of Priam's children. 15 of 21 rejections in that passage were a minor Priamid resolved onto an unrelated established figure sharing the name. Keys in promotion_log batch p5-track-c1-batch2-apollodorus-3.12.5."
+  },
+  {
+    "name": "Perses",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.4.5",
+    "identity": "Perses (son of Perseus)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): son of Perseus and Andromeda, said to be ancestor of the Persian kings -- not Perses the Titan, son of Crius. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-2.4.5."
+  },
+  {
+    "name": "Actaea",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "1.2.1-1.2.7",
+    "identity": "Actaea (Nereid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Nereid catalogue at 1.2.7. Same figures as the Theogony 233-269 catalogue, same collision. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-1.2.1-1.2.7. Paired with the Theogony 233-269 entry for the same figure: seeding one catalogue but not the other would split one Nereid across two sources and destroy the cross-source conflict detection this table exists for."
+  },
+  {
+    "name": "Hippothoe",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "1.2.1-1.2.7",
+    "identity": "Hippothoe (Nereid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Nereid catalogue at 1.2.7. Same figures as the Theogony 233-269 catalogue, same collision. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-1.2.1-1.2.7. Paired with the Theogony 233-269 entry for the same figure: seeding one catalogue but not the other would split one Nereid across two sources and destroy the cross-source conflict detection this table exists for."
+  },
+  {
+    "name": "Lysianassa",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "1.2.1-1.2.7",
+    "identity": "Lysianassa (Nereid)",
+    "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Nereid catalogue at 1.2.7. Same figures as the Theogony 233-269 catalogue, same collision. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-1.2.1-1.2.7. Paired with the Theogony 233-269 entry for the same figure: seeding one catalogue but not the other would split one Nereid across two sources and destroy the cross-source conflict detection this table exists for."
+  }
+]
