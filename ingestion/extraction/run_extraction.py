@@ -27,7 +27,7 @@ from extraction.conflict_detector import (
     relationship_claim_candidates,
     variant_claim_candidates,
 )
-from extraction.entity_resolver import EntityResolver, FuzzyMerge, load_known_aliases
+from extraction.entity_resolver import EntityResolver, FuzzyMerge, ResolutionEntry, load_known_aliases
 from extraction.schema import ExtractedEntity, ExtractedRelationship, ExtractedVariantClaim, stamp_provenance
 from extraction.segmentation import segment
 from loader.source_registry import SourceConfig
@@ -44,6 +44,9 @@ class ExtractionResult:
     conflicts: list[ClaimCandidate] = field(default_factory=list)
     fuzzy_merges: list[FuzzyMerge] = field(default_factory=list)
     failed_segments: list[tuple[str, int, str]] = field(default_factory=list)  # (source_id, start_offset, error)
+    # P6 G1: one row per resolve() call. Defaulted (and kept last) so the positional
+    # construction in this module's existing tests stays valid.
+    resolutions: list[ResolutionEntry] = field(default_factory=list)
 
 
 def build_candidates(
@@ -114,21 +117,26 @@ def build_candidates(
                     CheckpointEntry(source.source_id, seg.start_offset, "ok", facts=facts),
                 )
 
+            # P6 G1.1: all four resolve() call sites thread this segment's corpus
+            # location into the ledger. The entity loop is the one that establishes the
+            # canonical names everything downstream keys on, so omitting it there would
+            # silently defeat the ledger even with the other three threaded.
+            where = {"source_id": source.source_id, "passage_ref": seg.passage_ref}
             for e in facts.entities:
-                canonical = resolver.resolve(e.name)
+                canonical = resolver.resolve(e.name, **where)
                 entities.setdefault(canonical, e.model_copy(update={"name": canonical}))
             for r in facts.relationships:
                 relationships.append(
                     r.model_copy(
                         update={
-                            "from_name": resolver.resolve(r.from_name),
-                            "to_name": resolver.resolve(r.to_name),
+                            "from_name": resolver.resolve(r.from_name, **where),
+                            "to_name": resolver.resolve(r.to_name, **where),
                         }
                     )
                 )
             for c in facts.variant_claims:
                 variant_claims.append(
-                    c.model_copy(update={"subject_name": resolver.resolve(c.subject_name)})
+                    c.model_copy(update={"subject_name": resolver.resolve(c.subject_name, **where)})
                 )
 
     candidates = relationship_claim_candidates(relationships, alias_map) + variant_claim_candidates(
@@ -137,7 +145,12 @@ def build_candidates(
     conflicts = detect_conflicts(candidates)
 
     return ExtractionResult(
-        list(entities.values()), relationships, conflicts, resolver.fuzzy_merges, failed_segments
+        list(entities.values()),
+        relationships,
+        conflicts,
+        resolver.fuzzy_merges,
+        failed_segments,
+        resolver.resolutions,
     )
 
 
@@ -149,6 +162,14 @@ def write_output(result: ExtractionResult, output_dir: Path = OUTPUT_DIR) -> Non
     )
     _write_claims_preserving_review(
         output_dir / "variant_claims_candidates.json", [asdict(c) for c in result.conflicts]
+    )
+    # P6 G1.3: the resolution ledger, alongside the three candidate files. Written
+    # blind (no merge-on-write): unlike variant_claims_candidates.json it is pure
+    # extraction output that nobody hand-edits, and it must describe *this* run --
+    # G0's key migration joins two of these on `surface`, so a ledger silently
+    # carrying rows from an earlier run would corrupt the mapping it feeds.
+    _write_json(
+        output_dir / "entity_resolutions.json", [r.as_dict() for r in result.resolutions]
     )
     if result.fuzzy_merges:
         print(f"{len(result.fuzzy_merges)} fuzzy entity merges — review during B3 spot-check:", flush=True)

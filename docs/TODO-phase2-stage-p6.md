@@ -187,21 +187,28 @@ explicitly accounted for, row by row.
 
 ## Track G1 — The resolution ledger
 
-- [ ] **G1.1** — `entity_resolver.py`: `resolve(name, source_id=None, passage_ref=None)`. **All four**
+- [x] **G1.1** — `entity_resolver.py`: `resolve(name, source_id=None, passage_ref=None)`. **All four**
       call sites in `run_extraction.build_candidates` already hold `source.source_id` and
       `seg.passage_ref` — `run_extraction.py:118` (entities), `:124` and `:125` (the two relationship
       endpoints), `:131` (variant-claim subjects). Thread all four; `:118` is the one that
       establishes the canonical names everything downstream keys on, so missing it silently defeats
-      the ledger.
-- [ ] **G1.2** — Record **every** decision, not only fuzzy: `{surface, canonical, method, score,
-      source_id, passage_ref}` with `method ∈ {exact, alias, registry, fuzzy, new}`. Today the alias
-      path that produced `Pluto`→Hades leaves no trace at all, and `fuzzy_merges` is printed by
-      `write_output` and then discarded.
-- [ ] **G1.3** — Persist to `ingestion/extraction/output/entity_resolutions.json` from
+      the ledger. → all four threaded via a shared `where` dict; guarded by
+      `test_build_candidates_threads_corpus_location_into_the_ledger_at_all_four_call_sites`.
+- [x] **G1.2** — `[DEVIATED - see DEVIATIONS.md #DEV-141]` Record **every** decision, not only fuzzy:
+      `{surface, canonical, method, score, source_id, passage_ref}` with
+      `method ∈ {exact, alias, registry, fuzzy, new}`. Today the alias path that produced
+      `Pluto`→Hades leaves no trace at all, and `fuzzy_merges` is printed by `write_output` and then
+      discarded. **Two calls the enum did not settle** (DEV-141): a memo hit re-reports the method
+      that *established* it (`new`→`exact` thereafter, but `fuzzy`/`alias` keep reporting their
+      layer, or G2's denominator and G6's signal both go blind on repeat sightings); and an
+      alias-rewritten first sighting is `alias`, not `new`. `registry` is declared with no producer
+      until G3.
+- [x] **G1.3** — Persist to `ingestion/extraction/output/entity_resolutions.json` from
       `write_output`, next to the three existing candidate files. Keep `fuzzy_merges` and its
-      existing print working so nothing downstream breaks.
-- [ ] **G1.4** — Unit tests: one ledger row per `resolve()` call; `method`/`score` correct for each
-      of the five paths.
+      existing print working so nothing downstream breaks. → written blind (no merge-on-write);
+      `fuzzy_merges` still appends per merge *event*, so the existing print is unchanged.
+- [x] **G1.4** — Unit tests: one ledger row per `resolve()` call; `method`/`score` correct for each
+      of the five paths. → 12 tests; four paths asserted, `registry` deferred to G3 (no producer yet).
 
 **Exit:** a re-run of `build_candidates` (cached segments, **zero API cost**) produces a ledger
 covering every resolution in the corpus. **Unblocks:** G2's measurement, G6's `resolved_by` signal,
@@ -213,6 +220,16 @@ G0's key migration.
 > ledger there is nothing to join an old canonical against. The track order already puts G1 ahead of
 > G2/G3; this makes the *artifact* (not just the code) a prerequisite. Persist it as
 > `entity_resolutions.baseline.json` alongside G1.3's `entity_resolutions.json`.
+
+> **Exit status (DEV-141):** code and tests are in; the exit itself is **pending a live run**, which
+> is the first thing to do when runs are authorized. The run is `build_candidates` over the cached
+> checkpoint — **zero API cost**, but it rewrites the tracked candidate files, so it is a real
+> mutation and not a dry run. Sequence: (1) re-run, (2) `cp entity_resolutions.json
+> entity_resolutions.baseline.json` **before anything touches `resolve()`**, (3) confirm the ledger
+> covers every resolution and that the candidate files are otherwise unchanged (G1 is ledger-only,
+> so any diff in `entities_candidates.json` / `relationships_candidates.json` is a regression, not
+> an expected result). Expect ~25–30k ledger rows / ~4–5 MB — see DEV-141 on whether both ledgers
+> belong in git.
 
 ---
 

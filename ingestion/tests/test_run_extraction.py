@@ -87,6 +87,63 @@ def test_build_candidates_resolves_aliases_stamps_provenance_and_detects_conflic
     assert all(c.trust_tier == 3 for c in aphrodite_conflicts)
 
 
+def test_build_candidates_threads_corpus_location_into_the_ledger_at_all_four_call_sites(tmp_path):
+    """P6 G1.1. The four sites are the entity loop, both relationship endpoints and the
+    variant-claim subject; the entity loop is the one that establishes the canonical
+    names everything downstream keys on, so a ledger missing it would be silently
+    useless. Asserted by *coverage of the resolved names*, not by call count, so the
+    test still means something if the loops are refactored."""
+    conn = _make_conn([])
+    checkpoint_path = tmp_path / ".checkpoint.jsonl"
+    with patch("extraction.run_extraction.extract_facts", side_effect=lambda text, source_id: _facts_for(source_id)):
+        result = build_candidates(conn, [SOURCE_A, SOURCE_B], RAW_TEXTS, checkpoint_path=checkpoint_path)
+
+    assert result.resolutions, "no ledger rows at all -- resolve() is not being recorded"
+    assert all(r.source_id in {"source-a", "source-b"} for r in result.resolutions)
+    assert all(r.passage_ref in {"Author A, Work A", "Author B, Work B"} for r in result.resolutions)
+
+    # source-b's facts name Jupiter/Juno only as entities and relationship endpoints,
+    # and Aphrodite only as a variant-claim subject -- so all three shapes must appear.
+    by_source = {(r.source_id, r.surface) for r in result.resolutions}
+    assert ("source-b", "Jupiter") in by_source  # entity loop + relationship `from`
+    assert ("source-b", "Juno") in by_source  # relationship `to`
+    assert ("source-b", "Aphrodite") in by_source  # variant-claim subject, never an entity here
+
+    # One row per resolve() call: 3 entities + 2 endpoints + 1 subject for source-a,
+    # 2 entities + 2 endpoints + 1 subject for source-b.
+    assert len(result.resolutions) == 6 + 5
+
+
+def test_write_output_writes_the_resolution_ledger(tmp_path):
+    conn = _make_conn([])
+    checkpoint_path = tmp_path / ".checkpoint.jsonl"
+    with patch("extraction.run_extraction.extract_facts", side_effect=lambda text, source_id: _facts_for(source_id)):
+        result = build_candidates(conn, [SOURCE_A, SOURCE_B], RAW_TEXTS, checkpoint_path=checkpoint_path)
+
+    write_output(result, output_dir=tmp_path)
+
+    ledger = json.loads((tmp_path / "entity_resolutions.json").read_text())
+    assert len(ledger) == len(result.resolutions)
+    assert set(ledger[0]) == {"surface", "canonical", "method", "score", "source_id", "passage_ref"}
+    # The alias path leaves a trace now -- ADR-022's "no trace whatsoever" case.
+    assert {"Jupiter": "Zeus", "Juno": "Hera"}.items() <= {
+        r["surface"]: r["canonical"] for r in ledger if r["method"] == "alias"
+    }.items()
+
+
+def test_the_ledger_describes_this_run_only(tmp_path):
+    """Written blind, unlike variant_claims_candidates.json: G0's key migration joins
+    two ledgers on `surface`, so one silently carrying an earlier run's rows would
+    corrupt the mapping it feeds."""
+    (tmp_path / "entity_resolutions.json").write_text(
+        json.dumps([{"surface": "Stale", "canonical": "Stale", "method": "new", "score": None,
+                     "source_id": "old", "passage_ref": "old"}]),
+        encoding="utf-8",
+    )
+    write_output(_result([]), output_dir=tmp_path)
+    assert json.loads((tmp_path / "entity_resolutions.json").read_text()) == []
+
+
 def test_write_output_produces_three_candidate_json_files(tmp_path):
     conn = _make_conn([])
     checkpoint_path = tmp_path / ".checkpoint.jsonl"
@@ -212,9 +269,14 @@ def _candidate(subject="Aphrodite", value="child of Zeus", source="source-a", ti
     return ClaimCandidate(subject, "parentage", value, source, "1.1", tier)
 
 
-def _result(conflicts):
+def _result(conflicts, resolutions=()):
     return SimpleNamespace(
-        entities=[], relationships=[], conflicts=conflicts, fuzzy_merges=[], failed_segments=[]
+        entities=[],
+        relationships=[],
+        conflicts=conflicts,
+        fuzzy_merges=[],
+        failed_segments=[],
+        resolutions=list(resolutions),
     )
 
 
