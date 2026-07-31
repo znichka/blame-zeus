@@ -28,6 +28,15 @@ AUDIT_DIR = Path(__file__).resolve().parent
 DEFAULT_CANDIDATES_DIR = AUDIT_DIR.parent / "extraction" / "output"
 DEFAULT_REPORTS_DIR = AUDIT_DIR / "reports"
 DEFAULT_WAIVERS_PATH = AUDIT_DIR / "audit-waivers.json"
+DEFAULT_BACKLOG_PATH = AUDIT_DIR / "backlog.json"
+
+# Stage P5 Track A7a: checks whose waivers include the P4 F0a subject-tranche
+# scoping decision (DEV-109) that Track E5/A6 relocate to backlog.json. Scoped
+# to these two checks, not a blind reason-prefix scan -- A1/A4/A10 also cite
+# "F0b/F0c (Stage P4 Track F0, DEV-109)" for unrelated, genuinely permanent
+# waivers (82/9/1 entries, verified live), and a blind scan would wrongly
+# reject those too `[DEVIATED - see DEVIATIONS.md #DEV-133]`.
+SCOPE_SHAPED_WAIVER_CHECKS = ("A2", "A6")
 
 
 def discover_checks() -> list:
@@ -49,21 +58,55 @@ def discover_checks() -> list:
     return sorted(checks, key=lambda m: m.NAME)
 
 
+def _load_entries(path: Path, kind: str) -> list[dict]:
+    """Shared loader for both disposition files: each is a list of
+    `{"check", "subject", "reason"}` objects, and an entry without a
+    non-empty `reason` is rejected at load time -- "clean, waived, or
+    deferred, always with a note" means the note is mandatory, not optional,
+    in either file."""
+    if not path.exists():
+        return []
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    for entry in raw:
+        if not entry.get("reason", "").strip():
+            raise ValueError(
+                f"{kind} for check={entry.get('check')!r} subject={entry.get('subject')!r}"
+                " is missing a written reason"
+            )
+    return raw
+
+
+def _reject_scope_shaped(waivers: list[dict]) -> None:
+    """A7a: guards against a scope-shaped waiver re-entering `audit-waivers.json`
+    once the E5/A6 relocation has landed. Fires only for `SCOPE_SHAPED_WAIVER_CHECKS`
+    (A2, A6) whose reason still carries the F0b/F0c scope-shaped prefix -- see that
+    constant's docstring for why the match is check-scoped rather than a blind
+    reason-prefix scan."""
+    for waiver in waivers:
+        if waiver.get("check") in SCOPE_SHAPED_WAIVER_CHECKS and waiver.get("reason", "").startswith(("F0b", "F0c")):
+            raise ValueError(
+                f"waiver for check={waiver.get('check')!r} subject={waiver.get('subject')!r} still carries a"
+                " scope-shaped F0b/F0c reason -- move it to backlog.json instead of waiving it (A7a)"
+            )
+
+
 def load_waivers(path: Path) -> list[dict]:
     """A5r waiver mechanism: `audit-waivers.json` is a list of
     `{"check", "subject", "reason"}` objects. A waiver without a non-empty
     `reason` is rejected at load time -- "clean or waived with a note" (the P3
-    exit) means the note is mandatory, not optional."""
-    if not path.exists():
-        return []
-    raw = json.loads(path.read_text(encoding="utf-8"))
-    for waiver in raw:
-        if not waiver.get("reason", "").strip():
-            raise ValueError(
-                f"waiver for check={waiver.get('check')!r} subject={waiver.get('subject')!r}"
-                " is missing a written reason"
-            )
-    return raw
+    exit) means the note is mandatory, not optional. A7a additionally rejects
+    any remaining scope-shaped A2/A6 waiver -- that content belongs in
+    `backlog.json`, loaded separately via `load_backlog`."""
+    waivers = _load_entries(path, "waiver")
+    _reject_scope_shaped(waivers)
+    return waivers
+
+
+def load_backlog(path: Path) -> list[dict]:
+    """Stage P5 Track E5: `backlog.json` holds relocated scope-shaped findings --
+    a queue position, not a permanent judgement (see `Finding.defer`'s docstring).
+    Same shape and same mandatory-reason discipline as `audit-waivers.json`."""
+    return _load_entries(path, "backlog entry")
 
 
 def _apply_waiver(finding: Finding, waivers: Iterable[dict]) -> Finding:
@@ -73,21 +116,38 @@ def _apply_waiver(finding: Finding, waivers: Iterable[dict]) -> Finding:
     return finding
 
 
+def _apply_backlog(finding: Finding, backlog: Iterable[dict]) -> Finding:
+    for entry in backlog:
+        if entry.get("check") == finding.check and entry.get("subject") == finding.subject:
+            return finding.defer(entry["reason"])
+    return finding
+
+
 def run_checks(
     checks: list,
     candidates_dir: Path | None,
     db_conn: object | None,
     waivers: Iterable[dict] = (),
+    backlog: Iterable[dict] = (),
 ) -> "AuditRun":
     """The pure aggregation core -- takes already-resolved check modules (or
     fixtures conforming to the same shape) plus already-opened sources, so it's
-    testable with fakes and needs neither discovery nor a live DB."""
+    testable with fakes and needs neither discovery nor a live DB. Backlog is
+    only consulted for a finding a waiver didn't already cover -- the two files
+    are disjoint by construction (E5/A6 moved rows between them), but a finding
+    can only carry one disposition."""
     waivers = list(waivers)
+    backlog = list(backlog)
     results: list[tuple[str, CheckResult]] = []
     for check in checks:
         result = check.run(candidates_dir, db_conn)
-        waived_findings = tuple(_apply_waiver(f, waivers) for f in result.findings)
-        results.append((check.NAME, CheckResult(findings=waived_findings, summary=result.summary)))
+        processed = []
+        for f in result.findings:
+            f = _apply_waiver(f, waivers)
+            if not f.waived:
+                f = _apply_backlog(f, backlog)
+            processed.append(f)
+        results.append((check.NAME, CheckResult(findings=tuple(processed), summary=result.summary)))
     return AuditRun(checks=tuple(results), generated_at=_dt.datetime.now(_dt.timezone.utc).isoformat())
 
 
@@ -102,7 +162,11 @@ class AuditRun:
 
     @property
     def exit_code(self) -> int:
-        return 1 if any(not f.waived for f in self.all_findings) else 0
+        return 1 if any(not f.waived and not f.deferred for f in self.all_findings) else 0
+
+    @property
+    def deferred_count(self) -> int:
+        return sum(1 for f in self.all_findings if f.deferred)
 
 
 def write_findings_json(run: AuditRun, out_dir: Path, date_str: str) -> Path:
@@ -122,32 +186,49 @@ def write_findings_json(run: AuditRun, out_dir: Path, date_str: str) -> Path:
 def _check_badge(result: CheckResult) -> str:
     if not result.findings:
         return "PASS"
-    if all(f.waived for f in result.findings):
-        return "WAIVED"
-    return "FINDINGS"
+    if any(not f.waived and not f.deferred for f in result.findings):
+        return "FINDINGS"
+    if any(f.deferred for f in result.findings):
+        return "DEFERRED"
+    return "WAIVED"
+
+
+def _deferred_count(result: CheckResult) -> int:
+    return sum(1 for f in result.findings if f.deferred)
 
 
 def write_report_md(run: AuditRun, out_dir: Path, date_str: str) -> Path:
     total = len(run.all_findings)
-    unwaived = sum(1 for f in run.all_findings if not f.waived)
+    unwaived = sum(1 for f in run.all_findings if not f.waived and not f.deferred)
+    deferred = run.deferred_count
     lines = [
         f"# Audit report — {date_str}",
         "",
-        f"**Summary:** {total} finding(s) across {len(run.checks)} check(s), {unwaived} unwaived.",
+        f"**Summary:** {total} finding(s) across {len(run.checks)} check(s), {unwaived} unwaived, {deferred} deferred.",
         "",
     ]
     for name, result in run.checks:
-        lines.append(f"## {name} — {_check_badge(result)}")
+        badge = _check_badge(result)
+        deferred_n = _deferred_count(result)
+        header = f"## {name} — {badge}"
+        if deferred_n and badge != "DEFERRED":
+            header += f" ({deferred_n} deferred)"
+        lines.append(header)
         lines.append("")
         if result.summary:
             lines.append(result.summary)
             lines.append("")
         if result.findings:
-            lines.append("| Severity | Subject | Detail | Suggested fix | Waived |")
+            lines.append("| Severity | Subject | Detail | Suggested fix | Disposition |")
             lines.append("|---|---|---|---|---|")
             for f in result.findings:
-                waived_cell = f"yes — {f.waiver_reason}" if f.waived else "no"
-                lines.append(f"| {f.severity} | {f.subject} | {f.detail} | {f.suggested_fix} | {waived_cell} |")
+                if f.deferred:
+                    disposition_cell = f"deferred — {f.deferred_reason}"
+                elif f.waived:
+                    disposition_cell = f"waived — {f.waiver_reason}"
+                else:
+                    disposition_cell = "no"
+                lines.append(f"| {f.severity} | {f.subject} | {f.detail} | {f.suggested_fix} | {disposition_cell} |")
             lines.append("")
     path = out_dir / f"{date_str}.md"
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -182,6 +263,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--out", type=Path, default=DEFAULT_REPORTS_DIR, help="reports output directory")
     parser.add_argument("--waivers", type=Path, default=DEFAULT_WAIVERS_PATH, help="audit-waivers.json override")
+    parser.add_argument("--backlog", type=Path, default=DEFAULT_BACKLOG_PATH, help="backlog.json override")
     args = parser.parse_args(argv)
 
     use_candidates = not args.db or args.candidates
@@ -198,7 +280,8 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"no check named {args.only!r} found", file=sys.stderr)
                 return 2
         waivers = load_waivers(args.waivers)
-        run = run_checks(checks, candidates_dir, db_conn, waivers)
+        backlog = load_backlog(args.backlog)
+        run = run_checks(checks, candidates_dir, db_conn, waivers, backlog)
     finally:
         if db_conn is not None:
             db_conn.close()
@@ -208,9 +291,13 @@ def main(argv: list[str] | None = None) -> int:
     report_path = write_report_md(run, args.out, date_str)
 
     for name, result in run.checks:
-        print(f"{name}: {_check_badge(result)} -- {result.summary}")
+        deferred_n = _deferred_count(result)
+        suffix = f" ({deferred_n} deferred)" if deferred_n else ""
+        print(f"{name}: {_check_badge(result)} -- {result.summary}{suffix}")
     print(f"\nfindings: {findings_path}")
     print(f"report:   {report_path}")
+    if run.deferred_count:
+        print(f"backlog:  {run.deferred_count} finding(s) deferred (see {args.backlog})")
 
     return run.exit_code
 

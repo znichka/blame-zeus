@@ -184,6 +184,7 @@ Full rules in `docs/TECH_GUARDRAILS.md`. Critical ones:
 - **Public-domain translations only** — Frazer 1921, Evelyn-White 1914, Murray 1919–1924; no modern translations
 - **No HTML scraping** — corpus loaded from local .txt files in `ingestion/corpus/`
 - **Review-gated `variant_claims`** — LLM-extracted candidates (ADR-004), but no row enters the runtime table without explicit per-row developer review and promotion to `trust_tier=1`; no unreviewed automated insertion
+- **The `ingestion/audit/` seeding rule and findings rule** (Stage P5, `docs/TODO2.md` `## Cross-cutting rules`) — every seeding batch (Track C/D only) names its target table/row-count up front and closes only on an `A16` (`coverage.py`) coverage move, always stated against the reachable ceiling, never the raw candidate pool; at most one new `audit/` check per 250 net rows seeded (bugfixes to an existing check spend the same budget); a defect surfaced mid-batch is routed by the 5-class scheme, not chased immediately
 
 ## Corpus & Data Sources
 

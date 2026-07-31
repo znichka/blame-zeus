@@ -111,6 +111,14 @@ def test_rank_subjects_empty_graph_returns_empty_ranking():
     assert rank_subjects(degree={}, mentions={}) == []
 
 
+def test_rank_subjects_excludes_placeholder_names():
+    ranks = rank_subjects(
+        degree={"Zeus": 5, "<UNKNOWN>": 133},
+        mentions={"Zeus": 2, "<none>": 10, "": 4},
+    )
+    assert [r.name for r in ranks] == ["Zeus"]
+
+
 def test_rank_subjects_includes_group_and_promoted_counts_when_given():
     ranks = rank_subjects(
         degree={"Aphrodite": 2},

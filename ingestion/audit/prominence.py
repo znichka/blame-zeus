@@ -25,6 +25,7 @@ from pathlib import Path
 from extraction.claim_type_normalizer import load_alias_map, normalize
 
 from audit.contract import CheckResult
+from audit.drop_accounting import PLACEHOLDER_NAMES
 from audit.duplicate_entities import load_entity_aliases_from_db, load_known_aliases
 
 NAME = "A8"
@@ -120,10 +121,12 @@ def rank_subjects(
     promoted_group_counts: dict[str, int] | None = None,
 ) -> list[SubjectRank]:
     """Pure core -- no I/O (B4). Ordered by descending composite, ties broken alphabetically; an
-    empty input returns an empty ranking without raising."""
+    empty input returns an empty ranking without raising. Excludes `PLACEHOLDER_NAMES` (A9) --
+    a token that can never become an entity does not belong in a tranche-selection ranking,
+    however high its degree or mention count."""
     group_counts = group_counts or {}
     promoted_group_counts = promoted_group_counts or {}
-    names = set(degree) | set(mentions)
+    names = (set(degree) | set(mentions)) - PLACEHOLDER_NAMES
     ranks = [
         SubjectRank(
             name=name,

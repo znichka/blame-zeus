@@ -1,0 +1,48 @@
+{
+  "entities": {
+    "seeded": 1990,
+    "nameSpaceCeiling": 2334,
+    "coverage": 0.8526135389888603,
+    "note": "denominator is the reachable name-space (seeded + distinct unknown names), not the raw candidate pool"
+  },
+  "relationships": {
+    "seeded": 3367,
+    "cleanedCandidates": 6882,
+    "coverage": 0.489247311827957,
+    "dropSplit": {
+      "unknownName": 901,
+      "exactDup": 1579,
+      "contestedCollapse": 1035,
+      "residual": 0
+    }
+  },
+  "variantClaims": {
+    "headline": {
+      "promoted": 72,
+      "reachable": 718,
+      "pool": 764,
+      "coverage": 0.10027855153203342
+    },
+    "decidedFraction": {
+      "decided": 734,
+      "candidates": 7429,
+      "coverage": 0.0988019921927581
+    },
+    "rowCoverage": {
+      "seeded": 300,
+      "reachableCeiling": 4743,
+      "coverage": 0.06325110689437065
+    },
+    "ceilingDerivation": {
+      "candidates": 7429,
+      "droppedSubjectAbsent": 359,
+      "droppedDedupCollapse": 2327,
+      "reachableRows": 4743
+    }
+  },
+  "mythsAndParticipants": {
+    "myths": 5,
+    "mythParticipants": 22,
+    "status": "n/a (frozen -- see docs/DATA-GAPS.md coverage statement)"
+  }
+}

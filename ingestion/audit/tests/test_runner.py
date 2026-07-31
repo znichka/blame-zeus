@@ -108,6 +108,100 @@ def test_report_badge_is_waived_when_every_finding_is_waived(tmp_path):
     assert "## A1 — WAIVED" in report
 
 
+def test_deferred_finding_does_not_fail_the_run():
+    checks = [_fake_check("A2", findings=[_finding(check="A2", subject="candidates: <UNKNOWN>")])]
+    backlog = [{"check": "A2", "subject": "candidates: <UNKNOWN>", "reason": "relocated F0c GAP-002 entry (E5)"}]
+
+    run = runner.run_checks(checks, candidates_dir=None, db_conn=None, backlog=backlog)
+
+    assert len(run.all_findings) == 1
+    assert run.all_findings[0].deferred is True
+    assert run.all_findings[0].deferred_reason == "relocated F0c GAP-002 entry (E5)"
+    assert run.exit_code == 0
+    assert run.deferred_count == 1
+
+
+def test_waiver_takes_precedence_over_a_matching_backlog_entry():
+    checks = [_fake_check("A1", findings=[_finding(check="A1", subject="dup")])]
+    waivers = [{"check": "A1", "subject": "dup", "reason": "waived, see DEV-999"}]
+    backlog = [{"check": "A1", "subject": "dup", "reason": "would defer, but waiver already matched"}]
+
+    run = runner.run_checks(checks, candidates_dir=None, db_conn=None, waivers=waivers, backlog=backlog)
+
+    assert run.all_findings[0].waived is True
+    assert run.all_findings[0].deferred is False
+
+
+def test_unmatched_backlog_entry_leaves_finding_undeferred():
+    checks = [_fake_check("A2", findings=[_finding(check="A2", subject="real-issue")])]
+    backlog = [{"check": "A2", "subject": "some-other-issue", "reason": "not relevant here"}]
+
+    run = runner.run_checks(checks, candidates_dir=None, db_conn=None, backlog=backlog)
+
+    assert run.all_findings[0].deferred is False
+    assert run.exit_code == 1
+
+
+def test_load_backlog_missing_file_returns_empty_list(tmp_path):
+    assert runner.load_backlog(tmp_path / "does-not-exist.json") == []
+
+
+def test_load_backlog_rejects_missing_reason(tmp_path):
+    path = tmp_path / "backlog.json"
+    path.write_text(json.dumps([{"check": "A2", "subject": "x", "reason": ""}]))
+
+    with pytest.raises(ValueError, match="missing a written reason"):
+        runner.load_backlog(path)
+
+
+def test_load_waivers_rejects_a_remaining_scope_shaped_a6_entry(tmp_path):
+    path = tmp_path / "audit-waivers.json"
+    path.write_text(
+        json.dumps([{"check": "A6", "subject": "x", "reason": "F0b/F0c (Stage P4 Track F0, DEV-109): ..."}])
+    )
+
+    with pytest.raises(ValueError, match="scope-shaped"):
+        runner.load_waivers(path)
+
+
+def test_load_waivers_rejects_a_remaining_scope_shaped_a2_entry(tmp_path):
+    path = tmp_path / "audit-waivers.json"
+    path.write_text(json.dumps([{"check": "A2", "subject": "x", "reason": "F0c (Stage P4 Track F0, DEV-109): ..."}]))
+
+    with pytest.raises(ValueError, match="scope-shaped"):
+        runner.load_waivers(path)
+
+
+def test_load_waivers_does_not_reject_an_unrelated_check_with_an_f0_prefixed_reason(tmp_path):
+    # A1/A4/A10 all cite "F0b/F0c (Stage P4 Track F0, DEV-109)" for genuinely permanent,
+    # non-scope-shaped waivers (verified live: 82/9/1 entries) -- the guard must not key
+    # off the bare reason prefix, only off SCOPE_SHAPED_WAIVER_CHECKS (A7a).
+    path = tmp_path / "audit-waivers.json"
+    path.write_text(
+        json.dumps(
+            [
+                {
+                    "check": "A1",
+                    "subject": "candidates: Anthippe / Xanthippe",
+                    "reason": "F0c standing waiver (Stage P4 Track F0, DEV-109): permanent by design",
+                }
+            ]
+        )
+    )
+
+    assert runner.load_waivers(path) != []
+
+
+def test_report_badge_is_deferred_when_a_finding_is_deferred(tmp_path):
+    checks = [_fake_check("A2", findings=[_finding(check="A2", subject="known")])]
+    backlog = [{"check": "A2", "subject": "known", "reason": "relocated, see DEV-133"}]
+    run = runner.run_checks(checks, candidates_dir=None, db_conn=None, backlog=backlog)
+
+    report = runner.write_report_md(run, tmp_path, "2026-07-30").read_text()
+
+    assert "## A2 — DEFERRED" in report
+
+
 def test_discover_checks_finds_the_real_cycle_check_adapter():
     checks = runner.discover_checks()
 

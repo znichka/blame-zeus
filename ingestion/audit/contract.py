@@ -18,9 +18,16 @@ from typing import Protocol
 
 @dataclass(frozen=True)
 class Finding:
-    """One reportable issue from one check. `waived` + `waiver_reason` start unset
-    -- the runner applies waivers (A5r) after a check returns, so individual checks
-    never need to know about the waiver file."""
+    """One reportable issue from one check. `waived`/`waiver_reason` and
+    `deferred`/`deferred_reason` all start unset -- the runner applies waivers
+    (A5r) and backlog entries (Stage P5 Track E5) after a check returns, so
+    individual checks never need to know about either file.
+
+    A waiver is a permanent judgement that the finding will never change; a
+    deferral is a queue position -- a scope-shaped finding relocated to
+    `backlog.json` because it names review work not yet reached, not a verdict
+    on the row (E5). Both suppress `AuditRun.exit_code`; only a deferral is
+    expected to shrink as that backlog is worked."""
 
     check: str
     severity: str  # "error" | "warning"
@@ -29,11 +36,18 @@ class Finding:
     suggested_fix: str
     waived: bool = False
     waiver_reason: str | None = None
+    deferred: bool = False
+    deferred_reason: str | None = None
 
     def waive(self, reason: str) -> "Finding":
         if not reason or not reason.strip():
             raise ValueError("a waiver requires a non-empty written reason")
         return replace(self, waived=True, waiver_reason=reason)
+
+    def defer(self, reason: str) -> "Finding":
+        if not reason or not reason.strip():
+            raise ValueError("a deferral requires a non-empty written reason")
+        return replace(self, deferred=True, deferred_reason=reason)
 
     def to_dict(self) -> dict:
         return {
@@ -44,6 +58,8 @@ class Finding:
             "suggestedFix": self.suggested_fix,
             "waived": self.waived,
             "waiverReason": self.waiver_reason,
+            "deferred": self.deferred,
+            "deferredReason": self.deferred_reason,
         }
 
 

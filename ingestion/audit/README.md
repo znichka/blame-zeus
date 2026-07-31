@@ -375,13 +375,31 @@ switch to an additive follow-up migration (a `V17_1`-style file), exactly like `
   cycle per strongly-connected component**, not every elementary cycle inside it — a tangled
   region with several overlapping reversed edges shows up as one (possibly long) reported chain.
   That's sufficient to flag "this area needs manual untangling"; exhaustive elementary-cycle
-  enumeration (Johnson's algorithm) is left for Phase 3 if it turns out to matter.
+  enumeration (Johnson's algorithm) is a known, accepted limitation, not an open item -- see the
+  candidate-vs-DB note immediately below for why (Stage P5 Track A8, DEV-066's home after
+  DEV-093/128 established there is no "Phase 3" left for it to move to).
+- **The candidate layer is expected to be cyclic; the DB is the gated layer, and that's where
+  acyclicity is asserted** (Stage P5 Track A8). `relationships_candidates_cleaned.json` carries
+  86 `parent_of` cycles as of this stage's A16 baseline — each one is a real disagreement between
+  sources or an unresolved reversed edge still awaiting a fix at the candidate-JSON layer (the
+  workflow two bullets up). The **seeded** graph (`python -m audit.cycle_check --db`) is measurably
+  acyclic since DEV-118 and is the only layer `seedgen`/Track C actually gate on. Carrying the
+  candidate-layer count as an open backlog item conflated "not yet fixed at the source" with "the
+  live data is broken" — it isn't; A3's own summary line states the count every run, which is
+  sufficient surfacing without a separate tracked item.
 - Filters to `relation == "parent_of"` by default; `--relation a,b` (or the `relations` param on
-  `find_cycles`) widens it — Phase 3's `A3` is expected to check more relation types.
+  `find_cycles`) widens it, if a future data type ever needs it — A3 checking more relation types is
+  not itself planned work.
 - Two readers share the same pure core: `load_from_candidates` (the editable source of truth a fix
   actually lands in) and `load_from_db` (the live, already-seeded graph, read via the read-only
   `zeus_app` user under the same `statement_timeout` guardrail `core-api` runs under) — running
   both confirms the seeded graph actually matches what's in the candidates file.
+- **Stage P5's seeding rule and findings rule** (`docs/TODO2.md` `## Cross-cutting rules`) govern
+  every check in this package: a batch names its table/row-count target up front and closes only on
+  an `A16` coverage move (Track C/D only; instrument/engine/retire tracks name the seeding work they
+  unblock instead), at most one new `audit/` check per 250 net rows seeded, and a new defect found
+  mid-batch is routed by the 5-class scheme (reaches users now / blocks rows in hand / affects rows
+  not yet reached / needs new tooling / mechanically undetectable) rather than chased immediately.
 
 ---
 
@@ -605,3 +623,67 @@ plainly: on this check the alias map bought coverage, not defects, and Ovid's `k
 `Tlepolemus | killed by Sarpedon` is correct (Iliad 5.655 kills him, naming the victim with "him"),
 as is `Amphimedon | Killed by Telemachus` (the same passage has Amphimedon *wounding* Telemachus
 first). Both waived with the passage quoted. **First sweep: 21 findings → 17 rejected, 4 waived.**
+
+---
+
+## `coverage.py` — the A16 stage-coverage instrument (Stage P5 Track A1/A2/A2a/A3)
+
+Answers "are we drifting?" in one command: `python -m audit.coverage` (or `--only A16` through the
+aggregate runner) prints six metric lines — `entities` name-space coverage, `relationships` edge
+coverage plus its four-way drop split, and `variant_claims`' headline (conflict-group coverage) plus
+two secondaries (decided fraction, row coverage) — followed by the frozen `myths`/`myth_participants`
+line. **Never emits a finding**, mirroring A8's reporting-only contract (B9): coverage is data, not a
+defect, so it can never accumulate a waiver, gate `seedgen`, or need a backlog entry. That is the
+detector budget's standing exemption for this check specifically (the seeding rule, `TODO2.md`
+`## Cross-cutting rules`) — a check that structurally cannot emit a finding is an instrument, not a
+detector.
+
+**Every figure is stated against its reachable ceiling, never the raw candidate pool** — the stage's
+own standing rule, since the `variant_claims` candidate pool is unreachable by ~36% (rows) even after
+every conceivable review decision (subjects absent from `entities`, and the 4-tuple promotion-dedup
+collapsing multi-attestation within one source). Both ceilings are derived by running
+`seedgen.variant_claims_gen._reviewed_rows` against a **tier-blind copy** of every candidate (every
+`trust_tier` forced to 1, simulating "if everything were reviewed and approved") rather than
+reimplementing the filter, so neither ceiling can drift from what `seedgen` actually promotes. The
+group ceiling reuses the same idea at group granularity: a `(subject, claim_type)` group is
+"reachable" iff its subject exists in the confirmed entity set — the dedup half of the filter can
+only ever remove literal duplicate rows (it can't change a group's distinct-source or
+distinct-claim-value count, both computed pre-dedup), so only the subject-absence half can make a
+whole group unreachable.
+
+`group_inventory.build_group_inventory` (A10) is called here with **both** alias maps (entity +
+claim_type) — `group_inventory.run()` itself only ever passes the claim_type map, which is why A10's
+own group total (838, alias-blind) differs from this module's alias-resolved one (795 —
+DEV-128/129). Passing only one map to a caller that needs both was exactly DEV-126's bug shape;
+`coverage.py` builds the entity alias map itself (`prominence._entity_alias_map`) rather than trusting
+either check's own default.
+
+`coverage.json` is a **report**: `run()` overwrites it on every invocation, and nothing compares
+against the previous value. `coverage_history.json` is **accumulated committed state**, appended only
+from `main()`'s `--out` CLI path, never from `run()` — mirroring the split DEV-127 established for
+`group_inventory_baseline.json` (a `run()` that also mutated committed state on every call, including
+no-DB runs, is what failed open there). Today's baseline: `entities` 1990/2334 (85.3%), `relationships`
+3367/6882 (48.9%), `variant_claims` group headline 72/718 (pool 764), row coverage 300/4743 (6.3%),
+`myths`/`myth_participants` 5/22 (frozen).
+
+## `backlog.json` — the deferred-finding disposition (Stage P5 Track E5)
+
+Same shape as `audit-waivers.json` (`{"check", "subject", "reason"}`, mandatory `reason`), loaded by
+`load_backlog` and applied by `run_checks` **only to a finding a waiver didn't already claim** — the
+two files are disjoint by construction, but a finding can only carry one disposition. A matched
+finding is marked `Finding.deferred` (never `waived`): both suppress `AuditRun.exit_code`, but a
+waiver is a permanent judgement the finding will never change, while a deferral is a queue position —
+scope-shaped review work not yet reached, expected to shrink as Track C works, not a verdict on the
+row. `_check_badge` reports `DEFERRED` when a check's findings are covered by backlog entries (and
+`WAIVED` only when every finding is a true waiver); the runner's per-check print line and
+`write_report_md` both surface the live deferred count so it stays loud rather than silent.
+
+Holds **949** entries as of this stage's landing: the 347 `A2` entries whose waiver reason cited
+GAP-002's unknown-name long tail, and the 602 `A6` entries whose waiver reason cited the P4 F0a
+subject-tranche scoping decision (DEV-109) — both relocated out of `audit-waivers.json` because they
+recorded a scoping decision, not a per-row judgement. **`load_waivers`' `_reject_scope_shaped` guard**
+now raises if either set is ever reintroduced as a waiver, scoped specifically to `check in ("A2",
+"A6")` with a reason still starting `F0b`/`F0c` — **not** a blind reason-prefix scan, because three
+other checks (`A1`: 82 entries, `A4`: 9, `A10`: 1) also cite the identical "F0b/F0c (Stage P4 Track
+F0, DEV-109)" convention for genuinely permanent, unrelated waivers (verified live before this landed)
+that a blind scan would have wrongly rejected too.

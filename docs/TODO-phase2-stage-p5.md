@@ -223,11 +223,11 @@ retroactively, DEV-125 through DEV-127 were all class 3 or 4 treated as class 1.
 
 *Nothing else starts until "are we drifting?" is answerable in one command.*
 
-- [ ] **A1** — Write `ingestion/audit/coverage.py`, `NAME = "A16"`. Sibling of `prominence.py` (A8)
+- [x] **A1** — Write `ingestion/audit/coverage.py`, `NAME = "A16"`. Sibling of `prominence.py` (A8)
       and `group_inventory.py` (A10); conforms to `ingestion/audit/contract.py` (auto-discovered via
       `NAME` + `run()`, no registration). **Must always return `CheckResult(findings=(), summary=...)`**
       — it is data, never a defect, so it can never accumulate waivers or gate `seedgen`.
-- [ ] **A2** — Metrics. Numerator from the live DB (`_connect_db()` in `audit/__main__.py`),
+- [x] **A2** — Metrics. Numerator from the live DB (`_connect_db()` in `audit/__main__.py`),
       denominator from `ingestion/extraction/output/`. **State the layer in every summary line**
       (the existing cross-cutting rule). **Every metric must pass the alias maps** — A10 reports
       795 groups with them and 838 without, and the alias-blind pair is what went into DEV-128.
@@ -255,7 +255,7 @@ retroactively, DEV-125 through DEV-127 were all class 3 or 4 treated as class 1.
       - The four-way drop split needs `db_conn` too: `compute_drop_accounting` without the
         `claim_type`/`relation` alias maps computes `seeded_count = 3,485`, which will not match the
         live 3,367 headline. A2's existing drift check already depends on passing them — do the same.
-- [ ] **A2a** — Report **both `variant_claims` ceilings**, since they are the numbers that decide
+- [x] **A2a** — Report **both `variant_claims` ceilings**, since they are the numbers that decide
       whether a batch "failed" `[DEVIATED - see DEVIATIONS.md #DEV-132]`:
       - **rows:** `candidates → −(subject absent from entities) → −(4-tuple dedup collapse) →
         seedable`. Today: `7,429 → −359 → −2,327 → 4,743` (63.8%).
@@ -266,7 +266,7 @@ retroactively, DEV-125 through DEV-127 were all class 3 or 4 treated as class 1.
         while three other places already depended on the group number.
       Reuse `seedgen.variant_claims_gen._reviewed_rows` against a tier-blind copy of the candidates
       rather than reimplementing the filter, so neither ceiling can drift from what seedgen does.
-- [ ] **A3** — Emit `coverage.json` from `run()`. **`coverage_history.json` is appended only from a
+- [x] **A3** — Emit `coverage.json` from `run()`. **`coverage_history.json` is appended only from a
       `main()`/`--out` CLI path, never from `run()`** `[DEVIATED - see DEVIATIONS.md #DEV-132]`, and
       that split is the whole point: `coverage.json` is a *report* — re-running reproduces it and
       nothing compares against the previous value — while an appended history is **accumulated
@@ -279,12 +279,12 @@ retroactively, DEV-125 through DEV-127 were all class 3 or 4 treated as class 1.
 - [x] **A4** — Append the **seeding rule** to `## Cross-cutting rules` in `docs/TODO2.md`. *Landed
       2026-07-30 with this checklist (DEV-128), ahead of the rest of Track A, because it is the
       guard that stops further drift while the work proceeds.*
-  - [ ] **A4a** — Mirror as a 3-line pointer in `ingestion/audit/README.md` under `## Design notes`
+  - [x] **A4a** — Mirror as a 3-line pointer in `ingestion/audit/README.md` under `## Design notes`
         (where check-authors actually read).
-  - [ ] **A4b** — One bullet in `CLAUDE.md`'s **Key Tech Guardrails**.
+  - [x] **A4b** — One bullet in `CLAUDE.md`'s **Key Tech Guardrails**.
 - [x] **A5** — Append the **findings rule** to `## Cross-cutting rules` in `docs/TODO2.md`. *Landed
       2026-07-30 with this checklist (DEV-128), same rationale as A4.*
-- [ ] **A6** — **Move** the **602 scope-shaped A6 waivers** out of
+- [x] **A6** — **Move** the **602 scope-shaped A6 waivers** out of
       `ingestion/audit/audit-waivers.json` and into E5's backlog artifact `[DEVIATED - see
       DEVIATIONS.md #DEV-130]`. They were waived for being outside a frozen tranche — that is a
       backlog, not a waiver. They become the Track C priority label.
@@ -315,7 +315,7 @@ retroactively, DEV-125 through DEV-127 were all class 3 or 4 treated as class 1.
       Two earlier statements are corrected here: DEV-128's claim that all 649 share one stated
       reason, and DEV-129's four-row table, whose rows summed to **642** and which described all 47
       keepers as `A6 triage`-prefixed when only 45 are.
-- [ ] **A7** — **Move every scope-shaped waiver out first (E5 for the 347 A2 entries, A6 for the 602
+- [x] **A7** — **Move every scope-shaped waiver out first (E5 for the 347 A2 entries, A6 for the 602
       A6 entries), or A7 breaks the whole suite.** `load_waivers` (`audit/__main__.py:52`) **raises
       `ValueError`** at load time and is called unconditionally at line 199, *before* `--only`
       filtering. So the moment it rejects scope-shaped waivers while the 347 A2 entries
@@ -324,7 +324,7 @@ retroactively, DEV-125 through DEV-127 were all class 3 or 4 treated as class 1.
       criterion, and every step of Track C's per-batch loop. A7 therefore lands only once
       `audit-waivers.json` holds **zero** `F0b`/`F0c`-prefixed entries, at which point the filter is
       a guard against reintroduction rather than a change of behaviour. Order: **E5 → A6 → A7.**
-  - [ ] **A7a** — Implement the scope-shaped filter as an **allow-list on the revoke side**: reject a
+  - [x] **A7a** — Implement the scope-shaped filter as an **allow-list on the revoke side**: reject a
         waiver iff `reason.startswith(("F0b", "F0c"))` `[DEVIATED - see DEVIATIONS.md #DEV-130]`.
         **Do not key it off the keep side.** 2 of the 47 A6 entries that must survive begin
         `GAP-007 / DEV-122:` and `DEV-122:` rather than `A6 triage`, so a "keep iff the reason starts
@@ -333,13 +333,18 @@ retroactively, DEV-125 through DEV-127 were all class 3 or 4 treated as class 1.
         keying off the revoke side removes it without needing the structured `scope: true` field that
         finding proposed. Unit test both directions in `ingestion/audit/tests/`, asserting explicitly
         that **all 47 non-`F0b`/`F0c` A6 entries survive, the two `DEV-122` ones by name.**
-- [ ] **A8** — A3's 86 candidate-layer cycles (verified at HEAD: `A3: FINDINGS -- candidates: 86
+        **Corrected during implementation** `[DEVIATED - see DEVIATIONS.md #DEV-133]`: "iff
+        `reason.startswith(...)`" alone is a blind reason-prefix scan, not check-scoped — 92 waivers
+        under `A1`/`A4`/`A10` also start `F0b`/`F0c` for unrelated, genuinely permanent dispositions
+        (verified live: 82/9/1) that this wording would have wrongly rejected too. Landed as
+        `SCOPE_SHAPED_WAIVER_CHECKS = ("A2", "A6")` gating the match instead.
+- [x] **A8** — A3's 86 candidate-layer cycles (verified at HEAD: `A3: FINDINGS -- candidates: 86
       parent_of cycle(s); db: 0 parent_of cycle(s)`): state once in `ingestion/audit/README.md` that
       the candidate layer is expected to be cyclic and the DB is the gated layer (the seeded graph is
       measurably acyclic since DEV-118), then stop carrying the count as an open item. This also
       resolves the DEV-066 homelessness that `TODO2.md` P5 flagged — the non-exhaustiveness is
       documented in A3's own output rather than fixed with Johnson's algorithm.
-- [ ] **A9** — Fix the `<UNKNOWN>` placeholder leak before anything ranks on A8 or A2 output. It is
+- [x] **A9** — Fix the `<UNKNOWN>` placeholder leak before anything ranks on A8 or A2 output. It is
       **rank 19 by `composite` in `audit/prominence_ranking.json`** — so it was one of the 20
       subjects P4's F3 "closed 20/20" — and simultaneously the **#1 entry in A2's unknown-name list
       at 133 references**, where it consumes the highest-value slot of Track D1's budget. It also
@@ -349,11 +354,20 @@ retroactively, DEV-125 through DEV-127 were all class 3 or 4 treated as class 1.
 
 **Exit:** `python -m audit --only A16` prints all six metric lines (four tables; `variant_claims`
 carries a headline plus two secondaries) plus the A2a ceiling derivation; baseline committed;
-`audit-waivers.json` holds **zero** `F0b`/`F0c`-prefixed entries and all 47 A6 triage verdicts, so no
-*waiver* records a scoping decision — **which requires both E5 and A6 to have run**, per A7.
+`audit-waivers.json` holds **zero** `F0b`/`F0c`-prefixed entries **under `A2`/`A6`** and all 47 A6
+triage verdicts, so no *waiver* records a scoping decision — **which requires both E5 and A6 to have
+run**, per A7. **Corrected** `[DEVIATED - see DEVIATIONS.md #DEV-133]`: unqualified "holds zero
+`F0b`/`F0c`-prefixed entries" is false on the live file by design — 92 entries under `A1`/`A4`/`A10`
+carry that prefix for unrelated, permanent dispositions and are meant to stay; only the `A2`/`A6`
+subset is what this stage relocates.
 **Both `python -m audit` (full suite) and `python -m audit --only A16` exit 0**, with the 949
 relocated findings (602 A6 + 347 A2) reported `DEFERRED` and their per-check counts printed
-`[DEVIATED - see DEVIATIONS.md #DEV-130]`.
+`[DEVIATED - see DEVIATIONS.md #DEV-130]`. **Corrected** `[DEVIATED - see DEVIATIONS.md #DEV-134]`:
+`--only A16` exits 0; the full suite does not, and no item in this track changes that — `A3`'s 86
+candidate-layer cycle findings have never carried a waiver (a pre-existing condition this item's own
+text measures at HEAD), and A8's fix is documentation, not a disposition change. "Both exit 0" does
+not survive contact with A8 as actually written; Track A's real gate is `--only A16` exiting 0 plus
+the deferred-count bookkeeping, not the full suite's exit code.
 
 **"Exit cleanly" here means exit code 0, not merely "does not crash"** — the earlier wording was
 ambiguous in a way that hid a real conflict. `AuditRun.exit_code` (`audit/__main__.py:104`) returns 1
@@ -643,7 +657,7 @@ removing the placeholder shifts the ranked list.
       verify the references still resolve before committing. `TODO-phase2-stage-p3.md` alone holds
       89 `DEVIATIONS.md` references and `TODO.md` 60, so an archive that breaks pointers is worse
       than no archive.
-- [ ] **E5** — **[runs first — see the note above]** Create the backlog artifact
+- [x] **E5** — **[runs first — see the note above]** Create the backlog artifact
       (`ingestion/audit/backlog.json`) and move the **347 A2** waiver entries out of
       `audit-waivers.json` into it; **Track A6 then moves its 602 into the same file.** Like the A6
       entries, they are a triage queue, not waivers.

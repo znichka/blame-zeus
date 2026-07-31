@@ -143,6 +143,24 @@ def test_nonzero_residual_produces_an_error_finding():
     assert "residual" in findings[0].subject
 
 
+def test_placeholder_names_are_excluded_from_the_unknown_names_ranking():
+    entity_names = {"Zeus"}
+    relationships = [
+        _rel("Zeus", "<UNKNOWN>", "s1"),
+        _rel("Zeus", "<UNKNOWN>", "s2"),
+        _rel("Zeus", "<none>", "s3"),
+        _rel("Zeus", "", "s4"),
+        _rel("Zeus", "Ghost", "s5"),
+    ]
+
+    accounting = compute_drop_accounting(relationships, entity_names)
+
+    # Excluded from the ranking...
+    assert dict(accounting.unknown_names) == {"Ghost": 1}
+    # ...but still counted correctly in the drop arithmetic (row count, not distinct names).
+    assert accounting.unknown_name_count == 5
+
+
 def test_run_with_no_candidates_dir_returns_no_findings():
     result = run(None, None)
 

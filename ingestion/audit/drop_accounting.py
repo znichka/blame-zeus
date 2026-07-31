@@ -40,6 +40,15 @@ DEFAULT_FINDINGS_PATH = Path(__file__).resolve().parent / "drop_accounting_findi
 # gets a different suggested_fix than a genuine missing/split-entity lead.
 SENTINEL_NAMES = frozenset({"<UNKNOWN>", "UNKNOWN", "unknown"})
 
+# Stage P5 Track A item A9: tokens that can never become an entity however many
+# rows reference them -- excluded from `unknown_names` (the ranking Track D1's
+# tranche and A8's composite ranking both draw from) at source, so no downstream
+# tranche or budget spends a slot on one. A superset of SENTINEL_NAMES: that set
+# only changes a finding's *label* (still applied in `_accounting_to_findings`
+# for any accounting built by hand, e.g. this module's own tests); this one
+# removes the token from the ranking output entirely.
+PLACEHOLDER_NAMES = SENTINEL_NAMES | {"<none>", "none", "None", ""}
+
 
 @dataclass(frozen=True)
 class DropAccounting:
@@ -116,7 +125,12 @@ def compute_drop_accounting(
         contested_collapse_count=contested_collapse_count,
         seeded_count=len(resolved),
         residual=residual,
-        unknown_names=tuple(sorted(name_counts.items(), key=lambda kv: (-kv[1], kv[0]))),
+        unknown_names=tuple(
+            sorted(
+                ((name, count) for name, count in name_counts.items() if name not in PLACEHOLDER_NAMES),
+                key=lambda kv: (-kv[1], kv[0]),
+            )
+        ),
     )
 
 
