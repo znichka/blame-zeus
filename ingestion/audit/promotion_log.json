@@ -4750,5 +4750,767 @@
       ]
     ],
     "rationale": "Zeus is not the child of Athena -- she is his daughter, born from his head, in every source in this corpus. A14 could not see these four rows until it was taught the curated alias map (DEV-126): the claim value spells her 'Athene' (Murray's Iliad and Evelyn-White's Hymns), which is an entity_aliases/known_aliases entry, not a confirmed entity name, so parse_parent resolved nobody and the rows counted as unparsed. The six sibling rows spelling her 'Athena' were already reviewed and rejected to trust_tier=2 by an earlier hand pass -- the same false claim was caught on one spelling and invisible on the other, which is the asymmetry this fix removes. Verified per row against its own cited passage rather than by reasoning from the claim: Hymns 5.7 states the correct direction outright ('the daughter of Zeus who holds the aegis, bright-eyed Athene'), Iliad 5.733 likewise ('Athene, daughter of Zeus that beareth the aegis'), and Iliad 21.416 names Zeus's actual father ('Zeus, son of Cronos'). The fourth, Iliad 5.864-5.907, is a different defect in the same row set -- its passage states no parentage at all ('Alalcomenean Athene'), so it is unsupported by its own citation (the DEV-098 shape) rather than reversed. All four are tier 3, so nothing seeded changes."
+  },
+  {
+    "batchLabel": "p5-track-c1-batch1-hesiod-theogony-346-403",
+    "date": "2026-07-31T08:46:02.176256+00:00",
+    "keys": [
+      [
+        "Dione",
+        "parentage",
+        "child of Oceanus",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Dione",
+        "parentage",
+        "child of Tethys",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Styx",
+        "parentage",
+        "child of Oceanus",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Styx",
+        "parentage",
+        "child of Tethys",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Doris",
+        "parentage",
+        "child of Oceanus",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Doris",
+        "parentage",
+        "child of Tethys",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Metis",
+        "parentage",
+        "child of Oceanus",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Metis",
+        "parentage",
+        "child of Tethys",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Astraeus",
+        "parentage",
+        "child of Eurybia",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Astraeus",
+        "parentage",
+        "child of Crius",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Pallas",
+        "parentage",
+        "child of Eurybia",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Pallas",
+        "parentage",
+        "child of Crius",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Perses",
+        "parentage",
+        "child of Eurybia",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Perses",
+        "parentage",
+        "child of Crius",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Calypso",
+        "parentage",
+        "child of Oceanus",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Calypso",
+        "parentage",
+        "child of Tethys",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Clymene",
+        "parentage",
+        "child of Oceanus",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Clymene",
+        "parentage",
+        "child of Tethys",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Callirrhoe",
+        "parentage",
+        "child of Oceanus",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Callirrhoe",
+        "parentage",
+        "child of Tethys",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Ianthe",
+        "parentage",
+        "child of Oceanus",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Ianthe",
+        "parentage",
+        "child of Tethys",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Ocyrrhoe",
+        "parentage",
+        "child of Oceanus",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Ocyrrhoe",
+        "parentage",
+        "child of Tethys",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Selene",
+        "parentage",
+        "child of Thia",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Selene",
+        "parentage",
+        "child of Hyperion",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Eos",
+        "parentage",
+        "child of Thia",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Eos",
+        "parentage",
+        "child of Hyperion",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Eos",
+        "marriage",
+        "married to Astraeus",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Boreas",
+        "parentage",
+        "child of Eos",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Boreas",
+        "parentage",
+        "child of Astraeus",
+        "hesiod-theogony",
+        "346-403"
+      ]
+    ],
+    "groupCount": 16,
+    "rejectedKeys": [
+      [
+        "Hades",
+        "parentage",
+        "child of Oceanus",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Hades",
+        "parentage",
+        "child of Tethys",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Zeus",
+        "parentage",
+        "child of Styx",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Zeus",
+        "parentage",
+        "child of Pallas",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Perses",
+        "parentage",
+        "child of Oceanus",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Perses",
+        "parentage",
+        "child of Tethys",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Ianira",
+        "parentage",
+        "child of Oceanus",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Ianira",
+        "parentage",
+        "child of Tethys",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Urania",
+        "parentage",
+        "child of Oceanus",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Urania",
+        "parentage",
+        "child of Tethys",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Rhode",
+        "parentage",
+        "child of Oceanus",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Rhode",
+        "parentage",
+        "child of Tethys",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Chryses",
+        "parentage",
+        "child of Oceanus",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Chryses",
+        "parentage",
+        "child of Tethys",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Europa",
+        "parentage",
+        "child of Oceanus",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Europa",
+        "parentage",
+        "child of Tethys",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Polydora",
+        "parentage",
+        "child of Oceanus",
+        "hesiod-theogony",
+        "346-403"
+      ],
+      [
+        "Polydora",
+        "parentage",
+        "child of Tethys",
+        "hesiod-theogony",
+        "346-403"
+      ]
+    ],
+    "rejectedGroupCount": 9
+  },
+  {
+    "batchLabel": "p5-track-c1-batch2-apollodorus-3.12.5",
+    "date": "2026-07-31T10:20:55.402769+00:00",
+    "keys": [
+      [
+        "Antiphus",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Antiphus",
+        "parentage",
+        "child of Hecuba",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Melanippus",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Polydorus",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Polydorus",
+        "parentage",
+        "child of Hecuba",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Hecuba",
+        "parentage",
+        "child of Dymas",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Hecuba",
+        "parentage",
+        "child of Cisseus",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Hecuba",
+        "parentage",
+        "child of Sangarius",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Hecuba",
+        "parentage",
+        "child of Metope",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Hecuba",
+        "parentage",
+        "daughter of Dymas",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Hecuba",
+        "parentage",
+        "daughter of Cisseus, as some say",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Hecuba",
+        "parentage",
+        "daughter of the river Sangarius and Metope, as others say",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Paris",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Paris",
+        "parentage",
+        "child of Hecuba",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Polyxena",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Polyxena",
+        "parentage",
+        "child of Hecuba",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Cassandra",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Cassandra",
+        "parentage",
+        "child of Hecuba",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Deiphobus",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Deiphobus",
+        "parentage",
+        "child of Hecuba",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Pammon",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Pammon",
+        "parentage",
+        "child of Hecuba",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Polites",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Polites",
+        "parentage",
+        "child of Hecuba",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Troilus",
+        "parentage",
+        "child of Apollo",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Troilus",
+        "parentage",
+        "child of Hecuba",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Troilus",
+        "parentage",
+        "said to have been fathered by Apollo rather than Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Gorgythion",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Agathon",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Cebriones",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Laodocus",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Ascanius",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Democoon",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Echemmon",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Hypirochus",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Paris",
+        "notable",
+        "exposed on Mount Ida as an infant, nursed by a bear for five days, raised by the herdsman Agelaus, and later surnamed Alexander for repelling robbers and defending flocks",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ]
+    ],
+    "groupCount": 20,
+    "rejectedKeys": [
+      [
+        "Hyperion",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Atlas",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Hippodamas",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Glaucus",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Aretus",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Echephron",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Bias",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Chromius",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Idomeneus",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Lycaon",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Dorycleus",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Hippothous",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Laodice",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Laodice",
+        "parentage",
+        "child of Hecuba",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Medus",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Heleus",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Heleus",
+        "parentage",
+        "child of Hecuba",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Aeacus",
+        "parentage",
+        "child of Arisbe",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Aeacus",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Philammon",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ],
+      [
+        "Medesicaste",
+        "parentage",
+        "child of Priam",
+        "apollodorus-bibliotheca",
+        "3.12.5"
+      ]
+    ],
+    "rejectedGroupCount": 18
   }
 ]
