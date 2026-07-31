@@ -12,6 +12,13 @@ Key docs:
 - `docs/TECH_GUARDRAILS.md` — hard constraints on stack, LLM usage, SQL safety, testing, and what NOT to add
 - `docs/DEVIATIONS.md` — every deviation from the plan that occurred during implementation (append-only)
 
+## Git Workflow
+
+**Never run `git commit` (or `git push`) in this repository — all commits are manual, made by the
+user.** This holds even when asked to "commit" or "commit this" in the moment: stage or describe the
+change and let the user run the commit themselves. Leaving changes uncommitted in the working tree is
+the expected end state of a session here, not an oversight to fix.
+
 ## Tech Stack
 
 - **Language:** Kotlin 2.3.21 + JVM 21 (`core-api`); Python 3.12+ (`ingestion`)
