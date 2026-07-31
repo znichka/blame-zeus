@@ -2,6 +2,7 @@ from extraction.entity_resolver import (
     METHOD_ALIAS,
     METHOD_EXACT,
     METHOD_FUZZY,
+    METHOD_FUZZY_SUGGESTION,
     METHOD_NEW,
     EntityResolver,
     load_known_aliases,
@@ -34,14 +35,38 @@ def test_known_alias_after_canonical_already_seen():
     assert resolver.resolve("Jupiter") == "Zeus"
 
 
-def test_fuzzy_match_merges_near_duplicate_and_logs_it():
+def test_a_fuzzy_near_match_is_recorded_but_not_merged():
+    """P6 G2: measured at 70.0% false positives across a stratified sample of 50, the
+    fuzzy step no longer decides identity -- it suggests. The near match is kept so the
+    suggestion is reviewable rather than merely absent."""
     resolver = EntityResolver(fuzzy_threshold=88)
     resolver.resolve("Polyphemus")
-    merged = resolver.resolve("Polyphemos")  # transliteration variant, ratio 90 > threshold
-    assert merged == "Polyphemus"
-    assert len(resolver.fuzzy_merges) == 1
-    assert resolver.fuzzy_merges[0].name == "Polyphemos"
+    assert resolver.resolve("Polyphemos") == "Polyphemos"  # registered in its own right
+
+    assert len(resolver.fuzzy_merges) == 1  # still listed for review
     assert resolver.fuzzy_merges[0].matched_to == "Polyphemus"
+    entry = resolver.resolutions[-1]
+    assert entry.method == METHOD_FUZZY_SUGGESTION
+    assert entry.near_match == "Polyphemus"
+    assert entry.score >= 88
+
+
+def test_fuzzy_auto_merge_is_still_reachable_when_explicitly_enabled():
+    """The pre-G2 behaviour stays available for a future re-measure -- the decision is
+    a default, not a deletion."""
+    resolver = EntityResolver(fuzzy_threshold=88, fuzzy_auto_merge=True)
+    resolver.resolve("Polyphemus")
+    assert resolver.resolve("Polyphemos") == "Polyphemus"
+    assert resolver.resolutions[-1].method == METHOD_FUZZY
+
+
+def test_a_curated_alias_still_beats_a_near_match():
+    """The demote branch hands identity to the curated layers outright, so an alias
+    must win over a suggestion for the same surface."""
+    resolver = EntityResolver(known_aliases={"polyphemos": "Polyphemus"}, fuzzy_threshold=88)
+    resolver.resolve("Polyphemus")
+    assert resolver.resolve("Polyphemos") == "Polyphemus"
+    assert resolver.resolutions[-1].method == METHOD_ALIAS
 
 
 def test_dissimilar_names_are_not_fuzzy_merged():
@@ -81,6 +106,7 @@ def test_the_ledger_carries_this_occurrences_corpus_location():
         "score": None,
         "source_id": APOLLODORUS,
         "passage_ref": PRIAM_SONS,
+        "near_match": None,
     }
 
 
@@ -113,30 +139,37 @@ def test_method_alias_when_the_alias_is_the_first_sighting():
     assert _methods(resolver) == [("Pluto", "Hades", METHOD_ALIAS)]
 
 
-def test_method_fuzzy_carries_the_score():
+def test_method_fuzzy_suggestion_carries_the_score_and_the_near_match():
     resolver = EntityResolver(fuzzy_threshold=88)
     resolver.resolve("Polyphemus")
     resolver.resolve("Polyphemos")
     surface, canonical, method = _methods(resolver)[1]
-    assert (surface, canonical, method) == ("Polyphemos", "Polyphemus", METHOD_FUZZY)
+    assert (surface, canonical, method) == ("Polyphemos", "Polyphemos", METHOD_FUZZY_SUGGESTION)
     assert resolver.resolutions[1].score == resolver.fuzzy_merges[0].score >= 88
     assert resolver.resolutions[0].score is None  # non-fuzzy paths carry no score
 
 
-def test_a_repeat_fuzzy_sighting_still_reports_fuzzy_not_exact():
+def test_a_repeat_near_match_sighting_still_reports_the_suggestion_not_exact():
     """The ledger's worst failure mode: `_seen` memoises per run, so without this every
     occurrence of `Atas` after the first would claim to be an exact match -- G2 would
-    undercount merges by however often a name recurs, and G6's `resolved_by` signal
-    would go blind on exactly the catalogue passages it exists to flag."""
+    undercount by however often a name recurs, and G6's `resolved_by` signal would go
+    blind on exactly the catalogue passages it exists to flag."""
     resolver = EntityResolver(fuzzy_threshold=88)
     resolver.resolve("Atlas")
     resolver.resolve("Atas", source_id=APOLLODORUS, passage_ref=PRIAM_SONS)
     resolver.resolve("Atas", source_id=APOLLODORUS, passage_ref="3.12.6")
 
-    assert [r.method for r in resolver.resolutions] == [METHOD_NEW, METHOD_FUZZY, METHOD_FUZZY]
+    assert [r.method for r in resolver.resolutions] == [
+        METHOD_NEW,
+        METHOD_FUZZY_SUGGESTION,
+        METHOD_FUZZY_SUGGESTION,
+    ]
+    assert [r.near_match for r in resolver.resolutions[1:]] == ["Atlas", "Atlas"]
     assert [r.score for r in resolver.resolutions[1:]] == [resolver.fuzzy_merges[0].score] * 2
-    # ...while the merge itself is still logged once, so write_output's print is unchanged.
+    # ...while the near match itself is still logged once, so write_output's print is unchanged.
     assert len(resolver.fuzzy_merges) == 1
+    # ...and, the point of the whole branch: Atas and Atlas stay two entities.
+    assert resolver.resolutions[1].canonical == "Atas"
 
 
 def test_a_repeat_alias_sighting_still_reports_alias():
@@ -166,7 +199,7 @@ def test_the_ledger_covers_every_resolution_in_a_mixed_run():
         METHOD_ALIAS,
         METHOD_EXACT,
         METHOD_NEW,
-        METHOD_FUZZY,
+        METHOD_FUZZY_SUGGESTION,
         METHOD_NEW,
     ]
     assert all(r.source_id == APOLLODORUS for r in resolver.resolutions)

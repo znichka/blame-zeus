@@ -221,15 +221,10 @@ G0's key migration.
 > G2/G3; this makes the *artifact* (not just the code) a prerequisite. Persist it as
 > `entity_resolutions.baseline.json` alongside G1.3's `entity_resolutions.json`.
 
-> **Exit status (DEV-141):** code and tests are in; the exit itself is **pending a live run**, which
-> is the first thing to do when runs are authorized. The run is `build_candidates` over the cached
-> checkpoint — **zero API cost**, but it rewrites the tracked candidate files, so it is a real
-> mutation and not a dry run. Sequence: (1) re-run, (2) `cp entity_resolutions.json
-> entity_resolutions.baseline.json` **before anything touches `resolve()`**, (3) confirm the ledger
-> covers every resolution and that the candidate files are otherwise unchanged (G1 is ledger-only,
-> so any diff in `entities_candidates.json` / `relationships_candidates.json` is a regression, not
-> an expected result). Expect ~25–30k ledger rows / ~4–5 MB — see DEV-141 on whether both ledgers
-> belong in git.
+> **Exit MET (DEV-141/142).** Run performed 2026-07-31 over the cached checkpoint at **0 API calls**
+> (all 1,204 segments verified cached `ok` beforehand). Ledger: **34,654 rows**, every one carrying a
+> corpus location. Baseline captured as `entity_resolutions.baseline.json` before `resolve()` changed.
+> The run also surfaced a re-key backlog G0 did not cover — see DEV-142.
 
 ---
 
@@ -238,15 +233,21 @@ G0's key migration.
 "Root cause first, code fix only if still needed" — the decision rule is registered **before** the
 measurement so the outcome is not chosen after seeing it.
 
-- [ ] **G2.1** — Re-run `build_candidates` (cached → zero API cost); tabulate ledger `method=fuzzy`
-      rows by score band.
-- [ ] **G2.2** — Hand-check a **stratified sample of 50** merges against their cited segments, drawn
+- [x] **G2.1** — Re-run `build_candidates` (cached → zero API cost); tabulate ledger `method=fuzzy`
+      rows by score band. → 2,066 fuzzy occurrences over **270 distinct merge pairs** (179 @ 88–93,
+      91 @ 93–100). The *pair* is the sampling unit: the step decides once per pair, so sampling
+      occurrences would over-weight names that merely recur.
+- [x] **G2.2** — `[DEVIATED - see DEVIATIONS.md #DEV-143]` Hand-check a **stratified sample of 50** merges against their cited segments, drawn
       across the **whole live band, 88-100** — not 88-93 alone. The confirmed false positives top out
       at 92.3, so 93-100 is precisely the region no evidence covers yet and the region most likely to
       hold *true* merges; sampling only the low band and then deciding for the whole step would
       pre-load the answer. Draw proportionally from `88-93` and `93-100` per G2.1's own band counts,
       and record the two sub-rates separately.
-- [ ] **G2.3** — Apply the pre-registered rule to the **whole-band** false-positive rate:
+- [x] **G2.3** — **Result: 88–93 → 84.8% (28/33); 93–100 → 41.2% (7/17); whole band → 70.0% (35/50).
+      Branch taken: DEMOTE.** The split-decision clause was available (the sub-rates do diverge
+      sharply) and was rejected *on the numbers*: 41.2% is cleaner, not clean, and keeping auto-merge
+      above 93 would leave ~37 more false merges live among that band's 91 pairs. Apply the
+      pre-registered rule to the **whole-band** false-positive rate:
       - **≥70% false positives** → **demote fuzzy from auto-merge to suggestion**. `resolve()`
         registers the name as new and records `method="fuzzy_suggestion"` with the near match and
         score; the curated layers (`known_aliases.json`, `entity_aliases`, the G3 registry) own
@@ -260,10 +261,14 @@ measurement so the outcome is not chosen after seeing it.
       - If the two sub-rates diverge sharply (≥93 measurably cleaner than 88-93), the honest outcome
         is a **split decision** — demote below the crossover, keep above it — recorded with both
         rates. Choose this only from the numbers, never to avoid a branch.
-- [ ] **G2.4** — **Recall guard, either branch:** `python -m audit --only A1`, whose threshold-88 pass
+- [x] **G2.4** — A1 unchanged at 41 waived pairs / 1,990 entities — **no new findings**. The
+      substantive recall check was *not* A1 (it scans the confirmed set, which the demote does not
+      touch): all **15** sample-confirmed genuine merges lacked a curated alias and were added to
+      `known_aliases.json` (58 → 73), each evidence-backed. **Recall guard, either branch:** `python -m audit --only A1`, whose threshold-88 pass
       **and** transliteration pass (`_translit_key`) together cover both the 88-100 band and the
       83.3-scoring variants below it. No new check.
-- [ ] **G2.5** — Record the sampled table (both sub-bands), the branch taken, and every construction.
+- [x] **G2.5** — Recorded in DEV-143; re-key batches `p6-g2-fuzzy-demote-rekey` /
+      `p6-g2-alias-restore-rekey` in `promotion_log.json`.
 
 **Exit, branch-conditional** — "no new A1 finding" is *not* the criterion on both branches:
 

@@ -124,7 +124,7 @@ def test_write_output_writes_the_resolution_ledger(tmp_path):
 
     ledger = json.loads((tmp_path / "entity_resolutions.json").read_text())
     assert len(ledger) == len(result.resolutions)
-    assert set(ledger[0]) == {"surface", "canonical", "method", "score", "source_id", "passage_ref"}
+    assert set(ledger[0]) == {"surface", "canonical", "method", "score", "source_id", "passage_ref", "near_match"}
     # The alias path leaves a trace now -- ADR-022's "no trace whatsoever" case.
     assert {"Jupiter": "Zeus", "Juno": "Hera"}.items() <= {
         r["surface"]: r["canonical"] for r in ledger if r["method"] == "alias"

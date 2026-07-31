@@ -441,23 +441,34 @@ def build_rename_map(baseline_ledger: list[dict], current_ledger: list[dict]) ->
     return {key: frozenset(targets) for key, targets in renames.items()}
 
 
-def _rename(name: str | None, source_id, passage_ref, rename_map: dict[tuple, frozenset[str]]) -> tuple[str | None, bool]:
-    """`(new_name, ambiguous)`. An absent entry means the ledger saw no change for that
-    name in that passage, so the name is returned untouched."""
+def _rename(
+    name: str | None,
+    source_id,
+    passage_ref,
+    rename_map: dict[tuple, frozenset[str]],
+    name_renames: dict[str, str] | None = None,
+) -> tuple[str | None, bool]:
+    """`(new_name, ambiguous)`. The passage-scoped ledger map wins; `name_renames` is a
+    **global** surface->canonical fallback for re-keys that are not passage-scoped at
+    all -- growth in `known_aliases.json` between two extraction runs renames a name
+    everywhere at once, and no ledger pair describes it if the earlier run predates the
+    ledger itself. An absent entry in both means the name is returned untouched."""
     if not name:
         return name, False
-    targets = rename_map.get((source_id, passage_ref, name.strip().lower()))
+    key = name.strip().lower()
+    targets = rename_map.get((source_id, passage_ref, key))
     if not targets:
-        return name, False
+        renamed = (name_renames or {}).get(key)
+        return (renamed, False) if renamed else (name, False)
     if len(targets) > 1:
         return name, True
     return next(iter(targets)), False
 
 
-def _rename_claim_value(value: str | None, source_id, passage_ref, rename_map) -> tuple[str | None, bool]:
+def _rename_claim_value(value: str | None, source_id, passage_ref, rename_map, name_renames=None) -> tuple[str | None, bool]:
     for prefix in _CLAIM_VALUE_PREFIXES:
         if value and value.startswith(prefix):
-            renamed, ambiguous = _rename(value[len(prefix) :], source_id, passage_ref, rename_map)
+            renamed, ambiguous = _rename(value[len(prefix) :], source_id, passage_ref, rename_map, name_renames)
             return prefix + (renamed or ""), ambiguous
     return value, False  # free-text variant claims carry no resolved name at all
 
@@ -465,8 +476,10 @@ def _rename_claim_value(value: str | None, source_id, passage_ref, rename_map) -
 def migrate_review_keys(
     reviewed_rows: list[dict],
     new_rows: list[dict],
-    baseline_ledger: list[dict],
-    current_ledger: list[dict],
+    baseline_ledger: list[dict] = (),
+    current_ledger: list[dict] = (),
+    claim_type_alias_map: dict[str, str] | None = None,
+    name_renames: dict[str, str] | None = None,
 ) -> KeyMigration:
     """Map the review decisions in `reviewed_rows` onto the keys `new_rows` now uses.
 
@@ -475,7 +488,21 @@ def migrate_review_keys(
     rebuilt by mutating a copy of the row and re-running `_claim_key`, never by
     assembling a 5-tuple positionally -- `_CLAIM_IDENTITY` stays the single definition
     of what a claim's identity is.
+
+    Three re-key mechanisms, because a re-extraction exhibits all three and *four* of
+    `_CLAIM_IDENTITY`'s five fields can move:
+
+      - the ledger pair (`baseline_ledger`/`current_ledger`) -- passage-scoped identity
+        changes, which is what G2/G3 produce;
+      - `name_renames` -- a global surface->canonical map, for alias growth between two
+        runs, which renames a name in every passage at once and which no ledger pair
+        describes when the earlier run predates the ledger;
+      - `claim_type_alias_map` -- `claim_type_aliases` normalization (`notable_act` ->
+        `notable_claim`, `birth` -> `parentage`). Applied through
+        `claim_type_normalizer.normalize`, the same function extraction itself uses, so
+        the migration cannot drift from what produced the new rows.
     """
+    from extraction.claim_type_normalizer import normalize
     from extraction.run_extraction import DEFAULT_TRUST_TIER, _claim_key
 
     rename_map = build_rename_map(baseline_ledger, current_ledger)
@@ -500,7 +527,20 @@ def migrate_review_keys(
         migrated = dict(row)
         migrated["subject_name"] = subject
         migrated["claim_value"] = value
+        if claim_type_alias_map is not None:
+            migrated["claim_type"] = normalize(claim_type_alias_map, row.get("claim_type") or "")
         new_key = _claim_key(migrated)
+
+        # The global fallback is a *reconstruction* of a mapping no ledger recorded, not
+        # an authoritative rename like the ledger's -- so it fires only where the row is
+        # otherwise unaccounted for. Applying it eagerly would re-key rows that already
+        # match perfectly well, turning carries into re-review for no reason.
+        if new_key not in new_keys and name_renames:
+            fallback = dict(migrated)
+            fallback["subject_name"], _ = _rename(subject, source_id, passage_ref, {}, name_renames)
+            fallback["claim_value"], _ = _rename_claim_value(value, source_id, passage_ref, {}, name_renames)
+            if _claim_key(fallback) in new_keys:
+                new_key = _claim_key(fallback)
 
         if new_key in new_keys:
             carried.append(CarriedDecision(old_key, new_key, tier))

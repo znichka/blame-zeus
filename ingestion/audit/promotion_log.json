@@ -7326,5 +7326,2919 @@
       ]
     ],
     "rejectedGroupCount": 6
+  },
+  {
+    "batchLabel": "p6-g0-identity-rekey",
+    "date": "2026-07-31T19:15:51.914078+00:00",
+    "keys": [],
+    "groupCount": 0,
+    "rationale": "Stage P6 G0: ADR-022's resolver changes re-key reviewed rows through subject_name / claim_value. Trust tiers carried across the rename via the G1 resolution ledger; rows that could not be mapped are listed under reReview and go back through ADR-004's gate.",
+    "rekeyed": [
+      {
+        "from": [
+          "Hera",
+          "parentage",
+          "child of Cronos",
+          "hesiod-theogony",
+          "453-506"
+        ],
+        "to": [
+          "Hera",
+          "parentage",
+          "child of Cronus",
+          "hesiod-theogony",
+          "453-506"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Poseidon",
+          "parentage",
+          "child of Cronos",
+          "hesiod-theogony",
+          "453-506"
+        ],
+        "to": [
+          "Poseidon",
+          "parentage",
+          "child of Cronus",
+          "hesiod-theogony",
+          "453-506"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Zeus",
+          "parentage",
+          "child of Athene",
+          "hesiod-homeric-hymns",
+          "5.7-5.52"
+        ],
+        "to": [
+          "Zeus",
+          "parentage",
+          "child of Athena",
+          "hesiod-homeric-hymns",
+          "5.7-5.52"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Zeus",
+          "parentage",
+          "child of Athene",
+          "homer-iliad",
+          "5.733-5.777"
+        ],
+        "to": [
+          "Zeus",
+          "parentage",
+          "child of Athena",
+          "homer-iliad",
+          "5.733-5.777"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Zeus",
+          "parentage",
+          "child of Athene",
+          "homer-iliad",
+          "5.864-5.907"
+        ],
+        "to": [
+          "Zeus",
+          "parentage",
+          "child of Athena",
+          "homer-iliad",
+          "5.864-5.907"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Zeus",
+          "parentage",
+          "child of Athene",
+          "homer-iliad",
+          "21.382-21.422"
+        ],
+        "to": [
+          "Zeus",
+          "parentage",
+          "child of Athena",
+          "homer-iliad",
+          "21.382-21.422"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Styx",
+          "parentage",
+          "child of Ocean",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "to": [
+          "Styx",
+          "parentage",
+          "child of Oceanus",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Doris",
+          "parentage",
+          "child of Ocean",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "to": [
+          "Doris",
+          "parentage",
+          "child of Oceanus",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Amphitrite",
+          "parentage",
+          "child of Ocean",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "to": [
+          "Amphitrite",
+          "parentage",
+          "child of Oceanus",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Metis",
+          "parentage",
+          "child of Ocean",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "to": [
+          "Metis",
+          "parentage",
+          "child of Oceanus",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Heracles",
+          "parentage",
+          "child of Alcmene",
+          "homer-iliad",
+          "14.312-14.360"
+        ],
+        "to": [
+          "Heracles",
+          "parentage",
+          "child of Alcmena",
+          "homer-iliad",
+          "14.312-14.360"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Podalirius",
+          "parentage",
+          "child of Aesculapius",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "to": [
+          "Podalirius",
+          "parentage",
+          "child of Asclepius",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Machaon",
+          "parentage",
+          "child of Aesculapius",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "to": [
+          "Machaon",
+          "parentage",
+          "child of Asclepius",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Hera",
+          "notable_act",
+          "Helped the Argonauts pass safely through the Clashing Rocks",
+          "apollodorus-bibliotheca",
+          "1.9.22"
+        ],
+        "to": [
+          "Hera",
+          "notable_claim",
+          "Helped the Argonauts pass safely through the Clashing Rocks",
+          "apollodorus-bibliotheca",
+          "1.9.22"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Hera",
+          "notable_act",
+          "Denied that Hecuba deserved such a fate, showing sympathy for her",
+          "ovid-metamorphoses",
+          "13.545-13.575"
+        ],
+        "to": [
+          "Hera",
+          "notable_claim",
+          "Denied that Hecuba deserved such a fate, showing sympathy for her",
+          "ovid-metamorphoses",
+          "13.545-13.575"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Hera",
+          "notable_act",
+          "Has a shrine at the Lacinian Cape that ennobles it",
+          "ovid-metamorphoses",
+          "15.680-15.718"
+        ],
+        "to": [
+          "Hera",
+          "notable_claim",
+          "Has a shrine at the Lacinian Cape that ennobles it",
+          "ovid-metamorphoses",
+          "15.680-15.718"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Perses",
+          "notable",
+          "said to be ancestor of the kings of Persia",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "to": [
+          "Perses",
+          "notable_claim",
+          "said to be ancestor of the kings of Persia",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Eurystheus",
+          "notable",
+          "born a seven-month child due to Hera's contrivance so he would reign over Mycenae instead of Hercules",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "to": [
+          "Eurystheus",
+          "notable_claim",
+          "born a seven-month child due to Hera's contrivance so he would reign over Mycenae instead of Hercules",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Heracles",
+          "notable_deed",
+          "overcame the cloud-born centaurs in battle",
+          "ovid-metamorphoses",
+          "12.536-12.579"
+        ],
+        "to": [
+          "Heracles",
+          "notable_claim",
+          "overcame the cloud-born centaurs in battle",
+          "ovid-metamorphoses",
+          "12.536-12.579"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Hermes",
+          "notable_act",
+          "Exchanged the lyre for the cattle with Apollo",
+          "apollodorus-bibliotheca",
+          "3.10.2"
+        ],
+        "to": [
+          "Hermes",
+          "notable_claim",
+          "Exchanged the lyre for the cattle with Apollo",
+          "apollodorus-bibliotheca",
+          "3.10.2"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Hermes",
+          "notable_act",
+          "gave Odysseus the herb moly to protect him from Circe's magic",
+          "homer-odyssey",
+          "10.274-10.320"
+        ],
+        "to": [
+          "Hermes",
+          "notable_claim",
+          "gave Odysseus the herb moly to protect him from Circe's magic",
+          "homer-odyssey",
+          "10.274-10.320"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Hermes",
+          "notable_act",
+          "Stole Apollo's unattended cattle and hid them in the forest",
+          "ovid-metamorphoses",
+          "2.655-2.696"
+        ],
+        "to": [
+          "Hermes",
+          "notable_claim",
+          "Stole Apollo's unattended cattle and hid them in the forest",
+          "ovid-metamorphoses",
+          "2.655-2.696"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Paris",
+          "notable",
+          "exposed on Mount Ida as an infant, nursed by a bear for five days, raised by the herdsman Agelaus, and later surnamed Alexander for repelling robbers and defending flocks",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "to": [
+          "Paris",
+          "notable_claim",
+          "exposed on Mount Ida as an infant, nursed by a bear for five days, raised by the herdsman Agelaus, and later surnamed Alexander for repelling robbers and defending flocks",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Achilles",
+          "notable claim",
+          "wore a helm crafted by Hephaestus",
+          "homer-iliad",
+          "22.289-22.327"
+        ],
+        "to": [
+          "Achilles",
+          "notable_claim",
+          "wore a helm crafted by Hephaestus",
+          "homer-iliad",
+          "22.289-22.327"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Achilles",
+          "notable claim",
+          "his hands had slain many of Priam's sons",
+          "homer-iliad",
+          "24.440-24.484"
+        ],
+        "to": [
+          "Achilles",
+          "notable_claim",
+          "his hands had slain many of Priam's sons",
+          "homer-iliad",
+          "24.440-24.484"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Diomedes",
+          "notable",
+          "exchanged arms with Glaucus after recalling the friendship of their fathers",
+          "apollodorus-bibliotheca",
+          "E.3.34-E.4.5"
+        ],
+        "to": [
+          "Diomedes",
+          "notable_claim",
+          "exchanged arms with Glaucus after recalling the friendship of their fathers",
+          "apollodorus-bibliotheca",
+          "E.3.34-E.4.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Diomedes",
+          "notable",
+          "wounded on the right shoulder by an arrow shot by Pandarus",
+          "homer-iliad",
+          "5.76-5.120"
+        ],
+        "to": [
+          "Diomedes",
+          "notable_claim",
+          "wounded on the right shoulder by an arrow shot by Pandarus",
+          "homer-iliad",
+          "5.76-5.120"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Diomedes",
+          "notable",
+          "wounded by Pandarus with an arrow",
+          "homer-iliad",
+          "5.778-5.824"
+        ],
+        "to": [
+          "Diomedes",
+          "notable_claim",
+          "wounded by Pandarus with an arrow",
+          "homer-iliad",
+          "5.778-5.824"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Diomedes",
+          "notable",
+          "brought by Achilles from Lesbos as his concubine",
+          "homer-iliad",
+          "9.643-9.675"
+        ],
+        "to": [
+          "Diomedes",
+          "notable_claim",
+          "brought by Achilles from Lesbos as his concubine",
+          "homer-iliad",
+          "9.643-9.675"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Ajax",
+          "notable",
+          "chosen by lot to fight Hector in single combat",
+          "apollodorus-bibliotheca",
+          "E.3.34-E.4.5"
+        ],
+        "to": [
+          "Ajax",
+          "notable_claim",
+          "chosen by lot to fight Hector in single combat",
+          "apollodorus-bibliotheca",
+          "E.3.34-E.4.5"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Ajax",
+          "notable",
+          "given the long chine for his honour by Agamemnon",
+          "homer-iliad",
+          "7.313-7.353"
+        ],
+        "to": [
+          "Ajax",
+          "notable_claim",
+          "given the long chine for his honour by Agamemnon",
+          "homer-iliad",
+          "7.313-7.353"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Ajax",
+          "notable",
+          "his spear was shorn by Hector's sword, leaving him with a pointless spear",
+          "homer-iliad",
+          "16.114-16.154"
+        ],
+        "to": [
+          "Ajax",
+          "notable_claim",
+          "his spear was shorn by Hector's sword, leaving him with a pointless spear",
+          "homer-iliad",
+          "16.114-16.154"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Ajax",
+          "notable",
+          "in comeliness and deeds of war was above all other Achaeans, next to Achilles",
+          "homer-odyssey",
+          "11.538-11.581"
+        ],
+        "to": [
+          "Ajax",
+          "notable_claim",
+          "in comeliness and deeds of war was above all other Achaeans, next to Achilles",
+          "homer-odyssey",
+          "11.538-11.581"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Hector",
+          "notable",
+          "made a breach in the wall and set fire to the ships",
+          "apollodorus-bibliotheca",
+          "E.3.34-E.4.5"
+        ],
+        "to": [
+          "Hector",
+          "notable_claim",
+          "made a breach in the wall and set fire to the ships",
+          "apollodorus-bibliotheca",
+          "E.3.34-E.4.5"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Hector",
+          "notable",
+          "was raised up by Apollo after being felled by Aias' rock",
+          "homer-iliad",
+          "7.244-7.286"
+        ],
+        "to": [
+          "Hector",
+          "notable_claim",
+          "was raised up by Apollo after being felled by Aias' rock",
+          "homer-iliad",
+          "7.244-7.286"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Hector",
+          "notable",
+          "peer of swift Ares",
+          "homer-iliad",
+          "17.33-17.81"
+        ],
+        "to": [
+          "Hector",
+          "notable_claim",
+          "peer of swift Ares",
+          "homer-iliad",
+          "17.33-17.81"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Hector",
+          "notable",
+          "wore the armour of Achilles, filled with valour by Ares",
+          "homer-iliad",
+          "17.209-17.255"
+        ],
+        "to": [
+          "Hector",
+          "notable_claim",
+          "wore the armour of Achilles, filled with valour by Ares",
+          "homer-iliad",
+          "17.209-17.255"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Hector",
+          "notable",
+          "born the same night as Polydamas, his comrade",
+          "homer-iliad",
+          "18.243-18.283"
+        ],
+        "to": [
+          "Hector",
+          "notable_claim",
+          "born the same night as Polydamas, his comrade",
+          "homer-iliad",
+          "18.243-18.283"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Hector",
+          "notable",
+          "spear turned back from Achilles by Athene",
+          "homer-iliad",
+          "20.419-20.454"
+        ],
+        "to": [
+          "Hector",
+          "notable_claim",
+          "spear turned back from Achilles by Athene",
+          "homer-iliad",
+          "20.419-20.454"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Zeus",
+          "notable",
+          "dispenser of battle for men",
+          "homer-iliad",
+          "4.50-4.84"
+        ],
+        "to": [
+          "Zeus",
+          "notable_claim",
+          "dispenser of battle for men",
+          "homer-iliad",
+          "4.50-4.84"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Zeus",
+          "notable",
+          "brother and lord of Hera",
+          "homer-iliad",
+          "14.153-14.196"
+        ],
+        "to": [
+          "Zeus",
+          "notable_claim",
+          "brother and lord of Hera",
+          "homer-iliad",
+          "14.153-14.196"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Zeus",
+          "notable",
+          "referred to as 'the son of Cronos'",
+          "homer-odyssey",
+          "16.266-16.307"
+        ],
+        "to": [
+          "Zeus",
+          "notable_claim",
+          "referred to as 'the son of Cronos'",
+          "homer-odyssey",
+          "16.266-16.307"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Apollo",
+          "notable",
+          "bestowed prophetic powers upon Calchas",
+          "homer-iliad",
+          "1.53-1.100"
+        ],
+        "to": [
+          "Apollo",
+          "notable_claim",
+          "bestowed prophetic powers upon Calchas",
+          "homer-iliad",
+          "1.53-1.100"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Apollo",
+          "notable",
+          "hawk is the swift messenger of Apollo",
+          "homer-odyssey",
+          "15.493-15.544"
+        ],
+        "to": [
+          "Apollo",
+          "notable_claim",
+          "hawk is the swift messenger of Apollo",
+          "homer-odyssey",
+          "15.493-15.544"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Aphrodite",
+          "birth",
+          "Born from the sea foam formed by the severed members of Heaven, cast into the sea by Cronus",
+          "hesiod-theogony",
+          "176-232"
+        ],
+        "to": [
+          "Aphrodite",
+          "parentage",
+          "Born from the sea foam formed by the severed members of Heaven, cast into the sea by Cronus",
+          "hesiod-theogony",
+          "176-232"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Athena",
+          "notable_act",
+          "Shed sleep upon Odysseus's eyes to free him from weariness",
+          "homer-odyssey",
+          "5.463-6.12"
+        ],
+        "to": [
+          "Athena",
+          "notable_claim",
+          "Shed sleep upon Odysseus's eyes to free him from weariness",
+          "homer-odyssey",
+          "5.463-6.12"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Athena",
+          "notable_act",
+          "Has a promontory named after her along the Italian coast",
+          "ovid-metamorphoses",
+          "15.680-15.718"
+        ],
+        "to": [
+          "Athena",
+          "notable_claim",
+          "Has a promontory named after her along the Italian coast",
+          "ovid-metamorphoses",
+          "15.680-15.718"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Zeus",
+          "notable_act",
+          "Drove the Titans from heaven",
+          "hesiod-theogony",
+          "820-868"
+        ],
+        "to": [
+          "Zeus",
+          "notable_claim",
+          "Drove the Titans from heaven",
+          "hesiod-theogony",
+          "820-868"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Apollo",
+          "notable_deed",
+          "rules over all mortal men",
+          "hesiod-homeric-hymns",
+          "2.483-3.29"
+        ],
+        "to": [
+          "Apollo",
+          "notable_claim",
+          "rules over all mortal men",
+          "hesiod-homeric-hymns",
+          "2.483-3.29"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Apollo",
+          "notable_deed",
+          "wooed alongside Phorbas sprung from Triops",
+          "hesiod-homeric-hymns",
+          "3.182-3.238"
+        ],
+        "to": [
+          "Apollo",
+          "notable_claim",
+          "wooed alongside Phorbas sprung from Triops",
+          "hesiod-homeric-hymns",
+          "3.182-3.238"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Apollo",
+          "notable_deed",
+          "wooed alongside Ereutheus",
+          "hesiod-homeric-hymns",
+          "3.182-3.238"
+        ],
+        "to": [
+          "Apollo",
+          "notable_claim",
+          "wooed alongside Ereutheus",
+          "hesiod-homeric-hymns",
+          "3.182-3.238"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Athena",
+          "notable_deed",
+          "hampered Aias in the footrace so that Odysseus would win",
+          "homer-iliad",
+          "23.753-23.796"
+        ],
+        "to": [
+          "Athena",
+          "notable_claim",
+          "hampered Aias in the footrace so that Odysseus would win",
+          "homer-iliad",
+          "23.753-23.796"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Achilles",
+          "notable",
+          "breaker of the ranks of men",
+          "homer-iliad",
+          "16.548-16.592"
+        ],
+        "to": [
+          "Achilles",
+          "notable_claim",
+          "breaker of the ranks of men",
+          "homer-iliad",
+          "16.548-16.592"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Achilles",
+          "notable",
+          "born of an immortal mother",
+          "homer-iliad",
+          "17.33-17.81"
+        ],
+        "to": [
+          "Achilles",
+          "notable_claim",
+          "born of an immortal mother",
+          "homer-iliad",
+          "17.33-17.81"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Menelaus",
+          "notable",
+          "nurtured of Zeus",
+          "homer-iliad",
+          "17.33-17.81"
+        ],
+        "to": [
+          "Menelaus",
+          "notable_claim",
+          "nurtured of Zeus",
+          "homer-iliad",
+          "17.33-17.81"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Odysseus",
+          "notable",
+          "the peer of Zeus in counsel",
+          "homer-iliad",
+          "2.394-2.440"
+        ],
+        "to": [
+          "Odysseus",
+          "notable_claim",
+          "the peer of Zeus in counsel",
+          "homer-iliad",
+          "2.394-2.440"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Odysseus",
+          "notable",
+          "loved by Pallas Athene",
+          "homer-iliad",
+          "10.227-10.271"
+        ],
+        "to": [
+          "Odysseus",
+          "notable_claim",
+          "loved by Pallas Athene",
+          "homer-iliad",
+          "10.227-10.271"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Odysseus",
+          "notable",
+          "lost the day of his return from Troy",
+          "homer-odyssey",
+          "1.325-1.364"
+        ],
+        "to": [
+          "Odysseus",
+          "notable_claim",
+          "lost the day of his return from Troy",
+          "homer-odyssey",
+          "1.325-1.364"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Aphrodite",
+          "notable",
+          "wounded on the hand at the wrist by Diomedes",
+          "homer-iliad",
+          "5.426-5.469"
+        ],
+        "to": [
+          "Aphrodite",
+          "notable_claim",
+          "wounded on the hand at the wrist by Diomedes",
+          "homer-iliad",
+          "5.426-5.469"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Aphrodite",
+          "notable",
+          "loves Ares and lies with him, caught in adultery by Hephaestus's snare",
+          "homer-odyssey",
+          "8.295-8.342"
+        ],
+        "to": [
+          "Aphrodite",
+          "notable_claim",
+          "loves Ares and lies with him, caught in adultery by Hephaestus's snare",
+          "homer-odyssey",
+          "8.295-8.342"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Aphrodite",
+          "notable",
+          "went to Olympus to ask Zeus for the maidens' marriage to be accomplished",
+          "homer-odyssey",
+          "20.54-20.101"
+        ],
+        "to": [
+          "Aphrodite",
+          "notable_claim",
+          "went to Olympus to ask Zeus for the maidens' marriage to be accomplished",
+          "homer-odyssey",
+          "20.54-20.101"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Athena",
+          "notable",
+          "took the form of the daughter of Dymas to speak to Nausicaa",
+          "homer-odyssey",
+          "6.13-6.47"
+        ],
+        "to": [
+          "Athena",
+          "notable_claim",
+          "took the form of the daughter of Dymas to speak to Nausicaa",
+          "homer-odyssey",
+          "6.13-6.47"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Athena",
+          "notable",
+          "departed to Olympus, abode of the gods that stands fast forever",
+          "homer-odyssey",
+          "6.13-6.47"
+        ],
+        "to": [
+          "Athena",
+          "notable_claim",
+          "departed to Olympus, abode of the gods that stands fast forever",
+          "homer-odyssey",
+          "6.13-6.47"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Athena",
+          "notable",
+          "sent the ship a favorable wind",
+          "homer-odyssey",
+          "15.271-15.300"
+        ],
+        "to": [
+          "Athena",
+          "notable_claim",
+          "sent the ship a favorable wind",
+          "homer-odyssey",
+          "15.271-15.300"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Poseidon",
+          "notable",
+          "his son's son (grandson) fell in battle, causing his wrath",
+          "homer-iliad",
+          "13.206-13.253"
+        ],
+        "to": [
+          "Poseidon",
+          "notable_claim",
+          "his son's son (grandson) fell in battle, causing his wrath",
+          "homer-iliad",
+          "13.206-13.253"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Hermes",
+          "notable",
+          "sent as guide (Argeiphontes) to lead Priam to Achilles",
+          "homer-iliad",
+          "24.159-24.199"
+        ],
+        "to": [
+          "Hermes",
+          "notable_claim",
+          "sent as guide (Argeiphontes) to lead Priam to Achilles",
+          "homer-iliad",
+          "24.159-24.199"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Hermes",
+          "notable",
+          "Used his sleep-inducing wand to violate Chione while she slept",
+          "ovid-metamorphoses",
+          "11.301-11.317"
+        ],
+        "to": [
+          "Hermes",
+          "notable_claim",
+          "Used his sleep-inducing wand to violate Chione while she slept",
+          "ovid-metamorphoses",
+          "11.301-11.317"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Odysseus",
+          "notable_act",
+          "slew the wooers who vexed his house",
+          "homer-odyssey",
+          "22.490-23.38"
+        ],
+        "to": [
+          "Odysseus",
+          "notable_claim",
+          "slew the wooers who vexed his house",
+          "homer-odyssey",
+          "22.490-23.38"
+        ],
+        "trustTier": 1
+      }
+    ],
+    "carriedCount": 1091,
+    "renamedCount": 68,
+    "absorbed": [],
+    "absorbedCount": 0,
+    "reReview": [
+      {
+        "key": [
+          "Telamon",
+          "parentage",
+          "child of Ajax son of Telamon",
+          "homer-iliad",
+          "12.309-12.350"
+        ],
+        "trustTier": 2,
+        "reason": "dropped_by_extraction"
+      }
+    ],
+    "reReviewCount": 1,
+    "tierCountsBefore": {
+      "1": 569,
+      "2": 523
+    },
+    "tierCountsAfter": {
+      "1": 569,
+      "2": 522
+    }
+  },
+  {
+    "batchLabel": "p6-g2-fuzzy-demote-rekey",
+    "date": "2026-07-31T19:22:35.064028+00:00",
+    "keys": [],
+    "groupCount": 0,
+    "rationale": "Stage P6 G0: ADR-022's resolver changes re-key reviewed rows through subject_name / claim_value. Trust tiers carried across the rename via the G1 resolution ledger; rows that could not be mapped are listed under reReview and go back through ADR-004's gate.",
+    "rekeyed": [
+      {
+        "from": [
+          "Panope",
+          "parentage",
+          "child of Nereus",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "to": [
+          "Panopea",
+          "parentage",
+          "child of Nereus",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Panope",
+          "parentage",
+          "child of Doris",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "to": [
+          "Panopea",
+          "parentage",
+          "child of Doris",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Ianira",
+          "parentage",
+          "child of Oceanus",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "to": [
+          "Ianeira",
+          "parentage",
+          "child of Oceanus",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Ianira",
+          "parentage",
+          "child of Tethys",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "to": [
+          "Ianeira",
+          "parentage",
+          "child of Tethys",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Polynome",
+          "parentage",
+          "child of Nereus",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "to": [
+          "Polynoe",
+          "parentage",
+          "child of Nereus",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Polynome",
+          "parentage",
+          "child of Doris",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "to": [
+          "Polynoe",
+          "parentage",
+          "child of Doris",
+          "hesiod-theogony",
+          "233-269"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Zeus",
+          "marriage",
+          "married to Herse",
+          "homer-odyssey",
+          "15.92-15.142"
+        ],
+        "to": [
+          "Zeus",
+          "marriage",
+          "married to Here",
+          "homer-odyssey",
+          "15.92-15.142"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Poseidon",
+          "marriage",
+          "married to Medus",
+          "hesiod-theogony",
+          "270-305"
+        ],
+        "to": [
+          "Poseidon",
+          "marriage",
+          "married to Medusa",
+          "hesiod-theogony",
+          "270-305"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Rhode",
+          "parentage",
+          "child of Oceanus",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "to": [
+          "Rhodea",
+          "parentage",
+          "child of Oceanus",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Rhode",
+          "parentage",
+          "child of Tethys",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "to": [
+          "Rhodea",
+          "parentage",
+          "child of Tethys",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Hellen",
+          "parentage",
+          "child of Tyndareus",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "to": [
+          "Helen",
+          "parentage",
+          "child of Tyndareus",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Amphictyon",
+          "parentage",
+          "child of Alcaeus",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "to": [
+          "Amphitryon",
+          "parentage",
+          "child of Alcaeus",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Amphictyon",
+          "parentage",
+          "child of Astydamia",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "to": [
+          "Amphitryon",
+          "parentage",
+          "child of Astydamia",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Amphictyon",
+          "parentage",
+          "child of Laonome",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "to": [
+          "Amphitryon",
+          "parentage",
+          "child of Laonome",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Amphictyon",
+          "parentage",
+          "child of Hipponoe",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "to": [
+          "Amphitryon",
+          "parentage",
+          "child of Hipponome",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Amphictyon",
+          "parentage",
+          "son of Alcaeus and Astydamia, daughter of Pelops",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "to": [
+          "Amphitryon",
+          "parentage",
+          "son of Alcaeus and Astydamia, daughter of Pelops",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Amphictyon",
+          "parentage",
+          "some say son of Alcaeus and Laonome, daughter of Guneus",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "to": [
+          "Amphitryon",
+          "parentage",
+          "some say son of Alcaeus and Laonome, daughter of Guneus",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Amphictyon",
+          "parentage",
+          "others say son of Alcaeus and Hipponome, daughter of Menoeceus",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "to": [
+          "Amphitryon",
+          "parentage",
+          "others say son of Alcaeus and Hipponome, daughter of Menoeceus",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Oeneus",
+          "marriage",
+          "married to Podarces",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "to": [
+          "Oeneus",
+          "marriage",
+          "married to Podarce",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Diomedes",
+          "parentage",
+          "daughter of Phorbas",
+          "homer-iliad",
+          "9.643-9.675"
+        ],
+        "to": [
+          "Diomede",
+          "parentage",
+          "daughter of Phorbas",
+          "homer-iliad",
+          "9.643-9.675"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Antiochus",
+          "parentage",
+          "child of Nestor",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "to": [
+          "Antilochus",
+          "parentage",
+          "child of Nestor",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Sthenelaus",
+          "parentage",
+          "child of Egyptus",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "to": [
+          "Sthenelus",
+          "parentage",
+          "child of Egyptus",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Sthenelaus",
+          "parentage",
+          "child of Tyria",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "to": [
+          "Sthenelus",
+          "parentage",
+          "child of Tyria",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Sthenelaus",
+          "parentage",
+          "child of Andromeda",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "to": [
+          "Sthenelus",
+          "parentage",
+          "child of Andromeda",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Sthenelaus",
+          "parentage",
+          "child of Capaneus",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "to": [
+          "Sthenelus",
+          "parentage",
+          "child of Capaneus",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Sthenelaus",
+          "parentage",
+          "child of Sthenelaus",
+          "homer-iliad",
+          "5.297-5.333"
+        ],
+        "to": [
+          "Sthenelus",
+          "parentage",
+          "child of Sthenelus",
+          "homer-iliad",
+          "5.297-5.333"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Sthenelaus",
+          "parentage",
+          "son of Capaneus",
+          "homer-iliad",
+          "5.297-5.333"
+        ],
+        "to": [
+          "Sthenelus",
+          "parentage",
+          "son of Capaneus",
+          "homer-iliad",
+          "5.297-5.333"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Leitus",
+          "parentage",
+          "child of Alecto",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "to": [
+          "Leitus",
+          "parentage",
+          "child of Alector",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Ialmenus",
+          "parentage",
+          "child of Arges",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "to": [
+          "Ialmenus",
+          "parentage",
+          "child of Ares",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Medus",
+          "parentage",
+          "child of Sthenelaus",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "to": [
+          "Medusa",
+          "parentage",
+          "child of Sthenelus",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Medus",
+          "parentage",
+          "child of Nicippe",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "to": [
+          "Medusa",
+          "parentage",
+          "child of Nicippe",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Medus",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "to": [
+          "Medusa",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Heleus",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "to": [
+          "Helenus",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Heleus",
+          "parentage",
+          "child of Hecuba",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "to": [
+          "Helenus",
+          "parentage",
+          "child of Hecuba",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Eurystheus",
+          "parentage",
+          "child of Sthenelaus",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "to": [
+          "Eurystheus",
+          "parentage",
+          "child of Sthenelus",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Heracles",
+          "marriage",
+          "married to Megaera",
+          "apollodorus-bibliotheca",
+          "2.4.11-2.4.12"
+        ],
+        "to": [
+          "Heracles",
+          "marriage",
+          "married to Megara",
+          "apollodorus-bibliotheca",
+          "2.4.11-2.4.12"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Chryses",
+          "parentage",
+          "child of Oceanus",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "to": [
+          "Chryseis",
+          "parentage",
+          "child of Oceanus",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Chryses",
+          "parentage",
+          "child of Tethys",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "to": [
+          "Chryseis",
+          "parentage",
+          "child of Tethys",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Dorycleus",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "to": [
+          "Doryclus",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Polypoetes",
+          "parentage",
+          "child of Pirithous",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "to": [
+          "Polypoetes",
+          "parentage",
+          "child of Perithous",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Leonteus",
+          "parentage",
+          "child of Cronus",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "to": [
+          "Leonteus",
+          "parentage",
+          "child of Coronus",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Menelaus",
+          "marriage",
+          "married to Hellen",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "to": [
+          "Menelaus",
+          "marriage",
+          "married to Helen",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Menelaus",
+          "marriage",
+          "married to Hellen",
+          "apollodorus-bibliotheca",
+          "E.2.15-E.3.5"
+        ],
+        "to": [
+          "Menelaus",
+          "marriage",
+          "married to Helen",
+          "apollodorus-bibliotheca",
+          "E.2.15-E.3.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Menelaus",
+          "marriage",
+          "married to Hellen",
+          "apollodorus-bibliotheca",
+          "E.3.6-E.3.12"
+        ],
+        "to": [
+          "Menelaus",
+          "marriage",
+          "married to Helen",
+          "apollodorus-bibliotheca",
+          "E.3.6-E.3.12"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Menelaus",
+          "marriage",
+          "married to Hellen",
+          "apollodorus-bibliotheca",
+          "E.6.23-E.6.29"
+        ],
+        "to": [
+          "Menelaus",
+          "marriage",
+          "married to Helen",
+          "apollodorus-bibliotheca",
+          "E.6.23-E.6.29"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Menelaus",
+          "marriage",
+          "married to Hellen",
+          "homer-iliad",
+          "3.245-3.291"
+        ],
+        "to": [
+          "Menelaus",
+          "marriage",
+          "married to Helen",
+          "homer-iliad",
+          "3.245-3.291"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Menelaus",
+          "marriage",
+          "married to Hellen",
+          "homer-iliad",
+          "3.292-3.339"
+        ],
+        "to": [
+          "Menelaus",
+          "marriage",
+          "married to Helen",
+          "homer-iliad",
+          "3.292-3.339"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Menelaus",
+          "marriage",
+          "married to Hellen",
+          "homer-iliad",
+          "3.381-3.420"
+        ],
+        "to": [
+          "Menelaus",
+          "marriage",
+          "married to Helen",
+          "homer-iliad",
+          "3.381-3.420"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Menelaus",
+          "marriage",
+          "married to Hellen",
+          "homer-iliad",
+          "4.1-4.49"
+        ],
+        "to": [
+          "Menelaus",
+          "marriage",
+          "married to Helen",
+          "homer-iliad",
+          "4.1-4.49"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Menelaus",
+          "marriage",
+          "married to Hellen",
+          "homer-iliad",
+          "7.354-7.402"
+        ],
+        "to": [
+          "Menelaus",
+          "marriage",
+          "married to Helen",
+          "homer-iliad",
+          "7.354-7.402"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Menelaus",
+          "marriage",
+          "married to Hellen",
+          "homer-iliad",
+          "13.601-13.642"
+        ],
+        "to": [
+          "Menelaus",
+          "marriage",
+          "married to Helen",
+          "homer-iliad",
+          "13.601-13.642"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Menelaus",
+          "marriage",
+          "married to Hellen",
+          "homer-odyssey",
+          "3.478-4.19"
+        ],
+        "to": [
+          "Menelaus",
+          "marriage",
+          "married to Helen",
+          "homer-odyssey",
+          "3.478-4.19"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Menelaus",
+          "marriage",
+          "married to Hellen",
+          "homer-odyssey",
+          "4.65-4.112"
+        ],
+        "to": [
+          "Menelaus",
+          "marriage",
+          "married to Helen",
+          "homer-odyssey",
+          "4.65-4.112"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Menelaus",
+          "marriage",
+          "married to Hellen",
+          "homer-odyssey",
+          "4.155-4.202"
+        ],
+        "to": [
+          "Menelaus",
+          "marriage",
+          "married to Helen",
+          "homer-odyssey",
+          "4.155-4.202"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Menelaus",
+          "marriage",
+          "married to Hellen",
+          "homer-odyssey",
+          "4.538-4.586"
+        ],
+        "to": [
+          "Menelaus",
+          "marriage",
+          "married to Helen",
+          "homer-odyssey",
+          "4.538-4.586"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Menelaus",
+          "marriage",
+          "married to Hellen",
+          "homer-odyssey",
+          "15.48-15.91"
+        ],
+        "to": [
+          "Menelaus",
+          "marriage",
+          "married to Helen",
+          "homer-odyssey",
+          "15.48-15.91"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Menelaus",
+          "marriage",
+          "married to Hellen",
+          "homer-odyssey",
+          "15.92-15.142"
+        ],
+        "to": [
+          "Menelaus",
+          "marriage",
+          "married to Helen",
+          "homer-odyssey",
+          "15.92-15.142"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Menelaus",
+          "marriage",
+          "married to Hellen",
+          "ovid-metamorphoses",
+          "13.162-13.204"
+        ],
+        "to": [
+          "Menelaus",
+          "marriage",
+          "married to Helen",
+          "ovid-metamorphoses",
+          "13.162-13.204"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Hermione",
+          "parentage",
+          "child of Hellen",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "to": [
+          "Hermione",
+          "parentage",
+          "child of Helen",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Aeacus",
+          "parentage",
+          "child of Arisbe",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "to": [
+          "Aesacus",
+          "parentage",
+          "child of Arisbe",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Aeacus",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "to": [
+          "Aesacus",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Priam",
+          "parentage",
+          "child of Iasus",
+          "homer-iliad",
+          "11.84-11.121"
+        ],
+        "to": [
+          "Priam",
+          "parentage",
+          "child of Isus",
+          "homer-iliad",
+          "11.84-11.121"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Priam",
+          "parentage",
+          "child of Heleus",
+          "homer-iliad",
+          "12.80-12.107"
+        ],
+        "to": [
+          "Priam",
+          "parentage",
+          "child of Helenus",
+          "homer-iliad",
+          "12.80-12.107"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Nilus",
+          "parentage",
+          "child of Nilus",
+          "ovid-metamorphoses",
+          "5.177-5.209"
+        ],
+        "to": [
+          "Nileus",
+          "parentage",
+          "child of Nileus",
+          "ovid-metamorphoses",
+          "5.177-5.209"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Nilus",
+          "parentage",
+          "child of Nile",
+          "ovid-metamorphoses",
+          "5.177-5.209"
+        ],
+        "to": [
+          "Nileus",
+          "parentage",
+          "child of Nile",
+          "ovid-metamorphoses",
+          "5.177-5.209"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Nilus",
+          "parentage",
+          "Falsely claimed to be begotten by the seven-fold Nile river, shield adorned with seven gold and silver streams",
+          "ovid-metamorphoses",
+          "5.177-5.209"
+        ],
+        "to": [
+          "Nileus",
+          "parentage",
+          "Falsely claimed to be begotten by the seven-fold Nile river, shield adorned with seven gold and silver streams",
+          "ovid-metamorphoses",
+          "5.177-5.209"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Selene",
+          "parentage",
+          "child of Thia",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "to": [
+          "Selene",
+          "parentage",
+          "child of Theia",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Eos",
+          "parentage",
+          "child of Thia",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "to": [
+          "Eos",
+          "parentage",
+          "child of Theia",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Aphrodite",
+          "marriage",
+          "married to Arges",
+          "hesiod-theogony",
+          "924-955"
+        ],
+        "to": [
+          "Aphrodite",
+          "marriage",
+          "married to Ares",
+          "hesiod-theogony",
+          "924-955"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Pisander",
+          "death",
+          "killed by Pisander",
+          "homer-odyssey",
+          "22.265-22.309"
+        ],
+        "to": [
+          "Peisander",
+          "death",
+          "killed by Peisander",
+          "homer-odyssey",
+          "22.265-22.309"
+        ],
+        "trustTier": 2
+      },
+      {
+        "from": [
+          "Pisander",
+          "death",
+          "Killed by the herdsman of the cattle (Philoetius) in the hall fight",
+          "homer-odyssey",
+          "22.265-22.309"
+        ],
+        "to": [
+          "Peisander",
+          "death",
+          "Killed by the herdsman of the cattle (Philoetius) in the hall fight",
+          "homer-odyssey",
+          "22.265-22.309"
+        ],
+        "trustTier": 2
+      }
+    ],
+    "carriedCount": 1051,
+    "renamedCount": 71,
+    "absorbed": [
+      {
+        "from": [
+          "Priam",
+          "marriage",
+          "married to Hecuba",
+          "homer-iliad",
+          "24.200-24.246"
+        ],
+        "into": [
+          "Priam",
+          "marriage",
+          "married to Hecuba",
+          "homer-iliad",
+          "24.200-24.246"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Aphrodite",
+          "marriage",
+          "married to Hephaestus",
+          "homer-odyssey",
+          "8.256-8.294"
+        ],
+        "into": [
+          "Aphrodite",
+          "marriage",
+          "married to Hephaestus",
+          "homer-odyssey",
+          "8.256-8.294"
+        ],
+        "trustTier": 1
+      },
+      {
+        "from": [
+          "Hera",
+          "marriage",
+          "married to Zeus",
+          "homer-iliad",
+          "14.153-14.196"
+        ],
+        "into": [
+          "Hera",
+          "marriage",
+          "married to Zeus",
+          "homer-iliad",
+          "14.153-14.196"
+        ],
+        "trustTier": 1
+      }
+    ],
+    "absorbedCount": 3,
+    "reReview": [
+      {
+        "key": [
+          "Zeus",
+          "parentage",
+          "child of Styx",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 2,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Zeus",
+          "parentage",
+          "child of Pallas",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 2,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Perses",
+          "parentage",
+          "child of Perses",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "trustTier": 2,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Perses",
+          "parentage",
+          "child of Andromeda",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "trustTier": 2,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Perses",
+          "parentage",
+          "child of Oceanus",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 2,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Perses",
+          "parentage",
+          "child of Tethys",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 2,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Perses",
+          "parentage",
+          "child of Eurybia",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 1,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Perses",
+          "parentage",
+          "child of Crius",
+          "hesiod-theogony",
+          "346-403"
+        ],
+        "trustTier": 1,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Atlas",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Perses",
+          "marriage",
+          "married to Asteria",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "trustTier": 1,
+        "reason": "dropped_by_extraction"
+      },
+      {
+        "key": [
+          "Panope",
+          "parentage",
+          "child of Nereus",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "trustTier": 1,
+        "reason": "dropped_by_extraction"
+      },
+      {
+        "key": [
+          "Ianira",
+          "parentage",
+          "child of Nereus",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "trustTier": 1,
+        "reason": "dropped_by_extraction"
+      },
+      {
+        "key": [
+          "Polynome",
+          "parentage",
+          "child of Nereus",
+          "apollodorus-bibliotheca",
+          "1.2.1-1.2.7"
+        ],
+        "trustTier": 1,
+        "reason": "dropped_by_extraction"
+      },
+      {
+        "key": [
+          "Sthenelaus",
+          "parentage",
+          "child of Perses",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "trustTier": 2,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Podarces",
+          "parentage",
+          "child of Pieria",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Imbrus",
+          "parentage",
+          "child of Caliadne",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2,
+        "reason": "dropped_by_extraction"
+      },
+      {
+        "key": [
+          "Bromius",
+          "parentage",
+          "child of Caliadne",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 1,
+        "reason": "dropped_by_extraction"
+      },
+      {
+        "key": [
+          "Imbrus",
+          "marriage",
+          "married to Evippe",
+          "apollodorus-bibliotheca",
+          "2.1.5"
+        ],
+        "trustTier": 2,
+        "reason": "dropped_by_extraction"
+      },
+      {
+        "key": [
+          "Heleus",
+          "parentage",
+          "child of Perses",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "trustTier": 2,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Chryses",
+          "parentage",
+          "child of Chryses",
+          "homer-iliad",
+          "Homer, Iliad"
+        ],
+        "trustTier": 2,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Chryses",
+          "parentage",
+          "child of Chryses",
+          "homer-iliad",
+          "1.1-1.52"
+        ],
+        "trustTier": 2,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Chryses",
+          "parentage",
+          "child of Chryses",
+          "homer-iliad",
+          "1.53-1.100"
+        ],
+        "trustTier": 2,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Chryses",
+          "parentage",
+          "child of Chryses",
+          "homer-iliad",
+          "1.364-1.385"
+        ],
+        "trustTier": 2,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Chryses",
+          "parentage",
+          "child of Chryses",
+          "homer-iliad",
+          "1.428-1.474"
+        ],
+        "trustTier": 2,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Chryses",
+          "parentage",
+          "daughter of Chryses, priest of Apollo",
+          "homer-iliad",
+          "Homer, Iliad"
+        ],
+        "trustTier": 2,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Chryses",
+          "parentage",
+          "daughter of Chryses",
+          "homer-iliad",
+          "1.1-1.52"
+        ],
+        "trustTier": 2,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Chryses",
+          "parentage",
+          "daughter of Chryses",
+          "homer-iliad",
+          "1.101-1.146"
+        ],
+        "trustTier": 2,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Chryses",
+          "parentage",
+          "daughter of Chryses",
+          "homer-iliad",
+          "1.364-1.385"
+        ],
+        "trustTier": 2,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Chryses",
+          "parentage",
+          "daughter of Chryses",
+          "homer-iliad",
+          "1.428-1.474"
+        ],
+        "trustTier": 2,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Polyxenus",
+          "parentage",
+          "child of Agasthenes",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "trustTier": 1,
+        "reason": "dropped_by_extraction"
+      },
+      {
+        "key": [
+          "Podalirius",
+          "parentage",
+          "child of Asclepius",
+          "apollodorus-bibliotheca",
+          "3.10.8-3.11.1"
+        ],
+        "trustTier": 1,
+        "reason": "dropped_by_extraction"
+      },
+      {
+        "key": [
+          "Philammon",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Hypirochus",
+          "parentage",
+          "child of Priam",
+          "apollodorus-bibliotheca",
+          "3.12.5"
+        ],
+        "trustTier": 1,
+        "reason": "dropped_by_extraction"
+      },
+      {
+        "key": [
+          "Anticlia",
+          "parentage",
+          "child of Odysseus",
+          "apollodorus-bibliotheca",
+          "E.3.6-E.3.12"
+        ],
+        "trustTier": 2,
+        "reason": "dropped_by_extraction"
+      },
+      {
+        "key": [
+          "Liocritus",
+          "death",
+          "killed by Liocritus",
+          "homer-odyssey",
+          "22.265-22.309"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Liocritus",
+          "death",
+          "Wounded by Telemachus with a spear-thrust to the groin, fell dead",
+          "homer-odyssey",
+          "22.265-22.309"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Perses",
+          "notable_claim",
+          "said to be ancestor of the kings of Persia",
+          "apollodorus-bibliotheca",
+          "2.4.5"
+        ],
+        "trustTier": 2,
+        "reason": "ambiguous_rename"
+      },
+      {
+        "key": [
+          "Diomedes",
+          "notable_claim",
+          "brought by Achilles from Lesbos as his concubine",
+          "homer-iliad",
+          "9.643-9.675"
+        ],
+        "trustTier": 2,
+        "reason": "renamed_target_absent"
+      },
+      {
+        "key": [
+          "Menelaus",
+          "marriage",
+          "married to Hellen",
+          "homer-odyssey",
+          "4.265-4.314"
+        ],
+        "trustTier": 2,
+        "reason": "conflicting_merge"
+      },
+      {
+        "key": [
+          "Menelaus",
+          "marriage",
+          "married to Helen",
+          "homer-odyssey",
+          "4.265-4.314"
+        ],
+        "trustTier": 1,
+        "reason": "conflicting_merge"
+      }
+    ],
+    "reReviewCount": 40,
+    "tierCountsBefore": {
+      "1": 572,
+      "2": 522
+    },
+    "tierCountsAfter": {
+      "1": 558,
+      "2": 493
+    }
   }
 ]

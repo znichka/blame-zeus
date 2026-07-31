@@ -298,3 +298,76 @@ def test_the_migration_is_appended_to_the_promotion_log_with_its_tier_accounting
     assert entry["reReview"][0]["reason"] == DROPPED_BY_EXTRACTION
     assert entry["tierCountsBefore"] == {"1": 2}
     assert entry["tierCountsAfter"] == {"1": 1}
+
+
+# --- the other two re-key mechanisms a re-extraction exhibits ---------------------
+
+
+def test_a_claim_type_normalization_carries_the_tier():
+    """`notable_act` -> `notable_claim` (claim_type_aliases): same subject, value,
+    source and passage -- only the label normalized, so the verdict is unaffected."""
+    reviewed = [_claim("Hermes", "Stole Apollo's cattle", tier=1, claim_type="notable_act")]
+    new_rows = [_claim("Hermes", "Stole Apollo's cattle", claim_type="notable_claim")]
+
+    migration = migrate_review_keys(reviewed, new_rows, claim_type_alias_map={"notable_act": "notable_claim"})
+    assert [d.new_key for d in migration.carried] == [_claim_key(new_rows[0])]
+    assert migration.re_review == ()
+
+
+def test_claim_type_is_untouched_when_no_alias_map_is_supplied():
+    reviewed = [_claim("Hermes", "Stole Apollo's cattle", tier=1, claim_type="notable_act")]
+    new_rows = [_claim("Hermes", "Stole Apollo's cattle", claim_type="notable_claim")]
+
+    migration = migrate_review_keys(reviewed, new_rows)
+    assert migration.carried == ()
+    assert [r.reason for r in migration.re_review] == [DROPPED_BY_EXTRACTION]
+
+
+def test_a_global_name_rename_carries_when_no_ledger_pair_describes_it():
+    """Alias growth between two runs (`Cronos` -> `Cronus`) renames a name in every
+    passage at once, and no ledger pair describes it when the earlier run predates the
+    ledger entirely -- which is exactly the state the first G1 run found."""
+    reviewed = [_claim("Hera", "child of Cronos", tier=1)]
+    new_rows = [_claim("Hera", "child of Cronus")]
+
+    migration = migrate_review_keys(reviewed, new_rows, name_renames={"cronos": "Cronus"})
+    assert [d.new_key for d in migration.carried] == [_claim_key(new_rows[0])]
+
+
+def test_the_passage_scoped_ledger_beats_the_global_rename():
+    """G3's whole point: a passage-scoped decision must override a global alias, or the
+    namesake registry cannot take effect."""
+    reviewed = [_claim("Pluto", "child of Oceanus", tier=1)]
+    new_rows = [_claim("Pluto (Oceanid)", "child of Oceanus")]
+    before = [_ledger("Pluto", "Pluto")]
+    after = [_ledger("Pluto", "Pluto (Oceanid)", method="registry")]
+
+    migration = migrate_review_keys(reviewed, new_rows, before, after, name_renames={"pluto": "Hades"})
+    assert [d.new_key for d in migration.carried] == [_claim_key(new_rows[0])]
+
+
+def test_all_three_mechanisms_compose_on_one_row():
+    reviewed = [_claim("Atlas", "child of Cronos", tier=1, claim_type="birth")]
+    new_rows = [_claim("Atas", "child of Cronus", claim_type="parentage")]
+    before = [_ledger("Atas", "Atlas", method="fuzzy", score=88.9)]
+    after = [_ledger("Atas", "Atas", method="new")]
+
+    migration = migrate_review_keys(
+        reviewed, new_rows, before, after,
+        claim_type_alias_map={"birth": "parentage"},
+        name_renames={"cronos": "Cronus"},
+    )
+    assert [d.new_key for d in migration.carried] == [_claim_key(new_rows[0])]
+    assert migration.accounted
+
+
+def test_the_global_fallback_never_re_keys_a_row_that_already_matches():
+    """A global alias map reconstructs a mapping no ledger recorded, so it is a guess,
+    not an authority. Firing it eagerly would move a decision off a row it already fits
+    -- here `Cronus` is both a live canonical and (as `Cronos`) an alias target."""
+    reviewed = [_claim("Hera", "child of Cronos", tier=1)]
+    new_rows = [_claim("Hera", "child of Cronos"), _claim("Hera", "child of Cronus")]
+
+    migration = migrate_review_keys(reviewed, new_rows, name_renames={"cronos": "Cronus"})
+    assert [d.new_key for d in migration.carried] == [_claim_key(new_rows[0])]
+    assert not migration.carried[0].renamed
