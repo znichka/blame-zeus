@@ -407,7 +407,7 @@ yields nothing promotable, it is recorded as a dead end rather than iterated —
 
 In `ingestion/extraction/claim_evidence.py` — no `NAME`, no detector budget spent.
 
-- [ ] **G6.1** — `assess_collision_risk(claim, segment_text, ledger, …) -> CollisionRisk`. Four
+- [x] **G6.1** — `assess_collision_risk(claim, segment_text, ledger, …) -> CollisionRisk`. Four
       signals, each reusing existing machinery:
       | signal | source | catches |
       |---|---|---|
@@ -415,17 +415,22 @@ In `ingestion/extraction/claim_evidence.py` — no `NAME`, no detector budget sp
       | `surface_absent` | `claim_evidence._name_present` (`claim_evidence.py:155`) / `parentage_direction._spellings` (`parentage_direction.py:62`) — **reads `segment_text`** | canonical name unattested in its own cited segment (partly why such rows already fall into buckets D/E — this makes the *reason* visible) |
       | `catalogue_context` | distinct proper-name density; long `X, Y, Z and W` conjunction runs — **reads `segment_text`** | the shape **every** one of the 82+ confirmed instances has |
       | `established_elsewhere` | `audit/prominence.py` (A8, degree + mention count) | subject already carries rows/edges from passages disjoint from this one |
-- [ ] **G6.2** — Risk is **HIGH** when `catalogue_context ∧ established_elsewhere`, or when
+- [x] **G6.2** — Risk is **HIGH** when `catalogue_context ∧ established_elsewhere`, or when
       `resolved_by ∈ {fuzzy, alias} ∧ surface_absent`.
-- [ ] **G6.3** — `review_passage` in `ingestion/notebooks/02_verify_conflicts.ipynb` prints the risk
+- [x] **G6.3** — `review_passage` in `ingestion/notebooks/02_verify_conflicts.ipynb` prints the risk
       line beside the existing `_BUCKET_LABEL` output.
-- [ ] **G6.4** — Unit tests beside the existing `claim_evidence` bucketing tests.
+- [x] **G6.4** — Unit tests beside the existing `claim_evidence` bucketing tests.
 
 **ADR-004 Amendment 1 binds this track**: the signal may **order and annotate**; it may **never
 promote**. No code path writes `trust_tier=1`, and no code path splits an entity.
 
-**Exit:** `review_passage('apollodorus-bibliotheca', '3.12.5')` marks the Priam-sons rows DEV-137
-rejected by hand as HIGH risk **before** the reviewer opens the DB.
+**Exit MET (DEV-146)** — both DEV-137-rejected subjects still present at `3.12.5` are flagged HIGH,
+0 missed, from the candidate files and ledger alone (no DB read). `[DEVIATED - see DEVIATIONS.md
+#DEV-146]` **Measured and recorded:** G6.2's rule scores **65% recall at 19% precision** over the 7
+adjudicated Track C1 passages (58 of 60 rows HIGH at `3.12.5`, including `Priam`/`Hector`). An
+asymmetry refinement reached 70% precision on `3.12.5` alone but **did not generalise** (45%/29%
+across all seven; 0 recall at `233-269`), so the specified rule was **left unchanged** and asymmetry
+ships as an *ordering* key (`rank_key`) instead — which is what G5.3 consumes.
 
 ---
 

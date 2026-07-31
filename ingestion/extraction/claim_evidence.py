@@ -650,3 +650,197 @@ def record_key_migration(
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(entries, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return entry
+
+
+# --- G6: the collision-risk signal for reviewers ---------------------------------
+#
+# ADR-004 Amendment 1 binds this section: it may **order and annotate**; it may never
+# promote. Nothing below writes a trust_tier or splits an entity.
+
+# Ledger methods that mean "identity was decided by a merge layer rather than by the
+# text spelling the canonical name". `fuzzy_suggestion` is included because P6 G2
+# demoted the fuzzy step (DEV-143) -- without it this disjunct would be dead code, since
+# no row carries `fuzzy` any more. `registry` is deliberately excluded: a registry hit is
+# an adjudicated split, the opposite of an unreviewed merge.
+_MERGE_METHODS = frozenset({"fuzzy", "fuzzy_suggestion", "alias"})
+
+# Construction (measured, not guessed): distinct capitalised tokens per 1,000 words over
+# 7 known catalogue passages -- 161.8, 201.9, 203.5, 234.5, 246.6, 250.9, 312.1 -- against
+# 5 narrative passages -- 29.5, 51.3, 86.1, 107.5, 123.2. The bands do not overlap; 150
+# sits between them. Conjunction runs (>=4 comma-separated proper names) occurred in every
+# catalogue passage and in none of the narrative ones, so either signal alone separates
+# the sample and the rule ORs them for redundancy.
+CATALOGUE_NAME_DENSITY_PER_1K = 150.0
+_PROPER_NAME = re.compile(r"\b[A-Z][a-z]{2,}\b")
+_CONJUNCTION_RUN = re.compile(r"(?:\b[A-Z][a-z]{2,}\b\s*,\s*){3,}(?:and\s+)?\b[A-Z][a-z]{2,}\b")
+
+RISK_HIGH = "HIGH"
+RISK_LOW = "LOW"
+
+
+@dataclass(frozen=True)
+class CollisionRisk:
+    level: str
+    resolved_by: str | None  # ledger method for this subject at this passage
+    resolved_surface: str | None  # what the text actually spelled
+    resolved_score: float | None
+    near_match: str | None
+    surface_absent: bool
+    catalogue_context: bool
+    established_elsewhere: bool
+    prominence: int  # A8 composite, carried for ordering (G5.3) -- never part of the rule
+    local_rows: int  # rows/edges this subject has in THIS passage
+    other_passages: int  # passages disjoint from this one where it also appears
+    reasons: tuple[str, ...]
+
+    @property
+    def high(self) -> bool:
+        return self.level == RISK_HIGH
+
+    @property
+    def asymmetry(self) -> float:
+        """`other_passages / local_rows`. **Ordering only -- deliberately not part of
+        G6.2's rule.**
+
+        A genuine namesake contributes one or two rows to the passage while owning many
+        elsewhere; the passage's own subjects (Priam, Hector at `3.12.5`) contribute
+        many local rows. Measured against the reviewer's own verdicts over the 7
+        adjudicated Track C1 passages, thresholding on this (`local<=3 and other>=2`)
+        raises precision 19% -> 45% but drops recall 65% -> 29%, and at
+        `hesiod-theogony 233-269` it finds nothing at all -- so it is a usable *sort
+        key* and an unusable *gate*. It tuned to 70% precision on `3.12.5` alone and did
+        not generalise, which is exactly why it does not decide `level`."""
+        return self.other_passages / max(self.local_rows, 1)
+
+    @property
+    def rank_key(self) -> tuple:
+        """Sort descending: HIGH first, then most-asymmetric, then most prominent. This
+        is what G5.3 consumes -- ordering, never promotion (ADR-004 Amendment 1)."""
+        return (self.high, self.asymmetry, self.prominence)
+
+
+def _bare_name(name: str) -> str:
+    """`Lycaon (son of Priam)` -> `Lycaon`. A split identity is never spelled in the
+    corpus, so testing the descriptor form against the segment would report every
+    registry-resolved row as `surface_absent` and make that signal meaningless."""
+    return (name or "").split(" (")[0].strip()
+
+
+def detect_catalogue_context(segment_text: str) -> tuple[bool, float, int]:
+    """`(is_catalogue, names_per_1k_words, conjunction_runs)`. Reads `segment_text` --
+    this is one of the two signals that needs the corpus, which is why G5's sweep must
+    read segments even though it makes no LLM calls."""
+    words = max(len(segment_text.split()), 1)
+    density = 1000.0 * len(set(_PROPER_NAME.findall(segment_text))) / words
+    runs = len(_CONJUNCTION_RUN.findall(segment_text))
+    return (density >= CATALOGUE_NAME_DENSITY_PER_1K or runs >= 1), density, runs
+
+
+def build_resolution_index(ledger: list[dict]) -> dict[tuple, dict]:
+    """`(source_id, passage_ref, lower(canonical)) -> the most informative ledger row`.
+
+    Keyed on the **canonical**, because that is what a claim row carries as its subject;
+    the ledger's `surface` is the thing the reviewer cannot otherwise see. Where a
+    passage resolved the same canonical by several paths, the non-`exact` row wins --
+    `exact` is the one that carries no information about how identity was decided.
+    """
+    index: dict[tuple, dict] = {}
+    for row in ledger:
+        canonical = row.get("canonical")
+        if not canonical:
+            continue
+        key = (row.get("source_id"), row.get("passage_ref"), canonical.strip().lower())
+        current = index.get(key)
+        if current is None or (current.get("method") == "exact" and row.get("method") != "exact"):
+            index[key] = row
+    return index
+
+
+def build_subject_row_counts(relationships: list[dict], claims: list[dict]) -> Counter:
+    """`(name, source_id, passage_ref) -> row/edge count`, the denominator of
+    `CollisionRisk.asymmetry`."""
+    counts: Counter = Counter()
+    for r in relationships:
+        where = (r.get("source_id"), r.get("passage_ref"))
+        for field in ("from_name", "to_name"):
+            if r.get(field):
+                counts[(r[field], *where)] += 1
+    for c in claims:
+        if c.get("subject_name"):
+            counts[(c["subject_name"], c.get("source_id"), c.get("passage_ref"))] += 1
+    return counts
+
+
+def build_subject_passages(relationships: list[dict], claims: list[dict]) -> dict[str, set[tuple]]:
+    """`name -> {(source_id, passage_ref)}` over both edge endpoints and claim subjects,
+    so `established_elsewhere` can ask whether a subject carries rows from passages
+    *disjoint from* the one under review."""
+    passages: dict[str, set[tuple]] = defaultdict(set)
+    for r in relationships:
+        where = (r.get("source_id"), r.get("passage_ref"))
+        for field in ("from_name", "to_name"):
+            if r.get(field):
+                passages[r[field]].add(where)
+    for c in claims:
+        if c.get("subject_name"):
+            passages[c["subject_name"]].add((c.get("source_id"), c.get("passage_ref")))
+    return dict(passages)
+
+
+def build_prominence_index(ranks) -> dict[str, int]:
+    """A8's `SubjectRank` list -> `name -> composite`, reusing `audit/prominence.py`
+    rather than recomputing degree and mention counts here."""
+    return {r.name: r.composite for r in ranks}
+
+
+def assess_collision_risk(
+    claim: dict,
+    segment_text: str,
+    resolution_index: dict[tuple, dict] | None = None,
+    subject_passages: dict[str, set[tuple]] | None = None,
+    prominence: dict[str, int] | None = None,
+    spelling_aliases: dict[str, set[str]] | None = None,
+    row_counts: Counter | None = None,
+) -> CollisionRisk:
+    """G6.1's four signals for one candidate row. Pure: every index is passed in, so the
+    sweep in G5 can build them once for 1,059 passages instead of per row."""
+    subject = claim.get("subject_name") or ""
+    where = (claim.get("source_id"), claim.get("passage_ref"))
+
+    entry = (resolution_index or {}).get((*where, subject.strip().lower())) or {}
+    resolved_by = entry.get("method")
+    surface = entry.get("surface")
+
+    bare = _bare_name(subject)
+    surface_absent = bool(bare) and not _name_present(bare, segment_text, spelling_aliases)
+    catalogue, density, runs = detect_catalogue_context(segment_text)
+    other = (subject_passages or {}).get(subject, set()) - {where}
+    elsewhere = bool(other)
+
+    reasons: list[str] = []
+    if catalogue and elsewhere:
+        reasons.append(
+            f"catalogue context ({density:.0f} names/1k words, {runs} conjunction run(s)) and "
+            f"{subject!r} already carries rows in other passages"
+        )
+    if resolved_by in _MERGE_METHODS and surface_absent:
+        reasons.append(
+            f"identity came from the {resolved_by} layer (text spelled {surface!r}) and "
+            f"{bare!r} is not attested in its own cited segment"
+        )
+    level = RISK_HIGH if reasons else RISK_LOW
+
+    return CollisionRisk(
+        level=level,
+        resolved_by=resolved_by,
+        resolved_surface=surface,
+        resolved_score=entry.get("score"),
+        near_match=entry.get("near_match"),
+        surface_absent=surface_absent,
+        catalogue_context=catalogue,
+        established_elsewhere=elsewhere,
+        prominence=(prominence or {}).get(subject, 0),
+        local_rows=(row_counts or {}).get((subject, *where), 0),
+        other_passages=len(other),
+        reasons=tuple(reasons),
+    )
