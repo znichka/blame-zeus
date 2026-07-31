@@ -606,6 +606,88 @@ floors hold across a 3-run eval; the relevant ADR/DEV entries are logged.
   the whole stage `[DEVIATED - see DEVIATIONS.md #DEV-130]`), and **A9** drops the `<UNKNOWN>`
   placeholder before D1's budget or E2's tiebreak rank on it.
 
+> ⏸ **Interrupted *inside* Track C1, after batch 3, by Stage P6 (below)** `[DEVIATED - see
+> DEVIATIONS.md #DEV-139]`. **Track C1 batch 4 does not start until P6 exits** — the gate is at the
+> next batch, not at the C1/C2 boundary, because C1's remaining ~93 passages are batches like any
+> other. Reason: identity collisions (`docs/DATA-GAPS.md` GAP-009/GAP-010) are 20–30% of every
+> batch's rejections, **five defects** have already reached live data, and the fix re-keys
+> `variant_claims` review decisions — an exposure that grows with every batch, so it is paid now at
+> 1,092 decisions rather than later at 4× that.
+
+---
+
+## Stage P6 — Entity identity: namesake splitting, resolution provenance, and the merge gate  (ADR-022)
+
+**Done when:** every confirmed GAP-009/GAP-010 instance from DEV-136/137/138 resolves correctly on a
+plain re-run of `build_candidates`; **all five** class-1 defects (enumerated once in
+`TODO-phase2-stage-p6.md` → *The class-1 set*) are fixed and verified against the reseeded DB; the
+fuzzy-step decision is recorded with its measurement and its branch-conditional A1 check; the
+collision signal is live in `review_passage`; GAP-009/GAP-010 carry closing status and rows-at-stake
+lines; the 1,092 existing tier-1/tier-2 decisions are preserved or individually re-queued.
+
+> ⚠️ **P6 runs OUT OF ORDER — it interrupts P5 *inside* Track C1.** Numbered P6 because it was
+> scoped after P5, executed before P5 finishes. Same precedent as P5's own *Track order* block, where
+> E5 and A9 run ahead of Track A for verified reasons. Interrupt point: **after Track C1 batch 3**
+> (7 of C1's 100 passages adjudicated), **before Track C1 batch 4** — C1 is not finished first.
+
+**Root cause, one for both gaps:** entity identity is decided by string matching, silently, with no
+evidence artifact and no review gate. `EntityResolver.resolve()` matches exact →
+`known_aliases.json` → rapidfuzz@88 and returns a canonical string; it does not know which passage
+the name came from and has no access to the confirmed entity set. `relationships` inherits that
+decision with **no human gate at all**; `variant_claims` inherits it through a gate that reviews
+*what the claim says* and takes *who the subject is* as given.
+
+**Why it cannot be tuned away** — construction `rapidfuzz.fuzz.ratio(a, b)`, the scorer the resolver
+uses: every confirmed false positive scores **88.9–92.3** (`Atas`/`Atlas` 88.9, `Amphitryon`/
+`Amphictyon` 90.0, `Coronus`/`Cronus` 92.3, `Perses`/`Perseus` 92.3), while every legitimate spelling
+variant the threshold nominally protects scores **83.3** (`Cronos`/`Cronus`, `Athene`/`Athena`,
+`Ocean`/`Oceanus`) — already below the cutoff, i.e. handled by the curated alias layers, not by the
+fuzzy step. Raising the threshold removes nothing and can only lose recall.
+
+- [ ] **G0** — key migration for the **1,092** existing review decisions (569 tier-1 + 523 tier-2;
+      construction `Counter(r.get('trust_tier',3) for r in variant_claims_candidates.json)`). A
+      changed `subject_name` re-keys `_CLAIM_IDENTITY`, so without this
+      `_write_claims_preserving_review` silently drops verdicts through its "no longer produced" path
+- [ ] **G1** — the **resolution ledger** (`output/entity_resolutions.json`): every `resolve()`
+      decision with `{surface, canonical, method, score, source_id, passage_ref}`. Identity is
+      currently the only pipeline decision with no artifact at all
+- [ ] **G2** — measure the fuzzy step corpus-wide (sampled across the **whole 88-100 band**, not
+      88-93) and decide under a **pre-registered** rule; **A1** (`duplicate_entities.py`) is the
+      recall guard on both its threshold-88 and its transliteration pass, so no new check is needed.
+      Its exit is **branch-conditional**: the demote branch *expects* new A1 findings and requires
+      each to be accounted for, not absent
+- [ ] **G3** — the **passage-scoped namesake registry** (`namesake_registry.json`, shape mirroring
+      `parentage_deny_list.json`), consulted **first — ahead of the exact-match memo**, not merely
+      ahead of alias/fuzzy, and paired with a passage-aware `_seen` key (G3.2a) without which it
+      cannot take effect. The only mechanism that reaches **both** gaps — it beats fuzzy *and* it
+      beats exact match — and the only one that survives re-extraction, because it is keyed on a
+      corpus location
+- [ ] **G4** — the **five** already-live defects (findings-rule **class 1**, the only class that
+      interrupts), enumerated once in `TODO-phase2-stage-p6.md` → *The class-1 set*:
+      `Cronus parent_of Leonteus`, the Amphictyon/Amphitryon rows, the promoted Perses/Perseus row,
+      the `Lynceus` split, the `Agave`/`Autonoe` splits
+- [ ] **G5** — bounded sweep across all **1,059** passages (the full pool; 7 are adjudicated, not
+      1,059 remaining), N sized from the measured denominator (P5 Track D's precedent), not from a
+      round number
+- [ ] **G6** — the **collision signal** in `claim_evidence.py` + `review_passage`: `resolved_by`,
+      `surface_absent`, `catalogue_context`, `established_elsewhere`. Annotates and orders; never
+      promotes (ADR-004 Amendment 1)
+- [ ] **G7** — close: standard loop, DEV entry, ADR-022 → Accepted, GAP updates, eval, hand back to
+      P5 **C1 batch 4**
+
+**Detector budget: zero spent.** All new tooling lives in `ingestion/extraction/`, which is
+**outside the `audit` package** — `discover_checks()` (`audit/__main__.py:47`) walks
+`pkgutil.iter_modules(audit_pkg.__path__)`, so an extraction-side module is never enumerated and the
+`NAME`/`run` attribute check is never reached. The invariant is *location*, not the absent attribute.
+Same structural argument P5 Track B1 made for `claim_evidence.py`. No `audit/` check is added or
+modified, so E1's "A16 is the last one" holds.
+
+→ Detailed checklist: [`TODO-phase2-stage-p6.md`](TODO-phase2-stage-p6.md) — created 2026-07-31
+  (DEV-139). 8 tracks (G0–G7). **G0 → G1 → G3 is a hard edge:** a registry entry changes a canonical
+  name, which re-keys review decisions, so nothing may change `resolve()` before G0's migration is in
+  place. **G6 before G5**, because the sweep's ranking consumes the risk signal — and G5 reads cached
+  segments, since two of G6's four signals are computed from segment text.
+
 ---
 
 ## Cross-cutting rules (apply to every stage)

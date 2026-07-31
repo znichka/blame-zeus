@@ -426,6 +426,58 @@ Independently shippable sub-stages, each with its own gold questions and schema-
 **Exit (per sub-stage):** its new gold questions pass, all sentinels stay green, per-category floors
 hold across a 3-run eval; ADRs/DEV entries logged per the deviation protocol.
 
+> ⚠️ Deviations occurred in this stage. See DEVIATIONS.md for details.
+
+---
+
+## 6b. Entity identity (P6) — implements ADR-022
+
+> **Added 2026-07-31** `[DEVIATED - see DEVIATIONS.md #DEV-139]`. Not in the original Phase-2
+> roadmap, and it **runs out of order — interrupting P5 *inside* Track C1, after batch 3 and before
+> batch 4** (not at the C1/C2 boundary). Same precedent as P5's own out-of-order items (E5, A9).
+
+Closes `docs/DATA-GAPS.md` GAP-009 (fuzzy/alias false-positive merges) and GAP-010 (exact-name
+namesake collisions). One root cause: **entity identity is decided by string matching, silently,
+with no evidence artifact and no review gate.** `EntityResolver.resolve()` matches exact →
+`known_aliases.json` → rapidfuzz@88 and returns a canonical string; it knows neither the passage the
+name came from nor the confirmed entity set. `relationships` inherits that with no human gate;
+`variant_claims` inherits it through a gate that reviews *what the claim says* and takes *who the
+subject is* as given. Measured cost: ≥82 confirmed collisions in the first 7 passages reviewed,
+20–30% of every Track C batch's rejections, with **five defects (7–11 rows) already live** across
+`relationships`, `variant_claims` and `entities` — enumerated once in `docs/TODO-phase2-stage-p6.md`
+→ *The class-1 set*, which supersedes DEV-138's differently-scoped count of three.
+
+Four mechanisms (ADR-022), each with an existing precedent in the repo:
+
+1. **Resolution ledger** — `extraction/output/entity_resolutions.json`, every `resolve()` decision as
+   `{surface, canonical, method, score, source_id, passage_ref}`. Identity is currently the only
+   pipeline decision with no artifact at all.
+2. **Passage-scoped namesake registry** — `extraction/namesake_registry.json`, consulted **first,
+   ahead of the exact-match memo** as well as the alias and fuzzy steps, keyed
+   `(name, source_id, passage_ref)`, with `EntityResolver._seen` re-keyed to match so a registry hit
+   does not leak across passages. The only mechanism reaching both gaps (it beats fuzzy *and* exact
+   match) and the only one surviving re-extraction, because it keys on a corpus location. Shape
+   mirrors `parentage_deny_list.json` (ADR-020 rule 4).
+3. **`Name (descriptor)` splitting**, codified — already 67 distinct names in V10 — with the bare
+   name kept on the higher-prominence identity and descriptor forms never aliased back.
+4. **The merge gate** — `assess_collision_risk` in `claim_evidence.py`, surfaced by
+   `review_passage`. Orders and annotates; never promotes (ADR-004 Amendment 1).
+
+Threshold tuning is ruled out on measurement (`rapidfuzz.fuzz.ratio`): confirmed false positives
+score 88.9–92.3, legitimate spelling variants 83.3 — already below the cutoff. **Detector budget:
+zero spent** — all tooling lives outside the `audit` package, which `discover_checks()` never walks,
+and A1 (threshold-88 pass *plus* its transliteration pass) is the recall guard for the fuzzy
+decision.
+
+**Exit:** every confirmed instance resolves correctly on a plain re-run; **all five** already-live
+defects fixed and verified against the reseeded DB; the fuzzy-step decision recorded with its
+measurement and its branch-conditional A1 check; the collision signal live in `review_passage`; the
+1,092 existing tier-1/tier-2 decisions preserved or individually re-queued; GAP-009/GAP-010 carry
+closing status and rows-at-stake lines.
+
+→ `docs/TODO-phase2-stage-p6.md` (tracks G0–G7),
+  `docs/adr/adr-022-entity-identity-and-namesake-resolution.md`
+
 ---
 
 ## 7. Data-model additions (sketches)

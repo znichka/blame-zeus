@@ -4,6 +4,7 @@
 |--------------|-------------|
 | **Date**     | 2026-07-08  |
 | **Status**   | Accepted    |
+| **Amended by** | Amendment 1 (DEV-135 — pre-verification signal may order and annotate, never promote); **ADR-022** (extends the review gate from *what a claim says* to *who its subject is*) |
 
 ---
 

@@ -16,8 +16,8 @@ gap deferred to Phase 5b.
 | **GAP-007** | `Zeus parent_of Ajax` is **seeded live** — ADR-020's co-mention rule reads the Homeric vocative formula *"Aias, sprung from Zeus, thou son of Telamon"* (Iliad 7.233) as one passage naming two co-parents | **Open** — found 2026-07-29 while verifying the GAP-004/GAP-006 merge (DEV-121). Not an extraction error: the text says it, and rules 1-3 of the discriminator cannot exclude it by construction (never flagged contested; `Telamon` *is* the winner and `Zeus` is in the pair). It is what rule 4's deny-list exists for, and that list still holds only `Io`. The `relationships` counterpart of the Homeric-formula misreads DEV-112 rejected behind the `variant_claims` review gate — but this table is seeded, not review-gated, so it reaches users. `Ajax` shows up in gold Q7's "children of Zeus" answer today | **RESOLVED 2026-07-29 (DEV-122)** — deny-list entry added, and the sweep it asked for was **run and bounded, not deferred**: only **3** seeded divine co-parents rest solely on the formula-bearing sources (Homer + Homeric Hymns; the formulae are absent from Apollodorus/Hesiod/Ovid — measured, 0 hits), of which `Ajax <- Zeus` is the one false positive and `Molione <- Poseidon` / `Pandia <- Zeus` verify as genuine. The five `variant_claims` counterparts were rejected to `trust_tier=2` in the same pass. Live: `Ajax` now has Telamon only, from four sources, and is gone from Q7's answer | Closed |
 | **GAP-008** | The **misattributed-passage** shape is unswept in the *seeded* `relationships` table — `Zeus parent_of Ate` cites Iliad 9.496-9.528, where the "daughters of great Zeus" are the **Prayers** (Litai), not Ate | **Open** — found 2026-07-29 by DEV-122's GAP-007 sweep, which checked every single-parent divine edge as well as the co-parent ones. The claim is true and Homer *does* state it — *"Eldest daughter of Zeus is Ate that blindeth all"* — but at **19.90**, not at the cited ref. Same shape DEV-119 catalogued as bucket (4) among *dropped* parents (18 instances) and DEV-121 hit twice among Ajax's `killed_by` rows; nobody has ever swept the **seeded** edges for it, and seeded rows are not review-gated. Left unfixed deliberately: the only two honest fixes are dropping a true claim or moving the ref, and DEV-121 established that moving a ref is inventing provenance — so it needs a decision, not a silent edit | P5 (extraction-quality) |
 | **GAP-005** | Extraction reads in-narrative **deception** as fact | **Open** — a NEW error shape found during A6 triage (DEV-119), distinct from every shape P4 catalogued: a character stating a *false* parentage while disguised. Aphrodite tells Anchises *"Otreus … is my father"* directly after *"know that I am no goddess"*; Hermes, disguised as a Myrmidon, names Polyctor. The cited passage genuinely says what was extracted — it is the speaker who is lying — so no passage-verification check can catch it, unlike the misattributed-passage and reversed-direction shapes. Both known instances are waived; unknown how many more exist | P5 (extraction-quality) |
-| **GAP-009** | Fuzzy-match false positives fold a spelling-distinct name onto an unrelated confirmed entity, e.g. the text's own "Atas" resolving to the Titan `Atlas` | **Open** — found 2026-07-31 during Stage P5 Track C review (DEV-136/137/138), a byproduct of per-row `variant_claims` adjudication, not a dedicated sweep. Narrow: only a handful of confirmed instances so far, all traced to `entity_resolver.py`'s rapidfuzz stage or a legitimate-elsewhere `entity_aliases` row applied out of context | P5 (extraction-quality) |
-| **GAP-010** | **Exact-name namesake collisions** — the corpus genuinely reuses one name for two-plus unrelated figures, and extraction/resolution merges them into one `entities` row, e.g. Priam's obscure son "Idomeneus" merged into the Cretan king `Idomeneus` (3-source figure) | **Open** — found 2026-07-31 during the same Track C review, at real volume: **≥82 confirmed instances across 7 passages** (DEV-136/137/138), roughly 20-30% of all tier-3 rows reviewed so far. Distinct from GAP-009: no fuzzy step is involved, the strings are identical, so it cannot be tuned away — three instances already reached *seeded* `relationships` and one a *promoted* `variant_claims` row | P5 (extraction-quality) |
+| **GAP-009** | Fuzzy-match false positives fold a spelling-distinct name onto an unrelated confirmed entity, e.g. the text's own "Atas" resolving to the Titan `Atlas` | **Open — owned by Stage P6** (2026-07-31, DEV-139). Found during Stage P5 Track C review (DEV-136/137/138), a byproduct of per-row `variant_claims` adjudication, not a dedicated sweep. Narrow: only a handful of confirmed instances so far, all traced to `entity_resolver.py`'s rapidfuzz stage or a legitimate-elsewhere `entity_aliases` row applied out of context. **Same root cause as GAP-010** — identity decided by string matching with no evidence artifact and no review gate (ADR-022) | **Stage P6** (`TODO-phase2-stage-p6.md`, ADR-022) |
+| **GAP-010** | **Exact-name namesake collisions** — the corpus genuinely reuses one name for two-plus unrelated figures, and extraction/resolution merges them into one `entities` row, e.g. Priam's obscure son "Idomeneus" merged into the Cretan king `Idomeneus` (3-source figure) | **Open — owned by Stage P6** (2026-07-31, DEV-139). Found during the same Track C review, at real volume: **≥82 confirmed instances across 7 passages** (DEV-136/137/138), roughly 20-30% of all tier-3 rows reviewed so far. Distinct from GAP-009 *in mechanism* — no fuzzy step is involved, the strings are identical, so it cannot be tuned away — but the same root cause and the same fix (ADR-022's passage-scoped registry beats exact match too). **Five defects have already reached live data** across `relationships`, `variant_claims` and `entities` — enumerated once in `TODO-phase2-stage-p6.md` → *The class-1 set* | **Stage P6** (`TODO-phase2-stage-p6.md`, ADR-022) |
 
 ---
 
@@ -1172,11 +1172,24 @@ instances and the do-not-move-a-ref rule), **#DEV-122** (found here).
 
 ## GAP-009 — Fuzzy-match false positives fold a spelling-distinct name onto an unrelated confirmed entity
 
-**Status:** **Open** — found 2026-07-31 during Stage P5 Track C's `variant_claims` review
-(DEV-136/137/138), a byproduct of per-row adjudication rather than a dedicated sweep. Only a
-handful of confirmed instances so far — this gap is deliberately kept separate from GAP-010 (below)
-because the mechanism and the fix are different, even though both surface as "wrong parentage" to a
-reviewer.
+**Status:** **Open — owned by Stage P6** (`docs/TODO-phase2-stage-p6.md`, **ADR-022**, DEV-139).
+Found 2026-07-31 during Stage P5 Track C's `variant_claims` review (DEV-136/137/138), a byproduct of
+per-row adjudication rather than a dedicated sweep. Only a handful of confirmed instances so far.
+
+**Rows at stake** (E6's mandatory line): unquantified until P6 **G1** persists the resolution ledger
+— the merges that cause this are computed at extraction time and then discarded, so no denominator
+exists today. That absence *is* the gap's item 3 below, and producing the denominator is G1's exit
+criterion. Known-affected today: 4 confirmed candidate instances, plus **2 of the 5** already-live
+defects listed under GAP-010 (`Coronus`/`Cronus` and `Amphitryon`/`Amphictyon` — both are near-miss
+merges, i.e. this gap's mechanism, found while reviewing GAP-010's shape; the other three are
+exact-name collisions and belong to GAP-010).
+
+> **Kept separate from GAP-010 as a *finding*; merged with it as a *fix*.** The two were filed
+> separately on 2026-07-31 because they present differently to a reviewer and because a
+> threshold-tuning fix would have touched only this one. The 2026-07-31 measurement below closed off
+> threshold tuning, and ADR-022's passage-scoped registry addresses both mechanisms with one
+> artifact, so **Stage P6 owns them jointly**. The distinction below is retained because it is still
+> the right way to *read* an instance.
 
 ### The mechanism
 
@@ -1219,32 +1232,90 @@ completely:
   *is* identical (`Pluto`, and any future exact-string collision) actually belong to GAP-010's
   territory once the alias/fuzzy step is not the proximate cause.
 
-### What a fix needs to decide
+### What a fix needs to decide — **decided 2026-07-31, ADR-022**
 
-1. Whether to raise the rapidfuzz threshold above 88, and by how much, without losing the recall
-   that threshold was originally tuned for (re-check against `entity_resolver.py`'s own test
-   fixtures and the corpus-wide dedup rate before changing it).
-2. Whether `entity_aliases` rows like `Pluto`→Hades should carry a scope restriction (e.g. only
-   apply when no unresolved candidate name already exists under a different confirmed entity in the
-   same passage) — this would need a schema or lookup-order change, not just a threshold change.
-3. A confirmed count: this gap has not been swept systematically, only found incidentally during
-   Track C row review. A dedicated pass (grep the fuzzy-merge log `EntityResolver.fuzzy_merges`
-   already emits at extraction time, per `run_extraction.py`'s `write_output`) would give a real
-   denominator before deciding whether a code fix is worth it.
+The three questions this section originally posed, each with the answer P6 will implement:
 
-**References:** `ingestion/extraction/entity_resolver.py` (`EntityResolver`, rapidfuzz threshold);
+1. ~~Whether to raise the rapidfuzz threshold above 88, and by how much~~ — **ruled out on
+   measurement.** Construction: `rapidfuzz.fuzz.ratio(a, b)`, the scorer `entity_resolver.py` uses.
+
+   | pair | ratio | what it is |
+   |---|---|---|
+   | `Atas` / `Atlas` | 88.9 | confirmed false positive |
+   | `Philaemon` / `Philammon` | 88.9 | confirmed false positive |
+   | `Amphitryon` / `Amphictyon` | 90.0 | confirmed false positive, **already live** |
+   | `Rhodea` / `Rhode` | 90.9 | confirmed false positive |
+   | `Aesacus` / `Aeacus` | 92.3 | confirmed false positive |
+   | `Coronus` / `Cronus` | 92.3 | confirmed false positive, **already live** |
+   | `Perses` / `Perseus` | 92.3 | confirmed false positive, **already promoted** |
+   | `Cronos` / `Cronus` | 83.3 | legitimate variant (DEV-043) |
+   | `Athene` / `Athena` | 83.3 | legitimate variant |
+   | `Ocean` / `Oceanus` | 83.3 | legitimate variant |
+   | `Iphis` / `Iphitus` | 83.3 | legitimate variant |
+
+   Every confirmed false positive sits at **88.9–92.3**; every legitimate variant the threshold was
+   nominally tuned for sits at **83.3** — *below* the current cutoff, i.e. already handled by the
+   curated alias layers rather than by the fuzzy step. **Raising the threshold removes none of the
+   false positives and can only lose recall.** Whether the fuzzy step earns its keep at all is a
+   separate question, measured corpus-wide under a pre-registered decision rule in P6 **G2**, with
+   **A1** (`audit/duplicate_entities.py`) as the recall guard — specifically its
+   **transliteration-normalized second pass** (`_translit_key`), not its threshold-88 pass, since the
+   83.3-scoring variants sit *below* 88 and a threshold-only guard would be blind to them.
+2. ~~Whether `entity_aliases` rows like `Pluto`→Hades should carry a scope restriction~~ — **yes,
+   but not in `entity_aliases`.** That table is a *runtime* lookup serving `ConflictLookup` and
+   query-time entity resolution, where the global `Pluto`→Hades mapping is correct and wanted; the
+   defect is at *extraction* time. ADR-022 rule 2 puts the scope restriction in a new extraction-side
+   `ingestion/extraction/namesake_registry.json`, keyed `(name, source_id, passage_ref)` and
+   consulted **first — ahead of the exact-match memo**, not merely ahead of the alias and fuzzy steps
+   (`entity_resolver.py:43-45` checks `_seen` before anything else, so a lookup placed after it never
+   fires for GAP-010's byte-identical strings). `_seen` is re-keyed per passage in the same change,
+   or the registry's answer leaks to every later passage. No schema change, no migration, no
+   `core-api` change. Shape mirrors `parentage_deny_list.json` (ADR-020 rule 4).
+3. ~~A confirmed count~~ — **the count cannot be taken today, and that is itself the finding.**
+   `EntityResolver.fuzzy_merges` is printed by `write_output` and then discarded, and the alias path
+   that produced `Pluto`→Hades is never recorded at all, so identity is the only pipeline decision
+   with **no artifact**. ADR-022 rule 1 / P6 **G1** persists a resolution ledger
+   (`output/entity_resolutions.json`: `{surface, canonical, method, score, source_id, passage_ref}`),
+   which produces the denominator on a re-run at **zero API cost** — `build_candidates` re-resolves
+   from cached segment facts.
+
+**References:** `docs/adr/adr-022-entity-identity-and-namesake-resolution.md`;
+`docs/TODO-phase2-stage-p6.md` (G1 the ledger, G2 the fuzzy decision, G3 the registry);
+`ingestion/extraction/entity_resolver.py` (`EntityResolver`, rapidfuzz threshold);
 `ingestion/extraction/known_aliases.json`; `docs/DEVIATIONS.md` #DEV-136/#DEV-137/#DEV-138 (where
-each instance was found and rejected in `variant_claims` review).
+each instance was found and rejected in `variant_claims` review), #DEV-139 (the P6 scoping).
 
 ---
 
 ## GAP-010 — Exact-name namesake collisions: the corpus reuses one name for unrelated figures, and extraction merges them into one entity
 
-**Status:** **Open** — found 2026-07-31 during Stage P5 Track C's `variant_claims` review
-(DEV-136/137/138). **≥82 confirmed instances across the first 7 passages reviewed**, roughly 20-30%
-of all tier-3 rows adjudicated so far — by far the largest single cause of rejection in every batch.
-Unlike GAP-009, this is not a near-miss: the colliding names are byte-identical strings, so no
-fuzzy-threshold change can address it.
+**Status:** **Open — owned by Stage P6** (`docs/TODO-phase2-stage-p6.md`, **ADR-022**, DEV-139).
+Found 2026-07-31 during Stage P5 Track C's `variant_claims` review (DEV-136/137/138). **≥82 confirmed
+instances across the first 7 passages reviewed**, roughly 20-30% of all tier-3 rows adjudicated so
+far — by far the largest single cause of rejection in every batch. Unlike GAP-009, this is not a
+near-miss: the colliding names are byte-identical strings, so no fuzzy-threshold change can address
+it — but ADR-022's registry is keyed on the *corpus location*, not on a name pair, so the same
+artifact reaches both gaps.
+
+**Rows at stake** (E6's mandatory line):
+- **≥82** confirmed candidate rows, from 7 of 1,059 passages.
+- **Five defects already in live data, 7-11 rows, three tables** — the class-1 set, enumerated once
+  in `docs/TODO-phase2-stage-p6.md` → *The class-1 set* and referenced (not restated) here:
+  | item | defect | table | rows |
+  |---|---|---|---|
+  | G4.1 | `Cronus parent_of Leonteus` (should be `Coronus`) | `relationships` | 1 |
+  | G4.2 | Amphitryon conflated with Amphictyon, 4 passages | `relationships` | 2-6 |
+  | G4.3 | Perses/Perseus, **promoted** at `trust_tier=1` | `variant_claims` | 1 |
+  | G4.4 | `Lynceus` @ `2.1.5` — two figures, one entity | `entities` | 1 |
+  | G4.5 | `Agave` / `Autonoe`, `subtype='nereid'` while also Theban royalty | `entities` | 2 |
+
+  Four of these passed **no** gate (seeded `relationships`, original-extraction `entities`); G4.3
+  passed ADR-004's. **DEV-138's "three separate instances" used different membership** and is
+  superseded on the count, not on the evidence.
+- **Corpus-wide total unknown.** The 7 reviewed passages were the *highest-yield* passages by B4's
+  contested-first sort and are overwhelmingly **catalogues** (Priam's sons, Oceanids, Nereids,
+  Danaids), so ≥82/7 does **not** linearly extrapolate. P6 **G5.1** produces the real denominator
+  offline before any bound is set.
 
 ### The mechanism
 
@@ -1274,47 +1345,90 @@ that entity is already established to be.
 
 ### Why this is more serious than a candidate-review nuisance
 
-Three instances have already reached data with **no review gate at all**, or past the gate that
-exists:
+**Five defects** have already reached data with **no review gate at all**, or past the gate that
+exists — the class-1 set, fixed in P6 **G4**:
 
 1. `relationships` (mechanical, no human gate — CLAUDE.md's Data Model section) already has
-   `Cronus parent_of Leonteus`, which should read `Coronus parent_of Leonteus`.
+   `Cronus parent_of Leonteus`, which should read `Coronus parent_of Leonteus`. *(G4.1)*
 2. `relationships` already conflates Amphitryon and Amphictyon across several rows tied to
-   `apollodorus-bibliotheca` `2.4.5`/`2.4.6`/`2.4.7-2.4.8`/`1.8.2`.
+   `apollodorus-bibliotheca` `2.4.5`/`2.4.6`/`2.4.7-2.4.8`/`1.8.2`. *(G4.2)*
 3. A `variant_claims` row conflating Perses/Perseus is already **promoted** (`trust_tier=1`) — i.e.
-   it passed ADR-004's human review gate at some point before Stage P5 and is live today.
+   it passed ADR-004's human review gate at some point before Stage P5 and is live today. *(G4.3)*
+4. The `Lynceus` entity holding `2.1.5`'s own central Hypermnestra/Abas plot thread is already
+   resolved to the wrong Lynceus (Aphareus's son) — a live `entities` row, no gate. *(G4.4)*
+5. `Agave` and `Autonoe` carry `subtype='nereid'` in `entities` while also being established Theban
+   royalty — the collision is baked into the entity record by original extraction, so it is a split,
+   not a `trust_tier` call. *(G4.5)*
 
-None of the three are fixed by this entry. Each needs its own dedicated look (a `relationships` fix
-is a mechanical no-gate edit like any other; the promoted `variant_claims` row needs a demotion
-decision through the normal keyed workflow, not a silent edit) — recorded here so a future session
-can pick either up without re-deriving the finding.
+None of the five are fixed by this entry — they are P6 G4's scope. Each needs its own dedicated look
+(a `relationships` fix is a mechanical no-gate edit like any other; the promoted `variant_claims` row
+needs a demotion decision through the normal keyed workflow, not a silent edit; the two `entities`
+cases are splits) — recorded here so a future session can pick any up without re-deriving the
+finding.
 
-### What a fix needs to decide
+> **DEV-136/137/138 count these as "three instances"** with different membership (DEV-138 folds
+> `Lynceus` into its three, names Perses/Perseus separately, and classes `Agave`/`Autonoe` as a
+> separate observation). Those entries are committed and stay verbatim; this list supersedes the
+> count.
+
+### What a fix needs to decide — **decided 2026-07-31, ADR-022**
 
 This is real per-entity work, not something a detector alone can close — a detector can only narrow
-where to look, the way the review batches were already narrowing it by hand:
+where to look, the way the review batches were already narrowing it by hand. The three questions
+this section originally posed, each with the answer P6 will implement:
 
-1. **Detection**: a lightweight check (candidate for the audit package's next budgeted slot, or a
-   `claim_evidence.py` helper feeding `review_passage`'s bucket output) that flags a candidate row
-   whose subject already has an established relationship *incompatible* with what the current
-   passage claims — e.g. two different confirmed parents from unrelated myth-cycles with no shared
-   source. This does not fix data; it turns the manual DB cross-reference Track C reviewers have
-   been doing by hand into a reusable signal.
-2. **Splitting**: for each confirmed collision, decide whether to split the entity using the
-   existing `Name (descriptor)` convention (already used elsewhere, e.g. `Cleopatra (daughter of
-   Tros)`, and the precedent for the reverse problem — over-fragmentation — in GAP-006's Ajax merge).
-   Splitting requires re-deriving which already-seeded/promoted rows belong to which identity, which
-   is exactly the kind of per-row judgment DEV-121's Ajax merge did, at whatever scale the confirmed
-   collision list reaches.
-3. **Budget**: at ≥82 confirmed instances from only 7 of 1,059 passages, the true count across the
-   full Track C backlog is plausibly in the hundreds — this needs a scoping decision (fix the top-N
-   by prominence first, like the D-track's own bounding exercise, rather than open-ended splitting)
-   before work starts, per this stage's own "size the budget from the exit criteria" discipline
-   (`docs/TODO-phase2-stage-p5.md` Track D).
+1. **Detection** — **built as reviewer tooling, not as an audit check.** P6 **G6** adds
+   `assess_collision_risk` to `ingestion/extraction/claim_evidence.py`, printed by `review_passage`
+   beside the existing bucket label. Four signals, each reusing machinery that already exists:
+   `resolved_by` (from G1's resolution ledger — surface form, method and score, which alone makes
+   GAP-009 visible to a reviewer who currently has no way to see that "Atlas" was spelled "Atas"),
+   `surface_absent` (`_name_present`/`_spellings`), `catalogue_context` (the shape **every** one of
+   the 82+ confirmed instances has), and `established_elsewhere` (`audit/prominence.py`, A8).
+   **The audit package is not the right home** and the "next budgeted slot" this entry originally
+   assumed is not spent: `claim_evidence.py` lives in `ingestion/extraction/`, **outside the `audit`
+   package** that `discover_checks()` (`audit/__main__.py:47`) walks via
+   `pkgutil.iter_modules(audit_pkg.__path__)`, so it is never enumerated and the `NAME`/`run`
+   attribute check is never reached. The invariant is *location*, not the absent attribute. That
+   keeps E1's "A16 is the last check" intact and costs zero detector budget. Per ADR-004 Amendment 1
+   the signal may **order and annotate; it may never promote**.
+2. **Splitting** — **yes, via the existing `Name (descriptor)` convention, formalized in ADR-022
+   rule 3.** The convention is already in `V10__seed_entities.sql` at **67 distinct names**
+   (construction: `grep -oE "\('[A-Za-z][^']*\([^']*\)'," V10__seed_entities.sql | sort -u | wc -l`)
+   — `Cleopatra (daughter of Tros)`, `Acamas (son of Antenor)` / `Acamas (son of Eusorus)`,
+   `Amphithea (wife of Lycurgus)`, `Agraulus (mother)` / `Agraulus (daughter)`; note each split
+   identity is its **own row**, and the pipe shorthand used elsewhere in these docs (`Astyoche
+   (daughter of Actor|Laomedon|Niobe|Phylas)`) abbreviates four sibling rows rather than naming one
+   entity. `entities_gen._duplicate_names` (`ingestion/seedgen/entities_gen.py:36`) already forbids
+   case-insensitive duplicate names, so a descriptor is the only legal way to hold two figures of one
+   name. Two rules the convention was missing: **the bare name stays with the higher-prominence
+   identity**, and **a descriptor form is never aliased back to the bare name** (doing so
+   re-collapses the split on the next run — the `Pluto`→Hades mechanism, one layer up).
+   **The re-derivation cost is bounded by the registry, not paid per row**: one
+   `namesake_registry.json` entry per `(name, passage)` reassigns every row extracted from that
+   passage, now and on every future run, so the judgement is per-passage rather than per-row.
+3. **Budget** — **P6 G5, with N sized from a measured denominator.** G5.1 runs the ledger + risk
+   signal across all 1,059 passages offline at **zero API cost** — meaning no LLM calls and no
+   re-extraction, *not* "no segment reading": two of G6's four signals (`surface_absent`,
+   `catalogue_context`) are computed from segment text, and segments are already on disk behind
+   `build_segment_map`. Only then is the top-N bound fixed, by prominence. This follows P5 Track D's
+   own precedent, where a 20-name bound was measurably unreachable and had to be raised to 60 after
+   the yield was computed.
+   **The class-1 subset does not wait for the bound:** all **five** already-live defects, including
+   the entity-record collisions, are fixed in P6 **G4** — four of them passed no gate at all (seeded
+   `relationships`, original-extraction `entities`) and the fifth is a promoted `variant_claims` row
+   already past the one gate that exists.
 
-**References:** `docs/DEVIATIONS.md` #DEV-136/#DEV-137/#DEV-138 (where each instance was found);
-`docs/DATA-GAPS.md` GAP-006 (the Ajax over-fragmentation precedent, the inverse problem, and the
-`Name (descriptor)` splitting convention); `ingestion/extraction/entity_resolver.py` (where a
-collision could in principle be flagged, though the current resolver has no compatibility check of
-any kind); `core-api/src/main/resources/db/migration/V11__seed_relationships.sql` (`Cronus
+**Known limit, accepted (ADR-022):** a registry key of `(name, source_id, passage_ref)` cannot
+separate two figures who share a name **inside a single passage**. `Lynceus` in
+`apollodorus-bibliotheca 2.1.5` is exactly that — Aphareus's son and Egyptus's son both appear there
+— and is fixed individually in G4.4. Sub-passage granularity is not adopted; if G5's sweep shows the
+shape is common it is recorded here as known-and-accepted, on evidence.
+
+**References:** `docs/adr/adr-022-entity-identity-and-namesake-resolution.md`;
+`docs/TODO-phase2-stage-p6.md` (G4 the live defects, G5 the bounded sweep, G6 the signal);
+`docs/DEVIATIONS.md` #DEV-136/#DEV-137/#DEV-138 (where each instance was found), #DEV-139 (the P6
+scoping); `docs/DATA-GAPS.md` GAP-006 (the Ajax over-fragmentation precedent, the inverse problem,
+and the `Name (descriptor)` splitting convention — DEV-121 is the per-row re-derivation precedent);
+`ingestion/extraction/entity_resolver.py` (where the collision is created, and where G3's registry
+lookup lands); `core-api/src/main/resources/db/migration/V11__seed_relationships.sql` (`Cronus
 parent_of Leonteus`, the confirmed seeded instance).
