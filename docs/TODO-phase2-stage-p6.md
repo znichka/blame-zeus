@@ -348,27 +348,31 @@ rest G4.2's own row-by-row output across `2.4.5`/`2.4.6`/`2.4.7-2.4.8`/`1.8.2`).
 `relationships` edge coverage unchanged-or-up and the entity name-space count moved by the stated
 amount.
 
-- [ ] **G4.1** — `relationships`: `Cronus parent_of Leonteus` → `Coronus`
+- [x] **G4.1** — `relationships`: `Cronus parent_of Leonteus` → `Coronus`
       (`apollodorus-bibliotheca 3.10.8-3.11.1`). Via `relationships_candidates_cleaned.json` +
       `seedgen`, **never** by hand-editing `V11__seed_relationships.sql`.
-- [ ] **G4.2** — `relationships`: the Amphictyon/Amphitryon conflation across `2.4.5`, `2.4.6`,
+- [x] **G4.2** — `relationships`: the Amphictyon/Amphitryon conflation across `2.4.5`, `2.4.6`,
       `2.4.7-2.4.8`, `1.8.2`. Verify each row individually — the two are genuinely different figures
       and some rows may legitimately belong to Amphictyon.
-- [ ] **G4.3** — The **promoted** (`trust_tier=1`) Perses/Perseus `variant_claims` row at `2.4.5`:
+- [x] **G4.3** — The **promoted** (`trust_tier=1`) Perses/Perseus `variant_claims` row at `2.4.5`:
       demote through the keyed workflow (`rejected_keys` + a `promotion_log.json` entry), **never** a
       silent edit. ADR-004's gate binds demotions exactly as it binds promotions.
-- [ ] **G4.4** — `Lynceus` @ `2.1.5` — entity split: Aphareus's son (the sharp-eyed Argonaut, 3
+- [x] **G4.4** — `Lynceus` @ `2.1.5` — entity split: Aphareus's son (the sharp-eyed Argonaut, 3
       sources) vs. Egyptus's son (Hypermnestra's husband, Abas's father — that passage's own central
       plot thread). **Not reachable by a registry key** (both figures share the passage) — fixed by
       hand, per ADR-022's stated limit.
-- [ ] **G4.5** — `Agave` / `Autonoe` — `entities.subtype='nereid'` is set on figures who are also
+- [x] **G4.5** — `Agave` / `Autonoe` — `entities.subtype='nereid'` is set on figures who are also
       established Theban royalty, so the collision is baked into the entity record from original
       extraction. A split, not a `trust_tier` call.
-- [ ] **G4.6** — Verify each fix **against the reseeded DB**, not against the candidate files.
+- [x] **G4.6** — Verify each fix **against the reseeded DB**, not against the candidate files.
 
-**Exit:** all **five** class-1 defects (G4.1-G4.5) verified live against the reseeded DB; each
-carries a corpus-count line in the DEV entry, per Track D3's "DEV-096/098 proved this triage is
-error-prone" discipline.
+**Exit MET (DEV-145)** — all five verified against the reseeded DB. `[DEVIATED - see DEVIATIONS.md
+#DEV-145]` **Declaration variance, stated:** `entities` **+5** (inside the declared +4 to +5), but
+`relationships` **24 reassigned against a declared 4-8** — G4.2 alone was 15 rows, not 2-6, and G4.5
+contributed 4 the declaration treated as entities-only work. **G4.3 needed no action**: G2's demote
+plus G3's split had already dissolved the promoted Perses/Perseus row, which now sits at tier 3 under
+the correct identity `Perses (son of Perseus)`. A16 gate met (entities 1,990 → 1,995; relationships
+coverage 48.92% → 49.1%; contested_collapse 1,035 → 1,026).
 
 ---
 

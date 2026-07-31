@@ -1218,7 +1218,7 @@
   {
     "from_name": "Nereus",
     "relation": "parent_of",
-    "to_name": "Agave",
+    "to_name": "Agave (Nereid)",
     "is_contested": false,
     "passage_ref": "1.2.1-1.2.7",
     "source_id": "apollodorus-bibliotheca"
@@ -1394,7 +1394,7 @@
   {
     "from_name": "Nereus",
     "relation": "parent_of",
-    "to_name": "Autonoe",
+    "to_name": "Autonoe (Nereid)",
     "is_contested": false,
     "passage_ref": "1.2.1-1.2.7",
     "source_id": "apollodorus-bibliotheca"
@@ -3872,7 +3872,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Amphictyon",
+    "from_name": "Amphitryon",
     "relation": "parent_of",
     "to_name": "Iphicles",
     "is_contested": false,
@@ -6896,7 +6896,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Lynceus",
+    "from_name": "Lynceus (son of Egyptus)",
     "relation": "married_to",
     "to_name": "Hypermnestra",
     "is_contested": false,
@@ -6914,7 +6914,7 @@
   {
     "from_name": "Argyphia",
     "relation": "parent_of",
-    "to_name": "Lynceus",
+    "to_name": "Lynceus (son of Egyptus)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -6930,7 +6930,7 @@
   {
     "from_name": "Egyptus",
     "relation": "parent_of",
-    "to_name": "Lynceus",
+    "to_name": "Lynceus (son of Egyptus)",
     "is_contested": false,
     "passage_ref": "2.1.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8072,7 +8072,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Lynceus",
+    "from_name": "Lynceus (son of Egyptus)",
     "relation": "parent_of",
     "to_name": "Abas",
     "is_contested": false,
@@ -8674,7 +8674,7 @@
   {
     "from_name": "Alcaeus",
     "relation": "parent_of",
-    "to_name": "Amphictyon",
+    "to_name": "Amphitryon",
     "is_contested": false,
     "passage_ref": "2.4.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8682,7 +8682,7 @@
   {
     "from_name": "Astydamia",
     "relation": "parent_of",
-    "to_name": "Amphictyon",
+    "to_name": "Amphitryon",
     "is_contested": false,
     "passage_ref": "2.4.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8706,7 +8706,7 @@
   {
     "from_name": "Laonome",
     "relation": "parent_of",
-    "to_name": "Amphictyon",
+    "to_name": "Amphitryon",
     "is_contested": true,
     "passage_ref": "2.4.5",
     "source_id": "apollodorus-bibliotheca"
@@ -8722,7 +8722,7 @@
   {
     "from_name": "Hipponoe",
     "relation": "parent_of",
-    "to_name": "Amphictyon",
+    "to_name": "Amphitryon",
     "is_contested": true,
     "passage_ref": "2.4.5",
     "source_id": "apollodorus-bibliotheca"
@@ -9010,7 +9010,7 @@
   {
     "from_name": "Electryon",
     "relation": "killed_by",
-    "to_name": "Amphictyon",
+    "to_name": "Amphitryon",
     "is_contested": false,
     "passage_ref": "2.4.6",
     "source_id": "apollodorus-bibliotheca"
@@ -9024,7 +9024,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Amphictyon",
+    "from_name": "Amphitryon",
     "relation": "married_to",
     "to_name": "Alcmena",
     "is_contested": false,
@@ -9032,7 +9032,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Amphictyon",
+    "from_name": "Amphitryon",
     "relation": "parent_of",
     "to_name": "Perimede's husband role",
     "is_contested": false,
@@ -9066,7 +9066,7 @@
   {
     "from_name": "Comaetho",
     "relation": "killed_by",
-    "to_name": "Amphictyon",
+    "to_name": "Amphitryon",
     "is_contested": false,
     "passage_ref": "2.4.7-2.4.8",
     "source_id": "apollodorus-bibliotheca"
@@ -9088,7 +9088,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Amphictyon",
+    "from_name": "Amphitryon",
     "relation": "married_to",
     "to_name": "Alcmena",
     "is_contested": false,
@@ -9096,7 +9096,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Amphictyon",
+    "from_name": "Amphitryon",
     "relation": "parent_of",
     "to_name": "Iphicles",
     "is_contested": false,
@@ -9192,7 +9192,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Amphictyon",
+    "from_name": "Amphitryon",
     "relation": "killed_by",
     "to_name": "Minyans",
     "is_contested": false,
@@ -22098,7 +22098,7 @@
   {
     "from_name": "Nereus",
     "relation": "parent_of",
-    "to_name": "Autonoe",
+    "to_name": "Autonoe (Nereid)",
     "is_contested": false,
     "passage_ref": "233-269",
     "source_id": "hesiod-theogony"
@@ -22506,7 +22506,7 @@
   {
     "from_name": "Doris",
     "relation": "parent_of",
-    "to_name": "Autonoe",
+    "to_name": "Autonoe (Nereid)",
     "is_contested": false,
     "passage_ref": "233-269",
     "source_id": "hesiod-theogony"
@@ -37882,7 +37882,7 @@
   {
     "from_name": "Alcmena",
     "relation": "married_to",
-    "to_name": "Amphictyon",
+    "to_name": "Amphitryon",
     "is_contested": false,
     "passage_ref": "11.225-11.270",
     "source_id": "homer-odyssey"
@@ -51280,7 +51280,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Cronus",
+    "from_name": "Coronus",
     "relation": "parent_of",
     "to_name": "Leonteus",
     "is_contested": false,
@@ -54440,7 +54440,7 @@
     "source_id": "homer-iliad"
   },
   {
-    "from_name": "Amphictyon",
+    "from_name": "Amphitryon",
     "relation": "parent_of",
     "to_name": "Heracles",
     "is_contested": false,
@@ -54448,7 +54448,7 @@
     "source_id": "homer-odyssey"
   },
   {
-    "from_name": "Amphictyon",
+    "from_name": "Amphitryon",
     "relation": "parent_of",
     "to_name": "Heracles",
     "is_contested": true,

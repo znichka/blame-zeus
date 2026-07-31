@@ -554,10 +554,10 @@
   },
   {
     "name": "Agave",
-    "type": "other_god",
+    "type": "mortal",
     "generation": null,
     "domain": null,
-    "subtype": "nereid"
+    "subtype": null
   },
   {
     "name": "Agelaus",
@@ -2157,10 +2157,10 @@
   },
   {
     "name": "Autonoe",
-    "type": "other_god",
+    "type": "mortal",
     "generation": null,
     "domain": null,
-    "subtype": "nereid"
+    "subtype": null
   },
   {
     "name": "Autonous",
@@ -13928,5 +13928,40 @@
     "generation": null,
     "domain": null,
     "subtype": null
+  },
+  {
+    "name": "Coronus",
+    "type": "mortal",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Amphitryon",
+    "type": "hero",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Lynceus (son of Egyptus)",
+    "type": "hero",
+    "generation": null,
+    "domain": null,
+    "subtype": null
+  },
+  {
+    "name": "Agave (Nereid)",
+    "type": "other_god",
+    "generation": null,
+    "domain": null,
+    "subtype": "nereid"
+  },
+  {
+    "name": "Autonoe (Nereid)",
+    "type": "other_god",
+    "generation": null,
+    "domain": null,
+    "subtype": "nereid"
   }
 ]

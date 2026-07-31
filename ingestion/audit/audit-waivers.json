@@ -472,77 +472,77 @@
   {
     "check": "A6",
     "subject": "candidates: Agamemnon <- Atreus",
-    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/La\u00ebrtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
   },
   {
     "check": "A6",
     "subject": "candidates: Agamemnon <- Atreus",
-    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/La\u00ebrtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
   },
   {
     "check": "A6",
     "subject": "candidates: Agamemnon <- Atreus",
-    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/La\u00ebrtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
   },
   {
     "check": "A6",
     "subject": "candidates: Apollo <- Leto",
-    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/La\u00ebrtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
   },
   {
     "check": "A6",
     "subject": "candidates: Apollo <- Leto",
-    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/La\u00ebrtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
   },
   {
     "check": "A6",
     "subject": "candidates: Apollo <- Leto",
-    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/La\u00ebrtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
   },
   {
     "check": "A6",
     "subject": "candidates: Apollo <- Leto",
-    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/La\u00ebrtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
   },
   {
     "check": "A6",
     "subject": "candidates: Hector <- Hecabe",
-    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/La\u00ebrtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
   },
   {
     "check": "A6",
     "subject": "candidates: Menelaus <- Atreus",
-    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/La\u00ebrtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
   },
   {
     "check": "A6",
     "subject": "candidates: Menelaus <- Atreus",
-    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/La\u00ebrtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
   },
   {
     "check": "A6",
     "subject": "candidates: Menelaus <- Atreus",
-    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/La\u00ebrtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
   },
   {
     "check": "A6",
-    "subject": "candidates: Odysseus <- La\u00ebrtes",
-    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/La\u00ebrtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+    "subject": "candidates: Odysseus <- Laërtes",
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
   },
   {
     "check": "A6",
     "subject": "candidates: Patroclus <- Periopis",
-    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/La\u00ebrtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
   },
   {
     "check": "A6",
     "subject": "candidates: Patroclus <- Sthenele",
-    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/La\u00ebrtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
   },
   {
     "check": "A6",
     "subject": "candidates: Priam <- Dardanus",
-    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/La\u00ebrtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
+    "reason": "A6 triage (post-P4, DEV-119): the dropped rival is ALREADY represented among this child's promoted variant_claims parentage rows (matched alias- and diacritic-insensitively, so Laertes/Laërtes and Ovid's Latona/Leto count as covered). The drop lost nothing -- this is exactly the designed end state of ADR-007's split between one canonical edge and the contradiction in variant_claims."
   },
   {
     "check": "A6",
@@ -728,5 +728,25 @@
     "check": "A15",
     "subject": "Tlepolemus | death | killed by Sarpedon [homer-iliad 5.607-5.654]",
     "reason": "The `variant_claims` twin of A12's standing waiver, same passage and same cause: Iliad 5.655 has \"Sarpedon smote HIM full upon the neck\" (Tlepolemus dies -- the claim is CORRECT) immediately followed by \"And Tlepolemus smote Sarpedon upon the left thigh\" (a wound). The kill names its victim with a pronoun, so `correct == 0` cannot suppress it. No regex over entity names resolves that reference. Do NOT reject."
+  },
+  {
+    "check": "A1",
+    "subject": "candidates: Coronus / Cronus",
+    "reason": "Intended entity split, created by Stage P6 Track G4 (DEV-145) -- these are two genuinely distinct figures, not a duplicate to merge, and A1 flagging them is the check working. Coronus / Cronus is one of the confirmed false-positive fuzzy merges tabulated in ADR-022's own measurement (rapidfuzz.fuzz.ratio = 92.3), i.e. a pair the demoted fuzzy step used to fuse silently. Coronus is the mortal Lapith, father of Leonteus (Apollodorus 3.10.8-3.11.1, Iliad 2's catalogue); Cronus is the Titan. G4.1. Merging them back would reinstate the class-1 defect this stage exists to fix; the entity_aliases route A1 suggests must NOT be taken here."
+  },
+  {
+    "check": "A1",
+    "subject": "candidates: Amphictyon / Amphitryon",
+    "reason": "Intended entity split, created by Stage P6 Track G4 (DEV-145) -- these are two genuinely distinct figures, not a duplicate to merge, and A1 flagging them is the check working. Amphictyon / Amphitryon is one of the confirmed false-positive fuzzy merges tabulated in ADR-022's own measurement (rapidfuzz.fuzz.ratio = 90.0), i.e. a pair the demoted fuzzy step used to fuse silently. Amphitryon is Heracles' stepfather, son of Alcaeus, husband of Alcmena; Amphictyon is the Athenian king, son of Deucalion, who deposed Cranaus. G4.2. Merging them back would reinstate the class-1 defect this stage exists to fix; the entity_aliases route A1 suggests must NOT be taken here."
+  },
+  {
+    "check": "A1",
+    "subject": "db: Coronus / Cronus",
+    "reason": "Intended entity split, created by Stage P6 Track G4 (DEV-145) -- these are two genuinely distinct figures, not a duplicate to merge, and A1 flagging them is the check working. Coronus / Cronus is one of the confirmed false-positive fuzzy merges tabulated in ADR-022's own measurement (rapidfuzz.fuzz.ratio = 92.3), i.e. a pair the demoted fuzzy step used to fuse silently. Coronus is the mortal Lapith, father of Leonteus (Apollodorus 3.10.8-3.11.1, Iliad 2's catalogue); Cronus is the Titan. G4.1. Merging them back would reinstate the class-1 defect this stage exists to fix; the entity_aliases route A1 suggests must NOT be taken here."
+  },
+  {
+    "check": "A1",
+    "subject": "db: Amphictyon / Amphitryon",
+    "reason": "Intended entity split, created by Stage P6 Track G4 (DEV-145) -- these are two genuinely distinct figures, not a duplicate to merge, and A1 flagging them is the check working. Amphictyon / Amphitryon is one of the confirmed false-positive fuzzy merges tabulated in ADR-022's own measurement (rapidfuzz.fuzz.ratio = 90.0), i.e. a pair the demoted fuzzy step used to fuse silently. Amphitryon is Heracles' stepfather, son of Alcaeus, husband of Alcmena; Amphictyon is the Athenian king, son of Deucalion, who deposed Cranaus. G4.2. Merging them back would reinstate the class-1 defect this stage exists to fix; the entity_aliases route A1 suggests must NOT be taken here."
   }
 ]

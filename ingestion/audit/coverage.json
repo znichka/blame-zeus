@@ -1,43 +1,43 @@
 {
   "entities": {
-    "seeded": 1990,
-    "nameSpaceCeiling": 2334,
-    "coverage": 0.8526135389888603,
+    "seeded": 1995,
+    "nameSpaceCeiling": 2339,
+    "coverage": 0.8529286019666524,
     "note": "denominator is the reachable name-space (seeded + distinct unknown names), not the raw candidate pool"
   },
   "relationships": {
-    "seeded": 3367,
+    "seeded": 3376,
     "cleanedCandidates": 6882,
-    "coverage": 0.489247311827957,
+    "coverage": 0.4905550712002325,
     "dropSplit": {
       "unknownName": 901,
       "exactDup": 1579,
-      "contestedCollapse": 1035,
+      "contestedCollapse": 1026,
       "residual": 0
     }
   },
   "variantClaims": {
     "headline": {
-      "promoted": 182,
-      "reachable": 718,
-      "pool": 764,
-      "coverage": 0.25348189415041783
+      "promoted": 171,
+      "reachable": 710,
+      "pool": 781,
+      "coverage": 0.24084507042253522
     },
     "decidedFraction": {
-      "decided": 1092,
-      "candidates": 7429,
-      "coverage": 0.14699151972001614
+      "decided": 1032,
+      "candidates": 9108,
+      "coverage": 0.11330698287220026
     },
     "rowCoverage": {
-      "seeded": 538,
-      "reachableCeiling": 4743,
-      "coverage": 0.1134303183639047
+      "seeded": 518,
+      "reachableCeiling": 5903,
+      "coverage": 0.08775199051329832
     },
     "ceilingDerivation": {
-      "candidates": 7429,
-      "droppedSubjectAbsent": 359,
-      "droppedDedupCollapse": 2327,
-      "reachableRows": 4743
+      "candidates": 9108,
+      "droppedSubjectAbsent": 810,
+      "droppedDedupCollapse": 2395,
+      "reachableRows": 5903
     }
   },
   "mythsAndParticipants": {
