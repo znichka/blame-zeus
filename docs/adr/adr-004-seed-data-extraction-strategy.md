@@ -173,3 +173,59 @@ reasonable starting point.
 **A dedicated review web app for candidate approval.** Rejected as
 over-engineering for a PoC; a JSON candidate file plus a Jupyter notebook is
 sufficient and much faster to build.
+
+---
+
+## Amendment 1 (2026-07-31) — What "explicit per-row developer review" means operationally (DEV-135)
+
+Stage P5's Track B (`docs/TODO-phase2-stage-p5.md`) replaces subject-prominence
+tranche selection with passage-batched review: `review_passage(source_id,
+passage_ref)` prints one cited segment and every tier-3 row cited to it, and an
+approval or rejection *action* can cover many of those rows at once. This ADR
+already calls the notebook "a sufficient review UI for a PoC" (Rationale #4) and
+rejected a review web app as over-engineering — this amendment keeps that, and
+narrows only the guarantee that was never actually "one row at a time": the
+per-row **evidence**, not the per-row **click**.
+
+1. **Every promoted row is displayed with its `claim_value` and evidence** — the
+   verbatim span from its own cited passage that pre-verification matched (B3
+   bucket A), or the full segment text when nothing matched. A row is never
+   promoted from a count or a summary; the reviewer sees the same text a human
+   reading the passage would.
+2. **The approval action may cover many rows at once**, provided every row was
+   individually displayed with its evidence and every row is recorded
+   individually in `promotion_log.json` (unchanged — `_claim_key`-keyed, one
+   entry per key, same as today).
+3. **The pre-verification signal may order and annotate; it may never promote.**
+   No code path writes `trust_tier=1` off a bucket assignment alone — bucketing
+   (`extraction/claim_evidence.py`) is what a reviewer reads before deciding, not
+   a substitute for the decision.
+4. **A row whose evidence line reads "no match" may not be approved in a
+   batch.** Buckets C, D, E and UNPARSED all mean the automated pass found no
+   verbatim span — that row requires an opened segment (which `review_passage`
+   already prints) and an individual read before approval.
+5. **The same rule binds batch rejection.** A rejection is a recorded per-row
+   verdict written to `trust_tier=2`, marked `[ALREADY REJECTED]` for every
+   later reviewer — a decision of the same weight as a promotion, not the
+   absence of one. A row whose evidence line reads "no match" therefore may not
+   be batch-*rejected* either, for the same reason it may not be
+   batch-*approved*: "no match" is an absence of evidence, not evidence of
+   absence, until a human has read the segment it sits in.
+6. **One carve-out, stated as a condition on the segment, not on the
+   reviewer's confidence.** Where **neither** party of a `parentage` claim is
+   attested anywhere in the cited segment under any spelling either alias layer
+   knows (`claim_evidence` bucket E) — and only once B2a's cross-check reports
+   `known_aliases.json` and the live `entity_aliases` table agree — the
+   *absence itself* is the displayed evidence, and a batch covering only such
+   rows, over passages the review queue has not yet opened, may reject them
+   (Track C5, budgeted separately under the seeding rule). Where **one** party
+   is attested and the other is not (bucket D), this carve-out does not apply:
+   that asymmetry is exactly the alias-gap-vs-misattribution ambiguity B2a
+   exists to resolve, and only an opened segment settles it. Without this
+   carve-out, point 5 would forbid C5 outright, since every bucket-E row's
+   evidence line reads "no match" by construction.
+
+No other part of this ADR's Decision or the `trust_tier` gate changes: nothing
+promotes without a human decision, nothing skips `promotion_log.json`, and
+nothing here authorizes a new tier or a code path that writes `trust_tier=1`
+automatically. See `docs/DEVIATIONS.md` #DEV-135.

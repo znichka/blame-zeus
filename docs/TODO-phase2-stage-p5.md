@@ -380,7 +380,7 @@ for A7's crash.
 
 ## Track B — Build the review engine
 
-- [ ] **B1** — New `ingestion/extraction/claim_evidence.py`. It **exposes no `NAME`**, so
+- [x] **B1** — New `ingestion/extraction/claim_evidence.py`. It **exposes no `NAME`**, so
       `discover_checks()` never picks it up — it cannot emit findings, cannot gate `seedgen`, cannot
       grow `audit-waivers.json`. That is the structural answer to the detector suite having become a
       maintenance surface, and it holds **wherever the file lives**: `discover_checks()` skips on the
@@ -389,7 +389,12 @@ for A7's crash.
       the *location*, which does not follow. The actual reason for `extraction/`: this is review
       tooling that reads candidates and corpus segments, the same job as its neighbours there, and
       `audit/` is the package whose growth this stage is trying to stop.
-- [ ] **B2** — Import rather than reimplement, and **adapt between two alias-map shapes that are not
+      **Found during implementation** `[DEVIATED - see DEVIATIONS.md #DEV-135]`: `extraction.run_extraction`
+      is imported lazily inside `build_passage_queue`, not at module level — a module-level import
+      transitively pulls in `extraction.claim_extractor`, which reads `ANTHROPIC_API_KEY`/`EXTRACTION_MODEL`
+      from the environment at import time, so merely `import`ing this review-tooling module (including its
+      own unit tests) would fail without live Anthropic credentials for no reason connected to what it does.
+- [x] **B2** — Import rather than reimplement, and **adapt between two alias-map shapes that are not
       interchangeable** — passing one where the other is expected raises `TypeError` inside
       `_spellings` at `{name} | aliases.get(name, set())`:
       | import | from | shape |
@@ -402,11 +407,11 @@ for A7's crash.
       the only one carrying the curated JSON layer) and invert to `canonical → {surfaces}` for
       `_attests`; **do not** feed `load_aliases` alone to anything that adjudicates, or the JSON layer
       is invisible — which is DEV-126's bug shape.
-  - [ ] **B2a** — **Cross-check `entity_aliases` against `known_aliases.json` before B3 runs.** This
+  - [x] **B2a** — **Cross-check `entity_aliases` against `known_aliases.json` before B3 runs.** This
         is DEV-126 finding (5), still open, and B3's bucket D is a direct function of it: a subject
         present in the corpus under a spelling that only one layer knows lands in D and looks like a
         misattribution. Report the symmetric difference; it is a prerequisite for C5, not a nice-to-have.
-- [ ] **B3** — Bucket each tier-3 row by attestation **within its own cited passage segment** (not
+- [x] **B3** — Bucket each tier-3 row by attestation **within its own cited passage segment** (not
       the whole source — that distinction is what made A13 useless at 82% noise). Verified feasible:
       **all 1,059 tier-3 `(source_id, passage_ref)` pairs resolve against `build_segment_map`** —
       zero unresolvable refs across all six sources — so no row is unbucketable for want of a segment.
@@ -442,17 +447,17 @@ for A7's crash.
         passages the queue never reached, which is what B7's carve-out exists for and which is
         budgeted as a denominator win under the seeding rule. Either way an E row leaves tier 3.
       - unparsed → read
-- [ ] **B4** — Emit the passage-ordered work queue. **Primary sort:** count of A6-contested rows in
+- [x] **B4** — Emit the passage-ordered work queue. **Primary sort:** count of A6-contested rows in
       the passage — those rows *are* conflicts by construction, since the contested collapse only
       fires on ≥2 competing parents. **Secondary:** total rows in the passage.
-- [ ] **B5** — Add `review_passage(source_id, passage_ref)` to
+- [x] **B5** — Add `review_passage(source_id, passage_ref)` to
       `ingestion/notebooks/02_verify_conflicts.ipynb`, beside the existing `review_group`. Reuse
       `build_segment_map` (already in the notebook) and the `_CLAIM_IDENTITY` 5-tuple imported from
       `run_extraction` — same keys, same `approved_keys` / `rejected_keys` emission, same additive
       tier-1/tier-2 write (never demote), same `promotion_log.json` append. One read, N adjudications.
-- [ ] **B6** — Unit tests for the bucketing, alongside the existing
+- [x] **B6** — Unit tests for the bucketing, alongside the existing
       `audit/tests/test_parentage_direction.py` / `test_claim_direction.py`.
-- [ ] **B7** — **ADR-004 Amendment 1** in `docs/adr/adr-004-seed-data-extraction-strategy.md`. Follow
+- [x] **B7** — **ADR-004 Amendment 1** in `docs/adr/adr-004-seed-data-extraction-strategy.md`. Follow
       the ADR-014 amendment precedent; ADR-004 owns the gate, so amend rather than write a new ADR.
       Define what "explicit per-row developer review" means operationally:
       - Every promoted row is displayed with its `claim_value` **and** the verbatim span from its own
@@ -482,7 +487,7 @@ for A7's crash.
       - Rationale to record: ADR-004 already calls the notebook "a sufficient review UI for a PoC"
         (`adr-004…md:119`) and rejects a review web app as over-engineering. This amendment keeps
         that, and removes only the per-row *re-reading*, which was never the guarantee.
-- [ ] **B8** — Update the `CLAUDE.md` "Review-gated `variant_claims`" guardrail so "per-row"
+- [x] **B8** — Update the `CLAUDE.md` "Review-gated `variant_claims`" guardrail so "per-row"
       survives but "one at a time" is not implied. Log a DEV entry per the deviation protocol.
 
 **Exit:** `review_passage('apollodorus-bibliotheca', '3.12.5')` prints the segment once with every
