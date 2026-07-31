@@ -147,22 +147,41 @@ are **run only on explicit request**. Items below are authored first, run when a
 
 Runs **first**. Nothing that changes `resolve()` may land before this is in place.
 
-- [ ] **G0.1** — Snapshot `ingestion/extraction/output/variant_claims_candidates.json` before any
-      resolver change (copy alongside, not committed over).
-- [ ] **G0.2** — Key-migration helper in `ingestion/extraction/claim_evidence.py` (still exposes no
-      `NAME`): maps old→new `_claim_key` 5-tuples using the ledger's preserved `surface` field,
-      re-applies the carried `trust_tier`, and emits the unmapped remainder as an explicit
-      re-review list. Reuse `run_extraction._CLAIM_IDENTITY` / `_claim_key` — do not re-derive the
-      identity tuple.
-- [ ] **G0.3** — Record the migration in `ingestion/audit/promotion_log.json` under its own
+- [x] **G0.1** — Snapshot `ingestion/extraction/output/variant_claims_candidates.json` before any
+      resolver change (copy alongside, not committed over). → `variant_claims_candidates.pre-p6-rekey.json`,
+      7,429 rows, 569 tier-1 + 523 tier-2.
+- [x] **G0.2** — `[DEVIATED - see DEVIATIONS.md #DEV-140]` Key-migration helper in
+      `ingestion/extraction/claim_evidence.py` (still exposes no `NAME`): maps old→new `_claim_key`
+      5-tuples using the ledger's preserved `surface` field, re-applies the carried `trust_tier`, and
+      emits the unmapped remainder as an explicit re-review list. Reuse
+      `run_extraction._CLAIM_IDENTITY` / `_claim_key` — do not re-derive the identity tuple.
+      **Landed with four departures** (DEV-140): the map joins **two** ledgers (pre- and post-change)
+      on `(source_id, passage_ref, lower(surface))`, so G1's ledger must be captured *before* G2/G3
+      touch `resolve()`; `claim_value` is re-keyed as well as `subject_name`, since relationship-derived
+      rows embed the resolved counterpart there and it is part of `_CLAIM_IDENTITY`; a third outcome
+      `absorbed` joins carried/re-review, for decisions merging onto a key another decision already
+      carries with the same verdict; and `_write_claims_preserving_review`'s drop counter was corrected
+      (it could print a negative N and net a genuine loss toward the gate's own pass condition).
+- [x] **G0.3** — Record the migration in `ingestion/audit/promotion_log.json` under its own
       `batchLabel` (`p6-g0-identity-rekey`). A re-key is a decision about promoted rows and earns the
-      same audit trail as a promotion.
-- [ ] **G0.4** — Unit tests for the migration: a renamed subject carries its tier; an unmapped row
+      same audit trail as a promotion. **Authored and unit-tested (`record_key_migration`); not yet
+      executed** — no resolver change has landed, so there is no rename to record. Runs with G3.
+- [x] **G0.4** — Unit tests for the migration: a renamed subject carries its tier; an unmapped row
       appears in the re-review list and **never** silently keeps or loses a tier.
+      → `ingestion/audit/tests/test_claim_rekey.py`, 18 tests.
 
 **Exit:** the post-run `WARNING: N reviewed row(s) are no longer produced` count is **0**, or every
 remaining row is listed by name for re-review. Tier counts before/after (569 / 523) are preserved or
 explicitly accounted for, row by row.
+
+> **Exit status:** the machinery is in place and verified on a no-op (the snapshot migrated against
+> itself carries all 1,092 decisions, 0 re-review, `accounted` true). The exit itself is **pending
+> G1/G3** — it can only be evaluated against a run in which identities actually change. Note that
+> "before/after 569 / 523" is the *file's* count: a plain re-run today writes 572/523, because 3
+> duplicate identity tuples span mixed tiers and a carried tier applies per matching row. That is
+> pre-existing behaviour, reproduced deliberately by `apply_key_migration`, not introduced here, and
+> **inert downstream** — `seedgen/variant_claims_gen.py:38` collapses exact duplicates before V12, so
+> the extra 3 seed nothing. Expect 572/523, not 569/523, when evaluating this exit.
 
 ---
 
@@ -187,6 +206,13 @@ explicitly accounted for, row by row.
 **Exit:** a re-run of `build_candidates` (cached segments, **zero API cost**) produces a ledger
 covering every resolution in the corpus. **Unblocks:** G2's measurement, G6's `resolved_by` signal,
 G0's key migration.
+
+> **Updated based on DEV-140.** That ledger run is the migration's **baseline** and must be captured
+> and kept **before** G2 or G3 changes `resolve()` — `build_rename_map` joins the pre- and
+> post-change ledgers on `(source_id, passage_ref, lower(surface))`, and with only the post-change
+> ledger there is nothing to join an old canonical against. The track order already puts G1 ahead of
+> G2/G3; this makes the *artifact* (not just the code) a prerequisite. Persist it as
+> `entity_resolutions.baseline.json` alongside G1.3's `entity_resolutions.json`.
 
 ---
 

@@ -24,6 +24,17 @@ Three pieces, in the order Track B uses them:
     parents from the contested-parentage collapse) sort first, since those rows
     *are* conflicts by construction.
 
+Stage P6 Track G0 adds a fourth piece, same no-`NAME` rule:
+
+  - **G0** -- the identity re-key migration. `subject_name` is part of
+    `_CLAIM_IDENTITY`, so ADR-022's resolver changes (G2's fuzzy-step decision,
+    G3's namesake registry) rename the subject of already-reviewed rows and
+    `_write_claims_preserving_review` then reports them under `WARNING: N reviewed
+    row(s) are no longer produced by extraction`. This maps old -> new keys through
+    the G1 resolution ledger's `surface` field and carries each `trust_tier` across,
+    emitting everything it cannot map as an explicit re-review list. Nothing is ever
+    silently kept or lost: `carried` and `re_review` partition the reviewed set.
+
 Scope note (the findings rule, class 3): the attestation buckets (A/C/D/E) are wired
 up for `parentage`-family claims only, via the existing `parse_parent`/`_attests`
 machinery A14 already has. Other claim types (`married_to`, `death`, ...) have their
@@ -39,14 +50,16 @@ from __future__ import annotations
 
 import json
 import re
-from collections import defaultdict
+from collections import Counter, defaultdict
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from enum import Enum
 from pathlib import Path
 
 from audit.claim_direction import _PARENTAGE_FORMS, load_name_aliases, parse_parent
 from audit.drop_accounting import PLACEHOLDER_NAMES
 from audit.parentage_direction import _KINSHIP, _POSSESSIVE, _spellings
+from extraction.conflict_detector import _RELATION_TO_CLAIM
 
 # `extraction.run_extraction` is imported lazily (inside `build_passage_queue`, the
 # only place this module needs `_claim_key`/`DEFAULT_TRUST_TIER`), not at module
@@ -305,3 +318,295 @@ def build_passage_queue(claims: list[dict], contested_keys: set[tuple] | None = 
     ]
     entries.sort(key=lambda e: (-e.contested_count, -e.total_rows, e.source_id, e.passage_ref))
     return entries
+
+
+# --- G0: carrying review decisions across an identity re-key --------------------
+
+REKEY_BATCH_LABEL = "p6-g0-identity-rekey"
+PROMOTION_LOG_PATH = Path(__file__).resolve().parent.parent / "audit" / "promotion_log.json"
+
+# Why a decision could not be carried. Every reviewed row is either carried or lands
+# here by name -- there is no third outcome, and no path that keeps a tier on a guess.
+DROPPED_BY_EXTRACTION = "dropped_by_extraction"  # key unchanged by the ledger, row simply no longer produced
+RENAMED_TARGET_ABSENT = "renamed_target_absent"  # subject/value renamed, but the renamed row is not produced either
+AMBIGUOUS_RENAME = "ambiguous_rename"  # one old canonical, >=2 new ones in that passage -- a split we cannot attribute
+CONFLICTING_MERGE = "conflicting_merge"  # >=2 old decisions collapsed onto one new key with disagreeing tiers
+
+
+def _claim_value_prefixes() -> tuple[str, ...]:
+    """The `"child of "` / `"married to "` / `"killed by "` heads, *derived* from
+    `conflict_detector._RELATION_TO_CLAIM` rather than restated here.
+
+    Relationship-derived candidates embed the resolved counterpart name in
+    `claim_value` (`f"child of {from_name}"`), which is also part of `_CLAIM_IDENTITY`
+    -- so a resolver change re-keys those rows through `claim_value` as well as
+    through `subject_name`, and a migration that only renamed subjects would lose
+    them. A mapper whose name is not in trailing position is skipped: its rows then
+    fail to match and surface in the re-review list, never as a silent tier loss.
+    """
+    sentinel = "\x00"
+    prefixes = []
+    for mapper in _RELATION_TO_CLAIM.values():
+        _subject, value = mapper(sentinel, sentinel)
+        head, _sep, tail = value.partition(sentinel)
+        if head and not tail:
+            prefixes.append(head)
+    return tuple(prefixes)
+
+
+_CLAIM_VALUE_PREFIXES = _claim_value_prefixes()
+
+
+@dataclass(frozen=True)
+class CarriedDecision:
+    old_key: tuple
+    new_key: tuple
+    trust_tier: int
+
+    @property
+    def renamed(self) -> bool:
+        return self.old_key != self.new_key
+
+
+@dataclass(frozen=True)
+class ReReviewRow:
+    key: tuple  # the OLD key -- the one the reviewer will recognise from the promotion log
+    trust_tier: int
+    reason: str
+
+
+@dataclass(frozen=True)
+class KeyMigration:
+    carried: tuple[CarriedDecision, ...]
+    re_review: tuple[ReReviewRow, ...]
+    # Decisions that merged onto a new key another decision already carries, with the
+    # same verdict. Not carried (there is one row to write, not two) and not re-review
+    # (nothing is in doubt) -- tracked as its own outcome so the row-by-row accounting
+    # below stays an equality rather than an inequality that hides a real loss.
+    absorbed: tuple[CarriedDecision, ...]
+    tier_counts_before: dict[int, int]
+    tier_counts_after: dict[int, int]
+
+    @property
+    def renamed_count(self) -> int:
+        return sum(1 for d in self.carried if d.renamed)
+
+    @property
+    def accounted(self) -> bool:
+        """G0's exit property: every decision that went in came out carried, absorbed
+        into an identical one, or individually re-queued. False here means a row went
+        missing, which is the one failure mode this whole track exists to prevent."""
+        return sum(self.tier_counts_before.values()) == len(self.carried) + len(self.absorbed) + len(self.re_review)
+
+
+def _ledger_index(ledger: list[dict]) -> dict[tuple, set[str]]:
+    """`(source_id, passage_ref, lower(surface)) -> {canonical}` over a G1 resolution
+    ledger. The set is a singleton per run in practice (the resolver memoises), but is
+    kept a set so a violated assumption surfaces as an ambiguity rather than a
+    last-write-wins guess."""
+    index: dict[tuple, set[str]] = defaultdict(set)
+    for row in ledger:
+        surface = (row.get("surface") or "").strip().lower()
+        canonical = row.get("canonical")
+        if not surface or not canonical:
+            continue
+        index[(row.get("source_id"), row.get("passage_ref"), surface)].add(canonical)
+    return dict(index)
+
+
+def build_rename_map(baseline_ledger: list[dict], current_ledger: list[dict]) -> dict[tuple, frozenset[str]]:
+    """`(source_id, passage_ref, lower(old_canonical)) -> {new canonical, ...}`, by
+    joining the two ledgers on the field neither run can change: the **surface** the
+    text actually spells. The baseline ledger is G1's (the ledger lands before any
+    behaviour change, per the stage's track order), the current one is the post-G2/G3
+    re-run's.
+
+    A >1 target set is the genuine article, not a bug: `Coronus` and `Cronus` both
+    spelled into canonical `Cronus` at `3.10.8-3.11.1` before G3 and into two
+    canonicals after it. Which of that passage's old `Cronus` rows belonged to which
+    figure is exactly G4.1's hand adjudication, so those rows are re-queued rather
+    than attributed here.
+    """
+    baseline = _ledger_index(baseline_ledger)
+    current = _ledger_index(current_ledger)
+
+    renames: dict[tuple, set[str]] = defaultdict(set)
+    for key, old_canonicals in baseline.items():
+        new_canonicals = current.get(key)
+        if not new_canonicals:
+            continue  # surface not resolved in the new run -- its rows are a drop, handled per-row below
+        source_id, passage_ref, _surface = key
+        for old in old_canonicals:
+            renames[(source_id, passage_ref, old.strip().lower())] |= new_canonicals
+    return {key: frozenset(targets) for key, targets in renames.items()}
+
+
+def _rename(name: str | None, source_id, passage_ref, rename_map: dict[tuple, frozenset[str]]) -> tuple[str | None, bool]:
+    """`(new_name, ambiguous)`. An absent entry means the ledger saw no change for that
+    name in that passage, so the name is returned untouched."""
+    if not name:
+        return name, False
+    targets = rename_map.get((source_id, passage_ref, name.strip().lower()))
+    if not targets:
+        return name, False
+    if len(targets) > 1:
+        return name, True
+    return next(iter(targets)), False
+
+
+def _rename_claim_value(value: str | None, source_id, passage_ref, rename_map) -> tuple[str | None, bool]:
+    for prefix in _CLAIM_VALUE_PREFIXES:
+        if value and value.startswith(prefix):
+            renamed, ambiguous = _rename(value[len(prefix) :], source_id, passage_ref, rename_map)
+            return prefix + (renamed or ""), ambiguous
+    return value, False  # free-text variant claims carry no resolved name at all
+
+
+def migrate_review_keys(
+    reviewed_rows: list[dict],
+    new_rows: list[dict],
+    baseline_ledger: list[dict],
+    current_ledger: list[dict],
+) -> KeyMigration:
+    """Map the review decisions in `reviewed_rows` onto the keys `new_rows` now uses.
+
+    `reviewed_rows` is the pre-change candidate file (G0.1's snapshot); rows still at
+    `DEFAULT_TRUST_TIER` are not decisions and are ignored. The identity tuple is
+    rebuilt by mutating a copy of the row and re-running `_claim_key`, never by
+    assembling a 5-tuple positionally -- `_CLAIM_IDENTITY` stays the single definition
+    of what a claim's identity is.
+    """
+    from extraction.run_extraction import DEFAULT_TRUST_TIER, _claim_key
+
+    rename_map = build_rename_map(baseline_ledger, current_ledger)
+    new_keys = {_claim_key(r) for r in new_rows}
+
+    decisions = [r for r in reviewed_rows if r.get("trust_tier", DEFAULT_TRUST_TIER) != DEFAULT_TRUST_TIER]
+
+    carried: list[CarriedDecision] = []
+    re_review: list[ReReviewRow] = []
+
+    for row in decisions:
+        tier = row["trust_tier"]
+        old_key = _claim_key(row)
+        source_id, passage_ref = row.get("source_id"), row.get("passage_ref")
+
+        subject, subject_ambiguous = _rename(row.get("subject_name"), source_id, passage_ref, rename_map)
+        value, value_ambiguous = _rename_claim_value(row.get("claim_value"), source_id, passage_ref, rename_map)
+        if subject_ambiguous or value_ambiguous:
+            re_review.append(ReReviewRow(old_key, tier, AMBIGUOUS_RENAME))
+            continue
+
+        migrated = dict(row)
+        migrated["subject_name"] = subject
+        migrated["claim_value"] = value
+        new_key = _claim_key(migrated)
+
+        if new_key in new_keys:
+            carried.append(CarriedDecision(old_key, new_key, tier))
+        else:
+            re_review.append(
+                ReReviewRow(old_key, tier, RENAMED_TARGET_ABSENT if new_key != old_key else DROPPED_BY_EXTRACTION)
+            )
+
+    carried, absorbed, merge_conflicts = _resolve_merge_collisions(carried)
+    re_review.extend(merge_conflicts)
+
+    return KeyMigration(
+        carried=tuple(carried),
+        re_review=tuple(re_review),
+        absorbed=tuple(absorbed),
+        tier_counts_before=dict(Counter(r["trust_tier"] for r in decisions)),
+        tier_counts_after=dict(Counter(d.trust_tier for d in carried)),
+    )
+
+
+def _resolve_merge_collisions(
+    carried: list[CarriedDecision],
+) -> tuple[list[CarriedDecision], list[CarriedDecision], list[ReReviewRow]]:
+    """A re-key can also *merge*: two old identities collapsing onto one new key. Where
+    they agree the verdict is unchanged and one decision carries while the rest are
+    recorded as absorbed; where they disagree (one promoted, one rejected) there is no
+    defensible winner, so all of them go back for review rather than letting write
+    order decide."""
+    by_new_key: dict[tuple, list[CarriedDecision]] = defaultdict(list)
+    for decision in carried:
+        by_new_key[decision.new_key].append(decision)
+
+    kept: list[CarriedDecision] = []
+    absorbed: list[CarriedDecision] = []
+    conflicts: list[ReReviewRow] = []
+    for group in by_new_key.values():
+        if len({d.trust_tier for d in group}) > 1:
+            conflicts.extend(ReReviewRow(d.old_key, d.trust_tier, CONFLICTING_MERGE) for d in group)
+        else:
+            kept.append(group[0])
+            absorbed.extend(group[1:])
+    return kept, absorbed, conflicts
+
+
+def apply_key_migration(rows: list[dict], migration: KeyMigration) -> int:
+    """Write the carried tiers onto `rows` in place, returning how many *rows* were
+    written. Separate from `migrate_review_keys` so the mapping can be inspected -- and
+    its re-review list read -- before anything is written.
+
+    A tier is applied to **every** row sharing the carried key, not just the first:
+    `_claim_key` is not unique over the candidate file (33 duplicate identity tuples,
+    construction `Counter(_claim_key(r) for r in variant_claims_candidates.json)`), and
+    `_write_claims_preserving_review` already applies a carried tier per matching row.
+    Writing only one of a pair would make a re-key disagree with a plain re-run about
+    the same file, so the return value can exceed `len(migration.carried)`.
+    """
+    from extraction.run_extraction import _claim_key
+
+    tiers = {d.new_key: d.trust_tier for d in migration.carried}
+    applied = 0
+    for row in rows:
+        tier = tiers.get(_claim_key(row))
+        if tier is not None:
+            row["trust_tier"] = tier
+            applied += 1
+    return applied
+
+
+def record_key_migration(
+    migration: KeyMigration,
+    path: Path = PROMOTION_LOG_PATH,
+    batch_label: str = REKEY_BATCH_LABEL,
+) -> dict:
+    """G0.3: append the migration to `promotion_log.json`. A re-key is a decision about
+    promoted rows and earns the same audit trail as a promotion, so it is logged in the
+    same append-only file, in the same entry shape (`keys`/`groupCount` present and
+    empty -- this batch promotes nothing new), with the before/after tier counts and
+    every re-queued row named."""
+    entry = {
+        "batchLabel": batch_label,
+        "date": datetime.now(timezone.utc).isoformat(),
+        "keys": [],
+        "groupCount": 0,
+        "rationale": (
+            "Stage P6 G0: ADR-022's resolver changes re-key reviewed rows through subject_name / "
+            "claim_value. Trust tiers carried across the rename via the G1 resolution ledger; rows "
+            "that could not be mapped are listed under reReview and go back through ADR-004's gate."
+        ),
+        "rekeyed": [
+            {"from": list(d.old_key), "to": list(d.new_key), "trustTier": d.trust_tier}
+            for d in migration.carried
+            if d.renamed
+        ],
+        "carriedCount": len(migration.carried),
+        "renamedCount": migration.renamed_count,
+        "absorbed": [
+            {"from": list(d.old_key), "into": list(d.new_key), "trustTier": d.trust_tier} for d in migration.absorbed
+        ],
+        "absorbedCount": len(migration.absorbed),
+        "reReview": [{"key": list(r.key), "trustTier": r.trust_tier, "reason": r.reason} for r in migration.re_review],
+        "reReviewCount": len(migration.re_review),
+        "tierCountsBefore": {str(t): n for t, n in sorted(migration.tier_counts_before.items())},
+        "tierCountsAfter": {str(t): n for t, n in sorted(migration.tier_counts_after.items())},
+    }
+    entries = json.loads(path.read_text(encoding="utf-8")) if path.exists() else []
+    entries.append(entry)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(entries, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return entry

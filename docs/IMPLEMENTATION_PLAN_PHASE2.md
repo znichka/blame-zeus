@@ -469,6 +469,8 @@ zero spent** — all tooling lives outside the `audit` package, which `discover_
 and A1 (threshold-88 pass *plus* its transliteration pass) is the recall guard for the fuzzy
 decision.
 
+> ⚠️ Deviations occurred in this stage. See DEVIATIONS.md for details.
+
 **Exit:** every confirmed instance resolves correctly on a plain re-run; **all five** already-live
 defects fixed and verified against the reseeded DB; the fuzzy-step decision recorded with its
 measurement and its branch-conditional A1 check; the collision signal live in `review_passage`; the

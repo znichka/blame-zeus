@@ -245,14 +245,22 @@ def _write_claims_preserving_review(path: Path, rows: list[dict]) -> None:
         other = carried - promoted - rejected
         detail = f"{promoted} promoted, {rejected} rejected" + (f", {other} other" if other else "")
         print(f"  carried over {carried} reviewed decision(s) ({detail})", flush=True)
-    dropped = len(reviewed) - carried
-    if dropped:
+    # Counted over *keys*, not over `carried`: `_claim_key` is not unique across the
+    # candidate file (33 duplicate identity tuples at the time of writing), so a key
+    # matching two rows increments `carried` twice and the old `len(reviewed) - carried`
+    # went negative -- it printed "WARNING: -3" while nothing had in fact been dropped.
+    # Stage P6 G0 gates on this exact number reaching 0, and a count that can go
+    # negative can equally net a real loss down to zero, so it is derived from the same
+    # set the loop below names.
+    produced = {_claim_key(r) for r in rows}
+    dropped_keys = [k for k in reviewed if k not in produced]
+    if dropped_keys:
         print(
-            f"  WARNING: {dropped} reviewed row(s) are no longer produced by extraction and were "
+            f"  WARNING: {len(dropped_keys)} reviewed row(s) are no longer produced by extraction and were "
             "NOT carried over -- re-review if this is unexpected:",
             flush=True,
         )
-        for key in (k for k in reviewed if k not in {_claim_key(r) for r in rows}):
+        for key in dropped_keys:
             print(f"    - {key[0]} / {key[1]} / {key[2]} [{key[3]} {key[4]}]", flush=True)
 
 
