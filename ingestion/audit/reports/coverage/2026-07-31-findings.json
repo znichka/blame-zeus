@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-31T10:12:16.300243+00:00",
+  "generatedAt": "2026-07-31T13:04:00.036000+00:00",
   "checks": [
     {
       "name": "A16",
-      "summary": "entities: 1990/2334 = 85.3% (name-space ceiling, not raw candidates)\nrelationships: 3367/6882 = 48.9% (drop: unknown_name=901, exact_dup=1579, contested_collapse=1035, residual=0)\nvariant_claims group coverage (headline): 88/718 = 12.3% (pool 764)\nvariant_claims decided fraction (secondary): 783/7429 = 10.5%\nvariant_claims row coverage (secondary, against the 4743-row reachable ceiling): 331/4743 = 7.0%\n  ceiling derivation: 7429 candidates -> -359 (subject absent from entities) -> -2327 (4-tuple dedup collapse) -> 4743 reachable\nmyths/myth_participants: 5/22 -- n/a (frozen -- see docs/DATA-GAPS.md coverage statement)",
+      "summary": "entities: 1990/2334 = 85.3% (name-space ceiling, not raw candidates)\nrelationships: 3367/6882 = 48.9% (drop: unknown_name=901, exact_dup=1579, contested_collapse=1035, residual=0)\nvariant_claims group coverage (headline): 182/718 = 25.3% (pool 764)\nvariant_claims decided fraction (secondary): 1092/7429 = 14.7%\nvariant_claims row coverage (secondary, against the 4743-row reachable ceiling): 538/4743 = 11.3%\n  ceiling derivation: 7429 candidates -> -359 (subject absent from entities) -> -2327 (4-tuple dedup collapse) -> 4743 reachable\nmyths/myth_participants: 5/22 -- n/a (frozen -- see docs/DATA-GAPS.md coverage statement)",
       "findings": []
     }
   ]

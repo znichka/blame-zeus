@@ -16,6 +16,8 @@ gap deferred to Phase 5b.
 | **GAP-007** | `Zeus parent_of Ajax` is **seeded live** — ADR-020's co-mention rule reads the Homeric vocative formula *"Aias, sprung from Zeus, thou son of Telamon"* (Iliad 7.233) as one passage naming two co-parents | **Open** — found 2026-07-29 while verifying the GAP-004/GAP-006 merge (DEV-121). Not an extraction error: the text says it, and rules 1-3 of the discriminator cannot exclude it by construction (never flagged contested; `Telamon` *is* the winner and `Zeus` is in the pair). It is what rule 4's deny-list exists for, and that list still holds only `Io`. The `relationships` counterpart of the Homeric-formula misreads DEV-112 rejected behind the `variant_claims` review gate — but this table is seeded, not review-gated, so it reaches users. `Ajax` shows up in gold Q7's "children of Zeus" answer today | **RESOLVED 2026-07-29 (DEV-122)** — deny-list entry added, and the sweep it asked for was **run and bounded, not deferred**: only **3** seeded divine co-parents rest solely on the formula-bearing sources (Homer + Homeric Hymns; the formulae are absent from Apollodorus/Hesiod/Ovid — measured, 0 hits), of which `Ajax <- Zeus` is the one false positive and `Molione <- Poseidon` / `Pandia <- Zeus` verify as genuine. The five `variant_claims` counterparts were rejected to `trust_tier=2` in the same pass. Live: `Ajax` now has Telamon only, from four sources, and is gone from Q7's answer | Closed |
 | **GAP-008** | The **misattributed-passage** shape is unswept in the *seeded* `relationships` table — `Zeus parent_of Ate` cites Iliad 9.496-9.528, where the "daughters of great Zeus" are the **Prayers** (Litai), not Ate | **Open** — found 2026-07-29 by DEV-122's GAP-007 sweep, which checked every single-parent divine edge as well as the co-parent ones. The claim is true and Homer *does* state it — *"Eldest daughter of Zeus is Ate that blindeth all"* — but at **19.90**, not at the cited ref. Same shape DEV-119 catalogued as bucket (4) among *dropped* parents (18 instances) and DEV-121 hit twice among Ajax's `killed_by` rows; nobody has ever swept the **seeded** edges for it, and seeded rows are not review-gated. Left unfixed deliberately: the only two honest fixes are dropping a true claim or moving the ref, and DEV-121 established that moving a ref is inventing provenance — so it needs a decision, not a silent edit | P5 (extraction-quality) |
 | **GAP-005** | Extraction reads in-narrative **deception** as fact | **Open** — a NEW error shape found during A6 triage (DEV-119), distinct from every shape P4 catalogued: a character stating a *false* parentage while disguised. Aphrodite tells Anchises *"Otreus … is my father"* directly after *"know that I am no goddess"*; Hermes, disguised as a Myrmidon, names Polyctor. The cited passage genuinely says what was extracted — it is the speaker who is lying — so no passage-verification check can catch it, unlike the misattributed-passage and reversed-direction shapes. Both known instances are waived; unknown how many more exist | P5 (extraction-quality) |
+| **GAP-009** | Fuzzy-match false positives fold a spelling-distinct name onto an unrelated confirmed entity, e.g. the text's own "Atas" resolving to the Titan `Atlas` | **Open** — found 2026-07-31 during Stage P5 Track C review (DEV-136/137/138), a byproduct of per-row `variant_claims` adjudication, not a dedicated sweep. Narrow: only a handful of confirmed instances so far, all traced to `entity_resolver.py`'s rapidfuzz stage or a legitimate-elsewhere `entity_aliases` row applied out of context | P5 (extraction-quality) |
+| **GAP-010** | **Exact-name namesake collisions** — the corpus genuinely reuses one name for two-plus unrelated figures, and extraction/resolution merges them into one `entities` row, e.g. Priam's obscure son "Idomeneus" merged into the Cretan king `Idomeneus` (3-source figure) | **Open** — found 2026-07-31 during the same Track C review, at real volume: **≥82 confirmed instances across 7 passages** (DEV-136/137/138), roughly 20-30% of all tier-3 rows reviewed so far. Distinct from GAP-009: no fuzzy step is involved, the strings are identical, so it cannot be tuned away — three instances already reached *seeded* `relationships` and one a *promoted* `variant_claims` row | P5 (extraction-quality) |
 
 ---
 
@@ -1165,3 +1167,154 @@ were corrected and now PASS. It does not address the Ate row, which cites a pass
 `[90]` (where the claim is actually made); `ingestion/audit/parentage_direction.py` (A11, the natural
 host); `docs/DEVIATIONS.md` #DEV-119 (the 18 dropped-parent instances), #DEV-121 (the two `killed_by`
 instances and the do-not-move-a-ref rule), **#DEV-122** (found here).
+
+---
+
+## GAP-009 — Fuzzy-match false positives fold a spelling-distinct name onto an unrelated confirmed entity
+
+**Status:** **Open** — found 2026-07-31 during Stage P5 Track C's `variant_claims` review
+(DEV-136/137/138), a byproduct of per-row adjudication rather than a dedicated sweep. Only a
+handful of confirmed instances so far — this gap is deliberately kept separate from GAP-010 (below)
+because the mechanism and the fix are different, even though both surface as "wrong parentage" to a
+reviewer.
+
+### The mechanism
+
+`ingestion/extraction/entity_resolver.py`'s `EntityResolver` dedupes a newly-extracted name against
+the running candidate/confirmed set in three steps: exact match, `known_aliases.json` lookup, then a
+rapidfuzz fuzzy match at threshold 88. The fuzzy step (and, separately, a legitimate
+`entity_aliases`/`known_aliases.json` row applied outside the context it was curated for) can attach
+a name from the source text to the **wrong** already-established entity, even though the text's own
+spelling is genuinely different from that entity's name.
+
+### Confirmed instances
+
+| text's actual spelling | resolved to | should have been |
+|---|---|---|
+| "Mestor, **Atas**, Doryclus" (Apollodorus 3.12.5, one of Priam's ~50 sons) | the Titan `Atlas` (Iapetus's son, father of Calypso/the Pleiades, many sources) | a distinct, unrelated, very obscure son of Priam — not confirmed as a separate entity |
+| "**Philaemon**" (Apollodorus 3.12.5, another son of Priam) | `Philammon` (Apollo's son, father of the musician Thamyris, apollodorus) | same as above |
+| "**Aeacus**" (Apollodorus 3.12.5 names Priam's first son by Arisbe as "Aesacus," who mourns Asterope and turns into a bird) | `Aeacus` the underworld judge (Zeus and Aegina's son, father of Peleus, 3+ sources) | "Aesacus" is not currently a confirmed entity at all — the two names are one letter apart and the resolver treats them as the same |
+| "**Pluto**" (Hesiod *Theogony* 346-403, one of 3,000 Oceanid daughters — "soft eyed Pluto") | `Hades`, via the general `entity_aliases` row `Pluto`/`Dis`→Hades (correct in most contexts, since Pluto is a genuine Hades epithet) | a distinct, unrelated, unconfirmed Oceanid nymph |
+
+The `Pluto`→Hades case is structurally different from the other three: it is not a fuzzy-threshold
+problem at all, but a *correct* alias applied in a context where it does not hold. Tightening
+`rapidfuzz`'s threshold would not touch it — only a context check (does the surrounding sentence
+actually support this being Hades?) could, which is closer to GAP-010's territory than a
+`entity_resolver.py` tuning fix.
+
+### Why it is its own gap, distinct from GAP-010
+
+Both gaps produce the same symptom for a Track C reviewer — a `variant_claims` candidate whose
+subject is really a different person than the established entity of that name — but the fix differs
+completely:
+
+- **GAP-009** (this entry) is a **near-miss** problem: the corpus text spells the name differently
+  from the entity it got attached to (`Atas`≠`Atlas`, `Aeacus`≠`Aesacus`). In principle this is
+  addressable by raising `entity_resolver.py`'s fuzzy threshold, adding a blocklist for known
+  problem pairs, or requiring the fuzzy match to also check for existing incompatible relationships
+  before merging.
+- **GAP-010** is an **exact-match** problem: the string in the corpus is byte-identical to an
+  unrelated entity's name, because the ancient corpus itself reuses the name for two different
+  people. No threshold tuning can fix this — the two GAP-009 examples above where the surface form
+  *is* identical (`Pluto`, and any future exact-string collision) actually belong to GAP-010's
+  territory once the alias/fuzzy step is not the proximate cause.
+
+### What a fix needs to decide
+
+1. Whether to raise the rapidfuzz threshold above 88, and by how much, without losing the recall
+   that threshold was originally tuned for (re-check against `entity_resolver.py`'s own test
+   fixtures and the corpus-wide dedup rate before changing it).
+2. Whether `entity_aliases` rows like `Pluto`→Hades should carry a scope restriction (e.g. only
+   apply when no unresolved candidate name already exists under a different confirmed entity in the
+   same passage) — this would need a schema or lookup-order change, not just a threshold change.
+3. A confirmed count: this gap has not been swept systematically, only found incidentally during
+   Track C row review. A dedicated pass (grep the fuzzy-merge log `EntityResolver.fuzzy_merges`
+   already emits at extraction time, per `run_extraction.py`'s `write_output`) would give a real
+   denominator before deciding whether a code fix is worth it.
+
+**References:** `ingestion/extraction/entity_resolver.py` (`EntityResolver`, rapidfuzz threshold);
+`ingestion/extraction/known_aliases.json`; `docs/DEVIATIONS.md` #DEV-136/#DEV-137/#DEV-138 (where
+each instance was found and rejected in `variant_claims` review).
+
+---
+
+## GAP-010 — Exact-name namesake collisions: the corpus reuses one name for unrelated figures, and extraction merges them into one entity
+
+**Status:** **Open** — found 2026-07-31 during Stage P5 Track C's `variant_claims` review
+(DEV-136/137/138). **≥82 confirmed instances across the first 7 passages reviewed**, roughly 20-30%
+of all tier-3 rows adjudicated so far — by far the largest single cause of rejection in every batch.
+Unlike GAP-009, this is not a near-miss: the colliding names are byte-identical strings, so no
+fuzzy-threshold change can address it.
+
+### The mechanism
+
+Greek myth is full of legitimate namesakes — many different "Ajax"es, "Iphis"es, minor catalogue
+figures sharing a name with a major god or hero purely by coincidence of an English translation's
+word choice. `entities.name` is not unique-by-construction in the *source material*, but the
+extraction/resolution pipeline treats a matching string as the same person by default (this is
+*correct* the overwhelming majority of the time — it is what lets "Zeus" resolve consistently across
+all six sources — and only fails on the minority of names that really do denote two different
+people). Nothing downstream currently checks whether a newly-attached fact is *compatible* with what
+that entity is already established to be.
+
+### Confirmed instances (a representative sample, not the full 82+)
+
+| shared name | identity #1 (already established) | identity #2 (the collision) | found in |
+|---|---|---|---|
+| `Idomeneus` | the Cretan king, Deucalion's son (3 sources) | one of Priam's ~50 obscure sons | `apollodorus-bibliotheca 3.12.5` |
+| `Lycaon` | the Arcadian king turned to a wolf by Zeus (35+ existing rows) | another of Priam's sons | `apollodorus-bibliotheca 3.12.5` |
+| `Urania` | the Muse, Zeus and Mnemosyne's daughter (2 sources) | a minor Oceanid nymph | `hesiod-theogony 346-403` |
+| `Europa` | Agenor's daughter, the abduction story (2 sources) | a minor Oceanid nymph | `hesiod-theogony 346-403` |
+| `Rhode` | Poseidon and Amphitrite's daughter, the Sun's wife (apollodorus) | a minor Oceanid nymph ("Rhodea") | `hesiod-theogony 346-403` |
+| `Agave` / `Autonoe` | Cadmus and Harmonia's daughters, Theban royalty (multiple sources) | minor Nereid-catalogue nymphs — **and `entities.subtype='nereid'` is set on both, meaning this specific collision happened at original entity extraction, not later review** | `apollodorus-bibliotheca 1.2.1-1.2.7`, `2.1.5`, `hesiod-theogony 233-269` |
+| `Amphictyon` | a legendary early king of Athens (own `killed_by`/`killed` facts) | Amphitryon, Heracles' stepfather and Alcmena's husband — the text's own word is "Amphitryon," not "Amphictyon" | `apollodorus-bibliotheca 2.4.5` |
+| `Lynceus` | Aphareus's son, the sharp-eyed Argonaut killed by Pollux (3 sources) | Egyptus's son, Hypermnestra's husband and Abas's father — **this passage's own central plot thread** | `apollodorus-bibliotheca 2.1.5` |
+| `Cronus` | the Titan, Zeus's father (many sources) | "Coronus," a mortal, in the source text | `apollodorus-bibliotheca 3.10.8-3.11.1` |
+| `Perses`/`Perseus` | conflated across a **promoted** (`trust_tier=1`, live) `variant_claims` row | — | `apollodorus-bibliotheca 2.4.5` |
+
+### Why this is more serious than a candidate-review nuisance
+
+Three instances have already reached data with **no review gate at all**, or past the gate that
+exists:
+
+1. `relationships` (mechanical, no human gate — CLAUDE.md's Data Model section) already has
+   `Cronus parent_of Leonteus`, which should read `Coronus parent_of Leonteus`.
+2. `relationships` already conflates Amphitryon and Amphictyon across several rows tied to
+   `apollodorus-bibliotheca` `2.4.5`/`2.4.6`/`2.4.7-2.4.8`/`1.8.2`.
+3. A `variant_claims` row conflating Perses/Perseus is already **promoted** (`trust_tier=1`) — i.e.
+   it passed ADR-004's human review gate at some point before Stage P5 and is live today.
+
+None of the three are fixed by this entry. Each needs its own dedicated look (a `relationships` fix
+is a mechanical no-gate edit like any other; the promoted `variant_claims` row needs a demotion
+decision through the normal keyed workflow, not a silent edit) — recorded here so a future session
+can pick either up without re-deriving the finding.
+
+### What a fix needs to decide
+
+This is real per-entity work, not something a detector alone can close — a detector can only narrow
+where to look, the way the review batches were already narrowing it by hand:
+
+1. **Detection**: a lightweight check (candidate for the audit package's next budgeted slot, or a
+   `claim_evidence.py` helper feeding `review_passage`'s bucket output) that flags a candidate row
+   whose subject already has an established relationship *incompatible* with what the current
+   passage claims — e.g. two different confirmed parents from unrelated myth-cycles with no shared
+   source. This does not fix data; it turns the manual DB cross-reference Track C reviewers have
+   been doing by hand into a reusable signal.
+2. **Splitting**: for each confirmed collision, decide whether to split the entity using the
+   existing `Name (descriptor)` convention (already used elsewhere, e.g. `Cleopatra (daughter of
+   Tros)`, and the precedent for the reverse problem — over-fragmentation — in GAP-006's Ajax merge).
+   Splitting requires re-deriving which already-seeded/promoted rows belong to which identity, which
+   is exactly the kind of per-row judgment DEV-121's Ajax merge did, at whatever scale the confirmed
+   collision list reaches.
+3. **Budget**: at ≥82 confirmed instances from only 7 of 1,059 passages, the true count across the
+   full Track C backlog is plausibly in the hundreds — this needs a scoping decision (fix the top-N
+   by prominence first, like the D-track's own bounding exercise, rather than open-ended splitting)
+   before work starts, per this stage's own "size the budget from the exit criteria" discipline
+   (`docs/TODO-phase2-stage-p5.md` Track D).
+
+**References:** `docs/DEVIATIONS.md` #DEV-136/#DEV-137/#DEV-138 (where each instance was found);
+`docs/DATA-GAPS.md` GAP-006 (the Ajax over-fragmentation precedent, the inverse problem, and the
+`Name (descriptor)` splitting convention); `ingestion/extraction/entity_resolver.py` (where a
+collision could in principle be flagged, though the current resolver has no compatibility check of
+any kind); `core-api/src/main/resources/db/migration/V11__seed_relationships.sql` (`Cronus
+parent_of Leonteus`, the confirmed seeded instance).

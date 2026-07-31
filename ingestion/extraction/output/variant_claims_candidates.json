@@ -829,7 +829,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Dione",
@@ -2597,7 +2597,7 @@
     "claim_value": "child of Ocean",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Styx",
@@ -2605,7 +2605,7 @@
     "claim_value": "child of Tethys",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Styx",
@@ -2733,7 +2733,7 @@
     "claim_value": "child of Ocean",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Doris",
@@ -2741,7 +2741,7 @@
     "claim_value": "child of Tethys",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Doris",
@@ -2765,7 +2765,7 @@
     "claim_value": "daughter of Ocean the perfect river",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Eurynome",
@@ -2821,7 +2821,7 @@
     "claim_value": "child of Ocean",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Amphitrite",
@@ -2829,7 +2829,7 @@
     "claim_value": "child of Tethys",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Amphitrite",
@@ -2837,7 +2837,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Amphitrite",
@@ -2853,7 +2853,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Amphitrite",
@@ -2861,7 +2861,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Metis",
@@ -2869,7 +2869,7 @@
     "claim_value": "child of Ocean",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Metis",
@@ -2877,7 +2877,7 @@
     "claim_value": "child of Tethys",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Metis",
@@ -2901,7 +2901,7 @@
     "claim_value": "child of Coeus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Asteria",
@@ -2909,7 +2909,7 @@
     "claim_value": "child of Phoebe",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Asteria",
@@ -2949,7 +2949,7 @@
     "claim_value": "child of Coeus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Latona",
@@ -2957,7 +2957,7 @@
     "claim_value": "child of Phoebe",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Latona",
@@ -2989,7 +2989,7 @@
     "claim_value": "married to Thia",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hyperion",
@@ -3005,7 +3005,7 @@
     "claim_value": "child of Hyperion",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Dawn",
@@ -3013,7 +3013,7 @@
     "claim_value": "child of Thia",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Dawn",
@@ -3037,7 +3037,7 @@
     "claim_value": "child of Hyperion",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Sun",
@@ -3045,7 +3045,7 @@
     "claim_value": "child of Thia",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Sun",
@@ -3069,7 +3069,7 @@
     "claim_value": "child of Crius",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Astraeus",
@@ -3077,7 +3077,7 @@
     "claim_value": "child of Eurybia",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Astraeus",
@@ -3101,7 +3101,7 @@
     "claim_value": "child of Crius",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Pallas",
@@ -3109,7 +3109,7 @@
     "claim_value": "child of Eurybia",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Pallas",
@@ -3157,7 +3157,7 @@
     "claim_value": "child of Crius",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Perses",
@@ -3165,7 +3165,7 @@
     "claim_value": "child of Eurybia",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Perses",
@@ -3389,7 +3389,7 @@
     "claim_value": "child of Sea (Pontus)",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Eurybia",
@@ -3397,7 +3397,7 @@
     "claim_value": "child of Earth",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Eurybia",
@@ -3405,7 +3405,7 @@
     "claim_value": "child of Sea",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Eurybia",
@@ -3413,7 +3413,7 @@
     "claim_value": "child of Earth",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Iapetus",
@@ -3421,7 +3421,7 @@
     "claim_value": "married to Asia",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Iapetus",
@@ -3437,7 +3437,7 @@
     "claim_value": "child of Iapetus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Atlas",
@@ -3445,7 +3445,7 @@
     "claim_value": "child of Asia",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Atlas",
@@ -3509,7 +3509,7 @@
     "claim_value": "child of Iapetus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Prometheus",
@@ -3517,7 +3517,7 @@
     "claim_value": "child of Asia",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Prometheus",
@@ -3557,7 +3557,7 @@
     "claim_value": "child of Iapetus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Epimetheus",
@@ -3565,7 +3565,7 @@
     "claim_value": "child of Asia",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Epimetheus",
@@ -3597,7 +3597,7 @@
     "claim_value": "child of Iapetus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menoetius",
@@ -3605,7 +3605,7 @@
     "claim_value": "child of Asia",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Menoetius",
@@ -3725,7 +3725,7 @@
     "claim_value": "killed by Zeus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Menoetius",
@@ -3749,7 +3749,7 @@
     "claim_value": "child of Cronus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Chiron",
@@ -3757,7 +3757,7 @@
     "claim_value": "child of Philyra",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Chiron",
@@ -3781,7 +3781,7 @@
     "claim_value": "married to Astraeus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Dawn",
@@ -3845,7 +3845,7 @@
     "claim_value": "married to Asteria",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Perses",
@@ -3917,7 +3917,7 @@
     "claim_value": "child of Perses",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hecate",
@@ -3925,7 +3925,7 @@
     "claim_value": "child of Asteria",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hecate",
@@ -3973,7 +3973,7 @@
     "claim_value": "married to Styx",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Pallas",
@@ -4085,7 +4085,7 @@
     "claim_value": "child of Sea (Pontus)",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Thaumas",
@@ -4093,7 +4093,7 @@
     "claim_value": "child of Earth",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Thaumas",
@@ -4101,7 +4101,7 @@
     "claim_value": "child of Sea",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Thaumas",
@@ -4109,7 +4109,7 @@
     "claim_value": "child of Earth",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Nereus",
@@ -4117,7 +4117,7 @@
     "claim_value": "child of Sea (Pontus)",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Nereus",
@@ -4125,7 +4125,7 @@
     "claim_value": "child of Earth",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Nereus",
@@ -4157,7 +4157,7 @@
     "claim_value": "child of Sea",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Nereus",
@@ -4181,7 +4181,7 @@
     "claim_value": "child of Sea (Pontus)",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Ceto",
@@ -4189,7 +4189,7 @@
     "claim_value": "child of Earth",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Ceto",
@@ -4197,7 +4197,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Ceto",
@@ -4205,7 +4205,7 @@
     "claim_value": "child of Sea",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Ceto",
@@ -4213,7 +4213,7 @@
     "claim_value": "child of Earth",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Thaumas",
@@ -4221,7 +4221,7 @@
     "claim_value": "married to Electra",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Thaumas",
@@ -4229,7 +4229,7 @@
     "claim_value": "married to Electra",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Iris",
@@ -4237,7 +4237,7 @@
     "claim_value": "child of Thaumas",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Iris",
@@ -4245,7 +4245,7 @@
     "claim_value": "child of Electra",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Iris",
@@ -4253,7 +4253,7 @@
     "claim_value": "child of Thaumas",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Iris",
@@ -4261,7 +4261,7 @@
     "claim_value": "child of Electra",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Iris",
@@ -4413,7 +4413,7 @@
     "claim_value": "married to Doris",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Nereus",
@@ -4421,7 +4421,7 @@
     "claim_value": "married to Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Nereus",
@@ -4437,7 +4437,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Cymothoe",
@@ -4445,7 +4445,7 @@
     "claim_value": "child of Doris",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Cymothoe",
@@ -4453,7 +4453,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Cymothoe",
@@ -4461,7 +4461,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Glauconome",
@@ -4469,7 +4469,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Glauconome",
@@ -4477,7 +4477,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Glauconome",
@@ -4485,7 +4485,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Halie",
@@ -4493,7 +4493,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Halie",
@@ -4501,7 +4501,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Halie",
@@ -4509,7 +4509,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Erato",
@@ -4517,7 +4517,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Erato",
@@ -4541,7 +4541,7 @@
     "claim_value": "child of Polyxo",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Erato",
@@ -4565,7 +4565,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Erato",
@@ -4573,7 +4573,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Sao",
@@ -4581,7 +4581,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Sao",
@@ -4589,7 +4589,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Sao",
@@ -4597,7 +4597,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Eunice",
@@ -4605,7 +4605,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Eunice",
@@ -4613,7 +4613,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Eunice",
@@ -4621,7 +4621,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Thetis",
@@ -4629,7 +4629,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Thetis",
@@ -4637,7 +4637,7 @@
     "claim_value": "child of Doris",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Thetis",
@@ -4645,7 +4645,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Thetis",
@@ -4653,7 +4653,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Thetis",
@@ -4741,7 +4741,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Eulimene",
@@ -4749,7 +4749,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Eulimene",
@@ -4757,7 +4757,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Agave",
@@ -4765,7 +4765,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Agave",
@@ -4773,7 +4773,7 @@
     "claim_value": "child of Europe",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Agave",
@@ -4781,7 +4781,7 @@
     "claim_value": "child of Danaus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Agave",
@@ -4829,7 +4829,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Doto",
@@ -4837,7 +4837,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Doto",
@@ -4845,7 +4845,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Pherusa",
@@ -4853,7 +4853,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Pherusa",
@@ -4861,7 +4861,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Pherusa",
@@ -4869,7 +4869,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Galatea",
@@ -4877,7 +4877,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Galatea",
@@ -4885,7 +4885,7 @@
     "claim_value": "child of Doris",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Galatea",
@@ -4893,7 +4893,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Galatea",
@@ -4901,7 +4901,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Galatea",
@@ -4925,7 +4925,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Actaea",
@@ -4933,7 +4933,7 @@
     "claim_value": "child of Danaus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Actaea",
@@ -4941,7 +4941,7 @@
     "claim_value": "child of Pieria",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Actaea",
@@ -4949,7 +4949,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Actaea",
@@ -4957,7 +4957,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Hippothoe",
@@ -4965,7 +4965,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hippothoe",
@@ -4981,7 +4981,7 @@
     "claim_value": "child of Mestor",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Hippothoe",
@@ -4989,7 +4989,7 @@
     "claim_value": "child of Lysidice",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Hippothoe",
@@ -4997,7 +4997,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Hippothoe",
@@ -5005,7 +5005,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Lysianassa",
@@ -5013,7 +5013,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Lysianassa",
@@ -5029,7 +5029,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Lysianassa",
@@ -5037,7 +5037,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Cymo",
@@ -5045,7 +5045,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Cymo",
@@ -5053,7 +5053,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Cymo",
@@ -5061,7 +5061,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Eione",
@@ -5069,7 +5069,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Eione",
@@ -5077,7 +5077,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Eione",
@@ -5085,7 +5085,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Eucrante",
@@ -5093,7 +5093,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Eucrante",
@@ -5101,7 +5101,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Eucrante",
@@ -5109,7 +5109,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Proto",
@@ -5117,7 +5117,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Proto",
@@ -5125,7 +5125,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Proto",
@@ -5133,7 +5133,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Calypso",
@@ -5141,7 +5141,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Calypso",
@@ -5205,7 +5205,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Panope",
@@ -5213,7 +5213,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Panope",
@@ -5221,7 +5221,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hipponoe",
@@ -5229,7 +5229,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hipponoe",
@@ -5237,7 +5237,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hipponoe",
@@ -5245,7 +5245,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Ianira",
@@ -5253,7 +5253,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Ianira",
@@ -5277,7 +5277,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Polynome",
@@ -5285,7 +5285,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Polynome",
@@ -5293,7 +5293,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Autonoe",
@@ -5301,7 +5301,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Autonoe",
@@ -5309,7 +5309,7 @@
     "claim_value": "child of Danaus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Autonoe",
@@ -5317,7 +5317,7 @@
     "claim_value": "child of Polyxo",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Autonoe",
@@ -5349,7 +5349,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Autonoe",
@@ -5357,7 +5357,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Autonoe",
@@ -5389,7 +5389,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Melite",
@@ -5397,7 +5397,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Melite",
@@ -5405,7 +5405,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Psamathe",
@@ -5413,7 +5413,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Psamathe",
@@ -5429,7 +5429,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Psamathe",
@@ -5437,7 +5437,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Dynamene",
@@ -5445,7 +5445,7 @@
     "claim_value": "child of Nereus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "1.2.1-1.2.7",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Dynamene",
@@ -5453,7 +5453,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Dynamene",
@@ -5461,7 +5461,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Zeus",
@@ -9789,7 +9789,7 @@
     "claim_value": "child of Tyndareus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Hellen",
@@ -9941,7 +9941,7 @@
     "claim_value": "child of Alcaeus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Amphictyon",
@@ -9949,7 +9949,7 @@
     "claim_value": "child of Astydamia",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Amphictyon",
@@ -9957,7 +9957,7 @@
     "claim_value": "child of Laonome",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Amphictyon",
@@ -9965,7 +9965,7 @@
     "claim_value": "child of Hipponoe",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Amphictyon",
@@ -9989,7 +9989,7 @@
     "claim_value": "son of Alcaeus and Astydamia, daughter of Pelops",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Amphictyon",
@@ -9997,7 +9997,7 @@
     "claim_value": "some say son of Alcaeus and Laonome, daughter of Guneus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Amphictyon",
@@ -10005,7 +10005,7 @@
     "claim_value": "others say son of Alcaeus and Hipponome, daughter of Menoeceus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Amphictyon",
@@ -11413,7 +11413,7 @@
     "claim_value": "child of Egyptus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Idas",
@@ -11421,7 +11421,7 @@
     "claim_value": "child of Hephaestine",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Idas",
@@ -11621,7 +11621,7 @@
     "claim_value": "child of Evaemon",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Eurypylus",
@@ -11757,7 +11757,7 @@
     "claim_value": "child of Gorgo",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Oeneus",
@@ -11965,7 +11965,7 @@
     "claim_value": "married to Podarces",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Oeneus",
@@ -12341,7 +12341,7 @@
     "claim_value": "child of Caliadne",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Dryas",
@@ -12381,7 +12381,7 @@
     "claim_value": "child of Argyphia",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Lynceus",
@@ -12389,7 +12389,7 @@
     "claim_value": "child of Egyptus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Lynceus",
@@ -13501,7 +13501,7 @@
     "claim_value": "child of Polyxo",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Cleopatra",
@@ -14165,7 +14165,7 @@
     "claim_value": "child of Tydeus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Diomedes",
@@ -14981,7 +14981,7 @@
     "claim_value": "child of Pterelaus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Antiochus",
@@ -14997,7 +14997,7 @@
     "claim_value": "child of Nestor",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Antiochus",
@@ -15229,7 +15229,7 @@
     "claim_value": "child of Egyptus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Sthenelaus",
@@ -15237,7 +15237,7 @@
     "claim_value": "child of Tyria",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Sthenelaus",
@@ -15245,7 +15245,7 @@
     "claim_value": "child of Perses",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Sthenelaus",
@@ -15253,7 +15253,7 @@
     "claim_value": "child of Andromeda",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Sthenelaus",
@@ -15269,7 +15269,7 @@
     "claim_value": "child of Capaneus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Sthenelaus",
@@ -16093,7 +16093,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Themisto",
@@ -16101,7 +16101,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Glaucus",
@@ -18197,7 +18197,7 @@
     "claim_value": "child of Pieria",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Podarces",
@@ -19461,7 +19461,7 @@
     "claim_value": "child of Alecto",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Leitus",
@@ -19541,7 +19541,7 @@
     "claim_value": "child of Arges",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Ialmenus",
@@ -20277,7 +20277,7 @@
     "claim_value": "child of Nereus",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Glauce",
@@ -20285,7 +20285,7 @@
     "claim_value": "child of Doris",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Mermerus",
@@ -20373,7 +20373,7 @@
     "claim_value": "child of Sthenelaus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Medus",
@@ -20381,7 +20381,7 @@
     "claim_value": "child of Nicippe",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Medus",
@@ -20861,7 +20861,7 @@
     "claim_value": "child of Argyphia",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Proteus",
@@ -20869,7 +20869,7 @@
     "claim_value": "child of Egyptus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Proteus",
@@ -20893,7 +20893,7 @@
     "claim_value": "child of Egyptus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Clitus",
@@ -20901,7 +20901,7 @@
     "claim_value": "child of Tyria",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Clitus",
@@ -20925,7 +20925,7 @@
     "claim_value": "child of Caliadne",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hermus",
@@ -20949,7 +20949,7 @@
     "claim_value": "child of Caliadne",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Imbrus",
@@ -20965,7 +20965,7 @@
     "claim_value": "child of Caliadne",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Bromius",
@@ -20981,7 +20981,7 @@
     "claim_value": "child of Caliadne",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Polyctor",
@@ -20997,7 +20997,7 @@
     "claim_value": "child of Polyxo",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Theano",
@@ -21037,7 +21037,7 @@
     "claim_value": "child of Polyxo",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Eurydice",
@@ -21093,7 +21093,7 @@
     "claim_value": "married to Evippe",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Imbrus",
@@ -21117,7 +21117,7 @@
     "claim_value": "child of Egyptus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Periphas",
@@ -21125,7 +21125,7 @@
     "claim_value": "child of Gorgo",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Periphas",
@@ -21157,7 +21157,7 @@
     "claim_value": "child of Gorgo",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Lampus",
@@ -21197,7 +21197,7 @@
     "claim_value": "child of Hephaestine",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Pandion",
@@ -21245,7 +21245,7 @@
     "claim_value": "child of Crino",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Callidice",
@@ -21269,7 +21269,7 @@
     "claim_value": "killed by Automate",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Busiris",
@@ -21293,7 +21293,7 @@
     "claim_value": "killed by Agave",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Lycus",
@@ -21333,7 +21333,7 @@
     "claim_value": "child of Catreus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Clymene",
@@ -21389,7 +21389,7 @@
     "claim_value": "child of Nauplius",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.1.5",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Palamedes",
@@ -21525,7 +21525,7 @@
     "claim_value": "child of Menelaus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Megapenthes",
@@ -21533,7 +21533,7 @@
     "claim_value": "child of Pieris",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Megapenthes",
@@ -21541,7 +21541,7 @@
     "claim_value": "child of Tereis",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Megapenthes",
@@ -21565,7 +21565,7 @@
     "claim_value": "son of Menelaus and Pieris, an Aetolian slave woman",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Megapenthes",
@@ -21573,7 +21573,7 @@
     "claim_value": "according to Acusilaus, son of Menelaus and Tereis",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Megapenthes",
@@ -21965,7 +21965,7 @@
     "claim_value": "child of Perses",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Heleus",
@@ -21973,7 +21973,7 @@
     "claim_value": "child of Andromeda",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Heleus",
@@ -22109,7 +22109,7 @@
     "claim_value": "child of Pterelaus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Chromius",
@@ -22165,7 +22165,7 @@
     "claim_value": "child of Electryon",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Amphimachus",
@@ -22173,7 +22173,7 @@
     "claim_value": "child of Cteatus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Amphimachus",
@@ -22237,7 +22237,7 @@
     "claim_value": "child of Sthenelaus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Eurystheus",
@@ -27125,7 +27125,7 @@
     "claim_value": "child of Atreus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Menelaus",
@@ -29733,7 +29733,7 @@
     "claim_value": "child of Amphiaraus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Amphilochus",
@@ -31485,7 +31485,7 @@
     "claim_value": "child of Icarius",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Penelope",
@@ -32477,7 +32477,7 @@
     "claim_value": "child of Laertes",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",
@@ -33797,7 +33797,7 @@
     "claim_value": "child of Ancaeus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Agapenor",
@@ -33821,7 +33821,7 @@
     "claim_value": "child of Eurytus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Thalpius",
@@ -33845,7 +33845,7 @@
     "claim_value": "child of Phyleus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Meges",
@@ -33925,7 +33925,7 @@
     "claim_value": "child of Peteos",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Menestheus",
@@ -34053,7 +34053,7 @@
     "claim_value": "child of Iphitus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Schedius",
@@ -34101,7 +34101,7 @@
     "claim_value": "child of Iphitus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Epistrophus",
@@ -34157,7 +34157,7 @@
     "claim_value": "child of Agasthenes",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Polyxenus",
@@ -34181,7 +34181,7 @@
     "claim_value": "child of Chalcodon",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Elephenor",
@@ -34357,7 +34357,7 @@
     "claim_value": "child of Pirithous",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Polypoetes",
@@ -34429,7 +34429,7 @@
     "claim_value": "child of Cronus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Leonteus",
@@ -34469,7 +34469,7 @@
     "claim_value": "child of Aesculapius",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Podalirius",
@@ -34485,7 +34485,7 @@
     "claim_value": "child of Aesculapius",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Machaon",
@@ -34541,7 +34541,7 @@
     "claim_value": "child of Poeas",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Philoctetes",
@@ -34581,7 +34581,7 @@
     "claim_value": "child of Iphiclus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Protesilaus",
@@ -34613,7 +34613,7 @@
     "claim_value": "child of Telamon",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Ajax",
@@ -34629,7 +34629,7 @@
     "claim_value": "child of Telamon",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Teucer",
@@ -34725,7 +34725,7 @@
     "claim_value": "child of Menoetius",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Patroclus",
@@ -35253,7 +35253,7 @@
     "claim_value": "married to Penelope",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Odysseus",
@@ -36109,7 +36109,7 @@
     "claim_value": "child of Menelaus",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Hermione",
@@ -36117,7 +36117,7 @@
     "claim_value": "child of Hellen",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "3.10.8-3.11.1",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Hermione",
@@ -46965,7 +46965,7 @@
     "claim_value": "child of Sea",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Phorcys",
@@ -46973,7 +46973,7 @@
     "claim_value": "child of Earth",
     "source_id": "hesiod-theogony",
     "passage_ref": "233-269",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Phorcys",
@@ -53493,7 +53493,7 @@
     "claim_value": "said to be ancestor of the kings of Persia",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 2
   },
   {
     "subject_name": "Perses",
@@ -53509,7 +53509,7 @@
     "claim_value": "born a seven-month child due to Hera's contrivance so he would reign over Mycenae instead of Hercules",
     "source_id": "apollodorus-bibliotheca",
     "passage_ref": "2.4.5",
-    "trust_tier": 3
+    "trust_tier": 1
   },
   {
     "subject_name": "Eurystheus",

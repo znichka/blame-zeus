@@ -18,20 +18,20 @@
   },
   "variantClaims": {
     "headline": {
-      "promoted": 88,
+      "promoted": 182,
       "reachable": 718,
       "pool": 764,
-      "coverage": 0.12256267409470752
+      "coverage": 0.25348189415041783
     },
     "decidedFraction": {
-      "decided": 783,
+      "decided": 1092,
       "candidates": 7429,
-      "coverage": 0.10539776551352807
+      "coverage": 0.14699151972001614
     },
     "rowCoverage": {
-      "seeded": 331,
+      "seeded": 538,
       "reachableCeiling": 4743,
-      "coverage": 0.06978705460678895
+      "coverage": 0.1134303183639047
     },
     "ceilingDerivation": {
       "candidates": 7429,
