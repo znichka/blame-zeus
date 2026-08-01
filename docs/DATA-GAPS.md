@@ -1172,11 +1172,27 @@ instances and the do-not-move-a-ref rule), **#DEV-122** (found here).
 
 ## GAP-009 — Fuzzy-match false positives fold a spelling-distinct name onto an unrelated confirmed entity
 
-**Status:** **Open — owned by Stage P6** (`docs/TODO-phase2-stage-p6.md`, **ADR-022**, DEV-139).
+**Status:** **CLOSED 2026-08-01 by Stage P6** (`docs/TODO-phase2-stage-p6.md`, **ADR-022 Accepted**,
+DEV-143/145). The mechanism is gone at the root: the fuzzy step was **measured at exactly 70.0% false
+positives** across a stratified sample of 50 merges hand-checked against their cited segments (88-93:
+84.8%; 93-100: 41.2%), met the pre-registered threshold, and was **demoted from auto-merge to
+suggestion**. The ledger now shows **0 fuzzy auto-merges** and 2,004 `fuzzy_suggestion` rows — every
+declined merge is recorded and reviewable instead of silently applied. Both already-live instances
+(`Coronus`/`Cronus`, `Amphitryon`/`Amphictyon`) are fixed and verified against the reseeded DB, and
+are individually waived in `audit-waivers.json` with reasons that forbid re-merging them.
 Found 2026-07-31 during Stage P5 Track C's `variant_claims` review (DEV-136/137/138), a byproduct of
-per-row adjudication rather than a dedicated sweep. Only a handful of confirmed instances so far.
+per-row adjudication rather than a dedicated sweep.
 
-**Rows at stake** (E6's mandatory line): unquantified until P6 **G1** persists the resolution ledger
+**Rows at stake** (E6's mandatory line) — **now quantified, which was this gap's own item 3**: the
+G1 ledger measured **270 distinct fuzzy merge pairs over 2,066 occurrences** corpus-wide (179 pairs
+at 88-93, 91 at 93-100). At the sample's 70.0% false-positive rate that is **~189 wrong merges**
+that were live before P6 and are now unmade. **Residual cost of the fix, stated honestly:** 220 of
+the 270 pairs were never sampled, so on the sample's 30% true-merge rate roughly **66 genuine
+spelling variants now split** without a curated alias; the 15 confirmed-genuine merges in the sample
+were restored to `known_aliases.json` (58 → 73 entries), and the rest surface as `fuzzy_suggestion`
+rows rather than silently. A1's transliteration pass is the standing recall guard.
+
+*Superseded pre-fix estimate:* unquantified until P6 **G1** persists the resolution ledger
 — the merges that cause this are computed at extraction time and then discarded, so no denominator
 exists today. That absence *is* the gap's item 3 below, and producing the denominator is G1's exit
 criterion. Known-affected today: 4 confirmed candidate instances, plus **2 of the 5** already-live
@@ -1289,7 +1305,15 @@ each instance was found and rejected in `variant_claims` review), #DEV-139 (the 
 
 ## GAP-010 — Exact-name namesake collisions: the corpus reuses one name for unrelated figures, and extraction merges them into one entity
 
-**Status:** **Open — owned by Stage P6** (`docs/TODO-phase2-stage-p6.md`, **ADR-022**, DEV-139).
+**Status:** **Mechanism CLOSED, residue OPEN 2026-08-01** (Stage P6, **ADR-022 Accepted**,
+DEV-144/145/147). The fix exists and works: `namesake_registry.json` is consulted **first in
+`resolve()`, ahead of the exact-match memo** — the ordering GAP-010 requires, since its colliding
+strings are byte-identical and the memo's exact hit *is* the defect — and **all 28 confirmed
+instances from DEV-136/137/138 resolve to their correct identity on a re-run**, verified against the
+ledger. 63 entries, every one hand-adjudicated with a stated reason. The three already-live defects
+of this gap's mechanism (`Lynceus`, `Agave`/`Autonoe`) are fixed and verified against the reseeded
+DB. **What stays open is residue, not mechanism** — the G5 sweep's 3,872 unworked pairs below, which
+need per-pair reading at a precision no automated ranking this stage measured can beat.
 Found 2026-07-31 during Stage P5 Track C's `variant_claims` review (DEV-136/137/138). **≥82 confirmed
 instances across the first 7 passages reviewed**, roughly 20-30% of all tier-3 rows adjudicated so
 far — by far the largest single cause of rejection in every batch. Unlike GAP-009, this is not a

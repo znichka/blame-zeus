@@ -444,7 +444,7 @@ ships as an *ordering* key (`rank_key`) instead — which is what G5.3 consumes.
 
 ## Track G7 — Close
 
-- [ ] **G7.1** — Standard loop, on request:
+- [x] **G7.1** — Standard loop, on request:
       ```
       python -m seedgen --strict
       scripts/reseed-local.sh --local-only
@@ -455,17 +455,17 @@ ships as an *ordering* key (`rank_key`) instead — which is what G5.3 consumes.
       `reports/<today>-findings.json` / `reports/<today>.md` from the same date-derived filename
       (`audit/__main__.py:208-210`), so an unredirected `--only A16` overwrites the 16-check report.
       **Gate:** exit 0 with a **non-growing deferral count**, not exit 0 alone.
-- [ ] **G7.2** — DEV entry (next free `DEV-NNN`), ≤4 KB, citing `promotion_log.json` `batchLabel`s
+- [x] **G7.2** — DEV entry (next free `DEV-NNN`), ≤4 KB, citing `promotion_log.json` `batchLabel`s
       rather than restating counts; then `python3 scripts/deviations-index.py` (**never** hand-edit
       the index; `--check` verifies).
-- [ ] **G7.3** — Flip ADR-022 → **Accepted**, recording what actually landed vs. what it proposed
+- [x] **G7.3** — Flip ADR-022 → **Accepted**, recording what actually landed vs. what it proposed
       (the ADR-020 precedent: the ADR carries its own landing note).
-- [ ] **G7.4** — Update GAP-009 and GAP-010 in `docs/DATA-GAPS.md` with their closing status and
+- [x] **G7.4** — Update GAP-009 and GAP-010 in `docs/DATA-GAPS.md` with their closing status and
       their mandatory **"rows at stake"** lines (E6).
-- [ ] **G7.5** — `evaluation/` harness `--runs 3` vs. the prior result directory. CONFLICT must not
+- [x] **G7.5** — `evaluation/` harness `--runs 3` vs. the prior result directory. CONFLICT must not
       regress. Never act on a single-run delta; a run containing transport timeouts is invalid, not
       evidence.
-- [ ] **G7.6** — Hand back to **P5 Track C1 batch 4** (the interrupt resumes *inside* C1, not at C2),
+- [x] **G7.6** — Hand back to **P5 Track C1 batch 4** (the interrupt resumes *inside* C1, not at C2),
       with the collision signal live in the sprint loop.
 
 ---
@@ -493,6 +493,19 @@ effect at all, so it changes canonical names on the same run G3.2 does.
 by hand, which is the manual cross-referencing this whole stage exists to remove.
 
 ---
+
+## Stage done — 2026-08-01 (DEV-148)
+
+**All eight tracks complete (G0–G7); ADR-022 Accepted.** Evidence, in the order the criteria below
+ask for it: all **28** confirmed GAP-009/GAP-010 instances resolve correctly on a plain re-run
+(G3, verified against the ledger); all **five** class-1 defects fixed and verified against the
+reseeded DB (G4, A16 gate met); the fuzzy step **demoted** at a measured **70.0%** false-positive
+rate with its branch-conditional A1 check accounted for (G2); the collision signal live in
+`review_passage` with its own **19%-precision** measurement recorded rather than hidden (G6);
+GAP-009 **closed** and GAP-010 **mechanism-closed / residue-open**, both carrying rows-at-stake
+lines (G7.4); **1,092 decisions = 1,029 live + 63 individually re-queued** (exact). Evaluation
+**88% → 92%**, CONFLICT **7/7 → 7/7**, "no stable regressions", zero timeouts. Audit exit 0,
+backlog unchanged at 949. **P5 Track C1 batch 4 is unblocked.**
 
 ## Stage done when
 

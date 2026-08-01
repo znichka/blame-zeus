@@ -523,13 +523,21 @@ C1's 100 passages are **~257k characters**; the full 1,059 are **~2.54M characte
 (median segment 2,504 chars). Budget by characters, not by checkbox.
 
 - [ ] **C1** — Passages 1–100 → 2,229 tier-3 rows (33% of the pool), ~257k chars.
-      **Batches 1–3 done (7 passages); batch 4 onward is gated on Stage P6**
+      **Batches 1–3 done (7 passages). The Stage P6 gate is LIFTED (2026-08-01, DEV-148) — batch 4
+      may resume**, with the collision signal live in `review_passage` (risk line + most-suspicious-
+      first ordering, G6) and identity no longer the largest rejection cause. **What changed under
+      C1 while it was paused, and what a batch-4 reviewer must know:** the candidate pool was
+      regenerated (7,429 → 9,096 rows; the group space moved 798 → 1,405), the fuzzy step no longer
+      auto-merges, and `namesake_registry.json` carries 63 adjudicated splits — so batch 4 works a
+      materially different pool than batches 1–3 did. **63 previously-decided rows sit at tier 3
+      awaiting re-adjudication**, individually named in `promotion_log.json` under the three `p6-*`
+      batch labels; they are C-track work and the natural first item of batch 4.
       `[DEVIATED - see DEVIATIONS.md #DEV-139]` — see the *Track order* block. C1's batches 1–3
       measured identity collisions at 20–30% of every batch's rejections, and the fix re-keys review
       decisions, so it is paid before the queue grows. The gate is at the **next batch**, not at the
       C1/C2 boundary: C1's remaining ~93 passages grow the exposure exactly like C2's would.
-- [ ] **C2** — Passages 101–250 → 3,673 cumulative (55%). Downstream of the C1 gate — cannot start
-      before P6 exits either.
+- [ ] **C2** — Passages 101–250 → 3,673 cumulative (55%). Downstream of the C1 gate, which is now
+      lifted (DEV-148).
 - [ ] **C3** — Passages 251–500 → 5,183 cumulative (77%)
 - [ ] **C4** — Passages 501–1,059 → 6,695 cumulative (100%)
 - [ ] **C5** — *Optional, only if the queue drags:* one-time batch rejection of the **bucket E** rows
@@ -735,10 +743,11 @@ A6, A7/A7a, A1-A3, A2a, A8                     (rest of Track A -- the serial ga
 B1, B2, B2a, B3-B6                             (engine; B2a gates C5)
 B7, B8                                         (ADR-004 Amendment 1 -- merged before ANY batch approval)
 C1 batches 1-3                                 (sprint 1, first 7 of 100 passages)
->>> STAGE P6 <<<                               (entity identity -- INTERRUPTS *inside* C1, after
-                                                batch 3 and before batch 4;
-                                                docs/TODO-phase2-stage-p6.md, ADR-022)
-C1 batches 4+                                  (rest of sprint 1 -- does not start until P6 exits)
+>>> STAGE P6 <<<  [DONE 2026-08-01]            (entity identity -- INTERRUPTED *inside* C1, after
+                                                batch 3 and before batch 4; G0-G7 complete,
+                                                ADR-022 Accepted, DEV-140/142-148)
+C1 batches 4+                                  (rest of sprint 1 -- UNBLOCKED; start with the 63
+                                                rows P6 re-queued, named in promotion_log.json)
 C2                                             (sprint 2)
 D1-D4                                          (starts after C2; D2 re-queues Helios's 10 rows into C)
 C3, C4, C5                                     (C5 only if the queue drags; bucket E only, and only

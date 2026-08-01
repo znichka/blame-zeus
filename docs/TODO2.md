@@ -606,8 +606,15 @@ floors hold across a 3-run eval; the relevant ADR/DEV entries are logged.
   the whole stage `[DEVIATED - see DEVIATIONS.md #DEV-130]`), and **A9** drops the `<UNKNOWN>`
   placeholder before D1's budget or E2's tiebreak rank on it.
 
-> ⏸ **Interrupted *inside* Track C1, after batch 3, by Stage P6 (below)** `[DEVIATED - see
-> DEVIATIONS.md #DEV-139]`. **Track C1 batch 4 does not start until P6 exits** — the gate is at the
+> ▶ **RESUMED 2026-08-01 (DEV-148).** Stage P6 is complete (G0–G7, ADR-022 Accepted) and the C1
+> gate is lifted: **batch 4 may start**, with the collision signal live in `review_passage`. Note the
+> pool it works is not the pool batches 1–3 worked — 7,429 → 9,096 candidate rows, 798 → 1,405
+> groups, no fuzzy auto-merge, 63 adjudicated namesake splits — and **63 previously-decided rows are
+> back at tier 3** for re-adjudication (named in `promotion_log.json` under the `p6-*` labels).
+>
+> ⏸ *Original interrupt, kept for the record:* **Interrupted *inside* Track C1, after batch 3, by
+> Stage P6 (below)** `[DEVIATED - see DEVIATIONS.md #DEV-139]`. **Track C1 batch 4 does not start
+> until P6 exits** — the gate is at the
 > next batch, not at the C1/C2 boundary, because C1's remaining ~93 passages are batches like any
 > other. Reason: identity collisions (`docs/DATA-GAPS.md` GAP-009/GAP-010) are 20–30% of every
 > batch's rejections, **five defects** have already reached live data, and the fix re-keys

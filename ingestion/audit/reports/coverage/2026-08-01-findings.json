@@ -1,0 +1,10 @@
+{
+  "generatedAt": "2026-08-01T08:36:16.892812+00:00",
+  "checks": [
+    {
+      "name": "A16",
+      "summary": "entities: 1995/2339 = 85.3% (name-space ceiling, not raw candidates)\nrelationships: 3376/6882 = 49.1% (drop: unknown_name=901, exact_dup=1579, contested_collapse=1026, residual=0)\nvariant_claims group coverage (headline): 171/709 = 24.1% (pool 780)\nvariant_claims decided fraction (secondary): 1032/9096 = 11.3%\nvariant_claims row coverage (secondary, against the 5877-row reachable ceiling): 518/5877 = 8.8%\n  ceiling derivation: 9096 candidates -> -824 (subject absent from entities) -> -2395 (4-tuple dedup collapse) -> 5877 reachable\nmyths/myth_participants: 5/22 -- n/a (frozen -- see docs/DATA-GAPS.md coverage statement)",
+      "findings": []
+    }
+  ]
+}
