@@ -621,7 +621,7 @@ emit a finding.
       reviewed row extraction no longer produces, and it never produces a reviewer-authored one.
       **Exit:** a confirmed correction survives a `run_extraction` re-run untouched, appears in a
       regenerated `V12_1__…`, and moves A16 row coverage.
-- [ ] **B12** — **The claim↔edge seam (GAP-012).** `ingestion/extraction/claim_edge_reconcile.py`:
+- [x] **B12** — **The claim↔edge seam (GAP-012).** `ingestion/extraction/claim_edge_reconcile.py`:
       for **every** tier-2 rejection with a derivable mirror key, report whether the mirror
       `parent_of` edge is still in `relationships_candidates_cleaned.json` and whether it is live in
       V11, **bucketed by `rejection_reason`**. The reason code does the sorting; it must **not** be
