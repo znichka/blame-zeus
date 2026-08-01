@@ -1,22 +1,10 @@
 {
-  "generatedAt": "2026-08-01T08:38:38.735647+00:00",
+  "generatedAt": "2026-08-01T09:40:28.239297+00:00",
   "checks": [
     {
-      "name": "A10",
-      "summary": "1412 group(s), 179 with a promoted row, zero_promoted 1233 (-0 since last run, --438 since the 795-group starting baseline)",
-      "findings": [
-        {
-          "check": "A10",
-          "severity": "warning",
-          "subject": "groups_total",
-          "detail": "groups_total changed from the 798-group baseline to 1412",
-          "suggestedFix": "confirm whether this is an expected re-extraction (Track C) or Track H entity growth; record the new figure and reason in the owning batch's DEV entry",
-          "waived": true,
-          "waiverReason": "F0c (Stage P4 Track F0, DEV-109): Track G's V18 migration (DEV-107) intentionally collapsed the 7-member notable* claim_type family into one canonical, which legitimately moved A10's canonical-grouping total from the frozen 835-group baseline to 798 -- a real, documented, one-time structural change, not a regression. The baseline is being re-anchored to the new figure in the same change (group_inventory_baseline.json), so this specific finding should not recur; if it does, that is a genuine new finding, not a repeat of this one. **Extended 2026-08-01 (Stage P6, DEV-148):** this waiver was written for the V18 collapse (835 -> 798) and was silently covering a second, much larger move it never anticipated \u2014 798 -> 1,412 groups, caused by P6's re-extraction of the candidate pool (7,429 -> 9,096 rows) after the fuzzy step was demoted (DEV-143) and 63 namesake splits were registered (DEV-144/147). That is an expected re-extraction under this check's own suggested_fix, and the figure and reason are recorded in DEV-148. Recorded here so the waiver states what it actually covers. **Not covered by this waiver:** the `zero_promoted` monotonicity finding, which fired legitimately at 612 -> 1,226 because P6 re-queued 63 previously-decided rows (named in promotion_log.json under the p6-* labels); it cleared only because the check's lastZeroPromoted tracker advanced on the next run, not because the rows came back.",
-          "deferred": false,
-          "deferredReason": null
-        }
-      ]
+      "name": "A16",
+      "summary": "entities: 1995/2339 = 85.3% (name-space ceiling, not raw candidates)\nrelationships: 3376/6882 = 49.1% (drop: unknown_name=901, exact_dup=1579, contested_collapse=1026, residual=0)\nvariant_claims group coverage (headline): 171/709 = 24.1% (pool 780)\nvariant_claims decided fraction (secondary): 1032/9096 = 11.3%\nvariant_claims row coverage (secondary, against the 5877-row reachable ceiling): 518/5877 = 8.8%\n  ceiling derivation: 9096 candidates -> -824 (subject absent from entities) -> -2395 (4-tuple dedup collapse) -> 5877 reachable\nmyths/myth_participants: 5/22 -- n/a (frozen -- see docs/DATA-GAPS.md coverage statement)",
+      "findings": []
     }
   ]
 }
