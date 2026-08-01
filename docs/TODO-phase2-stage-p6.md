@@ -507,6 +507,20 @@ lines (G7.4); **1,092 decisions = 1,029 live + 63 individually re-queued** (exac
 **88% → 92%**, CONFLICT **7/7 → 7/7**, "no stable regressions", zero timeouts. Audit exit 0,
 backlog unchanged at 949. **P5 Track C1 batch 4 is unblocked.**
 
+> **Post-close finding, 2026-08-01 (DEV-149) — GAP-011.** The stage's exits stand as written; this
+> does not reopen them. But the fixes G3/G5 made at the *resolver* never reached the **seeded**
+> `relationships` table, because `seedgen` reads the hand-maintained
+> `relationships_candidates_cleaned.json` and not the extraction output the registry rewrote.
+> **39 live `V11` edges** attach to the wrong figure (106 rows affected in the seedgen input, 57
+> bare→split pairs), including `Agave` — an entity **G4.5 itself split**, which still carries the
+> *Danaid* Agave's edges because the three-way collision was treated as two-way. DEV-148's *Carried
+> out of the stage* bullet records only the G2 fragment of this (2 named rows) and understates it;
+> that entry stays verbatim and `DATA-GAPS.md` **GAP-011** supersedes its scope. Homed to **P5
+> Track D**, because propagating the fix before the `Z_HOLD` entities exist would convert 39 wrong
+> edges into 39 dropped ones and move A16 coverage down. Two smaller corrections landed with it:
+> GAP-009's claim that A1 guards the demote residue (A1 reads the *confirmed* set — G2.4 of this
+> file says so outright), and its stale 2,004 `fuzzy_suggestion` figure (now 1,875).
+
 ## Stage done when
 
 Every confirmed GAP-009/GAP-010 instance from DEV-136/137/138 resolves correctly on a plain re-run;

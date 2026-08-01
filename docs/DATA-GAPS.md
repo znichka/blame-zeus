@@ -16,8 +16,9 @@ gap deferred to Phase 5b.
 | **GAP-007** | `Zeus parent_of Ajax` is **seeded live** — ADR-020's co-mention rule reads the Homeric vocative formula *"Aias, sprung from Zeus, thou son of Telamon"* (Iliad 7.233) as one passage naming two co-parents | **Open** — found 2026-07-29 while verifying the GAP-004/GAP-006 merge (DEV-121). Not an extraction error: the text says it, and rules 1-3 of the discriminator cannot exclude it by construction (never flagged contested; `Telamon` *is* the winner and `Zeus` is in the pair). It is what rule 4's deny-list exists for, and that list still holds only `Io`. The `relationships` counterpart of the Homeric-formula misreads DEV-112 rejected behind the `variant_claims` review gate — but this table is seeded, not review-gated, so it reaches users. `Ajax` shows up in gold Q7's "children of Zeus" answer today | **RESOLVED 2026-07-29 (DEV-122)** — deny-list entry added, and the sweep it asked for was **run and bounded, not deferred**: only **3** seeded divine co-parents rest solely on the formula-bearing sources (Homer + Homeric Hymns; the formulae are absent from Apollodorus/Hesiod/Ovid — measured, 0 hits), of which `Ajax <- Zeus` is the one false positive and `Molione <- Poseidon` / `Pandia <- Zeus` verify as genuine. The five `variant_claims` counterparts were rejected to `trust_tier=2` in the same pass. Live: `Ajax` now has Telamon only, from four sources, and is gone from Q7's answer | Closed |
 | **GAP-008** | The **misattributed-passage** shape is unswept in the *seeded* `relationships` table — `Zeus parent_of Ate` cites Iliad 9.496-9.528, where the "daughters of great Zeus" are the **Prayers** (Litai), not Ate | **Open** — found 2026-07-29 by DEV-122's GAP-007 sweep, which checked every single-parent divine edge as well as the co-parent ones. The claim is true and Homer *does* state it — *"Eldest daughter of Zeus is Ate that blindeth all"* — but at **19.90**, not at the cited ref. Same shape DEV-119 catalogued as bucket (4) among *dropped* parents (18 instances) and DEV-121 hit twice among Ajax's `killed_by` rows; nobody has ever swept the **seeded** edges for it, and seeded rows are not review-gated. Left unfixed deliberately: the only two honest fixes are dropping a true claim or moving the ref, and DEV-121 established that moving a ref is inventing provenance — so it needs a decision, not a silent edit | P5 (extraction-quality) |
 | **GAP-005** | Extraction reads in-narrative **deception** as fact | **Open** — a NEW error shape found during A6 triage (DEV-119), distinct from every shape P4 catalogued: a character stating a *false* parentage while disguised. Aphrodite tells Anchises *"Otreus … is my father"* directly after *"know that I am no goddess"*; Hermes, disguised as a Myrmidon, names Polyctor. The cited passage genuinely says what was extracted — it is the speaker who is lying — so no passage-verification check can catch it, unlike the misattributed-passage and reversed-direction shapes. Both known instances are waived; unknown how many more exist | P5 (extraction-quality) |
-| **GAP-009** | Fuzzy-match false positives fold a spelling-distinct name onto an unrelated confirmed entity, e.g. the text's own "Atas" resolving to the Titan `Atlas` | **Open — owned by Stage P6** (2026-07-31, DEV-139). Found during Stage P5 Track C review (DEV-136/137/138), a byproduct of per-row `variant_claims` adjudication, not a dedicated sweep. Narrow: only a handful of confirmed instances so far, all traced to `entity_resolver.py`'s rapidfuzz stage or a legitimate-elsewhere `entity_aliases` row applied out of context. **Same root cause as GAP-010** — identity decided by string matching with no evidence artifact and no review gate (ADR-022) | **Stage P6** (`TODO-phase2-stage-p6.md`, ADR-022) |
-| **GAP-010** | **Exact-name namesake collisions** — the corpus genuinely reuses one name for two-plus unrelated figures, and extraction/resolution merges them into one `entities` row, e.g. Priam's obscure son "Idomeneus" merged into the Cretan king `Idomeneus` (3-source figure) | **Open — owned by Stage P6** (2026-07-31, DEV-139). Found during the same Track C review, at real volume: **≥82 confirmed instances across 7 passages** (DEV-136/137/138), roughly 20-30% of all tier-3 rows reviewed so far. Distinct from GAP-009 *in mechanism* — no fuzzy step is involved, the strings are identical, so it cannot be tuned away — but the same root cause and the same fix (ADR-022's passage-scoped registry beats exact match too). **Five defects have already reached live data** across `relationships`, `variant_claims` and `entities` — enumerated once in `TODO-phase2-stage-p6.md` → *The class-1 set* | **Stage P6** (`TODO-phase2-stage-p6.md`, ADR-022) |
+| **GAP-009** | Fuzzy-match false positives fold a spelling-distinct name onto an unrelated confirmed entity, e.g. the text's own "Atas" resolving to the Titan `Atlas` | **CLOSED 2026-08-01 by Stage P6** (ADR-022 Accepted, DEV-143/145). Fuzzy auto-merge measured at **70.0%** false positives over a stratified sample of 50 and **demoted to suggestion**; the ledger shows **0** fuzzy auto-merges. Both already-live instances (`Coronus`/`Cronus`, `Amphitryon`/`Amphictyon`) fixed and verified against the reseeded DB. Residue of the fix (~66 projected genuine variants now split without a curated alias) is stated in the body and is **not** covered by A1 | Closed |
+| **GAP-010** | **Exact-name namesake collisions** — the corpus genuinely reuses one name for two-plus unrelated figures, and extraction/resolution merges them into one `entities` row, e.g. Priam's obscure son "Idomeneus" merged into the Cretan king `Idomeneus` (3-source figure) | **Mechanism CLOSED, residue OPEN 2026-08-01** (Stage P6, ADR-022 Accepted, DEV-144/145/147). `namesake_registry.json` (63 adjudicated entries) is consulted first in `resolve()`, ahead of the exact-match memo, and all **28** confirmed instances from DEV-136/137/138 resolve correctly on a re-run. The three already-live defects of this mechanism are fixed. **Open:** the G5 sweep's **3,872** unworked pairs, and the propagation failure now filed as **GAP-011** | **P5 Track D** (residue + GAP-011) |
+| **GAP-011** | **P6's identity fixes never reached the seeded `relationships` table** — `seedgen` reads `relationships_candidates_cleaned.json`, a hand-maintained file that is never re-derived from extraction output, so the registry's splits and the fuzzy demote stopped at `relationships_candidates.json` | **Open** — found 2026-08-01 by a post-close review of P6 (DEV-149), *after* the class-1 set was frozen. **106 rows** in the seedgen input carry an endpoint P6 adjudicated at that same passage as a different figure (**57** bare→split pairs over **50** names); **39 of them are live in `V11` today**, covering **25** pairs. `relationships` has **no human gate**, so these reach users now — this is GAP-010's own mechanism, still live. Includes `Agave`, an entity **G4.5 explicitly split**, which still carries the Danaid's edges | **P5 Track D** |
 
 ---
 
@@ -1176,8 +1177,12 @@ instances and the do-not-move-a-ref rule), **#DEV-122** (found here).
 DEV-143/145). The mechanism is gone at the root: the fuzzy step was **measured at exactly 70.0% false
 positives** across a stratified sample of 50 merges hand-checked against their cited segments (88-93:
 84.8%; 93-100: 41.2%), met the pre-registered threshold, and was **demoted from auto-merge to
-suggestion**. The ledger now shows **0 fuzzy auto-merges** and 2,004 `fuzzy_suggestion` rows — every
-declined merge is recorded and reviewable instead of silently applied. Both already-live instances
+suggestion**. The ledger now shows **0 fuzzy auto-merges** and 1,875 `fuzzy_suggestion` rows — every
+declined merge is recorded and reviewable instead of silently applied. (Construction:
+`Counter(r['method'] for r in entity_resolutions.json)` → `exact` 27,742, `new` 2,729, `alias` 2,129,
+`fuzzy_suggestion` 1,875, `registry` 179, **`fuzzy` 0**, over 34,654 rows. An earlier figure of
+**2,004** in this entry was measured immediately after G2, before G3's and G5's registry entries
+reclaimed 179 resolutions from the suggestion path — corrected here, DEV-149.) Both already-live instances
 (`Coronus`/`Cronus`, `Amphitryon`/`Amphictyon`) are fixed and verified against the reseeded DB, and
 are individually waived in `audit-waivers.json` with reasons that forbid re-merging them.
 Found 2026-07-31 during Stage P5 Track C's `variant_claims` review (DEV-136/137/138), a byproduct of
@@ -1190,7 +1195,18 @@ that were live before P6 and are now unmade. **Residual cost of the fix, stated 
 the 270 pairs were never sampled, so on the sample's 30% true-merge rate roughly **66 genuine
 spelling variants now split** without a curated alias; the 15 confirmed-genuine merges in the sample
 were restored to `known_aliases.json` (58 → 73 entries), and the rest surface as `fuzzy_suggestion`
-rows rather than silently. A1's transliteration pass is the standing recall guard.
+rows rather than silently.
+
+**This residue has no standing guard — corrected 2026-08-01 (DEV-149).** An earlier version of this
+line named A1's transliteration pass as the guard. It is not one: **A1 reads
+`entities_candidates_confirmed_v1.json`** (`duplicate_entities.py:37`, `DEFAULT_ENTITIES_PATH`), the
+*confirmed* set, which the demote does not touch — the newly-split surfaces live in the candidate
+pool and in `Z_HOLD`. P6's own **G2.4** says this outright (*"The substantive recall check was **not**
+A1 — it scans the confirmed set, which the demote does not touch"*), so the two statements could not
+both stand. The honest position: the ~66 are **unguarded but not live** — they cannot reach a user
+until a Track D pass promotes them into `entities`, and that pass is where they must be caught.
+`fuzzy_suggestion` rows in the ledger are the evidence any such pass should read first. Recorded as a
+standing input to **P5 Track D**, not as a closed item.
 
 *Superseded pre-fix estimate:* unquantified until P6 **G1** persists the resolution ledger
 — the merges that cause this are computed at extraction time and then discarded, so no denominator
@@ -1206,6 +1222,12 @@ exact-name collisions and belong to GAP-010).
 > threshold tuning, and ADR-022's passage-scoped registry addresses both mechanisms with one
 > artifact, so **Stage P6 owns them jointly**. The distinction below is retained because it is still
 > the right way to *read* an instance.
+>
+> **Both gaps have a *propagation* half that P6 did not carry: GAP-011.** P6 fixed identity at the
+> resolver, which produces `relationships_candidates.json` — but `seedgen` reads
+> `relationships_candidates_cleaned.json`, a hand-maintained file that is never re-derived from
+> extraction output. The registry's splits and the fuzzy demote therefore did not reach the seeded
+> `relationships` table.
 
 ### The mechanism
 
@@ -1471,3 +1493,97 @@ and the `Name (descriptor)` splitting convention — DEV-121 is the per-row re-d
 `ingestion/extraction/entity_resolver.py` (where the collision is created, and where G3's registry
 lookup lands); `core-api/src/main/resources/db/migration/V11__seed_relationships.sql` (`Cronus
 parent_of Leonteus`, the confirmed seeded instance).
+
+---
+
+## GAP-011 — P6's identity fixes never propagated to the seeded `relationships` table
+
+**Status:** **Open** — found 2026-08-01 (DEV-149) by a post-close review of Stage P6, i.e. *after*
+P6's class-1 set was frozen and after ADR-022 was Accepted. Not a defect in P6's mechanism, which
+works: a defect in what the mechanism's output was wired to.
+
+### The mechanism
+
+ADR-022 fixed identity **at the resolver**, and the resolver's relationship output is
+`relationships_candidates.json`. But `seedgen` reads
+**`relationships_candidates_cleaned.json`** (`ingestion/seedgen/__main__.py:64`), which is the
+post-B4 **hand-maintained** file — "the editable source of truth a fix actually lands in" (DEV-066),
+never mechanically re-derived from extraction output, by design and for good reason (DEV-074: the
+raw→cleaned step is B4's manual quality review plus the 203-row
+`relationships_flagged_for_review.json` held-out set, and is "not re-derivable by any repeatable
+arithmetic").
+
+So the registry's 179 resolutions and the fuzzy demote reached the extraction output and stopped
+there. `relationships` has **no human gate** (CLAUDE.md, Data Model), so what it holds today is what
+users see.
+
+### Rows at stake (E6's mandatory line)
+
+Construction — join the two files on `(source_id, passage_ref, relation)` and count cleaned-file
+endpoints the post-P6 resolver rewrote to a descriptor form of the same bare name
+(`new.startswith(old + " (")`); then match each affected row against the applied `V11` by its own
+5-tuple:
+
+- **106 rows** in `relationships_candidates_cleaned.json` carry such an endpoint,
+- over **57** distinct bare→split pairs across **50** distinct names,
+- of which **39 rows / 25 pairs are live in `V11` today**. The remaining 67 are already dropped by
+  `seedgen`'s existing filters (unknown-name, exact-dup, contested-collapse) and cost nothing until
+  those filters stop dropping them.
+
+Worked instances, all live:
+
+| live edge | attaches to | should be |
+|---|---|---|
+| `Andromeda parent_of Perses` (`2.4.5`) | `Perses`, seeded **`titan`** (`V10:1545`) | `Perses (son of Perseus)` |
+| `Bromius married_to Erato` (`2.1.5`) | `Erato`, seeded `other_god`/`nereid` (`V10:751`) — which also carries `Mnemosyne parent_of Erato`, the Muse | `Erato (Danaid)` |
+| `Lycus married_to Agave`, `Lycus killed_by Agave` (`2.1.5`) | `Agave`, the Theban royal (`V10:84`) | `Agave (Danaid)` |
+| `Sarpedon killed_by Heracles` (`2.5.9`) | `Sarpedon`, the Lycian (`V10:1782`) | `Sarpedon (son of Poseidon)` |
+| `Danaus parent_of Actaea` (`2.1.5`) | `Actaea`, seeded `nereid` (`V10:30`) | `Actaea (Danaid)` |
+
+**`Agave` is the one that shows this is not merely deferred work.** G4.5 *did* split that entity —
+`Agave` (mortal) and `Agave (Nereid)` are both in `V10` — and the split still left the **Danaid**
+Agave's edges on the Theban entity, because the fix was applied to `entities` and to the class-1 row
+list, not to the seedgen input. A three-way collision was treated as a two-way one. `Erato` is the
+same shape: Nereid `subtype`, the Muse's parentage, and a Danaid's marriage on one row.
+
+### Why P6 did not catch it
+
+P6's class-1 set was enumerated from DEV-136/137/138 — from what *Track C review* had adjudicated by
+hand. These 39 rows were only identifiable as wrong **after** G3/G5 produced the registry that names
+their correct identity, by which point the class-1 table was frozen and G4 was closed. DEV-148 does
+record a fragment of this under *Carried out of the stage* (`relationships_candidates_cleaned.json`
+still holding pre-G2 fuzzy merges, naming 2 rows), but it covers only the **G2** mechanism, misses
+**G3/G5**'s entirely, and understates the count by 57 pairs. That entry is committed and stays
+verbatim; **this section supersedes its scope.**
+
+### What a fix needs to decide
+
+1. **Propagating in bulk makes coverage worse, not better — but a subset is free today.**
+   **53 of the 57** split identities are absent from `entities` (they sit in `Z_HOLD`, routed to
+   Track D). Rewriting the cleaned file wholesale converts those wrong edges into *dropped* edges
+   and moves A16's `relationships` coverage **down**; the entities must land first, which is why
+   this is homed to **Track D** rather than fixed standalone.
+   **The exception, worth taking first:** **4** of the 57 correct identities are **already in
+   `V10`** — `Mestor (son of Pterelaus)`, `Orsilochus (elder)`, `Ajax (son of Oileus)`,
+   `Asius (father of Adamas)` — so re-keying their endpoints costs no entity work and drops no edge.
+   **3 live rows** qualify: `Andromeda parent_of Mestor` and `Perses parent_of Mestor`
+   (`2.4.5` → `Mestor (son of Pterelaus)`), `Diocles parent_of Orsilochus`
+   (`homer-iliad 5.519-5.559` → `Orsilochus (elder)`).
+2. **Whether the raw→cleaned step gets a re-derivation path at all.** The file is deliberately
+   hand-maintained, and DEV-090 established the manual step is not reproducible arithmetic. But
+   "never re-derived" is what let a resolver-level fix silently not apply. The narrow option is a
+   one-way *endpoint re-key* — apply only ledger-backed `(source_id, passage_ref, surface)` renames
+   to the cleaned file, touching nothing else — which is exactly the shape of G0's
+   `build_rename_map` for `variant_claims` and could reuse it. Note the B4 held-out set and the 17
+   removed `Odysseus parent_of Laertes` rows (DEV-067) are edits the extraction output does **not**
+   contain, so any propagation must be a re-key of surviving rows, never a wholesale overwrite.
+3. **Whether an `audit/` check should assert the two files agree on endpoint identity.** This would
+   spend detector budget (`docs/TODO2.md` → *Cross-cutting rules*), which P6 kept at zero. It is the
+   only mechanism that would have caught this automatically, and it would also catch the next
+   resolver-level fix that stops at the extraction layer.
+
+**References:** `docs/adr/adr-022-entity-identity-and-namesake-resolution.md`;
+`docs/TODO-phase2-stage-p6.md` (G3/G4/G5 — the fixes whose output stopped short);
+`docs/DEVIATIONS.md` #DEV-064 (cleaned file as editable source of truth), #DEV-090 (raw→cleaned is
+manual, not re-derivable), #DEV-145 (G4.5's partial `Agave` split), #DEV-148 (the fragment this
+supersedes), #DEV-149 (this finding); `ingestion/seedgen/__main__.py:64`.

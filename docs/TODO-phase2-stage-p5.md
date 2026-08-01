@@ -527,11 +527,26 @@ C1's 100 passages are **~257k characters**; the full 1,059 are **~2.54M characte
       may resume**, with the collision signal live in `review_passage` (risk line + most-suspicious-
       first ordering, G6) and identity no longer the largest rejection cause. **What changed under
       C1 while it was paused, and what a batch-4 reviewer must know:** the candidate pool was
-      regenerated (7,429 → 9,096 rows; the group space moved 798 → 1,405), the fuzzy step no longer
+      regenerated (7,429 → 9,096 rows; the group space moved 798 → **1,405 or 1,412 — reconcile
+      before quoting either**, see the figure note below), the fuzzy step no longer
       auto-merges, and `namesake_registry.json` carries 63 adjudicated splits — so batch 4 works a
       materially different pool than batches 1–3 did. **63 previously-decided rows sit at tier 3
       awaiting re-adjudication**, individually named in `promotion_log.json` under the three `p6-*`
       batch labels; they are C-track work and the natural first item of batch 4.
+      **Also C-track, and previously homeless** `[DEVIATED - see DEVIATIONS.md #DEV-149]`:
+      **A14's 42 and A15's 6 direction findings** (reversed / self-referential `parentage` and
+      `death` claims) were recorded only in DEV-148's *Carried out of the stage* bullet, which is
+      append-only history rather than a work queue, so nothing would have surfaced them. **None is
+      promoted or live** — they are tier-3 `variant_claims` rows, i.e. exactly what Track C
+      adjudicates — so they need no separate track, but a batch that meets one should reject it on
+      the A14/A15 evidence rather than re-deriving the direction by hand.
+      > **Figure note, unresolved** `[DEVIATED - see DEVIATIONS.md #DEV-149]`. This line read
+      > **1,405** groups; DEV-148 and the live `A10` summary both report **1,412**. The two are
+      > plausibly the alias-blind/alias-aware split that DEV-129 already hit once (838/749 vs
+      > A10's 795/723) and DEV-127 documents for no-DB runs, but that is a hypothesis, not a
+      > reconciliation — `build_group_inventory`'s alias-aware path needs both DB-sourced alias
+      > maps, so it cannot be settled offline. **Settle it on the next live `A10` run and state
+      > which construction each number came from; do not quote either figure until then.**
       `[DEVIATED - see DEVIATIONS.md #DEV-139]` — see the *Track order* block. C1's batches 1–3
       measured identity collisions at 20–30% of every batch's rejections, and the fix re-keys review
       decisions, so it is paid before the queue grows. The gate is at the **next batch**, not at the
@@ -588,6 +603,32 @@ without claiming they were seeded.
 (3,367/6,882); 901 candidate rows are dropped for referencing 347 names absent from `entities`
 (name-space coverage 1,990/2,337 = **85.2%**).
 
+> ⚠️ **Every figure in this track predates Stage P6 — re-derive before starting** (2026-08-01,
+> DEV-149). P6 re-extracted the candidate pool and changed the identity layer under all of it:
+> `variant_claims` candidates 7,429 → 9,096 rows, groups 798 → 1,412, `entities` 1,990 → 1,995,
+> edge coverage 48.9% → **49.1%**. D1's bound of 60 and the ≥53% / ≥87% exits were computed against
+> the pre-P6 numbers, and DEV-132 already had to correct this same table once when its arithmetic
+> went stale. **Re-derive the ranked list from `compute_drop_accounting(...).unknown_names` and the
+> projections from a fresh A16 run before fixing the bound** — the instruction to re-derive is
+> already in D1; this note says the *exits* may move too, not just the list.
+>
+> **Three new inputs this track now owns, none of which existed when it was written:**
+> 1. **57 split identities in `Z_HOLD`** (39 from P6 G3, 18 from G5) — adjudicated, reason-bearing,
+>    and blocked only on an `entities` row. They are the highest-confidence entity work available
+>    and should be ranked ahead of the unknown-name tail, which is triaged from scratch.
+> 2. **GAP-011** (`docs/DATA-GAPS.md`) — **39 live `V11` edges** attach to the wrong figure because
+>    P6's registry never reached `relationships_candidates_cleaned.json`. **Ordering matters and is
+>    the reason this is homed here:** 53 of the 57 correct identities do not exist as entities yet,
+>    so propagating in bulk converts wrong edges into *dropped* edges and moves A16 coverage
+>    **down**. Land the `Z_HOLD` entities (item 1) first, then re-key the cleaned file's endpoints.
+>    **3 live rows are re-keyable today at zero entity cost** — their split identity is already in
+>    `V10` (`Mestor (son of Pterelaus)` ×2, `Orsilochus (elder)`); take those first, as a worked
+>    example of the re-key before it runs at scale.
+> 3. **GAP-009's ~66 unguarded splits** — genuine spelling variants the fuzzy demote separated
+>    without a curated alias. No `audit/` check covers them (A1 reads the *confirmed* set, which the
+>    demote does not touch). Read the ledger's `fuzzy_suggestion` rows before promoting any name
+>    that looks like a near-duplicate of an existing entity.
+
 **Size the budget from the exit criteria, not from a round number.** An earlier draft bounded D1 at
 "top-20 unknown names" and set the exits at ≥53% / ≥87%. Both are unreachable at that bound, because
 the top-20 list is mostly unavailable:
@@ -626,12 +667,22 @@ wrong, so this track raises the bound and keeps the exits. Measured over the *el
       `name_coverage.py`'s (A7) existing machinery **before** adding any entity. DEV-096/098 proved
       this triage is error-prone — `Arges` turned out to be extraction corruption of `Ares`, not a
       missing Cyclops. Every addition needs a corpus-count line in its DEV entry.
-- [ ] **D4** — Bucket-2 namesake collisions (`Electra`, `Eurytus`, `Phineus`, `Thoas`, `Oenomaus`,
-      `Hippolytus`, `Ascalaphus`, `Clitus`/`Pisenor`) stay **out of scope** — they are not fixable by
-      a spelling alias, which is GAP-002's own transferable lesson. Record, do not work. **Record the
-      cost of the decision alongside it:** these names also hold **80 tier-3 `variant_claims` rows**
-      (bucket Z), which Track C will adjudicate and which can never seed while this stands. That is a
-      recorded trade, not an oversight — it belongs in the F1 coverage statement.
+- [ ] **D4** — `[DEVIATED - see DEVIATIONS.md #DEV-149]` **The premise of this exclusion no longer
+      holds — re-decide it, do not inherit it.** Bucket-2 namesake collisions (`Electra`, `Eurytus`,
+      `Phineus`, `Thoas`, `Oenomaus`, `Hippolytus`, `Ascalaphus`, `Clitus`/`Pisenor`) were ruled out
+      of scope because "they are not fixable by a spelling alias, which is GAP-002's own transferable
+      lesson." That was true when written and is **false since ADR-022**: a spelling alias was never
+      the candidate mechanism — `namesake_registry.json` is, it is keyed on corpus location rather
+      than on a name pair, it beats exact match (which is what a byte-identical collision needs), and
+      it has now separated 57 such figures. **None of these nine names carries a registry entry yet**
+      (construction: `{e['name'] for e in namesake_registry.json} & <the nine>` → empty), so this is
+      unworked, not silently done.
+      **The recorded cost is what changed the arithmetic:** these names hold **80 tier-3
+      `variant_claims` rows** (bucket Z) that can never seed while the exclusion stands, plus their
+      share of the relationship edges. Under ADR-022 that is a *reachable* 80, not a permanent write-
+      off. Re-decide on the same terms every other bound in this track uses: measure the yield
+      first, then set the bound. If the exclusion is kept it is now a **budget** decision, so record
+      it as one — the old "not fixable" reason may not be reused.
 
 **Exit:** A16 `relationships` edge coverage **≥ 53%**; entity name-space coverage **≥ 87%**; zero
 names added without a corpus-count line. Unchanged from the original — reachable now that D1's bound

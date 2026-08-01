@@ -562,7 +562,14 @@ floors hold across a 3-run eval; the relevant ADR/DEV entries are logged.
       sanctions evidence-assisted batch approval) — **C** four seeding sprints, full pool, top
       passages first — **D** the `relationships`/`entities` seam (GAP-002 bucket 1) — **E** stop/
       retire/consolidate — **F** coverage statement + eval. Absorbs GAP-001's a′ residue and GAP-002
-      from P3/P4, and homes **DEV-066** (A3's non-exhaustive cycle detection) at Track A8
+      from P3/P4, and homes **DEV-066** (A3's non-exhaustive cycle detection) at Track A8.
+      > **Track D grew after Stage P6** `[DEVIATED - see DEVIATIONS.md #DEV-149]`. It is no longer
+      > GAP-002 bucket 1 alone: it now also owns **57 `Z_HOLD` split identities** (adjudicated,
+      > blocked only on an `entities` row), **GAP-011** (39 live `V11` edges attached to the wrong
+      > figure — P6's registry never reached the seedgen input), **GAP-009's ~66 unguarded splits**,
+      > and a **re-decision of D4's namesake exclusion**, whose "not fixable by a spelling alias"
+      > premise ADR-022 retired. **Every figure in Track D predates P6's re-extraction and must be
+      > re-derived before the bound is fixed.** Detail in the checklist's Track D banner.
 - [ ] **P5a** — numeric data (**activates ADR-009 → Accepted**): `contingents` table (new V-number),
       bounded extraction reusing instructor/checkpoint + `ref_ranges.py`, seedgen extension, numeric
       gold questions incl. one `ship_count` conflict
