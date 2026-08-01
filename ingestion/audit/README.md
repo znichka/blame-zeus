@@ -11,12 +11,29 @@ Every check in this package **reports only** — none of them mutate any file or
 
 `__main__.py` walks the package for any sibling module exposing the contract in `contract.py`
 (module-level `NAME: str` + `run(candidates_dir, db_conn) -> CheckResult`) — a module needs no
-separate registration call, just those two names, to be picked up. All **fifteen** checks are live:
+separate registration call, just those two names, to be picked up. All **sixteen** checks are live:
 **`duplicate_entities.py` (`A1`)**, **`drop_accounting.py` (`A2`)**, **`cycle_check.py` (`A3`)**,
 **`relation_taxonomy.py` (`A4`)**, **`integrity.py` (`A5`)**, **`dropped_parents.py` (`A6`)**,
 **`name_coverage.py` (`A7`)**, **`prominence.py` (`A8`)**, **`claim_type_distribution.py` (`A9`)**,
 **`group_inventory.py` (`A10`)**, **`parentage_direction.py` (`A11`)**,
-**`kill_direction.py` (`A12`)**, **`passage_support.py` (`A13`)**, **`claim_direction.py` (`A14`)**, **`death_direction.py` (`A15`)**.
+**`kill_direction.py` (`A12`)**, **`passage_support.py` (`A13`)**, **`claim_direction.py` (`A14`)**, **`death_direction.py` (`A15`)**, and **`coverage.py` (`A16`)**.
+
+**Two tools that will belong to this work and deliberately will not live here** — *planned, not yet
+written; ADR-023 is `Proposed`* (Stage P5-0 B9/B12, `[DEVIATED - see DEVIATIONS.md #DEV-150]`):
+`extraction/rejection_audit.py` (what the review pass discards when it rejects a row) and
+`extraction/claim_edge_reconcile.py` (whether a rejected claim left its mirror `parent_of` edge
+live — GAP-012). Both will go in `ingestion/extraction/`, so
+`discover_checks()` never sees them and they **spend no detector budget** (`docs/TODO2.md` →
+*Cross-cutting rules* → the seeding rule). The invariant is *location*, not the absent `NAME`
+attribute — the same one Stage P6 relied on for its G-track tooling. Moving either into this package
+spends budget and turns a report into a gate, which is a decision, not a refactor.
+
+**A16 will read two files, not one — planned in B11, not yet built.** Today it derives numerator and
+ceiling from the candidate pool alone. Once the correction overlay exists, its reachable-ceiling
+derivation chain gains an `+N overlay` term for the reviewer-authored rows in
+`extraction/output/claim_corrections.json`, which `seedgen` will seed alongside the tier-1
+candidates. **B11 must change both in one item:** a seeded row absent from the candidate pool makes
+the instrument every Track C batch closes on under-report its own numerator.
 
 **A note on what "reporting-only" has to mean for A8/A9/A10** (Stage P4 Track B9), because the
 obvious reading of `contract.py` is wrong: `AuditRun.exit_code` is `1 if any(not f.waived for f in

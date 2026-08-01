@@ -4,7 +4,7 @@
 |--------------|-------------|
 | **Date**     | 2026-07-08  |
 | **Status**   | Accepted    |
-| **Amended by** | Amendment 1 (DEV-135 — pre-verification signal may order and annotate, never promote); **ADR-022** (extends the review gate from *what a claim says* to *who its subject is*) |
+| **Amended by** | Amendment 1 (DEV-135 — pre-verification signal may order and annotate, never promote); Amendment 2 (DEV-150 — conditions on a reviewer-*authored* row); **ADR-022** (extends the review gate from *what a claim says* to *who its subject is*); **ADR-023** (extends it from *approving what the machine found* to *recording why it was wrong and what is true instead*) |
 
 ---
 
@@ -230,3 +230,45 @@ No other part of this ADR's Decision or the `trust_tier` gate changes: nothing
 promotes without a human decision, nothing skips `promotion_log.json`, and
 nothing here authorizes a new tier or a code path that writes `trust_tier=1`
 automatically. See `docs/DEVIATIONS.md` #DEV-135.
+
+---
+
+## Amendment 2 (2026-08-01) — Reviewer-*authored* rows, and the conditions on them (DEV-150)
+
+ADR-023 adds a correction channel: when a reviewer rejects a claim because the
+cited passage attests something else, they may author the corrected row into
+`ingestion/extraction/output/claim_corrections.json`, from which `seedgen` seeds
+it exactly as it seeds a promoted candidate. This inverts the direction of the
+gate for that small class — the machine proposes, the human *writes* — so the
+gate's conditions must be stated explicitly rather than left to be read off a
+workflow that no longer describes them.
+
+Everything in Amendment 1 continues to bind. In addition, every row in
+`claim_corrections.json`:
+
+1. **Cites the `source_id` and `passage_ref` of a segment the reviewer actually
+   opened.** A correction is a reading of a specific passage. It may never cite a
+   passage that was not on screen, and never a passage inferred from another
+   row's citation.
+2. **Carries the `evidence_span` it was authored from** — the verbatim text
+   supporting it — displayed at confirmation time exactly as a bucket-A row
+   displays its matched span (Amendment 1 point 1). A correction with no span is
+   not a correction.
+3. **Is never written without a per-row human confirmation.** A machine-proposed
+   correction that nobody confirmed is a candidate, not a correction, and no code
+   path may write one. This is Amendment 1 point 3 ("may order and annotate; may
+   never promote") applied to the proposal step: A14's matched span may pre-fill
+   the row and may rank it, and may not author it.
+4. **Names the rejection it answers**, via `corrects`. A correction is always the
+   second half of a recorded verdict, never a free-standing insertion — which is
+   what keeps the rejection intact as a verdict (Amendment 1 point 5) instead of
+   being quietly overwritten.
+5. **May not invent a claim, a source, or a passage the open segment does not
+   support.** The reviewer's licence here is to record what the passage says
+   where extraction recorded it backwards — not to supply mythological knowledge
+   from outside the corpus. A true claim the cited passage does not state is
+   `true_but_unattributable` (a rejection reason), not a correction.
+
+The `trust_tier` gate itself is unchanged, and the trust guarantee is unchanged:
+nothing reaches the seeded table without an explicit human decision recorded in
+`promotion_log.json`. See ADR-023 and `docs/DEVIATIONS.md` #DEV-150.

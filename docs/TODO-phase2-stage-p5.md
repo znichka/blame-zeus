@@ -148,7 +148,8 @@ because they apply beyond P5.*
 > row count up front; close on a coverage move) applies **only to seeding batches** — items that
 > write rows to a user-visible table, i.e. Track C and Track D. Instrument, engine, retire and close
 > items (Tracks A, B, E, F) add no rows; they name the seeding work they unblock instead. Without
-> that limit the rule reads as violated by 33 of this stage's 43 items on day one.
+> that limit the rule reads as violated by 33 of this stage's 43 items on day one — **39 of 50 since
+> DEV-150**, which added five B items and one F item, all row-free, plus one seeding item (C0).
 > **The detector budget below applies to every track, including A, B, E and F** — its whole purpose
 > is to bound work that adds no rows, so exempting the row-free tracks would empty it.
 >
@@ -170,6 +171,14 @@ because they apply beyond P5.*
 > **Rejection is not coverage.** Writing `trust_tier=2` shrinks the backlog and is worth doing,
 > but it reports against the *decided* fraction, never the *seeded* one, and can never satisfy a
 > batch's exit criterion alone.
+>
+> **A correction is coverage** `[DEVIATED - see DEVIATIONS.md #DEV-150]`. A row authored into
+> `claim_corrections.json` from an open segment (ADR-023, B11) is a seeded row and counts exactly
+> like a promotion. Every batch reports **corrections authored ÷ `reversed_direction` rejections**,
+> and a batch whose reversed-direction rejections exceed its corrections names why in its rationale.
+> Without this clause the one above makes a reversal-heavy batch read as pure loss — and a batch
+> would rationally respond by adjudicating *around* reversals rather than correcting them, which is
+> the drift the clause above exists to prevent, arriving by the other door.
 >
 > **A batch's audit gate is exit 0 with a non-growing deferral count**, not exit 0 alone
 > `[DEVIATED - see DEVIATIONS.md #DEV-130]`. Scope-shaped waivers relocate to E5's backlog artifact,
@@ -215,6 +224,22 @@ commit. That loop is the drift, in one sentence.
 >
 > **One destination.** Classes 3–5 land in `docs/DATA-GAPS.md` with a "rows at stake" line, so
 > recording is not losing. Class 1–2 fixes are named in the batch's `promotion_log.json` rationale.
+>
+> **Amendment (2026-08-01) — a class-2 finding may interrupt when the loss is irreversible**
+> `[DEVIATED - see DEVIATIONS.md #DEV-150]`. Class 1 stays the only class that interrupts *on the
+> strength of live bad data*. A class-2 finding may also interrupt, and only if all three hold:
+> **(a)** the defect destroys information the batch had on screen, so the loss is taken at write time
+> rather than discovered later; **(b)** the passage leaves the queue in the same act, so the queue
+> cannot bring it back — the class-3 escape hatch is genuinely unavailable, measured, not assumed;
+> and **(c)** the per-batch rate of loss is stated with its construction. B9–B13 is the case this was
+> written for and the only one so far. **Class 4's "never built mid-batch" is amended in the same
+> narrow way and for the same reason** — tooling whose absence is what makes the loss irreversible.
+> **Why this is an amendment and not a reading of the rule:** the original B9–B13 justification
+> claimed the queue never returns to *any* of the 639 standing rejections. That is false (252 of 268
+> passages are still queued; 390 rows come back for free), and clause (b) is what makes the
+> difference between the standing backlog — class 3, correctly — and everything written from here on.
+> Without the amendment stated, the next class-2 finding inherits an interrupt precedent that the
+> rule text forbids, which is the drift the rule exists to stop.
 
 This composes with the existing cross-cutting rule *"Root cause first, code fix only if still
 needed"* — that rule governs **how** to fix; this one governs **whether to fix now**. Applied
@@ -498,6 +523,130 @@ for A7's crash.
 **Exit:** `review_passage('apollodorus-bibliotheca', '3.12.5')` prints the segment once with every
 row annotated by bucket and emits pasteable keys. **B7 merged before any batch approval is used.**
 
+### B9–B13 — the rejection half of the engine (reopened 2026-08-01, before C1 batch 10)
+
+`[DEVIATED - see DEVIATIONS.md #DEV-150]` — see **ADR-023** and **GAP-012**.
+
+B1–B8 made the engine efficient at *deciding* rows and left it unable to *write* anything but a
+verdict. Three losses follow, all measured on the live pool (9,096 candidates, 639 at `trust_tier=2`;
+construction is `extraction/rejection_audit.py`, B9):
+
+- a rejection records **no reason**, so `reversed_direction` (a correctable error) is
+  indistinguishable from `not_in_passage` (nothing to recover) and from `wrong_subject_namesake` (an
+  entity problem) across all 639 rows;
+- of 581 rejected `parentage` rows, **560 yield a derivable inverse key** (the other 21 are
+  uncheckable by this join, not negative). Of those 560 the corrected inverse row is attested at the
+  same passage for only **34**; exists only at a *different* passage for 243 (the citation is lost);
+  and is **absent from the whole pool for 283 — 51% of the 560** — of which **101** would be seedable
+  today and 182 wait on Track D. The four figures partition the 581 (`34 + 243 + 283 + 21`).
+  Re-extraction does not recover them: A14's rule fires only where the source attests the reversed
+  reading and never the correct one, so the same model reproduces the same reversal;
+- **162** rejected claims still have their mirror `parent_of` edge in
+  `relationships_candidates_cleaned.json`, which has **no human gate** and flows into V11 — GAP-012.
+
+**Findings-rule classification, and the amendment this needs, stated because the rule governs whether
+this interrupts.** The 162 mirror edges are **class 1** (may reach users now, the GAP-011 shape on a
+new seam), but they do **not** carry the interrupt on their own: A16 is the arbiter and an unsorted
+162 moves no coverage number (GAP-012 says so in as many words). The untyped rejection and the
+missing correction channel are **class 2** for every batch from C1 batch 10 on — and the rule as
+written says class 1 is *the only class that interrupts*, so **this is an amendment to the findings
+rule, not an application of it**, and it is recorded as one: see the *Cross-cutting rules* block
+above and `docs/TODO2.md`. Class 4's *"never built mid-batch"* clause is amended by the same stroke
+for B9/B12, independently of the detector budget, which they do not spend.
+
+**Why the amendment is warranted here, on the corrected measurement.** The original argument — *all
+639 existing rejections sit at passages a batch has already opened, so the queue never works them
+off* — **is false and is not the reason.** Measured: **252 of the 268** passages holding those 639
+still carry tier-3 rows, so the queue reaches them on its own and F5's mechanism types the **390**
+rejections there for free; only **249 rows over 16 passages** are stranded today. Under the rule
+those 390 are textbook **class 3** — *the queue brings it back on its own*.
+
+The real asymmetry is prospective. A reading batch **finishes** the passages it opens: of the 23
+passages C1 has adjudicated, only **6** still hold a tier-3 row. So every rejection written from here
+on lands at a passage that leaves the queue in the same act — permanent residue at the moment of
+writing, at ~**14 rejections per batch** (batches 5–9: 16 / 20 / 15 / 4 / 13, mean 13.6) — and every
+correction on screen is discarded with it. The backlog behind us is largely absorbed; the residue
+each further batch creates is not. That is what the interrupt buys, and it is why deferring costs
+more than the standing 639 suggest.
+
+Construction for all of the above: `trust_tier`/`passage_ref` join over
+`variant_claims_candidates.json`, and the `p5-track-c1-*` entries of `promotion_log.json` for the
+adjudicated-passage set — B9 commits it.
+
+**Detector budget: zero spent.** B9 and B12 live in `ingestion/extraction/`, outside the `audit`
+package, so `discover_checks()` (`audit/__main__.py`) never sees them — the location invariant Stage
+P6 used for its G-track tooling. B11 edits A16, which the budget exempts as an instrument that cannot
+emit a finding.
+
+- [ ] **B9** — `ingestion/extraction/rejection_audit.py`. Commit the measurement, so every figure in
+      ADR-023, GAP-012 and DEV-150 is re-derivable rather than quoted ("a recorded figure names its
+      construction"). Joins `variant_claims_candidates.json` to
+      `relationships_candidates_cleaned.json`, `entities_candidates_confirmed_v1.json` and
+      `promotion_log.json`; inverse key = `(parent, "parentage", "child of " + subject, source_id)`,
+      parent parsed with A14's own `parse_parent` rule (first confirmed entity name in the
+      remainder), **imported from `audit.claim_direction` rather than reimplemented** — a second
+      parser is a second thing to drift.
+      Also emits the **queue-reachability split** every other item's arithmetic now rests on: for the
+      tier-2 set, how many rows and passages still carry tier-3 rows (the queue returns) versus not,
+      and the distinct-passage count of the `p5-track-c1-*` batches.
+      **Exit:** reproduces 639 / 581 / 283 / 101 / 162 / 268 **and** 560 + 21 / 390 at 252 / 249 at
+      16 / 23 C1 passages on the current pool. A divergence means a document is quoting a stale
+      number, and the document is wrong, not the script. **The 34 / 243 / 283 split is against the
+      560 rows with a derivable inverse key, not the 581** — the first draft of ADR-023 quoted 49%
+      against 581 while partitioning 560, which is what the `+21` term exists to close.
+- [ ] **B10** — **Rejection typing.** Add `rejection_reason` to the reject path in
+      `extraction/claim_evidence.py` and the notebook write cell, drawn from ADR-023's closed
+      eight-value vocabulary. A rejection without a code **raises** — the same posture as the existing
+      approved∩rejected contradiction guard, and for the same reason: a missing code is an omission,
+      not a default. Generalise `run_extraction._write_claims_preserving_review` from the hardcoded
+      `trust_tier` to `_REVIEW_OWNED_FIELDS = ("trust_tier", "rejection_reason")` — **without this the
+      codes are erased by the next extraction run**, which is DEV-101's failure through a new door.
+      `rejectedKeys` entries in `promotion_log.json` become `{"key": [...], "reason": "..."}`; keep a
+      reader for the legacy bare-5-tuple form (29 existing entries, which read as
+      `unclassified_legacy`).
+      **Exit:** a batch cannot record a reasonless rejection; a `run_extraction` re-run carries all
+      639 codes across (0 lost), asserted in the existing merge unit tests.
+- [ ] **B11** — **The correction channel.** New `extraction/output/claim_corrections.json` (six
+      candidate fields + `origin`, `corrects`, `evidence_span`, `batchLabel`, `date`), consumed by
+      `seedgen/variant_claims_gen._reviewed_rows` — unioned in, then passed through the **same**
+      entity-presence and 4-tuple dedup filters, because an overlay row is not exempt from the
+      reachable ceiling. `review_passage` pre-fills a proposed correction for every
+      `reversed_direction` rejection, showing A14's matched span, and requires explicit confirmation
+      (ADR-023 §4; ADR-004 Amendment 2).
+      **A16 changes in this same item, not later:** `audit/coverage.py::variant_claims_ceilings`
+      derives numerator *and* ceiling from the candidate pool alone, so a seeded row absent from that
+      pool makes the instrument every batch closes on misreport. Overlay rows count in both, and the
+      printed derivation chain gains an `+N overlay` term.
+      **Do not write corrections into `variant_claims_candidates.json`** — merge-on-write drops any
+      reviewed row extraction no longer produces, and it never produces a reviewer-authored one.
+      **Exit:** a confirmed correction survives a `run_extraction` re-run untouched, appears in a
+      regenerated `V12_1__…`, and moves A16 row coverage.
+- [ ] **B12** — **The claim↔edge seam (GAP-012).** `ingestion/extraction/claim_edge_reconcile.py`:
+      for **every** tier-2 rejection with a derivable mirror key, report whether the mirror
+      `parent_of` edge is still in `relationships_candidates_cleaned.json` and whether it is live in
+      V11, **bucketed by `rejection_reason`**. The reason code does the sorting; it must **not** be
+      the input filter — filtering the input to `reversed_direction`/`not_in_passage` would exclude
+      `wrong_subject_namesake` by construction, which is exactly buckets 2 and 3 of this item's own
+      exit, leaving ~160 of the 162 outside the report. Invoked from the notebook and once per sprint
+      (added to the Track C per-batch loop).
+      **Exit:** the 162 split three ways — *edge is wrong and live* (fix the cleaned file), *edge
+      belongs to a different figure* (GAP-011 / namesake work), *rejection was namesake-scoped and
+      the edge is correct*. They cannot be told apart before B10 types them, and that is the finding,
+      not a limitation of the tool.
+- [ ] **B13** — **Mechanical backfill**, no corpus reads. A14's 42 and A15's 6 direction findings →
+      `reversed_direction`; any `<UNKNOWN>` / `<none>` / empty subject → `malformed_subject`
+      (**0 such rows are at tier 2 today** — the 108 junk rows are still tier 3 and are Track C's, per
+      that track's exit); everything else → `unclassified_legacy`.
+      **Exit:** every tier-2 row carries a code, and the `unclassified_legacy` count is recorded as
+      F5's opening balance — **591 rows** at the time of writing (`639 − 48` mechanically typed).
+      **B13 records the queue-reachability split of those 591, not just the total** — over the full
+      639 it is 390 rows at 252 reopened passages against 249 at 16 stranded ones, and B13's 48 come
+      off one side or the other, so the split must be recomputed after typing rather than inherited.
+      The stranded count is the only number F5 has to spend reads on.
+
+**Exit for B9–B13:** rejection is a typed, queryable verdict; a correction authored from an open
+segment reaches `V12_1__…`; A16 counts it; and `claim_edge_reconcile` runs in the batch loop.
+
 ---
 
 ## Track C — Seeding sprints (full pool, top passages first)
@@ -511,6 +660,7 @@ python -m seedgen --strict           # regenerates V10/V11/V12; fails on missing
 scripts/reseed-local.sh --local-only # regenerating an applied migration breaks flyway validate
 python -m audit --only A16 --out reports/coverage   # coverage delta -- the number that closes the batch
 python -m audit                      # 16 checks; exit 1 on any finding neither waived nor DEFERRED
+python -m extraction.claim_edge_reconcile          # B12: did this batch's rejections leave a live edge?
 ```
 **The gate is exit 0 with a non-growing backlog**, not exit 0 alone `[DEVIATED - see DEVIATIONS.md
 #DEV-130]`. After E5 and A6, the 949 relocated findings report `DEFERRED` and do not fail the run, so
@@ -527,11 +677,32 @@ Sprint sizes below are row counts, which understate the work: the read cost is t
 C1's 100 passages are **~257k characters**; the full 1,059 are **~2.54M characters ≈ 424k words**
 (median segment 2,504 chars). Budget by characters, not by checkbox.
 
+- [ ] **C0** — **The 101-row correction pass** `[DEVIATED - see DEVIATIONS.md #DEV-150]`. Runs
+      immediately after B13, before C1 batch 10. **Table: `variant_claims`. Expected rows: ≤101**,
+      less whatever the seedgen 4-tuple dedup collapses — named up front per the seeding rule, and
+      closed on an A16 move like any seeding batch.
+      Re-open the **62 passages** behind the 101 rejections whose correction is immediately seedable
+      (both names already in `entities`) and author those corrections. This is the highest
+      row-per-read ratio anywhere in the stage — **101 rows from 62 segment reads**, against C1's
+      2,229 adjudications from 100 reads, most of which are not promotions — and it is available only
+      because B11 exists; before it, those 62 reads produced nothing.
+      The remaining 182 corrections of the 283 are blocked on a missing entity and are **Track D's**,
+      not this item's; they re-queue here once the `Z_HOLD` entities land.
 - [ ] **C1** — Passages 1–100 → 2,229 tier-3 rows (33% of the pool), ~257k chars.
-      **Batches 1–3 done (7 passages). The Stage P6 gate is LIFTED (2026-08-01, DEV-148) — batch 4
-      may resume**, with the collision signal live in `review_passage` (risk line + most-suspicious-
-      first ordering, G6) and identity no longer the largest rejection cause. **What changed under
-      C1 while it was paused, and what a batch-4 reviewer must know:** the candidate pool was
+      **Batches 1–9 done** (batches 1–3 = 7 passages pre-P6; batches 4-re-review through 9 landed
+      2026-08-01 after the P6 gate lifted — DEV-148). Construction: the `p5-track-c1-*` entries in
+      `ingestion/audit/promotion_log.json`. **Batch 10 is gated on B9–B13**
+      `[DEVIATED - see DEVIATIONS.md #DEV-150]`, then C0 — see the *Track order* block. The collision
+      signal is live in `review_passage` (risk line + most-suspicious-first ordering, G6) and identity
+      is no longer the largest rejection cause.
+      **What batches 1–9 could not record, and batch 10 onward must:** every rejection they wrote is
+      untyped (`unclassified_legacy`) and every correction they read is lost — 639 rows over 268
+      passages. **F5 owns only the part the queue cannot reach** (249 rows at 16 passages); the other
+      390, at the 252 passages that still hold tier-3 rows, are typed for free when the queue reopens
+      them. **Batches 1–9 have adjudicated 23 of C1's 100 passages, leaving 77.**
+      **What changed under
+      C1 while it was paused, and what a batch-10 reviewer must know** (it was written for batch 4,
+      and every word of it still binds — the pool has not been regenerated since)**:** the candidate pool was
       regenerated (7,429 → 9,096 rows; the group space moved 798 → **1,405 or 1,412 — reconcile
       before quoting either**, see the figure note below), the fuzzy step no longer
       auto-merges, and `namesake_registry.json` carries 63 adjudicated splits — so batch 4 works a
@@ -581,7 +752,10 @@ before/after figures; `seedgen --strict` clean; reseed green; no new audit check
 
 **Exit for the track:** all 1,059 passages adjudicated — every tier-3 row is now tier 1, tier 2, or
 in the **bucket-Z blocked register** with its blocking decision named `[DEVIATED - see DEVIATIONS.md
-#DEV-130]`. The register is not a loophole: it is closed to any row whose subject could exist and was
+#DEV-130]` — **and every tier-2 row carries a rejection reason, and every `reversed_direction`
+rejection has either a confirmed correction or a recorded statement of why none is owed**
+`[DEVIATED - see DEVIATIONS.md #DEV-150]`. Without that second clause the track can exit having
+adjudicated everything and discarded half of what it read, which is the state B9 measured. The register is not a loophole: it is closed to any row whose subject could exist and was
 merely unreached, and today it holds the **80** D4-blocked rows plus whatever part of the ~166
 Track-D-dependent rows D1's 60-name bound does not reach. The 108 junk-subject rows are *not* in it —
 they are rejected outright at tier 2.
@@ -778,9 +952,32 @@ removing the placeholder shifts the ranked list.
       is invalid, not evidence.
 - [ ] **F4** — Confirm every DEV entry from this stage cites a `batchLabel` rather than restating
       counts, and that any figure it does state names its construction (E3).
+- [ ] **F5** — **The rejection reconciliation register** `[DEVIATED - see DEVIATIONS.md #DEV-150]`.
+      The named home for the rejections B13 could only type mechanically. **This is scheduled work,
+      not a deferral**, and it needs its own item because most of it is *not* an asymmetry: the bulk
+      of the register is worked off for free like every other backlog here, and the item exists to
+      keep the part that is not from hiding inside the part that is.
+      The register is the set of `unclassified_legacy` rows, each bound to its `(source_id,
+      passage_ref)`. `review_passage` surfaces any legacy rejection for a passage it opens, so a row
+      whose passage is re-opened for *any* reason is typed for free and the register shrinks without a
+      dedicated read — which is why the count is read, not the passage list.
+      **Opening balance: 591 rows over at most 268 passages** (B13's exit). The queue-reachability
+      split is measured over the full 639 — **390 rows at 252 passages the queue reopens, 249 at the
+      16 it does not** — so B13's 48 mechanical typings come off one side or the other and B13 records
+      the post-typing split rather than inheriting this one. **The 390 are ordinary class-3 work and
+      need no reads of their own. The register's real cost is the ≤249 rows at the 16 passages the
+      queue never returns to**, less whatever C0's 62-passage pass absorbs; after C0, 206 of the 268
+      passages remain in the register at all. Read
+      the second number, not the first: the opening balance overstates the work by an order of
+      magnitude and was, in the first draft of this item, the whole justification for it.
+      **Exit:** the register is empty, **or** every remaining entry carries a stated reason why
+      re-reading its passage is not worth its rows — the same "rows at stake" discipline E6 requires
+      of `docs/DATA-GAPS.md`. The stage does not close on an untyped rejection with no recorded
+      judgement; it may close on one that was judged not worth the read.
 
 **Stage done when:** every tier-3 `variant_claims` row is decided — tier 1, tier 2, or in the
-bucket-Z blocked register with a named blocking decision (Track C exit) — A16's closing figures are
+bucket-Z blocked register with a named blocking decision (Track C exit) — **every tier-2 row carries
+a rejection reason and F5's register is closed out** — A16's closing figures are
 written into `docs/DATA-GAPS.md`, per-category eval floors hold across a 3-run eval, and the relevant
 ADR/DEV entries are logged.
 
@@ -802,14 +999,20 @@ C1 batches 1-3                                 (sprint 1, first 7 of 100 passage
 >>> STAGE P6 <<<  [DONE 2026-08-01]            (entity identity -- INTERRUPTED *inside* C1, after
                                                 batch 3 and before batch 4; G0-G7 complete,
                                                 ADR-022 Accepted, DEV-140/142-148)
-C1 batches 4+                                  (rest of sprint 1 -- UNBLOCKED; start with the 63
+C1 batches 4-9                                 (rest of sprint 1 -- UNBLOCKED; started with the 63
                                                 rows P6 re-queued, named in promotion_log.json)
+B9-B13                                         (the rejection half of the engine -- INTERRUPTS C1
+                                                after batch 9, before batch 10; ADR-023, GAP-012,
+                                                DEV-150. Hard edge, see below.)
+C0                                             (the 101-row correction pass -- 62 reads, the first
+                                                work B11 makes possible; runs before C1 resumes)
+C1 batches 10+                                 (rest of sprint 1, now typing rejections)
 C2                                             (sprint 2)
 D1-D4                                          (starts after C2; D2 re-queues Helios's 10 rows into C)
 C3, C4, C5                                     (C5 only if the queue drags; bucket E only, and only
                                                 once B2a reports the alias layers clean)
 E1-E4, E6, E7                                  (retire/consolidate)
-F1-F4                                          (close)
+F1-F5                                          (close; F5 is the rejection register, DEV-150)
 ```
 
 **The P6 interrupt is a hard edge too** `[DEVIATED - see DEVIATIONS.md #DEV-139]`. Track C1's first
@@ -822,6 +1025,25 @@ batch, so **no further Track C batch runs first — including C1's own batch 4.*
 would spend ~93 more passage reads against identities P6 corrects; deferring past C2-C4 would both
 quadruple the re-key and spend ~4,400 adjudications the same way. See
 `docs/TODO-phase2-stage-p6.md` and ADR-022.
+
+**B9–B13 → C1 batch 10 is a hard edge too** `[DEVIATED - see DEVIATIONS.md #DEV-150]`, and for a
+different reason than P6's. P6 interrupted because further batches would *grow the re-key exposure*;
+this one interrupts because a reading batch **finishes the passages it opens**, so what it fails to
+record there is lost rather than queued.
+
+**Not** because the standing backlog is unreachable — it mostly is reachable, and the first draft of
+this paragraph had that backwards. Of the 268 passages holding the 639 existing rejections, **252
+still carry tier-3 rows**: the queue returns on its own and F5's mechanism types the **390**
+rejections there for free. Only **249 rows over 16 passages** are stranded, and under the findings
+rule the other 390 are class 3, not a reason to interrupt anything.
+
+The prospective loss is the reason. Of the **23 passages** C1 has adjudicated, only **6** still hold
+a tier-3 row — a batch closes its passages out of the queue as it goes. So every rejection written on
+the current engine is permanent residue the moment the batch ends (~**14 per batch**; batches 5–9:
+16 / 20 / 15 / 4 / 13), and every correction on screen is discarded with it. Deferring to the C1/C2
+boundary takes that loss across C1's remaining **77 passages**; deferring past C2–C4 takes it across
+the rest of the queue. This required an **amendment to the findings rule** — a class-2 finding does
+not otherwise interrupt — recorded in the *Cross-cutting rules* block above. See ADR-023 and GAP-012.
 
 **E5 → A6 is a hard edge, not a preference.** A6 without E5 deletes 602 waivers with no deferral
 mechanism to catch them; combined with E5's own 347 that is 949 findings that are neither waived nor
@@ -844,3 +1066,6 @@ Each of these needs a `docs/DEVIATIONS.md` entry and inline
 - The bucket-Z blocked register (B3, Track C exit, F1)
 - The A16 metric definitions, incl. the reachable-ceiling metric (A1–A3, A2a)
 - Dropping `<UNKNOWN>` from the A8 and A2 rankings (A9)
+- **Typed rejections, the correction channel, and the Track B reopening — DEV-150** (ADR-023,
+  ADR-004 Amendment 2, GAP-012; covers B9–B13, C0, F5, the Track C exit clause and the amended
+  seeding rule in `docs/TODO2.md`)

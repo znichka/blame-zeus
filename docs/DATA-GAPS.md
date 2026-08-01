@@ -18,6 +18,7 @@ gap deferred to Phase 5b.
 | **GAP-005** | Extraction reads in-narrative **deception** as fact | **Open** — a NEW error shape found during A6 triage (DEV-119), distinct from every shape P4 catalogued: a character stating a *false* parentage while disguised. Aphrodite tells Anchises *"Otreus … is my father"* directly after *"know that I am no goddess"*; Hermes, disguised as a Myrmidon, names Polyctor. The cited passage genuinely says what was extracted — it is the speaker who is lying — so no passage-verification check can catch it, unlike the misattributed-passage and reversed-direction shapes. Both known instances are waived; unknown how many more exist | P5 (extraction-quality) |
 | **GAP-009** | Fuzzy-match false positives fold a spelling-distinct name onto an unrelated confirmed entity, e.g. the text's own "Atas" resolving to the Titan `Atlas` | **CLOSED 2026-08-01 by Stage P6** (ADR-022 Accepted, DEV-143/145). Fuzzy auto-merge measured at **70.0%** false positives over a stratified sample of 50 and **demoted to suggestion**; the ledger shows **0** fuzzy auto-merges. Both already-live instances (`Coronus`/`Cronus`, `Amphitryon`/`Amphictyon`) fixed and verified against the reseeded DB. Residue of the fix (~66 projected genuine variants now split without a curated alias) is stated in the body and is **not** covered by A1 | Closed |
 | **GAP-010** | **Exact-name namesake collisions** — the corpus genuinely reuses one name for two-plus unrelated figures, and extraction/resolution merges them into one `entities` row, e.g. Priam's obscure son "Idomeneus" merged into the Cretan king `Idomeneus` (3-source figure) | **Mechanism CLOSED, residue OPEN 2026-08-01** (Stage P6, ADR-022 Accepted, DEV-144/145/147). `namesake_registry.json` (63 adjudicated entries) is consulted first in `resolve()`, ahead of the exact-match memo, and all **28** confirmed instances from DEV-136/137/138 resolve correctly on a re-run. The three already-live defects of this mechanism are fixed. **Open:** the G5 sweep's **3,872** unworked pairs, and the propagation failure now filed as **GAP-011** | **P5 Track D** (residue + GAP-011) |
+| **GAP-012** | **A rejected claim leaves its mirror edge live** — a `parentage` claim and a `parent_of` edge are two views of one extraction (`conflict_detector._RELATION_TO_CLAIM`), but the claim passes ADR-004's human gate while the edge reaches `V11` with no gate at all, so rejecting the claim decides nothing about the edge | **Open** — found 2026-08-01 auditing what P5-0's review engine does with a rejection (DEV-150, ADR-023). **162 of the 581 rejected `parentage` rows** still have their exact directional counterpart in `relationships_candidates_cleaned.json` (construction: `extraction/rejection_audit.py`, B9). The figure is an **upper bound that cannot be narrowed today**, because a rejection carries no reason — *edge is wrong and live*, *edge belongs to a different figure* (GAP-010/011 work) and *edge is fine* are the same 162 rows until Track B10 types them. GAP-011's shape at the reviewer layer instead of the resolver layer | **P5 Track B10/B12** (sort), then Track D |
 | **GAP-011** | **P6's identity fixes never reached the seeded `relationships` table** — `seedgen` reads `relationships_candidates_cleaned.json`, a hand-maintained file that is never re-derived from extraction output, so the registry's splits and the fuzzy demote stopped at `relationships_candidates.json` | **Open** — found 2026-08-01 by a post-close review of P6 (DEV-149), *after* the class-1 set was frozen. **106 rows** in the seedgen input carry an endpoint P6 adjudicated at that same passage as a different figure (**57** bare→split pairs over **50** names); **39 of them are live in `V11` today**, covering **25** pairs. `relationships` has **no human gate**, so these reach users now — this is GAP-010's own mechanism, still live. Includes `Agave`, an entity **G4.5 explicitly split**, which still carries the Danaid's edges | **P5 Track D** |
 
 ---
@@ -1587,3 +1588,100 @@ verbatim; **this section supersedes its scope.**
 `docs/DEVIATIONS.md` #DEV-064 (cleaned file as editable source of truth), #DEV-090 (raw→cleaned is
 manual, not re-derivable), #DEV-145 (G4.5's partial `Agave` split), #DEV-148 (the fragment this
 supersedes), #DEV-149 (this finding); `ingestion/seedgen/__main__.py:64`.
+
+---
+
+## GAP-012 — a claim rejected at `trust_tier=2` leaves its mirror edge live in the ungated `relationships` table
+
+**Status:** **Open** — found 2026-08-01 while auditing what Stage P5-0's review engine does with a
+rejection (DEV-150, ADR-023). Not a defect in the review gate, which works: a defect in the fact that
+the gate covers one of the two tables a single extraction feeds.
+
+### The mechanism
+
+A `parentage` claim and a `parent_of` edge are **two views of one extraction**, not two findings.
+`ingestion/extraction/conflict_detector.py` projects the relationship into claim space:
+
+```python
+_RELATION_TO_CLAIM = { "parent_of": (to_name, "child of {from}"), ... }
+```
+
+So when the extractor reads a passage backwards, it writes the error twice — once as a claim, once
+as an edge. The two then meet completely different fates:
+
+- the **claim** goes through ADR-004's per-row human gate, and a reviewer rejects it to
+  `trust_tier=2`;
+- the **edge** goes to `relationships_candidates_cleaned.json` and from there into `V11` with **no
+  human gate at all** (CLAUDE.md, Data Model).
+
+Rejecting the claim marks the disagreement decided. Nothing propagates to the edge. This is GAP-011's
+shape — a correct decision that stops at the wrong layer — on a different seam: GAP-011 is a
+*resolver* fix that never reached the seedgen input, this is a *reviewer* decision that never reached
+it.
+
+### Rows at stake (E6's mandatory line)
+
+**162 upper bound**, and the true figure is not yet derivable — which is itself the finding.
+
+Construction — `ingestion/extraction/rejection_audit.py` (Stage P5-0 Track B9): for each of the 581
+`trust_tier=2` `parentage` rows, parse the parent with A14's `parse_parent` rule and look up
+`(parent, "parent_of", subject)` in `relationships_candidates_cleaned.json`. 162 hit. Sample of the
+hits, each a live-file edge whose claim a reviewer rejected:
+
+| rejected claim | edge still in the seedgen input |
+|---|---|
+| `Asia \| child of Oceanus` (`hesiod-theogony 346-403`) | `Oceanus parent_of Asia` |
+| `Electra \| child of Tethys` (`apollodorus 1.2.1-1.2.7`) | `Tethys parent_of Electra` |
+| `Hyperion \| child of Priam` (`apollodorus 3.12.5`) | `Priam parent_of Hyperion` |
+| `Dione \| child of Nereus` (`apollodorus 1.2.1-1.2.7`) | `Nereus parent_of Dione` |
+
+**Why the number cannot be narrowed today, and why that is the point.** A rejection carries no
+reason (ADR-023 §1) — it is `trust_tier=2` plus a bare 5-tuple. So these 162 cannot be sorted into:
+
+1. *the edge is wrong and live* — the rejection was `reversed_direction` or `not_in_passage`, and the
+   edge carries the same error into `V11`;
+2. *the edge belongs to a different figure* — the rejection was `wrong_subject_namesake`, which makes
+   this GAP-010/GAP-011 work, not this gap's;
+3. *the edge is correct and the rejection was scoped to something else about the claim* — in which
+   case nothing is owed.
+
+Case 1 reaches users; case 3 does not; and today they are the same 162 rows. **The gap is therefore
+blocked on Track B10 (rejection typing), not on tooling** — which is why the fix is homed with it.
+
+### Findings-rule classification
+
+**Class 1 (reaches users now) for whatever part of the 162 falls in case 1** — the `relationships`
+table is not review-gated, so what it holds is what users see; the GAP-007 / GAP-008 shape exactly.
+It does **not** interrupt a batch on the strength of the upper bound alone, because A16 is the
+arbiter and an unsorted 162 moves no coverage number: B10 sorts it, B12 measures it, and only case-1
+rows are a live-data fix.
+
+**This gap therefore does not carry the B9–B13 interrupt, and nothing here should be read as though
+it does.** That interrupt rests on a class-2 finding and required an explicit amendment to the
+findings rule (`docs/TODO-phase2-stage-p5.md` → *Cross-cutting rules*, and `docs/TODO2.md`), since
+class 1 is otherwise the only class that interrupts. This gap rides along with it because B10's
+typing is its prerequisite, not because it justifies it.
+
+### Decisions still needed
+
+1. **Whether a rejection should propagate to the edge automatically once typed.** A
+   `reversed_direction` rejection is strong evidence about the edge, but the cleaned file is
+   deliberately hand-maintained (DEV-064/DEV-090) and GAP-011 already establishes that a bulk
+   propagation into it can *drop* edges rather than fix them. The narrow option mirrors GAP-011's:
+   a one-way, decision-backed re-key of surviving rows only, never a wholesale overwrite.
+2. **Whether a reversed edge should be dropped or reversed.** Reversing it asserts a claim the
+   reviewer did not review; dropping it loses a relationship the passage does state. The correction
+   channel (ADR-023 §3) answers this for `variant_claims` and does not yet answer it for
+   `relationships`, which has no candidate/overlay distinction.
+3. **Whether an `audit/` check should assert the two files agree.** Same question GAP-011 leaves
+   open, and it would spend detector budget for both. `extraction/claim_edge_reconcile.py` (B12) is
+   deliberately *not* that check: it lives outside the `audit` package, spends no budget, and reports
+   rather than gates — which is the right posture while the 162 are unsorted, and the wrong one once
+   they are.
+
+**References:** `docs/adr/adr-023-rejection-typing-and-correction-channel.md`;
+`docs/adr/adr-004-seed-data-extraction-strategy.md` Amendment 2;
+`docs/TODO-phase2-stage-p5.md` (B9–B13, C0, F5); `docs/DEVIATIONS.md` #DEV-150;
+`docs/DATA-GAPS.md` GAP-011 (the same failure at the resolver layer), GAP-007/GAP-008 (the
+"seeded table is not review-gated" precedent); `ingestion/extraction/conflict_detector.py`
+(`_RELATION_TO_CLAIM`), `ingestion/audit/claim_direction.py` (A14, `parse_parent`).

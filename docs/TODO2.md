@@ -570,6 +570,28 @@ floors hold across a 3-run eval; the relevant ADR/DEV entries are logged.
       > and a **re-decision of D4's namesake exclusion**, whose "not fixable by a spelling alias"
       > premise ADR-022 retired. **Every figure in Track D predates P6's re-extraction and must be
       > re-derived before the bound is fixed.** Detail in the checklist's Track D banner.
+      > **Track B reopened 2026-08-01, interrupting C1 between batches 9 and 10**
+      > `[DEVIATED - see DEVIATIONS.md #DEV-150]` — **ADR-023**, **GAP-012**. B1–B8 built an engine
+      > that is efficient at *deciding* rows and unable to *write* anything but a verdict, and the
+      > cost of that is measured: a rejection records no reason (all 639), **51% of the rejected
+      > `parentage` rows with a derivable inverse key (283 of 560) have no corrected counterpart
+      > anywhere in the 9,096-row pool** (of which 101 corrections are seedable today), and **162
+      > rejected claims still have their mirror `parent_of` edge in the ungated `relationships`
+      > input** — GAP-012, the GAP-011 shape on a new seam. Re-extraction does not recover any of it:
+      > A14's rule fires only where the source attests the reversed reading and never the correct
+      > one, so the same model reproduces the same reversal, and re-extraction re-keys every reviewed
+      > decision besides. **B9–B13** add typed rejections and a reviewer-authored correction overlay;
+      > **C0** spends 62 reads on the 101 seedable corrections; **F5** holds the residue.
+      > **The interrupt is prospective, not retroactive** — and it required an **amendment to the
+      > findings rule** (below), because the finding driving it is class 2 and class 1 is otherwise
+      > the only class that interrupts. The standing 639 are largely reachable: **252 of their 268
+      > passages still hold tier-3 rows**, so the queue returns and F5 types **390** of them for free;
+      > only **249 rows at 16 passages** are stranded. What is irreversible is what comes next — a
+      > reading batch *finishes* its passages (only **6** of the **23** C1 has adjudicated still hold
+      > a tier-3 row), so every rejection written on the current engine is permanent residue at once,
+      > at ~**14 per batch**, along with every correction that was on screen. **Detector budget: zero
+      > spent** — B9/B12 live outside the `audit` package (P6's location invariant) and B11 edits A16,
+      > exempt as an instrument.
 - [ ] **P5a** — numeric data (**activates ADR-009 → Accepted**): `contingents` table (new V-number),
       bounded extraction reusing instructor/checkpoint + `ref_ranges.py`, seedgen extension, numeric
       gold questions incl. one `ship_count` conflict
@@ -602,9 +624,10 @@ floors hold across a 3-run eval; the relevant ADR/DEV entries are logged.
 
 → Detailed checklist: [`TODO-phase2-stage-p5.md`](TODO-phase2-stage-p5.md) — created 2026-07-30
   (DEV-128), figures and track arithmetic corrected same day (DEV-129), five execution-blocking
-  contradictions fixed same day (DEV-130). 6 tracks (A–F), **43 items** (A 13, B 9, C 6, D 4, E 7,
-  F 4), plus a **standing-rules block** (the seeding rule + the findings rule) that governs every
-  track. **Track A is the serial gate:** nothing else starts until `python -m audit --only A16`
+  contradictions fixed same day (DEV-130). 6 tracks (A–F), **50 items** (A 13, B 14, C 7, D 4, E 7,
+  F 5) — 43 at creation, **+7 on 2026-08-01 for the rejection half of the engine** (B9–B13, C0, F5;
+  ADR-023, GAP-012, `[DEVIATED - see DEVIATIONS.md #DEV-150]`) — plus a **standing-rules block** (the
+  seeding rule + the findings rule) that governs every track. **Track A is the serial gate:** nothing else starts until `python -m audit --only A16`
   answers "are we drifting?" in one command. B and D fan out after it; C is the serial batch loop and
   the bulk of the stage. **Three items run out of alphabetical order** — see the *Track order* block
   at the foot of that file: **E5** creates the backlog artifact and moves the 347 A2 scope waivers
@@ -755,6 +778,18 @@ modified, so E1's "A16 is the last one" holds.
   but it reports against the *decided* fraction, never the *seeded* one, and can never satisfy a
   batch's exit criterion on its own. That last clause is what would have caught 2026-07-29/30, where
   286 rejections and 4 promotions read as two days of progress.
+  **A correction is coverage** `[DEVIATED - see DEVIATIONS.md #DEV-150]`. A row authored into
+  `ingestion/extraction/output/claim_corrections.json` from an open segment (ADR-023) is a seeded row
+  and counts exactly like a promotion — it passes the same entity-presence and 4-tuple dedup filters
+  and lands in the same A16 numerator. Every batch reports **corrections authored ÷
+  `reversed_direction` rejections**, and a batch whose reversed-direction rejections exceed its
+  corrections names why in its rationale. Without this clause, the one above makes a reversal-heavy
+  batch read as pure loss, and a batch would rationally respond by adjudicating *around* reversals
+  instead of correcting them — the same drift the clause above exists to prevent, arriving by the
+  other door. It is the direct answer to the measured fact that **283 of the 560 rejected `parentage`
+  rows with a derivable inverse key — 51%** — had no corrected counterpart anywhere in the pool
+  (`extraction/rejection_audit.py`, P5-0 B9; the remaining 21 of the 581 yield no inverse key and are
+  uncheckable by that join rather than negative).
   **A batch's audit gate is exit 0 with a non-growing deferral count**, not exit 0 alone
   `[DEVIATED - see DEVIATIONS.md #DEV-130]`. Scope-shaped waivers move to a backlog artifact whose
   findings report `DEFERRED` — excluded from `AuditRun.exit_code`, counted per check every run — so a
@@ -780,6 +815,17 @@ modified, so E1's "A16 is the last one" holds.
   number for the table being worked is not an interrupt. **One destination:** classes 3–5 land in
   `docs/DATA-GAPS.md` with a "rows at stake" line, so routing is not losing. This composes with
   "Root cause first" above — that rule governs *how* to fix, this one governs *whether to fix now*.
+  **Amended 2026-08-01** `[DEVIATED - see DEVIATIONS.md #DEV-150]`: **a class-2 finding may also
+  interrupt when the loss is irreversible**, and only if all three hold — **(a)** the defect destroys
+  information the batch had on screen, so the loss is taken at write time; **(b)** the passage leaves
+  the queue in the same act, so class 3's "the queue brings it back on its own" is measurably
+  unavailable; **(c)** the per-batch rate of loss is stated with its construction. **Class 4's "never
+  built mid-batch" is amended identically and only for tooling whose absence is what makes (a) true.**
+  P5-0's B9–B13 is the case this was written for and the only one so far. It is written as an
+  amendment because the original justification claimed the queue never returns to *any* of the 639
+  standing rejections — false (252 of 268 passages are still queued, 390 rows return for free), and
+  clause (b) is exactly what separates that backlog, which is class 3, from what each further batch
+  writes. Without this stated, the next class-2 finding inherits a precedent the rule text forbids.
 - **A recorded figure names its construction, or it is not recorded.** Added 2026-07-30 based on
   DEV-129 (see DEVIATIONS.md). Any count quoted in a doc states the query, script or function call
   that produced it — enough to re-derive, per the existing "state the layer" rule. **Why:** DEV-128

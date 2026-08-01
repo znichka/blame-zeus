@@ -68,6 +68,13 @@ blame-zeus/
 │   ├── loader/                 (source_registry.py, text_cleaner.py)
 │   ├── chunker/                (text_chunker.py)
 │   ├── pipeline/               (embedding_pipeline.py)
+│   ├── extraction/             (offline seed extraction, ADR-004; PLANNED per ADR-023/B9/B12, the
+│   │                            ZERO-BUDGET tooling that will deliberately live OUTSIDE audit/:
+│   │                            rejection_audit.py, claim_edge_reconcile.py — detector budget in TODO2.md)
+│   │   └── output/             (candidate JSONs; PLANNED per ADR-023/B11: claim_corrections.json,
+│   │                            the reviewer-authored overlay seedgen will read alongside them)
+│   ├── audit/                  (A1–A16 checks, promotion_log.json, backlog.json)
+│   ├── seedgen/                (generates V10–V12 from the curated candidate files)
 │   └── main.py
 └── evaluation/
     └── gold-questions.json
@@ -125,6 +132,14 @@ variant_claims(id, subject_entity_id→entities, claim_type, claim_value, source
   --   so runtime ConflictLookup can match by exact equality (claim_type = normalize(probeClaimType)) and both
   --   rows of a conflict share one claim_type value. Surface variants live only in the extraction candidates.
   -- contested relationships keep ONE canonical edge in `relationships` (spine-preferred); the contradiction lives here
+  -- PLANNED, NOT YET BUILT (ADR-023 is **Proposed**; DEV-150 changed no code) -- seeding will read TWO
+  --   files: the tier-1 rows of `variant_claims_candidates.json` AND reviewer-authored rows in
+  --   `claim_corrections.json`, unioned in _reviewed_rows and passed through the same entity-presence +
+  --   4-tuple dedup filters. A rejected candidate row will carry a `rejection_reason` from ADR-023's
+  --   closed vocabulary. TODAY: seedgen reads the candidate file alone, and no `rejection_reason`,
+  --   `claim_corrections.json` or `_REVIEW_OWNED_FIELDS` exists -- P5-0 items B10/B11 build them.
+  --   `reversed_direction` also implicates the mirror `parent_of` edge in the UNGATED `relationships`
+  --   input, which is GAP-012 (open regardless of ADR-023's status).
 
 narrative_chunks(id, content, content_hash GENERATED AS md5(content), embedding vector(3072), source_id TEXT→sources, passage_ref, metadata JSONB, embedding_model TEXT)
   -- UNIQUE(source_id, passage_ref, content_hash)
@@ -191,6 +206,7 @@ Full rules in `docs/TECH_GUARDRAILS.md`. Critical ones:
 - **Public-domain translations only** — Frazer 1921, Evelyn-White 1914, Murray 1919–1924; no modern translations
 - **No HTML scraping** — corpus loaded from local .txt files in `ingestion/corpus/`
 - **Review-gated `variant_claims`** — LLM-extracted candidates (ADR-004, Amendment 1 per DEV-135), but no row enters the runtime table without explicit per-row developer review and promotion to `trust_tier=1`; no unreviewed automated insertion. "Per-row" binds the *evidence* (every promoted or rejected row is individually displayed with its matched span or full segment, and individually recorded in `promotion_log.json`), not the *action* — a batch approval/rejection covering many rows at once is fine as long as every row cleared that bar
+- **A rejection is typed, and a reviewer may author the correction** — **ADR-023 is `Proposed` and unbuilt; this describes the rule once P5-0 B10/B11 land, not current code** (ADR-023 + ADR-004 **Amendment 2**, per DEV-150). A rejection writes `trust_tier=2` **plus a `rejection_reason`** from a closed eight-value vocabulary — a reasonless rejection raises. Where the reviewer rejects because the open segment attests something else, they may author the corrected row into `ingestion/extraction/output/claim_corrections.json`, which `seedgen` seeds like a promoted candidate and A16 counts in both numerator and ceiling. This does **not** loosen the gate: an overlay row must cite the `source_id`/`passage_ref` of a segment actually opened, carry the `evidence_span` it was authored from, name the rejection it `corrects`, and be confirmed per-row by a human — a machine-proposed correction nobody confirmed is a candidate, not a correction, and auto-insertion stays forbidden. Corrections live in that separate overlay file and **never** in `variant_claims_candidates.json`, whose merge-on-write (`run_extraction._write_claims_preserving_review`) deletes any reviewed row extraction no longer produces — and it never produces a reviewer-authored one. That merge carries `_REVIEW_OWNED_FIELDS = ("trust_tier", "rejection_reason")` across a re-extraction; anything outside that whitelist is destroyed by the next run
 - **The `ingestion/audit/` seeding rule and findings rule** (Stage P5, `docs/TODO2.md` `## Cross-cutting rules`) — every seeding batch (Track C/D only) names its target table/row-count up front and closes only on an `A16` (`coverage.py`) coverage move, always stated against the reachable ceiling, never the raw candidate pool; at most one new `audit/` check per 250 net rows seeded (bugfixes to an existing check spend the same budget); a defect surfaced mid-batch is routed by the 5-class scheme, not chased immediately
 
 ## Corpus & Data Sources

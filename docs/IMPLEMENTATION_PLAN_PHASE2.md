@@ -397,6 +397,11 @@ surface forms; the RAG backstop is the designed complement).
 
 ## 6. New structured data types & gap discovery (P5)
 
+> ⚠️ Deviations occurred in this stage. See DEVIATIONS.md for details — **DEV-128/129/130** (the
+> re-scope: **P5-0**, corpus-complete seeding of the *existing* tables, was inserted ahead of the
+> sub-stages below and owns the stage; **P5b is frozen**) and **DEV-150** (Track B reopened for typed
+> rejections and a reviewer-authored correction channel — ADR-023, ADR-004 Amendment 2, GAP-012).
+
 Independently shippable sub-stages, each with its own gold questions and schema-prompt co-evolution
 (schema comments + `SchemaIntrospector` vocabulary, frequency-ordered per DEV-041):
 
