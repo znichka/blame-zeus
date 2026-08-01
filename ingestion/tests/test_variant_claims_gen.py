@@ -1,4 +1,6 @@
 from seedgen.variant_claims_gen import (
+    _reviewed_rows,
+    build_correction_rows,
     build_variant_claim_rows,
     check_floor_conflicts,
     warn_near_duplicate_claim_types,
@@ -15,6 +17,22 @@ def _claim(subject, claim_type, value, source_id, trust_tier=1, passage_ref="1.1
         "source_id": source_id,
         "trust_tier": trust_tier,
         "passage_ref": passage_ref,
+    }
+
+
+def _correction(subject, claim_type, value, source_id, corrects, passage_ref="1.1"):
+    return {
+        "subject_name": subject,
+        "claim_type": claim_type,
+        "claim_value": value,
+        "source_id": source_id,
+        "passage_ref": passage_ref,
+        "trust_tier": 1,
+        "origin": "review-correction",
+        "corrects": list(corrects),
+        "evidence_span": "some span",
+        "batchLabel": "test-batch",
+        "date": "2026-08-01",
     }
 
 
@@ -107,3 +125,74 @@ def test_warn_near_duplicate_claim_types_no_warning_when_alias_map_already_unifi
     ]
     alias_map = {"notable_claim": "notable_claim", "notable claim": "notable_claim"}
     assert warn_near_duplicate_claim_types(claims, alias_map) == []
+
+
+# B11 (ADR-023): correction overlay tests
+
+
+def test_correction_appears_in_reviewed_rows_when_subject_known():
+    c = _correction("Zeus", "parentage", "child of Cronus", "hesiod-theogony",
+                    corrects=("Cronus", "parentage", "child of Zeus", "hesiod-theogony", "1.1"))
+    rows = _reviewed_rows([], {"Zeus"}, ALIAS_MAP, corrections=[c])
+    assert len(rows) == 1
+    assert rows[0]["subject_name"] == "Zeus"
+
+
+def test_correction_dropped_when_subject_unknown():
+    c = _correction("Unknown", "parentage", "child of Zeus", "hesiod-theogony",
+                    corrects=("Zeus", "parentage", "child of Unknown", "hesiod-theogony", "1.1"))
+    rows = _reviewed_rows([], {"Zeus"}, ALIAS_MAP, corrections=[c])
+    assert rows == []
+
+
+def test_correction_deduplicated_against_promoted_candidate():
+    # Same 4-tuple already promoted -- correction is silently dropped.
+    candidate = _claim("Achilles", "death", "shot by Paris", "homer-iliad", trust_tier=1)
+    c = _correction("Achilles", "death", "shot by Paris", "homer-iliad",
+                    corrects=("X", "death", "Y", "homer-iliad", "1.1"))
+    rows = _reviewed_rows([candidate], {"Achilles"}, ALIAS_MAP, corrections=[c])
+    assert len(rows) == 1  # only one row, not two
+
+
+def test_build_correction_rows_empty_for_no_corrections():
+    assert build_correction_rows([], {"Zeus"}, ALIAS_MAP) == []
+
+
+def test_build_correction_rows_produces_tuple_with_entity_fk():
+    c = _correction("Zeus", "parentage", "child of Cronus", "hesiod-theogony",
+                    corrects=("Cronus", "parentage", "child of Zeus", "hesiod-theogony", "1.1"))
+    rows = build_correction_rows([c], {"Zeus"}, ALIAS_MAP)
+    assert len(rows) == 1
+    # tuple: (entity_fk, claim_type, claim_value, source_id, trust_tier, passage_ref)
+    assert rows[0][1] == "parentage"
+    assert rows[0][2] == "child of Cronus"
+    assert rows[0][3] == "hesiod-theogony"
+    assert rows[0][4] == 1
+
+
+def test_build_correction_rows_skips_promoted_candidate_duplicate():
+    candidate = _claim("Zeus", "parentage", "child of Cronus", "hesiod-theogony", trust_tier=1)
+    c = _correction("Zeus", "parentage", "child of Cronus", "hesiod-theogony",
+                    corrects=("Cronus", "parentage", "child of Zeus", "hesiod-theogony", "1.1"))
+    rows = build_correction_rows([c], {"Zeus"}, ALIAS_MAP, variant_claims=[candidate])
+    assert rows == []
+
+
+def test_check_floor_conflicts_satisfied_by_correction():
+    # A floor conflict that has no promoted candidates can be satisfied by a correction.
+    corrections = [
+        _correction("Aphrodite", "parentage", "child of Zeus", "homer-iliad",
+                    corrects=("Zeus", "parentage", "child of Aphrodite", "homer-iliad", "1.1")),
+        _correction("Aphrodite", "parentage", "child of Ouranos", "hesiod-theogony",
+                    corrects=("Ouranos", "parentage", "child of Aphrodite", "hesiod-theogony", "1.1")),
+        _correction("Io", "parentage", "child of Inachus", "apollodorus-bibliotheca",
+                    corrects=("Inachus", "parentage", "child of Io", "apollodorus-bibliotheca", "1.1")),
+        _correction("Io", "parentage", "child of Piren", "apollodorus-bibliotheca",
+                    corrects=("Piren", "parentage", "child of Io", "apollodorus-bibliotheca", "1.2")),
+        _correction("Achilles", "death", "shot by Paris", "homer-iliad",
+                    corrects=("Paris", "death", "shot by Achilles", "homer-iliad", "1.1")),
+        _correction("Achilles", "death", "killed by Apollo", "homer-iliad",
+                    corrects=("Apollo", "death", "killed by Achilles", "homer-iliad", "1.2")),
+    ]
+    warnings = check_floor_conflicts([], {"Aphrodite", "Io", "Achilles"}, ALIAS_MAP, corrections=corrections)
+    assert warnings == []

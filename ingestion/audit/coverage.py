@@ -39,7 +39,7 @@ from audit.contract import CheckResult
 from audit.drop_accounting import compute_drop_accounting
 from audit.group_inventory import build_group_inventory
 from audit.prominence import _entity_alias_map
-from seedgen.variant_claims_gen import _reviewed_rows
+from seedgen.variant_claims_gen import DEFAULT_CORRECTIONS_PATH, _reviewed_rows, load_corrections
 
 NAME = "A16"
 
@@ -71,12 +71,16 @@ def variant_claims_ceilings(
     entity_names: set[str],
     claim_type_alias_map: dict[str, str],
     entity_alias_map: dict[str, str],
+    corrections: list[dict] = (),
 ) -> dict:
     """A2a: both reachable ceilings (rows and surfaceable-conflict groups),
     derived by reusing seedgen's own promotion filter against a tier-blind copy
     of every candidate -- simulating "if every candidate were reviewed and
     approved" -- rather than reimplementing it, so neither ceiling can drift
     from what `seedgen` actually promotes.
+
+    corrections (B11, ADR-023): overlay rows counted in both the numerator and
+    the ceiling; the printed derivation chain gains a `+N overlay` term.
 
     A group's reachability depends only on whether its subject exists in
     `entity_names`: the 4-tuple dedup collapse `_reviewed_rows` also applies
@@ -86,10 +90,15 @@ def variant_claims_ceilings(
     therefore never flips a group's surfaceable/reachable status -- only the
     subject-absent filter does that, by dropping every row for that subject."""
     tier_blind = [{**c, "trust_tier": 1} for c in claims]
-    subject_present = [c for c in tier_blind if c["subject_name"] in entity_names]
-    reviewed = _reviewed_rows(tier_blind, entity_names, claim_type_alias_map)
+    overlay_count = len(corrections)
+    # _reviewed_rows unions overlay after candidates; same entity-presence and 4-tuple
+    # dedup apply, so a correction duplicating a tier-blind candidate is silently dropped.
+    reviewed = _reviewed_rows(tier_blind, entity_names, claim_type_alias_map, corrections)
 
-    dropped_subject_absent = len(tier_blind) - len(subject_present)
+    # Drop accounting over the full combined pool (tier_blind + overlay).
+    combined = tier_blind + [{**c, "trust_tier": 1} for c in corrections]
+    subject_present = [c for c in combined if c["subject_name"] in entity_names]
+    dropped_subject_absent = len(combined) - len(subject_present)
     dropped_dedup_collapse = len(subject_present) - len(reviewed)
 
     groups = build_group_inventory(claims, claim_type_alias_map, entity_alias_map)
@@ -99,6 +108,7 @@ def variant_claims_ceilings(
 
     return {
         "candidates": len(tier_blind),
+        "overlayCount": overlay_count,
         "droppedSubjectAbsent": dropped_subject_absent,
         "droppedDedupCollapse": dropped_dedup_collapse,
         "reachableRows": len(reviewed),
@@ -116,6 +126,7 @@ def build_coverage(
     claim_type_alias_map: dict[str, str],
     relation_alias_map: dict[str, tuple[str, bool]],
     entity_alias_map: dict[str, str],
+    corrections: list[dict] = (),
 ) -> dict:
     """Pure core -- no I/O. Six metric lines: entities, relationships, and
     variant_claims' headline plus two secondaries, plus the frozen myths line."""
@@ -125,7 +136,7 @@ def build_coverage(
     entities_seeded = live_counts["entities"]
     entities_namespace_ceiling = entities_seeded + len(drop.unknown_names)
 
-    ceilings = variant_claims_ceilings(claims, entity_names, claim_type_alias_map, entity_alias_map)
+    ceilings = variant_claims_ceilings(claims, entity_names, claim_type_alias_map, entity_alias_map, corrections)
     tier1_2 = sum(1 for c in claims if c.get("trust_tier") in (1, 2))
 
     return {
@@ -171,6 +182,7 @@ def build_coverage(
             },
             "ceilingDerivation": {
                 "candidates": ceilings["candidates"],
+                "overlayCount": ceilings["overlayCount"],
                 "droppedSubjectAbsent": ceilings["droppedSubjectAbsent"],
                 "droppedDedupCollapse": ceilings["droppedDedupCollapse"],
                 "reachableRows": ceilings["reachableRows"],
@@ -193,6 +205,9 @@ def format_summary(coverage: dict) -> str:
     r = coverage["relationships"]
     vc = coverage["variantClaims"]
     m = coverage["mythsAndParticipants"]
+    cd = vc["ceilingDerivation"]
+    overlay_count = cd.get("overlayCount", 0)
+    overlay_suffix = f" + {overlay_count} overlay" if overlay_count else ""
     return "\n".join(
         [
             f"entities: {e['seeded']}/{e['nameSpaceCeiling']} = {_pct(e['coverage'])} "
@@ -207,10 +222,10 @@ def format_summary(coverage: dict) -> str:
             f"variant_claims row coverage (secondary, against the {vc['rowCoverage']['reachableCeiling']}-row "
             f"reachable ceiling): {vc['rowCoverage']['seeded']}/{vc['rowCoverage']['reachableCeiling']} = "
             f"{_pct(vc['rowCoverage']['coverage'])}",
-            f"  ceiling derivation: {vc['ceilingDerivation']['candidates']} candidates -> "
-            f"-{vc['ceilingDerivation']['droppedSubjectAbsent']} (subject absent from entities) -> "
-            f"-{vc['ceilingDerivation']['droppedDedupCollapse']} (4-tuple dedup collapse) -> "
-            f"{vc['ceilingDerivation']['reachableRows']} reachable",
+            f"  ceiling derivation: {cd['candidates']} candidates{overlay_suffix} -> "
+            f"-{cd['droppedSubjectAbsent']} (subject absent from entities) -> "
+            f"-{cd['droppedDedupCollapse']} (4-tuple dedup collapse) -> "
+            f"{cd['reachableRows']} reachable",
             f"myths/myth_participants: {m['myths']}/{m['mythParticipants']} -- {m['status']}",
         ]
     )
@@ -237,6 +252,7 @@ def run(candidates_dir: Path | None, db_conn: object | None, coverage_path: Path
     entities = _load(candidates_dir / DEFAULT_ENTITIES_PATH.name)
     relationships = _load(candidates_dir / DEFAULT_RELATIONSHIPS_PATH.name)
     claims = _load(candidates_dir / DEFAULT_CLAIMS_PATH.name)
+    corrections = load_corrections(DEFAULT_CORRECTIONS_PATH)
 
     claim_type_alias_map = load_alias_map(db_conn)
     relation_alias_map = load_relation_alias_map(db_conn)
@@ -244,7 +260,8 @@ def run(candidates_dir: Path | None, db_conn: object | None, coverage_path: Path
     live_counts = load_live_counts(db_conn)
 
     coverage = build_coverage(
-        entities, relationships, claims, live_counts, claim_type_alias_map, relation_alias_map, entity_alias_map
+        entities, relationships, claims, live_counts, claim_type_alias_map, relation_alias_map, entity_alias_map,
+        corrections=corrections,
     )
 
     coverage_path.parent.mkdir(parents=True, exist_ok=True)

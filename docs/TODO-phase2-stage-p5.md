@@ -606,7 +606,7 @@ emit a finding.
       `unclassified_legacy`).
       **Exit:** a batch cannot record a reasonless rejection; a `run_extraction` re-run carries all
       639 codes across (0 lost), asserted in the existing merge unit tests.
-- [ ] **B11** — **The correction channel.** New `extraction/output/claim_corrections.json` (six
+- [x] **B11** — **The correction channel.** New `extraction/output/claim_corrections.json` (six
       candidate fields + `origin`, `corrects`, `evidence_span`, `batchLabel`, `date`), consumed by
       `seedgen/variant_claims_gen._reviewed_rows` — unioned in, then passed through the **same**
       entity-presence and 4-tuple dedup filters, because an overlay row is not exempt from the
