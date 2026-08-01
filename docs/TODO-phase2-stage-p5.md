@@ -72,7 +72,10 @@ promoted surfaceable conflict. Of all 795 alias-resolved `(subject, canonical cl
 
 Seeded counts are `grep -cE "^\s*\("` over V10/V11/V12 and agree with the live DB exactly.
 **A16 replaces this whole table on first run** (Track A), because hand-quoted counts are exactly
-what goes stale — as the alias-blind figures above demonstrate.
+what goes stale — as the alias-blind figures above demonstrate. **All figures above are
+pre-P6 (2026-07-30 baseline)** `[DEVIATED - see DEVIATIONS.md #DEV-149]` — candidate pool
+7,429 → 9,096; `entities` 1,990 → 1,995; edge coverage 48.9% → 49.1%; group space 795/715 →
+see C1's figure note. A16 re-derives everything on first run of batch 4.
 
 ### The drift is real and measurable
 
@@ -248,6 +251,8 @@ retroactively, DEV-125 through DEV-127 were all class 3 or 4 treated as class 1.
       never the raw candidate pool" rule, which the first draft of this row broke while the row
       secondary two lines down obeyed it. Print the pool beside it (`62/715 = 8.7%, pool 764`) so
       both numbers are visible and the stage's terminal target is legibly **715/715**, not 715/764.
+      **715 is pre-P6** `[DEVIATED - see DEVIATIONS.md #DEV-149]` — the reachable group count moved
+      with the 9,096-row pool; A2a re-derives the actual terminal target. See C1's figure note.
 
       Two layer notes that will otherwise read as contradictions on first run:
       - The `entities` **denominator is the reference name-space (2,337), not the 2,594 raw
