@@ -1299,6 +1299,21 @@ artifact reaches both gaps.
 
 **Rows at stake** (E6's mandatory line):
 - **≥82** confirmed candidate rows, from 7 of 1,059 passages.
+
+> **G5 bounded-sweep residue, recorded 2026-07-31 (DEV-147) — the "one destination" the findings
+> rule requires.** The sweep ran the G1 ledger + G6 risk signal across all **1,122 passages that
+> carry candidate rows**, offline at zero API cost, and produced the first measured denominator:
+> **3,897 eligible tier-3 `(name, passage)` pairs** (HIGH risk, name is a live entity, not already
+> registry-covered). G5 worked the top **25** by the sweep's parent-conflict ranking and confirmed
+> **18** as genuine splits (72%).
+>
+> **Rows at stake below the bound: 3,872 `(name, passage)` pairs covering 7,219 tier-3 candidate
+> rows across 838 distinct names; 404 of those pairs carry the parent-conflict signal.** These are
+> *candidates*, not confirmed instances — the base rate of true identity errors over the 7
+> adjudicated passages is **27%**, and the ranking's precision falls from 90% at N=10 to 33% at
+> N=100, so the residue is an upper bound on suspicion, not an estimate of defects. Working it needs
+> per-pair reading exactly as the top 25 did; it is not automatable at any precision this stage
+> measured.
 - **Five defects already in live data, 7-11 rows, three tables** — the class-1 set, enumerated once
   in `docs/TODO-phase2-stage-p6.md` → *The class-1 set* and referenced (not restated) here:
   | item | defect | table | rows |

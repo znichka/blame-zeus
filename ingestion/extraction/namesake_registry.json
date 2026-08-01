@@ -313,5 +313,131 @@
     "passage_ref": "1.2.1-1.2.7",
     "identity": "Lysianassa (Nereid)",
     "reason": "GAP-010, DEV-138 (Track C1 batch 3): Apollodorus's Nereid catalogue at 1.2.7. Same figures as the Theogony 233-269 catalogue, same collision. Keys in promotion_log batch p5-track-c1-batch3-apollodorus-bibliotheca-1.2.1-1.2.7. Paired with the Theogony 233-269 entry for the same figure: seeding one catalogue but not the other would split one Nereid across two sources and destroy the cross-source conflict detection this table exists for."
+  },
+  {
+    "name": "Antiochus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "1.8.3-1.8.5",
+    "identity": "Antiochus (son of Melas)",
+    "reason": "GAP-010, Stage P6 G5 bounded sweep (DEV-147). Adjudicated by hand against this passage's own segment: one of the sons of Melas who plotted against Oeneus, not Antiochus son of Phylas (Heracles' line) or son of Pterelaus. The bare name stays with the higher-prominence figure per ADR-022 mechanism 3. Surfaced by the sweep's parent-conflict ranking (the parent named here is disjoint from every parent this name carries in other passages) and confirmed by reading, never promoted by the signal (ADR-004 Amendment 1)."
+  },
+  {
+    "name": "Sthenelaus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "1.8.3-1.8.5",
+    "identity": "Sthenelaus (son of Melas)",
+    "reason": "GAP-010, Stage P6 G5 bounded sweep (DEV-147). Adjudicated by hand against this passage's own segment: another of Melas's plotting sons, not the Sthenelaus who is son of Ithaemenes. The bare name stays with the higher-prominence figure per ADR-022 mechanism 3. Surfaced by the sweep's parent-conflict ranking (the parent named here is disjoint from every parent this name carries in other passages) and confirmed by reading, never promoted by the signal (ADR-004 Amendment 1)."
+  },
+  {
+    "name": "Euryalus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "1.8.3-1.8.5",
+    "identity": "Euryalus (son of Melas)",
+    "reason": "GAP-010, Stage P6 G5 bounded sweep (DEV-147). Adjudicated by hand against this passage's own segment: a third of Melas's sons, not Euryalus son of Mecisteus, the Argonaut and Epigonus. The bare name stays with the higher-prominence figure per ADR-022 mechanism 3. Surfaced by the sweep's parent-conflict ranking (the parent named here is disjoint from every parent this name carries in other passages) and confirmed by reading, never promoted by the signal (ADR-004 Amendment 1)."
+  },
+  {
+    "name": "Glaucus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.1.2-3.1.4",
+    "identity": "Glaucus (son of Minos)",
+    "reason": "GAP-010, Stage P6 G5 bounded sweep (DEV-147). Adjudicated by hand against this passage's own segment: Minos and Pasiphae's son, the boy who drowned in the honey jar -- not the Lycian Glaucus of Bellerophon's line (son of Hippolochus), nor Glaucus son of Sisyphus. The bare name stays with the higher-prominence figure per ADR-022 mechanism 3. Surfaced by the sweep's parent-conflict ranking (the parent named here is disjoint from every parent this name carries in other passages) and confirmed by reading, never promoted by the signal (ADR-004 Amendment 1)."
+  },
+  {
+    "name": "Agenor",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.5.6-3.5.7",
+    "identity": "Agenor (son of Amphion)",
+    "reason": "GAP-010, Stage P6 G5 bounded sweep (DEV-147). Adjudicated by hand against this passage's own segment: one of Niobe and Amphion's seven sons killed by Apollo, not the Phoenician Agenor, father of Europa and Cadmus. The bare name stays with the higher-prominence figure per ADR-022 mechanism 3. Surfaced by the sweep's parent-conflict ranking (the parent named here is disjoint from every parent this name carries in other passages) and confirmed by reading, never promoted by the signal (ADR-004 Amendment 1)."
+  },
+  {
+    "name": "Astyoche",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.5.6-3.5.7",
+    "identity": "Astyoche (daughter of Amphion)",
+    "reason": "GAP-010, Stage P6 G5 bounded sweep (DEV-147). Adjudicated by hand against this passage's own segment: one of Niobe and Amphion's daughters, not Astyoche daughter of Phylas (Tlepolemus's mother) nor Laomedon's daughter. The bare name stays with the higher-prominence figure per ADR-022 mechanism 3. Surfaced by the sweep's parent-conflict ranking (the parent named here is disjoint from every parent this name carries in other passages) and confirmed by reading, never promoted by the signal (ADR-004 Amendment 1)."
+  },
+  {
+    "name": "Agenor",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.1.2-2.1.3",
+    "identity": "Agenor (son of Ecbasus)",
+    "reason": "GAP-010, Stage P6 G5 bounded sweep (DEV-147). Adjudicated by hand against this passage's own segment: the Argive Agenor, father of the all-seeing Argus, not the Phoenician Agenor of Europa's line. The bare name stays with the higher-prominence figure per ADR-022 mechanism 3. Surfaced by the sweep's parent-conflict ranking (the parent named here is disjoint from every parent this name carries in other passages) and confirmed by reading, never promoted by the signal (ADR-004 Amendment 1)."
+  },
+  {
+    "name": "Polyphemus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "1.9.16",
+    "identity": "Polyphemus (son of Elatus)",
+    "reason": "GAP-010, Stage P6 G5 bounded sweep (DEV-147). Adjudicated by hand against this passage's own segment: the Lapith Argonaut in the crew catalogue, not the Cyclops, son of Poseidon and Thoosa, whom Odysseus blinds. The bare name stays with the higher-prominence figure per ADR-022 mechanism 3. Surfaced by the sweep's parent-conflict ranking (the parent named here is disjoint from every parent this name carries in other passages) and confirmed by reading, never promoted by the signal (ADR-004 Amendment 1)."
+  },
+  {
+    "name": "Actor",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "1.9.16",
+    "identity": "Actor (son of Hippasus)",
+    "reason": "GAP-010, Stage P6 G5 bounded sweep (DEV-147). Adjudicated by hand against this passage's own segment: the Argonaut in the crew catalogue; the corpus carries at least three other figures of this name (sons of Deion, Myrmidon, and the father of Menoetius). The bare name stays with the higher-prominence figure per ADR-022 mechanism 3. Surfaced by the sweep's parent-conflict ranking (the parent named here is disjoint from every parent this name carries in other passages) and confirmed by reading, never promoted by the signal (ADR-004 Amendment 1)."
+  },
+  {
+    "name": "Actor",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "1.7.1-1.7.3",
+    "identity": "Actor (son of Myrmidon)",
+    "reason": "GAP-010, Stage P6 G5 bounded sweep (DEV-147). Adjudicated by hand against this passage's own segment: Pisidice's son by Myrmidon in the Deucalionid genealogy, distinct from the Argonaut son of Hippasus and from Deion's son. The bare name stays with the higher-prominence figure per ADR-022 mechanism 3. Surfaced by the sweep's parent-conflict ranking (the parent named here is disjoint from every parent this name carries in other passages) and confirmed by reading, never promoted by the signal (ADR-004 Amendment 1)."
+  },
+  {
+    "name": "Actor",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "1.9.2-1.9.7",
+    "identity": "Actor (son of Deion)",
+    "reason": "GAP-010, Stage P6 G5 bounded sweep (DEV-147). Adjudicated by hand against this passage's own segment: Deion and Diomede's son, brother of Phylacus and Cephalus -- a third distinct Actor. The bare name stays with the higher-prominence figure per ADR-022 mechanism 3. Surfaced by the sweep's parent-conflict ranking (the parent named here is disjoint from every parent this name carries in other passages) and confirmed by reading, never promoted by the signal (ADR-004 Amendment 1)."
+  },
+  {
+    "name": "Pallas",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.15.3-3.15.5",
+    "identity": "Pallas (son of Pandion)",
+    "reason": "GAP-010, Stage P6 G5 bounded sweep (DEV-147). Adjudicated by hand against this passage's own segment: the Attic Pallas, brother of Aegeus and Nisus, whose sons Theseus later fights -- not Pallas the Titan (son of Crius and Eurybia) nor Pallas son of Lycaon. The bare name stays with the higher-prominence figure per ADR-022 mechanism 3. Surfaced by the sweep's parent-conflict ranking (the parent named here is disjoint from every parent this name carries in other passages) and confirmed by reading, never promoted by the signal (ADR-004 Amendment 1)."
+  },
+  {
+    "name": "Orestes",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "1.7.1-1.7.3",
+    "identity": "Orestes (son of Achelous)",
+    "reason": "GAP-010, Stage P6 G5 bounded sweep (DEV-147). Adjudicated by hand against this passage's own segment: Perimede's son by Achelous in the Aeolid genealogy, not Agamemnon and Clytaemnestra's son. The bare name stays with the higher-prominence figure per ADR-022 mechanism 3. Surfaced by the sweep's parent-conflict ranking (the parent named here is disjoint from every parent this name carries in other passages) and confirmed by reading, never promoted by the signal (ADR-004 Amendment 1)."
+  },
+  {
+    "name": "Antiphus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "E.3.34-E.4.5",
+    "identity": "Antiphus (son of Talaemenes)",
+    "reason": "GAP-010, Stage P6 G5 bounded sweep (DEV-147). Adjudicated by hand against this passage's own segment: the Maeonian leader in the Trojan catalogue, not Priam's son Antiphus nor Myrmidon's son. The bare name stays with the higher-prominence figure per ADR-022 mechanism 3. Surfaced by the sweep's parent-conflict ranking (the parent named here is disjoint from every parent this name carries in other passages) and confirmed by reading, never promoted by the signal (ADR-004 Amendment 1)."
+  },
+  {
+    "name": "Adrastus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "E.3.34-E.4.5",
+    "identity": "Adrastus (son of Merops)",
+    "reason": "GAP-010, Stage P6 G5 bounded sweep (DEV-147). Adjudicated by hand against this passage's own segment: the Adrastian contingent leader in the Trojan catalogue, not Adrastus son of Talaus, king of Argos and leader of the Seven. The bare name stays with the higher-prominence figure per ADR-022 mechanism 3. Surfaced by the sweep's parent-conflict ranking (the parent named here is disjoint from every parent this name carries in other passages) and confirmed by reading, never promoted by the signal (ADR-004 Amendment 1)."
+  },
+  {
+    "name": "Eurydice",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "3.12.3-3.12.4",
+    "identity": "Eurydice (daughter of Adrastus)",
+    "reason": "GAP-010, Stage P6 G5 bounded sweep (DEV-147). Adjudicated by hand against this passage's own segment: Ilus's wife and Laomedon's mother in the Trojan line, not Eurydice daughter of Lacedaemon nor Orpheus's wife. The bare name stays with the higher-prominence figure per ADR-022 mechanism 3. Surfaced by the sweep's parent-conflict ranking (the parent named here is disjoint from every parent this name carries in other passages) and confirmed by reading, never promoted by the signal (ADR-004 Amendment 1)."
+  },
+  {
+    "name": "Eurypylus",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "1.7.9-1.8.1",
+    "identity": "Eurypylus (son of Thestius)",
+    "reason": "GAP-010, Stage P6 G5 bounded sweep (DEV-147). Adjudicated by hand against this passage's own segment: one of Thestius and Eurythemis's sons in the Aetolian genealogy, not Eurypylus son of Euaemon (the Thessalian at Troy) nor Poseidon's son. The bare name stays with the higher-prominence figure per ADR-022 mechanism 3. Surfaced by the sweep's parent-conflict ranking (the parent named here is disjoint from every parent this name carries in other passages) and confirmed by reading, never promoted by the signal (ADR-004 Amendment 1)."
+  },
+  {
+    "name": "Sarpedon",
+    "source_id": "apollodorus-bibliotheca",
+    "passage_ref": "2.5.9",
+    "identity": "Sarpedon (son of Poseidon)",
+    "reason": "GAP-010, Stage P6 G5 bounded sweep (DEV-147). Adjudicated by hand against this passage's own segment: the Aenian whom Heracles shot on the beach, brother of Poltys -- not the Lycian Sarpedon, son of Zeus, who dies at Troy. The bare name stays with the higher-prominence figure per ADR-022 mechanism 3. Surfaced by the sweep's parent-conflict ranking (the parent named here is disjoint from every parent this name carries in other passages) and confirmed by reading, never promoted by the signal (ADR-004 Amendment 1)."
   }
 ]

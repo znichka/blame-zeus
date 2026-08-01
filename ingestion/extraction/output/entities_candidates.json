@@ -1530,7 +1530,7 @@
     "domain": null
   },
   {
-    "name": "Orestes",
+    "name": "Orestes (son of Achelous)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -1548,7 +1548,7 @@
     "domain": null
   },
   {
-    "name": "Actor",
+    "name": "Actor (son of Myrmidon)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -1878,7 +1878,7 @@
     "domain": null
   },
   {
-    "name": "Eurypylus",
+    "name": "Eurypylus (son of Thestius)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -2082,6 +2082,12 @@
     "domain": null
   },
   {
+    "name": "Actor",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Atalanta",
     "type": "hero",
     "generation": null,
@@ -2178,7 +2184,7 @@
     "domain": null
   },
   {
-    "name": "Euryalus",
+    "name": "Euryalus (son of Melas)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -2190,7 +2196,7 @@
     "domain": null
   },
   {
-    "name": "Antiochus",
+    "name": "Antiochus (son of Melas)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -2214,7 +2220,7 @@
     "domain": null
   },
   {
-    "name": "Sthenelaus",
+    "name": "Sthenelaus (son of Melas)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -2467,6 +2473,12 @@
   },
   {
     "name": "Aenetus",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Actor (son of Deion)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -2844,6 +2856,12 @@
     "domain": null
   },
   {
+    "name": "Euryalus",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Lycurgus (son of Pronax)",
     "type": "mortal",
     "generation": null,
@@ -3018,6 +3036,12 @@
     "domain": null
   },
   {
+    "name": "Actor (son of Hippasus)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Hippasus",
     "type": "mortal",
     "generation": null,
@@ -3126,7 +3150,7 @@
     "domain": null
   },
   {
-    "name": "Polyphemus",
+    "name": "Polyphemus (son of Elatus)",
     "type": "hero",
     "generation": null,
     "domain": null
@@ -3176,6 +3200,12 @@
   {
     "name": "Mysia",
     "type": "place",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Polyphemus",
+    "type": "hero",
     "generation": null,
     "domain": null
   },
@@ -3475,6 +3505,12 @@
   },
   {
     "name": "Criasus",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Agenor (son of Ecbasus)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -4566,6 +4602,12 @@
     "domain": null
   },
   {
+    "name": "Antiochus",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Chersidamas",
     "type": "mortal",
     "generation": null,
@@ -5118,7 +5160,7 @@
     "domain": null
   },
   {
-    "name": "Sarpedon",
+    "name": "Sarpedon (son of Poseidon)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -5353,6 +5395,12 @@
   },
   {
     "name": "Priam",
+    "type": "king",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Eurypylus",
     "type": "king",
     "generation": null,
     "domain": null
@@ -6156,6 +6204,12 @@
     "domain": null
   },
   {
+    "name": "Orestes",
+    "type": "hero",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Cleodaeus",
     "type": "mortal",
     "generation": null,
@@ -6270,6 +6324,12 @@
     "domain": null
   },
   {
+    "name": "Sarpedon",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Laodamia",
     "type": "mortal",
     "generation": null,
@@ -6307,6 +6367,12 @@
   },
   {
     "name": "Crete",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Glaucus (son of Minos)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -6636,6 +6702,12 @@
     "domain": null
   },
   {
+    "name": "Agenor (son of Amphion)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Phaedimus",
     "type": "mortal",
     "generation": null,
@@ -6649,6 +6721,12 @@
   },
   {
     "name": "Cleodoxa",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Astyoche (daughter of Amphion)",
     "type": "mortal",
     "generation": null,
     "domain": null
@@ -7944,6 +8022,12 @@
     "domain": null
   },
   {
+    "name": "Eurydice (daughter of Adrastus)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Strymo",
     "type": "mortal",
     "generation": null,
@@ -8748,6 +8832,12 @@
     "domain": null
   },
   {
+    "name": "Pallas (son of Pandion)",
+    "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Nisus",
     "type": "mortal",
     "generation": null,
@@ -9204,6 +9294,12 @@
     "domain": null
   },
   {
+    "name": "Adrastus (son of Merops)",
+    "type": "hero",
+    "generation": null,
+    "domain": null
+  },
+  {
     "name": "Amphius",
     "type": "hero",
     "generation": null,
@@ -9247,6 +9343,12 @@
   },
   {
     "name": "Mesthles",
+    "type": "hero",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Antiphus (son of Talaemenes)",
     "type": "hero",
     "generation": null,
     "domain": null
@@ -13094,6 +13196,12 @@
   {
     "name": "Agacles",
     "type": "mortal",
+    "generation": null,
+    "domain": null
+  },
+  {
+    "name": "Sthenelaus",
+    "type": "hero",
     "generation": null,
     "domain": null
   },

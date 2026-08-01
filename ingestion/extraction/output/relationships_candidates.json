@@ -3058,7 +3058,7 @@
   {
     "from_name": "Perimede",
     "relation": "parent_of",
-    "to_name": "Orestes",
+    "to_name": "Orestes (son of Achelous)",
     "is_contested": false,
     "passage_ref": "1.7.1-1.7.3",
     "source_id": "apollodorus-bibliotheca"
@@ -3066,7 +3066,7 @@
   {
     "from_name": "Achelous",
     "relation": "parent_of",
-    "to_name": "Orestes",
+    "to_name": "Orestes (son of Achelous)",
     "is_contested": false,
     "passage_ref": "1.7.1-1.7.3",
     "source_id": "apollodorus-bibliotheca"
@@ -3090,7 +3090,7 @@
   {
     "from_name": "Pisidice",
     "relation": "parent_of",
-    "to_name": "Actor",
+    "to_name": "Actor (son of Myrmidon)",
     "is_contested": false,
     "passage_ref": "1.7.1-1.7.3",
     "source_id": "apollodorus-bibliotheca"
@@ -3098,7 +3098,7 @@
   {
     "from_name": "Myrmidon",
     "relation": "parent_of",
-    "to_name": "Actor",
+    "to_name": "Actor (son of Myrmidon)",
     "is_contested": false,
     "passage_ref": "1.7.1-1.7.3",
     "source_id": "apollodorus-bibliotheca"
@@ -3682,7 +3682,7 @@
   {
     "from_name": "Thestius",
     "relation": "parent_of",
-    "to_name": "Eurypylus",
+    "to_name": "Eurypylus (son of Thestius)",
     "is_contested": false,
     "passage_ref": "1.7.9-1.8.1",
     "source_id": "apollodorus-bibliotheca"
@@ -3738,7 +3738,7 @@
   {
     "from_name": "Eurythemis",
     "relation": "parent_of",
-    "to_name": "Eurypylus",
+    "to_name": "Eurypylus (son of Thestius)",
     "is_contested": false,
     "passage_ref": "1.7.9-1.8.1",
     "source_id": "apollodorus-bibliotheca"
@@ -4330,7 +4330,7 @@
   {
     "from_name": "Melas",
     "relation": "parent_of",
-    "to_name": "Euryalus",
+    "to_name": "Euryalus (son of Melas)",
     "is_contested": true,
     "passage_ref": "1.8.3-1.8.5",
     "source_id": "apollodorus-bibliotheca"
@@ -4346,7 +4346,7 @@
   {
     "from_name": "Melas",
     "relation": "parent_of",
-    "to_name": "Antiochus",
+    "to_name": "Antiochus (son of Melas)",
     "is_contested": true,
     "passage_ref": "1.8.3-1.8.5",
     "source_id": "apollodorus-bibliotheca"
@@ -4378,7 +4378,7 @@
   {
     "from_name": "Melas",
     "relation": "parent_of",
-    "to_name": "Sthenelaus",
+    "to_name": "Sthenelaus (son of Melas)",
     "is_contested": true,
     "passage_ref": "1.8.3-1.8.5",
     "source_id": "apollodorus-bibliotheca"
@@ -4962,7 +4962,7 @@
   {
     "from_name": "Deion",
     "relation": "parent_of",
-    "to_name": "Actor",
+    "to_name": "Actor (son of Deion)",
     "is_contested": false,
     "passage_ref": "1.9.2-1.9.7",
     "source_id": "apollodorus-bibliotheca"
@@ -5002,7 +5002,7 @@
   {
     "from_name": "Diomede",
     "relation": "parent_of",
-    "to_name": "Actor",
+    "to_name": "Actor (son of Deion)",
     "is_contested": false,
     "passage_ref": "1.9.2-1.9.7",
     "source_id": "apollodorus-bibliotheca"
@@ -6408,7 +6408,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Actor",
+    "from_name": "Actor (son of Hippasus)",
     "relation": "parent_of",
     "to_name": "Menoetius",
     "is_contested": false,
@@ -6418,7 +6418,7 @@
   {
     "from_name": "Hippasus",
     "relation": "parent_of",
-    "to_name": "Actor",
+    "to_name": "Actor (son of Hippasus)",
     "is_contested": false,
     "passage_ref": "1.9.16",
     "source_id": "apollodorus-bibliotheca"
@@ -6594,7 +6594,7 @@
   {
     "from_name": "Elatus",
     "relation": "parent_of",
-    "to_name": "Polyphemus",
+    "to_name": "Polyphemus (son of Elatus)",
     "is_contested": false,
     "passage_ref": "1.9.16",
     "source_id": "apollodorus-bibliotheca"
@@ -7306,13 +7306,13 @@
   {
     "from_name": "Ecbasus",
     "relation": "parent_of",
-    "to_name": "Agenor",
+    "to_name": "Agenor (son of Ecbasus)",
     "is_contested": false,
     "passage_ref": "2.1.2-2.1.3",
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Agenor",
+    "from_name": "Agenor (son of Ecbasus)",
     "relation": "parent_of",
     "to_name": "Argus Panoptes",
     "is_contested": false,
@@ -10410,7 +10410,7 @@
   {
     "from_name": "Poseidon",
     "relation": "parent_of",
-    "to_name": "Sarpedon",
+    "to_name": "Sarpedon (son of Poseidon)",
     "is_contested": false,
     "passage_ref": "2.5.9",
     "source_id": "apollodorus-bibliotheca"
@@ -10418,7 +10418,7 @@
   {
     "from_name": "Poltys",
     "relation": "parent_of",
-    "to_name": "Sarpedon",
+    "to_name": "Sarpedon (son of Poseidon)",
     "is_contested": false,
     "passage_ref": "2.5.9",
     "source_id": "apollodorus-bibliotheca"
@@ -10504,7 +10504,7 @@
     "source_id": "apollodorus-bibliotheca"
   },
   {
-    "from_name": "Sarpedon",
+    "from_name": "Sarpedon (son of Poseidon)",
     "relation": "killed_by",
     "to_name": "Heracles",
     "is_contested": false,
@@ -13170,7 +13170,7 @@
   {
     "from_name": "Minos",
     "relation": "parent_of",
-    "to_name": "Glaucus",
+    "to_name": "Glaucus (son of Minos)",
     "is_contested": false,
     "passage_ref": "3.1.2-3.1.4",
     "source_id": "apollodorus-bibliotheca"
@@ -13994,7 +13994,7 @@
   {
     "from_name": "Niobe",
     "relation": "parent_of",
-    "to_name": "Agenor",
+    "to_name": "Agenor (son of Amphion)",
     "is_contested": false,
     "passage_ref": "3.5.6-3.5.7",
     "source_id": "apollodorus-bibliotheca"
@@ -14042,7 +14042,7 @@
   {
     "from_name": "Niobe",
     "relation": "parent_of",
-    "to_name": "Astyoche",
+    "to_name": "Astyoche (daughter of Amphion)",
     "is_contested": false,
     "passage_ref": "3.5.6-3.5.7",
     "source_id": "apollodorus-bibliotheca"
@@ -17994,7 +17994,7 @@
   {
     "from_name": "Ilus",
     "relation": "married_to",
-    "to_name": "Eurydice",
+    "to_name": "Eurydice (daughter of Adrastus)",
     "is_contested": false,
     "passage_ref": "3.12.3-3.12.4",
     "source_id": "apollodorus-bibliotheca"
@@ -18002,7 +18002,7 @@
   {
     "from_name": "Adrastus",
     "relation": "parent_of",
-    "to_name": "Eurydice",
+    "to_name": "Eurydice (daughter of Adrastus)",
     "is_contested": false,
     "passage_ref": "3.12.3-3.12.4",
     "source_id": "apollodorus-bibliotheca"
@@ -20370,7 +20370,7 @@
   {
     "from_name": "Pandion",
     "relation": "parent_of",
-    "to_name": "Pallas",
+    "to_name": "Pallas (son of Pandion)",
     "is_contested": false,
     "passage_ref": "3.15.3-3.15.5",
     "source_id": "apollodorus-bibliotheca"
@@ -21914,7 +21914,7 @@
   {
     "from_name": "Merops",
     "relation": "parent_of",
-    "to_name": "Adrastus",
+    "to_name": "Adrastus (son of Merops)",
     "is_contested": false,
     "passage_ref": "E.3.34-E.4.5",
     "source_id": "apollodorus-bibliotheca"
@@ -22002,7 +22002,7 @@
   {
     "from_name": "Talaemenes",
     "relation": "parent_of",
-    "to_name": "Antiphus",
+    "to_name": "Antiphus (son of Talaemenes)",
     "is_contested": false,
     "passage_ref": "E.3.34-E.4.5",
     "source_id": "apollodorus-bibliotheca"

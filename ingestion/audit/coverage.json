@@ -19,25 +19,25 @@
   "variantClaims": {
     "headline": {
       "promoted": 171,
-      "reachable": 710,
-      "pool": 781,
-      "coverage": 0.24084507042253522
+      "reachable": 709,
+      "pool": 780,
+      "coverage": 0.24118476727785615
     },
     "decidedFraction": {
       "decided": 1032,
-      "candidates": 9108,
-      "coverage": 0.11330698287220026
+      "candidates": 9096,
+      "coverage": 0.11345646437994723
     },
     "rowCoverage": {
       "seeded": 518,
-      "reachableCeiling": 5903,
-      "coverage": 0.08775199051329832
+      "reachableCeiling": 5877,
+      "coverage": 0.08814020758890591
     },
     "ceilingDerivation": {
-      "candidates": 9108,
-      "droppedSubjectAbsent": 810,
+      "candidates": 9096,
+      "droppedSubjectAbsent": 824,
       "droppedDedupCollapse": 2395,
-      "reachableRows": 5903
+      "reachableRows": 5877
     }
   },
   "mythsAndParticipants": {

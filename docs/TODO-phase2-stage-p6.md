@@ -378,7 +378,7 @@ coverage 48.92% → 49.1%; contested_collapse 1,035 → 1,026).
 
 ## Track G5 — Bounded sweep of everything else
 
-- [ ] **G5.1** — Run the G1 ledger + G6 risk signal across all **1,059** passages **offline, at zero
+- [x] **G5.1** — Run the G1 ledger + G6 risk signal across all **1,059** passages **offline, at zero
       API cost**, and rank. "Offline" means **no LLM calls and no re-extraction** — it does *not*
       mean no segment reading: two of G6's four signals (`surface_absent`, `catalogue_context`) are
       computed *from* segment text, and `assess_collision_risk` takes `segment_text` as a parameter.
@@ -386,13 +386,21 @@ coverage 48.92% → 49.1%; contested_collapse 1,035 → 1,026).
       `review_passage` uses. Running the sweep without them would leave G6.2's HIGH rule with neither
       conjunct of either disjunct and silently reduce the ranking to `established_elsewhere` alone —
       the exact hand-ranking this stage exists to remove.
-- [ ] **G5.2** — **Size N from the exit criterion, not from a round number.** P5 Track D is the
+- [x] **G5.2** — **Size N from the exit criterion, not from a round number.** P5 Track D is the
       precedent: its 20-name bound was measurably unreachable and had to be raised to 60 after the
       yield was computed. Fix N only after G5.1 produces a real denominator.
-- [ ] **G5.3** — Work the top-N by A8 prominence (`audit/prominence.py`), splitting via registry
+- [x] **G5.3** — Work the top-N by A8 prominence (`audit/prominence.py`), splitting via registry
       entries (one per `(name, passage)`) rather than per-row edits.
-- [ ] **G5.4** — Everything below the bound is recorded in `docs/DATA-GAPS.md` with its rows-at-stake
+- [x] **G5.4** — Everything below the bound is recorded in `docs/DATA-GAPS.md` with its rows-at-stake
       line, per the findings rule's "one destination".
+
+> **Outcome (DEV-147)** `[DEVIATED - see DEVIATIONS.md #DEV-147]` — denominator **3,897** eligible
+> tier-3 `(name, passage)` pairs across 1,122 passages. **G5.3's specified A8-prominence ranking
+> measured P@10 = 10%, *below* the 27% base rate**, and was replaced by a parent-conflict ranking
+> (P@10 = 90%, P@25 = 60%); **N = 25** sized from where precision stops beating 2x base rate.
+> Realised 18/25 = 72%; **+18 registry entries** (45 → 63). `entities` **+0** as declared (splits →
+> `Z_HOLD`, Track D); A16 relationships coverage **unchanged at 49.1%**, gate met. Residue in
+> GAP-010: 3,872 pairs / 7,219 rows / 838 names.
 
 **Row-yield hypothesis, stated as the findings rule requires — and stated honestly.** ≥82 instances
 in 7 passages does **not** linearly extrapolate to ~12,000: those 7 were the *highest-yield* passages
