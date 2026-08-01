@@ -15911,5 +15911,2577 @@
       ]
     ],
     "rejectedGroupCount": 2
+  },
+  {
+    "batchLabel": "p5-track-c1-batch9",
+    "date": "2026-08-01T11:21:09.515637+00:00",
+    "keys": [
+      [
+        "Hephaestus",
+        "parentage",
+        "child of Hera",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Hephaestus",
+        "parentage",
+        "child of Zeus",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Orpheus",
+        "parentage",
+        "child of Calliope",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Orpheus",
+        "parentage",
+        "child of Oeagrus",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Orpheus",
+        "parentage",
+        "child of Apollo",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Orpheus",
+        "parentage",
+        "Son of Calliope and Oeagrus, or nominally of Apollo",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Orpheus",
+        "marriage",
+        "married to Eurydice",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Orpheus",
+        "death",
+        "killed by Maenads",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Hyacinth",
+        "parentage",
+        "child of Clio",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Hyacinth",
+        "parentage",
+        "child of Pierus",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Hyacinth",
+        "death",
+        "killed by Apollo",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Rhesus",
+        "parentage",
+        "child of Strymon",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Rhesus",
+        "parentage",
+        "child of Euterpe",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Rhesus",
+        "parentage",
+        "child of Calliope",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Rhesus",
+        "death",
+        "killed by Diomedes",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Sirens",
+        "parentage",
+        "child of Achelous",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Sirens",
+        "parentage",
+        "child of Melpomene",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Linus",
+        "parentage",
+        "child of Calliope",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Linus",
+        "parentage",
+        "child of Oeagrus",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Linus",
+        "parentage",
+        "child of Apollo",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Linus",
+        "parentage",
+        "Son of Calliope and Oeagrus, or nominally of Apollo",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Thamyris",
+        "parentage",
+        "child of Philammon",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Thamyris",
+        "parentage",
+        "child of Argiope",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Corybantes",
+        "parentage",
+        "child of Apollo",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Corybantes",
+        "parentage",
+        "child of Thalia",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Zeus",
+        "parentage",
+        "child of Cronus",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Zeus",
+        "parentage",
+        "child of Rhea",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Poseidon",
+        "parentage",
+        "child of Cronus",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Hera",
+        "parentage",
+        "child of Cronus",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Hades",
+        "parentage",
+        "child of Cronus",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Hades",
+        "parentage",
+        "child of Rhea",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Demeter",
+        "parentage",
+        "child of Cronus",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Demeter",
+        "parentage",
+        "child of Rhea",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Cronus",
+        "parentage",
+        "child of Ouranos",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Cronus",
+        "parentage",
+        "child of Earth",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Cronus",
+        "marriage",
+        "married to Rhea",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Cronus",
+        "notable_claim",
+        "Swallowed his own children (Hestia, Demeter, Hera, Pluto, Poseidon) at birth to prevent being dethroned by a son, as foretold by Earth and Sky",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Oceanus",
+        "parentage",
+        "child of Ouranos",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Oceanus",
+        "parentage",
+        "child of Earth",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Tethys",
+        "parentage",
+        "child of Ouranos",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Tethys",
+        "parentage",
+        "child of Earth",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Hyperion",
+        "parentage",
+        "child of Ouranos",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Hyperion",
+        "parentage",
+        "child of Earth",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Phoebe",
+        "parentage",
+        "child of Ouranos",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Phoebe",
+        "parentage",
+        "child of Earth",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Mnemosyne",
+        "parentage",
+        "child of Ouranos",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Mnemosyne",
+        "parentage",
+        "child of Earth",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Iapetus",
+        "parentage",
+        "child of Ouranos",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Iapetus",
+        "parentage",
+        "child of Earth",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Themis",
+        "parentage",
+        "child of Ouranos",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Themis",
+        "parentage",
+        "child of Earth",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Coeus",
+        "parentage",
+        "child of Ouranos",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Coeus",
+        "parentage",
+        "child of Earth",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Dione",
+        "parentage",
+        "child of Ouranos",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Dione",
+        "parentage",
+        "child of Earth",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Thia",
+        "parentage",
+        "child of Ouranos",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Thia",
+        "parentage",
+        "child of Earth",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Tisiphone",
+        "parentage",
+        "child of Ouranos",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Rhea",
+        "parentage",
+        "child of Ouranos",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Rhea",
+        "parentage",
+        "child of Earth",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Rhea",
+        "notable_claim",
+        "Deceived Cronus by wrapping a stone in swaddling clothes and giving it to him to swallow instead of the infant Zeus",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Crius",
+        "parentage",
+        "child of Ouranos",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Crius",
+        "parentage",
+        "child of Earth",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Hestia",
+        "parentage",
+        "child of Cronus",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Hestia",
+        "parentage",
+        "child of Rhea",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Ouranos",
+        "marriage",
+        "married to Earth",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Arges",
+        "parentage",
+        "child of Ouranos",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Arges",
+        "parentage",
+        "child of Earth",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Steropes",
+        "parentage",
+        "child of Ouranos",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Steropes",
+        "parentage",
+        "child of Earth",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Brontes",
+        "parentage",
+        "child of Ouranos",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Brontes",
+        "parentage",
+        "child of Earth",
+        "apollodorus-bibliotheca",
+        "1.1.1-1.1.7"
+      ],
+      [
+        "Antiphus",
+        "parentage",
+        "child of Pisidice",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Antiphus",
+        "parentage",
+        "child of Myrmidon",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Hippodamas",
+        "parentage",
+        "child of Perimede",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Hippodamas",
+        "parentage",
+        "child of Achelous",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Athamas",
+        "parentage",
+        "child of Aeolus",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Athamas",
+        "parentage",
+        "child of Enarete",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Perieres",
+        "parentage",
+        "child of Aeolus",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Perieres",
+        "parentage",
+        "child of Enarete",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Deucalion",
+        "parentage",
+        "child of Prometheus",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Deucalion",
+        "marriage",
+        "married to Pyrrha",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Sisyphus",
+        "parentage",
+        "child of Aeolus",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Sisyphus",
+        "parentage",
+        "child of Enarete",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Alcyone",
+        "parentage",
+        "child of Aeolus",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Alcyone",
+        "parentage",
+        "child of Enarete",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Cretheus",
+        "parentage",
+        "child of Aeolus",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Cretheus",
+        "parentage",
+        "child of Enarete",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Aeolus",
+        "parentage",
+        "child of Hellen",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Aeolus",
+        "parentage",
+        "child of Orseis",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Aeolus",
+        "marriage",
+        "married to Enarete",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Salmoneus",
+        "parentage",
+        "child of Aeolus",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Salmoneus",
+        "parentage",
+        "child of Enarete",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Deion",
+        "parentage",
+        "child of Aeolus",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Deion",
+        "parentage",
+        "child of Enarete",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Creusa",
+        "parentage",
+        "child of Erechtheus",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Perimede",
+        "parentage",
+        "child of Aeolus",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Perimede",
+        "parentage",
+        "child of Enarete",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Xuthus",
+        "parentage",
+        "child of Hellen",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Xuthus",
+        "parentage",
+        "child of Orseis",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Pyrrha",
+        "parentage",
+        "child of Epimetheus",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Pyrrha",
+        "parentage",
+        "child of Pandora",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Amphictyon",
+        "parentage",
+        "child of Deucalion",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Amphictyon",
+        "parentage",
+        "child of Pyrrha",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Canace",
+        "parentage",
+        "child of Aeolus",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Canace",
+        "parentage",
+        "child of Enarete",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Magnes",
+        "parentage",
+        "child of Aeolus",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Magnes",
+        "parentage",
+        "child of Enarete",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Aethlius",
+        "parentage",
+        "child of Protogenia",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Aethlius",
+        "parentage",
+        "child of Zeus",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Calyce",
+        "parentage",
+        "child of Aeolus",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Calyce",
+        "parentage",
+        "child of Enarete",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Protogenia",
+        "parentage",
+        "child of Deucalion",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Protogenia",
+        "parentage",
+        "child of Pyrrha",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Hellen",
+        "parentage",
+        "child of Deucalion",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Hellen",
+        "parentage",
+        "child of Pyrrha",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Hellen",
+        "parentage",
+        "child of Zeus",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Dorus",
+        "parentage",
+        "child of Hellen",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Dorus",
+        "parentage",
+        "child of Orseis",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Achaeus",
+        "parentage",
+        "child of Xuthus",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Achaeus",
+        "parentage",
+        "child of Creusa",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Ion",
+        "parentage",
+        "child of Xuthus",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Ion",
+        "parentage",
+        "child of Creusa",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Pisidice",
+        "parentage",
+        "child of Aeolus",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Pisidice",
+        "parentage",
+        "child of Enarete",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Nestor",
+        "parentage",
+        "child of Neleus",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Nestor",
+        "parentage",
+        "child of Chloris",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Pisistratus",
+        "parentage",
+        "child of Nestor",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Pisistratus",
+        "parentage",
+        "child of Anaxibia daughter of Cratieus",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Thrasymedes",
+        "parentage",
+        "child of Nestor",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Thrasymedes",
+        "parentage",
+        "child of Anaxibia daughter of Cratieus",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Pheres",
+        "parentage",
+        "child of Cretheus",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Pheres",
+        "parentage",
+        "child of Tyro",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Aeson",
+        "parentage",
+        "child of Cretheus",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Aeson",
+        "parentage",
+        "child of Tyro",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Hippothoe",
+        "parentage",
+        "child of Pelias",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Neleus",
+        "parentage",
+        "child of Poseidon",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Neleus",
+        "parentage",
+        "child of Tyro",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Neleus",
+        "marriage",
+        "married to Chloris",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Melampus",
+        "parentage",
+        "child of Amythaon",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Melampus",
+        "parentage",
+        "child of Idomene",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Alcestis",
+        "parentage",
+        "child of Pelias",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Bias",
+        "parentage",
+        "child of Amythaon",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Bias",
+        "parentage",
+        "child of Idomene",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Pelopia",
+        "parentage",
+        "child of Pelias",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Pero",
+        "parentage",
+        "child of Neleus",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Pero",
+        "parentage",
+        "child of Chloris",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Alastor",
+        "parentage",
+        "child of Neleus",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Alastor",
+        "death",
+        "killed by Heracles",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Aretus",
+        "parentage",
+        "child of Nestor",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Aretus",
+        "parentage",
+        "child of Anaxibia daughter of Cratieus",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Asterius",
+        "parentage",
+        "child of Neleus",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Periclymenus",
+        "parentage",
+        "child of Neleus",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Periclymenus",
+        "parentage",
+        "child of Chloris",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Periclymenus",
+        "death",
+        "killed by Heracles",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Pelias",
+        "parentage",
+        "child of Poseidon",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Pelias",
+        "parentage",
+        "child of Tyro",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Chloris",
+        "parentage",
+        "child of Amphion",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Echephron",
+        "parentage",
+        "child of Nestor",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Echephron",
+        "parentage",
+        "child of Anaxibia daughter of Cratieus",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Eurybius",
+        "parentage",
+        "child of Neleus",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Evagoras",
+        "parentage",
+        "child of Neleus",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Amythaon",
+        "parentage",
+        "child of Cretheus",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Amythaon",
+        "parentage",
+        "child of Tyro",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Polycaste",
+        "parentage",
+        "child of Nestor",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Polycaste",
+        "parentage",
+        "child of Anaxibia daughter of Cratieus",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Stratichus",
+        "parentage",
+        "child of Nestor",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Stratichus",
+        "parentage",
+        "child of Anaxibia daughter of Cratieus",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Idomene",
+        "parentage",
+        "child of Pheres",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Tyro",
+        "parentage",
+        "child of Salmoneus",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Tyro",
+        "parentage",
+        "child of Alcidice",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Pisidice daughter of Nestor",
+        "parentage",
+        "child of Nestor",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Perseus son of Nestor",
+        "parentage",
+        "child of Nestor",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Alexander",
+        "notable_claim",
+        "fought single combat with Menelaus and was carried off by Aphrodite when he got the worst of it",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Aeneas",
+        "parentage",
+        "child of Anchises",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Aeneas",
+        "parentage",
+        "son of Anchises",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Aeneas",
+        "notable_claim",
+        "Aphrodite came to his help in battle and was wounded by Diomedes",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Sarpedon",
+        "parentage",
+        "child of Zeus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Sarpedon",
+        "parentage",
+        "son of Zeus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Glaucus",
+        "parentage",
+        "child of Hippolochus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Glaucus",
+        "parentage",
+        "son of Hippolochus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Asius",
+        "parentage",
+        "child of Hyrtacus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Asius",
+        "parentage",
+        "son of Hyrtacus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Chromius",
+        "parentage",
+        "child of Arsinous",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Chromius",
+        "parentage",
+        "son of Arsinous",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Pandarus",
+        "parentage",
+        "child of Lycaon",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Pandarus",
+        "parentage",
+        "son of Lycaon",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Pandarus",
+        "notable_claim",
+        "broke the truce by shooting an arrow at Menelaus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Phorcys",
+        "parentage",
+        "child of Aretaon",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Phorcys",
+        "parentage",
+        "son of Aretaon",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Rhesus",
+        "notable_claim",
+        "Thracian ally of the Trojans killed by Ulysses and Diomedes along with twelve sleeping men, and his horses driven to the ships",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Hippothous",
+        "parentage",
+        "child of Pelasgus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Hippothous",
+        "parentage",
+        "son of Pelasgus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Amphimachus",
+        "parentage",
+        "child of Nomion",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Amphimachus",
+        "parentage",
+        "son of Nomion",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Epistrophus",
+        "parentage",
+        "child of Mecisteus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Epistrophus",
+        "parentage",
+        "son of Mecisteus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Archelochus",
+        "parentage",
+        "child of Antenor",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Archelochus",
+        "parentage",
+        "son of Antenor",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Dolon",
+        "parentage",
+        "child of Eumelus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Dolon",
+        "parentage",
+        "son of Eumelus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Ennomus",
+        "parentage",
+        "child of Arsinous",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Ennomus",
+        "parentage",
+        "son of Arsinous",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Euphemus",
+        "parentage",
+        "child of Troezenus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Euphemus",
+        "parentage",
+        "son of Troezenus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Pylaemenes",
+        "parentage",
+        "child of Bilsates",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Pylaemenes",
+        "parentage",
+        "son of Bilsates",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Nastes",
+        "parentage",
+        "child of Nomion",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Nastes",
+        "parentage",
+        "son of Nomion",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Amphius",
+        "parentage",
+        "child of Merops",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Amphius",
+        "parentage",
+        "son of Merops",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Odius",
+        "parentage",
+        "child of Mecisteus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Odius",
+        "parentage",
+        "son of Mecisteus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Mesthles",
+        "parentage",
+        "child of Talaemenes",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Mesthles",
+        "parentage",
+        "son of Talaemenes",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Acamas (son of Antenor)",
+        "parentage",
+        "child of Antenor",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Acamas (son of Antenor)",
+        "parentage",
+        "son of Antenor",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Acamas (son of Eusorus)",
+        "parentage",
+        "child of Eusorus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Acamas (son of Eusorus)",
+        "parentage",
+        "son of Eusorus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Ascanius (son of Aretaon)",
+        "parentage",
+        "child of Aretaon",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Ascanius (son of Aretaon)",
+        "parentage",
+        "son of Aretaon",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Astyoche",
+        "parentage",
+        "child of Phylas",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Antiphus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Antiphus",
+        "parentage",
+        "child of Laothoe",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Tlepolemus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Tlepolemus",
+        "parentage",
+        "child of Astyoche",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Autonoe",
+        "parentage",
+        "child of Pireus",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Telephus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Telephus",
+        "parentage",
+        "child of Auge",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Agelaus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Agelaus",
+        "parentage",
+        "child of Omphale",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Deianira",
+        "parentage",
+        "child of Oeneus",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Astyanax",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Astyanax",
+        "parentage",
+        "child of Epilais",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Heracles",
+        "parentage",
+        "Fathered many sons by the fifty daughters of Thespius",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Heracles",
+        "death",
+        "Translated to the gods (apotheosis)",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Hyllus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Hyllus",
+        "parentage",
+        "child of Deianira",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Eumedes",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Eumedes",
+        "parentage",
+        "child of Lyse",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Chalciope",
+        "parentage",
+        "child of Eurypylus (father of Chalciope)",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Auge",
+        "parentage",
+        "child of Aleus",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Megara",
+        "parentage",
+        "child of Creon (king of Thebes)",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Antimachus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Antimachus",
+        "parentage",
+        "child of Nicippe",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Bucolus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Bucolus",
+        "parentage",
+        "child of Marse",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Everes",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Everes",
+        "parentage",
+        "child of Parthenope",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Eurybius",
+        "parentage",
+        "child of Eurystheus",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Therimachus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Therimachus",
+        "parentage",
+        "child of Megara",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Creontiades",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Creontiades",
+        "parentage",
+        "child of Megara",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Deicoon",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Deicoon",
+        "parentage",
+        "child of Megara",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Archemachus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Archemachus",
+        "parentage",
+        "child of Patro",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Antileon",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Antileon",
+        "parentage",
+        "child of Procris",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Hippeus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Hippeus",
+        "parentage",
+        "child of Procris",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Threpsippas",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Threpsippas",
+        "parentage",
+        "child of Panope",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Iobes",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Iobes",
+        "parentage",
+        "child of Certhe",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Polylaus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Polylaus",
+        "parentage",
+        "child of Eurybia",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Laomedon (son of Hercules)",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Laomedon (son of Hercules)",
+        "parentage",
+        "child of Meline",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Eurycapys",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Eurycapys",
+        "parentage",
+        "child of Clytippe",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Eurypylus (son of Hercules)",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Eurypylus (son of Hercules)",
+        "parentage",
+        "child of Eubote",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Antiades",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Antiades",
+        "parentage",
+        "child of Aglaia",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Onesippus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Onesippus",
+        "parentage",
+        "child of Chryseis",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Laomenes",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Laomenes",
+        "parentage",
+        "child of Oria",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Teles",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Teles",
+        "parentage",
+        "child of Lysidice",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Entelides",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Entelides",
+        "parentage",
+        "child of Menippis",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Hippodromus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Hippodromus",
+        "parentage",
+        "child of Anthippe",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Teleutagoras",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Capylus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Capylus",
+        "parentage",
+        "child of Hippo",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Olympus (son of Hercules)",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Olympus (son of Hercules)",
+        "parentage",
+        "child of Euboea",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Nicodromus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Nicodromus",
+        "parentage",
+        "child of Nice",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Cleolaus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Cleolaus",
+        "parentage",
+        "child of Argele",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Erythras",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Erythras",
+        "parentage",
+        "child of Exole",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Homolippus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Homolippus",
+        "parentage",
+        "child of Xanthis",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Atromus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Atromus",
+        "parentage",
+        "child of Stratonice",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Celeustanor",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Celeustanor",
+        "parentage",
+        "child of Iphis",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Alopius",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Alopius",
+        "parentage",
+        "child of Antiope (daughter of Thespius)",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Astybies",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Astybies",
+        "parentage",
+        "child of Calametis",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Tigasis",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Tigasis",
+        "parentage",
+        "child of Phyleis",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Leucones",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Leucones",
+        "parentage",
+        "child of Aeschreis",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Archedicus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Archedicus",
+        "parentage",
+        "child of Eurypyle",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Dynastes",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Dynastes",
+        "parentage",
+        "child of Erato (daughter of Thespius)",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Mentor (son of Hercules)",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Mentor (son of Hercules)",
+        "parentage",
+        "child of Asopis",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Amestrius",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Amestrius",
+        "parentage",
+        "child of Eone",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Phalias",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Phalias",
+        "parentage",
+        "child of Heliconis",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Oestrobles",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Oestrobles",
+        "parentage",
+        "child of Hesychia",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Euryopes",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Euryopes",
+        "parentage",
+        "child of Terpsicrate",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Buleus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Buleus",
+        "parentage",
+        "child of Elachia",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Patroclus (son of Hercules)",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Patroclus (son of Hercules)",
+        "parentage",
+        "child of Pyrippe",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Nephus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Nephus",
+        "parentage",
+        "child of Praxithea",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Erasippus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Erasippus",
+        "parentage",
+        "child of Lysippe",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Lycurgus (son of Hercules)",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Lycurgus (son of Hercules)",
+        "parentage",
+        "child of Toxicrate",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Leucippus (son of Hercules)",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Leucippus (son of Hercules)",
+        "parentage",
+        "child of Eurytele",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Hippozygus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Hippozygus",
+        "parentage",
+        "child of Hippocrate",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Ctesippus (son of Deianira)",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Ctesippus (son of Deianira)",
+        "parentage",
+        "child of Deianira",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Glenus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Glenus",
+        "parentage",
+        "child of Deianira",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Onites",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Onites",
+        "parentage",
+        "child of Deianira",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Thettalus",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Thettalus",
+        "parentage",
+        "child of Chalciope",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Ctesippus (son of Astydamia)",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Ctesippus (son of Astydamia)",
+        "parentage",
+        "child of Astydamia",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Palaemon (son of Hercules)",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Palaemon (son of Hercules)",
+        "parentage",
+        "child of Autonoe",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Halocrates",
+        "parentage",
+        "child of Heracles",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ],
+      [
+        "Halocrates",
+        "parentage",
+        "child of Olympusa",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ]
+    ],
+    "groupCount": 353,
+    "rejectedKeys": [
+      [
+        "Thalia",
+        "parentage",
+        "child of Zeus",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Thalia",
+        "parentage",
+        "child of Eurynome",
+        "apollodorus-bibliotheca",
+        "1.3.1-1.3.5"
+      ],
+      [
+        "Hellen",
+        "parentage",
+        "some say Hellen's father was Zeus, not Deucalion",
+        "apollodorus-bibliotheca",
+        "1.7.1-1.7.3"
+      ],
+      [
+        "Periclymenus",
+        "parentage",
+        "child of Poseidon",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Pisidice daughter of Nestor",
+        "parentage",
+        "child of Anaxibia daughter of Cratieus",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Perseus son of Nestor",
+        "parentage",
+        "child of Anaxibia daughter of Cratieus",
+        "apollodorus-bibliotheca",
+        "1.9.8-1.9.11"
+      ],
+      [
+        "Odysseus",
+        "death",
+        "killed by Dolon",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Odysseus",
+        "death",
+        "killed by Rhesus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Diomedes",
+        "death",
+        "killed by Dolon",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Diomedes",
+        "death",
+        "killed by Rhesus",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Briseis",
+        "parentage",
+        "child of Chryses",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Briseis",
+        "parentage",
+        "daughter of Chryses the priest",
+        "apollodorus-bibliotheca",
+        "E.3.34-E.4.5"
+      ],
+      [
+        "Teleutagoras",
+        "parentage",
+        "child of Eury...",
+        "apollodorus-bibliotheca",
+        "2.7.8-2.8.1"
+      ]
+    ],
+    "rejectedGroupCount": 13
   }
 ]
