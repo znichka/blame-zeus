@@ -214,6 +214,10 @@ DEFAULT_TRUST_TIER = 3
 # since neither ever hardcoded "1" as the only non-default value.
 REJECTED_TRUST_TIER = 2
 
+# B10 (ADR-023): the two fields a review decision writes. Extraction owns which claims
+# exist and sets every other field; only these survive a re-extraction merge.
+_REVIEW_OWNED_FIELDS = ("trust_tier", "rejection_reason")
+
 # Everything that identifies the claim itself. `trust_tier` is excluded on purpose: it is
 # the mutable review verdict layered on top of that identity, and is what we carry over.
 _CLAIM_IDENTITY = ("subject_name", "claim_type", "claim_value", "source_id", "passage_ref")
@@ -235,7 +239,7 @@ def _write_claims_preserving_review(path: Path, rows: list[dict]) -> None:
     risk becomes structural there.
 
     The merge is deliberately one-directional: **the extraction owns which claims exist,
-    review owns their trust_tier.** A promoted row whose claim the extraction no longer
+    review owns `_REVIEW_OWNED_FIELDS`.** A promoted row whose claim the extraction no longer
     produces is *not* resurrected -- keeping it would reinstate a claim no source supports,
     which is a worse failure than losing the review. Such drops are reported, not silent.
 
@@ -244,7 +248,7 @@ def _write_claims_preserving_review(path: Path, rows: list[dict]) -> None:
     seedgen reads (`entities_candidates_confirmed_v1.json`,
     `relationships_candidates_cleaned.json`), so a re-run cannot clobber review there.
     """
-    reviewed: dict[tuple, int] = {}
+    reviewed: dict[tuple, dict] = {}
     if path.exists():
         try:
             existing = json.loads(path.read_text(encoding="utf-8"))
@@ -254,21 +258,21 @@ def _write_claims_preserving_review(path: Path, rows: list[dict]) -> None:
                 "hold trust_tier promotions. Inspect or move it, then re-run."
             )
         reviewed = {
-            _claim_key(r): r["trust_tier"]
+            _claim_key(r): {f: r[f] for f in _REVIEW_OWNED_FIELDS if f in r}
             for r in existing
             if r.get("trust_tier", DEFAULT_TRUST_TIER) != DEFAULT_TRUST_TIER
         }
 
     carried = 0
     for row in rows:
-        tier = reviewed.get(_claim_key(row))
-        if tier is not None:
-            row["trust_tier"] = tier
+        fields = reviewed.get(_claim_key(row))
+        if fields is not None:
+            row.update(fields)
             carried += 1
 
     _write_json(path, rows)
     if reviewed:
-        carried_tiers = [reviewed[_claim_key(row)] for row in rows if _claim_key(row) in reviewed]
+        carried_tiers = [reviewed[_claim_key(row)].get("trust_tier") for row in rows if _claim_key(row) in reviewed]
         promoted = sum(1 for t in carried_tiers if t == 1)
         rejected = sum(1 for t in carried_tiers if t == REJECTED_TRUST_TIER)
         other = carried - promoted - rejected

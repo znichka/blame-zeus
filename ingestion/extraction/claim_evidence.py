@@ -131,6 +131,31 @@ def cross_check_alias_layers(db_conn: object, known_aliases_path: Path | None = 
 # --- B3: bucket a tier-3 row by what its own cited passage segment attests ---
 
 
+# B10 (ADR-023): closed eight-value rejection vocabulary. A rejection that fits none of
+# the seven substantive codes signals the vocabulary needs extending, not free text.
+REJECTION_REASONS = frozenset({
+    "reversed_direction",      # claim says A is child of B; passage attests B is child of A
+    "wrong_subject_namesake",  # right fact, wrong figure (GAP-009/GAP-010 shape)
+    "not_in_passage",          # cited segment does not say this (buckets D/E)
+    "misread_idiom",           # vocative, epithet or Homeric formula parsed as a claim
+    "malformed_subject",       # subject is <UNKNOWN>, <none> or empty
+    "duplicate_of_promoted",   # already represented by another promoted row
+    "true_but_unattributable", # claim is true but this source does not say it
+    "unclassified_legacy",     # rejection recorded before this ADR (transitional)
+})
+
+_LEGACY_REJECTION_REASON = "unclassified_legacy"
+
+
+def parse_rejected_key_entry(entry: "list | dict") -> "tuple[list, str]":
+    """Read one ``rejectedKeys`` item from ``promotion_log.json``, accepting both the
+    current ``{"key": [...], "reason": "..."}`` shape (B10+) and the legacy bare
+    5-element list shape (pre-B10, reads as ``unclassified_legacy``)."""
+    if isinstance(entry, dict):
+        return entry["key"], entry["reason"]
+    return list(entry), _LEGACY_REJECTION_REASON
+
+
 class Bucket(str, Enum):
     Z_JUNK = "Z_JUNK"  # placeholder subject (<UNKNOWN>/<none>/empty) -- reject mechanically at trust_tier=2
     Z_BLOCKED = "Z_BLOCKED"  # D4 namesake exclusion -- enters the bucket-Z blocked register, do not read

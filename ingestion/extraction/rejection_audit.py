@@ -64,6 +64,7 @@ from pathlib import Path
 from typing import NamedTuple
 
 from audit.claim_direction import _PARENTAGE_FORMS, load_name_aliases, parse_parent
+from extraction.claim_evidence import parse_rejected_key_entry
 
 OUTPUT_DIR = Path(__file__).resolve().parent / "output"
 AUDIT_DIR = Path(__file__).resolve().parent.parent / "audit"
@@ -266,8 +267,9 @@ def measure(
         for k in entry.get("keys", []):
             if isinstance(k, list) and len(k) >= 5:
                 c1_passages.add((k[3], k[4]))
-        for k in entry.get("rejectedKeys", []):
-            if isinstance(k, list) and len(k) >= 5:
+        for raw in entry.get("rejectedKeys", []):
+            k, _ = parse_rejected_key_entry(raw)
+            if len(k) >= 5:
                 c1_passages.add((k[3], k[4]))
     result.c1_passages_adjudicated = len(c1_passages)
 

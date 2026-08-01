@@ -280,8 +280,8 @@ def _result(conflicts, resolutions=()):
     )
 
 
-def _claim(subject="Aphrodite", value="child of Zeus", source="source-a", tier=3):
-    return {
+def _claim(subject="Aphrodite", value="child of Zeus", source="source-a", tier=3, reason=None):
+    row = {
         "subject_name": subject,
         "claim_type": "parentage",
         "claim_value": value,
@@ -289,6 +289,9 @@ def _claim(subject="Aphrodite", value="child of Zeus", source="source-a", tier=3
         "passage_ref": "1.1",
         "trust_tier": tier,
     }
+    if reason is not None:
+        row["rejection_reason"] = reason
+    return row
 
 
 def test_write_output_preserves_an_existing_promotion(tmp_path):
@@ -358,6 +361,21 @@ def test_write_output_preserves_a_rejected_row(tmp_path):
     rows = json.loads(path.read_text())
     assert len(rows) == 1
     assert rows[0]["trust_tier"] == 2, "the rejection must survive a re-extraction, same as a promotion"
+
+
+def test_write_output_preserves_rejection_reason(tmp_path):
+    """B10 (ADR-023): rejection_reason is in _REVIEW_OWNED_FIELDS and must survive a
+    re-extraction alongside trust_tier -- otherwise 639 typed codes are erased on the
+    next extraction run."""
+    path = tmp_path / "variant_claims_candidates.json"
+    path.write_text(json.dumps([_claim(tier=2, reason="not_in_passage")]), encoding="utf-8")
+
+    result = _result([_candidate()])
+    write_output(result, output_dir=tmp_path)
+
+    rows = json.loads(path.read_text())
+    assert rows[0]["trust_tier"] == 2
+    assert rows[0].get("rejection_reason") == "not_in_passage", "rejection_reason must be carried over"
 
 
 def test_write_output_reports_promoted_and_rejected_counts_separately(tmp_path, capsys):
